@@ -38,11 +38,11 @@ Once you hit submit the following will happen:
 
 1. The server will load the local .html and .css from form field 1 and then place a watch on those files so that any change to the html results in an automatic page reload and any change to the .css will result in a automatic style change without a reload (just like [live-server](https://github.com/tapio/live-server) does)
 2. The server will fetch the contents of the remote portal url and then do the following before displaying it
-  a. It will add a <base href="..."> tag right after the opening head tag pointing to the remote portal url so that relative url references are      automatically resolved to the remote server
-  b. It will add a style tag pointing to the local server which will return the .css file in step 1 so that automatic style changes can be done on css changes.
-  c. It will use the selector in the form to create a "hole" in the document which is then filled with the .html in step 1.
-  d. It will add a script tag pointing to a script on the server that will open a websocket and either reload the page or cause the style links to      reload based on a file watch change event sent from the server.
-  e. It will replace all `/api/` strings in the code to point to a proxy endpoint on the local server to get around CORS restrictions.
+    1. It will add a <base href="..."> tag right after the opening head tag pointing to the remote portal url so that relative url references are      automatically resolved to the remote server
+    2. It will add a style tag pointing to the local server which will return the .css file in step 1 so that automatic style changes can be done on css changes.
+    3. It will use the selector in the form to create a "hole" in the document which is then filled with the .html in step 1.
+    4. It will add a script tag pointing to a script on the server that will open a websocket and either reload the page or cause the style links to      reload based on a file watch change event sent from the server.
+    5. It will replace all `/api/` strings in the code to point to a proxy endpoint on the local server to get around CORS restrictions.
 
 ## TODO:
 
