@@ -1,0 +1,26 @@
+{
+  "name": "portal-pages",
+  "version": "1.0.0",
+  "description": "Concord Portal Pages",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "node scripts/build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/concord-consortium/portal-pages.git"
+  },
+  "author": "Doug Martin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/concord-consortium/portal-pages/issues"
+  },
+  "homepage": "https://github.com/concord-consortium/portal-pages#readme",
+  "devDependencies": {
+    "glob": "^7.1.2"
+  },
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  }
+}
