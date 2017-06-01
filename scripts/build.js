@@ -7,17 +7,15 @@ const path = require("path");
 const fs = require("fs");
 const mkdirp = require("mkdirp");
 
-const die = (message) => {
-  console.error(message);
-  process.exit(1);
-};
-
 const srcFolder = path.resolve(`${__dirname}/../src`);
 const destFolder = path.resolve(`${__dirname}/../dest`);
 
 // get a list of all the .html files in src
 glob(`${srcFolder}/**/*.html`, (err, files) => {
-  if (err) {die(err);}
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
 
   const buildComment = `<!-- built using portal pages build script on ${new Date()} -->\n`;
 

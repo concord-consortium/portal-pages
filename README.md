@@ -23,7 +23,7 @@ To build the static files do a one time install of the node modules needed (if n
 
 `npm install`
 
-and then run the following each time you want to start the server:
+and then run the following each time you want build the files:
 
 `npm run build`
 
