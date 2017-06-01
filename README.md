@@ -53,7 +53,7 @@ Once you hit submit the following will happen:
     2. It will add a style tag pointing to the local server which will return the .css file in step 1 so that automatic style changes can be done on css changes.
     3. It will use the selector in the form to create a "hole" in the document which is then filled with the .html in step 1.
     4. It will add a script tag pointing to a script on the server that will open a websocket and either reload the page or cause the style links to      reload based on a file watch change event sent from the server.
-    5. It will replace all `/api/` strings in both the remote and local html to point to a proxy endpoint on the local server to get around CORS restrictions.  The remote portal url will be included in the local api endpoint, eg `/api/foo` will get rewritten to `http://localhost:8000/api-proxy/learn.concord.org/api/foo`
+    5. It will replace all `/api/` strings in both the remote and local html to point to a proxy endpoint on the local server to get around CORS restrictions.  The remote portal url will be included in the local api endpoint, eg `/api/foo` will get rewritten to `http://localhost:8000/api-proxy/https/learn.concord.org/foo`
 
 ## TODO:
 
@@ -65,7 +65,7 @@ Once you hit submit the following will happen:
     3. ~~Add download of remote url in proxy with <base> tag injected~~
     4. ~~Add load of local page content html and css in proxy~~
     5. ~~Add replacement of local html and css using DOM selector~~
-    6. Add /api/ proxy endpoint and rewrite downloaded html to point to it
+    6. ~~Add /api/ proxy endpoint and rewrite downloaded html to point to it~~
     7. Use live-server like injected html to talk to websocket endpoint on server for reloads and redraws
 4. Create travis.yml build task using s3_website
 5. Add src folders for the other portals
