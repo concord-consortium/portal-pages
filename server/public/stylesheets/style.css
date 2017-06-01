@@ -1,0 +1,24 @@
+body {
+  padding: 20px 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.form-group {
+  margin: 0 0 10px 0;
+}
+
+select,
+input[type=text] {
+  width: 500px;
+  padding: 5px;
+}

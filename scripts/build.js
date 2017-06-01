@@ -20,7 +20,7 @@ glob(`${srcFolder}/**/*.html`, (err, files) => {
   const buildComment = `<!-- built using portal pages build script on ${new Date()} -->\n`;
 
   // iterate over the list creating the concatenated css and html in dest
-  files.map((htmlInputFile) => {
+  files.forEach((htmlInputFile) => {
     const cssInputFile = `${path.dirname(htmlInputFile)}/${path.basename(htmlInputFile, ".html")}.css`;
 
     const htmlOutputFile = path.resolve(`${destFolder}/${htmlInputFile.substr(srcFolder.length)}`);

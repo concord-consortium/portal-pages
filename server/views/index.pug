@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+  form(id='proxyForm' method='GET' action='/proxy')
+    div.form-group
+      label(for='page') Page
+      select(name='file' id='page')
+        each file in files
+          option(value=file) #{file}
+    div.form-group
+      label(for='portal') Portal URL
+      input(type='text' name='portal' id='portal')
+    div.form-group
+      label(for='selector') Content Selector
+      input(type='text' name='selector' id='selector')
+    div.form-group
+      input(type='submit' value='Submit')
+
+  script(src='/javascripts/proxy-form.js')
