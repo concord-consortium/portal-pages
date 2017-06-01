@@ -63,11 +63,10 @@ Once you hit submit the following will happen:
     1. ~~Create Express based server and set package.json start script to start it~~
     2. ~~Add form on homepage pointing to /proxy action using url parameters for the form fields.  Save form fields in localstorage.~~
     3. ~~Add download of remote url in proxy with <base> tag injected~~
-    4. Add load of local page content html and css in proxy
-    5. Add replacement of local html using DOM selector
-    6. Add local css server endpoint and add it to the downloaded html
-    7. Add /api/ proxy endpoint and rewrite downloaded html to point to it
-    8. Use live-server like injected html to talk to websocket endpoint on server for reloads and redraws
+    4. ~~Add load of local page content html and css in proxy~~
+    5. ~~Add replacement of local html and css using DOM selector~~
+    6. Add /api/ proxy endpoint and rewrite downloaded html to point to it
+    7. Use live-server like injected html to talk to websocket endpoint on server for reloads and redraws
 4. Create travis.yml build task using s3_website
 5. Add src folders for the other portals
 
