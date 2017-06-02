@@ -66,7 +66,8 @@ Once you hit submit the following will happen:
     4. ~~Add load of local page content html and css in proxy~~
     5. ~~Add replacement of local html and css using DOM selector~~
     6. ~~Add /api/ proxy endpoint and rewrite downloaded html to point to it~~
-    7. Use live-server like injected html to talk to websocket endpoint on server for reloads and redraws
+    7. ~~Use live-server like injected html to talk to websocket endpoint on server for reloads and redraws~~
+    8. Instead of /api/ rewrites proxy XMLHTTPRequest
 4. Create travis.yml build task using s3_website
 5. Add src folders for the other portals
 

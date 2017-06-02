@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
 var open = require('opn');
+var WebSocket = require('faye-websocket');
 
 /**
  * Get port from environment and store in Express.
@@ -21,6 +22,21 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+// WebSocket
+app.set('clients', []);
+server.addListener('upgrade', function(request, socket, head) {
+  var ws = new WebSocket(request, socket, head);
+  ws.onopen = function() {
+    ws.send(JSON.stringify({action: 'connected'}));
+  };
+  ws.onclose = function() {
+    app.set('clients', app.get('clients').filter(function (client) {
+      return client !== ws;
+    }));
+  };
+  app.get('clients').push(ws);
+});
 
 /**
  * Listen on provided port, on all network interfaces.
