@@ -15,31 +15,49 @@ module.exports = (app) => {
   const injectedStyleId = '__devServerInjectedCSS';
 
   // adapted from https://github.com/tapio/live-server/blob/master/injected.html
-  const injectedHTML = (files) => `
-  <script type="text/javascript">
-    if ('WebSocket' in window) {
-      (function() {
-        var files = ${JSON.stringify(files)};
-        var fileMatches = function (json) {
-          return json.file && (files.indexOf(json.file) !== -1);
-        };
-        var restyle = function (css) {
-          document.getElementById('${injectedStyleId}').innerHTML = css;
+  const createInjectedHTML = (files, proxy) => {
+    return `
+      <!-- injected by development server -->
+      <script type="text/javascript">
+
+        // add live server reload and restyle
+        if ('WebSocket' in window) {
+          (function() {
+            var fileMatches = function (json) {
+              return json.file && (${JSON.stringify(files)}.indexOf(json.file) !== -1);
+            };
+            var restyle = function (css) {
+              document.getElementById('${injectedStyleId}').innerHTML = css;
+            }
+            var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+            var address = protocol + window.location.host + window.location.pathname + '/ws';
+            var socket = new WebSocket(address);
+            socket.onmessage = function(msg) {
+              var json = JSON.parse(msg.data);
+              switch (json.action) {
+                case 'reload': fileMatches(json) && window.location.reload(); break;
+                case 'restyle': fileMatches(json) && restyle(json.css); break;
+              }
+            };
+          })();
         }
-        var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-        var address = protocol + window.location.host + window.location.pathname + '/ws';
-        var socket = new WebSocket(address);
-        socket.onmessage = function(msg) {
-          var json = JSON.parse(msg.data);
-          switch (json.action) {
-            case 'reload': fileMatches(json) && window.location.reload(); break;
-            case 'restyle': fileMatches(json) && restyle(json.css); break;
-          }
-        };
-      })();
-    }
-  </script>
-  `;
+
+        // proxy all ajax requests
+        (function () {
+          var proxy = ${JSON.stringify(proxy)};
+          (function(open) {
+            XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
+              var proxyURL = url;
+              if (url[0] === '/') {
+                proxyURL = ['http://localhost:', proxy.port, '/ajax-proxy/', proxy.protocol, '/', proxy.domain, url].join("");
+              }
+              return open.call(this, method, proxyURL, async, user, pass);
+            };
+          })(XMLHttpRequest.prototype.open);
+        })();
+      </script>
+    `;
+  };
 
   const handleWatchChange = (changePath) => {
     const broadcast = (json) => {
@@ -90,7 +108,6 @@ module.exports = (app) => {
     const {file, portal, selector} = req.query;
     const fileParser = file.match(/\/([^/]+)\/(.+)/);
     const portalParser = portal.match(/^((https?):\/\/([^/]+)\/?)/);
-    const port = req.socket.address().port;
 
     if (!fileParser || !portalParser) {
       return res.die("Invalid file or portal parameter!");
@@ -102,12 +119,6 @@ module.exports = (app) => {
     const htmlPath = path.resolve(`${srcFolder}/${file}`);
     const cssPath = path.resolve(`${srcFolder}/${file.replace(/\.html$/, ".css")}`);
 
-    const convertAPIUrlsToProxy = (html) => {
-      return html.replace(/((['"])\/api\/)/g, (_, api, quote) => {
-        return `${quote}http://localhost:${port}/api-proxy/${portalProtocol}/${portalDomain}/`;
-      });
-    };
-
     fs.readFile(htmlPath, 'utf8', (err, localHTML) => {
       fs.readFile(cssPath, 'utf8', (err, localCSS) => {
         if (err) { return res.die("Unable to read local html file!"); }
@@ -116,12 +127,15 @@ module.exports = (app) => {
         request.get(url, (err, response, portalHTML) => {
           if (err) { return res.die(err); }
 
-          localHTML = convertAPIUrlsToProxy(localHTML);
-          portalHTML = convertAPIUrlsToProxy(portalHTML);
+          const injectedHTML = createInjectedHTML([htmlPath, cssPath], {
+            port: req.socket.address().port,
+            protocol: portalProtocol,
+            domain: portalDomain
+          });
 
           const $ = cheerio.load(portalHTML);
           $("head").prepend(`<base href="${portalRoot}">`);
-          $(selector).html(`\n<style id="${injectedStyleId}">\n${localCSS || ""}</style>\n${localHTML}\n${injectedHTML([htmlPath, cssPath])}`);
+          $(selector).html(`\n${injectedHTML}\n<!-- ${cssPath} -->\n<style id="${injectedStyleId}">\n${localCSS || ""}</style>\n<!-- ${htmlPath} -->\n${localHTML}\n`);
 
           res.send($.html());
         });
@@ -129,12 +143,12 @@ module.exports = (app) => {
     });
   });
 
-  router.get(/^\/api-proxy\/(.+)$/, (req, res, next) => {
+  router.get(/^\/ajax-proxy\/(.+)$/, (req, res, next) => {
     const [protocol, domain, ...rest] = req.params[0].split("/");
     if (!protocol || !domain || !rest) {
       return res.die("Invalid api-proxy url!");
     }
-    const url = `${protocol}://${domain}/api/${rest.join("/")}`;
+    const url = `${protocol}://${domain}/${rest.join("/")}`;
     request.get(url, (err, response, result) => {
       if (err) {
         res.die(err);
