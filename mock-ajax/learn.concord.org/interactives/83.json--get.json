@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:37:44Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Set the initial position of a mass on a spring and observe how potential, kinetic, and thermal energy change when the spring is released.",
+  "full_window": false,
+  "height": 400,
+  "id": 83,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/energy-spring.jpg",
+  "name": "Energy of a Spring",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:37:44Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/spring.json",
+  "user_id": 371,
+  "width": 690
+}

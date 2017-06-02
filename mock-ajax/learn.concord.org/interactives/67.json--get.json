@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:21:23Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Explore the energy exchange between colliding objects and observe how energy transfer occurs under various circumstances.\r\n",
+  "full_window": false,
+  "height": 400,
+  "id": 67,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/collisions-kinetic-energy-2.jpg",
+  "name": "Collisions and Kinetic Energy",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:21:23Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/collision.json",
+  "user_id": 371,
+  "width": 690
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Geniverse",
+    "id": 1,
+    "landing_page_slug": "geniverse",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/geniverse.jpg",
+    "project_card_description": "Explore heredity and genetics by experimenting with breeding and studying virtual dragons.",
+    "public": true
+  },
+  {
+    "name": "InquirySpace",
+    "id": 2,
+    "landing_page_slug": "inquiryspace",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/is.jpg",
+    "project_card_description": "Use probes, models, and data analysis tools for open-ended investigations similar to the approach used by real scientists.",
+    "public": true
+  },
+  {
+    "name": "SEPA",
+    "id": 4,
+    "landing_page_slug": "sepa",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/sepa.jpg",
+    "project_card_description": "SEPA students explore the connections between genetics and the environment with simulations and by creating and modifying models.",
+    "public": true
+  },
+  {
+    "name": "SmartGraphs",
+    "id": 5,
+    "landing_page_slug": "smartgraphs",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/smartgraphs.jpg",
+    "project_card_description": "Learn algebra using graph-related activities, and get scaffolds and hints to help make sense of graphs.",
+    "public": true
+  },
+  {
+    "name": "SAM",
+    "id": 6,
+    "landing_page_slug": "sam",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/sam.jpg",
+    "project_card_description": "The Science of Atoms and Molecules project offers research-based activities for physics, chemistry, and biology.",
+    "public": true
+  },
+  {
+    "name": "VISUAL",
+    "id": 7,
+    "landing_page_slug": "visual",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/visual.jpg",
+    "project_card_description": "The Visualizing to Integrate Science Understanding for All Learners  project studied how visualizations can transform science instruction.",
+    "public": true
+  },
+  {
+    "name": "Evolution Readiness",
+    "id": 8,
+    "landing_page_slug": "evolution-readiness",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/er.jpg",
+    "project_card_description": "A set of 10 activities help elementary students learn Darwin’s model of natural selection using models of interacting organisms and their environments.",
+    "public": true
+  },
+  {
+    "name": "UDL",
+    "id": 9,
+    "landing_page_slug": "udl",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/udl.jpg",
+    "project_card_description": "Universal Design for Learning principles offer a flexible approach to teaching science. Activities for grades 3-6 include probes and computational models.",
+    "public": true
+  },
+  {
+    "name": "Interactions",
+    "id": 10,
+    "landing_page_slug": "interactions",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/interactions-lightning-t.jpg",
+    "project_card_description": "Students explore how interactions of matter and energy at the atomic level explain phenomena across physics, chemistry, and biology.",
+    "public": true
+  },
+  {
+    "name": "Electron Technologies",
+    "id": 11,
+    "landing_page_slug": "electron-technologies",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/electron-technologies.png",
+    "project_card_description": "Using advanced computational models of electron behavior, students prepare for careers in nanotechnology, photonics, and materials science.",
+    "public": true
+  },
+  {
+    "name": "Next-Generation Molecular Workbench",
+    "id": 12,
+    "landing_page_slug": "nextgen-molecular-workbench",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/nextgen-mw.jpg",
+    "project_card_description": "Next-Generation Molecular Workbench software provides visual, interactive computational experiments that run in Web browsers.",
+    "public": true
+  },
+  {
+    "name": "Engineering Energy Efficiency",
+    "id": 13,
+    "landing_page_slug": null,
+    "project_card_image_url": "",
+    "project_card_description": "Design and build an energy-efficient scale model house using simulations and probeware, and  learn about conduction, convection, and radiation.",
+    "public": true
+  },
+  {
+    "name": "High-Adventure Science",
+    "id": 20,
+    "landing_page_slug": "has",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/high-adventure-science.jpg",
+    "project_card_description": "Investigate the mechanisms of climate change, learn how scientists use modern tools to find planets around distant stars, and evaluate whether underground stores of water will be sufficient to support a growing population.",
+    "public": true
+  },
+  {
+    "name": "SPARKS",
+    "id": 26,
+    "landing_page_slug": "sparks",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/advanced-troubleshooting-series-parallel-circuits-1-card.png",
+    "project_card_description": "SPARKS provides realistic simulation-based assessments for students in college-level introductory electronics courses.",
+    "public": true
+  },
+  {
+    "name": "Teaching Teamwork",
+    "id": 27,
+    "landing_page_slug": "teaching-teamwork",
+    "project_card_image_url": "https://concord.org/sites/default/files/images/learn/teaching-teamwork.jpg",
+    "project_card_description": "Electronics students learn how to work effectively in teams. By logging student actions, the project hopes to find ways to assess the contribution of each team member. ",
+    "public": true
+  }
+]

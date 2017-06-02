@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T20:58:52Z",
+  "credits": "",
+  "description": "<p><a href=\"#?subject_areas=Biology,Chemistry,Physics&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Explore the role of temperature in the rate of diffusion of a substance. Diffusion is the process of a substance spreading out from its origin. Molecules diffuse through random molecular motion. Diffusion is always happening, even when a system appears to have reached equilibrium, because molecules are always moving. When molecules are heated, they move faster.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 23,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/diffusion-drop.png",
+  "name": "Diffusion of a Drop",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:38:19Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/sam/diffusion/1-dropping-dye-on-click.json",
+  "user_id": 2919,
+  "width": 690
+}

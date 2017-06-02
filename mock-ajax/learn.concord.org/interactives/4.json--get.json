@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-19T19:56:12Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Chemistry,Physics&amp;grade_levels=9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Before Ernest Rutherford'\r\ns famous gold foil experiment in 1911, it was not known how the positive part of the atom was distributed. His experiment showed that if you shot positively charged particles at the atoms in a very thin sheet of gold foil, that very rarely, a particle would bounce back from the foil rather than going straight through it. Experiment with changing the distribution of positive charge and see how it affects the paths of positively charged particles moving near it.",
+  "full_window": false,
+  "height": 400,
+  "id": 4,
+  "image_url": "https://concord.org/sites/default/files/imagecache/image_activity_finder/concentrating-charge.jpg",
+  "name": "Concentrating Charge and Electric Fields",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-07-05T17:29:39Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/rutherford-no-electrons.json",
+  "user_id": 2919,
+  "width": 690
+}

@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T20:31:54Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Heat flows through solids at rates measured by their conductivity. The rate of heat flow is also proportional to the thickness of the material. This model compares the rate of heat transfer between two objects when they are separated by walls of different thickness.",
+  "full_window": false,
+  "height": 400,
+  "id": 12,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/3C.png",
+  "name": "Conduction: The Effect of Wall Thickness on Heat Conduction",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:25:56Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/energy2d/htb/S3C1.json",
+  "user_id": 2919,
+  "width": 690
+}

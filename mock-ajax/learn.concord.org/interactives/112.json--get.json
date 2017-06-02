@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T03:42:28Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Model how electric fields change due to the number and placement of charged objects.",
+  "full_window": false,
+  "height": 400,
+  "id": 112,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/visualizing-electric-fields-forces_0.jpg",
+  "name": "Visualizing Electric Fields and Forces",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T03:42:28Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/act2model.json",
+  "user_id": 371,
+  "width": 690
+}

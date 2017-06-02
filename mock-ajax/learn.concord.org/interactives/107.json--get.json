@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T03:36:39Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Manipulate the magnitude of charges on two objects to get a third positively charged particle to hit a target.",
+  "full_window": false,
+  "height": 400,
+  "id": 107,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/target-game-charge-magnitude.jpg",
+  "name": "Target Game (Charge Magnitude / Force Relationship)",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T03:36:39Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/targetGameCharge.json",
+  "user_id": 371,
+  "width": 690
+}

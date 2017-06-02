@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:43:13Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Chemistry&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Explore the balance of forces and electron distribution as two atoms are moved closer and further apart.",
+  "full_window": false,
+  "height": 400,
+  "id": 89,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/forming-molecule.jpg",
+  "name": "Forming a Molecule",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:43:13Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/forming-molecule.json",
+  "user_id": 371,
+  "width": 690
+}

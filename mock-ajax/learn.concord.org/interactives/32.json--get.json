@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:28:54Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>When heat energy is transferred from a warm to a cold object, one cools down and the other warms up, but the total energy remains the same. This model allows you to watch this process and explore how to determine the final temperature.",
+  "full_window": false,
+  "height": 400,
+  "id": 32,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/1A.png",
+  "name": "Measuring Heat Transfer",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:48:41Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/energy2d/htb/S1A1.json",
+  "user_id": 2919,
+  "width": 690
+}

@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:51:39Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>How does an object's speed change as it falls through the atmosphere? When first learning about how objects fall, usually just one force--îgravity--is considered. Such a simplification only accurately describes falling motion in a vacuum. This model of a parachute carrying a load incorporates a second force--air resistance--and allows experimentation with two variables that affect its speed: the size of the parachute and the mass of its load. This model graphs both the parachute's height above the Earth's surface and its speed after it is released. Motion continues until a constant speed is achieved, the <em>terminal velocity</em>.",
+  "full_window": false,
+  "height": 400,
+  "id": 41,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/parachute.png",
+  "name": "Parachute and Terminal Velocity",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-07-12T16:26:12Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/inquiry-space/parachute.json",
+  "user_id": 2919,
+  "width": 690
+}

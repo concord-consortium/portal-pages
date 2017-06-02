@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T20:28:55Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>The rate of heat flow between two objects is proportional to their difference in temperature. One experiences this every day, with stoves, outdoor weather and touching things. If you touch something that's the same temperature as your hand, there's no heat flow at all. This model allows you to adjust the temperature difference between two objects and observe the graph of heat flow.",
+  "full_window": false,
+  "height": 400,
+  "id": 11,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/3D.png",
+  "name": "Conduction: The Effect of Temperature Difference",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:25:47Z",
+  "url": "http://lab.concord.org/interactives.html#interactives/energy2d/htb/S3D1.json",
+  "user_id": 2919,
+  "width": 690
+}

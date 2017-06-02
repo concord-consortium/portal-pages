@@ -68,6 +68,8 @@ Once you hit submit the following will happen:
     6. ~~Add /api/ proxy endpoint and rewrite downloaded html to point to it~~
     7. ~~Use live-server like injected html to talk to websocket endpoint on server for reloads and redraws~~
     8. ~~Instead of /api/ rewrites proxy XMLHTTPRequest~~
+    9. ~~Change /ajax-proxy/ to proxy all methods~~
+    10. Add mock api
 4. Create travis.yml build task using s3_website
 5. Add src folders for the other portals
 

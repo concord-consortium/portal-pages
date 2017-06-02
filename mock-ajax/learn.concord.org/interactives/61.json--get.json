@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:13:08Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Chemistry&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Create multiple versions of various atoms and record the number of protons, electrons, and neutrons in a table.",
+  "full_window": false,
+  "height": 400,
+  "id": 61,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/atom-ion-builder_0.jpg",
+  "name": "Atom and Ion Builder (with table)",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:13:08Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/atom-builder-with-table.json",
+  "user_id": 371,
+  "width": 690
+}

@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:41:16Z",
+  "credits": "",
+  "description": "<p><a href=\"#?subject_areas=Biology,Chemistry,Physics&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Explore the structure of a solid at the molecular level. Molecules are always in motion, though molecules in a solid move slowly. All molecules are attracted to each other. Molecules can be weakly or strongly attracted to each other. The way that large molecules interact in physical, chemical and biological applications is a direct consequence of the many tiny attractions of the smaller parts.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 38,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/molecular-view-solid.jpg",
+  "name": "Molecular View of a Solid",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:50:32Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/sam/phase-change/4-solids.json",
+  "user_id": 2919,
+  "width": 690
+}

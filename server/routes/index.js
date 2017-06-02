@@ -10,12 +10,16 @@ module.exports = (app) => {
   const cheerio = require("cheerio");
   const fs = require("fs");
   const chokidar = require("chokidar");
+  const mkdirp = require("mkdirp");
+  const stream = require("stream");
 
   const srcFolder = path.resolve(`${__dirname}/../../src`);
+  const mockFolder = path.resolve(`${__dirname}/../../mock-ajax`);
+
   const injectedStyleId = '__devServerInjectedCSS';
 
   // adapted from https://github.com/tapio/live-server/blob/master/injected.html
-  const createInjectedHTML = (files, proxy) => {
+  const createInjectedHTML = (files, mock, proxy) => {
     return `
       <!-- injected by development server -->
       <script type="text/javascript">
@@ -45,11 +49,12 @@ module.exports = (app) => {
         // proxy all ajax requests
         (function () {
           var proxy = ${JSON.stringify(proxy)};
+          var type = '${mock ? 'mock' : 'proxy'}';
           (function(open) {
             XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
               var proxyURL = url;
               if (url[0] === '/') {
-                proxyURL = ['http://localhost:', proxy.port, '/ajax-proxy/', proxy.protocol, '/', proxy.domain, url].join("");
+                proxyURL = ['http://localhost:', proxy.port, '/ajax-proxy/', type, '/', proxy.protocol, '/', proxy.domain, url].join("");
               }
               return open.call(this, method, proxyURL, async, user, pass);
             };
@@ -105,7 +110,7 @@ module.exports = (app) => {
   });
 
   router.get('/proxy', (req, res, next) => {
-    const {file, portal, selector} = req.query;
+    const {file, portal, selector, mock} = req.query;
     const fileParser = file.match(/\/([^/]+)\/(.+)/);
     const portalParser = portal.match(/^((https?):\/\/([^/]+)\/?)/);
 
@@ -123,12 +128,12 @@ module.exports = (app) => {
       fs.readFile(cssPath, 'utf8', (err, localCSS) => {
         if (err) { return res.die("Unable to read local html file!"); }
 
-        const url = path.basename(filePath) !== "index.html" ? `${portal}/${filePath}` : portal;
-        request.get(url, (err, response, portalHTML) => {
+        const portalURL = path.basename(filePath) !== "index.html" ? `${portal}/${filePath}` : portal;
+        request.get(portalURL, (err, response, portalHTML) => {
           if (err) { return res.die(err); }
 
-          const injectedHTML = createInjectedHTML([htmlPath, cssPath], {
-            port: req.socket.address().port,
+          const injectedHTML = createInjectedHTML([htmlPath, cssPath], !!mock, {
+            port: app.get('port'),
             protocol: portalProtocol,
             domain: portalDomain
           });
@@ -143,20 +148,63 @@ module.exports = (app) => {
     });
   });
 
-  router.get(/^\/ajax-proxy\/(.+)$/, (req, res, next) => {
-    const [protocol, domain, ...rest] = req.params[0].split("/");
-    if (!protocol || !domain || !rest) {
-      return res.die("Invalid api-proxy url!");
+  router.all(/^\/ajax-proxy\/(.+)$/, (req, res, next) => {
+    const [type, protocol, domain, ...rest] = req.params[0].split("/");
+    if (!protocol || !domain) {
+      return res.die(`Invalid ajax-proxy url: ${req.params[0]}`);
     }
-    const url = `${protocol}://${domain}/${rest.join("/")}`;
-    request.get(url, (err, response, result) => {
-      if (err) {
-        res.die(err);
+
+    const [beforeQuery, ...afterQuery] = req.url.split('?');
+    const query = afterQuery.join("?");
+    const proxyPath = rest.join("/");
+    const proxyQuery = query.length > 0 ? `?${query}` : '';
+    const proxyURL = `${protocol}://${domain}/${proxyPath}${proxyQuery}`;
+    const method = req.method.toLowerCase();
+    const mockQuery = query.length > 0 ? `-${(new Buffer(query)).toString('base64')}` : '';
+    const mockPath = path.resolve(`${mockFolder}/${domain}/${proxyPath}${mockQuery}--${method}.json`);
+
+    const proxyRequest = () => {
+      if (app.get('argv').recordAjax) {
+        mkdirp(path.dirname(mockPath), () => {
+          const mockStream = fs.createWriteStream(mockPath);
+          const pipe = req.pipe(request[method](proxyURL));
+          const chunks = [];
+
+          pipe.on('data', (chunk) => {
+            res.write(chunk);
+            chunks.push(chunk.toString());
+          });
+          pipe.on('end', () => {
+            res.end();
+            try {
+              mockStream.write(JSON.stringify(JSON.parse(chunks.join("")), null, 2));
+            }
+            catch (e) {
+              mockStream.write(chunks.join(""), null, 2);
+            }
+            mockStream.end();
+          });
+        });
       }
       else {
-        res.send(result);
+        req.pipe(request[method](proxyURL)).pipe(res);
       }
-    });
+    };
+
+    if (type === 'mock') {
+      fs.readFile(mockPath, 'utf8', (err, json) => {
+        if (err) {
+          // fall back to proxy if mock doesn't exist
+          proxyRequest();
+        }
+        else {
+          res.send(json);
+        }
+      });
+    }
+    else {
+      proxyRequest();
+    }
   });
 
   return router;

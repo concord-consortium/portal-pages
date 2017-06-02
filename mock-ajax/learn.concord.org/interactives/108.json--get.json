@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T03:37:55Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Drag the location of charges to get a positively charged particle to the target while observing forces and fields.",
+  "full_window": false,
+  "height": 400,
+  "id": 108,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/target-game-distance-force.jpg",
+  "name": "Target Game (Distance/Force Relationship)",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T03:37:55Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/targetGameDist.json",
+  "user_id": 371,
+  "width": 690
+}

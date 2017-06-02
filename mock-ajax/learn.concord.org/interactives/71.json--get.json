@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:25:56Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Chemistry,Physics&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Explore how potential energy created by particles of varying charge is converted to thermal energy.",
+  "full_window": false,
+  "height": 400,
+  "id": 71,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/conversion-electric-potential-energy-2.jpg",
+  "name": "Conversion of Electric Potential Energy",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:25:56Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/electricPE3.json",
+  "user_id": 371,
+  "width": 690
+}

@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T22:30:31Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>The purpose of insulation is to maintain a temperature difference between inside and outside with the least possible heat flow and thus a smaller heating requirement. If it's cold outside and the insulation value of a wall or window is low, the temperature near that surface will be lower, too. Move thermometers around the model building walls -- both inside and outside -- to locate where the insulation is good and where it's not so good.",
+  "full_window": false,
+  "height": 400,
+  "id": 58,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/6B.png",
+  "name": "Where Is the Most Heat Lost?",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:57:55Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/energy2d/htb/S6B1.json",
+  "user_id": 2919,
+  "width": 690
+}

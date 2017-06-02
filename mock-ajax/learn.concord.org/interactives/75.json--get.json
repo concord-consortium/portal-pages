@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:29:39Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Drag around a stationary charged object and observe the force on the stationary object when it is positive and negative.",
+  "full_window": false,
+  "height": 400,
+  "id": 75,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/direction-force-charged-object.jpg",
+  "name": "Direction of Force on Charged Objects",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:30:01Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/forceDirection.json",
+  "user_id": 371,
+  "width": 690
+}

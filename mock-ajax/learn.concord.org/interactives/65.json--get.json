@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:19:10Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Explore the relationship between charge, electric fields, and forces on objects by manipulating charge.",
+  "full_window": false,
+  "height": 400,
+  "id": 65,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/charge-intensity_0.jpg",
+  "name": "Charge Intensity and Electric Force",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:19:10Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/amount-charge.json",
+  "user_id": 371,
+  "width": 690
+}

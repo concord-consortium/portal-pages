@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T22:24:10Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Explore how natural convection might look in a whole house, with or without a ceiling. Consider the following questions based on your experience of rooms you have been in. Does a low ceiling make a room feel warmer in a poorly insulated house? Would it be hard to heat the area we use (such as sofa height) of a living room with a high \"cathedral\" ceiling?",
+  "full_window": false,
+  "height": 400,
+  "id": 55,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/6C.png",
+  "name": "Vertical Temperature Gradients",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:28:20Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/energy2d/htb/S6C1.json",
+  "user_id": 2919,
+  "width": 690
+}

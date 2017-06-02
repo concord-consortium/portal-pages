@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:27:05Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>People like to avoid large temperature swings in buildings because it's more comfortable. The heat capacity of the building is useful in reducing swings, especially in solar houses where the incoming energy varies with the amount of sunshine. This model allows you to explore the effect of heat capacity on temperature swings.",
+  "full_window": false,
+  "height": 400,
+  "id": 31,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/2A.png",
+  "name": "Maintaining Steady Temperature",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:48:37Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/energy2d/htb/S2A1.json",
+  "user_id": 2919,
+  "width": 690
+}

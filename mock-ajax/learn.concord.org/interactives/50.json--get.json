@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T22:13:48Z",
+  "credits": "",
+  "description": "<p><a href=\"#?subject_areas=Earth+and+Space+Science&amp;grade_levels=7-8,9-12,13-14&amp;browser_based=true\" rel=\"nofollow\"></a>How does solar radiation interact with the Earth and its atmosphere to cause global warming? Use this model to see what's going on at the molecular level. Watch the effects of sunlight and then watch the effects of infrared radiation, also known as heat radiation, on the ground and on carbon dioxide, a greenhouse gas.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 50,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/Sunlight-IR-CO2t.png",
+  "name": "Sunlight, Infrared, CO2 and the Ground",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:55:13Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/sam/light-matter/sun-on-ground.json",
+  "user_id": 2919,
+  "width": 690
+}

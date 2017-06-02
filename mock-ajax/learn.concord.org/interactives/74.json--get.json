@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:28:48Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Observe the direction of forces between a negatively charged Van de Graaff generator and a positively charged object.",
+  "full_window": false,
+  "height": 400,
+  "id": 74,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/direction-force-vdg-negative.jpg",
+  "name": "Direction of Force Around a VDG (Negatively Charged)",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:28:48Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/forceDirectionVDGnegative.json",
+  "user_id": 371,
+  "width": 690
+}

@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:17:56Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Observe how a chemical reaction evolves over time and affects the balance of potential and kinetic energy in the system.",
+  "full_window": false,
+  "height": 400,
+  "id": 64,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/chain-reaction-hydrogen-oxygen.jpg",
+  "name": "Chain Reaction Between Hydrogen and Oxygen",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:17:56Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/hydrogen-oxygen-chain-reaction.json",
+  "user_id": 371,
+  "width": 690
+}

@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:58:12Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Explore the factors that affect a pendulum's motion. A pendulum is a weight hung from a fixed point. Pendulums swing back and forth in a regular motion known as a period. The length of the period is affected by the pendulum itself. Experiment by changing the length of the string/rod, the mass of the weight, the angle at which the pendulum is released and the friction (or damping force) exerted on the pendulum. Which of these factors affect the period of the pendulum?",
+  "full_window": false,
+  "height": 400,
+  "id": 42,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/pendulum.jpg",
+  "name": "Pendulum",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-07-12T16:09:34Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/inquiry-space/pendulum/1-pendulum.json",
+  "user_id": 2919,
+  "width": 690
+}

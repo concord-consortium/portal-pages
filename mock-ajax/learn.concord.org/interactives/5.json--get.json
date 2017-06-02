@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-19T19:58:28Z",
+  "credits": "",
+  "description": "<p><a href=\"#?subject_areas=Biology,Chemistry,Physics&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Investigate the difference in attractive force between polar and non-polar molecules by \"pulling\" apart pairs of molecules. While all molecules are attracted to each other, some attractions are stronger than others. Non-polar molecules are attracted through a London dispersion attraction; polar molecules are attracted through both the London dispersion force and the stronger dipole-dipole attraction. The force of attractions between molecules has consequences for their interactions in physical, chemical and biological applications.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 5,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/dipole-london-dispersion.gif",
+  "name": "Comparing Dipole-Dipole to London Dispersion",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-07-11T21:15:25Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/sam/intermolecular-attractions/2-comparing-dipole-dipole-to-london-dispersion.json",
+  "user_id": 2919,
+  "width": 690
+}

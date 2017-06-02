@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T20:45:43Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Air circulates quickly and easily if there are temperature differences to drive its motion. This may be desirable in a room, but in insulated walls and ceilings air circulation is a problem, since it transfers heat. Explore the effect of multiple barriers on the amount of convection and apply this to how insulation should be designed.",
+  "full_window": false,
+  "height": 400,
+  "id": 17,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/4B.png",
+  "name": "Convection: Slow Down Convection",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:28:26Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/energy2d/htb/S4B1.json",
+  "user_id": 2919,
+  "width": 690
+}

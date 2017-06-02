@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:09:23Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>This model shows how specific heat of an object determines how much heat energy it holds and hence how much is needed to heat it up or cool it down. You can explore this by watching the heat transfer between two objects with different specific heats and different temperatures.",
+  "full_window": false,
+  "height": 400,
+  "id": 28,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/1B.png",
+  "name": "Heat Storage Depends on Specific Heat",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:45:47Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/energy2d/htb/S1B1.json",
+  "user_id": 2919,
+  "width": 690
+}

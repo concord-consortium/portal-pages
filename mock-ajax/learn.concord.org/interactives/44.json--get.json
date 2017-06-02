@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T22:02:36Z",
+  "credits": "",
+  "description": "<p><a href=\"#?subject_areas=Biology,Chemistry,Physics&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Explore what happens at the molecular level during a phase change. The three common physical states of matter (also called phases) are solid, liquid and gas. Matter can change phase with the addition or subtraction of heat. Molecules are always in motion. The molecules in a solid move more slowly than those in a liquid. When molecules are heated, they gain kinetic energy (motion). Kinetic energy can be transferred through molecular collisions.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 44,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/phase-change.jpg",
+  "name": "Phase Change",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:52:19Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/sam/phase-change/6-phase-changes-caused-by-energy-input.json",
+  "user_id": 2919,
+  "width": 690
+}

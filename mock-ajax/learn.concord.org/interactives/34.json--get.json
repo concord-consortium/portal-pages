@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:32:36Z",
+  "credits": "",
+  "description": "<p><a href=\"#?subject_areas=Biology&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Explore how an mRNA copy is made of DNA. Protein complexes separate the DNA helix to allow complementary mRNA nucleotides to bind to the DNA sequence. The pairing of nucleotides is very specific.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 34,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/modeling-transcription.png",
+  "name": "Modeling Transcription",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:49:37Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/sam/DNA-to-proteins/2-modeling-transcription.json",
+  "user_id": 2919,
+  "width": 690
+}

@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T22:17:18Z",
+  "credits": "",
+  "description": "<p><a href=\"#?subject_areas=Biology,Chemistry,Physics&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Explore the relationship between the temperature of a gas and its volume. This is commonly known as Charles's Law. The volume of a gas tends to increase as the temperature increases.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 52,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/tempvolumerelationship.gif",
+  "name": "The Temperature-Volume Relationship",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:55:40Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/sam/gas-laws/4-temperature-volume-relationship.json",
+  "user_id": 2919,
+  "width": 690
+}

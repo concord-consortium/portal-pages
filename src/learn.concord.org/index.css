@@ -340,9 +340,10 @@ header #social {
 }
 
 #intro h1 {
-  color: #eb8723;
+  color: #f00;
   margin: 0;
   padding: 0;
+  font-size: 32px;
 }
 
 #intro p {

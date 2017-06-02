@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:07:59Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>This model shows how the size of an object affects how much heat energy it holds and hence how much is needed to heat it up or cool it down. You can explore this by watching the heat transfer between two objects with different sizes and different temperatures.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 27,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/1C.png",
+  "name": "Heat Storage Depends on Size",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T21:14:05Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/energy2d/htb/S1C1.json",
+  "user_id": 2919,
+  "width": 690
+}

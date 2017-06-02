@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:33:08Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Set the amount and type of charge on particles and compare the potential energy of the electric field that is generated.",
+  "full_window": false,
+  "height": 400,
+  "id": 78,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/electric-potential-energy-charge-intensity-2.jpg",
+  "name": "Electric Potential Energy and Charge Intensity",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:33:08Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/electricPE2.json",
+  "user_id": 371,
+  "width": 690
+}

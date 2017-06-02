@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T20:34:28Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>If there are air leaks in a house, you might expect that their effect would be magnified on a windy day. The wind creates greater air pressure on the windward side of the building and forces air in through the leaks. At the same time, the pressure on the other side of the building is lowered, pulling air out through leaks. This model has a fan blowing against a building. Air motion is shown with arrows. Open and close the \"windows\" in the building and observe the results.",
+  "full_window": false,
+  "height": 400,
+  "id": 13,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/4E.png",
+  "name": "Convection: Blowing Wind",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:28:08Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/energy2d/htb/S4E1.json",
+  "user_id": 2919,
+  "width": 690
+}

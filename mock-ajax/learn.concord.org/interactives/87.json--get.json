@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:41:24Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Biology,Chemistry&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Explore a protein and its components using a simplified representation to see structure; or a view of all atoms to see full details.",
+  "full_window": false,
+  "height": 400,
+  "id": 87,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/protein-3d-structure_0.jpg",
+  "name": "Exploring Protein 3D Structure",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:41:24Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/exploring-protein-3d-structure.json",
+  "user_id": 371,
+  "width": 690
+}

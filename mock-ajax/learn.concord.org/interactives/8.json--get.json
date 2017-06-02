@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-19T20:07:47Z",
+  "credits": "http://concord.org/sites/default/files/imagecache/image_activity_finder/ceramic-forces.jpg",
+  "description": "<a href=\"#?subject_areas=Chemistry,Engineering,Physics&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Explore what happens when a force is exerted on a ceramic material. There are many different types of materials. Each material has a particular molecular structure, which is responsible for the material's mechanical properties. The molecular structure of each material affects how it responds to an applied force at the macroscopic level.",
+  "full_window": false,
+  "height": 400,
+  "id": 8,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/ceramic-forces.jpg",
+  "name": "Ceramic Forces",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:18:28Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/visual/recycling/1-ceramicforces.json",
+  "user_id": 2919,
+  "width": 690
+}

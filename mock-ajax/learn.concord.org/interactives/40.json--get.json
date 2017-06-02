@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:46:23Z",
+  "credits": "",
+  "description": "<p><a href=\"#?subject_areas=Biology,Chemistry,Physics&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Explore the interactions that cause water and oil to separate from a mixture. Oil is a non-polar molecule, while water is a polar molecule. While all molecules are attracted to each other, some attractions are stronger than others. Non-polar molecules are attracted through a London dispersion attraction; polar molecules are attracted through both the London dispersion force and the stronger dipole-dipole attraction. When oil and water are mixed, the dipole-dipole interactions are disrupted, but constant molecular motion allows the stronger dipole-dipole attractions to partition the polar molecules from the mixture. The force of attractions between molecules has consequences for their interactions in physical, chemical and biological applications.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 40,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/oil-water.gif",
+  "name": "Oil and Water",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:50:59Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/sam/intermolecular-attractions/3-1-oil-and-water.json",
+  "user_id": 2919,
+  "width": 690
+}

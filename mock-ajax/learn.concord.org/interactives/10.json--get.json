@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T20:25:36Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>The heat conductivity of a solid material defines how fast heat will flow through it. You can probably think of several everyday examples of materials with high (fast) conductivity or low (slow) conductivity.  This model illustrates the effect of different conductivities by placing different materials between a hot and a cold object and graphing the changing temperatures.",
+  "full_window": false,
+  "height": 400,
+  "id": 10,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/3A.png",
+  "name": "Conduction: Heat Conduction Through Materials",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:25:39Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/energy2d/htb/S3A1.json",
+  "user_id": 2919,
+  "width": 690
+}

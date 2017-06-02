@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T22:19:34Z",
+  "credits": "",
+  "description": "<p><a href=\"#?subject_areas=Biology,Chemistry,Physics&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Investigate the relationship between the volume of a gas and the pressure it exerts on its container. This relationship is commonly known as Boyle's Law. The pressure of a gas tends to decrease as the volume of the gas increases.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 53,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/volumepressurerelationship.gif",
+  "name": "The Volume-Pressure Relationship",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-07-11T21:06:04Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/sam/gas-laws/3-volume-pressure-relationship.json",
+  "user_id": 2919,
+  "width": 690
+}

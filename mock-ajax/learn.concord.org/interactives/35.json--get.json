@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:34:26Z",
+  "credits": "",
+  "description": "<p><a href=\"#?subject_areas=Biology&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Explore how a protein is made from an mRNA sequence. In translation, the mRNA leaves the nucleus and attaches to a ribosome. Transfer RNA (tRNA) molecules bring amino acids to the ribosome. The tRNA pairs up with the mRNA nucleotide sequence in a specific complementary manner, ensuring the correct amino acid sequence in the protein.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 35,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/modeling-translation.png",
+  "name": "Modeling Translation",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:49:54Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/sam/DNA-to-proteins/3-modeling-translation.json",
+  "user_id": 2919,
+  "width": 690
+}

@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T20:48:00Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Engineering,Physics&amp;grade_levels=7-8,9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Most buildings have leaky places where air can enter or escape -- around windows, ceiling openings like pipes, wires or chimneys, and construction joints such as where the wall meets the floor or the floor rests on the foundation. The size and location of these leaks strongly affects the heating and cooling load. Use this model to experiment with wall and roof leaks in a house with a heater where the air can circulate freely.",
+  "full_window": false,
+  "height": 400,
+  "id": 18,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/4D.png",
+  "name": "Convection: The Stack Effect",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-03-15T20:35:52Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/energy2d/htb/S4D1.json",
+  "user_id": 2919,
+  "width": 690
+}

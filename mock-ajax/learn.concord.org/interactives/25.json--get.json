@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:04:13Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Chemistry,Physics&amp;grade_levels=9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>When J.J. Thomson first discovered that a cathode ray was actually a particle beam consisting of a stream of electrons, he concluded that these new particles were not just another type of atom. Explore and compare the behavior of electrons vs. charged atoms when they are shot through an electric field of varying intensity.",
+  "full_window": false,
+  "height": 400,
+  "id": 25,
+  "image_url": "https://concord.org/sites/default/files/imagecache/image_activity_finder/electron-properties.jpg",
+  "name": "Exploring Electron Properties",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-07-05T17:28:22Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/electronProperties.json",
+  "user_id": 2919,
+  "width": 690
+}

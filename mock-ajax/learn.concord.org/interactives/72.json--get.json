@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:26:55Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Chemistry&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Explore the effect of an electric field on the electron distribution of an atom.",
+  "full_window": false,
+  "height": 400,
+  "id": 72,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/deformed-cloud-2.jpg",
+  "name": "Deformed Electron Cloud",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:26:55Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/deformedCloud.json",
+  "user_id": 371,
+  "width": 690
+}

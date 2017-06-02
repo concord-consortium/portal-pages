@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T21:42:48Z",
+  "credits": "",
+  "description": "<p><a href=\"#?subject_areas=Biology&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Explore how changing the DNA sequence can change the amino acid sequence of a protein. Proteins are composed of long strings of amino acids. Proteins are coded for in the DNA. DNA is composed of four different types of nucleotides. Converting the information in DNA into protein is a two-step process, involving transcription and translation. In transcription each mRNA nucleotide pairs with the complementary DNA nucleotide. In translation, each tRNA nucleotide pairs with the complementary mRNA nucleotide. Thus, a change in the DNA sequence can change the amino acid sequence of the protein. There are three basic types of mutations: insertion, deletion and substitution. Some mutations are silent, meaning that there is no change in the protein, while others can cause major changes in the protein.</p>",
+  "full_window": false,
+  "height": 400,
+  "id": 39,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/mutations.png",
+  "name": "Mutations",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-07-12T17:11:01Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/sam/DNA-to-proteins/4-mutations.json",
+  "user_id": 2919,
+  "width": 690
+}

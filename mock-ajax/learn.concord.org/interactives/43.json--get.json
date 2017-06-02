@@ -1,0 +1,18 @@
+{
+  "created_at": "2015-10-20T22:00:21Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Physics&amp;grade_levels=7-8,9-12,Higher+Ed&amp;browser_based=true\" rel=\"nofollow\"></a>Explore the motion of a pendulum suspended by a spring. A pendulum is a weight hung from a fixed point. Pendulums swing back and forth in a regular motion known as a period. The period of a pendulum is affected by the length of the string/rod. A spring is a resilient device that can be pressed or pulled but return to its original shape when released. Springs are commonly helical coiled metal devices. When a spring is compressed or stretched and then released, it will vibrate at a particular frequency. This frequency is called the period of the spring. The period of a spring is affected by the spring constant (a measure of the elasticity of the coils). How does a pendulum behave when the length of the spring that suspends the mass is constantly changing?",
+  "full_window": false,
+  "height": 400,
+  "id": 43,
+  "image_url": "http://concord.org/sites/default/files/imagecache/image_activity_finder/pendulum-spring.jpg",
+  "name": "Pendulum and Spring",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2016-07-12T16:09:59Z",
+  "url": "http://lab.concord.org/embeddable.html#interactives/inquiry-space/pendulum/3-springy-pendulum.json",
+  "user_id": 2919,
+  "width": 690
+}

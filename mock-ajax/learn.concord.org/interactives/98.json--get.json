@@ -1,0 +1,18 @@
+{
+  "created_at": "2017-01-13T01:51:30Z",
+  "credits": "",
+  "description": "<a href=\"#?subject_areas=Chemistry&amp;grade_levels=9-12&amp;browser_based=true\" rel=\"nofollow\"></a>Compare the electron distribution, potential energy, and forces of two interacting hydrogen atoms (which can bond) with two helium atoms (which do not).",
+  "full_window": false,
+  "height": 400,
+  "id": 98,
+  "image_url": "https://concord.org/sites/default/files/styles/image_srf/public/non-bonding-conceptual.jpg",
+  "name": "Non-Bonding (conceptual version)",
+  "no_snapshots": false,
+  "publication_status": "published",
+  "save_interactive_state": false,
+  "scale": 1,
+  "updated_at": "2017-01-13T01:51:30Z",
+  "url": "https://lab.concord.org/embeddable.html#interactives/interactions/non-bonding-no-axes.json",
+  "user_id": 371,
+  "width": 690
+}
