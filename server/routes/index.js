@@ -12,6 +12,7 @@ module.exports = (app) => {
   const chokidar = require("chokidar");
   const mkdirp = require("mkdirp");
   const stream = require("stream");
+  const crypto = require('crypto');
 
   const srcFolder = path.resolve(`${__dirname}/../../src`);
   const mockFolder = path.resolve(`${__dirname}/../../mock-ajax`);
@@ -103,16 +104,16 @@ module.exports = (app) => {
     glob(`${srcFolder}/**/*.html`, (err, files) => {
       files = files.map((file) => file.substr(srcFolder.length)).sort();
       res.render('index', {
-      title: 'Concord Portal Pages Development Server',
-      files: files
+        title: 'Concord Portal Pages Development Server',
+        files: files
       });
     });
   });
 
   router.get('/proxy', (req, res, next) => {
     const {file, portal, selector, mock} = req.query;
-    const fileParser = file.match(/\/([^/]+)\/(.+)/);
-    const portalParser = portal.match(/^((https?):\/\/([^/]+)\/?)/);
+    const fileParser = (file || "").match(/\/([^/]+)\/(.+)/);
+    const portalParser = (portal || "").match(/^((https?):\/\/([^/]+)\/?)/);
 
     if (!fileParser || !portalParser) {
       return res.die("Invalid file or portal parameter!");
@@ -125,11 +126,19 @@ module.exports = (app) => {
     const cssPath = path.resolve(`${srcFolder}/${file.replace(/\.html$/, ".css")}`);
 
     fs.readFile(htmlPath, 'utf8', (err, localHTML) => {
-      fs.readFile(cssPath, 'utf8', (err, localCSS) => {
-        if (err) { return res.die("Unable to read local html file!"); }
+      if (err) { return res.die("Unable to read local html file!"); }
 
-        const portalURL = path.basename(filePath) !== "index.html" ? `${portal}/${filePath}` : portal;
-        request.get(portalURL, (err, response, portalHTML) => {
+      fs.readFile(cssPath, 'utf8', (err, localCSS) => {
+        // ignore no css file - that is valid
+        localCSS = localCSS || "";
+
+        const options = {
+          url: path.basename(filePath) !== "index.html" ? `${portal}/${filePath}` : portal,
+          headers: {
+            cookie: req.headers.cookie
+          }
+        };
+        request.get(options, (err, response, portalHTML) => {
           if (err) { return res.die(err); }
 
           const injectedHTML = createInjectedHTML([htmlPath, cssPath], !!mock, {
@@ -138,9 +147,13 @@ module.exports = (app) => {
             domain: portalDomain
           });
 
+          // redirect auth urls to proxy server
+          localHTML = localHTML.replace("/users/sign_in", `http://localhost:${app.get('port')}/signin-proxy/${portalProtocol}/${portalDomain}`);
+          localHTML = localHTML.replace("/users/sign_out", `http://localhost:${app.get('port')}/signout-proxy/${portalProtocol}/${portalDomain}`);
+
           const $ = cheerio.load(portalHTML);
           $("head").prepend(`<base href="${portalRoot}">`);
-          $(selector).html(`\n${injectedHTML}\n<!-- ${cssPath} -->\n<style id="${injectedStyleId}">\n${localCSS || ""}</style>\n<!-- ${htmlPath} -->\n${localHTML}\n`);
+          $(selector).html(`\n${injectedHTML}\n<!-- ${cssPath} -->\n<style id="${injectedStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localHTML}\n`);
 
           res.send($.html());
         });
@@ -148,9 +161,53 @@ module.exports = (app) => {
     });
   });
 
+  router.get('/signout-proxy/:protocol/:domain', (req, res, next) => {
+    const session = crypto.createHash('md5').update(crypto.randomBytes(16)).digest('hex')
+    res.set('Location', req.headers.referer);
+    res.cookie('cc_auth_token', '', {expires: new Date(0)});
+    res.set('Set-Cookie', `_rails_portal_session=${session}; path=/; HttpOnly`);
+    res.send(302, "Redirecting...");
+    /*
+      NOTE: this code to request signout from the remote server returns 200 instead of 302 with the auth cookies
+            deleted.  Replacing it for now with code to clear the cc_auth_token and redirect manually.
+    const {protocol, domain} = req.params;
+    const options = {
+      url: `${protocol}://${domain}/users/sign_out`,
+      headers: {
+        cookie: req.headers.cookie
+      }
+    };
+    request.get(options, (err, response, signoutHTML) => {
+      if (err) { res.die(err); }
+      // set the headers to transfer the auto cookie and redirect back to homepage proxy
+      response.headers.location = req.headers.referer;
+      res.set(response.headers);
+      res.send(response.statusCode, signoutHTML);
+    });
+    */
+  });
+
+  router.post('/signin-proxy/:protocol/:domain', (req, res, next) => {
+    const {protocol, domain} = req.params;
+    const options = {
+      url: `${protocol}://${domain}/users/sign_in`,
+      headers: {
+        cookie: req.headers.cookie
+      },
+      form: req.body
+    };
+    request.post(options, (err, response, signinHTML) => {
+      if (err) { res.die(err); }
+      // set the headers to transfer the auto cookie and redirect back to homepage proxy
+      response.headers.location = req.headers.referer;
+      res.set(response.headers);
+      res.send(response.statusCode, signinHTML);
+    });
+  });
+
   router.all(/^\/ajax-proxy\/(.+)$/, (req, res, next) => {
     const [type, protocol, domain, ...rest] = req.params[0].split("/");
-    if (!protocol || !domain) {
+    if (!type || !protocol || !domain) {
       return res.die(`Invalid ajax-proxy url: ${req.params[0]}`);
     }
 
