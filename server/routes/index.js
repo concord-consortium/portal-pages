@@ -124,6 +124,7 @@ module.exports = (app) => {
 
     const htmlPath = path.resolve(`${srcFolder}/${file}`);
     const cssPath = path.resolve(`${srcFolder}/${file.replace(/\.html$/, ".css")}`);
+    const jsPath = path.resolve(`${srcFolder}/${file.replace(/\.html$/, ".js")}`);
 
     fs.readFile(htmlPath, 'utf8', (err, localHTML) => {
       if (err) { return res.die("Unable to read local html file!"); }
@@ -132,37 +133,43 @@ module.exports = (app) => {
         // ignore no css file - that is valid
         localCSS = localCSS || "";
 
-        const options = {
-          url: path.basename(filePath) !== "index.html" ? `${portal}/${filePath}` : portal,
-          headers: {
-            cookie: req.headers.cookie
-          }
-        };
-        request.get(options, (err, response, portalHTML) => {
-          if (err) { return res.die(err); }
+        fs.readFile(jsPath, 'utf8', (err, localJS) => {
+          // ignore no js file - that is valid
+          localJS = localJS || "";
 
-          const injectedHTML = createInjectedHTML([htmlPath, cssPath], !!mock, {
-            port: app.get('port'),
-            protocol: portalProtocol,
-            domain: portalDomain
+          const options = {
+            url: path.basename(filePath) !== "index.html" ? `${portal}/${filePath}` : portal,
+            headers: {
+              cookie: req.headers.cookie
+            }
+          };
+          request.get(options, (err, response, portalHTML) => {
+            if (err) { return res.die(err); }
+
+            const injectedHTML = createInjectedHTML([htmlPath, cssPath, jsPath], !!mock, {
+              port: app.get('port'),
+              protocol: portalProtocol,
+              domain: portalDomain
+            });
+
+            // redirect auth urls to proxy server
+            let localCode = localJS ? `${localHTML}\n<!-- ${jsPath} -->\n<script>\n${localJS}\n</script>` : $localHTML;
+            localCode = localCode.replace("/users/sign_in", `http://localhost:${app.get('port')}/signin-proxy/${portalProtocol}/${portalDomain}`);
+            localCode = localCode.replace("/users/sign_out", `http://localhost:${app.get('port')}/signout-proxy/${portalProtocol}/${portalDomain}`);
+
+            const $ = cheerio.load(portalHTML);
+            $("head").prepend(`<base href="${portalRoot}">`);
+            $(selector).html(`\n${injectedHTML}\n<!-- ${cssPath} -->\n<style id="${injectedStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
+
+            res.send($.html());
           });
-
-          // redirect auth urls to proxy server
-          localHTML = localHTML.replace("/users/sign_in", `http://localhost:${app.get('port')}/signin-proxy/${portalProtocol}/${portalDomain}`);
-          localHTML = localHTML.replace("/users/sign_out", `http://localhost:${app.get('port')}/signout-proxy/${portalProtocol}/${portalDomain}`);
-
-          const $ = cheerio.load(portalHTML);
-          $("head").prepend(`<base href="${portalRoot}">`);
-          $(selector).html(`\n${injectedHTML}\n<!-- ${cssPath} -->\n<style id="${injectedStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localHTML}\n`);
-
-          res.send($.html());
         });
       });
     });
   });
 
   router.get('/signout-proxy/:protocol/:domain', (req, res, next) => {
-    const session = crypto.createHash('md5').update(crypto.randomBytes(16)).digest('hex')
+    const session = crypto.createHash('md5').update(crypto.randomBytes(16)).digest('hex');
     res.set('Location', req.headers.referer);
     res.cookie('cc_auth_token', '', {expires: new Date(0)});
     res.set('Set-Cookie', `_rails_portal_session=${session}; path=/; HttpOnly`);
