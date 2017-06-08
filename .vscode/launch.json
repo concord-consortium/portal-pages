@@ -8,7 +8,10 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceRoot}/server/bin/www"
+      "program": "${workspaceRoot}/server/bin/www",
+      "args": [
+        "--port", "11000"
+      ]
     }
   ]
 }
