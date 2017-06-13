@@ -305,11 +305,11 @@ var UserAuth = Component({
   },
 
   handleLogginButton: function () {
-    alert("TODO: Show login dialog...");
+    Portal.showModal("#log-in");
   },
 
   handleRegisterButton: function () {
-    alert("TODO: Show register dialog...");
+    Portal.openSignupModal();
   },
 
   renderLoggedIn: function () {
@@ -318,9 +318,9 @@ var UserAuth = Component({
       div({}, "Welcome " + Portal.currentUser.firstName + " " + Portal.currentUser.lastName),
       div({},
         a({href: "/help", target: "_blank"}, "Help"),
-        "|",
-        a({href: prefsUrl}, "My Prefereces"),
-        "|",
+        " | ",
+        a({href: prefsUrl}, "My Preferences"),
+        " | ",
         a({href: "/users/sign_out"}, "Logout")
       )
     );
@@ -509,7 +509,7 @@ var StemFinder = Component({
     );
   },
 
-  renderLoadAll: function () {
+  renderLoadMore: function () {
     var handleLoadAll = function () {
       this.setState({showAllResources: true});
     }.bind(this);
@@ -517,7 +517,7 @@ var StemFinder = Component({
       return null;
     }
     return div({className: "stem-finder-load-all", onClick: handleLoadAll},
-      button({}, "Show All")
+      button({}, "Load More")
     );
   },
 
@@ -532,7 +532,7 @@ var StemFinder = Component({
         resources.map(function (resource, index) {
           return StemFinderResult({key: index, resource: resource, gradeFilters: this.state.gradeFilters});
         }.bind(this)),
-        this.renderLoadAll()
+        this.renderLoadMore()
       )
     );
   },

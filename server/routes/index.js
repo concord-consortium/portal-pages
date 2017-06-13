@@ -13,6 +13,7 @@ module.exports = (app) => {
   const mkdirp = require("mkdirp");
   const stream = require("stream");
   const crypto = require('crypto');
+  const sass = require('node-sass');
 
   const srcFolder = path.resolve(`${__dirname}/../../src`);
   const mockFolder = path.resolve(`${__dirname}/../../mock-ajax`);
@@ -74,11 +75,11 @@ module.exports = (app) => {
       });
     };
 
-    if (path.extname(changePath) === ".css") {
-      fs.readFile(changePath, 'utf8', (err, css) => {
+    if (path.extname(changePath) === ".scss") {
+      sass.render({file: changePath}, (err, result) => {
         broadcast({
           action: 'restyle',
-          css: css || ""
+          css: (result && result.css ? result.css.toString() : "") || ""
         });
       });
     }
@@ -123,15 +124,15 @@ module.exports = (app) => {
     const [__, portalRoot, portalProtocol, portalDomain] = portalParser;
 
     const htmlPath = path.resolve(`${srcFolder}/${file}`);
-    const cssPath = path.resolve(`${srcFolder}/${file.replace(/\.html$/, ".css")}`);
+    const scssPath = path.resolve(`${srcFolder}/${file.replace(/\.html$/, ".scss")}`);
     const jsPath = path.resolve(`${srcFolder}/${file.replace(/\.html$/, ".js")}`);
 
     fs.readFile(htmlPath, 'utf8', (err, localHTML) => {
       if (err) { return res.die("Unable to read local html file!"); }
 
-      fs.readFile(cssPath, 'utf8', (err, localCSS) => {
+      sass.render({file: scssPath}, (err, result) => {
         // ignore no css file - that is valid
-        localCSS = localCSS || "";
+        const localCSS = (result && result.css ? result.css.toString() : "") || "";
 
         fs.readFile(jsPath, 'utf8', (err, localJS) => {
           // ignore no js file - that is valid
@@ -146,7 +147,7 @@ module.exports = (app) => {
           request.get(options, (err, response, portalHTML) => {
             if (err) { return res.die(err); }
 
-            const injectedHTML = createInjectedHTML([htmlPath, cssPath, jsPath], !!mock, {
+            const injectedHTML = createInjectedHTML([htmlPath, scssPath, jsPath], !!mock, {
               port: app.get('port'),
               protocol: portalProtocol,
               domain: portalDomain
@@ -159,7 +160,7 @@ module.exports = (app) => {
 
             const $ = cheerio.load(portalHTML);
             $("head").prepend(`<base href="${portalRoot}">`);
-            $(selector).html(`\n${injectedHTML}\n<!-- ${cssPath} -->\n<style id="${injectedStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
+            $(selector).html(`\n${injectedHTML}\n<!-- ${scssPath} -->\n<style id="${injectedStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
 
             res.send($.html());
           });

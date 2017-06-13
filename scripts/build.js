@@ -6,16 +6,23 @@ const glob = require("glob");
 const path = require("path");
 const fs = require("fs");
 const mkdirp = require("mkdirp");
+const sass = require('node-sass');
 
 const srcFolder = path.resolve(`${__dirname}/../src`);
 const destFolder = path.resolve(`${__dirname}/../dest`);
 
 const fileContents = (filePath, tag) => {
   let contents = "";
-  try {
-    contents = fs.readFileSync(filePath, "utf8");
+  if (tag === "style") {
+    result = sass.renderSync({file: filePath});
+    contents = result.css || "";
   }
-  catch (e) {}
+  else {
+    try {
+      contents = fs.readFileSync(filePath, "utf8");
+    }
+    catch (e) {}
+  }
   return contents && tag ? `<${tag}>\n${contents}\n</${tag}>` : contents;
 };
 
@@ -34,7 +41,7 @@ glob(`${srcFolder}/**/*.html`, (err, files) => {
     const htmlOutputFile = path.resolve(`${destFolder}/${htmlInputFile.substr(srcFolder.length)}`);
 
     const html = fileContents(htmlInputFile);
-    const css = fileContents(`${bareInputFile}.css`, "style");
+    const css = fileContents(`${bareInputFile}.scss`, "style");
     const js = fileContents(`${bareInputFile}.js`, "script");
 
     mkdirp.sync(path.dirname(htmlOutputFile));

@@ -45,3 +45,26 @@
     </div>
   </div>
 </div>
+
+<div id="log-in" class="modal" style="margin-left: -336px; min-height: 300px !important; padding: 1em; width: 640px;"><h2>Log In</h2>
+  <p class="special-msg"></p>
+  <div class="col-50 left">
+    <form method="post" action="/users/sign_in">
+      <dl>
+        <dt>Username</dt>
+        <dd><input name="user[login]" style="width: 85%;"/></dd>
+        <dt>Password</dt>
+        <dd><input type="password" name="user[password]" style="width: 85%;"/></dd>
+      </dl>
+      <input class="button" type="submit" value="Log In"/></form>
+    <p><a href="/forgot_password" title="Click this link if you forgot your username and/or password.">Forgot your
+      username or password?</a></p></div>
+  <div class="col-50 right"><h3>Don't have an account?</h3>
+    <p><a href="#" onclick="Portal.openSignupModal(); return false;">Sign up for free</a> to:</p>
+    <ul>
+      <li>Create classes and assign activities</li>
+      <li>Save student work</li>
+      <li>Track student progress</li>
+    </ul>
+  </div>
+</div>
