@@ -229,6 +229,7 @@ module.exports = (app) => {
     const mockPath = path.resolve(`${mockFolder}/${domain}/${proxyPath}${mockQuery}--${method}.json`);
 
     const proxyRequest = () => {
+      console.log("PROXY_URL: " + proxyURL);
       if (app.get('argv').recordAjax) {
         mkdirp(path.dirname(mockPath), () => {
           const mockStream = fs.createWriteStream(mockPath);

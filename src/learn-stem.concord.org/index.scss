@@ -419,13 +419,15 @@ $desktop-card-margin: 20px;
 .stem-finder-result-description {
   position: absolute;
   top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
-  left: 0;
   padding: 15px;
   background-color: #0592AF;
   color: #fff;
   pointer-events: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .stem-finder-result-grade-levels {
   position: absolute;
@@ -445,7 +447,7 @@ $desktop-card-margin: 20px;
   position: absolute;
   top: 0px;
   right: 15px;
-  color: #fff;
+  color: #cccccc;
   font-size: 32px;
 }
 .stem-finder-result-favorite-active {
