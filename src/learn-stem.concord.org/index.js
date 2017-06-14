@@ -150,7 +150,8 @@ var StemFinder = Component({
       searchPage: 1,
       firstSearch: true,
       searching: false,
-      noResourcesFound: false
+      noResourcesFound: false,
+      lastSearchResultCount: 0,
     };
   },
 
@@ -160,9 +161,18 @@ var StemFinder = Component({
 
   search: function (incremental) {
 
+    var displayLimit = incremental ? this.state.displayLimit + DISPLAY_LIMIT_INCREMENT : DISPLAY_LIMIT_INCREMENT;
+
+    // short circuit further incremental searches when all data has been downloaded
+    if (incremental && (this.state.lastSearchResultCount === 0)) {
+      this.setState({
+        displayLimit: displayLimit
+      });
+      return;
+    }
+
     var resources = incremental ? this.state.resources.slice(0) : [];
     var searchPage = incremental ? this.state.searchPage + 1 : 1;
-    var displayLimit = incremental ? this.state.displayLimit + DISPLAY_LIMIT_INCREMENT : DISPLAY_LIMIT_INCREMENT;
 
     var keyword = (this.refs.keyword ? this.refs.keyword.value : "") || "";
     var query = [
@@ -227,6 +237,7 @@ var StemFinder = Component({
       var numTotalResources = 0;
       var results = result.results;
       var descriptionFilter = document.createElement("DIV");
+      var lastSearchResultCount = 0;
 
       results.forEach(function (result) {
         result.materials.forEach(function (material) {
@@ -237,6 +248,7 @@ var StemFinder = Component({
           material.grades = randomSubset(["K", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "Higher Ed"]);
 
           resources.push(material);
+          lastSearchResultCount++;
         });
         numTotalResources += result.pagination.total_items;
       });
@@ -254,7 +266,8 @@ var StemFinder = Component({
         searchPage: searchPage,
         displayLimit: displayLimit,
         searching: false,
-        noResourcesFound: numTotalResources === 0
+        noResourcesFound: numTotalResources === 0,
+        lastSearchResultCount: lastSearchResultCount
       });
 
     }.bind(this));
@@ -292,6 +305,7 @@ var StemFinder = Component({
   },
 
   clearFilters: function () {
+    this.refs.keyword.value = "";
     this.setState({
       subjectAreasSelected: [],
       featureFiltersSelected: [],
