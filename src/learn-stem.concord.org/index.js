@@ -121,25 +121,25 @@ var StemFinder = Component({
     return {
       opacity: 0,
       subjectAreas: [
-        {id: 1, title: "Physics & Chemistry", searchAreas: ["Chemistry", "Physics"]},
-        {id: 2, title: "Life Science", searchAreas: ["Biology"]},
-        {id: 3, title: "Engineering & Tech", searchAreas: ["Engineering"]},
-        {id: 4, title: "Earth & Space", searchAreas: ["Earth and Space Science"]},
-        {id: 5, title: "Mathematics", searchAreas: ["Mathematics"]}
+        {key: "physics-chemistry", title: "Physics & Chemistry", searchAreas: ["Chemistry", "Physics"]},
+        {key: "life-sciences", title: "Life Science", searchAreas: ["Biology"]},
+        {key: "engineering-tech", title: "Engineering & Tech", searchAreas: ["Engineering"]},
+        {key: "earth-space", title: "Earth & Space", searchAreas: ["Earth and Space Science"]},
+        {key: "mathematics", title: "Mathematics", searchAreas: ["Mathematics"]}
       ],
       featureFilters: [
-        {id: 1, title: "Sequence", searchMaterialType: "Investigation"},
-        {id: 2, title: "Model (TODO)"},
-        {id: 3, title: "Browser-Based", searchMaterialProperty: "Runs in browser"},
-        {id: 4, title: "Activity", searchMaterialType: "Activity"},
-        {id: 5, title: "Sensor-Based (TODO)"},
+        {key: "sequence", title: "Sequence", searchMaterialType: "Investigation"},
+        {key: "model", title: "Model (TODO)"},
+        {key: "browser-based", title: "Browser-Based", searchMaterialProperty: "Runs in browser"},
+        {key: "activity", title: "Activity", searchMaterialType: "Activity"},
+        {key: "sensor-based", title: "Sensor-Based (TODO)"},
       ],
       gradeFilters: [
-        {id: "elementary-school", title: "Elementary", grades: ["K", 1, 2, 3, 4, 5, 6], label: "K-6", searchGroups: ["K-2", "3-4", "5-6"]},
-        {id: "middle-school", title: "Middle School", grades: [7, 8], label: "7-8", searchGroups: ["7-8"]},
-        {id: "high-school", title: "High School", grades: [9, 10, 11, 12], label: "9-12", searchGroups: ["9-12"]},
-        {id: "higher-education", title: "University", grades: ["Higher Ed"], label: "University", searchGroups: ["Higher Ed"]},
-        {id: "informal-learning", title: "Informal Learning (TODO)", grades: [], label: "Informal Learning"},
+        {key: "elementary-school", title: "Elementary", grades: ["K", 1, 2, 3, 4, 5, 6], label: "K-6", searchGroups: ["K-2", "3-4", "5-6"]},
+        {key: "middle-school", title: "Middle School", grades: [7, 8], label: "7-8", searchGroups: ["7-8"]},
+        {key: "high-school", title: "High School", grades: [9, 10, 11, 12], label: "9-12", searchGroups: ["9-12"]},
+        {key: "higher-education", title: "University", grades: ["Higher Ed"], label: "University", searchGroups: ["Higher Ed"]},
+        {key: "informal-learning", title: "Informal Learning (TODO)", grades: [], label: "Informal Learning"},
       ],
       subjectAreasSelected: [],
       featureFiltersSelected: [],
@@ -274,7 +274,7 @@ var StemFinder = Component({
       }
       this.setState({subjectAreasSelected: subjectAreasSelected}, this.search);
     }.bind(this);
-    return div({key: subjectArea.id, className: "stem-finder-form-subject-areas-logo", onClick: clicked},
+    return div({key: subjectArea.key, className: "stem-finder-form-subject-areas-logo", onClick: clicked},
       svg({height: size * 2, width: size * 2},
         circle({cx: size, cy: size, r: size, fill: selected ? "#0592AF" : "#fff"}),
         text({x: size, y: size + 5, textAnchor: "middle", fill: selected ? "#fff" : "#000"}, "Icon Here")
@@ -291,6 +291,29 @@ var StemFinder = Component({
     );
   },
 
+  clearFilters: function () {
+    this.setState({
+      subjectAreasSelected: [],
+      featureFiltersSelected: [],
+      gradeFiltersSelected: []
+    });
+  },
+
+  toggleFilter: function (type, filter) {
+    var selectedKey = type + "Selected";
+    var selectedFilters = this.state[selectedKey].slice();
+    var index = selectedFilters.indexOf(filter);
+    if (index === -1) {
+      selectedFilters.push(filter);
+    }
+    else {
+      selectedFilters.splice(index, 1);
+    }
+    var state = {};
+    state[selectedKey] = selectedFilters;
+    this.setState(state, this.search);
+  },
+
   renderFilters: function (type, title) {
     return div({className: "stem-finder-form-filters"},
       div({className: "stem-finder-form-filters-title"}, title),
@@ -298,20 +321,10 @@ var StemFinder = Component({
         this.state[type].map(function (filter) {
           var selectedKey = type + "Selected";
           var handleChange = function () {
-            var selectedFilters = this.state[selectedKey].slice();
-            var index = selectedFilters.indexOf(filter);
-            if (index === -1) {
-              selectedFilters.push(filter);
-            }
-            else {
-              selectedFilters.splice(index, 1);
-            }
-            var state = {};
-            state[selectedKey] = selectedFilters;
-            this.setState(state, this.search);
+            this.toggleFilter(type, filter);
           }.bind(this);
           var checked = this.state[selectedKey].indexOf(filter) !== -1;
-          return div({key: filter.id, className: "stem-finder-form-filters-option"},
+          return div({key: filter.key, className: "stem-finder-form-filters-option"},
             input({type: "checkbox", onChange: handleChange, checked: checked}),
             span({}, filter.title)
           );
@@ -345,12 +358,33 @@ var StemFinder = Component({
     );
   },
 
+  renderResultsHeaderFilters: function () {
+    if (this.state.subjectAreasSelected.length + this.state.featureFiltersSelected.length + this.state.gradeFiltersSelected.length === 0) {
+      return null;
+    }
+
+    var filters = [];
+    this.state.subjectAreasSelected.forEach(function (subjectArea) {
+      filters.push(HeaderFilter({key: subjectArea.key, type: "subjectAreas", filter: subjectArea, toggleFilter: this.toggleFilter}));
+    }.bind(this));
+    this.state.featureFiltersSelected.forEach(function (featureFilter) {
+      filters.push(HeaderFilter({key: featureFilter.key, type: "featureFilters", filter: featureFilter, toggleFilter: this.toggleFilter}));
+    }.bind(this));
+    this.state.gradeFiltersSelected.forEach(function (gradeFilter) {
+      filters.push(HeaderFilter({key: gradeFilter.key, type: "gradeFilters", filter: gradeFilter, toggleFilter: this.toggleFilter}));
+    }.bind(this));
+    filters.push(div({key: "clear", className: "stem-finder-header-filters-clear", onClick: this.clearFilters}, "Clear Filters"));
+
+    return div({className: "stem-finder-header-filters"}, filters);
+  },
+
   renderResultsHeader: function () {
     if (this.state.noResourcesFound || this.state.searching) {
       return div({className: "stem-finder-header"},
         div({className: "stem-finder-header-resource-count"},
           span({}, this.state.noResourcesFound ? "No Resources Found" : "Searching...")
-        )
+        ),
+        this.renderResultsHeaderFilters()
       );
     }
 
@@ -361,7 +395,8 @@ var StemFinder = Component({
       div({className: "stem-finder-header-resource-count"},
         showingAll && multipleResources ? "Showing All " : "Showing ",
         span({}, resourceCount + " " + pluralize(resourceCount, "Resource") + ":")
-      )
+      ),
+      this.renderResultsHeaderFilters()
     );
   },
 
@@ -399,6 +434,19 @@ var StemFinder = Component({
     return div({},
       this.renderForm(),
       this.renderResults()
+    );
+  }
+});
+
+var HeaderFilter = Component({
+  handleClear: function () {
+    this.props.toggleFilter(this.props.type, this.props.filter);
+  },
+
+  render: function () {
+    return div({className: "stem-finder-header-filter"},
+      this.props.filter.title,
+      span({onClick: this.handleClear}, "X")
     );
   }
 });

@@ -37,7 +37,7 @@ glob(`${srcFolder}/**/*.html`, (err, files) => {
 
   // iterate over the list creating the concatenated css and html in dest
   files.forEach((htmlInputFile) => {
-    const bareInputFile = `${path.dirname(htmlInputFile)}/${path.basename(htmlInputFile, ".html")}`
+    const bareInputFile = `${path.dirname(htmlInputFile)}/${path.basename(htmlInputFile, ".html")}`;
     const htmlOutputFile = path.resolve(`${destFolder}/${htmlInputFile.substr(srcFolder.length)}`);
 
     const html = fileContents(htmlInputFile);

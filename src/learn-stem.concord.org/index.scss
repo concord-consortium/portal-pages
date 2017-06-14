@@ -476,7 +476,31 @@ $desktop-card-margin: 20px;
   background: $orange;
   color: #fff;
 }
-
+.stem-finder-header-filters {
+  margin: 20px 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.stem-finder-header-filter {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 15px;
+  background-color: #0592AF;
+  color: #fff;
+}
+.stem-finder-header-filter span {
+  margin: 0 5px 0 20px;
+  cursor: pointer;
+}
+.stem-finder-header-filters-clear {
+  border-left: 1px solid #cccccc;
+  display: inline-block;
+  margin-left: 20px;
+  padding-left: 20px;
+  color: $orange;
+  cursor: pointer;
+}
 /* collections */
 
 .stem-collections {
