@@ -296,7 +296,12 @@ var StemFinder = Component({
       subjectAreasSelected: [],
       featureFiltersSelected: [],
       gradeFiltersSelected: []
-    });
+    }, this.search);
+  },
+
+  clearKeyword: function () {
+    this.refs.keyword.value = "";
+    this.search();
   },
 
   toggleFilter: function (type, filter) {
@@ -359,7 +364,8 @@ var StemFinder = Component({
   },
 
   renderResultsHeaderFilters: function () {
-    if (this.state.subjectAreasSelected.length + this.state.featureFiltersSelected.length + this.state.gradeFiltersSelected.length === 0) {
+    var keyword = jQuery.trim((this.refs.keyword ? this.refs.keyword.value : "") || "");
+    if (keyword.length + this.state.subjectAreasSelected.length + this.state.featureFiltersSelected.length + this.state.gradeFiltersSelected.length === 0) {
       return null;
     }
 
@@ -373,6 +379,14 @@ var StemFinder = Component({
     this.state.gradeFiltersSelected.forEach(function (gradeFilter) {
       filters.push(HeaderFilter({key: gradeFilter.key, type: "gradeFilters", filter: gradeFilter, toggleFilter: this.toggleFilter}));
     }.bind(this));
+
+    if (keyword.length > 0) {
+      filters.push(div({className: "stem-finder-header-filter"},
+        "Keyword: " + keyword,
+        span({onClick: this.clearKeyword}, "X")
+      ));
+    }
+
     filters.push(div({key: "clear", className: "stem-finder-header-filters-clear", onClick: this.clearFilters}, "Clear Filters"));
 
     return div({className: "stem-finder-header-filters"}, filters);

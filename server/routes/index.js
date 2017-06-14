@@ -139,11 +139,12 @@ module.exports = (app) => {
           localJS = localJS || "";
 
           const options = {
-            url: path.basename(filePath) !== "index.html" ? `${portal}/${filePath}` : portal,
+            url: portal,
             headers: {
               cookie: req.headers.cookie
             }
           };
+          console.log("PROXY: " + JSON.stringify(options));
           request.get(options, (err, response, portalHTML) => {
             if (err) { return res.die(err); }
 
