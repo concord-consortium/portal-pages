@@ -47,6 +47,12 @@ var shuffleArray = function (array) {
   return array;
 };
 
+var randomSubset = function (array) {
+  var count = Math.round(Math.random() * array.length);
+  var subset = array.slice(0, count);
+  return shuffleArray(subset);
+};
+
 /*** React Functions ***/
 
 var Component = function (options) {
@@ -226,6 +232,10 @@ var StemFinder = Component({
         result.materials.forEach(function (material) {
           descriptionFilter.innerHTML = material.description;
           material.filteredDescription = descriptionFilter.innerText;
+
+          // fake grades for now until present in search results
+          material.grades = randomSubset(["K", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "Higher Ed"]);
+
           resources.push(material);
         });
         numTotalResources += result.pagination.total_items;
@@ -410,8 +420,6 @@ var StemFinderResult = Component({
   },
 
   renderGradeLevels: function (resource) {
-    return null;
-
     var levels = this.props.gradeFilters.reduce(function (levelAcc, gradeFilter) {
       var matching = gradeFilter.grades.reduce(function (matchingAcc, grade) {
         if (resource.grades.indexOf(grade) !== -1) {
