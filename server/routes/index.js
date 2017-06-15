@@ -136,6 +136,18 @@ module.exports = (app) => {
     });
   });
 
+  router.get('/library', (req, res, next) => {
+     compileLibrary((err, libraryJS) => {
+       if (err) {
+         res.die(err);
+       }
+       else {
+         res.set('Content-Type', 'application/javascript');
+         res.send(libraryJS);
+       }
+     });
+  });
+
   router.get('/proxy', (req, res, next) => {
     const {file, portal, selector, mock} = req.query;
     const fileParser = (file || "").match(/\/([^/]+)\/(.+)/);
