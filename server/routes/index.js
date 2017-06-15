@@ -15,7 +15,7 @@ module.exports = (app) => {
   const crypto = require('crypto');
   const sass = require('node-sass');
 
-  const srcFolder = path.resolve(`${__dirname}/../../src`);
+  const portalSrcFolder = path.resolve(`${__dirname}/../../src/portals`);
   const mockFolder = path.resolve(`${__dirname}/../../mock-ajax`);
 
   const injectedStyleId = '__devServerInjectedCSS';
@@ -90,7 +90,7 @@ module.exports = (app) => {
     }
   };
 
-  const watcher = chokidar.watch(`${srcFolder}/**/*`, {
+  const watcher = chokidar.watch(`${portalSrcFolder}/**/*`, {
     persistent: true,
     ignoreInitial: true
   });
@@ -102,8 +102,8 @@ module.exports = (app) => {
     .on("unlinkDir", handleWatchChange);
 
   router.get('/', (req, res, next) => {
-    glob(`${srcFolder}/**/*.html`, (err, files) => {
-      files = files.map((file) => file.substr(srcFolder.length)).sort();
+    glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
+      files = files.map((file) => file.substr(portalSrcFolder.length)).sort();
       res.render('index', {
         title: 'Concord Portal Pages Development Server',
         files: files
@@ -123,9 +123,9 @@ module.exports = (app) => {
     const [_, fileDomain, filePath] = fileParser;
     const [__, portalRoot, portalProtocol, portalDomain] = portalParser;
 
-    const htmlPath = path.resolve(`${srcFolder}/${file}`);
-    const scssPath = path.resolve(`${srcFolder}/${file.replace(/\.html$/, ".scss")}`);
-    const jsPath = path.resolve(`${srcFolder}/${file.replace(/\.html$/, ".js")}`);
+    const htmlPath = path.resolve(`${portalSrcFolder}/${file}`);
+    const scssPath = path.resolve(`${portalSrcFolder}/${file.replace(/\.html$/, ".scss")}`);
+    const jsPath = path.resolve(`${portalSrcFolder}/${file.replace(/\.html$/, ".js")}`);
 
     fs.readFile(htmlPath, 'utf8', (err, localHTML) => {
       if (err) { return res.die("Unable to read local html file!"); }

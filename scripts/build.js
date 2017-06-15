@@ -8,8 +8,8 @@ const fs = require("fs");
 const mkdirp = require("mkdirp");
 const sass = require('node-sass');
 
-const srcFolder = path.resolve(`${__dirname}/../src`);
-const destFolder = path.resolve(`${__dirname}/../dest`);
+const portalSrcFolder = path.resolve(`${__dirname}/../src/portals`);
+const portalDestFolder = path.resolve(`${__dirname}/../dest/portals`);
 
 const fileContents = (filePath, tag) => {
   let contents = "";
@@ -27,7 +27,7 @@ const fileContents = (filePath, tag) => {
 };
 
 // get a list of all the .html files in src
-glob(`${srcFolder}/**/*.html`, (err, files) => {
+glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
   if (err) {
     console.error(err);
     process.exit(1);
@@ -38,7 +38,7 @@ glob(`${srcFolder}/**/*.html`, (err, files) => {
   // iterate over the list creating the concatenated css and html in dest
   files.forEach((htmlInputFile) => {
     const bareInputFile = `${path.dirname(htmlInputFile)}/${path.basename(htmlInputFile, ".html")}`;
-    const htmlOutputFile = path.resolve(`${destFolder}/${htmlInputFile.substr(srcFolder.length)}`);
+    const htmlOutputFile = path.resolve(`${portalDestFolder}/${htmlInputFile.substr(portalSrcFolder.length)}`);
 
     const html = fileContents(htmlInputFile);
     const css = fileContents(`${bareInputFile}.scss`, "style");
