@@ -1,6 +1,7 @@
 var Component = require('../helpers/component');
 
 var fadeIn = require("../helpers/fade-in");
+var sortByName = require("../helpers/sort-by-name");
 var shuffleArray = require("../helpers/shuffle-array");
 
 var div = React.DOM.div;
@@ -26,7 +27,20 @@ var CollectionCards = Component({
         }
         return collections;
       }, []);
-      this.setState({collections: shuffleArray(collections).slice(0, 3)});
+
+      if (this.props.shuffle) {
+        collections = shuffleArray(collections);
+      }
+      else {
+        collections.sort(sortByName);
+      }
+
+      if (this.props.count) {
+        collections = collections.slice(0, this.props.count);
+      }
+
+      this.setState({collections: collections});
+
       fadeIn(this, 1000);
     }.bind(this));
   },

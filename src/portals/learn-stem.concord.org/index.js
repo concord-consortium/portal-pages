@@ -1,3 +1,13 @@
-ReactDOM.render(PortalPages.UserAuth({}), document.getElementById('stem-nav-auth'));
-ReactDOM.render(PortalPages.StemFinder({}), document.getElementById('stem-finder'));
-ReactDOM.render(PortalPages.CollectionCards({}), document.getElementById('stem-collections-cards'));
+PortalPages.renderUserAuth({
+  fadeIn: 1000
+}, 'stem-nav-auth');
+
+PortalPages.renderStemFinder({
+  fadeIn: 1000
+}, 'stem-finder');
+
+PortalPages.renderCollectionCards({
+  shuffle: true,
+  count: 3,
+  fadeIn: 1000
+}, 'stem-collections-cards');

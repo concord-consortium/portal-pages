@@ -25,7 +25,6 @@ var UserAuth = Component({
   },
 
   componentDidMount: function () {
-    fadeIn(this, 1000);
 
     if (this.state.loggedIn) {
       var self = this;
@@ -34,7 +33,11 @@ var UserAuth = Component({
         dataType: 'json'
       }).done(function (data) {
         self.setState({userId: data.id});
+        fadeIn(this, 1000);
       });
+    }
+    else {
+      fadeIn(this, 1000);
     }
   },
 
