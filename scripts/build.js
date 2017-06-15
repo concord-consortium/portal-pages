@@ -7,6 +7,7 @@ const path = require("path");
 const fs = require("fs");
 const mkdirp = require("mkdirp");
 const sass = require('node-sass');
+const webpack = require("webpack");
 
 const portalSrcFolder = path.resolve(`${__dirname}/../src/portals`);
 const portalDestFolder = path.resolve(`${__dirname}/../dest/portals`);
@@ -49,4 +50,20 @@ glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
     fs.writeFileSync(htmlOutputFile, `${buildComment}\n${css}\n${html}\n${js}`);
   });
 });
+
+// build the libary
+const compiler = webpack({
+  entry: path.resolve(`${__dirname}/../src/library/index.js`),
+  output: {
+    path: path.resolve(`${__dirname}/../dest/library`),
+    filename: 'index.js'
+  }
+});
+compiler.run((err, stats) => {
+  if (err) {
+    console.error(err);
+    process.exit(2);
+  }
+});
+
 
