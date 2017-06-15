@@ -11,6 +11,7 @@ var span = React.DOM.span;
 var form = React.DOM.form;
 var pre = React.DOM.pre;
 var img = React.DOM.img;
+var h1 = React.DOM.h1;
 
 var fadeIn = function (component, duration) {
   var interval = 10,
@@ -129,7 +130,7 @@ var StemFinder = Component({
       ],
       featureFilters: [
         {key: "sequence", title: "Sequence", searchMaterialType: "Investigation"},
-        {key: "model", title: "Model (TODO)"},
+        {key: "model", title: "Model", searchMaterialType: "Interactive"},
         {key: "browser-based", title: "Browser-Based", searchMaterialProperty: "Runs in browser"},
         {key: "activity", title: "Activity", searchMaterialType: "Activity"},
         {key: "sensor-based", title: "Sensor-Based (TODO)"},
@@ -138,8 +139,8 @@ var StemFinder = Component({
         {key: "elementary-school", title: "Elementary", grades: ["K", 1, 2, 3, 4, 5, 6], label: "K-6", searchGroups: ["K-2", "3-4", "5-6"]},
         {key: "middle-school", title: "Middle School", grades: [7, 8], label: "7-8", searchGroups: ["7-8"]},
         {key: "high-school", title: "High School", grades: [9, 10, 11, 12], label: "9-12", searchGroups: ["9-12"]},
-        {key: "higher-education", title: "University", grades: ["Higher Ed"], label: "University", searchGroups: ["Higher Ed"]},
-        {key: "informal-learning", title: "Informal Learning (TODO)", grades: [], label: "Informal Learning"},
+        {key: "higher-education", title: "Higher Education", grades: ["Higher Ed"], label: "Higher Education", searchGroups: ["Higher Ed"]}
+        //{key: "informal-learning", title: "Informal Learning (TODO)", grades: [], label: "Informal Learning"},
       ],
       subjectAreasSelected: [],
       featureFiltersSelected: [],
@@ -483,7 +484,8 @@ var StemFinderResult = Component({
   getInitialState: function () {
     return {
       hovering: false,
-      favorited: this.props.resource.favorited
+      favorited: this.props.resource.favorited,
+      lightbox: false
     };
   },
 
@@ -493,6 +495,14 @@ var StemFinderResult = Component({
 
   handleMouseOut: function () {
     this.setState({hovering: false});
+  },
+
+  toggleLightbox: function () {
+    var lightbox = !this.state.lightbox;
+    this.setState({
+      lightbox: lightbox,
+      hovering: false
+    });
   },
 
   renderGradeLevels: function (resource) {
@@ -520,10 +530,19 @@ var StemFinderResult = Component({
     );
   },
 
-  toggleFavorite: function () {
+  toggleFavorite: function (e) {
+    e.preventDefault();
+    e.stopPropagation();
     // TODO: do api call to favorite resource
     this.props.resource.favorited = !this.props.resource.favorited;
     this.setState({favorited: this.props.resource.favorited});
+  },
+
+  renderLightbox: function () {
+    if (!this.state.lightbox) {
+      return null;
+    }
+    return ResourceLightbox({resource: this.props.resource, toggleLightbox: this.toggleLightbox});
   },
 
   renderFavoriteStar: function () {
@@ -534,21 +553,69 @@ var StemFinderResult = Component({
 
   render: function () {
     var resource = this.props.resource;
-    var options = {className: "stem-finder-result", onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
+    var options = {className: "stem-finder-result", onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
 
     if (this.state.hovering) {
       return div(options,
         div({className: "stem-finder-result-description"}, resource.filteredDescription),
         this.renderGradeLevels(resource),
-        this.renderFavoriteStar()
+        this.renderFavoriteStar(),
+        this.renderLightbox()
       );
     }
     return div(options,
       img({alt: resource.name, src: resource.icon.url}),
       div({className: "stem-finder-result-name"}, resource.name),
       this.renderGradeLevels(resource),
-      this.renderFavoriteStar()
+      this.renderFavoriteStar(),
+      this.renderLightbox()
     );
+  }
+});
+
+var ResourceLightbox = Component({
+  handleClose: function () {
+    this.props.toggleLightbox();
+  },
+
+  renderRequirements: function () {
+    var runsInBrowser = true; // TODO: get from search results when they become available
+    if (runsInBrowser) {
+      return div({className: "stem-resource-lightbox-requirements"},
+        "This activity runs entirely in a Web browser. Preferred browsers are: ",
+        a({href: "http://www.google.com/chrome/", title:"Get Google\'s Chrome Web Browser"}, "Google Chrome"),
+        " (versions 30 and above), ",
+        a({href: "http://www.apple.com/safari/", title:"Get Apple\'s Safari Web Browser"}, "Safari"),
+        " (versions 7 and above), ",
+        a({href: "http://www.firefox.com/", title:"Get the Firefox Web Browser"}, "Firefox"),
+        " (version 30 and above), ",
+        a({href: "http://www.microsoft.com/ie/", title:"Get Microsoft\'s Internet Explorer Web Browser"}, "Internet Explorer"),
+        " (version 10 or higher), and ",
+        a({href: "https://www.microsoft.com/en-us/windows/microsoft-edge#f7x5cdShtkSvrROV.97", title:"Get Microsoft\'s Edge Web Browser"}, "Microsoft Edge"),
+        "."
+      );
+    }
+    //this.requirements = '<p>This resource requires Java. You can download Java for free from <a href="http://java.com/" title="Get Java">java.com</a>.</p><p>Using OS X 10.9 or newer? You\'ll also need to install our launcher app. <a href="http://static.concord.org/installers/cc_launcher_installer.dmg" title="Download the CCLauncher installer">Download the launcher installer</a>, open the .dmg file and drag the CCLauncher app to your Applications folder, then return to this page and launch the resource.</p>';
+  },
+
+  render: function () {
+    var resource = this.props.resource;
+    return div({className: "stem-resource-lightbox"},
+      div({className: "stem-resource-lightbox-background", onClick: this.handleClose}),
+      div({className: "stem-resource-lightbox-background-close"}, "X"),
+      div({className: "stem-resource-lightbox-modal"},
+        div({className: "stem-resource-lightbox-modal-content"},
+          img({src: resource.icon.url}),
+          h1({}, resource.name),
+          div({className: "stem-resource-lightbox-description"}, resource.filteredDescription),
+          div({},
+            button({className: "stem-resource-lightbox-launch-button"}, "Launch Activity"),
+            button({className: "stem-resource-lightbox-assign-button"}, "Assign Activity")
+          ),
+          this.renderRequirements()
+        )
+      )
+    )
   }
 });
 
