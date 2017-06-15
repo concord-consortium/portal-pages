@@ -16,6 +16,7 @@ module.exports = (app) => {
   const sass = require('node-sass');
 
   const portalSrcFolder = path.resolve(`${__dirname}/../../src/portals`);
+  const librarySrcFolder = path.resolve(`${__dirname}/../../src/library`);
   const mockFolder = path.resolve(`${__dirname}/../../mock-ajax`);
 
   const injectedStyleId = '__devServerInjectedCSS';
@@ -126,6 +127,7 @@ module.exports = (app) => {
     const htmlPath = path.resolve(`${portalSrcFolder}/${file}`);
     const scssPath = path.resolve(`${portalSrcFolder}/${file.replace(/\.html$/, ".scss")}`);
     const jsPath = path.resolve(`${portalSrcFolder}/${file.replace(/\.html$/, ".js")}`);
+    const libaryPath = path.resolve(`${librarySrcFolder}/index.js`);
 
     fs.readFile(htmlPath, 'utf8', (err, localHTML) => {
       if (err) { return res.die("Unable to read local html file!"); }
@@ -138,32 +140,37 @@ module.exports = (app) => {
           // ignore no js file - that is valid
           localJS = localJS || "";
 
-          const options = {
-            url: portal,
-            headers: {
-              cookie: req.headers.cookie
-            }
-          };
-          console.log("PROXY: " + JSON.stringify(options));
-          request.get(options, (err, response, portalHTML) => {
-            if (err) { return res.die(err); }
+          fs.readFile(libaryPath, 'utf8', (err, libraryJS) => {
+            // ignore no js file - that is valid
+            libraryJS = libraryJS || "";
 
-            const injectedHTML = createInjectedHTML([htmlPath, scssPath, jsPath], !!mock, {
-              port: app.get('port'),
-              protocol: portalProtocol,
-              domain: portalDomain
+            const options = {
+              url: portal,
+              headers: {
+                cookie: req.headers.cookie
+              }
+            };
+            console.log("PROXY: " + JSON.stringify(options));
+            request.get(options, (err, response, portalHTML) => {
+              if (err) { return res.die(err); }
+
+              const injectedHTML = createInjectedHTML([htmlPath, scssPath, jsPath, libaryPath], !!mock, {
+                port: app.get('port'),
+                protocol: portalProtocol,
+                domain: portalDomain
+              });
+
+              // redirect auth urls to proxy server
+              let localCode = localJS ? `${localHTML}\n<!-- ${jsPath} -->\n<script>\n${localJS}\n</script>` : localHTML;
+              localCode = localCode.replace("/users/sign_in", `http://localhost:${app.get('port')}/signin-proxy/${portalProtocol}/${portalDomain}`);
+              localCode = localCode.replace("/users/sign_out", `http://localhost:${app.get('port')}/signout-proxy/${portalProtocol}/${portalDomain}`);
+
+              const $ = cheerio.load(portalHTML);
+              $("head").prepend(`<base href="${portalRoot}">`);
+              $(selector).html(`\n${injectedHTML}\n<!-- ${libaryPath} -->\n<script>\n${libraryJS}\n</script><!-- ${scssPath} -->\n<style id="${injectedStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
+
+              res.send($.html());
             });
-
-            // redirect auth urls to proxy server
-            let localCode = localJS ? `${localHTML}\n<!-- ${jsPath} -->\n<script>\n${localJS}\n</script>` : localHTML;
-            localCode = localCode.replace("/users/sign_in", `http://localhost:${app.get('port')}/signin-proxy/${portalProtocol}/${portalDomain}`);
-            localCode = localCode.replace("/users/sign_out", `http://localhost:${app.get('port')}/signout-proxy/${portalProtocol}/${portalDomain}`);
-
-            const $ = cheerio.load(portalHTML);
-            $("head").prepend(`<base href="${portalRoot}">`);
-            $(selector).html(`\n${injectedHTML}\n<!-- ${scssPath} -->\n<style id="${injectedStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
-
-            res.send($.html());
           });
         });
       });
