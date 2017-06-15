@@ -14,6 +14,19 @@ module.exports = (app) => {
   const stream = require("stream");
   const crypto = require('crypto');
   const sass = require('node-sass');
+  const MemoryFS = require("memory-fs");
+  const webpack = require("webpack");
+
+  // setup libarary compiler
+  const memfs = new MemoryFS();
+  const compiler = webpack({
+    entry: path.resolve(`${__dirname}/../../src/library/index.js`),
+    output: {
+      path: '/',
+      filename: 'library.js'
+    }
+  });
+  compiler.outputFileSystem = memfs;
 
   const portalSrcFolder = path.resolve(`${__dirname}/../../src/portals`);
   const librarySrcFolder = path.resolve(`${__dirname}/../../src/library`);
@@ -31,7 +44,7 @@ module.exports = (app) => {
         if ('WebSocket' in window) {
           (function() {
             var fileMatches = function (json) {
-              return json.file && (${JSON.stringify(files)}.indexOf(json.file) !== -1);
+              return json.file && ((${JSON.stringify(files)}.indexOf(json.file) !== -1) || (json.file.indexOf("library") !== -1));
             };
             var restyle = function (css) {
               document.getElementById('${injectedStyleId}').innerHTML = css;
@@ -91,7 +104,7 @@ module.exports = (app) => {
     }
   };
 
-  const watcher = chokidar.watch(`${portalSrcFolder}/**/*`, {
+  const watcher = chokidar.watch([`${portalSrcFolder}/**/*`, `${librarySrcFolder}/**/*`], {
     persistent: true,
     ignoreInitial: true
   });
@@ -101,6 +114,17 @@ module.exports = (app) => {
     .on("unlink", handleWatchChange)
     .on("addDir", handleWatchChange)
     .on("unlinkDir", handleWatchChange);
+
+  const compileLibrary = (callback) => {
+    compiler.run((err, stats) => {
+      if (err) {
+        callback(err);
+      }
+      else {
+        callback(null, memfs.readFileSync("/library.js"));
+      }
+    });
+  };
 
   router.get('/', (req, res, next) => {
     glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
@@ -127,7 +151,6 @@ module.exports = (app) => {
     const htmlPath = path.resolve(`${portalSrcFolder}/${file}`);
     const scssPath = path.resolve(`${portalSrcFolder}/${file.replace(/\.html$/, ".scss")}`);
     const jsPath = path.resolve(`${portalSrcFolder}/${file.replace(/\.html$/, ".js")}`);
-    const libaryPath = path.resolve(`${librarySrcFolder}/index.js`);
 
     fs.readFile(htmlPath, 'utf8', (err, localHTML) => {
       if (err) { return res.die("Unable to read local html file!"); }
@@ -140,9 +163,9 @@ module.exports = (app) => {
           // ignore no js file - that is valid
           localJS = localJS || "";
 
-          fs.readFile(libaryPath, 'utf8', (err, libraryJS) => {
+          compileLibrary((err, libraryJS) => {
             // ignore no js file - that is valid
-            libraryJS = libraryJS || "";
+            libraryJS = err ? `alert("#{err.toString()}");` : libraryJS;
 
             const options = {
               url: portal,
@@ -154,7 +177,7 @@ module.exports = (app) => {
             request.get(options, (err, response, portalHTML) => {
               if (err) { return res.die(err); }
 
-              const injectedHTML = createInjectedHTML([htmlPath, scssPath, jsPath, libaryPath], !!mock, {
+              const injectedHTML = createInjectedHTML([htmlPath, scssPath, jsPath], !!mock, {
                 port: app.get('port'),
                 protocol: portalProtocol,
                 domain: portalDomain
@@ -167,7 +190,7 @@ module.exports = (app) => {
 
               const $ = cheerio.load(portalHTML);
               $("head").prepend(`<base href="${portalRoot}">`);
-              $(selector).html(`\n${injectedHTML}\n<!-- ${libaryPath} -->\n<script>\n${libraryJS}\n</script><!-- ${scssPath} -->\n<style id="${injectedStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
+              $(selector).html(`\n${injectedHTML}\n<!-- portal library -->\n<script>\n${libraryJS}\n</script><!-- ${scssPath} -->\n<style id="${injectedStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
 
               res.send($.html());
             });

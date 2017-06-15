@@ -30,12 +30,14 @@
     "debug": "~2.6.3",
     "express": "^4.15.3",
     "faye-websocket": "^0.11.1",
+    "memory-fs": "^0.4.1",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "morgan": "~1.8.1",
     "node-sass": "^4.5.3",
     "opn": "^5.0.0",
     "pug": "~2.0.0-beta11",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "webpack": "^2.6.1"
   }
 }
