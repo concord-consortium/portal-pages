@@ -8,6 +8,7 @@ var randomSubset = require("../helpers/random-subset");
 var sortByName = require("../helpers/sort-by-name");
 var fadeIn = require("../helpers/fade-in");
 var pluralize = require("../helpers/pluralize");
+var waitForAutoShowingLightboxToClose = require("../helpers/wait-for-auto-lightbox-to-close");
 
 var div = React.DOM.div;
 var button = React.DOM.button;
@@ -62,7 +63,9 @@ var StemFinder = Component({
   },
 
   componentWillMount: function () {
-    this.search();
+    waitForAutoShowingLightboxToClose(function () {
+      this.search();
+    }.bind(this));
   },
 
   search: function (incremental) {

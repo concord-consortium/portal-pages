@@ -16,6 +16,8 @@ var renderComponentFn = function (ComponentClass) {
 };
 
 window.PortalPages = {
+  settings: {},  // default to empty, used to set flags from portal templates
+
   render: render,
 
   CollectionCards: CollectionCards,

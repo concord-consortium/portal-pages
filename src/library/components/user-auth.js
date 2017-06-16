@@ -34,7 +34,7 @@ var UserAuth = Component({
       }).done(function (data) {
         self.setState({userId: data.id});
         fadeIn(this, 1000);
-      });
+      }.bind(this));
     }
     else {
       fadeIn(this, 1000);
