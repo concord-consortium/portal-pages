@@ -11,6 +11,13 @@ const webpack = require("webpack");
 
 const portalSrcFolder = path.resolve(`${__dirname}/../src/portals`);
 const portalDestFolder = path.resolve(`${__dirname}/../dest/portals`);
+const librarySrcFolder = path.resolve(`${__dirname}/../src/library`);
+const libraryDestFolder = path.resolve(`${__dirname}/../dest/library`);
+
+const die = (err, code) => {
+  console.error(err);
+  process.exit(1);
+};
 
 const fileContents = (filePath, tag) => {
   let contents = "";
@@ -30,8 +37,7 @@ const fileContents = (filePath, tag) => {
 // get a list of all the .html files in src
 glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
   if (err) {
-    console.error(err);
-    process.exit(1);
+    die(err, 1);
   }
 
   const buildComment = `<!-- built using portal pages build script on ${new Date()} -->`;
@@ -51,19 +57,28 @@ glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
   });
 });
 
-// build the libary
+// build the libary js
 const compiler = webpack({
-  entry: path.resolve(`${__dirname}/../src/library/index.js`),
+  entry: path.resolve(`${librarySrcFolder}/library.js`),
   output: {
-    path: path.resolve(`${__dirname}/../dest/library`),
-    filename: 'index.js'
+    path: libraryDestFolder,
+    filename: 'portal-pages.js'
   }
 });
 compiler.run((err, stats) => {
   if (err) {
-    console.error(err);
-    process.exit(2);
+    die(err, 2);
   }
 });
 
+// build the library css
+sass.render({file: `${librarySrcFolder}/library.scss`}, (err, result) => {
+  if (err) {
+    die(err, 3);
+  }
+  else {
+    mkdirp.sync(libraryDestFolder);
+    fs.writeFileSync(`${libraryDestFolder}/portal-pages.css`, result.css.toString());
+  }
+});
 
