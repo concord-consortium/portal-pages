@@ -1,0 +1,38 @@
+.landing-container {
+  display: block !important;
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+}
+
+.landing-container * {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.landing-container .home-page-content {
+  display: block !important;
+  overflow: visible;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+#flash {
+  left: 50%;
+  margin: 0 0 0 -480px;
+  position: absolute;
+  top: 60px;
+  width: 960px;
+  z-index: 100;
+}
+
+.flash.notice {
+  border: none;
+  padding: 5px 10px;
+}
+
+#notice_container, .project_cards, .result_material {
+  display: none;
+}
