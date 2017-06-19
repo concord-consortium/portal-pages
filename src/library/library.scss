@@ -399,8 +399,8 @@
   overflow: auto;
   background-color: #fff;
 }
-.stem-resource-lightbox-modal-content {
-  padding: 30px 50px;
+.stem-resource-lightbox-modal-content-top {
+  padding: 50px 70px 20px 70px;
 }
 .stem-resource-lightbox-modal-content img {
   width: 100%;
@@ -412,12 +412,28 @@
   margin: 20px 0;
   font-weight: bold;
 }
+.stem-resource-lightbox-modal-content h2 {
+  color: #000;
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.stem-resource-lightbox-modal-content hr {
+  border:none;
+  border-top:1px dashed $medium-gray;
+  color:#fff;
+  background-color:#fff;
+  height:1px;
+  margin: 50px 0;
+}
 .stem-resource-lightbox-description {
   font-size: 18px;
   margin: 20px 0;
 }
 .stem-resource-lightbox-launch-button,
-.stem-resource-lightbox-launch-button:hover {
+.stem-resource-lightbox-launch-button:hover,
+.stem-resource-lightbox-launch-button:visited {
   display: inline-block;
   border-radius: 0;
   -moz-border-radius: 0;
@@ -430,7 +446,8 @@
   font-weight: bold;
 }
 .stem-resource-lightbox-assign-button,
-.stem-resource-lightbox-assign-button:hover {
+.stem-resource-lightbox-assign-button:hover,
+.stem-resource-lightbox-assign-button:visited {
   display: inline-block;
   border-radius: 0;
   -moz-border-radius: 0;
@@ -444,5 +461,18 @@
   font-weight: bold;
 }
 .stem-resource-lightbox-requirements {
-  margin: 30px 0;
+  margin: 10px 0;
+}
+.stem-resource-lightbox-requirements p {
+  margin: 10px 0;
+}
+
+.stem-resource-lightbox-related-content {
+  background-color: $light-gray;
+  margin-top: 40px;
+  padding: 50px;
+}
+.stem-resource-lightbox-related-content h2 {
+  padding-left: 20px;
+  text-transform: none;
 }

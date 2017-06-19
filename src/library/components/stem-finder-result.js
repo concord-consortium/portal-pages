@@ -31,10 +31,16 @@ var StemFinderResult = Component({
   },
 
   handleMouseOver: function () {
+    if (this.state.lightbox) {
+      return;
+    }
     this.setState({hovering: true});
   },
 
   handleMouseOut: function () {
+    if (this.state.lightbox) {
+      return;
+    }
     this.setState({hovering: false});
   },
 
@@ -83,7 +89,11 @@ var StemFinderResult = Component({
     if (!this.state.lightbox) {
       return null;
     }
-    return ResourceLightbox({resource: this.props.resource, toggleLightbox: this.toggleLightbox});
+    // TODO: remove when added to search results
+    this.props.resource.related_resources = [
+      this.props.resource, this.props.resource
+    ];
+    return ResourceLightbox({resource: this.props.resource, toggleLightbox: this.toggleLightbox, gradeFilters: this.props.gradeFilters});
   },
 
   renderFavoriteStar: function () {
@@ -96,7 +106,7 @@ var StemFinderResult = Component({
     var resource = this.props.resource;
     var options = {className: "stem-finder-result", onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
 
-    if (this.state.hovering) {
+    if (this.state.hovering || this.state.lightbox) {
       return div(options,
         div({className: "stem-finder-result-description"}, resource.filteredDescription),
         this.renderGradeLevels(resource),

@@ -47,7 +47,6 @@ module.exports = (app) => {
               return json.file && ((${JSON.stringify(files)}.indexOf(json.file) !== -1) || (json.file.indexOf("library") !== -1));
             };
             var restyle = function (css) {
-              debugger;
               document.getElementById('${injectedStyleId}').innerHTML = css;
             }
             var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';

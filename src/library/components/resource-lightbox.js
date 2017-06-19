@@ -1,10 +1,14 @@
 var Component = require('../helpers/component');
+var RelatedResourceResult = require("./related-resource-result");
 
 var div = React.DOM.div;
 var img = React.DOM.img;
 var h1 = React.DOM.h1;
+var h2 = React.DOM.h2;
+var hr = React.DOM.hr;
 var button = React.DOM.button;
 var a = React.DOM.a;
+var p = React.DOM.p;
 
 var ResourceLightbox = Component({
   handleClose: function () {
@@ -28,7 +32,28 @@ var ResourceLightbox = Component({
         "."
       );
     }
-    //this.requirements = '<p>This resource requires Java. You can download Java for free from <a href="http://java.com/" title="Get Java">java.com</a>.</p><p>Using OS X 10.9 or newer? You\'ll also need to install our launcher app. <a href="http://static.concord.org/installers/cc_launcher_installer.dmg" title="Download the CCLauncher installer">Download the launcher installer</a>, open the .dmg file and drag the CCLauncher app to your Applications folder, then return to this page and launch the resource.</p>';
+    return div({className: "stem-resource-lightbox-requirements"},
+      "This resource requires Java. You can download Java for free from ",
+      a({href: "http://java.com/", title: "Get Java"}, "java.com"),
+      ".",
+      p({},
+        "Using OS X 10.9 or newer? You'll also need to install our launcher app. ",
+        a({href:"http://static.concord.org/installers/cc_launcher_installer.dmg", title: "Download the CCLauncher installer"}, "Download the launcher installer"),
+        ", open the .dmg file and drag the CCLauncher app to your Applications folder, then return to this page and launch the resource."
+      )
+    );
+  },
+
+  renderRelatedContent: function () {
+    if (!this.props.resource.related_resources) {
+      return null;
+    }
+    return div({className: "stem-resource-lightbox-related-content"},
+      h2({}, "You may also like:"),
+      this.props.resource.related_resources.map(function (resource, i) {
+        return RelatedResourceResult({key: i, resource: resource, gradeFilters: this.props.gradeFilters});
+      }.bind(this))
+    );
   },
 
   render404: function () {
@@ -43,14 +68,19 @@ var ResourceLightbox = Component({
   renderResource: function () {
     var resource = this.props.resource;
     return div({className: "stem-resource-lightbox-modal-content"},
-      img({src: resource.icon.url}),
-      h1({}, resource.name),
-      div({className: "stem-resource-lightbox-description"}, resource.filteredDescription),
-      div({},
-        button({className: "stem-resource-lightbox-launch-button"}, "Launch Activity"),
-        button({className: "stem-resource-lightbox-assign-button"}, "Assign Activity")
+      div({className: "stem-resource-lightbox-modal-content-top"},
+        img({src: resource.icon.url}),
+        h1({}, resource.name),
+        div({className: "stem-resource-lightbox-description"}, resource.filteredDescription),
+        div({},
+          a({className: "stem-resource-lightbox-launch-button", href: resource.preview_url, target: "_blank"}, "Launch Activity"),
+          a({className: "stem-resource-lightbox-assign-button", href: resource.assign_to_class_url}, "Assign Activity")
+        ),
+        hr({}),
+        h2({}, "Requirements"),
+        this.renderRequirements()
       ),
-      this.renderRequirements()
+      this.renderRelatedContent()
     );
   },
 
