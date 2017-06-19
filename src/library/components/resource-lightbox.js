@@ -56,6 +56,16 @@ var ResourceLightbox = Component({
     );
   },
 
+  // TODO: add links
+  renderSharing: function () {
+    return div({className: "stem-resource-lightbox-modal-sharing"},
+      div({}, "F"),
+      div({}, "T"),
+      div({}, "E"),
+      div({}, "+")
+    )
+  },
+
   render404: function () {
     return div({className: "stem-resource-lightbox-modal-content"},
       div({className: "stem-resource-lightbox-not-found"}, "Sorry, the requested resource was not found."),
@@ -90,7 +100,8 @@ var ResourceLightbox = Component({
       div({className: "stem-resource-lightbox-background-close"}, "X"),
       div({className: "stem-resource-lightbox-modal"},
         this.props.resource ? this.renderResource() : this.render404()
-      )
+      ),
+      this.props.resource ? this.renderSharing() : null
     );
   }
 });

@@ -399,6 +399,26 @@
   overflow: auto;
   background-color: #fff;
 }
+.stem-resource-lightbox-modal-sharing {
+  z-index: 1003;
+  position: fixed;
+  top: 60px;
+  left: 15%;
+  margin-left: -30px;
+  background-color: $orange;
+  color: $white;
+}
+.stem-resource-lightbox-modal-sharing div {
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  text-align: center;
+  border-bottom: 1px solid $black;
+}
+.stem-resource-lightbox-modal-sharing div:last-child {
+  border: none;
+}
+
 .stem-resource-lightbox-modal-content-top {
   padding: 50px 70px 20px 70px;
 }
