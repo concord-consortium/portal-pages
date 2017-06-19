@@ -1,0 +1,32 @@
+<style>
+#curriculum-note {
+  background:#fef7e0;
+  font-style:italic;
+  padding:.75em 1em;
+  width:60%;
+  }
+#collection-1 { margin-bottom: 2em; }
+#collection-1 h1 { clear: both; }
+</style>
+<h1>Teaching Teamwork</h1>
+<img src="https://concord.org/sites/default/files/teaching-teamwork-lp.png" style="float:right; height: auto; margin: 3px 0 0 1em; width: 35%;" alt="PIC microntroller activity" />
+<p>The Teaching Teamwork project is creating collaborative challenges that can only be solved by small teams of students working closely together. The students work on separate computers, each of which runs a fully functional simulation of a portion of an electronics circuit, along with testing instruments such as multimeters and logic probes, and a built-in calculator. The individual simulations are linked together to form a complete circuit and the challenges involve altering that circuit to achieve a particular effect. The students communicate using a chat window. They can "zoom out" to see one another's circuits, but can only alter or make measurements on their own. Each student action—from changes in the circuit to chats, measurements, and calculations—is monitored and the resulting log files are analyzed for evidence of team behavior.</p>
+<p id="curriculum-note"><small><strong>NOTE:</strong> Interested in trying these activities in your classroom? Please contact us at <a href="mailto:teaching-teamwork@concord.org">teaching-teamwork@concord.org</a>.</small></p>
+<!--<h1 style="clear:both;">Teaching Teamwork Field Test</h1>-->
+<div id="collection-1"></div>
+<div id="collection-2"></div>
+<script>
+//Portal.renderMaterialsCollection(23,'#collection-1',20);
+
+Portal.renderMaterialsCollection(23, '#collection-1', {
+    limit: 20,
+    onDataLoad: function (materials) {},
+      header: 'Teaching Teamwork Field Test'
+  });
+
+Portal.renderMaterialsCollection(26, '#collection-2', {
+    limit: 20,
+    onDataLoad: function (materials) {},
+      header: 'Additional Activities'
+  });
+</script>

@@ -1,0 +1,814 @@
+<style>
+.lightbox_overlay{z-index:10!important;}.lightbox{z-index:15!important;}#collections li a,#footer-links a,#resources li a,.show-more a.close-link,.show-more div div.slideshow a,.show-more div.tabs a{text-decoration:none}#collections li,#paths li,#paths ul,#resources li{list-style:none}#schoology_login_button,.header-login-box,circle{display:none}#intro h1,#practices li,.button,h2{text-align:center}#grade-levels-heading,#resource-types-heading,h2{clear:both}#header-login-box{font-size:.7em}#wrapper{width:100%}#lead.project-header{height:60px;margin:0 auto;width:960px}#primary{float:none;margin:0 auto}body,html{height:100%}body{background-position:0 -40px;font:100% lato,verdana,helvetica,sans-serif;line-height:1;padding-bottom:70px}#lead.project-header,.col-50{position:relative}a{color:#0091b1}em{font-style:italic}h1{color:#eb8723;font:300 2em museo-sans,verdana,helvetica,sans-serif}h1 strong,strong{font-weight:700}h2{color:#e16a3e;font:700 1.25em museo-sans,verdana,helvetica,sans-serif;padding:0 0 10px}sub{vertical-align:sub;font-size:smaller}.button{background:#eb8723!important;border:none;border-bottom:3px solid #e16a3e!important;color:#fff;cursor:pointer!important;font-size:1.2em!important;font-weight:500!important;font-family:museo-slab,georgia,times,'times new roman',serif!important;margin-bottom:1em!important;margin-right:.6em!important;padding:5px 15px!important;-khtml-border-radius:4px!important;-moz-border-radius:4px!important;-webkit-border-radius:4px!important;border-radius:4px!important;-moz-appearance:none;-webkit-appearance:none}.orange{color:#eb8723}.disabled{cursor:default}#core-ideas li,#resources li,.enabled,.modal .close{cursor:pointer}#grade-levels .enabled,#grade-levels li:hover,#resource-types .enabled,#resource-types li:hover{border-color:#59b4c0!important}.col-50{float:left;width:50%}.col-50.right{background:#f9eec1;border-radius:12px;float:right;margin-top:-38px;padding:3.5% 4% 5%!important;width:42%}.col-50.right h3{color:#3f3f3f;font:1.3em museo;margin-bottom:.25em}#content{font-size:100%}#nav_top{height:1em}#nav_top li{height:auto!important}#nav_top li,.welcome-box{font-size:.8em}#page-wrapper{min-height:100%;overflow:auto}.project-header h1{background-size:100%;height:50px;width:147px}.welcome-box{height:75px;left:50%;margin:0 20px 0 -480px;padding:0;position:absolute;top:0;width:960px}.welcome-box table{height:60px;line-height:120%}#nav_top,header div{margin:0 auto;width:960px}#nav_top ul.menu_h{top:.45em}header{background:#bddfdf;height:55px;padding:10px 0 0}header img{border:none}#lead.project-header #accounts{color:#0091b1;position:absolute;right:0;top:.6em;width:250px}#core-ideas li,#practices li{background:#f9eec1;color:#af4927;float:left}#core-ideas li,#paths,#resources,#resources li,#search{position:relative}#intro,#paths,#search{width:960px}#lead.project-header #accounts a{border:1px solid #0091b1;border-radius:4px;display:inline-block;font-family:museo-slab;margin-left:.5em;padding:5px 25px;text-decoration:none}#paths,#practices,#search{margin:0 auto}header #social{color:#0091b1;float:right;text-align:right;width:56px}#facebook,#twitter{display:block;float:left;height:24px;margin:4px 2px;position:relative;text-align:left;text-indent:-999em;width:24px}#facebook{background:url(https://concord.org/sites/default/files/images/learn/facebook.png) no-repeat}#twitter{background:url(https://concord.org/sites/default/files/images/learn/twitter.png) no-repeat}#intro{line-height:140%;margin:15px auto 0}#intro h1{color:#eb8723;margin:0;padding:0}#intro li,#intro p{font-size:1.1em;line-height:150%;margin-bottom:.5em}#intro ol{margin-left:40px}#search input[type=text]{border:1px solid #ccc;border-radius:.375em;color:#aaa;float:left;font-size:1.2em;font-weight:400;clear:left;margin-left:10%;padding:1%;width:58%}::-webkit-input-placeholder{font-family:verdana,helvetica,sans-serif}:-moz-placeholder{font-family:verdana,helvetica,sans-serif}::-moz-placeholder{font-family:verdana,helvetica,sans-serif}:-ms-input-placeholder{font-family:verdana,helvetica,sans-serif}#search input[type=submit]{border-top:none;border-right:none;border-left:none;font-size:1.2em;margin-left:1%;padding:11px 0!important;width:15%}#advanced-search-link{font-size:.7em;bottom:43px;margin:0;position:absolute;right:40px}#paths{background:#fff;height:auto}#filter-blocker{display:block;height:100%;left:0;position:absolute;top:0;width:100%;z-index:100}#practices-heading{display:none}#practices{display:none;height:50px;width:900px}#practices li{border:2px solid #f9d979;font:75% museo-sans,arial,helvetica,sans-serif;height:24px;margin:0 3px;padding:7px 8px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}#practices li:hover{opacity:.8}#core-ideas-heading{color:#aaa;left:90px;line-height:90%;position:absolute;top:20%}#core-ideas-heading span{font-size:11px}#core-ideas{height:125px;margin:20px auto 10px;width:544px}#core-ideas li{border:3px solid #f9d979;font:75% museo-sans,arial,helvetica,sans-serif;height:100px;margin:0 5px;padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px;width:100px;opacity:1}#core-ideas li p{bottom:8px;font-size:1.2em;margin-bottom:0;position:absolute;text-align:center;width:100px}ul#crosscutting-concepts li,ul#grade-levels li,ul#resource-types li{color:#3994a0;font:75% museo-sans,arial,helvetica,sans-serif;height:17px;margin:0 3px;float:left;text-align:center}#core-ideas li#life-sciences{background:url(https://concord.org/sites/default/files/images/learn/life-sciences.gif) center 15px no-repeat #e75922;border:3px solid #b5570e;color:#fff}#core-ideas li#engineering-technology{background:url(https://concord.org/sites/default/files/images/learn/engineering-technology.gif) center 12px no-repeat #04788c;border:3px solid #06637c;color:#fff}#core-ideas li#earth-space-sciences{background:url(https://concord.org/sites/default/files/images/learn/earth-space-sciences.gif) center 12px no-repeat #449f45;border:3px solid #338236;color:#fff}#core-ideas li#physical-sciences{background:url(https://concord.org/sites/default/files/images/learn/physical-sciences.gif) center 15px no-repeat #f7ab1b;border:3px solid #c88a12;color:#fff}#core-ideas li:hover{opacity:1}#core-ideas li.disabled{opacity:.5}#core-ideas li.enabled:hover{opacity:1!important}#crosscutting-concepts-heading{display:none;margin-bottom:-75px}ul#crosscutting-concepts{display:none;height:50px;margin:0 auto;width:800px}ul#crosscutting-concepts li{border:2px solid #aee0dc;padding:10px 8px 3px 28px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}ul#crosscutting-concepts li:hover{opacity:.8}#patterns{background:url(https://concord.org/sites/default/files/images/learn/patterns.gif) 2px 2px no-repeat #c7e9e8}#causation{background:url(https://concord.org/sites/default/files/images/learn/causation.gif) 2px 2px no-repeat #c7e9e8}#scale{background:url(https://concord.org/sites/default/files/images/learn/scale.gif) 2px 2px no-repeat #c7e9e8}#systems{background:url(https://concord.org/sites/default/files/images/learn/systems.gif) 2px 2px no-repeat #c7e9e8}#energy{background:url(https://concord.org/sites/default/files/images/learn/energy.gif) 2px 2px no-repeat #c7e9e8}#structure-function{background:url(https://concord.org/sites/default/files/images/learn/structure.gif) 2px 2px no-repeat #c7e9e8}#stability-change{background:url(https://concord.org/sites/default/files/images/learn/stability.gif) 2px 2px no-repeat #c7e9e8}#grade-levels-container,#resource-types-container{float:right;margin-top:1em;width:50.5%}#resource-types-container{margin-right:4px;width:48%}ul#grade-levels{float:left;height:50px;margin:0;width:100%}ul#grade-levels li,ul#resource-types li{background:#c7e9e8;border:2px solid #aee0dc;padding:6px 4px 3px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}ul#grade-levels li:hover,ul#resource-types li:hover{opacity:1}ul#resource-types{float:right;height:50px;margin:0;width:468px}ul#resource-types li.enabled{background-position:3.5px -5px}.check{background:url(https://concord.org/sites/default/files/images/learn/checkboxes.png) 0 2px no-repeat;display:block;float:left;height:14px;margin-top:-1px;width:16px}li.enabled .check{background-position:0 -12px;margin-top:1px}#instructions{background:#f9eec1;color:#554c2f;display:none;font-size:1em;height:50px;line-height:130%;margin:-20px 0 0;padding:10px;position:absolute;right:20px;top:28%;width:135px;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;box-shadow:0 1px 5px rgba(51,51,51,.4)}#loading{color:#999;text-align:center;position:absolute;top:0;left:0;width:100%}#resources{background:#fff;height:475px;margin:0 auto 20px;min-height:200px;overflow:hidden;padding:0 0 40px;width:100%}#resources h2{color:#0091b1;display:none;margin-left:15px;text-align:left}#resources ul{margin:0 auto;width:960px}#resources li{border:10px solid #fff;display:block;float:left;font-size:.9em;height:auto;line-height:140%;margin:0;max-height:230px;min-height:230px;width:220px;z-index:1}#resources li.selected:after{border:solid transparent;border-top-color:#0091b1;border-width:12px;content:" ";height:0;left:50%;margin-top:-5px;margin-left:-12px;position:absolute;pointer-events:none;top:102%;width:0}#resources li h2{background:#fff;padding:.5em .65em 0}#resources li p{background:#fff;padding:.5em 1em 1em}#resources li a{background:#f6f6f6;border:1px solid #ddd;color:#777;display:block;font:.8em verdana,helvetica,sans-serif;font-weight:300;height:auto;max-height:203px;min-height:203px;padding:10px 15px 15px}#resources li a:nth-child(2){display:none}#resources li.selected a{border:1px solid #0091b1}#resources li.selected .description{display:block;opacity:1}#resources li a:hover{background:#fee9aa;color:#111}#resources li a strong.title{color:#0091b1;display:block;font:500 1.2em museo-sans;margin-bottom:.5em}#resources li a:hover strong.title{color:#0091b1}#resources li .image-wrap{clear:both;height:144px;margin:-10px -15px 1em;overflow:hidden;width:218px}#resources li img{height:auto;width:100%}#resources li a span.description{background:#0091b1;color:#fff;display:none;font-size:1.1em;height:200px;left:0;line-height:1.4;opacity:.9;padding:15px;position:absolute;top:0;width:190px;z-index:2}#resources button,#resources li a:hover span.description,span.more{display:block}span.more{background:#fff;border-radius:8px;color:#0091b1;margin:1em auto;padding:5px;text-align:center;width:100px}#resources p{display:none;padding-left:15px}#resources p#error{color:#c00;font-size:1.2em;text-align:center}#resources p#resource-list-status{display:block;margin:.5em auto;width:960px}#resources ul{margin-top:1em}#resources button{background:#f4b626;border:none;color:#fff;cursor:pointer;font-weight:700;margin-top:10px;padding:10px 20px;text-align:center;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;box-shadow:0 0 3px rgba(51,51,51,.3);background-image:linear-gradient(top,#f4b626 0,#eb8723 100%);background-image:-o-linear-gradient(top,#f4b626 0,#eb8723 100%);background-image:-moz-linear-gradient(top,#f4b626 0,#eb8723 100%);background-image:-ms-linear-gradient(top,#f4b626 0,#eb8723 100%);background-image:-webkit-linear-gradient(top,#f4b626 0,#eb8723 100%)}#resources button:hover{background:#ffc328;background-image:linear-gradient(top,#ffc328 0,#f59123 100%);background-image:-o-linear-gradient(top,#ffc328 0,#eb8723 100%);background-image:-moz-linear-gradient(top,#ffc328 0,#eb8723 100%);background-image:-ms-linear-gradient(top,#ffc328 0,#eb8723 100%);background-image:-webkit-linear-gradient(top,#ffc328 0,#f59123 100%)}#resources button:active{box-shadow:0 0 0 rgba(51,51,51,.3)}#resources .more-details{display:none}ul.privileged-links{margin:-20px 0 0;padding:11px 0}ul.privileged-links li{display:inline;margin:0 .5em 0 0}ul.privileged-links li a{background:#8cbbb8;border-radius:4px;color:#fff;font:500 .9em museo-slab,georgia,times,'times new roman',serif!important;padding:5px 15px}#resources-overlay a:hover,ul.privileged-links li a:hover{background:#479492;color:#fff}#resources-overlay{background:url(https://concord.org/sites/default/files/images/learn/gradient-overlay.png) left bottom;height:300px;left:0;position:absolute;top:225px;width:100%;z-index:20}#resources-overlay a{background:#fff;bottom:2em;border:1px solid #479492;border-radius:4px;display:block;left:50%;margin:0 0 0 -75px;padding:.5em;position:absolute;text-align:center;width:150px}.corner-text-wrapper{bottom:-45.71px;clip:rect(0,141.42px,70.71px,0);height:141.42px;position:absolute;right:-44.71px;width:141.42px;z-index:1;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}.corner-text{display:block;top:20px;height:200px;left:20px;position:absolute;width:100px;z-index:2}#resources li.sequence .icon{bottom:5px;height:32px;opacity:.7;position:absolute;right:3px;width:32px}#resources li.sequence .icon img{height:32px;margin:0;width:32px}.corner-text span{bottom:-50px;display:block;font-size:1.25em;left:10px;position:relative;text-align:center}.show-more,.show-more-bg{border:none;display:none;height:20.75em;margin:1em 0;overflow:hidden;padding:.5em 0 0;width:100%;clear:both}.show-more-bg{background:url(https://concord.org/sites/default/files/images/learn/more-bg.png) left bottom repeat-x;opacity:.7;position:absolute;z-index:5}.show-more{background:0 0;position:absolute;z-index:10}.show-more div{left:50%;margin:0 0 0 -480px;padding:10px;position:absolute;width:940px}.show-more div div{left:0;margin:0;position:relative;width:auto}.show-more div div.description{float:left;padding:0;width:48%}.show-more div.tabs{bottom:-3px;left:0;margin:0;padding:0 1em .75em;position:absolute;text-align:center;width:100%}.show-more div.tabs a{display:inline-block;font-size:.7em;margin:0 1em;padding:0 0 .25em;text-transform:uppercase}.show-more div.details,.show-more div.standards,p.icons span{display:none}.show-more div.tabs a.selected-tab{border-bottom:solid 2px #0091b1}.description h2{color:#ee864e;text-align:left}.description p{line-height:140%;margin-bottom:1em}.description p.icons{margin-top:-12px}p.icons span{background:#75a643;border-radius:3px;color:#fff;font-size:.6em;opacity:.8;padding:3px 5px;text-align:center}p.icons span.browser-ready{background:#3a878b}p.icons span.sensor-based{background:#8cbbb8}.show-more div div.slideshow{background:0 0;background-size:cover;border:1px solid #ccc;float:right;height:282px;margin-bottom:1em;overflow:scroll;padding:0;text-align:center;width:460px}.show-more div div.slideshow dd{border-bottom:dashed 1px #0091b1;font-size:.8em;margin-bottom:1em;padding-bottom:1em}.show-more div div.slideshow dt,.show-more div div.slideshow li{font-size:.8em;list-style:none;margin-bottom:1em;min-height:26px}.show-more div div.slideshow dt:before{background:#ccc;content:' ';float:left;height:2.75em;margin:3px .7em 0 0;width:4em}.show-more div div.slideshow h3{color:#0091b1;margin-bottom:1em}.show-more div div.slideshow img{background:#fff;height:auto;width:100%}.show-more div.details dt{font-weight:700}.show-more div.details dd{line-height:140%;margin-bottom:1em}.show-more div div.col{float:left;padding:0;width:460px}.show-more div div.col:nth-child(2){float:right}.show-more a.close-link{color:#999;font-size:.7em;margin:0 -470px 0 0;position:absolute;right:50%;text-align:right;top:0;width:960px}#collections li,#collections li img{display:block;width:220px;height:auto}#background{border-top:dashed 2px #ddd;line-height:140%;margin:15px auto 0;padding:20px;width:960px}#background h2,#collections h2{text-align:left}#background h3{clear:both;color:#3f3f3f;font:700 1.25em museo-sans,arial,helvetica,sans-serif;padding:0 0 10px}#background li,#background p{font-size:1.1em;margin-bottom:1em}#background ul{margin:0 0 20px 18px}#collections{background:#fee9aa;height:auto;margin:1em -200%;min-height:450px;overflow:hidden;padding-bottom:1em;width:500%}#collections #collections-inner{margin:0 auto;padding:1em 0;width:960px}#collections h3{color:#e16a3e;font:500 1em museo-slab,georgia,times,'times new roman',serif;margin-bottom:0}#collections h3 img{clear:both;height:auto;margin:3px 0 .5em 1em;width:100%}#collections ul{margin-left:0}#collections li{border:10px solid #fee9aa;float:left;line-height:140%;margin:0;min-height:230px;position:relative;z-index:10}#collections li:nth-child(4n+1){clear:left}#collections li a{background:#fff;color:#777;display:block;font:.8em verdana,helvetica,sans-serif;font-weight:300;height:auto;min-height:203px;padding:10px 15px 3px}#collections li a:hover{background:#fef7e0}#collections li img{clear:both;margin:-11px -15px 1em}#collections p{line-height:145%;margin-bottom:1em}footer,footer a{color:#fff}#overlay,.modal{display:none;position:absolute}footer{background:#e16a3e;clear:both;font-size:.8em;height:auto;margin-top:-50px;overflow:hidden;padding-top:15px}.modal dt,.modal form dt{color:#3f3f3f}footer p{line-height:135%;margin:0 auto 1em}#disclaimers{float:left;width:50%}#footer-links{float:right;width:210px}#footer-links li{margin-bottom:.5em}#overlay{background:#000;height:100%;left:0;opacity:.6;top:0;width:100%;z-index:101}.modal{background:#fff;box-shadow:0 5px 10px rgba(51,51,51,.5);left:50%;height:auto;margin:-250px 0 0 -300px;min-height:500px;padding:1em;top:50%;width:600px;z-index:110}.modal button{display:block;margin:1em auto;padding:10px 20px!important}.modal dt{font-weight:700;margin-bottom:.25em}.modal dd{margin-bottom:1em}.modal h2,form.imported_confirm h2,form.signup h2{color:#eb8723;font:500 1.5em museo-sans;margin:0 0 6px;padding:0 0 5px;text-align:left}.modal h3{color:#3f3f3f;font:1em museo-sans;font-weight:700;margin-bottom:1em}.modal h4{color:#222;font-weight:strong}.modal img{border:1px solid #ccc;height:auto;width:100%}.modal li,.modal p{font-size:.9em;line-height:1.3}.modal p.special-msg{color:#e16a3e;display:none;margin-bottom:1em}.modal .close{background:#222;border:2px solid #eee;border-radius:50%;box-shadow:0 1.25px 2.5px rgba(51,51,51,.5);color:#ddd;display:block;font:14px verdana,helvetica,sans-serif;padding:0 5px 2px;position:absolute;right:-15px;text-decoration:none!important;top:-15px;z-index:25}.modal-nav{top:-20px;color:#fff;position:absolute;width:96%}.modal-nav a{color:#fff;display:block;text-decoration:none}.modal-nav a.prev{float:left}.modal-nav a.prev:before{color:#fff;content:'\00AB '}.modal-nav a.next{float:right}.modal-nav a.next:after{color:#fff;content:' \00BB'}.modal .col{float:left;padding:0 0 0 2%;width:31.33333333333333%}.modal .col-50.req{width:520px}.modal .col-50 ul{margin:1em 0 1em 1em}.modal .col-50 li{margin-bottom:.5em}.modal button.button{margin:0 0 1em!important}.modal input{padding:5px}.modal input[type=submit]{border:none;padding:5px 15px}.modal .social{right:-42.5px;margin-top:-75px;position:absolute;top:50%;width:32.5px}.modal .social img{border:none;height:auto;margin-bottom:10px;width:100%}.success_message_box{width:255px!important}form.signup .signup-success{margin-left:0!important;padding:0!important}.resource-detail{margin-left:-400px;min-height:auto;width:700px}.resource-detail .button{font-size:1em}.lightbox{box-shadow:0 5px 10px rgba(51,51,51,.5)}.lightbox div{border:none!important}.unassigned_classes_container{min-height:30px}
+</style>
+<script src="https://use.typekit.com/hdw8ayt.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css" />
+<section id="intro"><h1>STEM Resource Finder</h1><br style="clear: both;" /></section><!-- /#intro -->
+<section id="search">
+<form action="#" onsubmit="searchResources(); return false;"><input type="text" id="keyword" name="keyword" value="" placeholder="Search by keyword..." /> <input class="button" type="submit" value="Search" /></form>
+<p id="advanced-search-link"><a href="/search">advanced search</a></p>
+</section><!-- /#search -->
+<section id="paths">
+<h2 id="core-ideas-heading">or Browse<br />
+<span>using these filters</span></h2>
+<ul id="core-ideas">
+<li id="life-sciences"><p>Life<br />Sciences</p></li>
+<li id="engineering-technology"><p>Engineering &amp;<br />Technology</p></li>
+<li id="earth-space-sciences"><p>Earth &amp; Space<br />Sciences</p></li>
+<li id="physical-sciences"><p>Physical<br />Sciences</p></li>
+</ul>
+<div id="grade-levels-container">
+<h2 id="grade-levels-heading">Grade Level</h2>
+<ul id="grade-levels">
+<li id="elementary-school"><span class="check"></span>Elementary School</li>
+<li id="middle-school"><span class="check"></span>Middle School</li>
+<li id="high-school"><span class="check"></span>High School</li>
+<li id="higher-education"><span class="check"></span>Higher Education</li>
+</ul>
+</div><!-- /#grade-levels-container -->
+<div id="resource-types-container">
+<h2 id="resource-types-heading">Resource Type</h2>
+<ul id="resource-types">
+<li id="sequence"><span class="check"></span>Sequence</li>
+<li id="activity"><span class="check"></span>Activity</li>
+<li id="model"><span class="check"></span>Model</li>
+<li id="sensor-based"><span class="check"></span>Sensor-based</li>
+<li id="browser-based"><span class="check"></span>Browser-based</li>
+</ul>
+</div><!-- /#resource-types-container -->
+<br style="clear: both;" />
+<div id="filter-blocker"></div>
+</section><!-- /#paths -->
+<section id="resources">
+<p style="display: none;" id="resource-list-status">Showing all resources.</p>
+<ul id="resources-list"></ul>
+<div id="loading"><img src="https://concord.org/sites/all/themes/cc/img/loading-white.gif" alt="Loading..." /><br />Please wait...</div>
+<br style="clear: both;" />
+</section><!-- /#resources -->
+<section id="collections">
+<div id="collections-inner">
+<h2 style="margin-left: .5em;">Collections</h2>
+<p style="margin-left: .55em; width: 50%;">Many resources are part of collections created by our various research projects. Each collection has specific learning goals within the context of a larger subject area.</p>
+<ul style="clear: both;">
+<li><a href="https://learn.concord.org/electron-technologies"><h3><img alt="Electron Technologies" src="https://concord.org/sites/default/files/images/learn/electron-technologies.png" />Electron Technologies</h3><p>Using advanced computational models of electron behavior, students prepare for careers in nanotechnology, photonics, and materials science.</p></a></li>
+<li><a href="https://learn.concord.org/evolution-readiness"><h3><img alt="Evolution Readiness" src="https://concord.org/sites/default/files/images/learn/er.jpg" />Evolution Readiness</h3><p>A set of 10 activities help elementary students learn Darwin’s model of natural selection using models of interacting organisms and their environments.</p></a></li>
+<li><a href="https://learn.concord.org/geniverse"><h3><img alt="Geniverse" src="https://concord.org/sites/default/files/images/learn/geniverse.jpg" />Geniverse</h3><p>Explore heredity and genetics by experimenting with breeding and studying virtual dragons.</p></a></li>
+<li><a href="https://learn.concord.org/inquiryspace"><h3><img alt="InquirySpace" src="https://concord.org/sites/default/files/images/learn/is.jpg" />InquirySpace</h3><p>Use probes, models, and data analysis tools for open-ended investigations similar to the approach used by real scientists.</p></a></li>
+<li><a href="https://learn.concord.org/nextgen-molecular-workbench"><h3><img alt="Next-Generation Molecular Workbench" src="https://concord.org/sites/default/files/images/learn/nextgen-mw.jpg" />Next-Generation <br />Molecular Workbench</h3><p>Next-Generation Molecular Workbench software provides visual, interactive computational experiments that run in Web browsers.</p></a></li>
+<li><a href="https://learn.concord.org/sam"><h3><img alt="Science of Atoms and Molecules" src="https://concord.org/sites/default/files/images/learn/sam.jpg" />SAM</h3><p>The Science of Atoms and Molecules project offers research-based activities for physics, chemistry, and biology.</p></a></li>
+<li><a href="https://learn.concord.org/smartgraphs"><h3><img alt="SmartGraphs" src="https://concord.org/sites/default/files/images/learn/smartgraphs.jpg" />SmartGraphs</h3><p>Learn algebra using graph-related activities, and get scaffolds and hints to help make sense of graphs.</p></a></li>
+<li><a href="https://learn.concord.org/udl"><h3><img alt="UDL" src="https://concord.org/sites/default/files/images/learn/udl.jpg" />UDL</h3><p>Universal Design for Learning principles offer a flexible approach to teaching science. Activities for grades 3-6 include probes and computational models.</p></a></li>
+<li><a href="https://learn.concord.org/udl"><h3><img alt="VISUAL" src="https://concord.org/sites/default/files/images/learn/visual.jpg" />VISUAL</h3><p>The Visualizing to Integrate Science Understanding for All Learners project studied how visualizations can transform science instruction.</p></a></li>
+</ul>
+</div><!-- /#collections-inner -->
+</section><!-- /#collections -->
+<!-- begin sign up form -->
+<div id="sign-up" class="modal" style="min-height: 300px !important;"><div class="col-50 left signup-box"><div ng-controller="RegistrationController as regCtrl" ng-init="regCtrl.initialize({anonymous: true})">
+<form accept-charset="UTF-8" action="" class="signup" id="new-account-form" method="post" name="signup" validate="false" with-errors="true"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+<h2>Sign Up</h2>
+<div class="unknown-error"></div>
+<div ng-switch="regCtrl.nowShowing()">
+<fieldset ng-switch-when="page1"><span class="registration-steps" style="left: auto; right: 10%; top: 13px;">
+Step 1 of 3
+</span>
+<div class='group'>
+<div class='f-row'>
+<input name='first_name' ng-model='regCtrl.first_name' non-blank placeholder='First Name' type='text' style="width: 85%;">
+</div>
+<div class='f-row'>
+<input ng-model='regCtrl.last_name' non-blank placeholder='Last Name' type='text'style="width: 85%;">
+</div>
+</div>
+<div class='group'>
+<div class='f-row'>
+<input minLength='6' name='password' ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }" ng-model='regCtrl.password' non-blank placeholder='Password' type='password'style="width: 85%;">
+<div class='div' ng-messages='signup.password.$error'>
+<div class='div error-message' ng-message='minlength'>
+Password is too short
+</div>
+</div>
+</div>
+<div class='f-row'>
+<input match='regCtrl.password' name='password_confirmation' ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }" ng-model='regCtrl.password_confirmation' non-blank placeholder='Confirm Password' type='password'style="width: 85%;">
+<div class='div' ng-messages='signup.password_confirmation.$error'>
+<div class='div error-message' ng-message='match'>
+Passwords do not match
+</div>
+</div>
+</div>
+</div>
+<div class='group'>
+<div class='f-row'>
+I am a
+<span class='input-group'>
+<label for='Student'>Student</label>
+<input ng-model='regCtrl.registrationType' type='radio' value='student'>
+</span>
+<span class='input-group'>
+<label for='Teacher'>Teacher</label>
+<input ng-model='regCtrl.registrationType' type='radio' value='teacher'>
+</span>
+</div>
+</div>
+<div class='group'>
+<div class='f-row'>
+<button class="button" id='continue-registration' ng-click='regCtrl.startRegistration()' ng-disabled='!regCtrl.readyToRegister()'>
+Sign Up for Learn Portal!
+</button>
+</div>
+</div>
+</fieldset><fieldset id="student-fieldset" ng-switch-when="student"><span class='registration-steps' style="left: auto; right: 10%; top: 13px;">
+Step 2 of 3
+</span>
+<div class='group'>
+<div class='f-row'>
+<input good-classword="true" id="class_word" name="class_word" ng-model-options="{ updateOn: &#x27;default blur&#x27;, debounce: {&#x27;default&#x27;: 500, &#x27;blur&#x27;: 0} }" ng-model="regCtrl.class_word" non-blank="true" placeholder="Class Word (not case sensitive)" type="text" style="width: 85%;" />
+<div class='div' ng-messages='signup.class_word.$error'>
+<div class='div error-message' ng-message='nonBlank'></div>
+<div class='div error-message' ng-message='goodClassword'>
+You must enter a valid class word.
+</div>
+</div>
+</div>
+</div>
+<div class='group'>
+<div class="frow"><p style="font-size: 12px">By clicking Sign Up! you agree to our <a target="_blank" href="http://concord.org/privacy-policy">privacy policy</a>.</p></div>
+<div class='f-row'>
+<button class="button" id='finish-student' ng-click='regCtrl.sendRegistration()' ng-disabled='!signup.$valid'>
+Sign Up!
+</button>
+</div>
+</div>
+</fieldset><fieldset id="teacher-fieldset" ng-switch-when="teacher"><span class='registration-steps' style="left: auto; right: 10%; top: 13px;">
+Step 2 of 3
+</span>
+<div class='group'>
+<div class='f-row'>
+<input minLength='3' name='login' ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }" ng-model='regCtrl.login' non-blank placeholder='create username' server-errors type='text' username-avail='true' style="width: 85%;">
+<div class='div' ng-messages='signup.login.$error'>
+<div class='div' ng-message='non-blank'></div>
+<div class='div error-message' ng-message='minlength'>
+Login is too short
+</div>
+<div class='div error-message' ng-message='usernameAvail'>
+That login is taken
+</div>
+<div class='div error-message' ng-message='serverErrors'>
+Please select another email
+</div>
+</div>
+</div>
+<div class='f-row'>
+<input email-avail='true' name='email' ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }" ng-model='regCtrl.email' ng-pattern='/\S+@\S+/' non-blank placeholder='email@example.com' server-errors type='text' style="width: 85%;">
+</div>
+<div class='div' ng-messages='signup.email.$error'>
+<div class='div' ng-message='non-blank'></div>
+<div class='div error-message' ng-message='pattern'>
+Email doesn't appear to be a valid email
+</div>
+<div class='div error-message' ng-message='minlength'>
+Email address is too short
+</div>
+<div class='div error-message' ng-message='emailAvail'>
+Email belongs to an existing user
+</div>
+<div class='div error-message' ng-message='serverErrors'>
+Email doesn't appear to be a valid email
+</div>
+</div>
+</div>
+<div class='group'>
+<div class='f-row'>
+<ui-select ng-change='regCtrl.countrySelected()' ng-model='regCtrl.country' theme='select2'>
+<ui-select-match placeholder='Select your country...'>
+{{$select.selected.name}}
+</ui-select-match>
+<ui-select-choices repeat='country in regCtrl.countries | filter: {name: $select.search}'>
+{{country.name}}
+</ui-select-choices>
+</ui-select>
+</div>
+</div>
+<div class='group' ng-show='regCtrl.showState()'>
+<div class='f-row'>
+<ui-select ng-change='regCtrl.stateSelected()' ng-model='regCtrl.state' theme='select2'>
+<ui-select-match placeholder='Select your state...'>
+{{$select.selected}}
+</ui-select-match>
+<ui-select-choices repeat='state in regCtrl.states | filter: $select.search'>
+{{state}}
+</ui-select-choices>
+</ui-select>
+</div>
+</div>
+<div class='group' ng-show='regCtrl.showDistrict()'>
+<div class='f-row'>
+<ui-select ng-change='regCtrl.districtSelected()' ng-model='regCtrl.district' theme='select2'>
+<ui-select-match placeholder='Select your district...'>
+{{$select.selected.name}}
+</ui-select-match>
+<ui-select-choices repeat='district in regCtrl.districts | filter: {name: $select.search}'>
+{{district.name}}
+</ui-select-choices>
+</ui-select>
+</div>
+</div>
+<div class='group' id='school-picker' ng-show='regCtrl.showSchool()'>
+<div ng-switch='regCtrl.schoolEditmode()'>
+<div class='group' ng-switch-when='dropdown'>
+<div class='f-row'>
+<ui-select name='school' ng-model='regCtrl.school' non-blank theme='select2'>
+<ui-select-match placeholder='Select your school ...'>
+{{$select.selected.name}}
+</ui-select-match>
+<ui-select-choices repeat='schools in regCtrl.schools | filter: {name: $select.search}'>
+{{schools.name}}
+</ui-select-choices>
+</ui-select>
+</div>
+<div class='f-row'>
+<a id='cant-find-school' ng-click='regCtrl.setEditSchool()'>I can't find my school in the list.</a>
+</div>
+</div>
+<div class='group' ng-switch-when='us_edit'>
+<div class='f-row'>
+<input name='school_name' ng-model='regCtrl.school.name' non-blank placeholder='School name' type='text'>
+</div>
+<div class='f-row'>
+<button class="button" id='add_school' ng-click='regCtrl.sendSchool()' ng-disabled='!regCtrl.schoolValid()'>Add my school</button>
+<a id='back-to-list' ng-click='regCtrl.setPickSchool()'>Go back to the school list.</a>
+</div>
+</div>
+<div class='group' ng-switch-when='intl_edit'>
+<div class='f-row'>
+<input name='school_name' ng-model='regCtrl.school.name' non-blank placeholder='School name' type='text'>
+</div>
+<div class='f-row'>
+<input name='school_state' ng-model='regCtrl.state' non-blank placeholder='Province' type='text'>
+</div>
+<div class='f-row'>
+<input name='school_city' ng-model='regCtrl.school.city' non-blank placeholder='City' type='text'>
+</div>
+<div class='f-row'>
+<button class="button" id='add_school' ng-click='regCtrl.sendSchool()' ng-disabled='!regCtrl.schoolValid()'>Add my school</button>
+</div>
+<a id='back-to-list' ng-click='regCtrl.setPickSchool()'>Go back to the school list.</a>
+</div>
+</div>
+</div>
+<div class='group'>
+<div class="frow"><p style="font-size: 12px">By clicking Sign Up! you agree to our <a target="_blank" href="http://concord.org/privacy-policy">privacy policy</a>.</p></div>
+<div class='f-row'>
+<button class="button" id='finsish-teacher' ng-click='regCtrl.sendRegistration()' ng-disabled='regCtrl.disableSubmit(signup.$valid)'>Sign Up!</button>
+</div>
+</div>
+</fieldset><div ng-switch-when='success'>
+<span class='registration-steps' style="left: auto; right: 10%; top: 13px;">Step 3 of 3</span>
+<div ng-switch='regCtrl.registrationType'>
+<div ng-switch-when='student'>
+<div class='success_message_box'>
+<h3>Thanks for signing up!</h3>
+<p class='signup-success'>You have successfully registered {{regCtrl.first_name}} {{regCtrl.last_name}} with the user name <span class='big'>{{regCtrl.login}}.</span></p>
+<p class="signin-instruction">Use this user name and the password you provided to <a href="#" onclick="showModal('#log-in'); return false;">log in</a>.</p>
+</div>
+</div>
+<div ng-switch-when='teacher'>
+<div class='success_message_box'>
+<h3>Thanks for signing up!</h3>
+<p>We're sending you an email with your activation code. Click the "Confirm my account" link in the email to complete the process.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='group'><div class='f-row wait-message'></div></div></form>
+</div></div><div class="col-50 right" style="margin-top: 0;"><h3>Why sign up?</h3><p>It's free and you get access to several key features:</p><ul><li>Create classes for your students and assign them activities</li><li>Save student work</li><li>Track student progress through activities</li><li>Customize activities</li></ul></div></div></div>
+<!-- end sign up form -->
+<script>
+var page_init=true,search_term='',resources=[],selected_filters=[],query_params={};
+var filters = {
+'life-sciences':{'classes':'.Biology'},
+'engineering-technology':{'classes':'.Engineering'},
+'earth-space-sciences':{'classes':'.Earth-and-Space-Science'},
+'physical-sciences':{'classes':'.Chemistry,.Physics'},
+'elementary-school':{'classes':'.3-4,.5-6'},
+'middle-school':{'classes':'.7-8'},
+'high-school':{'classes':'.9-12'},
+'higher-education':{'classes':'.Higher-Ed'},
+'sequence':{'classes':'.Sequence'},
+'activity':{'classes':'.Activity'},
+'model':{'classes':'.Interactive'},
+'sensor-based':{'classes':'.Sensor-Based'},
+'browser-based':{'classes':'.Browser-Based'},
+};
+jQuery(document).ready(function(){
+  getQSParams();
+  if(query_params['subjects']||query_params['resource_types']||query_params['grade_levels']){
+    page_init=false;
+    setActiveFilters();
+  }
+  showResources();
+  jQuery('#resources').append('<div id="resources-overlay"><a href="#" onclick="showAllMatchingResources(); return false;">Show All Resources</a></div>');
+  jQuery('#core-ideas li').each(function(){
+    jQuery(this).click(function(){selectFilter(this.id);});
+    jQuery(this).css({'cursor':'pointer'});
+  });
+  jQuery('#grade-levels li').each(function(){
+    jQuery(this).click(function(){selectFilter(this.id);});
+    jQuery(this).css({'cursor':'pointer'});
+  });
+  jQuery('#resource-types li').each(function(){
+    jQuery(this).click(function(){selectFilter(this.id);});
+    jQuery(this).css({'cursor':'pointer'});
+  });
+  var show_more='<div class="show-more"></div>';
+  var show_more_bg='<div class="show-more-bg"></div>';
+  jQuery('body').append(show_more).append(show_more_bg);
+  if (!Portal.currentUser.isLoggedIn){
+    jQuery('#lead.project-header').append('<div id="accounts"><a href="#" onclick="showModal(\'#sign-up\'); return false;">Sign Up</a> <a href="#" onclick="showModal(\'#log-in\'); return false;">Log In</a></div>');
+    var login_form_html='<div id="log-in" class="modal" style="min-height: 300px !important;"><h2>Log In</h2><p class="special-msg"></p><div class="col-50 left"><form method="post" action="/users/sign_in"><dl><dt>Username</dt><dd><input name="user[login]" style="width: 85%;" /></dd><dt>Password</dt><dd><input type="password" name="user[password]" style="width: 85%;" /></dd></dl><input class="button" type="submit" value="Log In" /></form><p><a href="/forgot_password" title="Click this link if you forgot your username and/or password.">Forgot your username or password?</a></p></div><div class="col-50 right"><h3>Don\'t have an account?</h3><p><a href="#" onclick="showModal(\'#sign-up\'); return false;">Sign up for free</a> to:</p><ul><li>Create classes and assign activities</li><li>Save student work</li><li>Track student progress</li><li>Customize activities</li></ul></div></div>';
+    jQuery('body').append('<div id="overlay"></div>');
+    jQuery('body').append(login_form_html);
+    jQuery('.modal').append('<a class="close">x</a>');
+    jQuery('#overlay, .modal .close').click(function() {
+      hideModal();
+    });
+  }
+});
+function showAllMatchingResources() {
+  jQuery('#resources-overlay').fadeOut();
+  jQuery('#resources').css({'height': 'auto'});
+}
+function searchResources() {
+  search_term = jQuery('#keyword').val();
+  var qstr = 'search_term=' + search_term + '&sort_order=Alphabetical&include_official=1&model_types=All&investigation_page=1&activity_page=1&interactive_page=1&per_page=9999';
+  retrieveResources(qstr);
+}
+function retrieveResources(qstr) {
+  jQuery('#resource-list-status').html('').fadeOut('slow');
+  jQuery('#resources ul').html('');
+  toggleFilters('disable');
+  jQuery('#loading').fadeIn(100);
+  jQuery.ajax({
+    url:'https://learn.concord.org/api/v1/search/search',
+    data:qstr,
+    dataType:'json'
+  }).done(function(result){
+    //compile results into an array of resource objects
+    var investigation='',activity='',interactive='',results=[],resources=[];
+    results=result.results;
+console.log(results);
+    //get investigations
+    if(typeof results[0]!='undefined' && results[0].materials.length>0) {
+      for(var i=0;i<results[0].materials.length;i++){
+        investigation=new Resource(results[0].materials[i], 'Sequence');
+        resources.push(investigation);
+      }
+    }
+    //get activities
+    if(typeof results[1]!='undefined' && results[1].materials.length>0){
+      for(var i=0;i<results[1].materials.length;i++){
+        activity=new Resource(results[1].materials[i], 'Activity');
+        resources.push(activity);
+      }
+    }
+    // get interactives
+    if (typeof results[2] != 'undefined' && results[2].materials.length > 0) {
+      for (var i = 0; i < results[2].materials.length; i++) {
+        interactive =  new Resource(results[2].materials[i], 'Interactive');
+        resources.push(interactive);
+      }
+    }
+    // sort all resources by name value in ascending alphabetical order
+    resources.sort(sortBy('name', false, function(a){return a.toUpperCase()}));
+    // build output HTML string
+    var results_output = '';
+    for(var i=0;i<resources.length;i++){
+      if(!resources[i].subject_areas==''){ // omit untagged resources
+      var id_str=createID(resources[i].name);
+      var resource_title=resources[i].name;
+      if(resource_title.length>42){
+        resource_title=resource_title.substr(0, 45)+'...';
+      }
+      results_output += '<li id="' + id_str +'" class="' + resources[i].classes + '" onclick="toggleMoreDetail(\'' + id_str + '\');" data-system-id="' + resources[i].id +'" data-metadata="'+ resources[i].extra_data +'"><a href="#' + id_str + '" onclick="return false;"><div class="image-wrap" style="background: #fef7e0 url(\'' + resources[i].icon_url + '\') center center no-repeat; background-size: cover;"></div><strong class="title">' + resource_title + '</strong> <span class="description">' + resources[i].short_description + '<br /><br />Resource Type: ' + resources[i].resource_type + '</span> Grade Level: ' + resources[i].grade_levels + '</a><div class="more-details"><div class="overview"><div class="slideshow" style="background: #fff url(\'' + resources[i].icon_url + '\') no-repeat center center; background-size: cover;"></div><div class="description"><h2>' + resources[i].name + '</h2><p>' + resources[i].description + '</p><p><a class="button" href="' + resources[i].preview_url + '" target="_blank">Preview</a> ';
+      if(!!resources[i].assign_url){
+        results_output+='<a class="button" href="javascript:void(0)" onclick="'+resources[i].assign_url+';return false;">Assign to Class</a> ';
+      }
+      if(!!resources[i].teacher_guide_url){
+        results_output+='<a href="'+resources[i].teacher_guide_url+'" target="_blank">Teacher Guide</a>';
+      }
+      results_output+='</p><ul class="privileged-links">';
+      if(!!resources[i].collect_url){
+        results_output+='<li class="add-to-collection-link"><a href="javascript:void(0)" onclick="'+resources[i].collect_url+';return false;">Add to Collection</a></li>';
+      }
+      if(!!resources[i].edit_url){
+        results_output+='<li class="edit-link"><a href="'+resources[i].edit_url+'" target="_blank">Edit Resource</a></li>';
+      }
+      results_output+='</ul>';
+      results_output+='</div></div><div class="details"><div class="col"><dl><dt>Subject</dt><dd>'+resources[i].subject_areas+'</dd><dt>Grade Level</dt><dd>'+resources[i].grade_levels+'</dd><dt>Requirements</dt><dd>'+resources[i].requirements+'</dd></dl></div><div class="col"><dl><dt>Author</dt><dd>The Concord Consortium</dd><dt>License</dt><dd>CC BY 4.0</dd></dl></div></div></li>';
+      }
+    }
+    jQuery('#resources ul').html(results_output);
+    if (jQuery('#resources ul li').length < 1) {
+      jQuery('#resource-list-status').html('Sorry. No matches found.').fadeIn('slow');
+    }
+    if (page_init) {
+      var visible_resources=jQuery('#resources li').is(':visible');
+      var resources_height=(visible_resources.length/4)*250+100;
+      jQuery('#resources').css({'height':resources_height+'px'});
+      page_init = false;
+    } else {
+      showAllMatchingResources();
+    }
+    toggleFilters('enable');
+    jQuery('#resources #resources-list > li').each(function(index){
+      var res_id='',metadata_path='';
+      res_id=jQuery(this).attr('data-system-id');
+      metadata_path=jQuery(this).attr('data-metadata');
+      var add_data_obj=getFullDesc(res_id,metadata_path);
+    });
+    if (selected_filters.length > 0) {
+      for(var i=0;i<selected_filters.length;i++){
+        selectFilter(selected_filters[i]);
+      }
+    }
+    jQuery('#loading').fadeOut();
+    jQuery('#resources ul#resource-list').fadeIn();
+  });
+}
+function createID(title) {
+  // convert to lower case
+  var id_str = title.toLowerCase();
+  // remove leading non-alphabetic characters
+  id_str = id_str.replace(/^[^a-zA-Z]+/, '');
+  // replace spaces with dashes
+  id_str = id_str.replace(/ /g, '-');
+  // replace unwanted characters and punctuation
+  id_str = id_str.replace(/[\u2018\u2019]/g, '')
+  id_str = id_str.replace(/[\u201C\u201D]/g, '');
+  id_str = id_str.replace(/[.,:'()?!;&]/g, '');
+  return id_str;
+}
+function sortBy(field, reverse, primer) {
+  var key = primer ?
+      function(x) {return primer(x[field])} :
+      function(x) {return x[field]};
+  reverse = !reverse ? 1 : -1;
+  return function (a, b) {
+    return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+  }
+}
+function toggleMoreDetail(resource_id) {
+  var li_id = '#' + resource_id;
+  if (jQuery(li_id).hasClass('selected')) {
+    hideMoreDetail(li_id);
+  } else {
+    showMoreDetail(li_id);
+  }
+}
+function showMoreDetail(li_id) {
+  showAllMatchingResources();
+  var before = false;
+  jQuery('.show-more').hide();
+  //clear all selected classes
+  jQuery('#resources ul > li').not('#resources ul li ul li').each(function() {
+    if (jQuery(this).hasClass('selected')) {
+      jQuery(this).removeClass('selected');
+    }
+    if (jQuery(this).css('margin-bottom') != '0px' && jQuery(li_id).css('margin-bottom') == '0px') {
+      if (jQuery(this).index() < jQuery(li_id).index()) {
+        before = true;
+        jQuery('.show-more-bg').hide();
+      }
+    }
+  });
+  //populate show-more div and push next row down to make space for it
+  var li_top = jQuery(li_id).offset().top;
+  var ypos = li_top + 260;
+  var overview_content = jQuery(li_id).children('div.more-details').html();
+  var show_more_content = overview_content + '<div class="tabs"><a class="overview-tab selected-tab" href="#" onclick="showOverview(); return false;">Overview</a> <a href="#" onclick="showDetails(); return false;" class="details-tab">Details</a></div><a class="close-link" href="#" onclick="hideMoreDetail(\'' + li_id + '\'); return false;">close</a>';
+  jQuery('.show-more').html(show_more_content).css({'top': ypos});
+  jQuery('.show-more-bg').css({'top': ypos});
+  jQuery(li_id).addClass('selected');
+  // if clicked li's bottom margin is 0, push next row down
+  if (jQuery(li_id).css('margin-bottom') == '0px') {
+    var my_siblings = jQuery(li_id).siblings().filter(function() {return jQuery(this).offset().top == li_top;});
+    jQuery(li_id).animate({'margin-bottom': '375px'}, 150);
+    jQuery(li_id).siblings().filter(function() {
+      return jQuery(this).offset().top == li_top;
+    }).animate({'margin-bottom': '375px'}, 150, function() {
+      jQuery('html, body').animate({scrollTop: jQuery(li_id).offset().top - 10}, 500);
+      jQuery('.overview').show();
+      jQuery('.details').hide();
+      jQuery('.show-more, .show-more-bg').fadeIn('slow');
+    });
+    jQuery(li_id).siblings().filter(function() {
+      return jQuery(this).offset().top != li_top;
+    }).animate({'margin-bottom': '0'}, 100);
+    if (before) {
+      jQuery('.show-more').animate({'top': ypos - 384}, 100);
+      jQuery('.show-more-bg').animate({'top': ypos - 384}, 100);
+    } else {
+      jQuery('.show-more').animate({'top': ypos}, 100);
+      jQuery('.show-more-bg').animate({'top': ypos}, 100);
+    }
+  } else {
+    // autoscroll page to clicked li
+    jQuery('html, body').animate({scrollTop: jQuery(li_id).offset().top - 10}, 500);
+    jQuery('.overview').show();
+    jQuery('.details').hide();
+   // jQuery('.show-more, .show-more-bg').fadeIn('slow');
+  }
+  jQuery('.show-more, .show-more-bg').fadeIn('slow');
+}
+function hideMoreDetail(li_id) {
+  if (!!li_id) {
+    jQuery(li_id).removeClass('selected');
+  } else {
+    jQuery('#resources li').removeClass('selected');
+  }
+  jQuery('.show-more, .show-more-bg').fadeOut('fast', function() {
+    jQuery('.show-more').html('');
+  });
+  jQuery('#resources li').not('#resources ul li ul li').animate({'margin-bottom': '0'}, 300);
+  if (!!li_id) {
+    jQuery('html, body').animate({scrollTop: jQuery(li_id).offset().top - 10}, 500);
+  } else {
+    jQuery('html, body').animate({scrollTop: jQuery('#search').offset().top - 10}, 500);
+  }
+}
+function showResources() {
+  jQuery('#resource-list-status').html('');
+  jQuery('#resources ul').empty();
+  jQuery('#resources ul#resource-list').hide();
+  jQuery('#keyword').val('');
+  var qstr = 'search_term=&sort_order=Alphabetical&include_official=1&model_types=All&investigation_page=1&activity_page=1&interactive_page=1&per_page=9999';
+  retrieveResources(qstr);
+}
+function getValue(key, array) {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i][0] == key) {
+      return array[i][1];
+    }
+  }
+}
+function showOverview() {
+  jQuery('.overview-tab, .details-tab').toggleClass('selected-tab');
+  jQuery('.details').fadeOut();
+  jQuery('.overview').fadeIn();
+}
+function showDetails() {
+  jQuery('.overview-tab, .details-tab').toggleClass('selected-tab');
+  jQuery('.overview').fadeOut();
+  jQuery('.details').fadeIn();
+}
+function getFullDesc(res_id,metadata_path){
+  var full_desc='';
+  var data_url='https://learn.concord.org/'+metadata_path;
+  jQuery.ajax({url:data_url,dataType:'json'}).done(function(data){
+    full_desc = data.description.replace(/<(?:.|\n)*?>/gim,'');
+    if(full_desc!=''){
+      full_desc=full_desc.substr(0,390);
+      var match=full_desc.match(/[\.|\?|\!]/gi);
+      var last_index=full_desc.lastIndexOf(match[match.length-1]);
+      full_desc=full_desc.substr(0,last_index)+'.';
+      full_desc = full_desc.replace(/&nbsp;/g,' ');
+      jQuery('#resources li[data-metadata="'+metadata_path+'"]').children('.more-details').children('.overview').children('.description').children('p').first().text(full_desc);
+    }
+  });
+}
+function toggleFilters(mode) {
+  if (mode == 'disable') {
+    jQuery('#filter-blocker').show();
+  } else {
+    jQuery('#filter-blocker').hide();
+  }
+}
+function selectFilter(filter_name) {
+  hideMoreDetail();
+  if(jQuery('ul#core-ideas').css('zoom')>.75){
+    jQuery('html, body').animate({scrollTop:jQuery('#paths').offset().top-30},500);
+    jQuery('#grade-levels-container, #resource-types-container').animate({'margin-top':'1em'},500);
+    jQuery('ul#core-ideas, #core-ideas-heading, #ngss-toggle').animate({'margin-top':'0','margin-bottom':'0','zoom':'.75'},500);
+    jQuery('#grade-levels-container, #resource-types-container').animate({'margin-top':'1em'},500);
+  }
+  jQuery('#'+filter_name).toggleClass('enabled');
+  if (jQuery('#'+filter_name).hasClass('enabled')) {
+    jQuery('#'+filter_name).removeClass('disabled');
+    // add to selected filters
+    if (selected_filters.indexOf(filter_name) < 0) {
+      selected_filters.push(filter_name);
+    }
+  } else {
+    // remove from selected filters
+    var index = selected_filters.indexOf(filter_name);
+    selected_filters.splice(index, 1);
+  }
+  filterResources();
+}
+function filterResources() {
+  jQuery('#resource-list-status').html('').fadeOut('fast');
+  var core_ideas=[],grade_levels=[],resource_types=[];
+  core_ideas=jQuery('#core-ideas li.enabled').map(function(){return filters[this.id].classes; }).get().join();
+  if (jQuery('#core-ideas li.enabled').length > 0) {
+    jQuery('#core-ideas li').not('.enabled').addClass('disabled');
+  } else {
+    jQuery('#core-ideas li').removeClass('disabled');
+  }
+  grade_levels=jQuery('#grade-levels li.enabled').map(function(){return filters[this.id].classes; }).get().join();
+  resource_types=jQuery('#resource-types li.enabled').map(function(){return filters[this.id].classes; }).get().join();
+  var resources=jQuery('#resources ul#resources-list > li');
+  resources.hide();
+  if(core_ideas){resources=resources.filter(core_ideas);}
+  if(grade_levels){resources=resources.filter(grade_levels);}
+  if(resource_types){console.resource_types;resources=resources.filter(resource_types);}
+  resources.show();
+  showAllMatchingResources();
+  if(resources.length<1){
+    jQuery('#resource-list-status').html('Sorry. No matches found.').fadeIn('slow');
+  }
+  setQSParams();
+}
+function getQSParams(){
+  var queryString=window.location.search.substring(1),re = /([^&=]+)=([^&]*)/g,m;
+  while(m=re.exec(queryString)){
+    query_params[decodeURIComponent(m[1])]=decodeURIComponent(m[2]);
+  }
+}
+function setQSParams(){
+  var subjects='',resource_types='',grade_levels='',new_url='';
+  for(var i=0;i<selected_filters.length;i++){
+    if (jQuery.inArray(selected_filters[i], jQuery('#core-ideas li').map(function(){return this.id;}).get()) > -1) {
+      if (subjects.search(selected_filters[i])<0){
+        subjects=subjects+','+selected_filters[i];
+      }
+    }
+  }
+  subjects=subjects.replace(/^,/,'');
+  query_params['subjects']=subjects;
+  for(var i=0;i<selected_filters.length;i++){
+    if (jQuery.inArray(selected_filters[i], jQuery('#resource-types li').map(function(){return this.id;}).get()) > -1) {
+      if(resource_types.search(selected_filters[i])<0){
+        resource_types=resource_types+','+selected_filters[i];
+      }
+    }
+  }
+  resource_types=resource_types.replace(/^,/,'');
+  query_params['resource_types']=resource_types;
+  for(var i=0;i<selected_filters.length;i++){
+    if (jQuery.inArray(selected_filters[i], jQuery('#grade-levels li').map(function(){return this.id;}).get()) > -1) {
+      if(grade_levels.search(selected_filters[i])<0){
+        grade_levels=grade_levels+','+selected_filters[i];
+      }
+    }
+  }
+  grade_levels=grade_levels.replace(/^,/,'');
+  query_params['grade_levels']=grade_levels;
+  new_url=window.location.protocol+'//'+window.location.hostname+window.location.pathname;
+  if(subjects!=''||resource_types!=''||grade_levels!=''){
+    new_url=new_url+'?'+jQuery.param(query_params);
+  }
+  window.history.pushState({path:new_url},'',new_url);
+}
+function setActiveFilters(){
+  if(query_params['subjects']){
+    var subjects=query_params['subjects'].split(',');
+    for(var i=0;i<subjects.length;i++){
+      selected_filters.push(subjects[i]);
+    }
+  }
+  if(query_params['resource_types']){
+    var resource_types=query_params['resource_types'].split(',');
+    for(var i=0;i<resource_types.length;i++){
+      selected_filters.push(resource_types[i]);
+    }
+  }
+  if(query_params['grade_levels']){
+    var grade_levels=query_params['grade_levels'].split(',');
+    for(var i=0;i<grade_levels.length;i++){
+      selected_filters.push(grade_levels[i]);
+    }
+  }
+  if(query_params['keyword']){
+    var keyword=query_params['terms'];
+    jQuery('#keyword').val(keyword);
+  }
+}
+function getUrlVars(url) {
+  var vars=[],qs;
+  var qs_vars=url.slice(url.indexOf('?') + 1).split('&amp;');
+  for(var i=0;i<qs_vars.length;i++){
+    qs=qs_vars[i].split('=');
+    vars.push(qs[0]);
+    vars[qs[0]]=qs[1];
+  }
+  return vars;
+}
+function showModal(modal_id, special_msg) {
+  jQuery('.modal').hide();
+  if (special_msg != undefined) {
+    jQuery(modal_id + ' .special-msg').text(special_msg).show();
+  }
+  jQuery('#overlay').fadeIn('fast');
+  jQuery(modal_id).fadeIn('slow');
+}
+function hideModal() {
+  jQuery('.modal').fadeOut('fast');
+  jQuery('#overlay').fadeOut('slow');
+  jQuery('.special-msg').text('').hide();
+}
+function Resource(resource_object,resource_type){
+  this.id=resource_object.id;
+  this.name=resource_object.name;
+  this.resource_type=resource_type;
+  this.subject_areas='';
+  this.grade_levels='';
+  var description=resource_object.description;
+  var classes_str;
+  // get classes metadata
+  var classes_match=description.match(/href="([^\'\"]+)/);
+  if (classes_match!==null && classes_match.length>0) {
+    classes_str=classes_match[0];
+    classes_str=classes_str.replace(/href="/g, '');
+    classes=getUrlVars(classes_str);
+    for (var i=0; i<classes.length;i++) {
+      if (classes[i]=='subject_areas') {
+        this.subject_areas=classes['subject_areas'].replace(/,/g, ', ').replace(/\+/g,' ');
+      }
+      if (classes[i]=='grade_levels') {
+        this.grade_levels=classes['grade_levels'].replace(/,/g, ', ').replace(/\+/g,' ');
+      }
+      if (classes[i]=='sensor_based') {
+        this.sensor_based=classes['sensor_based'];
+      }
+      if (classes[i]=='browser_based') {
+        this.browser_based=classes['browser_based'];
+      }
+    }
+  }
+  if(description==''){
+    this.description='There is no description for this resource. ';
+  } else {
+    description=description.replace(/<(?:.|\n)*?>/gim,'');
+    if (description.length>385) {
+      description=description.substr(0,385);
+    }
+    var match=description.match(/[\.|\?|\!]/gi);
+    if(match && match.length>0){
+      var last_index=description.lastIndexOf(match[match.length-1]);
+      this.description=description.substr(0,last_index)+'.';
+    } else {
+      console.log(this.name);
+      this.description=description.substr(0, description.lastIndexOf('. '));
+    }
+  }
+  // the regex below is imperfect but does a good job of finding the end of a paragraph's first sentence
+  var end_first_sentence=this.description.search(/[^A-Z.A-Z][.|!|?][\s|\t]*[A-Z]/) + 2;
+  if(end_first_sentence>2){
+    this.short_description=this.description.substr(0, end_first_sentence);
+  } else {
+    this.short_description=this.description;
+  }
+  if (resource_object.icon.url == null) {
+    this.icon_url='https://concord.org/sites/default/files/images/learn/placeholder.png';
+  } else {
+    this.icon_url=resource_object.icon.url;
+  }
+  // replace image cache path in image URLs on concord.org
+  this.icon_url=this.icon_url.replace('imagecache/image_activity_finder/','');
+  this.icon_url=this.icon_url.replace('http://','https://');
+  this.preview_url=resource_object.preview_url;
+  if(resource_object.assign_to_class_url){
+    this.assign_url=resource_object.assign_to_class_url.replace(/^javascript:/,'');
+  }
+  if(resource_object.assign_to_collection_url){
+    this.collect_url=resource_object.assign_to_collection_url.replace(/^javascript:/,'');
+  }
+  this.edit_url=resource_object.edit_url;
+  if(resource_object.links.teacher_guide){
+    this.teacher_guide_url=resource_object.links.teacher_guide.url;
+  }
+  var subject_areas_classes=this.subject_areas.replace(/, /g,' ');
+  subject_areas_classes=subject_areas_classes.replace('Earth and Space Science','Earth-and-Space-Science');
+  var grade_levels_classes=this.grade_levels.replace(/, /g,' ');
+  grade_levels_classes=grade_levels_classes.replace('Higher Ed','Higher-Ed');
+  grade_levels_classes=grade_levels_classes.replace('Earth and Space Science','Earth-and-Space-Science');
+  this.classes=resource_type+' '+subject_areas_classes+' '+grade_levels_classes;
+  if(typeof this.sensor_based!='undefined'){
+    this.classes+=' Sensor-Based';
+  }
+  if(typeof this.browser_based!='undefined'){
+    this.classes+=' Browser-Based';
+  }else{
+    this.requires_java=true;
+  }
+  var browse_url=resource_object.links.browse.url;
+  this.extra_data=browse_url.replace(/http(s|)\:\/\/learn\.concord\.org\/(browse\/|)/,'')+'.json';
+  if (this.requires_java==true){
+    this.requirements='This resource requires Java. You can download Java for free from <a href="http://java.com/" title="Get Java">java.com</a>.';
+  } else {
+    this.requirements='This resource runs entirely in a Web browser. Preferred browsers are: <a href="http://www.google.com/chrome/" title="Get Google\'s Chrome Web Browser">Google Chrome</a> (version 5 and above), <a href="http://www.apple.com/safari/" title="Get Apple\'s Safari Web Browser">Safari</a> (version 4 and above), <a href="http://www.firefox.com/" title="Get the Firefox Web Browser">Firefox</a> (version 3.6.10 and above), <a href="http://www.microsoft.com/ie/" title="Get Internet Explorer">Internet Explorer</a>, and <a href="https://www.microsoft.com/en-us/windows/microsoft-edge" title="Get Microsoft Edge">Microsoft Edge</a>.';
+  }
+}
+</script>

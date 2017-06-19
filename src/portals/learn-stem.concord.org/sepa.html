@@ -1,0 +1,28 @@
+<h1 class="page-title">SEPA</h1>
+<div id="content-upper" class="cols-5-3">
+    <div class="col" style="width: 650px;">
+      <p>SEPA students explore the connections between genetics and the environment with simulations and by creating and modifying models.</p>
+       </div><!-- end .col -->
+</div>
+<h2>SEPA Simulations and Modeling</h2>
+<p id="intro-msg">SEPA simulations and modeling are under development. Play around, have fun, and send any thoughts/suggestions to <a href="mailto:sepa@concord.org">the team</a>.</p>
+<div id='collection-1'></div>
+<script>
+  jQuery(document).ready(function() {
+    if (Portal.currentUser.isLoggedIn) {
+      jQuery('#intro-msg').html('SEPA simulations and modeling are under development. Play around, have fun, and send any thoughts/suggestions to <a href="mailto:sepa@concord.org">the team</a>.');
+      // Last argument is number of visible materials.
+      Portal.renderMaterialsCollection(14, '#collection-1', 10);
+    } else {
+      jQuery('#intro-msg').html('SEPA educational activities and models are currently under development but will be published here when they are completed.');
+    }
+  });
+</script>
+
+<style>
+h1.page-title { margin-bottom: 0; }
+h2 { margin-top: 20px; }
+p.tagline { color: #75a643; font-size: 1.15em; }
+</style>
+<link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet" />
+<script src="//vjs.zencdn.net/4.12/video.js"></script>
