@@ -5,15 +5,6 @@ var fadeIn = require("../helpers/fade-in");
 var div = React.DOM.div;
 var button = React.DOM.button;
 var a = React.DOM.a;
-var svg = React.DOM.svg;
-var circle = React.DOM.circle;
-var text = React.DOM.text;
-var input = React.DOM.input;
-var span = React.DOM.span;
-var form = React.DOM.form;
-var pre = React.DOM.pre;
-var img = React.DOM.img;
-var h1 = React.DOM.h1;
 
 var UserAuth = Component({
   getInitialState: function () {

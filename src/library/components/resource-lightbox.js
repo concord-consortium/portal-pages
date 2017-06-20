@@ -6,18 +6,27 @@ var img = React.DOM.img;
 var h1 = React.DOM.h1;
 var h2 = React.DOM.h2;
 var hr = React.DOM.hr;
-var button = React.DOM.button;
 var a = React.DOM.a;
 var p = React.DOM.p;
 
 var ResourceLightbox = Component({
+  componentWillMount: function () {
+    var titleSuffix = document.title.split("|")[1] || "";
+    this.savedTitle = document.title;
+    document.title = titleSuffix ? this.props.resource.name + " | " + titleSuffix : this.props.resource.name;
+  },
+
+  componentWillUnmount: function () {
+    document.title = this.savedTitle;
+  },
+
   handleClose: function () {
     this.props.toggleLightbox();
   },
 
   renderRequirements: function () {
     var runsInBrowser = true; // TODO: get from search results when they become available
-    if (runsInBrowser) {
+    if (!runsInBrowser) {
       return div({className: "stem-resource-lightbox-requirements"},
         "This activity runs entirely in a Web browser. Preferred browsers are: ",
         a({href: "http://www.google.com/chrome/", title:"Get Google\'s Chrome Web Browser"}, "Google Chrome"),
