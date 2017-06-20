@@ -10,6 +10,7 @@ var randomSubset = require("../helpers/random-subset");
 
 var div = React.DOM.div;
 var img = React.DOM.img;
+var a = React.DOM.a;
 
 var StemFinderResult = Component({
   getInitialState: function () {
@@ -34,7 +35,9 @@ var StemFinderResult = Component({
     this.setState({hovering: false});
   },
 
-  toggleLightbox: function () {
+  toggleLightbox: function (e) {
+    e.preventDefault();
+    e.stopPropagation();
     var lightbox = !this.state.lightbox;
     this.setState({
       lightbox: lightbox,
@@ -94,17 +97,17 @@ var StemFinderResult = Component({
 
   render: function () {
     var resource = this.props.resource;
-    var options = {className: "stem-finder-result", onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
+    var options = {className: "stem-finder-result", href: resource.stem_resource_url, onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
 
     if (this.state.hovering || this.state.lightbox) {
-      return div(options,
+      return a(options,
         div({className: "stem-finder-result-description"}, resource.filteredDescription),
         this.renderGradeLevels(resource),
         this.renderFavoriteStar(),
         this.renderLightbox()
       );
     }
-    return div(options,
+    return a(options,
       img({alt: resource.name, src: resource.icon.url}),
       div({className: "stem-finder-result-name"}, resource.name),
       this.renderGradeLevels(resource),
