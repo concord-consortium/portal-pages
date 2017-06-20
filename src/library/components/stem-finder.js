@@ -35,7 +35,7 @@ var StemFinder = Component({
         {key: "model", title: "Model", searchMaterialType: "Interactive"},
         {key: "browser-based", title: "Browser-Based", searchMaterialProperty: "Runs in browser"},
         {key: "activity", title: "Activity", searchMaterialType: "Activity"},
-        {key: "sensor-based", title: "Sensor-Based (TODO)"},
+        //{key: "sensor-based", title: "Sensor-Based (TODO)"},
       ],
       gradeFilters: [
         {key: "elementary-school", title: "Elementary", grades: ["K", 1, 2, 3, 4, 5, 6], label: "K-6", searchGroups: ["K-2", "3-4", "5-6"]},
