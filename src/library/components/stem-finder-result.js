@@ -16,7 +16,7 @@ var StemFinderResult = Component({
   getInitialState: function () {
     return {
       hovering: false,
-      favorited: this.props.resource.favorited,
+      favorited: this.props.resource.is_favorite,
       lightbox: false
     };
   },
@@ -73,9 +73,23 @@ var StemFinderResult = Component({
   toggleFavorite: function (e) {
     e.preventDefault();
     e.stopPropagation();
-    // TODO: do api call to favorite resource
-    this.props.resource.favorited = !this.props.resource.favorited;
-    this.setState({favorited: this.props.resource.favorited});
+
+    if (!Portal.currentUser.isLoggedIn || !Portal.currentUser.isTeacher) {
+      alert("Sorry, only logged in teachers can favorite resources.");
+      return;
+    }
+
+    var resource = this.props.resource;
+    var done = function () {
+      resource.is_favorite = !resource.is_favorite;
+      this.setState({favorited: resource.is_favorite});
+    }.bind(this);
+    if (resource.is_favorite) {
+      jQuery.get('/api/v1/materials/remove_favorite', {favorite_id: resource.favorite_id}, done);
+    }
+    else {
+      jQuery.get('/api/v1/materials/add_favorite', {id: resource.id, type: resource.class_name_underscored}, done);
+    }
   },
 
   renderLightbox: function () {
