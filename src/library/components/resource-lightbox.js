@@ -118,7 +118,7 @@ var ResourceLightbox = Component({
         div({className: "stem-resource-lightbox-description"}, resource.filteredDescription),
         div({},
           a({className: "stem-resource-lightbox-launch-button", href: resource.preview_url, target: "_blank"}, "Launch Activity"),
-          a({className: "stem-resource-lightbox-assign-button", href: resource.assign_to_class_url}, "Assign Activity")
+          Portal.currentUser.isTeacher ? a({className: "stem-resource-lightbox-assign-button", href: resource.assign_to_class_url}, "Assign Activity") : null
         ),
         hr({}),
         h2({}, "Requirements"),
