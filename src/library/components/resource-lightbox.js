@@ -1,5 +1,6 @@
 var Component = require('../helpers/component');
 var RelatedResourceResult = require("./related-resource-result");
+var pluralize = require("../helpers/pluralize");
 
 var div = React.DOM.div;
 var img = React.DOM.img;
@@ -8,6 +9,7 @@ var h2 = React.DOM.h2;
 var hr = React.DOM.hr;
 var a = React.DOM.a;
 var p = React.DOM.p;
+var span = React.DOM.span;
 
 var ResourceLightbox = Component({
   componentWillMount: function () {
@@ -49,6 +51,29 @@ var ResourceLightbox = Component({
         "Using OS X 10.9 or newer? You'll also need to install our launcher app. ",
         a({href:"http://static.concord.org/installers/cc_launcher_installer.dmg", title: "Download the CCLauncher installer"}, "Download the launcher installer"),
         ", open the .dmg file and drag the CCLauncher app to your Applications folder, then return to this page and launch the resource."
+      )
+    );
+  },
+
+  renderLearnMore: function () {
+    if (!this.props.resource.projects) {
+      return null;
+    }
+    var projects = this.props.resource.projects;
+    var numProjects = projects.length;
+    return div({},
+      hr({}),
+      h2({}, "Learn More"),
+      div({className: "stem-resource-lightbox-learn-more"},
+        "This resource is part of the Concord Consortium's ",
+        projects.map(function (project, index) {
+          return span({},
+            project.url ? a({href: project.url}, project.name) : project.name,
+            index !== numProjects - 1 ? " and " : ""
+          );
+        }),
+        pluralize(numProjects, " project"),
+        "."
       )
     );
   },
@@ -97,7 +122,8 @@ var ResourceLightbox = Component({
         ),
         hr({}),
         h2({}, "Requirements"),
-        this.renderRequirements()
+        this.renderRequirements(),
+        this.renderLearnMore()
       ),
       this.renderRelatedContent()
     );
