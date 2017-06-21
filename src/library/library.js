@@ -4,6 +4,7 @@ var ResourceLightbox = require("./components/resource-lightbox");
 var StemFinderResult = require("./components/stem-finder-result");
 var StemFinder = require("./components/stem-finder");
 var UserAuth = require("./components/user-auth");
+var MaterialsCollection = require("./components/materials-collection");
 
 var render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id));
@@ -36,5 +37,16 @@ window.PortalPages = {
   renderStemFinder: renderComponentFn(StemFinder),
 
   UserAuth: UserAuth,
-  renderUserAuth: renderComponentFn(UserAuth)
+  renderUserAuth: renderComponentFn(UserAuth),
+
+  MaterialsCollection: MaterialsCollection,
+  // this is a different format to match to existing project pages which had 2 formats itself
+  renderMaterialsCollection: function (collectionId, selectorOrElement, limitOrOptions) {
+    var options = limitOrOptions || {};
+    if (typeof limitOrOptions === "number") {
+      options = {limit: limitOrOptions};
+    }
+    options.collection = collectionId;
+    ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0]);
+  }
 };

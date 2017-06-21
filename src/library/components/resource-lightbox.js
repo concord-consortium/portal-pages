@@ -28,7 +28,7 @@ var ResourceLightbox = Component({
 
   renderRequirements: function () {
     var runsInBrowser = true; // TODO: get from search results when they become available
-    if (!runsInBrowser) {
+    if (runsInBrowser) {
       return div({className: "stem-resource-lightbox-requirements"},
         "This activity runs entirely in a Web browser. Preferred browsers are: ",
         a({href: "http://www.google.com/chrome/", title:"Get Google\'s Chrome Web Browser"}, "Google Chrome"),
@@ -68,7 +68,7 @@ var ResourceLightbox = Component({
         "This resource is part of the Concord Consortium's ",
         projects.map(function (project, index) {
           return span({},
-            project.url ? a({href: project.url}, project.name) : project.name,
+            project.landing_page_url ? a({href: project.landing_page_url}, project.name) : project.name,
             index !== numProjects - 1 ? " and " : ""
           );
         }),

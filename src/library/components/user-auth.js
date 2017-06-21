@@ -20,7 +20,7 @@ var UserAuth = Component({
     if (this.state.loggedIn) {
       var self = this;
       jQuery.ajax({
-        url: '/auth/user',
+        url: '/auth/user',  // TODO: replace with Portal.API_V1 constant when available
         dataType: 'json'
       }).done(function (data) {
         self.setState({userId: data.id});

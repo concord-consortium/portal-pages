@@ -135,7 +135,7 @@ var StemFinder = Component({
     });
 
     jQuery.ajax({
-      url: '/api/v1/search/search',
+      url: Portal.API_V1.SEARCH,
       data: query.join(""),
       dataType: 'json'
     }).done(function (result) {

@@ -20,7 +20,7 @@ var CollectionCards = Component({
   componentDidMount: function () {
     waitForAutoShowingLightboxToClose(function () {
       jQuery.ajax({
-        url: "/api/v1/projects",
+        url: "/api/v1/projects",  // TODO: replace with Portal.API_V1 constant when available
         dataType: "json"
       }).done(function (data) {
         var collections = data.reduce(function (collections, collection) {

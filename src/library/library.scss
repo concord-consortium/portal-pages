@@ -418,7 +418,9 @@
 .stem-resource-lightbox-modal-sharing div:last-child {
   border: none;
 }
-
+.stem-resource-lightbox-modal-content {
+  color: $black;
+}
 .stem-resource-lightbox-modal-content-top {
   padding: 50px 70px 20px 70px;
 }
