@@ -22,8 +22,11 @@ const die = (err, code) => {
 const fileContents = (filePath, tag) => {
   let contents = "";
   if (tag === "style") {
-    result = sass.renderSync({file: filePath});
-    contents = result.css || "";
+    try {
+      result = sass.renderSync({file: filePath});
+      contents = result.css || "";
+    }
+    catch (e) {}
   }
   else {
     try {
