@@ -9,6 +9,7 @@ var sortByName = require("../helpers/sort-by-name");
 var fadeIn = require("../helpers/fade-in");
 var pluralize = require("../helpers/pluralize");
 var waitForAutoShowingLightboxToClose = require("../helpers/wait-for-auto-lightbox-to-close");
+var filters = require("../helpers/filters");
 
 var div = React.DOM.div;
 var button = React.DOM.button;
@@ -23,27 +24,6 @@ var StemFinder = Component({
   getInitialState: function () {
     return {
       opacity: 0,
-      subjectAreas: [
-        {key: "physics-chemistry", title: "Physics & Chemistry", searchAreas: ["Chemistry", "Physics"]},
-        {key: "life-sciences", title: "Life Science", searchAreas: ["Biology"]},
-        {key: "engineering-tech", title: "Engineering & Tech", searchAreas: ["Engineering"]},
-        {key: "earth-space", title: "Earth & Space", searchAreas: ["Earth and Space Science"]},
-        {key: "mathematics", title: "Mathematics", searchAreas: ["Mathematics"]}
-      ],
-      featureFilters: [
-        {key: "sequence", title: "Sequence", searchMaterialType: "Investigation"},
-        {key: "model", title: "Model", searchMaterialType: "Interactive"},
-        {key: "browser-based", title: "Browser-Based", searchMaterialProperty: "Runs in browser"},
-        {key: "activity", title: "Activity", searchMaterialType: "Activity"},
-        //{key: "sensor-based", title: "Sensor-Based (TODO)"},
-      ],
-      gradeFilters: [
-        {key: "elementary-school", title: "Elementary", grades: ["K", "1", "2", "3", "4", "5", "6"], label: "K-6", searchGroups: ["K-2", "3-4", "5-6"]},
-        {key: "middle-school", title: "Middle School", grades: ["7", "8"], label: "7-8", searchGroups: ["7-8"]},
-        {key: "high-school", title: "High School", grades: ["9", "10", "11", "12"], label: "9-12", searchGroups: ["9-12"]},
-        {key: "higher-education", title: "Higher Education", grades: ["Higher Ed"], label: "Higher Education", searchGroups: ["Higher Ed"]}
-        //{key: "informal-learning", title: "Informal Learning (TODO)", grades: [], label: "Informal Learning"},
-      ],
       subjectAreasSelected: [],
       featureFiltersSelected: [],
       gradeFiltersSelected: [],
@@ -86,6 +66,7 @@ var StemFinder = Component({
       "&sort_order=Alphabetical",
       "&include_official=1",
       "&model_types=All",
+      "&include_related=4",
       "&investigation_page=",
       searchPage,
       "&activity_page=",
@@ -199,7 +180,7 @@ var StemFinder = Component({
 
   renderSubjectAreas: function () {
     return div({className: "stem-finder-form-subject-areas"},
-      this.state.subjectAreas.map(function (subjectArea) {
+      filters.subjectAreas.map(function (subjectArea) {
         return this.renderLogo(subjectArea);
       }.bind(this))
     );
@@ -238,7 +219,7 @@ var StemFinder = Component({
     return div({className: "stem-finder-form-filters"},
       div({className: "stem-finder-form-filters-title"}, title),
       div({className: "stem-finder-form-filters-options"},
-        this.state[type].map(function (filter) {
+        filters[type].map(function (filter) {
           var selectedKey = type + "Selected";
           var handleChange = function () {
             this.toggleFilter(type, filter);
@@ -352,7 +333,7 @@ var StemFinder = Component({
       div({className: "stem-finder-results-inner"},
         this.renderResultsHeader(),
         resources.map(function (resource, index) {
-          return StemFinderResult({key: index, resource: resource, gradeFilters: this.state.gradeFilters});
+          return StemFinderResult({key: index, resource: resource});
         }.bind(this)),
         this.renderLoadMore()
       )

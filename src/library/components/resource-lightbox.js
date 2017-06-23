@@ -56,7 +56,7 @@ var ResourceLightbox = Component({
   },
 
   renderLearnMore: function () {
-    if (!this.props.resource.projects) {
+    if (this.props.resource.projects.length === 0) {
       return null;
     }
     var projects = this.props.resource.projects;
@@ -79,13 +79,13 @@ var ResourceLightbox = Component({
   },
 
   renderRelatedContent: function () {
-    if (!this.props.resource.related_resources) {
+    if (this.props.resource.related_materials.length === 0) {
       return null;
     }
     return div({className: "stem-resource-lightbox-related-content"},
       h2({}, "You may also like:"),
-      this.props.resource.related_resources.map(function (resource, i) {
-        return RelatedResourceResult({key: i, resource: resource, gradeFilters: this.props.gradeFilters});
+      this.props.resource.related_materials.map(function (resource, i) {
+        return RelatedResourceResult({key: i, resource: resource});
       }.bind(this))
     );
   },
@@ -97,7 +97,7 @@ var ResourceLightbox = Component({
       div({}, "T"),
       div({}, "E"),
       div({}, "+")
-    )
+    );
   },
 
   render404: function () {
