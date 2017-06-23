@@ -62,10 +62,10 @@ var StemFinderResult = Component({
       this.setState({favorited: resource.is_favorite});
     }.bind(this);
     if (resource.is_favorite) {
-      jQuery.get('/api/v1/materials/remove_favorite', {favorite_id: resource.favorite_id}, done);
+      jQuery.post('/api/v1/materials/remove_favorite', {favorite_id: resource.favorite_id}, done);
     }
     else {
-      jQuery.get('/api/v1/materials/add_favorite', {id: resource.id, type: resource.class_name_underscored}, done);
+      jQuery.post('/api/v1/materials/add_favorite', {id: resource.id, type: resource.class_name_underscored}, done);
     }
   },
 
