@@ -5,6 +5,7 @@ var StemFinderResult = require("./components/stem-finder-result");
 var StemFinder = require("./components/stem-finder");
 var UserAuth = require("./components/user-auth");
 var MaterialsCollection = require("./components/materials-collection");
+var GradeLevels = require("./components/grade-levels");
 
 var render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id));
@@ -38,6 +39,9 @@ window.PortalPages = {
 
   UserAuth: UserAuth,
   renderUserAuth: renderComponentFn(UserAuth),
+
+  GradeLevels: GradeLevels,
+  renderGradeLevels: renderComponentFn(GradeLevels),
 
   MaterialsCollection: MaterialsCollection,
   // this is a different format to match to existing project pages which had 2 formats itself
