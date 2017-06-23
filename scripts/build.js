@@ -8,11 +8,14 @@ const fs = require("fs");
 const mkdirp = require("mkdirp");
 const sass = require('node-sass');
 const webpack = require("webpack");
+var ncp = require('ncp').ncp;
 
 const portalSrcFolder = path.resolve(`${__dirname}/../src/portals`);
 const portalDestFolder = path.resolve(`${__dirname}/../dest/portals`);
 const librarySrcFolder = path.resolve(`${__dirname}/../src/library`);
 const libraryDestFolder = path.resolve(`${__dirname}/../dest/library`);
+const assetsSrcFolder = path.resolve(`${__dirname}/../src/library/assets`);
+const assetsDestFolder = path.resolve(`${__dirname}/../dest/library/assets`);
 
 const die = (err, code) => {
   console.error(err);
@@ -85,3 +88,9 @@ sass.render({file: `${librarySrcFolder}/library.scss`}, (err, result) => {
   }
 });
 
+// copy the assets
+ncp(assetsSrcFolder, assetsDestFolder, function (err) {
+  if (err) {
+    die(err, 4);
+  }
+});
