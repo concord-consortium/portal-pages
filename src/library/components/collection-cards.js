@@ -23,8 +23,11 @@ var CollectionCards = Component({
         url: "/api/v1/projects",  // TODO: replace with Portal.API_V1 constant when available
         dataType: "json"
       }).done(function (data) {
+        var descriptionFilter = document.createElement("DIV");
         var collections = data.reduce(function (collections, collection) {
           if (collection.public && collection.landing_page_slug) {
+            descriptionFilter.innerHTML = collection.project_card_description;
+            collection.filteredDescription = descriptionFilter.innerText;
             collections.push(collection);
           }
           return collections;
@@ -58,7 +61,7 @@ var CollectionCards = Component({
           a({href: "/" + collection.landing_page_slug},
             img({alt: collection.name, src: collection.project_card_image_url}),
             div({className: "stem-collections-card-name"}, collection.name),
-            div({className: "stem-collections-card-description"}, collection.project_card_description)
+            div({className: "stem-collections-card-description"}, collection.filteredDescription)
           )
         );
       })
