@@ -89,6 +89,7 @@ sass.render({file: `${librarySrcFolder}/library.scss`}, (err, result) => {
 });
 
 // copy the assets
+mkdirp.sync(assetsDestFolder);
 ncp(assetsSrcFolder, assetsDestFolder, function (err) {
   if (err) {
     die(err, 4);
