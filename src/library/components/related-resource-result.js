@@ -21,7 +21,7 @@ var RelatedResourceResult = Component({
   renderGradeLevels: function (resource) {
     var levels = this.props.gradeFilters.reduce(function (levelAcc, gradeFilter) {
       var matching = gradeFilter.grades.reduce(function (matchingAcc, grade) {
-        if (resource.grades.indexOf(grade) !== -1) {
+        if (resource.grade_levels.indexOf(grade) !== -1) {
           matchingAcc.push(grade);
         }
         return matchingAcc;
