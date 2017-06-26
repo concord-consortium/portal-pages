@@ -517,6 +517,7 @@ $materials-collection-item-icon-width: 300px;
 .stem-finder-materials-collection-item {
   clear: both;
   padding: 30px 0;
+  background-color: $light-gray;
 
   .stem-finder-materials-collection-item-icon {
     float: left;
@@ -528,7 +529,7 @@ $materials-collection-item-icon-width: 300px;
   }
   .stem-finder-materials-collection-item-info {
     margin-left: $materials-collection-item-icon-width + 20;
-    background-color: $light-gray;
+    background-color: $white;
     padding: 30px 20px;
 
     h2 {
@@ -542,12 +543,8 @@ $materials-collection-item-icon-width: 300px;
 
     .stem-finder-materials-collection-item-footer {
       .stem-finder-materials-collection-item-grade-levels {
-        float: left;
-      }
-
-      .stem-finder-materials-collection-item-buttons {
-        button {
-          float: right;
+        div {
+          color: $black;
         }
       }
 

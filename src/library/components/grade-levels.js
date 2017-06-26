@@ -24,7 +24,7 @@ var GradeLevels = Component({
       return null;
     }
 
-    return div({className: "stem-finder-result-grade-levels"},
+    return div({className: this.props.className || "stem-finder-result-grade-levels"},
       levels.map(function (level, index) {
         return div({key: index, className: "stem-finder-result-grade-level"}, level);
       })
