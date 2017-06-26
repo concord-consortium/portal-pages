@@ -27,12 +27,18 @@ var ResourceLightbox = Component({
 
   componentWillUnmount: function () {
     document.title = this.savedTitle;
-    history.replaceState({}, document.title, this.savedUrl);
+    try {
+      history.replaceState({}, document.title, this.savedUrl);
+    }
+    catch (e) {}
   },
 
   replaceResource: function (resource) {
     document.title = this.titleSuffix ? resource.name + " | " + this.titleSuffix : resource.name;
-    history.replaceState({}, document.title, resource.stem_resource_url);
+    try {
+      history.replaceState({}, document.title, resource.stem_resource_url);
+    }
+    catch (e) {}
     this.setState({resource: resource});
   },
 
@@ -157,10 +163,10 @@ var ResourceLightbox = Component({
         h1({}, resource.name),
         div({className: "stem-resource-lightbox-description"}, resource.filteredDescription),
         div({},
-          links.preview ? a({className: "stem-resource-lightbox-launch-button", href: links.preview, target: "_blank"}, "Launch Activity") : null,
-          links.assign_material ? a({className: "stem-resource-lightbox-assign-button", href: links.assign_material}, "Assign Activity") : null,
-          links.assign_collection ? a({className: "stem-resource-lightbox-assign-button", href: links.assign_collection}, "Add to Collection") : null,
-          links.teacher_guide ? a({className: "stem-resource-lightbox-assign-button", href: links.teacher_guide}, "Teacher Guide") : null
+          links.preview ? a({className: "stem-primary-button", href: links.preview, target: "_blank"}, "Launch Activity") : null,
+          links.assign_material ? a({className: "stem-secondary-button", href: links.assign_material}, "Assign Activity") : null,
+          links.assign_collection ? a({className: "stem-secondary-button", href: links.assign_collection}, "Add to Collection") : null,
+          links.teacher_guide ? a({className: "stem-secondary-button", href: links.teacher_guide}, "Teacher Guide") : null
         ),
         hr({}),
         h2({}, "Requirements"),

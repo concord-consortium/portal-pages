@@ -3,13 +3,15 @@
 
 /* common centered widths for each section */
 .stem-top-bar-inner,
-.stem-nav {
+.stem-nav,
+.stem-collections-page-header {
   margin: 0 auto;
   width: $desktop-page-width;
 }
 
 .stem-collections-inner,
-.stem-finder-results-inner {
+.stem-finder-results-inner,
+.stem-collections-page-list-inner {
   margin: 0 auto;
   width: $desktop-page-width + (2 * $desktop-card-margin);  /* this adds in the margin of the left and right cards */
 }
@@ -69,35 +71,6 @@
 .stem-nav-auth {
   min-width: 200px;
   text-align: right;
-}
-
-/* auth */
-.stem-auth-login-button,
-.stem-auth-login-button:hover {
-  display: inline-block;
-  border-radius: 0;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  padding: 10px 20px;
-  background: $orange;
-  color: $white;
-  border: 2px solid $orange;
-  font-size: 12px;
-  font-weight: bold;
-}
-.stem-auth-register-button,
-.stem-auth-register-button:hover {
-  display: inline-block;
-  border-radius: 0;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  margin-left: 7px;
-  padding: 10px 20px;
-  background: $white;
-  color: $orange;
-  border: 2px solid $orange;
-  font-size: 12px;
-  font-weight: bold;
 }
 
 /* hero */
@@ -315,6 +288,43 @@
   font-weight: bold;
 }
 
+/* collectsion page */
+
+.stem-collections-page-header {
+  background-color: #fff;
+  font-size: 20px;
+}
+.stem-collections-page-header h1 {
+  font-size: 42px;
+  color: #000;
+  font-weight: normal;
+  margin: 20px 0;
+}
+.stem-collections-page-header-info {
+  margin: 20px 0;
+}
+.stem-collections-page-header-info a {
+  color: $orange;
+  font-weight: bold;
+}
+.stem-collections-page-header a {
+  color: $orange;
+  font-weight: bold;
+  font-size: 14px;
+}
+.stem-collections-page-diagonal-spacer {
+  background:#fff;
+  background: linear-gradient(to right bottom, #fff 50%, #EBEBEB 50%);
+  height: 100px;
+}
+.stem-collections-page-list {
+  background-color: #EBEBEB;
+}
+.stem-collections-page-list-inner {
+  padding: 10px 0 30px 0;
+  min-height: 1000px;
+}
+
 /* collections */
 
 .stem-diagonal-spacer {
@@ -357,6 +367,7 @@
   vertical-align: top;
   background-color: #fff;
   cursor: pointer;
+  font-size: 14px;
 }
 .stem-collections-card img {
   width: 285px;
@@ -463,35 +474,6 @@
   font-size: 18px;
   margin: 20px 0;
 }
-.stem-resource-lightbox-launch-button,
-.stem-resource-lightbox-launch-button:hover,
-.stem-resource-lightbox-launch-button:visited {
-  display: inline-block;
-  border-radius: 0;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  padding: 10px 20px;
-  background: $orange;
-  color: #fff;
-  border: 2px solid $orange;
-  font-size: 12px;
-  font-weight: bold;
-}
-.stem-resource-lightbox-assign-button,
-.stem-resource-lightbox-assign-button:hover,
-.stem-resource-lightbox-assign-button:visited {
-  display: inline-block;
-  border-radius: 0;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  margin-left: 7px;
-  padding: 10px 20px;
-  background: #fff;
-  color: $orange;
-  border: 2px solid $orange;
-  font-size: 12px;
-  font-weight: bold;
-}
 .stem-resource-lightbox-requirements {
   margin: 10px 0;
 }
@@ -553,4 +535,34 @@ $materials-collection-item-icon-width: 300px;
       }
     }
   }
+}
+
+.stem-primary-button,
+.stem-primary-button:hover,
+.stem-primary-button:visited {
+  display: inline-block;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  padding: 10px 20px;
+  background: $orange;
+  color: #fff;
+  border: 2px solid $orange;
+  font-size: 12px;
+  font-weight: bold;
+}
+.stem-secondary-button,
+.stem-secondary-button:hover,
+.stem-secondary-button:visited {
+  display: inline-block;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  margin-left: 7px;
+  padding: 10px 20px;
+  background: #fff;
+  color: $orange;
+  border: 2px solid $orange;
+  font-size: 12px;
+  font-weight: bold;
 }
