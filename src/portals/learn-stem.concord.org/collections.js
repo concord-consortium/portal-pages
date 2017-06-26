@@ -1,7 +1,7 @@
 PortalPages.renderUserAuth({
   fadeIn: 1000
-}, 'stem-nav-auth');
+}, 'portal-pages-nav-auth');
 
 PortalPages.renderCollectionCards({
   fadeIn: 1000
-}, 'stem-collections-cards');
+}, 'portal-pages-collections-cards');

@@ -49,7 +49,7 @@ var ResourceLightbox = Component({
   renderRequirements: function () {
     var runsInBrowser = true; // TODO: get from search results when they become available
     if (runsInBrowser) {
-      return div({className: "stem-resource-lightbox-requirements"},
+      return div({className: "portal-pages-resource-lightbox-requirements"},
         "This activity runs entirely in a Web browser. Preferred browsers are: ",
         a({href: "http://www.google.com/chrome/", title:"Get Google\'s Chrome Web Browser"}, "Google Chrome"),
         " (versions 30 and above), ",
@@ -63,7 +63,7 @@ var ResourceLightbox = Component({
         "."
       );
     }
-    return div({className: "stem-resource-lightbox-requirements"},
+    return div({className: "portal-pages-resource-lightbox-requirements"},
       "This resource requires Java. You can download Java for free from ",
       a({href: "http://java.com/", title: "Get Java"}, "java.com"),
       ".",
@@ -85,7 +85,7 @@ var ResourceLightbox = Component({
     return div({},
       hr({}),
       h2({}, "Learn More"),
-      div({className: "stem-resource-lightbox-learn-more"},
+      div({className: "portal-pages-resource-lightbox-learn-more"},
         "This resource is part of the Concord Consortium's ",
         projects.map(function (project, index) {
           return span({},
@@ -104,7 +104,7 @@ var ResourceLightbox = Component({
     if (resource.related_materials.length === 0) {
       return null;
     }
-    return div({className: "stem-resource-lightbox-related-content"},
+    return div({className: "portal-pages-resource-lightbox-related-content"},
       h2({}, "You may also like:"),
       resource.related_materials.map(function (resource, i) {
         return RelatedResourceResult({key: i, resource: resource, replaceResource: this.replaceResource});
@@ -114,7 +114,7 @@ var ResourceLightbox = Component({
 
   // TODO: add links
   renderSharing: function () {
-    return div({className: "stem-resource-lightbox-modal-sharing"},
+    return div({className: "portal-pages-resource-lightbox-modal-sharing"},
       div({}, "F"),
       div({}, "T"),
       div({}, "E"),
@@ -123,8 +123,8 @@ var ResourceLightbox = Component({
   },
 
   render404: function () {
-    return div({className: "stem-resource-lightbox-modal-content"},
-      div({className: "stem-resource-lightbox-not-found"}, "Sorry, the requested resource was not found."),
+    return div({className: "portal-pages-resource-lightbox-modal-content"},
+      div({className: "portal-pages-resource-lightbox-not-found"}, "Sorry, the requested resource was not found."),
       div({},
         a({href: "#", onClick: this.handleClose}, "Click here"),
         " to close this lightbox and use the search box on this page to find another resource.")
@@ -145,7 +145,7 @@ var ResourceLightbox = Component({
       return null;
     }
 
-    return div({className: "stem-resource-lightbox-icons"},
+    return div({className: "portal-pages-resource-lightbox-icons"},
       printIcon,
       copyIcon,
       editIcon
@@ -156,17 +156,17 @@ var ResourceLightbox = Component({
     var resource = this.state.resource;
     var links = resource.links;
 
-    return div({className: "stem-resource-lightbox-modal-content"},
-      div({className: "stem-resource-lightbox-modal-content-top"},
+    return div({className: "portal-pages-resource-lightbox-modal-content"},
+      div({className: "portal-pages-resource-lightbox-modal-content-top"},
         this.renderIcons(),
         img({src: resource.icon.url}),
         h1({}, resource.name),
-        div({className: "stem-resource-lightbox-description"}, resource.filteredDescription),
+        div({className: "portal-pages-resource-lightbox-description"}, resource.filteredDescription),
         div({},
-          links.preview ? a({className: "stem-primary-button", href: links.preview, target: "_blank"}, "Launch Activity") : null,
-          links.assign_material ? a({className: "stem-secondary-button", href: links.assign_material}, "Assign Activity") : null,
-          links.assign_collection ? a({className: "stem-secondary-button", href: links.assign_collection}, "Add to Collection") : null,
-          links.teacher_guide ? a({className: "stem-secondary-button", href: links.teacher_guide}, "Teacher Guide") : null
+          links.preview ? a({className: "portal-pages-primary-button", href: links.preview, target: "_blank"}, "Launch Activity") : null,
+          links.assign_material ? a({className: "portal-pages-secondary-button", href: links.assign_material}, "Assign Activity") : null,
+          links.assign_collection ? a({className: "portal-pages-secondary-button", href: links.assign_collection}, "Add to Collection") : null,
+          links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide}, "Teacher Guide") : null
         ),
         hr({}),
         h2({}, "Requirements"),
@@ -179,10 +179,10 @@ var ResourceLightbox = Component({
 
   render: function () {
     var resource = this.state.resource;
-    return div({className: "stem-resource-lightbox"},
-      div({className: "stem-resource-lightbox-background", onClick: this.handleClose}),
-      div({className: "stem-resource-lightbox-background-close"}, "X"),
-      div({className: "stem-resource-lightbox-modal"},
+    return div({className: "portal-pages-resource-lightbox"},
+      div({className: "portal-pages-resource-lightbox-background", onClick: this.handleClose}),
+      div({className: "portal-pages-resource-lightbox-background-close"}, "X"),
+      div({className: "portal-pages-resource-lightbox-modal"},
         resource ? this.renderResource() : this.render404()
       ),
       resource ? this.renderSharing() : null

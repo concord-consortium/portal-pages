@@ -14,15 +14,15 @@ var button = React.DOM.button;
 var MaterialsCollectionItem = Component({
   render: function () {
     var item = this.props.item;
-    return div({className: "stem-finder-materials-collection-item"},
-      div({className: "stem-finder-materials-collection-item-icon"},
+    return div({className: "portal-pages-finder-materials-collection-item"},
+      div({className: "portal-pages-finder-materials-collection-item-icon"},
         img({src: item.icon.url})
       ),
-      div({className: "stem-finder-materials-collection-item-info"},
+      div({className: "portal-pages-finder-materials-collection-item-info"},
         h2({}, item.name),
-        div({className: "stem-finder-materials-collection-item-description", dangerouslySetInnerHTML: {__html: item.description}}),
-        div({className: "stem-finder-materials-collection-item-footer"},
-          GradeLevels({resource: item, className: "stem-finder-materials-collection-item-grade-levels"})
+        div({className: "portal-pages-finder-materials-collection-item-description", dangerouslySetInnerHTML: {__html: item.description}}),
+        div({className: "portal-pages-finder-materials-collection-item-footer"},
+          GradeLevels({resource: item, className: "portal-pages-finder-materials-collection-item-grade-levels"})
         )
       )
       //pre({}, JSON.stringify(this.props.item, null, 2))
@@ -60,7 +60,7 @@ var MaterialsCollection = Component({
       return null;
     }
 
-    return div({className: "stem-finder-materials-collection"},
+    return div({className: "portal-pages-finder-materials-collection"},
       this.state.materials.map(function (material, i) {
         return MaterialsCollectionItem({key: i, item: material});
       })

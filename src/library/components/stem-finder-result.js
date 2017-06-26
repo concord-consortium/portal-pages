@@ -79,17 +79,17 @@ var StemFinderResult = Component({
 
   renderFavoriteStar: function () {
     var star = this.state.favorited ? "&#x2605;" : "&#x2606;";
-    var active = this.state.favorited ? " stem-finder-result-favorite-active" : "";
-    return div({className: "stem-finder-result-favorite" + active, dangerouslySetInnerHTML: {__html: star}, onClick: this.toggleFavorite});
+    var active = this.state.favorited ? " portal-pages-finder-result-favorite-active" : "";
+    return div({className: "portal-pages-finder-result-favorite" + active, dangerouslySetInnerHTML: {__html: star}, onClick: this.toggleFavorite});
   },
 
   render: function () {
     var resource = this.props.resource;
-    var options = {className: "stem-finder-result", href: resource.stem_resource_url, onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
+    var options = {className: "portal-pages-finder-result", href: resource.stem_resource_url, onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
 
     if (this.state.hovering || this.state.lightbox) {
       return a(options,
-        div({className: "stem-finder-result-description"}, resource.filteredDescription),
+        div({className: "portal-pages-finder-result-description"}, resource.filteredDescription),
         GradeLevels({resource: resource}),
         this.renderFavoriteStar(),
         this.renderLightbox()
@@ -97,7 +97,7 @@ var StemFinderResult = Component({
     }
     return a(options,
       img({alt: resource.name, src: resource.icon.url}),
-      div({className: "stem-finder-result-name"}, resource.name),
+      div({className: "portal-pages-finder-result-name"}, resource.name),
       GradeLevels({resource: resource}),
       this.renderFavoriteStar(),
       this.renderLightbox()

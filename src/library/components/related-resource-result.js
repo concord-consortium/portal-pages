@@ -38,17 +38,17 @@ var RelatedResourceResult = Component({
 
   render: function () {
     var resource = this.props.resource;
-    var options = {className: "stem-finder-result", onClick: this.handleClick, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
+    var options = {className: "portal-pages-finder-result", onClick: this.handleClick, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
 
     if (this.state.hovering) {
       return div(options,
-        div({className: "stem-finder-result-description"}, resource.filteredDescription),
+        div({className: "portal-pages-finder-result-description"}, resource.filteredDescription),
         GradeLevels({resource: resource})
       );
     }
     return div(options,
       img({alt: resource.name, src: resource.icon.url}),
-      div({className: "stem-finder-result-name"}, resource.name),
+      div({className: "portal-pages-finder-result-name"}, resource.name),
       GradeLevels({resource: resource})
     );
   }

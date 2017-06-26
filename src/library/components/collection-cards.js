@@ -57,11 +57,11 @@ var CollectionCards = Component({
     }
     return div({style: {opacity: this.state.opacity}},
       this.state.collections.map(function (collection) {
-        return div({key: collection.landing_page_slug, className: "stem-collections-card"},
+        return div({key: collection.landing_page_slug, className: "portal-pages-collections-card"},
           a({href: "/" + collection.landing_page_slug},
             img({alt: collection.name, src: collection.project_card_image_url}),
-            div({className: "stem-collections-card-name"}, collection.name),
-            div({className: "stem-collections-card-description"}, collection.filteredDescription)
+            div({className: "portal-pages-collections-card-name"}, collection.name),
+            div({className: "portal-pages-collections-card-description"}, collection.filteredDescription)
           )
         );
       })

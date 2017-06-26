@@ -1,13 +1,13 @@
 PortalPages.renderUserAuth({
   fadeIn: 1000
-}, 'stem-nav-auth');
+}, 'portal-pages-nav-auth');
 
 PortalPages.renderStemFinder({
   fadeIn: 1000
-}, 'stem-finder');
+}, 'portal-pages-finder');
 
 PortalPages.renderCollectionCards({
   shuffle: true,
   count: 3,
   fadeIn: 1000
-}, 'stem-collections-cards');
+}, 'portal-pages-collections-cards');

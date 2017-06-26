@@ -56,8 +56,8 @@ var UserAuth = Component({
 
   renderLoggedOut: function () {
     return div({style: {opacity: this.state.opacity}},
-      button({className: "stem-primary-button", onClick: this.handleLogginButton}, "Log In"),
-      button({className: "stem-secondary-button", onClick: this.handleRegisterButton}, "Register")
+      button({className: "portal-pages-primary-button", onClick: this.handleLogginButton}, "Log In"),
+      button({className: "portal-pages-secondary-button", onClick: this.handleRegisterButton}, "Register")
     );
   },
 
