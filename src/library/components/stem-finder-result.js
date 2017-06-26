@@ -41,6 +41,7 @@ var StemFinderResult = Component({
     e.preventDefault();
     e.stopPropagation();
     var lightbox = !this.state.lightbox;
+    // TODO: add pushstate
     this.setState({
       lightbox: lightbox,
       hovering: false

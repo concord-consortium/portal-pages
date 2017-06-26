@@ -22,6 +22,12 @@ var RelatedResourceResult = Component({
     }
   },
 
+  handleClick: function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.replaceResource(this.props.resource);
+  },
+
   handleMouseOver: function () {
     this.setState({hovering: true});
   },
@@ -32,7 +38,7 @@ var RelatedResourceResult = Component({
 
   render: function () {
     var resource = this.props.resource;
-    var options = {className: "stem-finder-result", onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
+    var options = {className: "stem-finder-result", onClick: this.handleClick, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
 
     if (this.state.hovering) {
       return div(options,

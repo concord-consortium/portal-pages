@@ -12,18 +12,32 @@ var p = React.DOM.p;
 var span = React.DOM.span;
 
 var ResourceLightbox = Component({
+  getInitialState: function () {
+    return {
+      resource: this.props.resource
+    };
+  },
+
   componentWillMount: function () {
-    var titleSuffix = document.title.split("|")[1] || "";
+    this.savedUrl = location.toString();
     this.savedTitle = document.title;
-    document.title = titleSuffix ? this.props.resource.name + " | " + titleSuffix : this.props.resource.name;
+    this.titleSuffix = document.title.split("|")[1] || "";
+    this.replaceResource(this.props.resource);
   },
 
   componentWillUnmount: function () {
     document.title = this.savedTitle;
+    history.replaceState({}, document.title, this.savedUrl);
   },
 
-  handleClose: function () {
-    this.props.toggleLightbox();
+  replaceResource: function (resource) {
+    document.title = this.titleSuffix ? resource.name + " | " + this.titleSuffix : resource.name;
+    history.replaceState({}, document.title, resource.stem_resource_url);
+    this.setState({resource: resource});
+  },
+
+  handleClose: function (e) {
+    this.props.toggleLightbox(e);
   },
 
   renderRequirements: function () {
@@ -56,10 +70,11 @@ var ResourceLightbox = Component({
   },
 
   renderLearnMore: function () {
-    if (this.props.resource.projects.length === 0) {
+    var resource = this.state.resource;
+    if (resource.projects.length === 0) {
       return null;
     }
-    var projects = this.props.resource.projects;
+    var projects = resource.projects;
     var numProjects = projects.length;
     return div({},
       hr({}),
@@ -79,13 +94,14 @@ var ResourceLightbox = Component({
   },
 
   renderRelatedContent: function () {
-    if (this.props.resource.related_materials.length === 0) {
+    var resource = this.state.resource;
+    if (resource.related_materials.length === 0) {
       return null;
     }
     return div({className: "stem-resource-lightbox-related-content"},
       h2({}, "You may also like:"),
-      this.props.resource.related_materials.map(function (resource, i) {
-        return RelatedResourceResult({key: i, resource: resource});
+      resource.related_materials.map(function (resource, i) {
+        return RelatedResourceResult({key: i, resource: resource, replaceResource: this.replaceResource});
       }.bind(this))
     );
   },
@@ -110,7 +126,7 @@ var ResourceLightbox = Component({
   },
 
   renderIcons: function () {
-    var resource = this.props.resource;
+    var resource = this.state.resource;
     var links = resource.links;
     var printIcon = links.print_url ? a({href: links.print_url}, "P") : null;
     var copyIcon = links.external_copy ? a({href: links.external_copy}, "C") : null;
@@ -131,7 +147,7 @@ var ResourceLightbox = Component({
   },
 
   renderResource: function () {
-    var resource = this.props.resource;
+    var resource = this.state.resource;
     var links = resource.links;
 
     return div({className: "stem-resource-lightbox-modal-content"},
@@ -144,7 +160,7 @@ var ResourceLightbox = Component({
           links.preview ? a({className: "stem-resource-lightbox-launch-button", href: links.preview, target: "_blank"}, "Launch Activity") : null,
           links.assign_material ? a({className: "stem-resource-lightbox-assign-button", href: links.assign_material}, "Assign Activity") : null,
           links.assign_collection ? a({className: "stem-resource-lightbox-assign-button", href: links.assign_collection}, "Add to Collection") : null,
-          links.teacher_guide ? a({className: "stem-resource-lightbox-assign-button", href: links.teacher_guide}, "Teach Guide") : null
+          links.teacher_guide ? a({className: "stem-resource-lightbox-assign-button", href: links.teacher_guide}, "Teacher Guide") : null
         ),
         hr({}),
         h2({}, "Requirements"),
@@ -156,13 +172,14 @@ var ResourceLightbox = Component({
   },
 
   render: function () {
+    var resource = this.state.resource;
     return div({className: "stem-resource-lightbox"},
       div({className: "stem-resource-lightbox-background", onClick: this.handleClose}),
       div({className: "stem-resource-lightbox-background-close"}, "X"),
       div({className: "stem-resource-lightbox-modal"},
-        this.props.resource ? this.renderResource() : this.render404()
+        resource ? this.renderResource() : this.render404()
       ),
-      this.props.resource ? this.renderSharing() : null
+      resource ? this.renderSharing() : null
     );
   }
 });
