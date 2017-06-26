@@ -421,6 +421,16 @@
 .stem-resource-lightbox-modal-content {
   color: $black;
 }
+.stem-resource-lightbox-icons {
+  float: right;
+
+  div {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 3px 7px;
+    background-color: $light-gray;
+  }
+}
 .stem-resource-lightbox-modal-content-top {
   padding: 50px 70px 20px 70px;
 }

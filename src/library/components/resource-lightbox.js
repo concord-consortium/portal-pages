@@ -109,16 +109,42 @@ var ResourceLightbox = Component({
     );
   },
 
+  renderIcons: function () {
+    var resource = this.props.resource;
+    var links = resource.links;
+    var printIcon = links.print_url ? a({href: links.print_url}, "P") : null;
+    var copyIcon = links.external_copy ? a({href: links.external_copy}, "C") : null;
+    var editLink = links.lara_activity_or_sequence ? links.external_lara_edit : links.external_edit;
+    var editIcon = editLink ? a({href: editLink}, "E") : null;
+
+    // TODO: gear icon?
+
+    if (!printIcon && !copyIcon && !editIcon) {
+      return null;
+    }
+
+    return div({className: "stem-resource-lightbox-icons"},
+      printIcon,
+      copyIcon,
+      editIcon
+    )
+  },
+
   renderResource: function () {
     var resource = this.props.resource;
+    var links = resource.links;
+
     return div({className: "stem-resource-lightbox-modal-content"},
       div({className: "stem-resource-lightbox-modal-content-top"},
+        this.renderIcons(),
         img({src: resource.icon.url}),
         h1({}, resource.name),
         div({className: "stem-resource-lightbox-description"}, resource.filteredDescription),
         div({},
-          a({className: "stem-resource-lightbox-launch-button", href: resource.preview_url, target: "_blank"}, "Launch Activity"),
-          Portal.currentUser.isTeacher ? a({className: "stem-resource-lightbox-assign-button", href: resource.assign_to_class_url}, "Assign Activity") : null
+          links.preview ? a({className: "stem-resource-lightbox-launch-button", href: links.preview, target: "_blank"}, "Launch Activity") : null,
+          links.assign_material ? a({className: "stem-resource-lightbox-assign-button", href: links.assign_material}, "Assign Activity") : null,
+          links.assign_collection ? a({className: "stem-resource-lightbox-assign-button", href: links.assign_collection}, "Add to Collection") : null,
+          links.teacher_guide ? a({className: "stem-resource-lightbox-assign-button", href: links.teacher_guide}, "Teach Guide") : null
         ),
         hr({}),
         h2({}, "Requirements"),
