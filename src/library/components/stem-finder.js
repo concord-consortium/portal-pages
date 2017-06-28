@@ -15,6 +15,7 @@ var div = React.DOM.div;
 var button = React.DOM.button;
 var svg = React.DOM.svg;
 var circle = React.DOM.circle;
+var image = React.DOM.image;
 var text = React.DOM.text;
 var input = React.DOM.input;
 var span = React.DOM.span;
@@ -169,10 +170,10 @@ var StemFinder = Component({
       }
       this.setState({subjectAreasSelected: subjectAreasSelected}, this.search);
     }.bind(this);
-    return div({key: subjectArea.key, className: "portal-pages-finder-form-subject-areas-logo", onClick: clicked},
+    return div({key: subjectArea.key, id: subjectArea.key, className: "portal-pages-finder-form-subject-areas-logo", onClick: clicked},
       svg({height: size * 2, width: size * 2},
         circle({cx: size, cy: size, r: size, fill: selected ? "#0592AF" : "#fff"}),
-        text({x: size, y: size + 5, textAnchor: "middle", fill: selected ? "#fff" : "#000"}, "Icon Here")
+        image({xlinkHref: 'http://localhost:10000/assets/icons/icon-subject-' + subjectArea.key + '.svg', height: 45, width: 45, x: 17.5, y: 17.5})
       ),
       div({className: "portal-pages-finder-form-subject-areas-logo-label"}, subjectArea.title)
     );
@@ -329,7 +330,7 @@ var StemFinder = Component({
       return null;
     }
     var resources = this.state.resources.slice(0, this.state.displayLimit);
-    return div({className: "portal-pages-finder-results", style: {opacity: this.state.opacity}},
+    return div({className: "portal-pages-finder-results cols", style: {opacity: this.state.opacity}},
       div({className: "portal-pages-finder-results-inner"},
         this.renderResultsHeader(),
         resources.map(function (resource, index) {
