@@ -3,6 +3,7 @@ var HeaderFilter = require("./components/header-filter");
 var ResourceLightbox = require("./components/resource-lightbox");
 var StemFinderResult = require("./components/stem-finder-result");
 var StemFinder = require("./components/stem-finder");
+var PageHeader = require("./components/page-header");
 var UserAuth = require("./components/user-auth");
 var MaterialsCollection = require("./components/materials-collection");
 var GradeLevels = require("./components/grade-levels");
@@ -36,6 +37,9 @@ window.PortalPages = {
 
   StemFinder: StemFinder,
   renderStemFinder: renderComponentFn(StemFinder),
+
+  PageHeader: PageHeader,
+  renderPageHeader: renderComponentFn(PageHeader),
 
   UserAuth: UserAuth,
   renderUserAuth: renderComponentFn(UserAuth),
