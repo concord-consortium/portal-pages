@@ -32,7 +32,8 @@ module.exports = (app) => {
   const librarySrcFolder = path.resolve(`${__dirname}/../../src/library`);
   const mockFolder = path.resolve(`${__dirname}/../../mock-ajax`);
 
-  const injectedStyleId = '__devServerInjectedCSS';
+  const injectedPageStyleId = '__devServerInjectedPageCSS';
+  const injectedLibraryStyleId = '__devServerInjectedLibraryCSS';
 
   // adapted from https://github.com/tapio/live-server/blob/master/injected.html
   const createInjectedHTML = (files, mock, proxy) => {
@@ -46,8 +47,10 @@ module.exports = (app) => {
             var fileMatches = function (json) {
               return json.file && ((${JSON.stringify(files)}.indexOf(json.file) !== -1) || (json.file.indexOf("library") !== -1));
             };
-            var restyle = function (css) {
-              document.getElementById('${injectedStyleId}').innerHTML = css;
+            var restyle = function (json) {
+              debugger;
+              var id = json.file.indexOf("library") !== -1 ? '${injectedLibraryStyleId}' : '${injectedPageStyleId}';
+              document.getElementById(id).innerHTML = json.css;
             }
             var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
             var address = protocol + window.location.host + window.location.pathname + '/ws';
@@ -56,7 +59,7 @@ module.exports = (app) => {
               var json = JSON.parse(msg.data);
               switch (json.action) {
                 case 'reload': fileMatches(json) && window.location.reload(); break;
-                case 'restyle': fileMatches(json) && restyle(json.css); break;
+                case 'restyle': fileMatches(json) && restyle(json); break;
               }
             };
           })();
@@ -90,12 +93,26 @@ module.exports = (app) => {
     };
 
     if (path.extname(changePath) === ".scss") {
-      sass.render({file: changePath}, (err, result) => {
-        broadcast({
-          action: 'restyle',
-          css: (result && result.css ? result.css.toString() : "") || ""
+      if (changePath.indexOf("library") !== -1) {
+        compileLibraryCSS((err, libraryCSS) => {
+          if (!err) {
+            broadcast({
+              action: 'restyle',
+              css: libraryCSS
+            });
+          }
         });
-      });
+      }
+      else {
+        sass.render({file: changePath}, (err, result) => {
+          if (!err) {
+            broadcast({
+              action: 'restyle',
+              css: (result && result.css ? result.css.toString() : "") || ""
+            });
+          }
+        });
+      }
     }
     else {
       broadcast({
@@ -227,7 +244,7 @@ module.exports = (app) => {
 
                 const $ = cheerio.load(portalHTML);
                 $("head").prepend(`<base href="${portalRoot}">`);
-                $(selector).html(`\n${injectedHTML}\n<!-- portal library css -->\n<style>\n${libraryCSS}\n</style>\n<!-- portal library js -->\n<script>\n${libraryJS}\n</script>\n<!-- ${scssPath} -->\n<style id="${injectedStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
+                $(selector).html(`\n${injectedHTML}\n<!-- portal library css -->\n<style id="${injectedLibraryStyleId}">\n${libraryCSS}\n</style>\n<!-- portal library js -->\n<script>\n${libraryJS}\n</script>\n<!-- ${scssPath} -->\n<style id="${injectedPageStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
 
                 res.send($.html());
               });
