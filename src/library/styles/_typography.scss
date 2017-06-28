@@ -1,0 +1,268 @@
+$font-museo-sans: museo-sans, sans-serif;
+$font-museo: museo, sans-serif;
+$font-icon: "icomoon";
+
+// Reset List Style
+@mixin list-reset() {
+  padding: 0;
+  background: none;
+  margin: 0;
+  list-style: none;
+}
+
+// Transitions
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+/* ----- Baseline ----- */
+body,
+button,
+input,
+select,
+textarea {
+  color: $col-default;
+  font-family: $font-museo-sans;
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  background-color: $col-background;
+}
+
+/* ----- Links ----- */
+a {
+  color: $col-link;
+  text-decoration: none;
+
+  &:visited {
+    color: $col-link;
+  }
+
+  &:hover {
+    color: $col-hover;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: 1px dotted $col-link;
+  }
+
+  &:active,
+  &:hover {
+    outline: 0;
+  }
+}
+
+/* ----- Body Content ----- */
+p {
+  margin: 0 0 30px;
+  padding: 0;
+  font-family: $font-museo-sans;
+  line-height: 1.8em;
+  font-weight: 300;
+
+  /* Intro Paragraph */
+  &.intro-paragraph {
+    font-family: $font-museo;
+    font-weight: 100;
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  /* Intro Paragraph (Newsletter) */
+  &.intro-paragraph--newsletter {
+    font-family: $font-museo;
+    font-weight: 100;
+    font-size: 36px;
+    line-height: 48px;
+    margin-bottom: 40px;
+  }
+
+  /* Large Paragraph */
+  &.large-paragraph {
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 40px;
+  }
+
+  /* Basic Paragraph */
+  &.basic-paragraph {
+    margin-bottom: 40px;
+  }
+
+  /* Basic Paragraph (Museo) */
+  &.basic-paragraph {
+    font-family: $font-museo;
+    margin-bottom: 40px;
+  }
+
+  /* Small Paragraph */
+  &.small-paragraph {
+    font-size: 15px;
+    line-height: 27px;
+  }
+
+}
+
+b,
+strong {
+  font-weight: 600;
+}
+
+blockquote {
+  color: $col-blockquote;
+  font-size: 16px;
+  font-style: italic;
+  margin: 1em 40px;
+  padding: 10px 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+/* ----- Horizontal Rules ----- */
+
+hr {
+  border: 0;
+  border-top-width: 1px;
+  clear: both;
+  display: block;
+  height: 1px;
+  margin: 20px 0;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  &.hr-dotted {
+    border-top: 2px dotted $col-darkgray-15;
+  }
+
+  &.hr-thick {
+    border-top: 5px solid $col-lightgray;
+  }
+
+  &.hr-thin {
+    border-top: 1px solid $col-darkgray-25;
+  }
+
+}
+
+/* ----- Headings ----- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  font-family: $font-museo;
+  font-weight: 900;
+}
+
+h1 {
+  font-size: 72px;
+  line-height: 80px;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 66px;
+  line-height: 72px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 54px;
+  line-height: 60px;
+  margin-bottom: 30px;
+}
+
+h4 {
+  font-size: 42px;
+  line-height: 48px;
+  margin-bottom: 20px;
+}
+
+h5 {
+  font-size: 36px;
+  line-height: 42px;
+  margin-bottom: 20px
+}
+
+h6 {
+  font-size: 18px;
+  line-height: 30px;
+  margin-bottom: 20px
+}
+
+/* ----- Special Link Styles ----- */
+
+.special-link {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  -webkit-font-smoothing: auto;
+  position: relative;
+
+  &::after {
+    content: "\e911";
+    font-family: "icomoon";
+    font-size: 15px;
+    margin: 1px 0 0px 6px;
+    position: absolute;
+    transition: margin .2s;
+  }
+
+  &:hover {
+    &::after {
+      margin: 1px 0 0 10px;
+    }
+  }
+
+  &.medium {
+    font-weight: 300;
+    &::after {
+      content: "\e901";
+      font-size: 30px;
+      margin-left: 15px;
+    }
+  }
+
+  &.large {
+    font-weight: 300;
+    &::after {
+      content: "\e901";
+      font-size: 40px;
+      margin-left: 15px;
+    }
+  }
+
+  &.down {
+    &::after {
+      transform: rotate(90deg);
+    }
+  }
+
+  &.up {
+    &::after {
+      transform: rotate(-90deg);
+    }
+  }
+
+}
+
+/* @import "icomoon"; */
