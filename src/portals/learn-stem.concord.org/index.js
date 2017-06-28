@@ -1,6 +1,10 @@
-PortalPages.renderUserAuth({
+PortalPages.renderPageHeader({
   fadeIn: 1000
-}, 'portal-pages-nav-auth');
+}, 'page-header');
+
+/* PortalPages.renderUserAuth({
+  fadeIn: 1000
+}, 'portal-pages-nav-auth'); */
 
 PortalPages.renderStemFinder({
   fadeIn: 1000
