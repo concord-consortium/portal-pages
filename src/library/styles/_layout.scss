@@ -1,0 +1,104 @@
+$size__site-main: 100%;
+$size__site-sidebar: 25%;
+
+// Dimensions
+$content-max: 1170px;
+$body-width-max: 1170px;
+$body-width-min: 320px;
+$footer-height: 150px;
+
+// Transitions
+$transition-timing: 0.2s;
+$transition-function: ease-in-out;
+$transition-function-dramatic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+
+// Clearfix
+// --------
+// For clearing floats like a boss
+@mixin clearfix() {
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+}
+
+// Clear after (not all clearfix need this also)
+@mixin clearfix-after() {
+  clear: both;
+}
+
+/* Columns */
+
+@mixin generate-col($_cols, $_width, $_gutters, $_col_wrapper:cols) {
+  $_total: $_cols * ($_width + $_gutters);
+  $_margin: ($_gutters / $_total) * 100;
+
+  @for $i from 1 through $_cols {
+    $_col-width:((($_width * $i) + ($_gutters * ($i - 1)))/$_total);
+    $_col-margin-left:$_margin * 1%;
+
+    %col-#{$i}-of-#{$_cols} {
+      float: left;
+      margin-left: (1% * $_margin) / 2;
+      margin-right: (1% * $_margin) / 2;
+      width: $_col-width * 100%;
+
+      &.reversed {
+        float: right;
+      }
+    }
+  }
+}
+
+@include generate-col(12, 65, 30);
+
+.cols {
+  clear: both;
+  margin: 0 auto;
+  padding: 0 15px; // extra gutter on page edges
+  max-width: $body-width-max;
+  min-width: $body-width-min;
+  width: auto;
+  @include clearfix;
+  img {
+    max-width: 100%;
+  }
+  $total-columns: 12;
+  @for $i from 1 through $total-columns {
+    .col-#{$i} {
+      @extend %col-#{$i}-of-#{$total-columns};
+      &.no-margins {
+        margin: 0;
+      }
+    }
+  }
+
+  &.reversed {
+    @for $i from 1 through $total-columns {
+      .col-#{$i} {
+        float: right;
+      }
+    }
+  }
+
+}
+
+.content-inner {
+  margin: 0 auto;
+  max-width: $body-width-max;
+  min-width: $body-width-min;
+  padding: 0 20px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.spacer {
+  min-height: 1px;
+}
+
+.main {
+  padding-left: 85px;
+}
