@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node server/bin/www",
     "start:dev": "cross-env NODE_ENV=development node server/bin/www",
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "live-server": "./node_modules/.bin/live-server --no-browser --port=10000 ./dest/library"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,8 @@
   },
   "homepage": "https://github.com/concord-consortium/portal-pages#readme",
   "devDependencies": {
-    "glob": "^7.1.2"
+    "glob": "^7.1.2",
+    "live-server": "^1.2.0"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
