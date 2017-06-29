@@ -7,7 +7,7 @@ block content
       label(for='page') Page
       select(name='file' id='page')
         each file in files
-          option(value=file) #{file}
+          option(value=file, selected=(file == '/learn-stem.concord.org/index.html' ? true : false)) #{file}
     div.form-group
       label(for='portal') Portal URL
       input(type='text' name='portal' id='portal')

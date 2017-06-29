@@ -6,6 +6,7 @@ var div = React.DOM.div;
 var img = React.DOM.img;
 var h1 = React.DOM.h1;
 var h2 = React.DOM.h2;
+var h3 = React.DOM.h3;
 var hr = React.DOM.hr;
 var a = React.DOM.a;
 var p = React.DOM.p;
@@ -72,6 +73,24 @@ var ResourceLightbox = Component({
         a({href:"http://static.concord.org/installers/cc_launcher_installer.dmg", title: "Download the CCLauncher installer"}, "Download the launcher installer"),
         ", open the .dmg file and drag the CCLauncher app to your Applications folder, then return to this page and launch the resource."
       )
+    );
+  },
+
+  renderStandards: function () {
+    var resource = this.state.resource;
+    if (!resource.standard_statements || resource.standard_statements.length === 0) {
+      return null;
+    }
+    var statements = resource.standard_statements;
+    return div({className: "portal-pages-resource-lightbox-standards"},
+      hr({}),
+      h2({}, "Standards"),
+      statements.map(function (statement) {
+        return div({},
+          h3({}, statement.notation),
+          statement.description
+        );
+      })
     );
   },
 
@@ -171,6 +190,7 @@ var ResourceLightbox = Component({
         hr({}),
         h2({}, "Requirements"),
         this.renderRequirements(),
+        this.renderStandards(),
         this.renderLearnMore()
       ),
       this.renderRelatedContent()
