@@ -13,6 +13,7 @@ var filters = require("../helpers/filters");
 var div = React.DOM.div;
 var img = React.DOM.img;
 var a = React.DOM.a;
+var i = React.DOM.i;
 
 var StemFinderResult = Component({
   getInitialState: function () {
@@ -78,9 +79,10 @@ var StemFinderResult = Component({
   },
 
   renderFavoriteStar: function () {
-    var star = this.state.favorited ? "&#x2605;" : "&#x2606;";
     var active = this.state.favorited ? " portal-pages-finder-result-favorite-active" : "";
-    return div({className: "portal-pages-finder-result-favorite" + active, dangerouslySetInnerHTML: {__html: star}, onClick: this.toggleFavorite});
+    return div({className: "portal-pages-finder-result-favorite" + active, onClick: this.toggleFavorite},
+      i({className: "icon-favorite"})
+    );
   },
 
   render: function () {
