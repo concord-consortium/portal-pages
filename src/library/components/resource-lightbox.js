@@ -78,7 +78,7 @@ var ResourceLightbox = Component({
 
   renderStandards: function () {
     var resource = this.state.resource;
-    if (resource.standard_statements.length === 0) {
+    if (!resource.standard_statements || resource.standard_statements.length === 0) {
       return null;
     }
     var statements = resource.standard_statements;
