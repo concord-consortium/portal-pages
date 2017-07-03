@@ -7,7 +7,9 @@ var waitForAutoShowingLightboxToClose = require("../helpers/wait-for-auto-lightb
 
 var div = React.DOM.div;
 var a = React.DOM.a;
+var h3 = React.DOM.h3;
 var img = React.DOM.img;
+var p = React.DOM.p;
 
 var CollectionCards = Component({
   getInitialState: function () {
@@ -57,11 +59,11 @@ var CollectionCards = Component({
     }
     return div({style: {opacity: this.state.opacity}},
       this.state.collections.map(function (collection) {
-        return div({key: collection.landing_page_slug, className: "portal-pages-collections-card"},
+        return div({key: collection.landing_page_slug, className: "portal-pages-collections-card col-4"},
           a({href: "/" + collection.landing_page_slug},
             img({alt: collection.name, src: collection.project_card_image_url}),
-            div({className: "portal-pages-collections-card-name"}, collection.name),
-            div({className: "portal-pages-collections-card-description"}, collection.filteredDescription)
+            h3({className: "portal-pages-collections-card-name"}, collection.name),
+            p({className: "portal-pages-collections-card-description"}, collection.filteredDescription)
           )
         );
       })
