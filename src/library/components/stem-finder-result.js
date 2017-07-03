@@ -42,6 +42,11 @@ var StemFinderResult = Component({
     e.preventDefault();
     e.stopPropagation();
     var lightbox = !this.state.lightbox;
+    if (jQuery('body').css('overflow') === 'hidden') {
+      jQuery('body').css('overflow', 'auto');
+    } else {
+      jQuery('body').css('overflow', 'hidden');
+    }
     // TODO: add pushstate
     this.setState({
       lightbox: lightbox,
@@ -87,10 +92,10 @@ var StemFinderResult = Component({
 
   render: function () {
     var resource = this.props.resource;
-    var options = {href: resource.stem_resource_url, onClick: this.toggleLightbox};
+    var options = {href: resource.stem_resource_url};
 
     if (this.state.hovering || this.state.lightbox) {
-      return div({className: "portal-pages-finder-result col-4", onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
+      return div({className: "portal-pages-finder-result col-4", onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
         a(options,
           div({className: "portal-pages-finder-result-description"}, resource.filteredDescription),
           GradeLevels({resource: resource}),
@@ -99,14 +104,14 @@ var StemFinderResult = Component({
         )
       );
     }
-    return div({className: "portal-pages-finder-result col-4", onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
+    return div({className: "portal-pages-finder-result col-4", onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
       a(options,
         img({alt: resource.name, src: resource.icon.url}),
         div({className: "portal-pages-finder-result-name"}, resource.name),
         GradeLevels({resource: resource}),
-        this.renderFavoriteStar(),
-        this.renderLightbox()
-      )
+        this.renderFavoriteStar()
+      ),
+      this.renderLightbox()
     );
   }
 });
