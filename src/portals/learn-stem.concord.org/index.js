@@ -15,3 +15,7 @@ PortalPages.renderCollectionCards({
   count: 3,
   fadeIn: 1000
 }, 'portal-pages-collections-cards');
+
+PortalPages.renderPageFooter({
+  fadeIn: 1000
+}, 'page-footer');
