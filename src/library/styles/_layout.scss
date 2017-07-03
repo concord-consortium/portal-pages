@@ -2,8 +2,8 @@ $size__site-main: 100%;
 $size__site-sidebar: 25%;
 
 // Dimensions
-$content-max: 1170px;
-$body-width-max: 1170px;
+$content-max: 1110px;
+$body-width-max: 1110px;
 $body-width-min: 320px;
 $footer-height: 150px;
 
@@ -46,6 +46,11 @@ $transition-function-dramatic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
 
       &.reversed {
         float: right;
+      }
+      &.center {
+        float: none;
+        margin-right: auto;
+        margin-left: auto;
       }
     }
   }

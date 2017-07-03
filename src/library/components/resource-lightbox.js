@@ -8,8 +8,10 @@ var h1 = React.DOM.h1;
 var h2 = React.DOM.h2;
 var hr = React.DOM.hr;
 var a = React.DOM.a;
+var li = React.DOM.li;
 var p = React.DOM.p;
 var span = React.DOM.span;
+var ul = React.DOM.ul;
 
 var ResourceLightbox = Component({
   getInitialState: function () {
@@ -115,10 +117,10 @@ var ResourceLightbox = Component({
   // TODO: add links
   renderSharing: function () {
     return div({className: "portal-pages-resource-lightbox-modal-sharing"},
-      div({}, "F"),
-      div({}, "T"),
-      div({}, "E"),
-      div({}, "+")
+      div({className: "share-facebook"}, "F"),
+      div({className: "share-twitter"}, "T"),
+      div({className: "share-email"}, "E"),
+      div({className: "share-more"}, "+")
     );
   },
 
@@ -159,9 +161,25 @@ var ResourceLightbox = Component({
     return div({className: "portal-pages-resource-lightbox-modal-content"},
       div({className: "portal-pages-resource-lightbox-modal-content-top"},
         this.renderIcons(),
+        div({className: "portal-pages-resource-lightbox-modal-utility"},
+          ul({},
+            li({},
+              a({className: "print"}, "print")
+            ),
+            li({},
+              a({className: "copy"}, "copy")
+            ),
+            li({},
+              a({className: "edit"}, "edit")
+            ),
+            li({},
+              a({className: "settings"}, "settings")
+            ),
+          )
+        ),
         img({src: resource.icon.url}),
         h1({}, resource.name),
-        div({className: "portal-pages-resource-lightbox-description"}, resource.filteredDescription),
+        p({className: "portal-pages-resource-lightbox-description"}, resource.filteredDescription),
         div({},
           links.preview ? a({className: "portal-pages-primary-button", href: links.preview, target: "_blank"}, "Launch Activity") : null,
           links.assign_material ? a({className: "portal-pages-secondary-button", href: links.assign_material}, "Assign Activity") : null,

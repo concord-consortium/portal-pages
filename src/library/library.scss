@@ -4,9 +4,28 @@
 @import './styles/_sizes.scss';
 @import './styles/_typography.scss';
 
+a,
+button,
+.button,
+input[type="submit"] {
+  -webkit-transition: color 0.2s ease-in-out;
+  -moz-transition: color 0.2s ease-in-out;
+  -ms-transition: color 0.2s ease-in-out;
+  -o-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+  -moz-transition-property: background-color, border-color, color, opacity;
+  -o-transition-property: background-color, border-color, color, opacity;
+  -webkit-transition-property: background-color, border-color, color, opacity;
+  transition-property: background-color, border-color, color, opacity;
+}
+
+body {
+  background: #fff url(http://localhost:10000/assets/body-bg.png) 0 5px repeat !important;
+}
+
 .portal-pages-header-contain {
   height: 195px;
-  margin-bottom: 40px
+  margin-bottom: 40px;
 }
 
 /* top bar */
@@ -47,7 +66,7 @@
   background: url('http://localhost:10000/assets/banners/concord-logo.svg') no-repeat center;
   height: 80px;
   overflow: hidden;
-  text-indent: 100%;
+  text-indent: 200%;
   white-space: nowrap;
   width: 255px;
   }
@@ -59,7 +78,7 @@
 
 .portal-pages-main-nav-contain {
   position: relative;
-  margin-top: 70px;
+  margin-top: 65px;
   text-align: right;
 }
 
@@ -95,7 +114,22 @@
       background: $white;
       color: $col-orange;
     }
-
+    &.register:hover {
+      background: $col-hover;
+      border-color: $col-hover;
+      color: $white;
+    }
+    &.log-in:hover {
+      background-color: $col-hover;
+      border-color: $col-hover;
+      color: $white;
+    }
+    i.icon-login {
+      display: block;
+      float: left;
+      margin-top: 1px;
+      margin-right: 5px;
+    }
   }
 }
 
@@ -124,8 +158,10 @@
 }
 .portal-pages-hero a {
   color: $orange;
-  text-decoration-style: solid;
-  text-decoration-line: underline;
+  text-decoration: none;
+  &:hover {
+    color: $col-hover;
+  }
 }
 .portal-pages-hero-info {
   font: 300 24px $font-museo-sans;
@@ -154,17 +190,68 @@
 .portal-pages-finder-form-inner {
   margin: 0 auto;
   padding: 50px 0;
-  width: 740px;
+  width: $content-max;
 }
 .portal-pages-finder-form-subject-areas {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 55px;
 }
 .portal-pages-finder-form-subject-areas-logo {
   display: inline-block;
   width: 140px;
   text-align: center;
   cursor: pointer;
+  .portal-pages-finder-form-subject-areas-logo-inner {
+    background: #fff;
+    color: #col-darkgray;
+    border-radius: 50%;
+    height: 80px;
+    margin: 0 auto 15px;
+    position: relative;
+    text-align: center;
+    width: 80px;
+    &:before {
+      display: block;
+      font: 48px icomoon;
+      height: 80px;
+      left: 50%;
+      margin: -23px 0 0 -40px;
+      position: absolute;
+      top: 50%;
+      width: 80px;
+    }
+  }
+  &:hover, &.selected {
+    .portal-pages-finder-form-subject-areas-logo-inner {
+      background: $col-blue;
+      color: $white;
+    }
+  }
+  &#earth-space {
+    .portal-pages-finder-form-subject-areas-logo-inner:before {
+      content: "\e915";
+    }
+  }
+  &#engineering-tech {
+    .portal-pages-finder-form-subject-areas-logo-inner:before {
+      content: "\e916";
+    }
+  }
+  &#life-sciences {
+    .portal-pages-finder-form-subject-areas-logo-inner:before {
+      content: "\e917";
+    }
+  }
+  &#mathematics {
+    .portal-pages-finder-form-subject-areas-logo-inner:before {
+      content: "\e914";
+    }
+  }
+  &#physics-chemistry {
+    .portal-pages-finder-form-subject-areas-logo-inner:before {
+      content: "\e918";
+    }
+  }
 }
 .portal-pages-finder-form-subject-areas-logo svg,
 .portal-pages-finder-form-subject-areas-logo svg text {
@@ -172,6 +259,7 @@
 }
 .portal-pages-finder-form-subject-areas-logo-label {
   font: 900 12px $font-museo-sans;
+  margin-top: 2px;
   text-transform: uppercase;
 }
 
@@ -191,41 +279,87 @@
   text-transform: uppercase;
 }
 .portal-pages-finder-form-filters-option input {
-  width: 20px;
-  height: 20px;
-  vertical-align: bottom;
+  display: none;
 }
-.portal-pages-finder-form-filters-option span {
-  margin-left: 5px;
+.portal-pages-finder-form-filters-option input[type="checkbox"] + label {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 30px;
+  padding: 4px 0;
+  position: relative;
+  &:before {
+    background: white;
+    content: " ";
+    display: inline-block;
+    height: 20px;
+    left: -30px;
+    position: absolute;
+    top: 0;
+    width: 20px;
+    z-index: 0;
+  }
+}
+.portal-pages-finder-form-filters-option input[type="checkbox"]:checked + label {
+  &:before {
+    color: #0592af;
+    content: " \e907";
+    font-family: "icomoon";
+    font-size: 10px;
+    line-height: 20px;
+    text-align: center;
+  }
 }
 
 .portal-pages-finder-form-search-title {
   font-size: 16px;
 }
-.portal-pages-finder-form-search input {
-  padding: 14px;
-  font-size: 16px;
-  margin-top: 10px;
+.portal-pages-finder-form-search {
+  form {
+    padding: 0;
+  }
+  input {
+    border: none;
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 14px 14px 14px 55px;
+    position: relative;
+    width: 100%;
+  }
+  .portal-pages-search-input-container {
+    position: relative;
+    &:after {
+      color: rgba(49, 49, 49, 0.25);
+      content: "\e90c";
+      font-family: "icomoon";
+      font-size: 20px;
+      left: 20px;
+      position: absolute;
+      top: 20px;
+    }
+  }
 }
 .portal-pages-finder-results {
   font-size: 16px;
 }
 .portal-pages-finder-results-inner {
   padding: 30px 0;
-  width: 1170px;
+  width: $content-max;
+}
+.portal-pages-finder-results-cards {
+  overflow: hidden;
 }
 .portal-pages-finder-result {
-  width: 295px;
-  min-height: 350px;
-  display: inline-block;
-  margin: 15px 0;
-  vertical-align: top;
   background-color: $white;
-  position: relative;
   cursor: pointer;
+  height: 355px;
+  min-height: 355px;
+  padding-bottom: 90px;
+  /* position: unset; Using 'unset' here because of styling set in https://s3.amazonaws.com/models-resources/portal-pages/library/portal-pages.css. Remove once the latter is no longer affecting page. */
+  vertical-align: top;
 }
 .portal-pages-finder-result a {
   display: block;
+  position: relative;
 }
 .portal-pages-finder-result img {
   height: auto;
@@ -238,27 +372,30 @@
   color: $blue;
   font: 700 18px $font-museo-sans;
   line-height: 30px;
-  margin: 30px 15px 20px 15px;
+  margin: 30px;
   pointer-events: none;
 }
 .portal-pages-finder-result-description {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 15px;
   background-color: $blue;
+  border-bottom: solid 90px #0592af;
+  bottom: 0;
   color: $white;
-  pointer-events: none;
+  height: 295px;
+  left: 0;
   overflow: hidden;
+  padding: 60px 30px 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
   text-overflow: ellipsis;
+  top: 0;
 }
 .portal-pages-finder-result-grade-levels {
+  bottom: 30px;
+  left: 30px;
   position: absolute;
-  left: 15px;
-  bottom: 15px;
   pointer-events: none;
+  right: 30px;
 }
 .portal-pages-finder-result-grade-level {
   background-color: $light-gray;
@@ -274,56 +411,75 @@
   right: 15px;
   color: $light-gray;
   font-size: 32px;
+  text-shadow: -1px 0 $col-darkgray-50, 0 1px $col-darkgray-50, 1px 0 $col-darkgray-50, 0 -1px $col-darkgray-50;
 }
 .portal-pages-finder-result-favorite-active {
   color: $gold;
+  text-shadow: 0 0 transparent, 0 0 transparent, 0 0 transparent, 0 0 transparent;
 }
 .portal-pages-finder-header {
   margin: 20px 80px;
   font-size: 28px;
 }
-.portal-pages-finder-header-resource-count span {
-  font-weight: bold;
+.portal-pages-finder-header-resource-count {
+  color: $col-darkgray;
+  font-family: $font-museo;
+  font-size: 36px;
+  font-weight: 100;
+  strong {
+    font-weight: 900;
+  }
 }
 .portal-pages-finder-load-all {
   text-align: center;
-  margin: 30px 0;
+  margin: 60px 0 0;
 }
 .portal-pages-finder-load-all button {
-  display: inline-block;
-  width: 400px;
+  background: $col-orange;
   border: 0;
-  padding: 20px 0;
-  font-size: 18px;
-  border-radius: 0;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
-  background: $orange;
+  border-radius: 0;
   color: $white;
+  display: block;
+  font: 500 18px $font-museo-sans;
+  padding: 20px 0;
+  width: 100%;
+  &:hover {
+    background-color: $col-hover;
+  }
 }
 .portal-pages-finder-header-filters {
+  font: 900 13px $font-museo-sans;
   margin: 20px 0;
-  font-size: 14px;
-  font-weight: bold;
   text-transform: uppercase;
 }
 .portal-pages-finder-header-filter {
+  background-color: $col-blue;
+  color: $white;
   display: inline-block;
   margin-right: 10px;
-  padding: 15px;
-  background-color: $blue;
-  color: $white;
-}
-.portal-pages-finder-header-filter span {
-  margin: 0 5px 0 20px;
-  cursor: pointer;
+  padding: 20px;
+  span {
+    color: $white;
+    font-family: icomoon;
+    margin: 0 0 0 20px;
+    cursor: pointer;
+  }
+  span:after {
+    content: "\e908";
+  }
+  &:hover {
+    background: $col-darkgray;
+  }
+
 }
 .portal-pages-finder-header-filters-clear {
+  color: $orange;
+  cursor: pointer;
   display: inline-block;
   margin: 10px;
   padding: 15px;
-  color: $orange;
-  cursor: pointer;
 }
 .portal-pages-resource-lightbox-not-found {
   margin: 20px 0;
@@ -338,22 +494,21 @@
   font-size: 20px;
 }
 .portal-pages-collections-page-header h1 {
-  font-size: 42px;
-  color: #000;
-  font-weight: normal;
-  margin: 20px 0;
+  font: 100 54px $font-museo;
+  color: $col-darkgray;
+  margin: 0 0 20px;
 }
 .portal-pages-collections-page-header-info {
-  margin: 20px 0;
-}
-.portal-pages-collections-page-header-info a {
-  color: $orange;
-  font-weight: bold;
+  color: $col-darkgray;
+  font: 300 24px $font-museo-sans;
+  line-height: 36px;
 }
 .portal-pages-collections-page-header a {
-  color: $orange;
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 18px;
+  &.special-link:after {
+    font-size: 18px;
+    margin-top: 4px !important;
+  }
 }
 .portal-pages-collections-page-diagonal-spacer {
   background:#fff;
@@ -381,19 +536,23 @@
   font-size: 16px;
 }
 .portal-pages-collections-inner {
-  padding: 30px 0;
+  padding: 80px 0 30px;
+  width: $content-max;
 }
 .portal-pages-collections-inner h2 {
-  font-size: 28px;
-  color: #000;
-  font-weight: normal;
-  margin: 20px;
-}
-.portal-pages-collections-inner h2 span {
-  font-weight: bold;
+  color: $col-darkgray;
+  font-size: 36px;
+  font-weight: 100;
+  line-height: 36px;
+  margin: 0 20px 40px;
+  strong {
+    font-weight: 900;
+  }
 }
 .portal-pages-collections-info {
-  margin: 20px;
+  font-size: 18px;
+  line-height: 30px;
+  margin: 0 20px 30px;
 }
 .portal-pages-collections-info a {
   color: $orange;
@@ -413,54 +572,77 @@
   font-size: 14px;
 }
 .portal-pages-collections-card img {
-  width: 285px;
-  max-height: 185px;
+  height: 235px;
+  max-height: 235px;
+  pointer-events: none;
+  width: 100%;
 }
 .portal-pages-collections-card-name {
-  color: $blue;
-  margin: 30px 15px 20px 15px;
+  color: $col-blue;
+  font: 700 18px $font-museo-sans;
+  line-height: 30px;
+  margin: 30px;
 }
 .portal-pages-collections-card-description {
-  color: #000;
-  margin: 15px;
+  color: $col-darkgray;
+  font: 300 18px $font-museo-sans;
+  line-height: 30px;
+  margin: 30px;
+}
+
+.portal-pages-resource-lightbox {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 999;
 }
 
 .portal-pages-resource-lightbox-background {
-  z-index: 1000;
-  background-color: #000;
-  opacity: 0.25;
-  position: fixed;
-  top: 0;
-  right: 0;
+  background: $black;
   bottom: 0;
   left: 0;
+  opacity: 0.85;
+  overflow-y: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
 }
 .portal-pages-resource-lightbox-background-close {
-  z-index: 1001;
-  position: fixed;
-  top: 0;
-  right: 20px;
   color: #fff;
   font-size: 48px;
+  position: fixed;
+  right: 20px;
+  top: 0;
+  z-index: 1001;
 }
 .portal-pages-resource-lightbox-modal {
-  z-index: 1002;
-  position: fixed;
-  top: 30px;
-  right: 15%;
+  background-color: $white;
   bottom: 30px;
   left: 15%;
   overflow: auto;
-  background-color: #fff;
+  padding: 0 95px 80px;
+  position: absolute;
+  right: 50%;
+  top: 100px;
+  width: 730px;
+  z-index: 1002;
+  a {
+    display: inline;
+  }
 }
+
 .portal-pages-resource-lightbox-modal-sharing {
-  z-index: 1003;
-  position: fixed;
-  top: 60px;
-  left: 15%;
-  margin-left: -30px;
   background-color: $orange;
   color: $white;
+  left: 15%;
+  margin-left: -30px;
+  position: fixed;
+  top: 195px;
+  z-index: 1003;
 }
 .portal-pages-resource-lightbox-modal-sharing div {
   width: 20px;
@@ -473,7 +655,7 @@
   border: none;
 }
 .portal-pages-resource-lightbox-modal-content {
-  color: $black;
+  color: $col-darkgray;
 }
 .portal-pages-resource-lightbox-icons {
   float: right;
@@ -485,18 +667,63 @@
     background-color: $light-gray;
   }
 }
+.portal-pages-resource-lightbox-modal-utility {
+  height: 25px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  text-align: right;
+  ul {
+    height: 25px;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    font: 25px "icomoon";
+    height: 25px;
+    margin-left: 20px;
+    list-style: none;
+    width: 25px;
+    a {
+      display: block;
+      overflow: hidden;
+      position: relative;
+      text-indent: 200%;
+      white-space: nowrap;
+      &:before {
+        left: 0;
+        position: absolute;
+        text-indent: 0;
+        top: 0;
+      }
+      &.print:before {
+        content: "\e91d";
+      }
+      &.copy:before {
+        content: "\e91c";
+      }
+      &.edit:before {
+        content: "\e91b";
+      }
+      &.settings:before {
+        content: "\e91a";
+      }
+    }
+  }
+}
 .portal-pages-resource-lightbox-modal-content-top {
-  padding: 50px 70px 20px 70px;
+  padding: 0;
 }
 .portal-pages-resource-lightbox-modal-content img {
-  width: 100%;
-  height: auto;
-  max-height: 300px;
+  height: 400px;
+  max-height: 400px;
+  width: 730px;
 }
 .portal-pages-resource-lightbox-modal-content h1 {
-  color: #000;
+  color: $col-darkgray;
+  font: 700 36px $font-museo-sans;
+  line-height: 48px;
   margin: 20px 0;
-  font-weight: bold;
 }
 .portal-pages-resource-lightbox-modal-content h2 {
   color: #000;
@@ -514,7 +741,8 @@
   margin: 50px 0;
 }
 .portal-pages-resource-lightbox-description {
-  font-size: 18px;
+  font: 300 18px $font-museo-sans;
+  line-height: 30px;
   margin: 20px 0;
 }
 .portal-pages-resource-lightbox-requirements {
@@ -783,3 +1011,130 @@ footer {
   position: relative;
   padding: 1rem;
 }
+
+/*----- login and register forms -----*/
+.blurred {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+#modal-overlay {
+  background: #000;
+  height: 100%;
+  left: 0;
+  opacity: .85;
+  top: 0;
+  width: 100%;
+  z-index: 101;
+}
+.modal {
+  margin: 0;
+  position: fixed;
+  top: 100px;
+  }
+.modal .close {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 0 0 rgba(51,51,51,0);
+  color: $white;
+  cursor: pointer;
+  display: block;
+  font: 300 46px $font-museo-sans;
+  padding: 0;
+  position: fixed;
+  right: 20px;
+  text-decoration: none !important;
+  top: 20px;
+  z-index: 102;
+}
+
+#login-form {
+  margin-left: -460px;
+  min-height: 300px !important;
+  padding: 60px 190px 0;
+  width: 540px;
+
+  dl, form { margin: 0; padding: 0; }
+  dd {
+    margin-bottom: 30px;
+  }
+  dt {
+    font-size: 15px;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+  }
+  footer {
+    background: $col-lightgray;
+    color: $col-darkgray;
+    font: 300 18px $font-museo-sans;
+    height: auto;
+    margin-left: -190px;
+    padding: 60px 190px;
+    width: 540px;
+    a {
+      font-weight: 700;
+    }
+    p {
+      line-height: 30px;
+      margin: 0;
+    }
+  }
+  h2 {
+    font: 100 36px $font-museo;
+    color: $col-darkgray;
+    margin: 0 0 30px;
+    padding: 0;
+    strong {
+      color: $col-blue;
+      font-weight: 900;
+    }
+  }
+  input[type="text"], input[type="password"] {
+    border: solid 2px $col-blue;
+    width: 528px;
+  }
+  input[type="submit"] {
+    background: $col-orange;
+    border: none;
+    border-radius: 0 !important;
+    font: 700 15px $font-museo-sans;
+    margin-left: 20px;
+    padding: 10px 20px !important;
+  }
+  .third-party-login-options {
+    a.badge {
+      border-radius: 50%;
+      color: $white;
+      display: inline-block;
+      height: 40px;
+      overflow: hidden;
+      position: relative;
+      text-indent: 200%;
+      width: 40px;
+      white-space: nowrap;
+      &.google {
+        background: #df4a32;
+        color: $white;
+        &:before {
+          content: "\e90f";
+          font: 24px "icomoon";
+          left: 50%;
+          margin: -12px 0 0 -12px;
+          position: absolute;
+          text-indent: 0;
+          top: 50%;
+        }
+      }
+    }
+  }
+  .submit-button-container {
+    font: 700 15px $font-museo-sans;
+    margin: 30px 0 60px;
+    text-align: right;
+  }
+}
+
+#footer { display: none; }
