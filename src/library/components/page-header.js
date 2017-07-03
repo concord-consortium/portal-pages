@@ -39,7 +39,7 @@ var PageHeader = Component({
 
   handleLogginButton: function (e) {
     e.preventDefault();
-    Portal.showModal("#log-in");
+    Portal.showModal("#login-form");
   },
 
   handleRegisterButton: function (e) {
@@ -82,12 +82,14 @@ var PageHeader = Component({
             ),
             li({className: "portal-pages-main-nav-item"},
               a({href: "/recent_activity", className: "portal-pages-main-nav-item__link button register"},
-                "My Classes"
+                i({clasName: 'icon-home'}),
+                " My Classes"
               )
             ),
             li({className: "portal-pages-main-nav-item"},
               a({href: "/logout", className: "portal-pages-main-nav-item__link button log-in"},
-                "Log Out"
+                i({className: 'icon-login'}),
+                " Log Out"
               )
             )
           )
@@ -135,7 +137,8 @@ var PageHeader = Component({
             ),
             li({className: "portal-pages-main-nav-item"},
               a({href: "/login", className: "portal-pages-main-nav-item__link button log-in", onClick: this.handleLogginButton},
-                "Log In"
+                i({className: 'icon-login'}),
+                " Log In"
               )
             )
           )
@@ -151,28 +154,3 @@ var PageHeader = Component({
 });
 
 module.exports = PageHeader;
-
-/* <div class="portal-pages-umbrella">
-  <div class="portal-pages-umbrella-contain cols">
-    <div class="portal-pages-concord-link col-12">
-      <a href="https://concord.org/" class="portal-pages-concord-link__item">Learn about Concord Consortium at concord.org <i class="icon-arrow-diagonal"></i></a>
-    </div>
-  </div>
-</div>
-
-<nav class="concord-navigation cols no-collapse">
-  <div class="logo-contain col-3">
-    <a href="/" rel="home">
-      <div class="concord-logo">Home</div>
-    </a>
-  </div>
-  <div class="portal-pages-main-nav col-9">
-    <ul class="portal-pages-main-nav-contain">
-      <li class="portal-pages-main-nav-item"><a href="/collections" class="portal-pages-main-nav-item__link">Collections</a></li>
-      <li class="portal-pages-main-nav-item"><a href="/about" class="portal-pages-main-nav-item__link">About the Learn Portal</a></li>
-      <li class="portal-pages-main-nav-item"><a href="/about" class="portal-pages-main-nav-item__link button register">Register</a></li>
-      <li class="portal-pages-main-nav-item"><a href="/about" class="portal-pages-main-nav-item__link button log-in">Log In</a></li>
-    </ul>
-    <div style="display: none;" class="portal-pages-nav-auth" id="portal-pages-nav-auth"><!-- filled in by React, need id for targetting --></div>
-  </div>
-</nav> */
