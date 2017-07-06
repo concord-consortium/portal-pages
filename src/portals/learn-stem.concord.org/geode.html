@@ -1,112 +1,44 @@
-<style>
-<!--
-#signup-default-modal { position: fixed; }
--->
-</style>
-<script>
-jQuery(document).ready(function() {
-  if (Portal.currentUser.isLoggedIn) {
-    var logged_in_content = '<p><img src="https://concord.org/sites/default/files/images/projects/geode/geode-students.jpg" alt="GEODE Students" style="float: right; height: auto; margin: 3px 0 0 1em; width: 250px;" />The Geological Models for Explorations of Dynamic Earth (GEODE) project is working on two models and associated scaffolded activities for middle school Earth Science students.</p><ul><li>The <strong>Seismic Explorer Model</strong> allows students to freely explore earthquakes, volcanic activity and plate boundaries.</li><li><strong>Exploring Earth\'s Seismicity</strong> is a three-part scaffolded activity, guiding students through mapping earthquakes, volcanoes, and tectonic plates.</li><li>The <strong>Geodynamic model</strong> will include a system of plates bounded on all sides by other plates that interact like those found on Earth, providing an environment where students can correlate surface geologic features and events to plate interactions. This model is coming soon!</li></ul>';
-    jQuery('#carousel_wrapper').hide();
-    jQuery('#intro-text').css('width', '640px');
-    jQuery('#intro-text').html(logged_in_content);
-  }
-});
-</script>
-<h1 class="page-title">GEODE</h1>
-<p class="tagline">Geological Models for Explorations of Dynamic Earth</p>
 
-<div id="content-upper" class="cols-5-3" style="padding-bottom: 22px; width:880px;">
-    <div id="intro-text" class="col" style="width: 350px;">
-      <p>The GEODE project is developing a new and improved version of Seismic Explorer software. The Seismic Explorer model allows users to see patterns of earthquakes on Earth, including magnitude, depth, location and frequency. We have added new data sets related to volcanic eruptions, and we will be adding additional data sets related to the rate and direction of plate motion and plate boundaries. Seismic Explorer automatically updates its database of earthquakes, allowing you to explore recent events in the classroom. With Seismic Explorer, you can explore patterns of earthquakes and volcanic eruptions as they relate to topographic features such as mountains, ocean trenches, and river valleys.
-      </p>
-      <p> GEODE is also developing a new geodynamic plate tectonic model for middle school Earth science classrooms. The software will include a system of plates bounded on all sides by other plates that interact like those found on Earth, providing an environment where students can correlate surface geologic features and events to plate interactions.</p>
-      <p style="clear: both;">Want to learn more about the project and its research? Check out the <a href="http://concord.org/geode">GEODE project page</a>. <span style="color: #eb8723;">»</span></p>
-
-<p></div><!-- end .col -->
-
-
-<!-- carousel html -->
-
-<script type="text/javascript" src="/assets/jshowoff.js" ></script>
-<div id="carousel_wrapper" style="width:450px;float:right;padding: 0 0 16px;">
-<div id="carousel" style="height:270px;overflow: hidden;background:#FEE9AA;">
-<div class="slide">
-  <img src="https://geode-resources.concord.org/images/1.png" alt="GEODE" />
+<script src="https://use.typekit.net/juj7nhw.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<header id="page-header" class="portal-pages-header-contain"></header>
+<div class="cols">
+  <div class="portal-pages-collection-page-intro col-7">
+    <h1>GEODE</h1>
+    <p class="tagline">Geological Models for Explorations of Dynamic Earth</p>
+    <p class="byline">by <a href="https://concord.org/">Concord Consortium</a></p>
+    <p>The GEODE project is developing a new and improved version of Seismic Explorer software. The Seismic Explorer model allows users to see patterns of earthquakes on Earth, including magnitude, depth, location and frequency. We have added new data sets related to volcanic eruptions, and we will be adding additional data sets related to the rate and direction of plate motion and plate boundaries. Seismic Explorer automatically updates its database of earthquakes, allowing you to explore recent events in the classroom. With Seismic Explorer, you can explore patterns of earthquakes and volcanic eruptions as they relate to topographic features such as mountains, ocean trenches, and river valleys.</p>
+    <p> GEODE is also developing a new geodynamic plate tectonic model for middle school Earth science classrooms. The software will include a system of plates bounded on all sides by other plates that interact like those found on Earth, providing an environment where students can correlate surface geologic features and events to plate interactions.</p>
+    <p>Want to learn more about the project and its research? Check out the <a class="special-link" href="http://concord.org/geode">GEODE project page</a></p>
+  </div><!-- end .col -->
+  <div class="portal-pages-collection-page-intro col-5">
+    <figure><img src="https://geode-resources.concord.org/images/1.png" alt="GEODE" /></figure>
+    <p>We're looking for enthusiastic teachers to use our new models, try activities, and provide us with feedback.</p>
+    <p><a class="special-link" href="https://www.surveymonkey.com/r/GEODErecruit2017">Join the team!</a></p>
+  </div><!-- end .col -->
 </div>
-<div class="slide">
-  <img src="https://geode-resources.concord.org/images/2.png" alt="GEODE" />
-</div>
-<div class="slide">
-  <img src="https://geode-resources.concord.org/images/3.png" alt="GEODE" />
-</div>
-</div>
-      <p>We're looking for enthusiastic teachers to use our new models, try activities, and provide us with feedback.<br /><br /><a class="button" style="clear: both !important; display: block; float: left; font: 300 1.25em museo-slab, georgia, times, 'times new roman', serif; margin-bottom: 1em; padding: 10px 20px !important;" href="https://www.surveymonkey.com/r/GEODErecruit2017" ;return false;">Join the team!</a></p>
-</div>
-<script type="text/javascript">
-$jq(document).ready(function () {
-  $jq('#carousel').jshowoff({
-    speed: 5000,
-    changeSpeed: 1000,
-    effect: 'slideLeft',
-    controls: false,
-    links: true,
-    hoverPause: true
-  });
-});
-</script>
-<!----Carousel end ------>
-              </div><!-- end .col -->
+<div class="portal-pages-collection-resource-list skew top-only gray">
+  <div class="cols skew-cancel">
+    <div id="collection-1"></div>
+    <div id="collection-2-heading" class="collection-heading col-12">
+      <h2>Interactives</h2>
+      <hr class="hr-thick" />
     </div>
-
-<div id='collection-1'></div>
-<div id="collection-2">
-<h2>GEODE Interactives</h2>
-<div class="material_list">
-<div class="material_list_item" data-material_id="113" data-material_name="Seismic Explorer" id="search_interactive_113"><div class="main-part"><div class="material_icon"><a class="thumb_link" href="https://learn.concord.org/interactives/113"><img src="https://concord.org/sites/default/files/styles/image_srf/public/seismic-explorer.png" width="100%"></a></div><div><div style="overflow: hidden;"><table width="100%"><tbody><tr><td><div><div style="float: right; margin-right: 5px;"><a href="http://seismic-explorer.concord.org/" class="button" target="_blank">Preview</a></div></div></td></tr><tr><td><span class="material_header"><span class="material_meta_data"><span class="RunsInBrowser">Runs in browser</span><span class="is_official">Official</span></span><br><a href="https://learn.concord.org/interactives/113">Seismic Explorer</a><span class="superTiny"><a href="https://learn.concord.org/interactives/113/edit" class="">(portal settings)</a></span></span><div><span style="font-weight: bold;">By Ethan McElroy</span></div></td></tr><tr><td></td></tr></tbody></table></div></div><div class="material_body"></div></div><div class="toggle-details"><i class="toggle-details-icon fa fa-chevron-down"></i><i class="toggle-details-icon fa fa-chevron-up" style="display: none;"></i><div class="material-details" style="display: none;"><div class="material-description one-col"><h3>Description</h3><div>Explore the pattern of earthquakes on Earth, including magnitude, depth, location, and frequency.</div></div><div class="material-activities"></div></div></div></div>
+    <div id="collection-2" class="material-list">
+      <div class="material-item" data-material_id="113" data-material_name="Seismic Explorer" id="search_interactive_113">
+        <div class="material-item__image col-4">
+          <a href="https://learn.concord.org/interactives/113">
+            <img src="https://concord.org/sites/default/files/styles/image_srf/public/seismic-explorer.png">
+          </a>
+        </div>
+        <div class="material-item-content col-8">
+          <h3 class="material-item__title"><a href="https://learn.concord.org/interactives/113">Seismic Explorer</a></h3>
+          <div class="material-item__description">
+            <p>Explore the pattern of earthquakes on Earth, including magnitude, depth, location, and frequency.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-<script>
-  // Last argument is number of visible materials.
-Portal.renderMaterialsCollection(27, '#collection-1', {
-    limit: 20,
-    onDataLoad: function (materials) {},
-      header: 'GEODE Activities'
-  });
-
-</script>
-<style>
-h1.page-title { margin-bottom: 0; }
-h2 { margin-top: 20px; }
-p.tagline { color: #75a643; font-size: 1.15em; }
-.jshowoff p.jshowoff-slidelinks
-{
-text-align: right;
-margin-top: 3px;
-}
-.jshowoff-slidelinks a
-{
-background: #BDDFDF;
-color: #BDDFDF;
-display: inline-block;
-height: 10px;
-margin-left: 5px;
-text-decoration: none;
-text-align: left;
-text-indent: -999em;
-width: 10px;
-border-radius: 50%;
-}
-.jshowoff-slidelinks a:hover, .jshowoff-controls a:hover
-{
-color: #8CBBB8;
-}
-.jshowoff-slidelinks a.jshowoff-active
-{
-background: #8CBBB8;
-color: #8CBBB8;
-}
-h1.page-title { margin-bottom: 0; }
-h2 { margin-top: 20px; }
-p.tagline { color: #75a643; font-size: 1.15em; }
-</style>
+<footer id="page-footer" class="concord-footer"></footer>

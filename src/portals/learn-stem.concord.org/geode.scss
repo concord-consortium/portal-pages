@@ -1,0 +1,29 @@
+.jshowoff p.jshowoff-slidelinks
+{
+text-align: right;
+margin-top: 3px;
+}
+.jshowoff-slidelinks a
+{
+background: #BDDFDF;
+color: #BDDFDF;
+display: inline-block;
+height: 10px;
+margin-left: 5px;
+text-decoration: none;
+text-align: left;
+text-indent: -999em;
+width: 10px;
+border-radius: 50%;
+}
+.jshowoff-slidelinks a:hover, .jshowoff-controls a:hover
+{
+color: #8CBBB8;
+}
+.jshowoff-slidelinks a.jshowoff-active
+{
+background: #8CBBB8;
+color: #8CBBB8;
+}
+h1.page-title { margin-bottom: 0; }
+h2 { margin-top: 20px; }
