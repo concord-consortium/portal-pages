@@ -38,7 +38,7 @@ var RelatedResourceResult = Component({
 
   render: function () {
     var resource = this.props.resource;
-    var options = {className: "portal-pages-finder-result", onClick: this.handleClick, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
+    var options = {className: "portal-pages-finder-result col-6", onClick: this.handleClick, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
 
     if (this.state.hovering) {
       return div(options,

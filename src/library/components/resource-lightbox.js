@@ -125,7 +125,7 @@ var ResourceLightbox = Component({
     if (resource.related_materials.length === 0) {
       return null;
     }
-    return div({className: "portal-pages-resource-lightbox-related-content"},
+    return div({className: "portal-pages-resource-lightbox-related-content cols"},
       h2({}, "You may also like:"),
       resource.related_materials.map(function (resource, i) {
         return RelatedResourceResult({key: i, resource: resource, replaceResource: this.replaceResource});
@@ -136,10 +136,10 @@ var ResourceLightbox = Component({
   // TODO: add links
   renderSharing: function () {
     return div({className: "portal-pages-resource-lightbox-modal-sharing"},
-      div({className: "share-facebook"}, "F"),
-      div({className: "share-twitter"}, "T"),
-      div({className: "share-email"}, "E"),
-      div({className: "share-more"}, "+")
+      a({className: "share-facebook"}, "Facebook"),
+      a({className: "share-twitter"}, "Twitter"),
+      a({className: "share-email"}, "Email"),
+      a({className: "share-more"}, "More")
     );
   },
 
@@ -219,7 +219,7 @@ var ResourceLightbox = Component({
     var resource = this.state.resource;
     return div({className: "portal-pages-resource-lightbox"},
       div({className: "portal-pages-resource-lightbox-background", onClick: this.handleClose}),
-      div({className: "portal-pages-resource-lightbox-background-close"}, "X"),
+      div({className: "portal-pages-resource-lightbox-background-close"}, "x"),
       div({className: "portal-pages-resource-lightbox-modal"},
         resource ? this.renderResource() : this.render404()
       ),

@@ -4,6 +4,8 @@
 @import './styles/_sizes.scss';
 @import './styles/_typography.scss';
 
+html, body { height: 100%; }
+
 a,
 button,
 .button,
@@ -21,6 +23,10 @@ input[type="submit"] {
 
 body {
   background: #fff url(http://localhost:10000/assets/body-bg.png) 0 5px repeat !important;
+}
+
+.landing-container {
+  height: 100%;
 }
 
 .portal-pages-header-contain {
@@ -487,10 +493,10 @@ body {
   font-weight: bold;
 }
 
-/* collectsion page */
+/* collections page */
 
 .portal-pages-collections-page-header {
-  background-color: #fff;
+  background: transparent;
   font-size: 20px;
 }
 .portal-pages-collections-page-header h1 {
@@ -512,11 +518,12 @@ body {
 }
 .portal-pages-collections-page-diagonal-spacer {
   background:#fff;
-  background: linear-gradient(to right bottom, #fff 50%, #EBEBEB 50%);
+  background: linear-gradient(to right bottom, $white 50%, $col-mediumgray 50%);
   height: 100px;
 }
 .portal-pages-collections-page-list {
-  background-color: #EBEBEB;
+  background-color: $col-mediumgray;
+  margin-top: 20px;
 }
 .portal-pages-collections-page-list-inner {
   padding: 10px 0 30px 0;
@@ -525,10 +532,17 @@ body {
 
 /* collections */
 
+/* replace these "shim" classes with something better */
 .portal-pages-diagonal-spacer {
-  background:$white;
-  background: linear-gradient(to right bottom, $light-gray 50%, $medium-gray 50%);
+  background: $col-lightgray;
+  background: linear-gradient(to right bottom, $col-lightgray 50%, $col-mediumgray 50%);
   height: 150px;
+}
+.portal-pages-diagonal-spacer-2 {
+  background: $col-lightgray;
+  height: 220px;
+  margin-bottom: -270px;
+  width: 100%;
 }
 
 .portal-pages-collections {
@@ -536,7 +550,7 @@ body {
   font-size: 16px;
 }
 .portal-pages-collections-inner {
-  padding: 80px 0 30px;
+  padding: 40px 0 30px;
   width: $content-max;
 }
 .portal-pages-collections-inner h2 {
@@ -559,7 +573,9 @@ body {
   font-weight: bold;
 }
 .portal-pages-collections-cards {
-  margin-top: 30px;
+  clear: both;
+  margin-top: 0;
+  overflow: hidden;
 }
 .portal-pages-collections-card {
   width: 285px;
@@ -594,6 +610,7 @@ body {
   bottom: 0;
   height: 100%;
   left: 0;
+  overflow-y: auto;
   position: fixed;
   right: 0;
   top: 0;
@@ -616,12 +633,13 @@ body {
   font-size: 48px;
   position: fixed;
   right: 20px;
-  top: 0;
+  top: -10px;
   z-index: 1001;
 }
 .portal-pages-resource-lightbox-modal {
   background-color: $white;
   bottom: 30px;
+  height: 100%;
   left: 15%;
   overflow: auto;
   padding: 0 95px 80px;
@@ -636,24 +654,48 @@ body {
 }
 
 .portal-pages-resource-lightbox-modal-sharing {
-  background-color: $orange;
-  color: $white;
+  background: transparent;
   left: 15%;
   margin-left: -30px;
   position: fixed;
   top: 195px;
   z-index: 1003;
 }
-.portal-pages-resource-lightbox-modal-sharing div {
-  width: 20px;
-  height: 20px;
-  padding: 5px;
+.portal-pages-resource-lightbox-modal-sharing a {
+  background-color: $col-orange;
+  color: $white;
+  display: block;
+  height: 30px;
+  margin: 0 0 1px;
+  overflow: hidden;
+  position: relative;
   text-align: center;
-  border-bottom: 1px solid $black;
+  text-indent: 100%;
+  width: 30px;
+
+  &:before {
+    display: block;
+    font: 18px icomoon;
+    height: 100%;
+    margin: 6px 0 0 -24px;
+    position: absolute;
+    width: 100%;
+  }
+  &.share-facebook:before {
+    content: "\e90e";
+    margin: 6px 0 0 -19px;
+  }
+  &.share-twitter:before {
+    content: "\e910";
+  }
+  &.share-email:before {
+    content: "\e90a";
+  }
+  &.share-more:before {
+    content: "\e90d";
+  }
 }
-.portal-pages-resource-lightbox-modal-sharing div:last-child {
-  border: none;
-}
+
 .portal-pages-resource-lightbox-modal-content {
   color: $col-darkgray;
 }
@@ -714,7 +756,7 @@ body {
 .portal-pages-resource-lightbox-modal-content-top {
   padding: 0;
 }
-.portal-pages-resource-lightbox-modal-content img {
+.portal-pages-resource-lightbox-modal-content-top img {
   height: 400px;
   max-height: 400px;
   width: 730px;
@@ -727,14 +769,15 @@ body {
 }
 .portal-pages-resource-lightbox-modal-content h2 {
   color: #000;
-  margin: 10px 0;
+  margin: 0;
   font-weight: bold;
   font-size: 14px;
+  line-height: 1;
   text-transform: uppercase;
 }
 .portal-pages-resource-lightbox-modal-content hr {
   border:none;
-  border-top:1px dashed $medium-gray;
+  border-top: 2px dotted $col-mediumgray;
   color:#fff;
   background-color:#fff;
   height:1px;
@@ -743,7 +786,7 @@ body {
 .portal-pages-resource-lightbox-description {
   font: 300 18px $font-museo-sans;
   line-height: 30px;
-  margin: 20px 0;
+  margin: 30px 0;
 }
 .portal-pages-resource-lightbox-requirements {
   margin: 10px 0;
@@ -760,8 +803,8 @@ body {
 
 .portal-pages-resource-lightbox-related-content {
   background-color: $light-gray;
-  margin-top: 40px;
-  padding: 50px;
+  margin: 40px -95px 0 -95px;
+  padding: 50px 70px;
 }
 .portal-pages-resource-lightbox-related-content h2 {
   padding-left: 20px;
@@ -819,9 +862,9 @@ $materials-collection-item-icon-width: 300px;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   padding: 10px 20px;
-  background: $orange;
+  background: $col-orange;
   color: #fff;
-  border: 2px solid $orange;
+  border: 2px solid $col-orange;
   font-size: 12px;
   font-weight: bold;
 }
@@ -835,8 +878,8 @@ $materials-collection-item-icon-width: 300px;
   margin-left: 7px;
   padding: 10px 20px;
   background: #fff;
-  color: $orange;
-  border: 2px solid $orange;
+  color: $col-orange;
+  border: 2px solid $col-orange;
   font-size: 12px;
   font-weight: bold;
 }
@@ -844,8 +887,8 @@ $materials-collection-item-icon-width: 300px;
 /* ----- Site Footer ----- */
 
 #footer, .concord-footer {
-  background-color: $col-lightgray;
-  padding: 70px 0 50px;
+  background-color: $col-mediumgray;
+  padding: 0 0 50px;
   height: auto;
 
   .mobile-join-us {
@@ -876,6 +919,11 @@ $materials-collection-item-icon-width: 300px;
 
   a {color: $col-darkgray-25  ;}
   a:hover {color: $col-darkgray;}
+}
+
+.page-footer-inner {
+  border-top: 2px dotted $col-darkgray-15;
+  padding-top: 100px;
 }
 
 
@@ -1140,4 +1188,77 @@ footer {
   }
 }
 
-#footer { display: none; }
+/* COLLECTION PAGE STYLES */
+.landing-container .home-page-content { width: 100%; }
+.portal-pages-collection-page-intro {
+
+  &:nth-child(2) {
+    a.special-link, p {
+      font-size: 15px;
+      line-height: 24px;
+      margin-bottom: 30px;
+    }
+    figure {
+      margin: 0 0 15px;
+      padding: 0;
+    }
+  }
+
+  h1 {
+    font: 100 54px $font-museo;
+    color: $col-darkgray;
+    margin: 0;
+  }
+  dd, dt, li, p {
+    font: 300 18px $font-museo-sans;
+    line-height: 30px;
+    margin-bottom: 40px;
+  }
+  .tagline {
+    display: none;
+    }
+  .byline {
+    font: 300 24px $font-museo;
+    line-height: 36px;
+  }
+}
+.portal-pages-collection-resource-list {
+  clear: both;
+
+  h2 {
+    color: $col-darkgray;
+    font: 700 24px $font-museo-sans;
+    margin-bottom: 0;
+  }
+  .material-item {
+    background: transparent !important;
+    .material-item-content {
+      background: $white;
+      margin-bottom: 30px;
+      padding: 50px 30px 40px;
+    }
+    .material-item__title {
+      font: 700 18px $font-museo-sans;
+      line-height: 24px;
+
+      a {
+        color: $col-blue;
+      }
+    }
+    .material-item__description {
+      color: $col-darkgray;
+      font: 300 15px $font-museo-sans;
+      line-height: 24px;
+    }
+    .material-item__image {
+      margin-top: 0;
+      img {
+        border: solid 1px $col-mediumgray;
+        height: auto;
+        width: 100%;
+      }
+    }
+  }
+}
+
+#footer { display: none; } /* hide original portal footer */
