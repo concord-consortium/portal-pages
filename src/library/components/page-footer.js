@@ -126,11 +126,11 @@ var PageFooter = Component({
               div({className: "social-link__google-plus"})
             )
           )
-        ),
+        )
+      ),
       div({className: "sub-footer cols"},
         div({className: "sub-footer__copyright col-6"}, "© 2017 The Concord Consortium. All Rights Reserved")
       )
-    )
     );
   }
 });
