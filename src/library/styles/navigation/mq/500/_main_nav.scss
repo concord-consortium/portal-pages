@@ -1,17 +1,22 @@
 .concord-logo {
   width: 195px;
   height: 60px;
+  text-indent: 195px;
+}
+.logo-contain:after {
+  font-size: 14px;
+  left: 58px;
 }
 
 .mobile-nav-contain {
   margin-top: 48px;
 }
 
-.learn-portal-umbrella-contain.cols {
-  margin-left: 4%; 
-  margin-right: 4%; 
+.portal-pages-umbrella-contain.cols {
+  margin-left: 4%;
+  margin-right: 4%;
 }
 
-.learn-portal-link {
+.portal-pages-concord-link {
   text-align: center;
 }

@@ -37,7 +37,7 @@ var PageHeader = Component({
     }
   },
 
-  handleLogginButton: function (e) {
+  handleLoginButton: function (e) {
     e.preventDefault();
     Portal.showModal("#login-form");
   },
@@ -54,7 +54,7 @@ var PageHeader = Component({
         div({className: "portal-pages-umbrella-contain cols"},
           div({className: "portal-pages-concord-link col-12"},
             a({href: "https://concord.org/", className: "portal-pages-concord-link__item"},
-              "Learn about Concord Consortium at concord.org ",
+              "Learn about the Concord Consortium ",
               i({className: "icon-arrow-diagonal"}, "")
             )
           )
@@ -70,12 +70,12 @@ var PageHeader = Component({
         ),
         div({className: "portal-pages-main-nav col-9"},
           ul({className: "portal-pages-main-nav-contain"},
-            li({className: "portal-pages-main-nav-item"},
+            li({className: "portal-pages-main-nav-item" + (this.props.isCollections ? " current-menu-item" : "")},
               a({href: "/collections", className: "portal-pages-main-nav-item__link"},
                 "Collections"
               )
             ),
-            li({className: "portal-pages-main-nav-item"},
+            li({className: "portal-pages-main-nav-item" + (this.props.isAbout ? " current-menu-item" : "")},
               a({href: "/about", className: "portal-pages-main-nav-item__link"},
                 "About the Learn Portal"
               )
@@ -92,6 +92,17 @@ var PageHeader = Component({
                 " Log Out"
               )
             )
+          ),
+          div({className: "mobile-nav-contain"},
+            div({className: "mobile-nav-btn"},
+              span({className: "opener"}, "Menu"),
+              span({className: "closer"}, "Close"),
+              div({className: "mobile-nav-icon"},
+                span(),
+                span(),
+                span(),
+              )
+            )
           )
         )
       )
@@ -104,7 +115,7 @@ var PageHeader = Component({
         div({className: "portal-pages-umbrella-contain cols"},
           div({className: "portal-pages-concord-link col-12"},
             a({href: "https://concord.org/", className: "portal-pages-concord-link__item"},
-              "Learn about Concord Consortium at concord.org ",
+              "Learn about the Concord Consortium ",
               i({className: "icon-arrow-diagonal"}, "")
             )
           )
@@ -120,12 +131,12 @@ var PageHeader = Component({
         ),
         div({className: "portal-pages-main-nav col-9"},
           ul({className: "portal-pages-main-nav-contain"},
-            li({className: "portal-pages-main-nav-item"},
+            li({className: "portal-pages-main-nav-item" + (this.props.isCollections ? " current-menu-item" : "")},
               a({href: "/collections", className: "portal-pages-main-nav-item__link"},
                 "Collections"
               )
             ),
-            li({className: "portal-pages-main-nav-item"},
+            li({className: "portal-pages-main-nav-item" + (this.props.isAbout ? " current-menu-item" : "")},
               a({href: "/about", className: "portal-pages-main-nav-item__link"},
                 "About the Learn Portal"
               )
@@ -136,9 +147,20 @@ var PageHeader = Component({
               )
             ),
             li({className: "portal-pages-main-nav-item"},
-              a({href: "/login", className: "portal-pages-main-nav-item__link button log-in", onClick: this.handleLogginButton},
+              a({href: "/login", className: "portal-pages-main-nav-item__link button log-in", onClick: this.handleLoginButton},
                 i({className: 'icon-login'}),
                 " Log In"
+              )
+            )
+          ),
+          div({className: "mobile-nav-contain"},
+            div({className: "mobile-nav-btn"},
+              span({className: "opener"}, "Menu"),
+              span({className: "closer"}, "Close"),
+              div({className: "mobile-nav-icon"},
+                span(),
+                span(),
+                span(),
               )
             )
           )
