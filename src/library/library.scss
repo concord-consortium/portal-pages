@@ -1,8 +1,10 @@
-@import './styles/_colors.scss';
-@import './styles/_icomoon.scss';
-@import './styles/_layout.scss';
-@import './styles/_sizes.scss';
-@import './styles/_typography.scss';
+@import './styles/variables/_variables.scss';
+@import './styles/mixins/_mixins.scss';
+@import './styles/_normalize.scss';
+@import './styles/common/_common.scss';
+@import './styles/layout/_layout.scss';
+@import './styles/navigation/_navigation.scss';
+@import './styles/_media_queries.scss';
 
 html, body { height: 100%; }
 
@@ -27,116 +29,6 @@ body {
 
 .landing-container {
   height: 100%;
-}
-
-.portal-pages-header-contain {
-  height: 195px;
-  margin-bottom: 40px;
-}
-
-/* top bar */
-.portal-pages-umbrella {
-  background-color: $col-lightgray;
-  height: 40px;
-  line-height: 40px;
-}
-
-.portal-pages-concord-link {
-  text-align: right;
-}
-
-.portal-pages-concord-link__item {
-  font-weight: 500;
-  font-size:14px;
-  vertical-align: middle;
-
-  i {
-    font-size: 12px;
-    margin-left: 3px;
-  }
-}
-
-/* nav */
-.logo-contain {
-  margin: 40px 0 35px 0;
-}
-.logo-contain:after {
-  color: $col-blue;
-  content: 'Learn Portal';
-  font-size: 16px;
-  left: 75px;
-  position: relative;
-  top: -10px;
-  }
-.concord-logo {
-  background: url('http://localhost:10000/assets/banners/concord-logo.svg') no-repeat center;
-  height: 80px;
-  overflow: hidden;
-  text-indent: 200%;
-  white-space: nowrap;
-  width: 255px;
-  }
-
-.portal-pages-nav-auth {
-  min-width: 200px;
-  text-align: right;
-}
-
-.portal-pages-main-nav-contain {
-  position: relative;
-  margin-top: 65px;
-  text-align: right;
-}
-
-.portal-pages-main-nav-item {
-  font-size: 18px;
-  display: inline-block;
-  margin-left: 40px;
-  position: relative;
-  &:last-child {
-    margin-left: 10px;
-  }
-  a {
-    color: $col-darkgray;
-    border-bottom: 2px solid transparent;
-    @include transition(all $transition-timing $transition-function);
-
-    &:hover {
-      border-color: $col-hover;
-      padding: 0 0 8px 0;
-      cursor: pointer;
-    }
-
-    &.button {
-      background: $col-orange;
-      border: solid 2px $col-orange;
-      border-radius: 0;
-      color: $white;
-      font: 700 15px $font-museo-sans;
-      padding: 10px 20px;
-      text-align: center;
-    }
-    &.register {
-      background: $white;
-      color: $col-orange;
-    }
-    &.register:hover {
-      background: $col-hover;
-      border-color: $col-hover;
-      color: $white;
-    }
-    &.log-in:hover {
-      background-color: $col-hover;
-      border-color: $col-hover;
-      color: $white;
-    }
-    i.icon-login {
-      display: block;
-      float: left;
-      margin-top: 1px;
-      margin-right: 5px;
-    }
-  }
 }
 
 .site-content { overflow: visible !important; }
@@ -423,6 +315,32 @@ body {
   color: $gold;
   text-shadow: 0 0 transparent, 0 0 transparent, 0 0 transparent, 0 0 transparent;
 }
+.portal-pages-favorite-tooltip {
+  background: $col-lightblue;
+  color: #fff;
+  display: none;
+  font: 500 15px $font-museo-sans;
+  line-height: 24px;
+  margin: -125px 0 0 -130px;
+  padding: 20px 30px;
+  position: absolute;
+  text-align: center;
+  width: 200px;
+  &:after {
+    border-top: solid 10px $col-lightblue;
+    border-right: solid 10px transparent;
+    border-left: solid 10px transparent;
+    bottom: -10px;
+    content: " ";
+    display: block;
+    height: 0;
+    left: 50%;
+    margin: 0 0 0 -10px;
+    padding: 0;
+    position: absolute;
+    width: 0;
+  }
+}
 .portal-pages-finder-header {
   margin: 20px 80px;
   font-size: 28px;
@@ -578,14 +496,29 @@ body {
   overflow: hidden;
 }
 .portal-pages-collections-card {
-  width: 285px;
-  min-height: 450px;
-  display: inline-block;
-  margin: 20px;
-  vertical-align: top;
   background-color: #fff;
   cursor: pointer;
+  display: inline-block;
   font-size: 14px;
+  height: 500px;
+  margin: 20px;
+  overflow: hidden;
+  vertical-align: top;
+  width: 285px;
+  &:hover {
+    h3, img { display: none; }
+    .portal-pages-collections-card-description {
+      background: $col-blue;
+      color: $white;
+      height: 440px;
+      margin: 0;
+      padding: 30px;
+    }
+  }
+  a {
+    display: block;
+    height: 100%;
+  }
 }
 .portal-pages-collections-card img {
   height: 235px;
@@ -604,6 +537,8 @@ body {
   font: 300 18px $font-museo-sans;
   line-height: 30px;
   margin: 30px;
+  overflow:hidden;
+  text-overflow: ellipsis;
 }
 
 .portal-pages-resource-lightbox {
@@ -1102,7 +1037,7 @@ footer {
   z-index: 102;
 }
 
-#login-form {
+#login-form, #register-form {
   margin-left: -460px;
   min-height: 300px !important;
   padding: 60px 190px 0;
@@ -1110,12 +1045,45 @@ footer {
 
   dl, form { margin: 0; padding: 0; }
   dd {
+    display: block;
     margin-bottom: 30px;
+    &:nth-child(2) { /* find a better way to do this for login form */
+      margin-bottom: 15px;
+    }
+    &.two-col {
+      float: left;
+      margin-top: 35px;
+      margin-left: -74px;
+      input[type="text"] {
+        width: 240px;
+      }
+    }
+    &.multi-col {
+      float: left;
+      margin-top: -9px;
+      margin-right: 45px;
+      input {
+        margin-right: 10px;
+        width: auto;
+      }
+    }
   }
   dt {
+    display: block;
     font-size: 15px;
+    line-height: 1;
     margin: 0 0 20px;
     text-transform: uppercase;
+    &:nth-child(3) { /* find a better way to do this for reg form */
+      margin-left: 28px;
+    }
+    &.two-col {
+      float: left;
+    }
+    &.multi-col {
+      float: left;
+      margin-right: 45px;
+    }
   }
   footer {
     background: $col-lightgray;
@@ -1123,7 +1091,7 @@ footer {
     font: 300 18px $font-museo-sans;
     height: auto;
     margin-left: -190px;
-    padding: 60px 190px;
+    padding: 50px 190px;
     width: 540px;
     a {
       font-weight: 700;
@@ -1136,6 +1104,7 @@ footer {
   h2 {
     font: 100 36px $font-museo;
     color: $col-darkgray;
+    line-height: 1;
     margin: 0 0 30px;
     padding: 0;
     strong {
@@ -1156,11 +1125,24 @@ footer {
     padding: 10px 20px !important;
   }
   .third-party-login-options {
+    clear: both;
+    overflow: hidden;
+    ul {
+      float: left;
+    }
+    li {
+      display: inline;
+    }
+    p {
+      float: left;
+      margin: 8px 20px 0 0;
+    }
     a.badge {
       border-radius: 50%;
       color: $white;
-      display: inline-block;
+      display: block;
       height: 40px;
+      margin-right: 10px;
       overflow: hidden;
       position: relative;
       text-indent: 200%;
@@ -1182,6 +1164,7 @@ footer {
     }
   }
   .submit-button-container {
+    color: $col-darkgray-25;
     font: 700 15px $font-museo-sans;
     margin: 30px 0 60px;
     text-align: right;
@@ -1252,10 +1235,22 @@ footer {
     }
     .material-item__image {
       margin-top: 0;
+      position: relative;
       img {
         border: solid 1px $col-mediumgray;
         height: auto;
         width: 100%;
+      }
+      .portal-pages-label {
+        background: $white;
+        bottom: 10px;
+        color: $col-darkgray;
+        font: 500 11px $font-museo-sans;
+        line-height: 1;
+        padding: 10px;
+        position: absolute;
+        right: 10px;
+        text-transform: uppercase;
       }
     }
   }

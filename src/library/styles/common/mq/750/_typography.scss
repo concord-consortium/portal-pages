@@ -1,0 +1,39 @@
+h1 {
+  font-size: 46px;
+  line-height: 58px;
+}
+
+h2 {
+  font-size: 36px;
+  line-height: 48px;
+}
+
+h3 {
+  font-size: 30px;
+  line-height: 42px;
+}
+
+h4 {
+  font-size: 26px;
+  line-height: 38px;
+}
+
+h5 {
+  font-size: 22px;
+  line-height: 34px;
+}
+
+p {
+
+  &.intro-paragraph,
+  &.intro-paragraph--newsletter {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  &.large-paragraph {
+    font-size: 18px;
+    line-height: 1.8em;
+  }
+
+}

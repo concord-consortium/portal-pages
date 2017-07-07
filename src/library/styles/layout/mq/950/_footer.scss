@@ -1,0 +1,44 @@
+.concord-footer {
+  height: auto;
+  text-align: center;
+  padding: 70px 0;
+
+  .mobile-join-us {
+    display: block;
+  }
+
+}
+
+.newsletter-social-contain {
+  text-align: center;
+}
+
+.footer-link__heading {
+  margin-bottom: 5px;
+}
+
+.footer-newsletter {
+  margin: 20px auto;
+  float: none;
+
+  &:after {
+    color: $col-darkgray-50;
+  }
+}
+
+.footer-newsletter__link {
+  color: $col-darkgray-50;
+}
+
+.footer-social-links {
+  margin-bottom: 40px;
+  padding: 0;
+
+  & > div {
+    color: $col-darkgray-50;
+  }
+}
+
+.sub-footer__blenderbox {
+  text-align: center;
+}
