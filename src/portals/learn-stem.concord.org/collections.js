@@ -1,10 +1,7 @@
 PortalPages.renderPageHeader({
+  isCollections: true,
   fadeIn: 1000
 }, 'page-header');
-
-/* PortalPages.renderUserAuth({
-  fadeIn: 1000
-}, 'portal-pages-nav-auth'); */
 
 PortalPages.renderCollectionCards({
   fadeIn: 1000
