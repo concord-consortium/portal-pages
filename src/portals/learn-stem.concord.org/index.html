@@ -1,14 +1,10 @@
-<script src="https://use.typekit.net/juj7nhw.js"></script>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
-<div id="lightbox"></div>
 <header id="page-header" class="portal-pages-header-contain"></header>
 <div class="cols">
   <div class="col-1 spacer"></div>
   <div class="portal-pages-hero col-10">
     <h1>Interactive STEM activities, <strong>free</strong> for your Classroom</h1>
     <div class="portal-pages-hero-info">
-      This repositiory is a collection of the <a href="https://concord.org/">Concord Consortium's</a> best games and
-      simulations.  Our <a href="/collections">curated collections</a> offer lesson plans and units for your class based on these resources.
+      This repository is a collection of the <a href="https://concord.org/">Concord Consortium's</a> best resources for science, math, and engineering education. Our <a href="/collections">curated collections</a> offer lesson plans and units for your class based on these resources.
     </div>
     <div class="portal-pages-hero-browse">
       Browse our <strong>resources</strong> below, or head over to our <a href="http://concord.org/ngss/">NGSS Pathfinder!</a>
@@ -28,7 +24,7 @@
     <h2 class="col-12">Browse <strong>Collections</strong></h2>
     <p class="portal-pages-collections-info col-12">
       Many of our resources are part of collections that are created by our various research projects.   Each collection has specific learning
-      goals within the context of a larger subject area.  <a class="special-link" href="/collections">Explore all of our collections</a>
+      goals within the context of a larger subject area. <a class="special-link" href="/collections">Explore all of our collections</a>
     </p>
     <div class="portal-pages-collections-cards" id="portal-pages-collections-cards">
       <!-- replaced by React, need outer id for targeting -->
@@ -49,7 +45,10 @@
       <dd><input type="password" name="user[password]"/></dd>
     </dl>
     <div class="third-party-login-options">
-      Or, sign in with: <a class="google badge" href="#">Google+</a>
+      <p>Or, sign in with:</p>
+      <ul>
+        <li><a class="google badge" href="#">Google+</a></li>
+      </ul>
     </div>
     <div class="submit-button-container">
       <a href="/forgot_password" title="Click this link if you forgot your username and/or password.">Forgot your username or password?</a>
@@ -59,5 +58,39 @@
   <footer>
     <p>Don't have an account? <a href="#" onclick="Portal.openSignupModal(); return false;">Sign up for free</a> to
       create classes, assign activities, save student work, track student progress, and more!</p>
+  </footer>
+</div>
+
+<div id="register-form" class="modal">
+  <h2><strong>Register</strong> for the Learn Portal</h2>
+  <p class="special-msg"></p>
+  <form method="post" action="/users/sign_in">
+    <dl>
+      <dt class="two-col"><label for="first-name">First Name</label></dt>
+      <dd class="two-col"><input id="first-name" type="text" placeholder="First Name"><div class="input-error"></div></dd>
+      <dt class="two-col"><label for="last-name">Last Name</label></dt>
+      <dd class="two-col"><input id="last-name" type="text" placeholder="Last Name"><div class="input-error"></div></dd>
+      <dt><label for="password">Password</label></dt>
+      <dd><input id="password" type="password" placeholder="Password"><div class="input-error"></div></dd>
+      <dt><label for="password-confirmation">Confirm Password</label></dt>
+      <dd><input id="password-confirmation" type="password" placeholder="Confirm Password"><div class="input-error"></div></dd>
+      <dt class="multi-col">I am a:</dt>
+      <dd class="multi-col"><label for="teacher"><input id="teacher" name="account-type" type="radio" value="teacher"> Teacher</label></dd>
+      <dd class="multi-col"><label for="student"><input id="student" name="account-type" type="radio" value="student"> Student</label></dd>
+    </dl>
+    <div class="third-party-login-options">
+      <p>Or, sign up with:</p>
+      <ul>
+        <li><a class="google badge" href="#">Google+</a></li>
+      </ul>
+    </div>
+    <div class="submit-button-container">
+      Step 1 of 3
+      <input class="button" type="submit" value="Register for the Learn Portal!"/>
+    </div>
+  </form>
+  <footer>
+    <p><strong>Why sign up?</strong> It's free and you get access to several key features, like creating classes
+    for your students, assigning activities, saving work, tracking student progress, and more!</p>
   </footer>
 </div>

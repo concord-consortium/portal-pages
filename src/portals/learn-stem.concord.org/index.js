@@ -2,10 +2,6 @@ PortalPages.renderPageHeader({
   fadeIn: 1000
 }, 'page-header');
 
-/* PortalPages.renderUserAuth({
-  fadeIn: 1000
-}, 'portal-pages-nav-auth'); */
-
 PortalPages.renderStemFinder({
   fadeIn: 1000
 }, 'portal-pages-finder');
