@@ -1,4 +1,5 @@
 PortalPages.renderPageHeader({
+  isCollections: true,
   fadeIn: 1000
 }, 'page-header');
 
