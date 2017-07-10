@@ -42,16 +42,31 @@ var StemFinderResult = Component({
     e.preventDefault();
     e.stopPropagation();
     var lightbox = !this.state.lightbox;
-    if (jQuery('body').css('overflow') === 'hidden') {
-      jQuery('body').css('overflow', 'auto');
-    } else {
-      jQuery('body').css('overflow', 'hidden');
-    }
     // TODO: add pushstate
     this.setState({
       lightbox: lightbox,
       hovering: false
     });
+
+    // mount/unmount lightbox outside of homepage content
+    var mountPointId = "stem-finder-result-lightbox-mount";
+    var mountPoint = document.getElementById(mountPointId);
+    if (lightbox) {
+      if (!mountPoint) {
+        mountPoint = document.createElement("DIV");
+        mountPoint.id = mountPointId;
+        document.body.appendChild(mountPoint);
+      }
+      jQuery('body').css('overflow', 'hidden');
+      ReactDOM.render(ResourceLightbox({resource: this.props.resource, toggleLightbox: this.toggleLightbox}), mountPoint);
+      // TODO: either add containing div in index.html with known id or use .home-page-content
+      //       then apply blur filter with jQuery(<container id or .home-page-content).css('filter', 'blur(5)')
+    }
+    else {
+      jQuery('body').css('overflow', 'auto');
+      ReactDOM.unmountComponentAtNode(mountPoint);
+      // TODO: use jQuery.css('filter', 'unset') on containing div from above
+    }
   },
 
   toggleFavorite: function (e) {
@@ -99,8 +114,7 @@ var StemFinderResult = Component({
         a(options,
           div({className: "portal-pages-finder-result-description"}, resource.filteredDescription),
           GradeLevels({resource: resource}),
-          this.renderFavoriteStar(),
-          this.renderLightbox()
+          this.renderFavoriteStar()
         )
       );
     }
@@ -110,8 +124,7 @@ var StemFinderResult = Component({
         div({className: "portal-pages-finder-result-name"}, resource.name),
         GradeLevels({resource: resource}),
         this.renderFavoriteStar()
-      ),
-      this.renderLightbox()
+      )
     );
   }
 });
