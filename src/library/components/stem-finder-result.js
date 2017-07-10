@@ -58,6 +58,26 @@ var StemFinderResult = Component({
       lightbox: lightbox,
       hovering: false
     });
+
+    // mount/unmount lightbox outside of homepage content
+    var mountPointId = "stem-finder-result-lightbox-mount";
+    var mountPoint = document.getElementById(mountPointId);
+    if (lightbox) {
+      if (!mountPoint) {
+        mountPoint = document.createElement("DIV");
+        mountPoint.id = mountPointId;
+        document.body.appendChild(mountPoint);
+      }
+      jQuery('body').css('overflow', 'hidden');
+      ReactDOM.render(ResourceLightbox({resource: this.props.resource, toggleLightbox: this.toggleLightbox}), mountPoint);
+      // TODO: either add containing div in index.html with known id or use .home-page-content
+      //       then apply blur filter with jQuery(<container id or .home-page-content).css('filter', 'blur(5)')
+    }
+    else {
+      jQuery('body').css('overflow', 'auto');
+      ReactDOM.unmountComponentAtNode(mountPoint);
+      // TODO: use jQuery.css('filter', 'unset') on containing div from above
+    }
   },
 
   toggleFavorite: function (e) {
@@ -109,9 +129,11 @@ var StemFinderResult = Component({
         a(options,
           div({className: "portal-pages-finder-result-description"}, resource.filteredDescription),
           this.renderFavoriteStar(),
-          this.renderLightbox()
         ),
         GradeLevels({resource: resource})
+          GradeLevels({resource: resource}),
+          this.renderFavoriteStar()
+        )
       );
     }
     return div({className: "portal-pages-finder-result col-4", onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
@@ -119,9 +141,7 @@ var StemFinderResult = Component({
         img({alt: resource.name, src: resource.icon.url}),
         div({className: "portal-pages-finder-result-name"}, resource.name),
         this.renderFavoriteStar()
-      ),
-      GradeLevels({resource: resource}),
-      this.renderLightbox()
+      )
     );
   }
 });
