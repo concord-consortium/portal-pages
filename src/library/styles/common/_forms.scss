@@ -1,0 +1,221 @@
+form {
+  margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Indicate that 'label' will shift focus to the associated form element */
+label {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button,
+select,
+input[type="button"],
+input[type="file"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  font-family: $font-museo-sans;
+}
+
+/* reset weird iOS styles */
+input[type="text"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  background: #fff;
+  border: 2px solid $col-input-border;
+  height: 60px;
+  line-height: 34px;
+  padding: 0 10px;
+  border-radius: 0;
+  transition: border-color $transition-timing $transition-function;
+  font-family: $font-museo-sans;
+
+  &:focus {
+    border-color: $col-hover;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+}
+
+input[type="number"] {
+  width: 60px;
+}
+
+input {
+  &[type="checkbox"],
+  &[type="radio"] {
+    visibility: hidden;
+
+    & + label {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      line-height: 1.5em;
+      max-width: calc(100% - 30px);
+      margin-bottom: 10px;
+
+      &:before {
+        content: " ";
+        display: inline-block;
+        position: absolute;
+        left: -30px;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        background: white;
+        z-index: 0;
+      }
+    }
+
+    &:checked {
+      & + label {
+        &:before {
+          font-family: $font-icon;
+          content: "\e907";
+          font-size: 10px;
+          line-height: 20px;
+          text-align: center;
+          color: $col-darkgray;
+        }
+      }
+    }
+
+    &[type="radio"] {
+      & + label {
+        &:before {
+          border-radius: 50%;
+        }
+      }
+      &:checked {
+        & + label {
+          &:before {
+            content: " ";
+          }
+          &:after {
+            content: " ";
+            position: absolute;
+            z-index: 1;
+            left: -23px;
+            top: 7px;
+            width: 6px;
+            height: 6px;
+            background-color: $col-default;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+
+
+  }
+}
+
+textarea {
+  height: 120px;
+  resize: vertical;
+  vertical-align: top;
+}
+
+// Button Styles
+button,
+input[type="submit"],
+.button {
+  background: $col-link;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 20px;
+  display:inline-block;
+  font-family: $font-museo-sans;
+  cursor: pointer;
+
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+
+  &:focus {
+    border: none;
+    outline: 1px dashed $col-link;
+  }
+
+  &:hover {
+    background: $col-hover;
+  }
+}
+
+.button-icon {
+  margin-bottom: 40px;
+  font-size: 18px;
+  color: #fff;
+  background-color: $col-link;
+  display: inline-block;
+  font-family: $font-museo-sans;
+  cursor: pointer;
+  padding: 20px 70px 20px 30px;
+  position: relative;
+
+  &:active {
+    top: 1px;
+  }
+
+  &:after {
+    content: "\e901";
+    font-family: "icomoon";
+    font-size: 26px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition:.2s;
+  }
+
+  &:hover {
+    background: $col-hover;
+    transition: .2s;
+    cursor: pointer;
+
+    &:after {
+      margin-left: 15px;
+      transition:.2s;
+    }
+
+  }
+
+}
+
+
+// Placeholder styles
+::-webkit-input-placeholder {
+  color: $col-placeholder;
+}
+
+:-moz-placeholder {
+  color: $col-placeholder;
+}
+
+:-ms-input-placeholder {
+  color: $col-placeholder;
+}
+
+input.placeholder {
+  color: $col-placeholder;
+}
