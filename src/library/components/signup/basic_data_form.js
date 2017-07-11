@@ -5,6 +5,7 @@ ref = React.DOM, button = ref.button, div = ref.div;
 var a       = React.DOM.a;
 var link    = React.DOM.link;
 var br      = React.DOM.br;
+var p       = React.DOM.p;
 
 PASS_TOO_SHORT = 'Password is too short';
 PASS_NOT_MATCH = 'Passwords do not match';
@@ -75,12 +76,15 @@ var reactClass = function() {
               className: "submit-btn",
               href: providers[i].url,
               style: {  width: "100%",
-                        padding: "20px" }
+                        display: "block",
+                        padding: "5px" }
 
-          }, 'Sign in with '+providers[i].name )
+          }, 'Sign up with '+providers[i].name )
         );
-        providerLinks.push( br({}) );
-        providerLinks.push( br({}) );
+        // providerLinks.push( br({}) );
+      }
+      if(providers.length > 0) {
+        providerLinks.push( div({ style: { textAlign: "center" } }, "-- or --" ) );
       }
 
       return FormsyForm({
