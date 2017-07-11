@@ -68,7 +68,7 @@ var reactClass = function() {
       return 3;
     },
     render: function() {
-      console.log("INFO rendering signup", this.props);
+      // console.log("INFO rendering signup", this.props);
       var anonymous, basicData, ref, ref1, signupGoogle, signupText, studentData, teacherData;
       ref = this.props, signupText = ref.signupText, oauthProviders = ref.oauthProviders, anonymous = ref.anonymous;
       ref1 = this.state, basicData = ref1.basicData, studentData = ref1.studentData, teacherData = ref1.teacherData;

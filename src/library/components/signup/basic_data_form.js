@@ -71,15 +71,18 @@ var reactClass = function() {
       providers = this.props.oauthProviders;
       providerLinks = [];
       for(var i = 0; i < providers.length; i++) {
+        // console.log("INFO adding provider direct path " + providers[i].directPath);
+        // console.log("INFO adding provider auth check path " + providers[i].authCheckPath);
+
         providerLinks.push(
           a({
               className: "submit-btn",
-              href: providers[i].url,
+              href: providers[i].directPath,
               style: {  width: "100%",
                         display: "block",
                         padding: "5px" }
 
-          }, 'Sign up with '+providers[i].name )
+          }, providers[i].text )
         );
         // providerLinks.push( br({}) );
       }

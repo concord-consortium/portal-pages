@@ -15,7 +15,7 @@ var reactClass = function() {
   return React.createClass({
     displayName: 'SignupModal',
     render: function() {
-      console.log("INFO rendering signup modal", this.props);
+      // console.log("INFO rendering signup modal", this.props);
       return div({
         className: 'signup-default-modal-content'
       }, Signup( { oauthProviders: this.props.oauthProviders } ) );
