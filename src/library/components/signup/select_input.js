@@ -2,7 +2,7 @@ var div, input, label, ref;
 
 ref = React.DOM, div = ref.div, input = ref.input, label = ref.label;
 
-var reactClass = function() {
+var SelectInput = function() {
 
   // console.log("INFO creating select_input");
 
@@ -38,5 +38,5 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = SelectInput;
 

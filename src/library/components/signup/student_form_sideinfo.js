@@ -2,7 +2,7 @@ var div, p, ref;
 
 ref = React.DOM, div = ref.div, p = ref.p;
 
-var reactClass = function() {
+var StudentFormSideInfo = function() {
   return React.createClass({
     displayName: 'StudentFormSideInfo',
     render: function() {
@@ -11,5 +11,5 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = StudentFormSideInfo;
 

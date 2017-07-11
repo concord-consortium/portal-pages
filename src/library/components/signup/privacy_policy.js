@@ -2,7 +2,7 @@ var a, div, ref;
 
 ref = React.DOM, a = ref.a, div = ref.div;
 
-var reactClass = function() {
+var PrivacyPolicy = function() {
   return React.createClass({
     displayName: 'PrivacyPolicy',
     render: function() {
@@ -16,5 +16,5 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = PrivacyPolicy;
 

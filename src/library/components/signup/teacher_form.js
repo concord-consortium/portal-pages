@@ -21,12 +21,12 @@ invalidZipcode = function(zipOrPostal) {
   return "Incorrect " + zipOrPostal;
 };
 
-var TextInputClass = require("./text_input").reactClass;
-var SelectInputClass = require("./select_input").reactClass;
-var SchoolInputClass = require("./school_input").reactClass;
-var PrivacyPolicyClass = require("./privacy_policy").reactClass;
+var TextInputClass = require("./text_input");
+var SelectInputClass = require("./select_input");
+var SchoolInputClass = require("./school_input");
+var PrivacyPolicyClass = require("./privacy_policy");
 
-var reactClass = function() {
+var TeacherForm = function() {
   var FormsyForm, PrivacyPolicy, SchoolInput, SelectInput, TextInput, emailAvailableValidator, getCountries, isUS, loginValidValidator, registerTeacher;
   TextInput = React.createFactory(TextInputClass());
   SelectInput = React.createFactory(SelectInputClass());
@@ -245,4 +245,5 @@ var reactClass = function() {
 };
 
 
-module.exports.reactClass = reactClass;
+module.exports = TeacherForm;
+

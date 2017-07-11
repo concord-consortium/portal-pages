@@ -2,7 +2,7 @@ var dd, div, dl, dt, form, input, ref;
 
 ref = React.DOM, div = ref.div, dd = ref.dd, dt = ref.dt, dl = ref.dl, form = ref.form, input = ref.input;
 
-var reactClass = function() {
+var StudentRegistrationCompleteSideInfo = function() {
   return React.createClass({
     displayName: 'StudentRegistrationCompleteSideInfo',
     componentDidMount: function() {
@@ -38,5 +38,5 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = StudentRegistrationCompleteSideInfo;
 

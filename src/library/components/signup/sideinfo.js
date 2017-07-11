@@ -2,7 +2,7 @@ var div, li, p, ref, ul;
 
 ref = React.DOM, div = ref.div, li = ref.li, p = ref.p, ul = ref.ul;
 
-var reactClass = function() {
+var SideInfo = function() {
 
   // console.log("INFO creating sideinfo");
 
@@ -16,5 +16,5 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = SideInfo;
 

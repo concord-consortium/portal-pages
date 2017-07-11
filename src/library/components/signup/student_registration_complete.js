@@ -2,7 +2,7 @@ var a, div, p, ref, span;
 
 ref = React.DOM, div = ref.div, span = ref.span, p = ref.p, a = ref.a;
 
-var reactClass = function() {
+var StudentRegistrationComplete = function() {
   return React.createClass({
     displayName: 'StudentRegistrationComplete',
     render: function() {
@@ -22,5 +22,5 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = StudentRegistrationComplete;
 

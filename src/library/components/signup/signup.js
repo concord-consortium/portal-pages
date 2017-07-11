@@ -2,18 +2,18 @@ var div;
 
 div = React.DOM.div;
 
-var BasicDataFormClass = require("./basic_data_form").reactClass;
-var SideInfoClass = require("./sideinfo").reactClass;
-var StudentFormClass = require("./student_form").reactClass;
-var StudentFormSideInfoClass = require("./student_form_sideinfo").reactClass;
-var TeacherFormClass = require("./teacher_form").reactClass;
-var StudentRegistrationCompleteClass = require("./student_registration_complete").reactClass;
-var StudentRegistrationCompleteSideInfoClass = require("./student_registration_complete_sideinfo").reactClass;
-var TeacherRegistrationCompleteClass = require("./teacher_registration_complete").reactClass;
+var BasicDataFormClass                      = require("./basic_data_form");
+var SideInfoClass                           = require("./sideinfo");
+var StudentFormClass                        = require("./student_form");
+var StudentFormSideInfoClass                = require("./student_form_sideinfo");
+var TeacherFormClass                        = require("./teacher_form");
+var StudentRegistrationCompleteClass        = require("./student_registration_complete");
+var StudentRegistrationCompleteSideInfoClass = require("./student_registration_complete_sideinfo");
+var TeacherRegistrationCompleteClass        = require("./teacher_registration_complete");
 
-var reactClass = function() {
+var Signup = function() {
 
-  // console.log("INFO creating signup");
+  // console.log("INFO creating Signup");
 
   var BasicDataForm, SideInfo, StudentForm, StudentFormSideInfo, StudentRegistrationComplete, StudentRegistrationCompleteSideInfo, TeacherForm, TeacherRegistrationComplete;
   BasicDataForm = React.createFactory(BasicDataFormClass());
@@ -102,16 +102,5 @@ var reactClass = function() {
   });
 };
 
-renderSignupForm = function(selectorOrElement, properties) {
-  var Signup;
-  if (properties == null) {
-    properties = {};
-  }
-  Signup = React.createFactory( reactClass() );
-
-  return ReactDOM.render(Signup(properties), jQuery(selectorOrElement)[0]);
-};
-
-module.exports.reactClass       = reactClass
-module.exports.renderSignupForm = renderSignupForm
+module.exports = Signup
 

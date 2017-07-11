@@ -12,10 +12,10 @@ PASS_NOT_MATCH = 'Passwords do not match';
 INVALID_FIRST_NAME = 'Invalid first name. Use only letters and numbers.';
 INVALID_LAST_NAME = 'Invalid last name. Use only letters and numbers.';
 
-var TextInputClass  = require("./text_input").reactClass;
-var RadioInputClass = require("./radio_input").reactClass;
+var TextInputClass  = require("./text_input");
+var RadioInputClass = require("./radio_input");
 
-var reactClass = function() {
+var BasicDataForm = function() {
 
   // console.log("INFO creating basic_data_form");
 
@@ -152,5 +152,5 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = BasicDataForm;
 

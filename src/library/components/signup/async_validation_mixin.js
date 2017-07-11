@@ -2,7 +2,7 @@ var div, input, ref;
 
 ref = React.DOM, div = ref.div, input = ref.input;
 
-var reactClass = function() {
+var AsyncValidationMixin = function() {
 
   // console.log("INFO creating async_validation_mixin"); 
 
@@ -51,5 +51,5 @@ var reactClass = function() {
   };
 };
 
-module.exports.reactClass = reactClass;
+module.exports = AsyncValidationMixin;
 
