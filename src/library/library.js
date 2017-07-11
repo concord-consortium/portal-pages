@@ -62,7 +62,10 @@ window.PortalPages = {
   // renderSignupModal: renderComponentFn(SignupModal),
   //
   renderSignupModal: function(properties) {
-    signup_functions.openSignupModal(properties)
+    signup_functions.openSignupModal(properties);
+  },
+  renderLoginModal: function(properties) {
+    signup_functions.openLoginModal(properties);
   },
 
   MaterialsCollection: MaterialsCollection,

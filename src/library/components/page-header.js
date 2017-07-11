@@ -41,7 +41,8 @@ var PageHeader = Component({
 
   handleLoginButton: function (e) {
     e.preventDefault();
-    Portal.showModal("#login-form");
+    console.log("INFO calling renderLoginModal()");
+    PortalPages.renderLoginModal();
   },
 
   handleRegisterButton: function (e) {
