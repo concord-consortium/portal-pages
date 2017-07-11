@@ -1,6 +1,7 @@
 var Component = require('../helpers/component');
 
 var fadeIn = require("../helpers/fade-in");
+var signup = require("./signup/signup_modal");
 
 var a = React.DOM.a;
 var button = React.DOM.button;
@@ -17,7 +18,8 @@ var PageHeader = Component({
     return {
       loggedIn: Portal.currentUser.isLoggedIn,
       opacity: 0,
-      userId: 0
+      userId: 0,
+      oauthProviders: this.props.oauthProviders
     };
   },
 
@@ -44,7 +46,9 @@ var PageHeader = Component({
 
   handleRegisterButton: function (e) {
     e.preventDefault();
-    Portal.openSignupModal();
+    signup.openSignupModal(
+      { oauthProviders: this.props.oauthProviders }
+    );
   },
 
   renderLoggedIn: function () {
@@ -148,6 +152,7 @@ var PageHeader = Component({
   },
 
   render: function () {
+    // console.log("INFO state", this.state);
     return this.state.loggedIn ? this.renderLoggedIn() : this.renderLoggedOut();
   }
 
