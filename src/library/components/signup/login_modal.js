@@ -23,9 +23,20 @@ var LoginModal = function() {
 
     displayName: 'LoginModal',
 
+    submit: function(data) {
+      jQuery.post("/users/sign_in", data).done(function(data) {
+		console.log("INFO login success");
+        window.location.href = "/getting_started";
+      }).fail(function(err) {
+		console.log("INFO login error");
+        window.location.href = "/users/sign_in";
+      });
+
+    },
+
     render: function() {
 
-      console.log("INFO rendering LoginModal with props", this.props);
+      // console.log("INFO rendering LoginModal with props", this.props);
 
       var providerComponents = [];
       
@@ -55,7 +66,9 @@ var LoginModal = function() {
         }
       }
 
-      return FormsyForm({ className: 'signup-form' },
+      return FormsyForm({ 
+        className: 'signup-form',
+        onValidSubmit: this.submit },
 
         div({}, 
           div({ className: 'modal-title' }, 'Log In' ),
@@ -65,13 +78,13 @@ var LoginModal = function() {
 
           div({}, "Username"),
           TextInput({
-            name: 'login',
+            name: 'user[login]',
             placeholder: 'login',
             required: true }),
 
           div({}, "Password"),
           TextInput({
-            name: 'password',
+            name: 'user[password]',
             placeholder: 'Password',
             type: 'password',
             required: true }),
