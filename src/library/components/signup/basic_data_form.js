@@ -72,7 +72,7 @@ var BasicDataForm = function() {
       anonymous = this.props.anonymous;
 
       providerComponents = [];
-      if(enableAuthProviders) {
+      if(enableAuthProviders && this.props.oauthProviders) {
         providers = this.props.oauthProviders;
         for(var i = 0; i < providers.length; i++) {
           // console.log("INFO adding provider direct path " + providers[i].directPath);

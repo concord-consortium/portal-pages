@@ -40,7 +40,7 @@ var LoginModal = function() {
 
       var providerComponents = [];
       
-      if(enableAuthProviders) {
+      if(enableAuthProviders && this.props.oauthProviders) {
 
         //
         // Push separator field
