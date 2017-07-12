@@ -1,13 +1,14 @@
 <div id="test-header" style="text-align: left;"></div>
-<div id="signup-default-modal"></div>
 
 <script>
     PortalPages.renderPageHeader({ 
       oauthProviders: [
-          { name:   "Google",
-            url:    "http://google.com" },
-          { name:   "Foo",
-            url:    "http://foo.com" }
+          { name:           "google",
+            display_name:   "Google",
+            directPath:     "http://google.com" },
+          { name:           "foo",
+            display_name:   "Foo",
+            directPath:     "http://foo.com" }
         ] }, 
       "test-header");
 </script>
