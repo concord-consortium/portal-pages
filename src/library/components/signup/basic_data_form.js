@@ -82,9 +82,8 @@ var BasicDataForm = function() {
                         display: "block",
                         padding: "5px" }
 
-          }, providers[i].text )
+          }, "Sign Up with " + providers[i].display_name )
         );
-        // providerLinks.push( br({}) );
       }
       if(providers.length > 0) {
         providerLinks.push( div({ style: { textAlign: "center" } }, "-- or --" ) );

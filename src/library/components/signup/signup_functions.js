@@ -1,8 +1,13 @@
-
-var SignupClass     = require('./signup');
-var SideInfoClass   = require('./sideinfo');
 var SignupModal     = require('./signup_modal');
 var LoginModal      = require('./login_modal');
+
+//
+// Map modal to CSS classes
+//
+var modalClasses = {}
+modalClasses[LoginModal]    = "login-default-modal";
+modalClasses[SignupModal]   = "signup-default-modal";
+
 
 renderSignupForm = function(selectorOrElement, properties) {
   var Signup;
@@ -16,7 +21,7 @@ renderSignupForm = function(selectorOrElement, properties) {
 
 var openModal = function(type, properties) {
   var modalContainer, modalContainerId, modalContainerSelector;
-  modalContainerId = 'signup-default-modal';
+  modalContainerId = modalClasses[type];
   modalContainerSelector = '#' + modalContainerId;
   modalContainer = jQuery(modalContainerSelector);
   if (modalContainer.length === 0) {
@@ -35,7 +40,6 @@ var openLoginModal = function(properties) {
 var openSignupModal = function(properties) {
   openModal(SignupModal, properties);
 };
-
 
 module.exports.openSignupModal 	= openSignupModal;
 module.exports.openLoginModal 	= openLoginModal;

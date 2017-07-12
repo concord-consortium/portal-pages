@@ -503,6 +503,23 @@ $materials-collection-item-icon-width: 300px;
   margin-left:  -26.6675em;
   margin-top:   -90px;
 }
+#login-default-modal {
+  font-size:    .8em !important;
+  margin-left:  -26.6675em;
+  margin-top:   0px;
+  width:        300px;
+  height:       300px;
+}
+.modal-title {
+  background:   #3b878c;
+  color:        #fff;
+  font-size:    1.8em;
+  padding:      .25em .5em;
+  position:     absolute;
+  top:          0;
+  left:         0;
+  width:        100%;
+}
 #modal-overlay {
   background: #000;
   height: 100%;

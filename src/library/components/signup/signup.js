@@ -73,7 +73,7 @@ var Signup = function() {
       ref = this.props, signupText = ref.signupText, oauthProviders = ref.oauthProviders, anonymous = ref.anonymous;
       ref1 = this.state, basicData = ref1.basicData, studentData = ref1.studentData, teacherData = ref1.teacherData;
       return div({}, div({
-        className: 'title'
+        className: 'modal-title'
       }, anonymous ? 'Sign Up' : 'Finish Signing Up'), div({
         className: 'step'
       }, "Step " + (this.getStepNumber()) + " of 3"), div({
