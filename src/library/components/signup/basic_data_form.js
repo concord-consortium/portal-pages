@@ -6,6 +6,7 @@ var a       = React.DOM.a;
 var link    = React.DOM.link;
 var br      = React.DOM.br;
 var p       = React.DOM.p;
+var span    = React.DOM.span;
 
 PASS_TOO_SHORT = 'Password is too short';
 PASS_NOT_MATCH = 'Passwords do not match';
@@ -14,6 +15,8 @@ INVALID_LAST_NAME = 'Invalid last name. Use only letters and numbers.';
 
 var TextInputClass  = require("./text_input");
 var RadioInputClass = require("./radio_input");
+
+var enableAuthProviders = true;
 
 var BasicDataForm = function() {
 
@@ -68,25 +71,35 @@ var BasicDataForm = function() {
       var anonymous;
       anonymous = this.props.anonymous;
 
-      providers = this.props.oauthProviders;
-      providerLinks = [];
-      for(var i = 0; i < providers.length; i++) {
-        // console.log("INFO adding provider direct path " + providers[i].directPath);
-        // console.log("INFO adding provider auth check path " + providers[i].authCheckPath);
-
-        providerLinks.push(
-          a({
-              className: "submit-btn",
-              href: providers[i].directPath,
-              style: {  width: "100%",
-                        display: "block",
-                        padding: "5px" }
-
-          }, "Sign Up with " + providers[i].display_name )
-        );
-      }
-      if(providers.length > 0) {
-        providerLinks.push( div({ style: { textAlign: "center" } }, "-- or --" ) );
+      providerComponents = [];
+      if(enableAuthProviders) {
+        providers = this.props.oauthProviders;
+        for(var i = 0; i < providers.length; i++) {
+          // console.log("INFO adding provider direct path " + providers[i].directPath);
+          // console.log("INFO adding provider auth check path " + providers[i].authCheckPath);
+  
+          providerComponents.push(
+            a({
+                className: "submit-btn",
+                href: providers[i].directPath,
+                style: {  width: "100%",
+                          display: "block",
+                          padding: "5px" }
+  
+            }, "Sign Up with " + providers[i].display_name )
+          );
+        }
+        if(providers.length > 0) {
+          providerComponents.push( 
+            //
+            // Push separator bar
+            //
+            div( {className: "or-separator" },
+  
+              span( {className: "or-separator-text" }, "or" )
+            )
+          );
+        }
       }
 
       return FormsyForm({
@@ -95,7 +108,7 @@ var BasicDataForm = function() {
         onInvalid: this.onBasicFormInvalid,
         onChange: this.onChange
       }, 
-      providerLinks,
+      providerComponents,
       anonymous ? div({}, div({
         className: 'name_wrapper'
       }, TextInput({

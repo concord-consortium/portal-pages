@@ -1,11 +1,16 @@
-var div, li, p, ref, ul;
-
-ref = React.DOM, div = ref.div, p = ref.p, ul = ref.ul, li = ref.li;
-
-var TextInputClass  = require('./text_input');
 var button          = React.DOM.button;
 var strong          = React.DOM.strong;
 var span            = React.DOM.span;
+var a               = React.DOM.a;
+var div             = React.DOM.div;
+var li              = React.DOM.li;
+var p               = React.DOM.p;
+var ul              = React.DOM.ul;
+var footer          = React.DOM.footer;
+
+var TextInputClass  = require('./text_input');
+
+var enableAuthProviders = true;
 
 var LoginModal = function() {
 
@@ -17,39 +22,71 @@ var LoginModal = function() {
   return React.createClass({
     displayName: 'LoginModal',
     render: function() {
-      return FormsyForm({},
+
+      var providerComponents = [];
+      
+      if(enableAuthProviders) {
+
+        //
+        // Push separator field
+        //
+        providerComponents.push(
+          div( {className: "or-separator"}, 
+            span( {className: "or-separator-text"}, "or" )
+          )
+        );
+
+        providerComponents.push(
+          button({
+            className: 'submit-btn',
+            type: 'submit',
+          }, "Login with Google" )
+        ); 
+
+      }
+
+      return FormsyForm({ className: 'signup-form' },
 
         div({}, 
           div({ className: 'modal-title' }, 'Log In' ),
         ),
 
-        div({}, "Username"),
-        TextInput({
-          name: 'login',
-          placeholder: 'login',
-          required: true }),
+        div({className: "login-left-form"}, 
 
-        div({}, "Password"),
-        TextInput({
-          name: 'password',
-          placeholder: 'Password',
-          type: 'password',
-          required: true }),
+          div({}, "Username"),
+          TextInput({
+            name: 'login',
+            placeholder: 'login',
+            required: true }),
 
-        button({
-          className: 'submit-btn',
-          type: 'submit',
-        }, "Login" ),
+          div({}, "Password"),
+          TextInput({
+            name: 'password',
+            placeholder: 'Password',
+            type: 'password',
+            required: true }),
 
-        div( {style: { width: "100%", height: "11px", borderBottom: "1px solid black", marginBottom: "20px", marginTop: "10px", textAlign: "center"}},
+          button({
+            className: 'submit-btn',
+            type: 'submit',
+          }, "Login" ),
 
-          span( {style: { backgroundColor: "#FFFFFF", padding: "0 10px"}}, "or" )
+          div({className: "submit-button-container"},
+            a({ href: "/forgot_password", title: "Click this link if you forgot your username and/or password."}, "Forgot your username or password?" )
+          ),
+
+          providerComponents,
+
         ),
 
-        button({
-          className: 'submit-btn',
-          type: 'submit',
-        }, "Login with Google" )
+        div({className: "login-modal-side-info"},
+          p({}, 
+            "Don't have an account? ",
+            a( {href: "#", onclick: "Portal.openSignupModal(); return false;"},
+              "Sign up for free" ),
+            " to create classes, assign activities, save student work, track student progress, and more!"
+          )
+        )
 
       );
     }
