@@ -42,7 +42,8 @@ var PageHeader = Component({
   handleLoginButton: function (e) {
     e.preventDefault();
     console.log("INFO calling renderLoginModal()");
-    PortalPages.renderLoginModal();
+    PortalPages.renderLoginModal(
+      { oauthProviders: this.props.oauthProviders} );
   },
 
   handleRegisterButton: function (e) {

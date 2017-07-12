@@ -86,7 +86,7 @@ var BasicDataForm = function() {
                           display: "block",
                           padding: "5px" }
   
-            }, "Sign Up with " + providers[i].display_name )
+            }, "Sign up with " + providers[i].display_name )
           );
         }
         if(providers.length > 0) {

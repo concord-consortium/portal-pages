@@ -20,8 +20,12 @@ var LoginModal = function() {
   var FormsyForm    = React.createFactory(Formsy.Form);
 
   return React.createClass({
+
     displayName: 'LoginModal',
+
     render: function() {
+
+      console.log("INFO rendering LoginModal with props", this.props);
 
       var providerComponents = [];
       
@@ -36,13 +40,19 @@ var LoginModal = function() {
           )
         );
 
-        providerComponents.push(
-          button({
-            className: 'submit-btn',
-            type: 'submit',
-          }, "Login with Google" )
-        ); 
+        providers = this.props.oauthProviders;
+        for(var i = 0; i < providers.length; i++) {
+          providerComponents.push(
+            a({
+              className: "submit-btn",
+              href: providers[i].directPath,
+              style: {  width: "100%",
+                        display: "block",
+                        padding: "5px" }
 
+            }, "Log in with " + providers[i].display_name )
+          );
+        }
       }
 
       return FormsyForm({ className: 'signup-form' },
