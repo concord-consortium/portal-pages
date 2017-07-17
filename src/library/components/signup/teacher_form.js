@@ -86,6 +86,7 @@ var TeacherForm = function() {
         canSubmit: false
       });
       return registerTeacher(params).done(function(data) {
+        console.log("INFO Registered teacher.", data);
         return onRegistration(data);
       }).fail(function(err) {
         var serverErrors;

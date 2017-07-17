@@ -7,6 +7,10 @@ var RadioInput = function() {
     displayName: 'RadioInput',
     mixins: [Formsy.Mixin],
     changeValue: function(event) {
+      console.log("INFO RadioInput changeValue", event);
+      if(this.props.handleChange) {
+        this.props.handleChange(event);
+      }
       return this.setValue(event.currentTarget.value);
     },
     render: function() {

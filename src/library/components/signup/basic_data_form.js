@@ -142,20 +142,8 @@ var BasicDataForm = function() {
         validations: "equals:" + this.state.password,
         validationError: PASS_NOT_MATCH
       })) : void 0, 
-      RadioInput({
-        name: 'type',
-        title: 'I am a ',
-        required: true,
-        options: [
-          {
-            label: 'Teacher',
-            value: 'teacher'
-          }, {
-            label: 'Student',
-            value: 'student'
-          }
-        ]
-      }), button({
+
+      button({
         className: 'submit-btn',
         type: 'submit',
         disabled: !this.state.canSubmit
