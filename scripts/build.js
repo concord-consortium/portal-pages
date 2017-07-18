@@ -16,8 +16,10 @@ const librarySrcFolder = path.resolve(`${__dirname}/../src/library`);
 const libraryDestFolder = path.resolve(`${__dirname}/../dest/library`);
 const siteRedesignSrcFolder = path.resolve(`${__dirname}/../src/site-redesign`);
 const siteRedesignDestFolder = path.resolve(`${__dirname}/../dest/site-redesign`);
-const assetsSrcFolder = path.resolve(`${__dirname}/../src/site-redesign/assets`);
-const assetsDestFolder = path.resolve(`${__dirname}/../dest/site-redesign/assets`);
+const siteRedesignAssetsSrcFolder = path.resolve(`${__dirname}/../src/site-redesign/assets`);
+const siteRedesignAssetsDestFolder = path.resolve(`${__dirname}/../dest/site-redesign/assets`);
+const libraryAssetsSrcFolder = path.resolve(`${__dirname}/../src/library/assets`);
+const libraryAssetsDestFolder = path.resolve(`${__dirname}/../dest/library/assets`);
 
 const die = (err, code) => {
   console.error(err);
@@ -102,9 +104,15 @@ sass.render({file: `${siteRedesignSrcFolder}/site-redesign.scss`}, (err, result)
 });
 
 // copy the assets
-mkdirp.sync(assetsDestFolder);
-ncp(assetsSrcFolder, assetsDestFolder, function (err) {
+mkdirp.sync(siteRedesignAssetsDestFolder);
+ncp(siteRedesignAssetsSrcFolder, siteRedesignAssetsDestFolder, function (err) {
   if (err) {
     die(err, 4);
+  }
+});
+mkdirp.sync(libraryAssetsDestFolder);
+ncp(libraryAssetsSrcFolder, libraryAssetsDestFolder, function (err) {
+  if (err) {
+    die(err, 5);
   }
 });

@@ -15,7 +15,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/assets/', express.static(path.join(__dirname, '/../src/site-redesign/assets')));
+app.use('/site-redesign/', express.static(path.join(__dirname, '/../src/site-redesign')));
+app.use('/assets/', express.static(path.join(__dirname, '/../src/library/assets')));
 
 app.use(function (req, res, next) {
   res.die = function (message, code) {
