@@ -4,10 +4,10 @@ ref = React.DOM, button = ref.button, div = ref.div;
 
 INVALID_CLASS_WORD = 'You must enter a valid class word';
 
-var TextInputClass = require("./text_input").reactClass;
-var PrivacyPolicyClass = require("./privacy_policy").reactClass;
+var TextInputClass = require("./text_input");
+var PrivacyPolicyClass = require("./privacy_policy");
 
-var reactClass = function() {
+var StudentForm = function() {
 
   var FormsyForm, PrivacyPolicy, TextInput, classWordValidator, registerStudent;
   TextInput = React.createFactory(TextInputClass());
@@ -75,5 +75,5 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = StudentForm;
 

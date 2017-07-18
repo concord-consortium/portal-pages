@@ -14,6 +14,8 @@ const portalSrcFolder = path.resolve(`${__dirname}/../src/portals`);
 const portalDestFolder = path.resolve(`${__dirname}/../dest/portals`);
 const librarySrcFolder = path.resolve(`${__dirname}/../src/library`);
 const libraryDestFolder = path.resolve(`${__dirname}/../dest/library`);
+const siteRedesignSrcFolder = path.resolve(`${__dirname}/../src/site-redesign`);
+const siteRedesignDestFolder = path.resolve(`${__dirname}/../dest/site-redesign`);
 const assetsSrcFolder = path.resolve(`${__dirname}/../src/library/assets`);
 const assetsDestFolder = path.resolve(`${__dirname}/../dest/library/assets`);
 
@@ -85,6 +87,17 @@ sass.render({file: `${librarySrcFolder}/library.scss`}, (err, result) => {
   else {
     mkdirp.sync(libraryDestFolder);
     fs.writeFileSync(`${libraryDestFolder}/portal-pages.css`, result.css.toString());
+  }
+});
+
+// build the site redesign css
+sass.render({file: `${siteRedesignSrcFolder}/site-redesign.scss`}, (err, result) => {
+  if (err) {
+    die(err, 3);
+  }
+  else {
+    mkdirp.sync(siteRedesignDestFolder);
+    fs.writeFileSync(`${siteRedesignDestFolder}/site-redesign.css`, result.css.toString());
   }
 });
 

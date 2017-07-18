@@ -4,7 +4,7 @@ ref = React.DOM, div = ref.div, input = ref.input, a = ref.a, label = ref.label;
 
 TIMEOUT = 500;
 
-var reactClass = function() {
+var SchoolInput = function() {
 
   // console.log("INFO creating school_input");
 
@@ -104,6 +104,6 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = SchoolInput;
 
 

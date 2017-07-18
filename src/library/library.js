@@ -9,6 +9,8 @@ var UserAuth = require("./components/user-auth");
 var MaterialsCollection = require("./components/materials-collection");
 var GradeLevels = require("./components/grade-levels");
 
+var signup_functions    = require("./components/signup/signup_functions");
+
 var render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id));
 };
@@ -50,6 +52,21 @@ window.PortalPages = {
 
   GradeLevels: GradeLevels,
   renderGradeLevels: renderComponentFn(GradeLevels),
+
+  //
+  // How do clients know which div ID to pass here?
+  // Also these are React Classes converted from the .js.coffee code
+  // in portal. These will need to be instantiated differently than
+  // the other components in here.
+  // SignupModal: SignupModal,
+  // renderSignupModal: renderComponentFn(SignupModal),
+  //
+  renderSignupModal: function(properties) {
+    signup_functions.openSignupModal(properties);
+  },
+  renderLoginModal: function(properties) {
+    signup_functions.openLoginModal(properties);
+  },
 
   MaterialsCollection: MaterialsCollection,
   // this is a different format to match to existing project pages which had 2 formats itself

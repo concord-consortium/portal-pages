@@ -4,9 +4,9 @@ ref = React.DOM, div = ref.div, input = ref.input;
 
 TIMEOUT = 350;
 
-var AsyncValidationMixin = require("./async_validation_mixin").reactClass
+var AsyncValidationMixin = require("./async_validation_mixin");
 
-var reactClass = function() {
+var TextInput = function() {
   return React.createClass({
     displayName: 'TextInput',
     mixins: [Formsy.Mixin, AsyncValidationMixin()],
@@ -75,5 +75,5 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = TextInput;
 

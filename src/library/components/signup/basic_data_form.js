@@ -6,16 +6,19 @@ var a       = React.DOM.a;
 var link    = React.DOM.link;
 var br      = React.DOM.br;
 var p       = React.DOM.p;
+var span    = React.DOM.span;
 
 PASS_TOO_SHORT = 'Password is too short';
 PASS_NOT_MATCH = 'Passwords do not match';
 INVALID_FIRST_NAME = 'Invalid first name. Use only letters and numbers.';
 INVALID_LAST_NAME = 'Invalid last name. Use only letters and numbers.';
 
-var TextInputClass  = require("./text_input").reactClass;
-var RadioInputClass = require("./radio_input").reactClass;
+var TextInputClass  = require("./text_input");
+var RadioInputClass = require("./radio_input");
 
-var reactClass = function() {
+var enableAuthProviders = true;
+
+var BasicDataForm = function() {
 
   // console.log("INFO creating basic_data_form");
 
@@ -68,26 +71,35 @@ var reactClass = function() {
       var anonymous;
       anonymous = this.props.anonymous;
 
-      providers = this.props.oauthProviders;
-      providerLinks = [];
-      for(var i = 0; i < providers.length; i++) {
-        // console.log("INFO adding provider direct path " + providers[i].directPath);
-        // console.log("INFO adding provider auth check path " + providers[i].authCheckPath);
-
-        providerLinks.push(
-          a({
-              className: "submit-btn",
-              href: providers[i].directPath,
-              style: {  width: "100%",
-                        display: "block",
-                        padding: "5px" }
-
-          }, providers[i].text )
-        );
-        // providerLinks.push( br({}) );
-      }
-      if(providers.length > 0) {
-        providerLinks.push( div({ style: { textAlign: "center" } }, "-- or --" ) );
+      providerComponents = [];
+      if(enableAuthProviders && this.props.oauthProviders) {
+        providers = this.props.oauthProviders;
+        for(var i = 0; i < providers.length; i++) {
+          // console.log("INFO adding provider direct path " + providers[i].directPath);
+          // console.log("INFO adding provider auth check path " + providers[i].authCheckPath);
+  
+          providerComponents.push(
+            a({
+                className: "submit-btn",
+                href: providers[i].directPath,
+                style: {  width: "100%",
+                          display: "block",
+                          padding: "5px" }
+  
+            }, "Sign up with " + providers[i].display_name )
+          );
+        }
+        if(providers.length > 0) {
+          providerComponents.push( 
+            //
+            // Push separator bar
+            //
+            div( {className: "or-separator" },
+  
+              span( {className: "or-separator-text" }, "or" )
+            )
+          );
+        }
       }
 
       return FormsyForm({
@@ -96,7 +108,7 @@ var reactClass = function() {
         onInvalid: this.onBasicFormInvalid,
         onChange: this.onChange
       }, 
-      providerLinks,
+      providerComponents,
       anonymous ? div({}, div({
         className: 'name_wrapper'
       }, TextInput({
@@ -130,20 +142,8 @@ var reactClass = function() {
         validations: "equals:" + this.state.password,
         validationError: PASS_NOT_MATCH
       })) : void 0, 
-      RadioInput({
-        name: 'type',
-        title: 'I am a ',
-        required: true,
-        options: [
-          {
-            label: 'Teacher',
-            value: 'teacher'
-          }, {
-            label: 'Student',
-            value: 'student'
-          }
-        ]
-      }), button({
+
+      button({
         className: 'submit-btn',
         type: 'submit',
         disabled: !this.state.canSubmit
@@ -152,5 +152,5 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = BasicDataForm;
 

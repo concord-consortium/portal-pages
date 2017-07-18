@@ -2,11 +2,15 @@ var div, input, label, ref;
 
 ref = React.DOM, div = ref.div, input = ref.input, label = ref.label;
 
-var reactClass = function() {
+var RadioInput = function() {
   return React.createClass({
     displayName: 'RadioInput',
     mixins: [Formsy.Mixin],
     changeValue: function(event) {
+      console.log("INFO RadioInput changeValue", event);
+      if(this.props.handleChange) {
+        this.props.handleChange(event);
+      }
       return this.setValue(event.currentTarget.value);
     },
     render: function() {
@@ -34,5 +38,6 @@ var reactClass = function() {
   });
 };
 
-module.exports.reactClass = reactClass;
+module.exports = RadioInput;
+
 

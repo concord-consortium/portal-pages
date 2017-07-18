@@ -30,10 +30,12 @@ module.exports = (app) => {
 
   const portalSrcFolder = path.resolve(`${__dirname}/../../src/portals`);
   const librarySrcFolder = path.resolve(`${__dirname}/../../src/library`);
+  const siteRedesignSrcFolder = path.resolve(`${__dirname}/../../src/site-redesign`);
   const mockFolder = path.resolve(`${__dirname}/../../mock-ajax`);
 
   const injectedPageStyleId = '__devServerInjectedPageCSS';
   const injectedLibraryStyleId = '__devServerInjectedLibraryCSS';
+  const injectedSiteRedesignStyleId = '__devServerInjectedSiteRedesignCSS';
 
   // adapted from https://github.com/tapio/live-server/blob/master/injected.html
   const createInjectedHTML = (files, mock, proxy) => {
@@ -45,11 +47,10 @@ module.exports = (app) => {
         if ('WebSocket' in window) {
           (function() {
             var fileMatches = function (json) {
-              return json.file && ((${JSON.stringify(files)}.indexOf(json.file) !== -1) || (json.file.indexOf("library") !== -1));
+              return json.file && ((${JSON.stringify(files)}.indexOf(json.file) !== -1) || (json.file.indexOf("library") !== -1) || (json.file.indexOf("site-redesign") !== -1));
             };
             var restyle = function (json) {
-              debugger;
-              var id = json.file.indexOf("library") !== -1 ? '${injectedLibraryStyleId}' : '${injectedPageStyleId}';
+              var id = json.file.indexOf("library") !== -1 ? '${injectedLibraryStyleId}' : (json.file.indexOf("site-redesign") !== -1 ? '${injectedSiteRedesignStyleId}' : '${injectedPageStyleId}');
               document.getElementById(id).innerHTML = json.css;
             }
             var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
@@ -103,6 +104,16 @@ module.exports = (app) => {
           }
         });
       }
+      else if (changePath.indexOf("site-redesign") !== -1) {
+        compileSiteRedesignCSS((err, siteRedesignCSS) => {
+          if (!err) {
+            broadcast({
+              action: 'restyle',
+              css: siteRedesignCSS
+            });
+          }
+        });
+      }
       else {
         sass.render({file: changePath}, (err, result) => {
           if (!err) {
@@ -121,7 +132,7 @@ module.exports = (app) => {
     }
   };
 
-  const watcher = chokidar.watch([`${portalSrcFolder}/**/*`, `${librarySrcFolder}/**/*`], {
+  const watcher = chokidar.watch([`${portalSrcFolder}/**/*`, `${librarySrcFolder}/**/*`, `${siteRedesignSrcFolder}/**/*`], {
     persistent: true,
     ignoreInitial: true
   });
@@ -145,6 +156,17 @@ module.exports = (app) => {
 
   const compileLibraryCSS = (callback) => {
     sass.render({file: `${librarySrcFolder}/library.scss`}, (err, result) => {
+      if (err) {
+        callback(err);
+      }
+      else {
+        callback(null, result.css.toString());
+      }
+    });
+  };
+
+  const compileSiteRedesignCSS = (callback) => {
+    sass.render({file: `${siteRedesignSrcFolder}/site-redesign.scss`}, (err, result) => {
       if (err) {
         callback(err);
       }
@@ -188,8 +210,20 @@ module.exports = (app) => {
      });
   });
 
+  router.get('/site-redesign.css', (req, res, next) => {
+     compileSiteRedesignCSS((err, siteRedesignCSS) => {
+       if (err) {
+         res.die(err);
+       }
+       else {
+         res.set('Content-Type', 'text/css');
+         res.send(siteRedesignCSS);
+       }
+     });
+  });
+
   router.get('/proxy', (req, res, next) => {
-    const {file, portal, selector, mock} = req.query;
+    const {file, portal, selector, mock, siteRedesign} = req.query;
     const fileParser = (file || "").match(/\/([^/]+)\/(.+)/);
     const portalParser = (portal || "").match(/^((https?):\/\/([^/]+)\/?)/);
 
@@ -221,32 +255,42 @@ module.exports = (app) => {
             compileLibraryCSS((err, libraryCSS) => {
               libraryCSS = libraryCSS || "";
 
-              const options = {
-                url: portal,
-                headers: {
-                  cookie: req.headers.cookie
+              compileSiteRedesignCSS((err, siteRedesignCSS) => {
+                siteRedesignCSS = siteRedesignCSS || "";
+                if (!siteRedesign) {
+                  siteRedesignCSS = "";
                 }
-              };
-              console.log("PROXY: " + JSON.stringify(options));
-              request.get(options, (err, response, portalHTML) => {
-                if (err) { return res.die(err); }
 
-                const injectedHTML = createInjectedHTML([htmlPath, scssPath, jsPath], !!mock, {
-                  port: app.get('port'),
-                  protocol: portalProtocol,
-                  domain: portalDomain
+                const options = {
+                  url: portal,
+                  headers: {
+                    cookie: req.headers.cookie
+                  }
+                };
+                request.get(options, (err, response, portalHTML) => {
+                  if (err) { return res.die(err); }
+
+                  const injectedHTML = createInjectedHTML([htmlPath, scssPath, jsPath], !!mock, {
+                    port: app.get('port'),
+                    protocol: portalProtocol,
+                    domain: portalDomain
+                  });
+
+                  // redirect auth urls to proxy server
+                  let localCode = localJS ? `${localHTML}\n<!-- ${jsPath} -->\n<script>\n${localJS}\n</script>` : localHTML;
+                  localCode = localCode.replace("/users/sign_in", `http://localhost:${app.get('port')}/signin-proxy/${portalProtocol}/${portalDomain}`);
+                  localCode = localCode.replace("/users/sign_out", `http://localhost:${app.get('port')}/signout-proxy/${portalProtocol}/${portalDomain}`);
+
+                  // remove portal html library js and css
+                  portalHTML = portalHTML.replace(/<script.+portal-pages\.js.+>/, "");
+                  portalHTML = portalHTML.replace(/<link.+portal-pages\.css.+>/, "");
+
+                  const $ = cheerio.load(portalHTML);
+                  $("head").prepend(`<base href="${portalRoot}">`);
+                  $(selector).html(`\n${injectedHTML}\n<!-- site redesign css -->\n<style id="${injectedSiteRedesignStyleId}">\n${siteRedesignCSS}\n</style>\n<!-- portal library css -->\n<style id="${injectedLibraryStyleId}">\n${libraryCSS}\n</style>\n<!-- portal library js -->\n<script>\n${libraryJS}\n</script>\n<!-- ${scssPath} -->\n<style id="${injectedPageStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
+
+                  res.send($.html());
                 });
-
-                // redirect auth urls to proxy server
-                let localCode = localJS ? `${localHTML}\n<!-- ${jsPath} -->\n<script>\n${localJS}\n</script>` : localHTML;
-                localCode = localCode.replace("/users/sign_in", `http://localhost:${app.get('port')}/signin-proxy/${portalProtocol}/${portalDomain}`);
-                localCode = localCode.replace("/users/sign_out", `http://localhost:${app.get('port')}/signout-proxy/${portalProtocol}/${portalDomain}`);
-
-                const $ = cheerio.load(portalHTML);
-                $("head").prepend(`<base href="${portalRoot}">`);
-                $(selector).html(`\n${injectedHTML}\n<!-- portal library css -->\n<style id="${injectedLibraryStyleId}">\n${libraryCSS}\n</style>\n<!-- portal library js -->\n<script>\n${libraryJS}\n</script>\n<!-- ${scssPath} -->\n<style id="${injectedPageStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
-
-                res.send($.html());
               });
             });
           });

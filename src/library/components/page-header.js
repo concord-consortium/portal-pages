@@ -1,7 +1,7 @@
 var Component = require('../helpers/component');
 
 var fadeIn = require("../helpers/fade-in");
-var signup = require("./signup/signup_modal");
+// var signup = require("./signup/signup_functions");
 
 var a = React.DOM.a;
 var button = React.DOM.button;
@@ -48,13 +48,17 @@ var PageHeader = Component({
 
   handleLoginButton: function (e) {
     e.preventDefault();
-    Portal.showModal("#login-form");
+    console.log("INFO calling renderLoginModal()");
+    PortalPages.renderLoginModal(
+      { oauthProviders: this.props.oauthProviders} );
   },
 
   handleRegisterButton: function (e) {
     e.preventDefault();
-    signup.openSignupModal({oauthProviders: this.props.oauthProviders});
-    Portal.openSignupModal();
+    PortalPages.renderSignupModal(
+      { oauthProviders: this.props.oauthProviders },
+      "signup-default-modal"
+    );
   },
 
   handleNavMenuToggle: function (e) {
