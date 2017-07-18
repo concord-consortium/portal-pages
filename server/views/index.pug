@@ -15,8 +15,12 @@ block content
       label(for='selector') Content Selector
       input(type='text' name='selector' id='selector')
     div.form-group
-      input(type='checkbox' name='mock' id='selector' value='1')
-      span Mock API Requests?
+      div
+        input(type='checkbox' name='mock' id='mock' value='1')
+        span Mock API Requests?
+      div
+        input(type='checkbox' name='siteRedesign' id='siteRedesign' value='1')
+        span Include site-redesign.css?
     div.form-group
       input(type='submit' value='Submit')
 
