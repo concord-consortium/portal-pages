@@ -16,8 +16,8 @@ const librarySrcFolder = path.resolve(`${__dirname}/../src/library`);
 const libraryDestFolder = path.resolve(`${__dirname}/../dest/library`);
 const siteRedesignSrcFolder = path.resolve(`${__dirname}/../src/site-redesign`);
 const siteRedesignDestFolder = path.resolve(`${__dirname}/../dest/site-redesign`);
-const assetsSrcFolder = path.resolve(`${__dirname}/../src/library/assets`);
-const assetsDestFolder = path.resolve(`${__dirname}/../dest/library/assets`);
+const assetsSrcFolder = path.resolve(`${__dirname}/../src/site-redesign/assets`);
+const assetsDestFolder = path.resolve(`${__dirname}/../dest/site-redesign/assets`);
 
 const die = (err, code) => {
   console.error(err);

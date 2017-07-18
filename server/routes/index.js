@@ -260,6 +260,9 @@ module.exports = (app) => {
                 if (!siteRedesign) {
                   siteRedesignCSS = "";
                 }
+                else {
+                  siteRedesignCSS = siteRedesignCSS.replace(/url\(\/assets\//g, `url(http://localhost:${app.get('port')}/assets/`);
+                }
 
                 const options = {
                   url: portal,
