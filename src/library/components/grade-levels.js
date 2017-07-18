@@ -9,7 +9,7 @@ var GradeLevels = Component({
     var resource = this.props.resource;
     var levels = filters.gradeFilters.reduce(function (levelAcc, gradeFilter) {
       var matching = gradeFilter.grades.reduce(function (matchingAcc, grade) {
-        if (resource.grade_levels.indexOf(grade) !== -1) {
+        if (resource.grade_levels && resource.grade_levels.indexOf(grade) !== -1) {
           matchingAcc.push(grade);
         }
         return matchingAcc;
