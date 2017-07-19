@@ -18,7 +18,7 @@ var SignupModal = function() {
       // console.log("INFO rendering signup modal", this.props);
       return div({
         className: 'signup-default-modal-content'
-      }, Signup( { oauthProviders: this.props.oauthProviders } ) );
+      }, Signup( this.props ) );
     }
   });
 };

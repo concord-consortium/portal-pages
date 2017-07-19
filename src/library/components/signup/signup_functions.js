@@ -29,6 +29,7 @@ var openModal = function(type, properties) {
   }
   ReactDOM.unmountComponentAtNode(modalContainer[0]);
   var comp = React.createFactory( type() );
+  console.log("INFO creating modal with props", properties);
   ReactDOM.render(comp(properties), modalContainer[0]);
   return Portal.showModal(modalContainerSelector);
 };

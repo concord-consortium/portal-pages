@@ -65,17 +65,21 @@ var Signup = function() {
     getStepNumber: function() {
       var basicData, ref, studentData, teacherData;
       ref = this.state, basicData = ref.basicData, studentData = ref.studentData, teacherData = ref.teacherData;
-      if (!basicData) {
+
+      // console.log("INFO getStepNumber", this.props, basicData);
+
+      if (!this.props.omniauth && !basicData) {
         return 1;
       }
-      if (basicData && !studentData && !teacherData) {
+      if (this.props.omniauth || (basicData && !studentData && !teacherData)) {
         return 2;
       }
       return 3;
     },
 
     render: function() {
-      // console.log("INFO rendering signup", this.props);
+
+      console.log("INFO rendering signup", this.props);
 
       var anonymous, basicData, ref, ref1, signupText, studentData, teacherData;
       ref = this.props, signupText = ref.signupText, oauthProviders = ref.oauthProviders, anonymous = ref.anonymous;
@@ -83,8 +87,21 @@ var Signup = function() {
 
       var form;
 
+      //
+      // For omniauth final step, simply redirect to omniauth_origin
+      //
+      if((studentData || teacherData) && this.props.omniauth) {
+        console.log("INFO omniauth final step, redirect.", this.props);
+        var data = this.state.studentData ? this.state.studentData : this.state.teacherData;
+        window.location.href = data.omniauth_origin;
+        return null;
+      }
+
       if (studentData) {
 
+        //
+        // Display completion step
+        //
         form = StudentRegistrationComplete({
           anonymous: anonymous,
           data: studentData
@@ -92,13 +109,16 @@ var Signup = function() {
 
       } else if (teacherData) {
 
+        //
+        // Display completion step
+        //
         form = TeacherRegistrationComplete({
           anonymous: anonymous
         });
 
-      } else if (!basicData) {
+      } else if (!basicData && !this.props.omniauth) {
 
-        console.log("INFO signup form creating basic data selector step");
+        // console.log("INFO signup form creating basic data selector step");
 
         form = [
           BasicDataForm({
@@ -111,7 +131,7 @@ var Signup = function() {
 
       } else {
 
-        console.log("INFO signup form creating type selector step");
+        // console.log("INFO signup form creating type selector step");
 
         var select = UserTypeSelector({ 
           studentReg:   this.onStudentRegistration,
@@ -145,13 +165,24 @@ var Signup = function() {
 
       }
       
+      var step = this.getStepNumber();
+      var stepText = "Step " + step;
+
+      if(step > 1) {
+        if(this.props.omniauth) {
+          stepText += " of 2";
+        } else {
+          stepText += " of 3";
+        }
+      }
+
       return div({}, 
         div({
           className: 'modal-title'
         }, anonymous ? 'Sign Up' : 'Finish Signing Up'), 
         div({
           className: 'step'
-        }, "Step " + (this.getStepNumber()) + " of 3"), 
+        }, stepText), 
         div({
           className: 'signup-form'
         }, 
