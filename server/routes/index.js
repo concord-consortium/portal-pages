@@ -121,7 +121,7 @@ module.exports = (app) => {
           if (!err) {
             broadcast({
               action: 'restyle',
-              url: cacheBuster(`${selfRoot()}/site-redesign.css`)
+              url: cacheBuster(`${selfRoot()}/site-redesign/site-redesign.css`)
             });
           }
         });
@@ -222,14 +222,14 @@ module.exports = (app) => {
      });
   });
 
-  router.get('/site-redesign.css', (req, res, next) => {
+  router.get('/site-redesign/site-redesign.css', (req, res, next) => {
      compileSiteRedesignCSS((err, siteRedesignCSS) => {
        if (err) {
          res.die(err);
        }
        else {
          res.set('Content-Type', 'text/css');
-         res.send(siteRedesignCSS.replace(/url\(\/assets\//g, `url(${selfRoot()}/site-redesign/assets/`));
+         res.send(siteRedesignCSS);
        }
      });
   });
@@ -293,7 +293,7 @@ module.exports = (app) => {
 
                 const $ = cheerio.load(portalHTML);
                 $("head").prepend(`<base href="${portalRoot}">`);
-                const siteRedesignLink = siteRedesign ? `<link rel="stylesheet" type="text/css" href="${selfRoot()}/site-redesign.css">` : "";
+                const siteRedesignLink = siteRedesign ? `<link rel="stylesheet" type="text/css" href="${selfRoot()}/site-redesign/site-redesign.css">` : "";
                 $(selector).html(`\n${injectedHTML}\n${siteRedesignLink}\n<!-- portal library css -->\n<link rel="stylesheet" type="text/css" href="${selfRoot()}/portal-pages.css">\n<!-- portal library js -->\n<script>\n${libraryJS}\n</script>\n<!-- ${scssPath} -->\n<style id="${injectedPageStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
 
                 res.send($.html());
