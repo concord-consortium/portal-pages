@@ -125,36 +125,38 @@ body {
       }
     }
 
-    .main-nav-contain {
+    .concord-navigation {
+      background: $white;
+    }
+    .portal-pages-main-nav-contain {
+      background: $white;
+      box-shadow: 0 6px 3px rgba(51, 51, 51, .1);
       display: block;
-      position: absolute;
-      z-index: 101;
-      width: 100%;
-      top: 150px;
       left: 0;
-      text-align: left;
       margin: 0;
+      padding-bottom: 100px;
+      position: absolute;
+      text-align: center;
+      top: 200px;
+      width: 100%;
+      z-index: 101;
 
-      .main-nav-item {
+      .portal-pages-main-nav-item {
         display: block;
         font-size: 24px;
         margin: 0 40px;
 
-        &.search {
-          display: none;
-        }
-
         ul {
-          opacity: 0;
-          height: 0;
-          display: none;
-          position: relative;
-          z-index: -1;
           border: 0;
-          padding: 0;
-          top: 5px;
-          right: auto;
+          display: none;
+          height: 0;
           left: auto;
+          opacity: 0;
+          padding: 0;
+          position: relative;
+          right: auto;
+          top: 150px;
+          z-index: -1;
           @include transition(all .2s $transition-function);
           li {
             font-size: 18px;
@@ -213,11 +215,23 @@ body {
         display: block;
         color: $col-default;
         padding: 20px 0;
-        border-bottom: 2px dotted $col-darkgray-25;
         opacity: 1;
-        margin: 0;
+        margin: 10px 0;
         &:hover {
+          border-color: transparent;
           opacity: .7;
+        }
+        &.log-in {
+          color: $white;
+          font-size: 24px;
+          margin-top: 20px;
+          i { display: none; }
+        }
+        &.register {
+          color: $col-orange;
+          font-size: 24px;
+          margin-top: 60px;
+          i { display: none; }
         }
       }
     }
