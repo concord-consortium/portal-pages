@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=production node server/bin/www",
     "start:dev": "cross-env NODE_ENV=development node server/bin/www",
     "build": "node scripts/build.js",
-    "live-server": "./node_modules/.bin/live-server --no-browser --port=10000 ./dest/library"
+    "live-server": "./node_modules/.bin/live-server --no-browser --port=10000 ./dest"
   },
   "repository": {
     "type": "git",
