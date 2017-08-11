@@ -1,7 +1,6 @@
 var Component = require('../helpers/component');
 
 var fadeIn = require("../helpers/fade-in");
-// var signup = require("./signup/signup_functions");
 
 var a = React.DOM.a;
 var button = React.DOM.button;

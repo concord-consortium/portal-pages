@@ -73,8 +73,8 @@ window.PortalPages = {
   // Render a signup form to the specified DOM id.
   //
   // Params
-  //    id          - The DOM id. E.g. "#test-embedded-signup-form"
-  //    properties  - The properties. E.g. { oauthProviders: [ ... ] }
+  //    properties  - The properties.   E.g. { oauthProviders: [ ... ] }
+  //    id          - The DOM id.       E.g. "#test-embedded-signup-form"
   //
   renderSignupForm: signup_functions.renderSignupForm,
 

@@ -9,8 +9,14 @@ var modalClasses = {}
 modalClasses[LoginModal]    = "login-default-modal";
 modalClasses[SignupModal]   = "signup-default-modal";
 
-
-renderSignupForm = function(selectorOrElement, properties) {
+//
+// Render signup form with the specfiied properties to the specified DOM id.
+//
+// Params
+//  properties          - The properties
+//  selectorOrElement   - DOM element selector
+//
+renderSignupForm = function(properties, selectorOrElement) {
   if (properties == null) {
     properties = {};
   }
