@@ -1,4 +1,5 @@
 var SignupModal     = require('./signup_modal');
+var Signup          = require('./signup');
 var LoginModal      = require('./login_modal');
 
 //
@@ -10,13 +11,12 @@ modalClasses[SignupModal]   = "signup-default-modal";
 
 
 renderSignupForm = function(selectorOrElement, properties) {
-  var Signup;
   if (properties == null) {
     properties = {};
   }
-  Signup = React.createFactory( Signup() );
+  var comp = React.createFactory( Signup() );
 
-  return ReactDOM.render(Signup(properties), jQuery(selectorOrElement)[0]);
+  ReactDOM.render(comp(properties), jQuery(selectorOrElement)[0]);
 };
 
 var openModal = function(type, properties) {
