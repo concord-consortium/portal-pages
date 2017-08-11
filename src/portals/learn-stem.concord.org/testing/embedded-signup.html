@@ -1,7 +1,7 @@
 <div id="test-embedded-signup-form" style="text-align: left;"></div>
 
 <script>
-    PortalPages.renderSignupForm("#test-embedded-signup-form", 
+    PortalPages.renderSignupForm(
 		{
 			oauthProviders: [
 
@@ -13,7 +13,8 @@
 					display_name:   "Foo",
 					directPath:     "http://foo.com" }
 			] 
-		}
+		},
+        "#test-embedded-signup-form"
 	);
 </script>
 
