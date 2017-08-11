@@ -1,29 +1,31 @@
-var GradeLevels = require('./grade-levels');
-
 var Component = require('../helpers/component');
 var shuffleArray = require('../helpers/shuffle-array');
 var filters = require("../helpers/filters");
 
+var a = React.DOM.a;
 var div = React.DOM.div;
 var span = React.DOM.span;
 var pre = React.DOM.pre;
 var img = React.DOM.img;
-var h2 = React.DOM.h2;
+var h3 = React.DOM.h2;
 var button = React.DOM.button;
 
 var MaterialsCollectionItem = Component({
   render: function () {
     var item = this.props.item;
     return div({className: "portal-pages-finder-materials-collection-item"},
-      div({className: "portal-pages-finder-materials-collection-item-icon"},
-        img({src: item.icon.url})
-      ),
-      div({className: "portal-pages-finder-materials-collection-item-info"},
-        h2({}, item.name),
-        div({className: "portal-pages-finder-materials-collection-item-description", dangerouslySetInnerHTML: {__html: item.description}}),
-        div({className: "portal-pages-finder-materials-collection-item-footer"},
-          GradeLevels({resource: item, className: "portal-pages-finder-materials-collection-item-grade-levels"})
+      div({className: "portal-pages-finder-materials-collection-item__image col-4"},
+        a({href: '#'},
+          img({src: item.icon.url})
         )
+      ),
+      div({className: "portal-pages-finder-materials-collection-item-info col-8"},
+        h3({className: "portal-pages-finder-materials-collection-item__title"},
+          a({href: '#'},
+            item.name
+          )
+        ),
+        div({className: "portal-pages-finder-materials-collection-item__description", dangerouslySetInnerHTML: {__html: item.description}}),
       )
       //pre({}, JSON.stringify(this.props.item, null, 2))
     );

@@ -114,23 +114,26 @@
   text-overflow: ellipsis;
 }
 
-.portal-pages-collection-resource-list {
-  clear: both;
-
+.collection-heading {
   h2 {
     color: $col-darkgray;
     font: 700 24px $font-museo-sans;
     margin-bottom: 0;
   }
-  .material-item {
+}
+
+.portal-pages-finder-materials-collection {
+  clear: both;
+  .portal-pages-finder-materials-collection-item {
     background: transparent !important;
-    .material-item-content {
+    .portal-pages-finder-materials-collection-item-info {
       background: $white;
       margin-bottom: 30px;
+      margin-left: 0;
       min-height: 300px;
       padding: 0;
     }
-    .material-item__title {
+    .portal-pages-finder-materials-collection-item__title {
       font: 700 18px $font-museo-sans;
       line-height: 24px;
       padding: 50px 30px 0;
@@ -138,13 +141,13 @@
         color: $col-blue;
       }
     }
-    .material-item__description {
+    .portal-pages-finder-materials-collection-item__description {
       color: $col-darkgray;
       font: 300 15px $font-museo-sans;
       line-height: 24px;
       padding: 0 30px 40px;
     }
-    .material-item__image {
+    .portal-pages-finder-materials-collection-item__image {
       margin-top: 0;
       position: relative;
       img {

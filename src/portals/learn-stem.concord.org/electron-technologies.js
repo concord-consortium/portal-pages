@@ -8,4 +8,4 @@ PortalPages.renderPageFooter({
 }, 'page-footer');
 
 // Last argument is number of visible materials.
-//Portal.renderMaterialsCollection(12, '#collection-1');
+PortalPages.renderMaterialsCollection(1, '#collection-1');
