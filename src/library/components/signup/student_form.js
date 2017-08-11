@@ -1,6 +1,6 @@
 var INVALID_CLASS_WORD, button, div, ref;
 
-ref = React.DOM, button = ref.button, div = ref.div;
+ref = React.DOM, button = ref.button, div = ref.div, dd = ref.dd, dl = ref.dl, dt = ref.dt;
 
 INVALID_CLASS_WORD = 'You must enter a valid class word';
 
@@ -59,21 +59,31 @@ var StudentForm = function() {
         onValidSubmit: this.submit,
         onValid: this.onBasicFormValid,
         onInvalid: this.onBasicFormInvalid
-      }, TextInput({
-        ref: 'classWord',
-        name: 'class_word',
-        placeholder: 'Class Word (not case sensitive)',
-        required: true,
-        asyncValidation: classWordValidator,
-        asyncValidationError: INVALID_CLASS_WORD
-      }), PrivacyPolicy({}), button({
-        className: 'submit-btn',
-        type: 'submit',
-        disabled: !canSubmit
-      }, 'Sign Up!'));
+      },
+      dl({},
+        dt({}, 'Class Word'),
+        dd({},
+          TextInput({
+            ref: 'classWord',
+            name: 'class_word',
+            placeholder: 'Class Word (not case sensitive)',
+            required: true,
+            asyncValidation: classWordValidator,
+            asyncValidationError: INVALID_CLASS_WORD
+          })
+        )
+      ),
+      PrivacyPolicy({}),
+      div({className: 'submit-button-container'},
+        button({
+          className: 'submit-btn',
+          type: 'submit',
+          disabled: !canSubmit
+        }, 'Sign Up!')
+      )
+      );
     }
   });
 };
 
 module.exports = StudentForm;
-

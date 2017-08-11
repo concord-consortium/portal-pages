@@ -43,16 +43,6 @@ var StemFinderResult = Component({
     e.stopPropagation();
     var lightbox = !this.state.lightbox;
 
-    if (jQuery('body').css('overflow') === 'hidden') {
-      // enable scrolling of body element
-      jQuery('body').css('overflow', 'auto');
-    } else {
-      // disable scrolling of body element
-      jQuery('body').css('overflow', 'hidden');
-    }
-
-
-
     // TODO: add pushstate
     this.setState({
       lightbox: lightbox,
@@ -68,14 +58,21 @@ var StemFinderResult = Component({
         mountPoint.id = mountPointId;
         document.body.appendChild(mountPoint);
       }
-      jQuery('body').css('overflow', 'hidden');
+      jQuery('html, body').css('overflow', 'hidden');
       ReactDOM.render(ResourceLightbox({resource: this.props.resource, toggleLightbox: this.toggleLightbox}), mountPoint);
+      jQuery('<div class="portal-pages-resource-lightbox-background"></div>').insertBefore('#stem-finder-result-lightbox-mount');
+      jQuery('.portal-pages-resource-lightbox-background').click(function() {
+        ResourceLightbox.handleClose(); // this doesn't work
+      });
       jQuery('.home-page-content').addClass('blurred');
+      jQuery('.portal-pages-resource-lightbox-background, #stem-finder-result-lightbox-mount').fadeIn();
     }
     else {
-      jQuery('body').css('overflow', 'auto');
+      jQuery('html, body').css('overflow', 'auto');
       ReactDOM.unmountComponentAtNode(mountPoint);
+      jQuery('.portal-pages-resource-lightbox-background').remove();
       jQuery('.home-page-content').removeClass('blurred');
+      jQuery('.portal-pages-resource-lightbox-background, #stem-finder-result-lightbox-mount').fadeOut();
     }
   },
 

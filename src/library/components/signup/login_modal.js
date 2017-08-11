@@ -1,8 +1,13 @@
 var button          = React.DOM.button;
+var dd              = React.DOM.dd;
+var dl              = React.DOM.dl;
+var dt              = React.DOM.dt;
+var footer          = React.DOM.footer;
 var strong          = React.DOM.strong;
 var span            = React.DOM.span;
 var a               = React.DOM.a;
 var div             = React.DOM.div;
+var h2              = React.DOM.h2;
 var li              = React.DOM.li;
 var p               = React.DOM.p;
 var ul              = React.DOM.ul;
@@ -39,71 +44,60 @@ var LoginModal = function() {
       // console.log("INFO rendering LoginModal with props", this.props);
 
       var providerComponents = [];
-      
-      if(enableAuthProviders && this.props.oauthProviders) {
 
-        //
-        // Push separator field
-        //
-        providerComponents.push(
-          div( {className: "or-separator"}, 
-            span( {className: "or-separator-text"}, "or" )
-          )
-        );
+      if(enableAuthProviders && this.props.oauthProviders) {
 
         providers = this.props.oauthProviders;
         for(var i = 0; i < providers.length; i++) {
           providerComponents.push(
             a({
-              className: "submit-btn",
-              href: providers[i].directPath,
-              style: {  width: "100%",
-                        display: "block",
-                        padding: "5px" }
+              className: "badge",
+              id: providers[i].name,
+              href: providers[i].directPath
 
-            }, "Log in with " + providers[i].display_name )
+            }, 'Sign in with ' + providers[i].display_name )
           );
         }
       }
 
-      return FormsyForm({ 
+      return FormsyForm({
         className: 'signup-form',
         onValidSubmit: this.submit },
 
-        div({}, 
-          div({ className: 'modal-title' }, 'Log In' ),
+        h2({},
+          strong({}, 'Log in'),
+          ' to the Learn Portal'),
+        dl({},
+          dt({}, "Username"),
+          dd({},
+            TextInput({
+              name: 'user[login]',
+              placeholder: '',
+              required: true }),
+          ),
+          dt({}, "Password"),
+          dd({},
+            TextInput({
+              name: 'user[password]',
+              placeholder: '',
+              type: 'password',
+              required: true }),
+          ),
         ),
-
-        div({className: "login-left-form"}, 
-
-          div({}, "Username"),
-          TextInput({
-            name: 'user[login]',
-            placeholder: 'login',
-            required: true }),
-
-          div({}, "Password"),
-          TextInput({
-            name: 'user[password]',
-            placeholder: 'Password',
-            type: 'password',
-            required: true }),
-
+        div({className: 'third-party-login-options'},
+          p({}, 'Or, sign in with: '),
+          providerComponents,
+        ),
+        div({className: 'submit-button-container'},
+          a({ href: "/forgot_password", title: "Click this link if you forgot your username and/or password."}, "Forgot your username or password?"),
           button({
             className: 'submit-btn',
             type: 'submit',
-          }, "Login" ),
-
-          div({className: "submit-button-container"},
-            a({ href: "/forgot_password", title: "Click this link if you forgot your username and/or password."}, "Forgot your username or password?" )
-          ),
-
-          providerComponents,
-
+          }, 'Log In!' ),
         ),
 
-        div({className: "login-modal-side-info"},
-          p({}, 
+        footer({},
+          p({},
             "Don't have an account? ",
             a( {href: "#", onclick: "Portal.openSignupModal(); return false;"},
               "Sign up for free" ),
@@ -117,4 +111,3 @@ var LoginModal = function() {
 };
 
 module.exports = LoginModal;
-

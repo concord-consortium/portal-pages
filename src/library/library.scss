@@ -14,9 +14,10 @@
   background-color: $white;
   cursor: pointer;
   height: 355px;
+  margin-bottom: 30px;
   min-height: 355px;
   padding-bottom: 90px;
-  /* position: unset; Using 'unset' here because of styling set in https://s3.amazonaws.com/models-resources/portal-pages/library/portal-pages.css. Remove once the latter is no longer affecting page. */
+  position: relative;
   vertical-align: top;
 }
 .portal-pages-finder-result a {
@@ -180,27 +181,32 @@
   width: 100%;
 }
 
-.portal-pages-resource-lightbox {
-  bottom: 0;
+#stem-finder-result-lightbox-mount {
+  display: none;
   height: 100%;
   left: 0;
   overflow-y: auto;
   position: fixed;
-  right: 0;
   top: 0;
-  z-index: 999;
+  width: 100%;
+  }
+.portal-pages-resource-lightbox {
+  bottom: auto;
+  height: auto;
+  left: auto;
+  right: auto;
+  top: auto;
 }
 
 .portal-pages-resource-lightbox-background {
   background: $black;
-  bottom: 0;
+  display: none;
+  height: 100%;
   left: 0;
   opacity: 0.85;
-  overflow-y: auto;
   position: fixed;
-  right: 0;
   top: 0;
-  z-index: 1000;
+  width: 100%;
 }
 .portal-pages-resource-lightbox-background-close {
   color: #fff;
@@ -209,21 +215,18 @@
   position: fixed;
   right: 20px;
   top: -10px;
-  z-index: 1001;
 }
 .portal-pages-resource-lightbox-modal {
   background-color: $white;
-  bottom: 30px;
-  height: 100%;
+  bottom: auto;
+  height: auto;
   left: 50%;
   margin-left: -460px;
-  overflow: auto;
   padding: 0 95px 80px;
   position: relative;
-  right: 50%;
+  right: auto;
   top: 100px;
   width: 920px;
-  z-index: 1002;
   a {
     display: inline;
   }
@@ -287,8 +290,7 @@
 }
 .portal-pages-resource-lightbox-modal-utility {
   height: 25px;
-  margin-top: 40px;
-  margin-bottom: 30px;
+  padding: 40px 0 50px;
   text-align: right;
   ul {
     height: 25px;
@@ -383,6 +385,7 @@
   padding: 50px 70px;
 }
 .portal-pages-resource-lightbox-related-content h2 {
+  padding-bottom: 30px;
   padding-left: 20px;
   text-transform: none;
 }
@@ -458,4 +461,207 @@ $materials-collection-item-icon-width: 300px;
   border: 2px solid $col-orange;
   font-size: 12px;
   font-weight: bold;
+}
+
+.signup-default-modal-content { padding-bottom: 0; }
+.signup-form .radio-input {
+  margin-bottom: 30px;
+  }
+#login-default-modal, #signup-default-modal, #login-form, #register-form {
+  box-sizing: content-box;
+  margin-left: -460px;
+  min-height: 300px !important;
+  padding: 60px 190px 0;
+  width: 540px;
+  a:link, a:visited { color: $col-orange; }
+  a:active, a:hover { color: $col-gold; }
+  dl, form { margin: 0; padding: 0; }
+  dd {
+    display: block;
+    margin-bottom: 30px;
+    &.first-name-wrapper {
+      margin-right: 30px;
+    }
+    &.two-col {
+      float: left;
+      margin-top: 35px;
+      margin-left: -87px;
+      input[type="text"] {
+        width: 255px;
+      }
+    }
+    &.multi-col {
+      float: left;
+      margin-top: -9px;
+      margin-right: 45px;
+      input {
+        margin-right: 10px;
+        width: auto;
+      }
+    }
+  }
+  dt {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+    &.two-col {
+      float: left;
+    }
+    &.multi-col {
+      float: left;
+      margin-right: 45px;
+    }
+  }
+  footer {
+    background: $col-lightgray;
+    color: $col-darkgray;
+    font: 300 18px $font-museo-sans;
+    height: auto;
+    margin-left: -190px;
+    padding: 50px 190px;
+    width: 540px;
+    a {
+      font-weight: 700;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 30px;
+      margin: 0;
+    }
+  }
+  h2 {
+    font: 100 36px $font-museo;
+    color: $col-darkgray;
+    line-height: 1;
+    margin: 0 0 30px;
+    padding: 0;
+    strong {
+      color: $col-blue;
+      font-weight: 900;
+    }
+  }
+  input[type="text"], input[type="password"], .signup-form .select-input .Select-control {
+    border: solid 2px $col-blue;
+    color: #080D09;
+    font-family: museo-sans, sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  .Select-placeholder, .Select--single>.Select-control .Select-value {
+    line-height: 1.5;
+    padding: 5px;
+  }
+  button[type="submit"] {
+    background: $col-orange;
+    border: none;
+    border-radius: 0 !important;
+    display: inline-block;
+    font: 700 15px $font-museo-sans;
+    margin: 20px 0 20px 20px;
+    padding: 10px 20px !important;
+    width: auto;
+  }
+  .third-party-login-options {
+    clear: both;
+    overflow: hidden;
+    ul {
+      float: left;
+    }
+    li {
+      display: inline;
+    }
+    p {
+      float: left;
+      font-size: 15px;
+      font-weight: 700;
+      margin: 11px 20px 0 0;
+    }
+    a.badge {
+      border-radius: 50%;
+      color: $white;
+      display: inline-block;
+      height: 40px;
+      margin-right: 10px;
+      overflow: hidden;
+      position: relative;
+      text-indent: 200%;
+      width: 40px;
+      white-space: nowrap;
+      &#google {
+        background: #df4a32;
+        color: $white;
+        &:before {
+          content: "\e90f";
+          font: 24px "icomoon";
+          left: 50%;
+          margin: -12px 0 0 -12px;
+          position: absolute;
+          text-indent: 0;
+          top: 50%;
+        }
+      }
+      &#schoology {
+        background: #82c6e2 url(./assets/schoology.png) no-repeat center center; /* drop this once a Schoology icon is added to the icomoon font */
+        background-size: 24px;
+        color: $white;
+        &:before {
+          content: "";
+          font: 24px "icomoon";
+          left: 50%;
+          margin: -12px 0 0 -12px;
+          position: absolute;
+          text-indent: 0;
+          top: 50%;
+        }
+      }
+    }
+  }
+  .submit-button-container {
+    color: $col-darkgray-25;
+    font: 700 15px $font-museo-sans;
+    margin: 30px 0 60px;
+    text-align: right;
+    .step {
+      color: inherit;
+      font-size: 15px;
+      position: relative;
+      right: auto;
+      top: auto;
+    }
+  }
+  .signup-form .zipcode {
+    width: 100%;
+  }
+  .signup-default-modal-content {
+    overflow: visible;
+  }
+  .signup-form {
+    float: none;
+    font-size: inherit;
+    margin: 0;
+    width: auto;
+    .text-input {
+      margin: 0;
+    }
+  }
+  .name_wrapper {
+    width: auto;
+  }
+}
+.or-separator {
+  border-bottom: 2px dotted $col-darkgray-50;
+  height: 11px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  text-align: center;
+  width: 100%;
+}
+
+.or-separator-text {
+  background-color: $white;
+  padding: 0 10px;
 }

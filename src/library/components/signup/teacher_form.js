@@ -1,6 +1,6 @@
 var CANT_FIND_SCHOOL, EMAIL_REGEXP, EMAIL_TAKEN, GO_BACK_TO_LIST, LOGIN_INVALID, LOGIN_TOO_SHORT, a, button, div, i, invalidZipcode, newSchoolWarning, ref, zipcodeHelp;
 
-ref = React.DOM, button = ref.button, a = ref.a, i = ref.i, div = ref.div;
+ref = React.DOM, button = ref.button, a = ref.a, i = ref.i, div = ref.div, dd = ref.dd, dl = ref.dl, dt = ref.dt;
 
 LOGIN_TOO_SHORT = 'Login is too short';
 LOGIN_INVALID = 'Invalid login. This name is either already taken or does not use only letters, numbers and the characters .+-_@';
@@ -168,83 +168,123 @@ var TeacherForm = function() {
         onValid: this.onBasicFormValid,
         onInvalid: this.onBasicFormInvalid,
         onChange: this.onChange
-      }, anonymous ? div({}, TextInput({
-        ref: 'login',
-        name: 'login',
-        placeholder: 'Username',
-        required: true,
-        validations: {
-          minLength: 3
-        },
-        validationErrors: {
-          minLength: LOGIN_TOO_SHORT
-        },
-        asyncValidation: loginValidValidator,
-        asyncValidationError: LOGIN_INVALID
-      }), TextInput({
-        ref: 'email',
-        name: 'email',
-        placeholder: 'Email',
-        required: true,
-        validations: {
-          isEmail: true
-        },
-        validationErrors: {
-          isEmail: EMAIL_REGEXP
-        },
-        asyncValidation: emailAvailableValidator,
-        asyncValidationError: EMAIL_TAKEN
-      })) : void 0, SelectInput({
-        name: 'country_id',
-        placeholder: 'Country',
-        loadOptions: this.getCountries,
-        required: true,
-        onChange: this.checkIfUS
-      }), showZipcode ? div({}, TextInput({
-        ref: 'zipcode',
-        name: 'zipcode',
-        placeholder: "School / Institution " + (this.zipOrPostal()),
-        required: true,
-        validations: {
-          zipcode: this.zipcodeValidation
-        },
-        validationErrors: {
-          zipcode: invalidZipcode(this.zipOrPostal())
-        },
-        processValue: function(val) {
-          return val.replace(/\s/g, '');
-        }
-      }), !showZipcodeHelp ? i({
-        className: 'zipcode-help-icon fa fa-question-circle',
-        onClick: this.showZipcodeHelp
-      }) : void 0, showZipcodeHelp ? div({
-        className: 'help-text'
-      }, div({}, zipcodeHelp(this.zipOrPostal()))) : void 0) : void 0, showSchool && !registerNewSchool ? SchoolInput({
-        name: 'school_id',
-        placeholder: 'School / Institution',
-        country: currentCountry,
-        zipcode: currentZipcode,
-        onAddNewSchool: this.addNewSchool,
-        required: true
-      }) : void 0, showSchool && !registerNewSchool ? a({
-        onClick: this.addNewSchool
-      }, CANT_FIND_SCHOOL) : void 0, showSchool && registerNewSchool ? div({}, TextInput({
-        name: 'school_name',
-        placeholder: 'School / Institution Name',
-        required: true
-      }), div({
-        className: 'help-text'
-      }, newSchoolWarning(this.zipOrPostal()))) : void 0, showSchool && registerNewSchool ? a({
-        onClick: this.goBackToSchoolList
-      }, GO_BACK_TO_LIST) : void 0, PrivacyPolicy({}), button({
-        className: 'submit-btn',
-        type: 'submit',
-        disabled: !canSubmit
-      }, 'Sign Up!'));
+      }, anonymous ? div({},
+        dl({},
+          dt({}, 'Username'),
+          dd({},
+            TextInput({
+              ref: 'login',
+              name: 'login',
+              placeholder: '',
+              required: true,
+              validations: {
+                minLength: 3
+              },
+              validationErrors: {
+                minLength: LOGIN_TOO_SHORT
+              },
+              asyncValidation: loginValidValidator,
+              asyncValidationError: LOGIN_INVALID
+            })
+          ),
+          dt({}, 'Email'),
+          dd({},
+            TextInput({
+              ref: 'email',
+              name: 'email',
+              placeholder: '',
+              required: true,
+              validations: {
+                isEmail: true
+              },
+              validationErrors: {
+                isEmail: EMAIL_REGEXP
+              },
+              asyncValidation: emailAvailableValidator,
+              asyncValidationError: EMAIL_TAKEN
+            })
+          )
+        )
+      ) : void 0,
+      dl({},
+        dt({}, 'Country'),
+        dd({},
+          SelectInput({
+            name: 'country_id',
+            placeholder: '',
+            loadOptions: this.getCountries,
+            required: true,
+            onChange: this.checkIfUS
+          })
+        )
+      ),
+      showZipcode ? dl({},
+        dt({}, 'ZIP Code'),
+        dd({},
+          div({},
+            TextInput({
+              ref: 'zipcode',
+              name: 'zipcode',
+              placeholder: "School / Institution " + (this.zipOrPostal()),
+              required: true,
+              validations: {
+                zipcode: this.zipcodeValidation
+              },
+              validationErrors: {
+                zipcode: invalidZipcode(this.zipOrPostal())
+              },
+              processValue: function(val) {
+                return val.replace(/\s/g, '');
+              }
+            }),
+          ),
+        )
+      ) : void 0,
+      dl({},
+        showSchool && !registerNewSchool ?
+          dt({}, 'School') : void 0,
+        showSchool && !registerNewSchool ?
+          dd({},
+            SchoolInput({
+              name: 'school_id',
+              placeholder: 'School / Institution',
+              country: currentCountry,
+              zipcode: currentZipcode,
+              onAddNewSchool: this.addNewSchool,
+              required: true
+            })
+          ) : void 0,
+        dd({},
+          showSchool && !registerNewSchool ? a({
+            onClick: this.addNewSchool
+            }, CANT_FIND_SCHOOL) : void 0,
+          showSchool && registerNewSchool ? div({},
+            TextInput({
+              name: 'school_name',
+              placeholder: 'School / Institution Name',
+              required: true
+            }), div({
+              className: 'help-text'
+              }, newSchoolWarning(this.zipOrPostal())
+            )
+          ) : void 0,
+          showSchool && registerNewSchool ? a({
+            onClick: this.goBackToSchoolList
+            }, GO_BACK_TO_LIST) : void 0
+        )
+      ),
+      PrivacyPolicy({}),
+      div({className: 'submit-button-container'},
+        button({
+          className: 'submit-btn',
+          type: 'submit',
+          disabled: !canSubmit
+        }, 'Register!')
+      )
+      );
     }
   });
 };
 
 
 module.exports = TeacherForm;
-

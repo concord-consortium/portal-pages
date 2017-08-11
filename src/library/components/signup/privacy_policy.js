@@ -8,7 +8,7 @@ var PrivacyPolicy = function() {
     render: function() {
       return div({
         className: 'privacy-policy'
-      }, 'By clicking Sign Up!, you agree to our ', a({
+      }, 'By clicking Register!, you agree to our ', a({
         href: 'https://concord.org/privacy-policy',
         target: '_blank'
       }, 'privacy policy.'));
@@ -17,4 +17,3 @@ var PrivacyPolicy = function() {
 };
 
 module.exports = PrivacyPolicy;
-

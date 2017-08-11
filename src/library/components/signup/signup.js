@@ -1,6 +1,10 @@
 var div;
 
 div = React.DOM.div;
+footer = React.DOM.footer;
+h2 = React.DOM.h2;
+p = React.DOM.p;
+strong = React.DOM.strong;
 
 var BasicDataFormClass                      = require("./basic_data_form");
 var SideInfoClass                           = require("./sideinfo");
@@ -40,7 +44,7 @@ var Signup = function() {
     },
     getDefaultProps: function() {
       return {
-        signupText: "Sign Up for " + Portal.siteName + "!",
+        signupText: "Register for " + Portal.siteName + "!",
         anonymous: Portal.currentUser.isAnonymous
       };
     },
@@ -60,21 +64,6 @@ var Signup = function() {
       return this.setState({
         teacherData: data
       });
-    },
-
-    getStepNumber: function() {
-      var basicData, ref, studentData, teacherData;
-      ref = this.state, basicData = ref.basicData, studentData = ref.studentData, teacherData = ref.teacherData;
-
-      // console.log("INFO getStepNumber", this.props, basicData);
-
-      if (!this.props.omniauth && !basicData) {
-        return 1;
-      }
-      if (this.props.omniauth || (basicData && !studentData && !teacherData)) {
-        return 2;
-      }
-      return 3;
     },
 
     render: function() {
@@ -133,7 +122,7 @@ var Signup = function() {
 
         // console.log("INFO signup form creating type selector step");
 
-        var select = UserTypeSelector({ 
+        var select = UserTypeSelector({
           studentReg:   this.onStudentRegistration,
           teacherReg:   this.onTeacherRegistration,
           basicData:    basicData,
@@ -148,7 +137,7 @@ var Signup = function() {
       if (studentData) {
 
         // StudentRegistrationCompleteSideInfo contains a login form
-        // If the student is already logged in because of the SSO path, 
+        // If the student is already logged in because of the SSO path,
         // don't show this form or anything else in the side info section.
         if (anonymous) {
           sideInfo = StudentRegistrationCompleteSideInfo({});
@@ -164,34 +153,29 @@ var Signup = function() {
         sideInfo = SideInfo({});
 
       }
-      
-      var step = this.getStepNumber();
-      var stepText = "Step " + step;
 
-      if(step > 1) {
-        if(this.props.omniauth) {
-          stepText += " of 2";
-        } else {
-          stepText += " of 3";
-        }
-      }
-
-      return div({}, 
-        div({
-          className: 'modal-title'
-        }, anonymous ? 'Sign Up' : 'Finish Signing Up'), 
-        div({
-          className: 'step'
-        }, stepText), 
-        div({
-          className: 'signup-form'
-        }, 
-        form),
-        div({ className: 'side-info' }, sideInfo ) );
+      return div({},
+        h2({},
+          strong({},
+            anonymous ?
+              'Register' :
+              'Finish'
+          ),
+          anonymous ?
+          ' for the Learn Portal' :
+          ' Signing Up'
+        ),
+        div({className: 'signup-form'}, form),
+        footer({},
+          p({},
+            strong({}, 'Why sign up?'),
+            " It's free and you get access to several key features, like creating classes for your students, assigning activities, saving work, tracking student progress, and more!"
+          )
+        )
+      );
 
     }
   });
 };
 
 module.exports = Signup
-

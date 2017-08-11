@@ -3,6 +3,10 @@ var INVALID_FIRST_NAME, INVALID_LAST_NAME, PASS_NOT_MATCH, PASS_TOO_SHORT, butto
 ref = React.DOM, button = ref.button, div = ref.div;
 
 var a       = React.DOM.a;
+var dd      = React.DOM.dd;
+var dl      = React.DOM.dl;
+var dt      = React.DOM.dt;
+var footer  = React.DOM.footer;
 var link    = React.DOM.link;
 var br      = React.DOM.br;
 var p       = React.DOM.p;
@@ -67,7 +71,35 @@ var BasicDataForm = function() {
     submit: function(model) {
       return this.props.onSubmit(model);
     },
+
+    getStepNumber: function() {
+      var basicData, ref, studentData, teacherData;
+      ref = this.state, basicData = ref.basicData, studentData = ref.studentData, teacherData = ref.teacherData;
+
+      // console.log("INFO getStepNumber", this.props, basicData);
+
+      if (!this.props.omniauth && !basicData) {
+        return 1;
+      }
+      if (this.props.omniauth || (basicData && !studentData && !teacherData)) {
+        return 2;
+      }
+      return 3;
+    },
+
     render: function() {
+
+      var step = this.getStepNumber();
+      var stepText = "Step " + step;
+
+      if(step > 1) {
+        if(this.props.omniauth) {
+          stepText += " of 2";
+        } else {
+          stepText += " of 3";
+        }
+      }
+
       var anonymous;
       anonymous = this.props.anonymous;
 
@@ -77,26 +109,24 @@ var BasicDataForm = function() {
         for(var i = 0; i < providers.length; i++) {
           // console.log("INFO adding provider direct path " + providers[i].directPath);
           // console.log("INFO adding provider auth check path " + providers[i].authCheckPath);
-  
+
           providerComponents.push(
             a({
-                className: "submit-btn",
-                href: providers[i].directPath,
-                style: {  width: "100%",
-                          display: "block",
-                          padding: "5px" }
-  
+                className: "badge",
+                id: providers[i].name,
+                href: providers[i].directPath
+
             }, "Sign up with " + providers[i].display_name )
           );
         }
         if(providers.length > 0) {
-          providerComponents.push( 
+          providerComponents.push(
             //
             // Push separator bar
             //
             div( {className: "or-separator" },
-  
-              span( {className: "or-separator-text" }, "or" )
+
+              span( {className: "or-separator-text" }, "Or, create an account:" )
             )
           );
         }
@@ -107,50 +137,69 @@ var BasicDataForm = function() {
         onValid: this.onBasicFormValid,
         onInvalid: this.onBasicFormInvalid,
         onChange: this.onChange
-      }, 
-      providerComponents,
-      anonymous ? div({}, div({
-        className: 'name_wrapper'
-      }, TextInput({
-        ref: 'firstName',
-        name: 'first_name',
-        placeholder: 'First Name',
-        required: true,
-        asyncValidation: nameValidator,
-        asyncValidationError: INVALID_FIRST_NAME
-      })), div({
-        className: 'name_wrapper'
-      }, TextInput({
-        ref: 'lastName',
-        name: 'last_name',
-        placeholder: 'Last Name',
-        required: true,
-        asyncValidation: nameValidator,
-        asyncValidationError: INVALID_LAST_NAME
-      })), TextInput({
-        name: 'password',
-        placeholder: 'Password',
-        type: 'password',
-        required: true,
-        validations: 'minLength:6',
-        validationError: PASS_TOO_SHORT
-      }), TextInput({
-        name: 'password_confirmation',
-        placeholder: 'Confirm Password',
-        type: 'password',
-        required: true,
-        validations: "equals:" + this.state.password,
-        validationError: PASS_NOT_MATCH
-      })) : void 0, 
-
-      button({
-        className: 'submit-btn',
-        type: 'submit',
-        disabled: !this.state.canSubmit
-      }, this.props.signupText));
+      },
+      div({className: 'third-party-login-options'},
+        p({}, 'Sign up with: '),
+        providerComponents,
+      ),
+      anonymous ? div({},
+        dl({},
+          dt({className: 'two-col'}, 'First Name'),
+          dd({className: 'name_wrapper first-name-wrapper two-col'},
+            TextInput({
+              ref: 'firstName',
+              name: 'first_name',
+              placeholder: '',
+              required: true,
+              asyncValidation: nameValidator,
+              asyncValidationError: INVALID_FIRST_NAME
+            })
+          ),
+          dt({className: 'two-col'}, 'Last Name'),
+          dd({className: 'name_wrapper last-name-wrapper two-col'},
+            TextInput({
+              ref: 'lastName',
+              name: 'last_name',
+              placeholder: '',
+              required: true,
+              asyncValidation: nameValidator,
+              asyncValidationError: INVALID_LAST_NAME
+            })
+          ),
+          dt({}, 'Password'),
+          dd({},
+            TextInput({
+              name: 'password',
+              placeholder: '',
+              type: 'password',
+              required: true,
+              validations: 'minLength:6',
+              validationError: PASS_TOO_SHORT
+            })
+          ),
+          dt({}, 'Confirm Password'),
+          dd({},
+            TextInput({
+              name: 'password_confirmation',
+              placeholder: '',
+              type: 'password',
+              required: true,
+              validations: "equals:" + this.state.password,
+              validationError: PASS_NOT_MATCH
+            })
+          )
+        )
+      ) : void 0,
+      div({className: 'submit-button-container'},
+        span({className: 'step'}, stepText),
+        button({
+          className: 'submit-btn',
+          type: 'submit',
+          disabled: !this.state.canSubmit
+        }, this.props.signupText))
+      )
     }
   });
 };
 
 module.exports = BasicDataForm;
-
