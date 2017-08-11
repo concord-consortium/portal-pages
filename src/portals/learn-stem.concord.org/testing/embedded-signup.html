@@ -1,0 +1,20 @@
+<div id="test-embedded-signup-form" style="text-align: left;"></div>
+
+<script>
+    PortalPages.renderSignupForm("#test-embedded-signup-form", 
+		{
+			oauthProviders: [
+
+				{ 	name:           "google",
+					display_name:   "Google",
+					directPath:     "http://google.com" },
+
+				{ 	name:           "foo",
+					display_name:   "Foo",
+					directPath:     "http://foo.com" }
+			] 
+		}
+	);
+</script>
+
+
