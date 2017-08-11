@@ -26,7 +26,7 @@ var LoginModal = function() {
     submit: function(data) {
       jQuery.post("/api/v1/users/sign_in", data).done(function(data) {
 		console.log("INFO login success", data);
-        window.location.href = "/getting_started";
+        location.reload(true);
       }).fail(function(err) {
 		console.log("INFO login error", err);
 		console.log("INFO login error responseText", err.responseText);
