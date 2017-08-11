@@ -5,7 +5,6 @@ var StemFinderResult = require("./components/stem-finder-result");
 var StemFinder = require("./components/stem-finder");
 var PageHeader = require("./components/page-header");
 var PageFooter = require("./components/page-footer");
-var UserAuth = require("./components/user-auth");
 var MaterialsCollection = require("./components/materials-collection");
 var GradeLevels = require("./components/grade-levels");
 
@@ -46,9 +45,6 @@ window.PortalPages = {
 
   PageFooter: PageFooter,
   renderPageFooter: renderComponentFn(PageFooter),
-
-  UserAuth: UserAuth,
-  renderUserAuth: renderComponentFn(UserAuth),
 
   GradeLevels: GradeLevels,
   renderGradeLevels: renderComponentFn(GradeLevels),
