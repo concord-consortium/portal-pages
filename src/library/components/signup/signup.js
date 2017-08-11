@@ -168,6 +168,8 @@ var Signup = function() {
       var step = this.getStepNumber();
       var stepText = "Step " + step;
 
+      // On the first step we don't know if the user is going to log in with a SSO provider
+      // So we can't tell the user if there are going to be 2 steps or 3 steps.
       if(step > 1) {
         if(this.props.omniauth) {
           stepText += " of 2";

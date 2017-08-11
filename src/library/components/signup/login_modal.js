@@ -71,6 +71,8 @@ var LoginModal = function() {
         }
       }
 
+      _this = this;
+
       return FormsyForm({ 
         className: 'signup-form',
         onValidSubmit: this.submit },
@@ -110,7 +112,13 @@ var LoginModal = function() {
         div({className: "login-modal-side-info"},
           p({}, 
             "Don't have an account? ",
-            a( {href: "#", onclick: "Portal.openSignupModal(); return false;"},
+            a( 
+              {     href: "#", 
+                    onClick: function(e) { 
+                        e.preventDefault(); 
+                        PortalPages.renderSignupModal( { oauthProviders: _this.props.oauthProviders } ); 
+                    } 
+              },
               "Sign up for free" ),
             " to create classes, assign activities, save student work, track student progress, and more!"
           )

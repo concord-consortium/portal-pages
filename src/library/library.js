@@ -5,7 +5,6 @@ var StemFinderResult = require("./components/stem-finder-result");
 var StemFinder = require("./components/stem-finder");
 var PageHeader = require("./components/page-header");
 var PageFooter = require("./components/page-footer");
-var UserAuth = require("./components/user-auth");
 var MaterialsCollection = require("./components/materials-collection");
 var GradeLevels = require("./components/grade-levels");
 
@@ -47,19 +46,17 @@ window.PortalPages = {
   PageFooter: PageFooter,
   renderPageFooter: renderComponentFn(PageFooter),
 
-  UserAuth: UserAuth,
-  renderUserAuth: renderComponentFn(UserAuth),
-
   GradeLevels: GradeLevels,
   renderGradeLevels: renderComponentFn(GradeLevels),
 
   //
-  // How do clients know which div ID to pass here?
-  // Also these are React Classes converted from the .js.coffee code
-  // in portal. These will need to be instantiated differently than
-  // the other components in here.
-  // SignupModal: SignupModal,
-  // renderSignupModal: renderComponentFn(SignupModal),
+  // Render modal popups for login and signup.
+  // Unlike other PortalPages methods, these methods do not take a
+  // DOM id as parameter. A DOM element will be dynamically generated
+  // for these method.
+  //
+  // Params
+  //    properties  - A properties object. E.g. { oauthProviders: [ ... ] }
   //
   renderSignupModal: function(properties) {
     signup_functions.openSignupModal(properties);
@@ -67,6 +64,15 @@ window.PortalPages = {
   renderLoginModal: function(properties) {
     signup_functions.openLoginModal(properties);
   },
+
+  //
+  // Render a signup form to the specified DOM id.
+  //
+  // Params
+  //    properties  - The properties.   E.g. { oauthProviders: [ ... ] }
+  //    id          - The DOM id.       E.g. "#test-embedded-signup-form"
+  //
+  renderSignupForm: signup_functions.renderSignupForm,
 
   MaterialsCollection: MaterialsCollection,
   // this is a different format to match to existing project pages which had 2 formats itself

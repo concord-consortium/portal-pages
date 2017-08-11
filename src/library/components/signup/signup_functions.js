@@ -1,4 +1,5 @@
 var SignupModal     = require('./signup_modal');
+var Signup          = require('./signup');
 var LoginModal      = require('./login_modal');
 
 //
@@ -8,15 +9,20 @@ var modalClasses = {}
 modalClasses[LoginModal]    = "login-default-modal";
 modalClasses[SignupModal]   = "signup-default-modal";
 
-
-renderSignupForm = function(selectorOrElement, properties) {
-  var Signup;
+//
+// Render signup form with the specfiied properties to the specified DOM id.
+//
+// Params
+//  properties          - The properties
+//  selectorOrElement   - DOM element selector
+//
+renderSignupForm = function(properties, selectorOrElement) {
   if (properties == null) {
     properties = {};
   }
-  Signup = React.createFactory( Signup() );
+  var comp = React.createFactory( Signup() );
 
-  return ReactDOM.render(Signup(properties), jQuery(selectorOrElement)[0]);
+  ReactDOM.render(comp(properties), jQuery(selectorOrElement)[0]);
 };
 
 var openModal = function(type, properties) {
