@@ -109,7 +109,7 @@ var ResourceLightbox = Component({
       div({className: "portal-pages-resource-lightbox-learn-more"},
         "This resource is part of the Concord Consortium's ",
         projects.map(function (project, index) {
-          return span({},
+          return strong({},
             project.landing_page_url ? a({href: project.landing_page_url}, project.name) : project.name,
             index !== numProjects - 1 ? " and " : ""
           );
@@ -157,55 +157,55 @@ var ResourceLightbox = Component({
   renderIcons: function () {
     var resource = this.state.resource;
     var links = resource.links;
-    var printIcon = links.print_url ? a({href: links.print_url}, "P") : null;
-    var copyIcon = links.external_copy ? a({href: links.external_copy}, "C") : null;
+    var printIcon = links.print_url ? a({className: 'print', href: links.print_url}, "print") : null;
+    var copyIcon = links.external_copy ? a({className: 'copy', href: links.external_copy}, "copy") : null;
     var editLink = links.lara_activity_or_sequence ? links.external_lara_edit : links.external_edit;
-    var editIcon = editLink ? a({href: editLink}, "E") : null;
+    var editIcon = editLink ? a({className: 'edit', href: editLink}, "edit") : null;
 
     // TODO: gear icon?
+    var settingsIcon = links.settings ? a({className: 'settings', href: links.settings}, 'settings') : null;
 
     if (!printIcon && !copyIcon && !editIcon) {
       return null;
     }
 
-    return div({className: "portal-pages-resource-lightbox-icons"},
-      printIcon,
-      copyIcon,
-      editIcon
+    return ul({},
+      li({},
+        printIcon
+      ),
+      li({},
+        copyIcon
+      ),
+      li({},
+        editIcon
+      ),
+      li({},
+        settingsIcon
+      )
     )
   },
 
   renderResource: function () {
     var resource = this.state.resource;
     var links = resource.links;
+    console.log('hi');
+    console.log(links);
 
     return div({className: "portal-pages-resource-lightbox-modal-content"},
       div({className: "portal-pages-resource-lightbox-modal-content-top"},
-        this.renderIcons(),
         div({className: "portal-pages-resource-lightbox-modal-utility"},
-          ul({},
-            li({},
-              a({className: "print"}, "print")
-            ),
-            li({},
-              a({className: "copy"}, "copy")
-            ),
-            li({},
-              a({className: "edit"}, "edit")
-            ),
-            li({},
-              a({className: "settings"}, "settings")
-            ),
-          )
+          this.renderIcons()
         ),
-        img({src: resource.icon.url}),
+        div({className: 'preview-image'},
+          img({src: resource.icon.url.replace(/\.jpg$/, '-hr.jpg')})
+        ),
         h1({}, resource.name),
         p({className: "portal-pages-resource-lightbox-description"}, resource.filteredDescription),
         div({},
-          links.preview ? a({className: "portal-pages-primary-button", href: links.preview, target: "_blank"}, "Launch Activity") : null,
-          links.assign_material ? a({className: "portal-pages-secondary-button", href: links.assign_material}, "Assign Activity") : null,
-          links.assign_collection ? a({className: "portal-pages-secondary-button", href: links.assign_collection}, "Add to Collection") : null,
-          links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide}, "Teacher Guide") : null
+          links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, "Launch Activity") : null,
+          links.assign_material ? a({className: "portal-pages-secondary-button", href: links.assign_material.url}, "Assign Activity") : null,
+          links.assign_collection ? a({className: "portal-pages-secondary-button", href: links.assign_collection.url}, "Add to Collection") : null,
+          links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url}, "Teacher Guide") : null
         ),
         hr({}),
         h2({}, "Requirements"),

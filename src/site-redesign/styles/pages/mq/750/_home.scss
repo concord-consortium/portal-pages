@@ -39,6 +39,9 @@
 .portal-pages-finder-form-search {
   position: absolute;
   top: 60px;
+  input {
+    width: 275px;
+  }
 }
 
 // Mobile Toggle
@@ -53,4 +56,13 @@
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.portal-pages-finder-results-cards, .portal-pages-collections-cards {
+  .col-4 {
+    float: none !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
 }

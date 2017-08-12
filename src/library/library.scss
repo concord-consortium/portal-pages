@@ -24,12 +24,22 @@
   display: block;
   position: relative;
 }
-.portal-pages-finder-result img {
-  height: auto;
+.portal-pages-finder-result-image-preview {
   height: 235px;
-  max-height: 235px;
-  pointer-events: none;
-  width: 100%;
+  overflow: hidden;
+  position: relative;
+  img {
+    bottom: -300px;
+    height: 100%;
+    left: -300px;
+    margin: auto;
+    max-width: 200%;
+    pointer-events: none;
+    position: absolute;
+    right: -300px;
+    top: -300px;
+    width: auto;
+  }
 }
 .portal-pages-finder-result-name {
   color: $blue;
@@ -191,6 +201,7 @@
   width: 100%;
   }
 .portal-pages-resource-lightbox {
+  box-sizing: content-box;
   bottom: auto;
   height: auto;
   left: auto;
@@ -222,11 +233,11 @@
   height: auto;
   left: 50%;
   margin-left: -460px;
-  padding: 0 95px 80px;
+  padding: 0 95px;
   position: relative;
   right: auto;
   top: 100px;
-  width: 920px;
+  width: 730px;
   a {
     display: inline;
   }
@@ -236,7 +247,7 @@
   background: transparent;
   left: 50%;
   margin-left: -490px;
-  position: fixed;
+  position: absolute;
   top: 195px;
   z-index: 1003;
 }
@@ -290,7 +301,7 @@
 }
 .portal-pages-resource-lightbox-modal-utility {
   height: 25px;
-  padding: 40px 0 50px;
+  padding: 40px 0 30px;
   text-align: right;
   ul {
     height: 25px;
@@ -334,10 +345,14 @@
 .portal-pages-resource-lightbox-modal-content-top {
   padding: 0;
 }
-.portal-pages-resource-lightbox-modal-content-top img {
+.portal-pages-resource-lightbox-modal-content-top .preview-image {
   height: 400px;
-  max-height: 400px;
+  overflow: hidden;
   width: 730px;
+  img {
+    height: auto;
+    width: 100%;
+  }
 }
 .portal-pages-resource-lightbox-modal-content h1 {
   color: $col-darkgray;
@@ -346,12 +361,19 @@
   margin: 20px 0;
 }
 .portal-pages-resource-lightbox-modal-content h2 {
-  color: #000;
-  margin: 0;
-  font-weight: bold;
-  font-size: 14px;
+  color: $col-darkgray;
+  font-size: 13px;
+  font-weight: 700;
   line-height: 1;
+  margin: 0 0 20px;
   text-transform: uppercase;
+}
+.portal-pages-resource-lightbox-modal-content h3 {
+  color: $col-darkgray;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 28px;
+  margin: 0;
 }
 .portal-pages-resource-lightbox-modal-content hr {
   border:none;
@@ -367,26 +389,34 @@
   margin: 30px 0;
 }
 .portal-pages-resource-lightbox-requirements {
-  margin: 10px 0;
-}
-.portal-pages-resource-lightbox-requirements p {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 28px;
   margin: 10px 0;
 }
 .portal-pages-resource-lightbox-standards {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 28px;
   margin: 10px 0;
 }
 .portal-pages-resource-lightbox-learn-more {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 28px;
   margin: 10px 0;
 }
 
 .portal-pages-resource-lightbox-related-content {
   background-color: $light-gray;
-  margin: 40px -95px 0 -95px;
-  padding: 50px 70px;
+  margin: 40px -95px 100px -95px;
+  padding: 40px 70px 80px;
 }
 .portal-pages-resource-lightbox-related-content h2 {
-  padding-bottom: 30px;
-  padding-left: 20px;
+  font-family: museo-sans, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 20px 30px;
   text-transform: none;
 }
 
@@ -436,31 +466,27 @@ $materials-collection-item-icon-width: 300px;
 .portal-pages-primary-button,
 .portal-pages-primary-button:hover,
 .portal-pages-primary-button:visited {
-  display: inline-block;
   border-radius: 0;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
-  padding: 10px 20px;
+  padding: 15px 20px;
   background: $col-orange;
-  color: #fff;
+  color: $white;
   border: 2px solid $col-orange;
-  font-size: 12px;
-  font-weight: bold;
+  font-weight: 700;
 }
 .portal-pages-secondary-button,
 .portal-pages-secondary-button:hover,
 .portal-pages-secondary-button:visited {
-  display: inline-block;
   border-radius: 0;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   margin-left: 7px;
   padding: 10px 20px;
-  background: #fff;
+  background: $white;
   color: $col-orange;
   border: 2px solid $col-orange;
-  font-size: 12px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .signup-default-modal-content { padding-bottom: 0; }

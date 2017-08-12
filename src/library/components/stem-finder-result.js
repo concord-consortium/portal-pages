@@ -132,7 +132,9 @@ var StemFinderResult = Component({
     }
     return div({className: "portal-pages-finder-result col-4", onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
       a(options,
-        img({alt: resource.name, src: resource.icon.url}),
+        div({className: 'portal-pages-finder-result-image-preview'},
+          img({alt: resource.name, src: resource.icon.url})
+        ),
         div({className: "portal-pages-finder-result-name"}, resource.name),
         this.renderFavoriteStar()
       ),
