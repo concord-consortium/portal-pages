@@ -66,6 +66,21 @@ var Signup = function() {
       });
     },
 
+    getStepNumber: function() {
+      var basicData, ref, studentData, teacherData;
+      ref = this.state, basicData = ref.basicData, studentData = ref.studentData, teacherData = ref.teacherData;
+
+      // console.log("INFO getStepNumber", this.props, basicData);
+
+      if (!this.props.omniauth && !basicData) {
+        return 1;
+      }
+      if (this.props.omniauth || (basicData && !studentData && !teacherData)) {
+        return 2;
+      }
+      return 3;
+    },
+
     render: function() {
 
       console.log("INFO rendering signup", this.props);
