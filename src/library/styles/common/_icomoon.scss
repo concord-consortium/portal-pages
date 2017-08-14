@@ -15,7 +15,7 @@
   font-family: 'icomoon';
   src:  url(./assets/fonts/icomoon.eot);
   src:  url(./assets/fonts/icomoon.eot) format('embedded-opentype'),
-    url(./assets/fonts/icomoon.woff2) format('woff2'),
+    /* url(./assets/fonts/icomoon.woff2) format('woff2'), this font isn't in assets for some reason */
     url(./assets/fonts/icomoon.ttf) format('truetype'),
     url(./assets/fonts/icomoon.woff) format('woff'),
     url(./assets/fonts/icomoon.svg) format('svg');

@@ -1,4 +1,10 @@
 @import '../shared/styles/variables/_variables.scss';
+@import '../shared/styles/mixins/_mixins.scss';
+@import './styles/common/_common.scss';
+@import './styles/layout/_layout.scss';
+
+@import './styles/navigation/_navigation.scss';
+@import './styles/_media_queries.scss';
 
 .portal-pages-finder-results {
   font-size: 16px;
