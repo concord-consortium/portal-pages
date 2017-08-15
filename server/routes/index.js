@@ -188,6 +188,49 @@ module.exports = (app) => {
     });
   };
 
+  const injectFakeLogin = (portalHTML, query) => {
+    const {student, teacher, admin, manager, researcher, author} = query;
+    return portalHTML.replace(/Portal.currentUser\s*=\s*{[^<]+<\/script>/, `
+      // FAKED LOGIN!
+      Portal.currentUser = {
+        get isAnonymous() {
+          return false;
+        },
+        get isLoggedIn() {
+          return true;
+        },
+        get isAdmin() {
+          return ${admin} == 1;
+        },
+        get isManager() {
+          return ${manager} == 1;
+        },
+        get isResearcher() {
+          return ${researcher} == 1;
+        },
+        get isAuthor() {
+          return ${author} == 1;
+        },
+        get isTeacher() {
+          return ${teacher} == 1;
+        },
+        get isStudent() {
+          return ${student} == 1;
+        },
+        get firstName() {
+          return "Fake";
+        },
+        get lastName() {
+          return "User";
+        },
+        get fullName() {
+          return "User, Fake";
+        }
+      };
+    </script>
+    `);
+  };
+
   router.get('/', (req, res, next) => {
     glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
       files = files.map((file) => file.substr(portalSrcFolder.length)).sort();
@@ -235,7 +278,7 @@ module.exports = (app) => {
   });
 
   router.get('/proxy', (req, res, next) => {
-    const {file, portal, selector, mock, siteRedesign} = req.query;
+    const {file, portal, selector, mock, siteRedesign, fakeLogin} = req.query;
     const fileParser = (file || "").match(/\/([^/]+)\/(.+)/);
     const portalParser = (portal || "").match(/^((https?):\/\/([^/]+)\/?)/);
 
@@ -290,6 +333,11 @@ module.exports = (app) => {
                 // remove portal html library js and css
                 portalHTML = portalHTML.replace(/<script.+portal-pages\.js.+>/, "");
                 portalHTML = portalHTML.replace(/<link.+portal-pages\.css.+>/, "");
+
+                // inject the fake login info if requested
+                if (fakeLogin) {
+                  portalHTML = injectFakeLogin(portalHTML, req.query);
+                }
 
                 const $ = cheerio.load(portalHTML);
                 $("head").prepend(`<base href="${portalRoot}">`);

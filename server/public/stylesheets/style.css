@@ -22,3 +22,10 @@ input[type=text] {
   width: 500px;
   padding: 5px;
 }
+
+#fakeLoginOptions {
+  margin: 5px 0 0 10px;
+}
+.login-option-disabled {
+  color: #777;
+}
