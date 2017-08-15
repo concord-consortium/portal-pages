@@ -15,13 +15,13 @@ var MaterialsCollectionItem = Component({
     var item = this.props.item;
     return div({className: "portal-pages-finder-materials-collection-item"},
       div({className: "portal-pages-finder-materials-collection-item__image col-4"},
-        a({href: '#'},
+        a({href: item.preview_url},
           img({src: item.icon.url})
         )
       ),
       div({className: "portal-pages-finder-materials-collection-item-info col-8"},
         h3({className: "portal-pages-finder-materials-collection-item__title"},
-          a({href: '#'},
+          a({href: item.preview_url},
             item.name
           )
         ),
