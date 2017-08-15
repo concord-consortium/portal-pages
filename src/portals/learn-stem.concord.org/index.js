@@ -1,5 +1,6 @@
 PortalPages.renderPageHeader({
-  fadeIn: 1000
+  fadeIn: 1000,
+  oauthProviders: Portal.oauthProviders
 }, 'page-header');
 
 PortalPages.renderStemFinder({
