@@ -70,14 +70,36 @@ var PageHeader = Component({
     }
   },
 
-  renderNavLinks: function (e) {
-    var login_button_path = '/login';
-    var login_button_text = 'Log In';
+  renderFirstButton: function() {
     if (this.state.loggedIn) {
-      login_button_path = '/logout';
-      login_button_text = 'Log Out';
+      return a({href: "/recent_activity", className: "portal-pages-main-nav-item__link button register"},
+               i({className: 'icon-home'}),
+               "Home"
+      );
+    } else {
+      return a({href: "/signup", className: "portal-pages-main-nav-item__link button register",
+                 onClick: this.handleRegisterButton },
+               "Register"
+      );
     }
+  },
 
+  renderSecondButton: function() {
+    if (this.state.loggedIn) {
+      return a({href: "/users/signout", className: "portal-pages-main-nav-item__link button log-in"},
+               i({className: 'icon-login'}),
+               "Log Out"
+      );
+    } else {
+      return a({href: "/login", className: "portal-pages-main-nav-item__link button log-in",
+                  onClick: this.handleLoginButton},
+               i({className: 'icon-login'}),
+               "Log In"
+      );
+    }
+  },
+
+  renderNavLinks: function (e) {
     return ul({className: "portal-pages-main-nav-contain"},
       li({className: "portal-pages-main-nav-item" + (this.props.isCollections ? " current-menu-item" : "")},
         a({href: "/collections", className: "portal-pages-main-nav-item__link"},
@@ -90,15 +112,10 @@ var PageHeader = Component({
         )
       ),
       li({className: "portal-pages-main-nav-item"},
-        a({href: "/signup", className: "portal-pages-main-nav-item__link button register", onClick: this.handleRegisterButton},
-          "Register"
-        )
+        this.renderFirstButton()
       ),
       li({className: "portal-pages-main-nav-item"},
-        a({href: login_button_path, className: "portal-pages-main-nav-item__link button log-in", onClick: this.handleLoginButton},
-          i({className: 'icon-login'}),
-          login_button_text
-        )
+        this.renderSecondButton()
       )
     );
   },
