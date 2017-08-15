@@ -1,0 +1,92 @@
+/* shared partials */
+@import '_portal-restyling.scss';
+@import '_portal-signin.scss';
+
+.video {
+  background: #6ec4d7 url(//concord.org/sites/default/files/projects/building-models/building-models-poster.jpg) no-repeat center center;
+  background-size: cover;
+  color: #0093b0;
+  float: right;
+  font-size: 2em;
+  height: 360px;
+  line-height: 360px;
+  margin: 3px 0 1em 1em;
+  text-align: center;
+  width: 640px;
+  }
+body.member-visitor .video {
+  clear: both !important;
+  float: none;
+  margin: 1em 0;
+  }
+.project-image {
+  float: right;
+  height: auto;
+  margin: 9px 0 1em 1em;
+  width: 600px;
+}
+.member-visitor .project-image {
+  margin-top: 1.75em;
+  width: 350px;
+  }
+/*#collection-1, .collection-1-heading,
+#collection-2, .collection-2-heading { display: none; }*/
+#tablet-note {
+  font-style: italic;
+  margin-top: 1.5em;
+  }
+.collapsible { width: 98%; }
+h3.collapsible-toggle {
+  color: #0592af;
+  border-bottom: solid 5px rgba(49, 49, 49, 0.15);
+  display: block;
+  font-family: museo-sans,verdana,helvetica,sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  margin-bottom: 0;
+  padding: 30px 0;
+  width: 100%;
+  }
+.collapsible-toggle:after {
+  background: #0592af;
+  border-radius:50%;
+  color: #fff;
+  content: '+';
+  display: inline-block;
+  float: right;
+  font-size: 16px;
+  font-weight: 700;
+  height: 17px;
+  line-height: 1;
+  margin: 5px 0 0 ;
+  padding: 2px;
+  text-align:center;
+  text-indent:0;
+  width: 17px;
+  }
+h3.collapsible-toggle:hover {
+  color: #999;
+  &:after {
+    background: #999;
+  }
+}
+.collapsible-toggle.open:after { animation:spin-toggle-open 0.5s normal forwards; }
+@keyframes spin-toggle-open{ 100% { transform: rotate(45deg); } }
+
+#units-tab li { clear: both; list-style: none; margin-bottom: .25em; }
+#units-tab ul { margin-left: 0; }
+#units-tab ul ul li { overflow: hidden; padding: 1em 1em .25em }
+#units-tab ul ul li:nth-child(even) { background: #eee; }
+#units-tab li a {}
+#units-tab li h4 {
+  color: #0093b0;
+  font-size: .9em;
+  margin: 0;
+  }
+body.member-visitor .sign-up-box, body.member-visitor #intro { display: none; }
+body.member-visitor h2 { font-size: 1.25em; margin-top: 0; }
+body.member-visitor p { width: 93%; }
+body.member-visitor #pd { margin: 3em 0 2em; padding: 1em; width: 100%; }
+body.member-visitor .collapsible { width: 97.5%; }
+body.member-visitor h3.collapsible-toggle { width: 93%; }
