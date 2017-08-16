@@ -495,16 +495,31 @@ $materials-collection-item-icon-width: 300px;
   font-weight: 700;
 }
 
-.signup-default-modal-content { padding-bottom: 0; }
+.signup-default-modal-content, .login-default-modal-content {
+  background: #fff;
+  box-sizing: content-box;
+  left: 50%;
+  margin-bottom: 60px;
+  margin-left: -460px;
+  min-height: 300px !important;
+  padding: 60px 190px 0;
+  position: relative;
+  top: 30px;
+  width: 540px;
+  }
 .signup-form .radio-input {
   margin-bottom: 30px;
   }
 #login-default-modal, #signup-default-modal, #login-form, #register-form {
-  box-sizing: content-box;
-  margin-left: -460px;
-  min-height: 300px !important;
-  padding: 60px 190px 0;
-  width: 540px;
+  background: transparent;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  overflow-y: auto;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
   a:link, a:visited { color: $col-orange; }
   a:active, a:hover { color: $col-gold; }
   dl, form { margin: 0; padding: 0; }

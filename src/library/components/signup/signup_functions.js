@@ -51,4 +51,3 @@ var openSignupModal = function(properties) {
 module.exports.openSignupModal 	= openSignupModal;
 module.exports.openLoginModal 	= openLoginModal;
 module.exports.renderSignupForm = renderSignupForm;
-
