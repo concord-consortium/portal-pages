@@ -1,4 +1,4 @@
-var CollectionCards = require("./components/collection-cards");
+var CollectionsPage = require("./components/collections-page");
 var HeaderFilter = require("./components/header-filter");
 var ResourceLightbox = require("./components/resource-lightbox");
 var StemFinderResult = require("./components/stem-finder-result");
@@ -25,8 +25,8 @@ window.PortalPages = {
 
   render: render,
 
-  CollectionCards: CollectionCards,
-  renderCollectionCards: renderComponentFn(CollectionCards),
+  CollectionsPage: CollectionsPage,
+  renderCollectionsPage: renderComponentFn(CollectionsPage),
 
   HeaderFilter: HeaderFilter,
   renderHeaderFilter: renderComponentFn(HeaderFilter),

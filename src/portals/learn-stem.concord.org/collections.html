@@ -1,41 +1,4 @@
-<header id="page-header" class="portal-pages-header-contain"></header>
-<div class="cols">
-  <div class="portal-pages-collections-page-header col-12">
-    <h1>Collections</h2>
-    <p class="portal-pages-collections-page-header-info">Many of our resources are part of collections that are created by our various research projects.   Each collection has specific learning
-      goals within the context of a larger subject area.</p>
-    <p><a class="special-link" href="https://concord.org/projects" target="_blank">View <span class="complete">all Concord Consortium</span> projects <span class="complete">on concord.org</span></a></p>
-  </div>
-</div>
-<div class="portal-pages-collections-page-diagonal-spacer-2"></div>
-  <section class="portal-pages-collections-page-list skew top-only mediumgray">
-    <div class="portal-pages-collections-page-list-inner cols skew-cancel">
-      <div class="portal-pages-collections-cards" id="portal-pages-collections-cards">
-        <!-- replaced by React, need outer id for targeting -->
-      </div>
-    </div>
-  </section>
-</div>
-<footer id="page-footer" class="concord-footer"></footer>
-<div id="log-in" class="modal" style="margin-left: -336px; min-height: 300px !important; padding: 1em; width: 640px;"><h2>Log In</h2>
-  <p class="special-msg"></p>
-  <div class="col-50 left">
-    <form method="post" action="/users/sign_in">
-      <dl>
-        <dt>Username</dt>
-        <dd><input name="user[login]" style="width: 85%;"/></dd>
-        <dt>Password</dt>
-        <dd><input type="password" name="user[password]" style="width: 85%;"/></dd>
-      </dl>
-      <input class="button" type="submit" value="Log In"/></form>
-    <p><a href="/forgot_password" title="Click this link if you forgot your username and/or password.">Forgot your
-      username or password?</a></p></div>
-  <div class="col-50 right"><h3>Don't have an account?</h3>
-    <p><a href="#" onclick="Portal.openSignupModal(); return false;">Sign up for free</a> to:</p>
-    <ul>
-      <li>Create classes and assign activities</li>
-      <li>Save student work</li>
-      <li>Track student progress</li>
-    </ul>
-  </div>
-</div>
+<div id="collections-page"></div>
+<script>
+  PortalPages.renderCollectionsPage({}, "collections-page");
+</script>

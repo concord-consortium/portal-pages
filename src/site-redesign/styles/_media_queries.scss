@@ -1,13 +1,11 @@
 @media screen and (max-width: 950px) {
-  @import 'common/mq/950/_helper_classes.scss',
-          'layout/mq/950/_footer.scss',
+  @import 'layout/mq/950/_footer.scss',
           'pages/mq/950/_home.scss';
 }
 
 @media screen and (max-width: 750px) {
   @import 'common/mq/750/_typography.scss';
   @import 'pages/mq/750/_home.scss';
-  @import 'pages/mq/750/_collections.scss';
 }
 
 @media screen and (max-width: 775px) {
