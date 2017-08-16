@@ -1,0 +1,43 @@
+/* shared partials */
+@import '_portal-restyling.scss';
+@import '_portal-signin.scss';
+
+.alert-banner {
+  background: #fee9aa;
+  color: #e16a3e;
+  margin: .5em 0 1.5em;
+  padding: .75em;
+  text-align: center;
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.portal-pages-collection-page-intro:nth-child(2) li {
+  font-size: 15px;
+  margin: 0;
+}
+
+.jshowoff p.jshowoff-slidelinks {
+  margin-top: 3px;
+  text-align: right;
+  }
+.jshowoff-slidelinks a {
+  background: #bddfdf;
+  border-radius: 50%;
+  color: #bddfdf;
+  display: inline-block;
+  height: 10px;
+  margin-left: 5px;
+  text-decoration: none;
+  text-align: left;
+  text-indent: -999em;
+  width: 10px;
+  }
+.jshowoff-slidelinks a:hover, .jshowoff-controls a:hover {
+  color: #8cbbb8;
+  }
+.jshowoff-slidelinks a.jshowoff-active {
+  background: #8cbbb8;
+  color: #8cbbb8;
+  }

@@ -62,57 +62,58 @@ var LoginModal = function() {
 
       _this = this;
 
-      return FormsyForm({ 
-        className: 'signup-form',
-        onValidSubmit: this.submit },
+      return div({className: 'login-default-modal-content'}, 
+        FormsyForm({
+          className: 'signup-form',
+          onValidSubmit: this.submit },
 
-        h2({},
-          strong({}, 'Log in'),
-          ' to the Learn Portal'),
-        dl({},
-          dt({}, "Username"),
-          dd({},
-            TextInput({
-              name: 'user[login]',
-              placeholder: '',
-              required: true }),
+          h2({},
+            strong({}, 'Log in'),
+            ' to the Learn Portal'),
+          dl({},
+            dt({}, "Username"),
+            dd({},
+              TextInput({
+                name: 'user[login]',
+                placeholder: '',
+                required: true }),
+            ),
+            dt({}, "Password"),
+            dd({},
+              TextInput({
+                name: 'user[password]',
+                placeholder: '',
+                type: 'password',
+                required: true }),
+            ),
           ),
-          dt({}, "Password"),
-          dd({},
-            TextInput({
-              name: 'user[password]',
-              placeholder: '',
-              type: 'password',
-              required: true }),
+          div({className: 'third-party-login-options'},
+            p({}, 'Or, sign in with: '),
+            providerComponents,
           ),
-        ),
-        div({className: 'third-party-login-options'},
-          p({}, 'Or, sign in with: '),
-          providerComponents,
-        ),
-        div({className: 'submit-button-container'},
-          a({ href: "/forgot_password", title: "Click this link if you forgot your username and/or password."}, "Forgot your username or password?"),
-          button({
-            className: 'submit-btn',
-            type: 'submit',
-          }, 'Log In!' ),
-        ),
+          div({className: 'submit-button-container'},
+            a({ href: "/forgot_password", title: "Click this link if you forgot your username and/or password."}, "Forgot your username or password?"),
+            button({
+              className: 'submit-btn',
+              type: 'submit',
+            }, 'Log In!' ),
+          ),
 
-        footer({},
-          p({},
-            "Don't have an account? ",
-            a( 
-              {     href: "#", 
-                    onClick: function(e) { 
-                        e.preventDefault(); 
-                        PortalPages.renderSignupModal( { oauthProviders: _this.props.oauthProviders } ); 
-                    } 
-              },
-              "Sign up for free" ),
-            " to create classes, assign activities, save student work, track student progress, and more!"
+          footer({},
+            p({},
+              "Don't have an account? ",
+              a(
+                {     href: "#",
+                      onClick: function(e) {
+                          e.preventDefault();
+                          PortalPages.renderSignupModal( { oauthProviders: _this.props.oauthProviders } );
+                      }
+                },
+                "Sign up for free" ),
+              " to create classes, assign activities, save student work, track student progress, and more!"
+            )
           )
         )
-
       );
     }
   });

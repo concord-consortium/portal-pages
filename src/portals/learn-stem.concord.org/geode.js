@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
 });
 
 // Last argument is number of visible materials.
-Portal.renderMaterialsCollection(27, '#collection-1', {
+PortalPages.renderMaterialsCollection(27, '#collection-1', {
   limit: 20,
   onDataLoad: function (materials) {},
     header: 'GEODE Activities'

@@ -24,4 +24,3 @@ var SignupModal = function() {
 };
 
 module.exports = SignupModal;
-
