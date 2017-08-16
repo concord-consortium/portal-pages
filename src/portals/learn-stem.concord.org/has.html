@@ -1,282 +1,47 @@
-<style>
-#primary.wide, #primary.wide #content { overflow: visible; }
-html { height: 100%; }
-body {
-  height: 100%;
-  margin: 0;
-  overflow-x: hidden;
-  padding: 0;
-  }
-header {
-  background: #fff;
-  left: 0;
-  height: 75px;
-  position: fixed;
-  top: 100px;
-  width: 100%;
-  z-index: 100;
-  }
-  header div {
-    margin: 0 auto;
-    position: relative;
-    width: 60em;
-    }
-  header h1 { margin: .4em 0; }
-h1, h2, h3, h4, h5 { font-weight: normal; }
-h1 { color: #ee864e; }
-h2 { clear: both; color: #222; line-height: 1.2; margin-top: 1.5em; }
-h3 { font-weight: bold; }
-li, p { margin-bottom: 1em; }
-nav {
-  position: absolute;
-  right: 0;
-  text-align: right;
-  top: -8px;
-  width: 70%;
-  }
-  nav ul {
-    list-style: none;
-    margin-top: 1em;
-    }
-  nav li {
-    display: inline;
-    font-size: .8em;
-    }
-  nav a {
-    border-radius: 4px;
-    color: #0093b0;
-    display: inline-block;
-    padding: 5px 10px;
-    text-decoration: none;
-    }
-  nav a.active { background: #0093b0; color: #fff; }
-.notice a {
-  background: #f9eec1;
-  border-radius: 4px;
-  display: block;
-  font-size: .9em;
-  padding: .75em 0;
-  text-align: center;
-  text-decoration: none;
-  width: 100%;
-  }
-.notice a:hover {
-  background: #fee9aa;
-  color: #da5936;
-  }
-.float-right {
-  float: right;
-  margin: 3px 0 2em 1em;
-  }
-.sign-up-box {
-  background: #fef7e0;
-  clear: both;
-  overflow: hidden;
-  padding: 2em 1em 1em;
-  text-align: center;
-  }
-  .sign-up-box button {
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    cursor: pointer;
-    display: block;
-    font-size: 1.5em;
-    margin: 0 auto .5em;
-    padding: .5em 2em;
-    }
-  .sign-up-box p { margin: 0 auto; width: 80%; }
-.video {
-  background: #ddd url(http://has.concord.org/_assets/img/intro-pic.jpg) center center no-repeat;
-  background-size: cover;
-  float: right;
-  font-size: 2em;
-  height: 365px;
-  line-height: 400px;
-  margin: 3px 0 1em 1em;
-  text-align: center;
-  width: 600px;
-  }
-body.guest-visitor #custom {
-  font: 121.25%/1.5 verdana,helvetica,sans-serif;
-  }
-#intro { margin-top: 75px; }
-#intro ul {
-  font-style: italic;
-  padding-left: 1.1em;
-  }
-.button.preview { display: none; }
-#lessons-cards, #interactives-cards { overflow: hidden; }
-  #lessons-cards a, #interactives-cards a { text-decoration: none; }
-  #lessons-cards ul, #interactives-cards ul { margin: 0; padding: 0; }
-  #lessons-cards li, #interactives-cards li {
-    background: #fff;
-    display: block;
-    float: left;
-    list-style: none;
-    margin: 0 1% 2em;
-    min-height: 180px;
-    padding: 1.5%;
-    text-align: center;
-    width: 20%;
-    }
-  #lessons-cards li:nth-child(4n+1), #interactives-cards li:nth-child(4n+1) { clear: left; }
-    #lessons-cards li img, #interactives-cards li img {
-      background: #fff;
-      border-radius: 13px;
-      clear: both;
-      display: block;
-      height: 120px;
-      margin: 1em auto 1em;
-      width: 120px;
-      }
-#interactives-cards {
-  background: #fef7e0;
-  clear: both;
-  margin: 3em -999em 2em;
-  padding: .005em 999em 4em;
-  width: 54.75em;
-  }
-  #lessons-cards li { background: #fef7e0; font-size: .8em; }
-  #interactives-cards li { font-size: .9em; }
-#partners h2 { margin-top: 0; text-align: center; }
-#partners p:nth-child(2) {
-  margin-bottom: 1em;
-  text-align: center;
-  }
-  #partners p:nth-child(2) img {
-    margin: 0 1em;
-    }
-#overlay {
-  background: #111;
-  display: none;
-  height: 100%;
-  left: 0;
-  opacity: .7;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  }
-body.member-visitor header, body.member-visitor .sign-up-box, body.member-visitor #intro { display: none; }
-body.member-visitor h2 { font-size: 1.25em; margin-top: 0; }
-body.member-visitor p { width: 93%; }
-body.member-visitor #interactives { margin: 3em 0 2em; padding: 1em; width: 95%; }
-#signup-default-modal { position: fixed; }
-</style>
-<div id="custom">
-  <header>
-    <div>
-      <h1>High-Adventure Science</h1>
-      <nav>
-        <ul>
-          <li><a class="active" id="intro-link" href="#intro">Introduction</a></li>
-          <li><a id="lessons-link" href="#lessons">Lessons</a></li>
-          <li><a id="interactives-link" href="#interactives-cards">Interactives</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <section id="intro">
-    <p class="notice"><a href="http://goo.gl/forms/ibl0g4daf4">Interested in being a field-test teacher for High-Adventure Science? Click here!</a></p>
-    <div class="video"></div>
+<header id="page-header" class="portal-pages-header-contain"></header>
+<div class="cols">
+  <div class="portal-pages-collection-page-intro col-7">
+    <h1>High-Adventure Science</h1>
     <p>High-Adventure Science brings several of the big unanswered questions in Earth and space science — think climate change, the availability of freshwater, land management and more — to middle and high school science classrooms.</p>
     <p>Each module includes interactive computer-based systems models and real-world data on unanswered questions scientists are facing today. Students explore evidence and discuss the issues of certainty — and uncertainty — with the models and data.</p>
-    <div class="sign-up-box">
-      <button onclick="Portal.openSignupModal();">Sign Up!</button>
-      <p>Create a class and register students to get reports of their progress and responses to embedded assessments.</p>
-    </div>
-  </section>
-  <section id="lessons">
-    <h2>Lessons</h2>
-    <p class="top">These free online curriculum lessons were developed for five days of classroom instruction and include one or more Earth systems models plus assessment items.</p>
-    <div id="collection-1"></div>
-  </section>
-  <section id="interactives-cards">
-      <h2>Interactives</h2>
-      <p>Explore Earth systems models with these standalone interactives.</p>
-      <ul>
-        <li><a href="https://lab.concord.org/embeddable.html#interactives/air-pollution/air-pollution-master.json" target="_blank" title="Factors Affecting Air Quality"><img src="http://has.concord.org/_assets/img/air-int.png">Factors Affecting Air Quality</a></li>
-        <li><a href="https://lab.concord.org/embeddable.html#interactives/air-pollution/air-pollution-aerial.json" target="_blank" title="Movement of Pollutants"><img src="http://has.concord.org/_assets/img/air-aerial-int.png">Movement of Pollutants</a></li>
-        <li><a href="https://lab.concord.org/embeddable.html#interactives/fracking/fracking-3.json" target="_blank" title="Hydraulic Fracturing"><img src="http://has.concord.org/_assets/img/fracking-int.png">Hydraulic Fracturing</a></li>
-        <li><a href="https://lab.concord.org/embeddable.html#interactives/global-climate/globalclimatedemo.json" target="_blank" title="Climate Change"><img src="http://has.concord.org/_assets/img/climate-int.png">Climate Change</a></li>
-        <li><a href="https://lab.concord.org/embeddable.html#interactives/water/water-master.json" target="_blank" title="Groundwater Movement"><img src="http://has.concord.org/_assets/img/water-int.png">Groundwater  Movement</a></li>
-        <li><a href="https://lab.concord.org/embeddable.html#interactives/land-management/land-management-master.json" target="_blank" title="Land Management"><img src="http://has.concord.org/_assets/img/land-int.png">Land  Management</a></li>
-        <li><a href="https://lab.concord.org/embeddable.html#interactives/planet-hunting/planet-hunting-master.json" target="_blank" title="Planet Hunting"><img src="http://has.concord.org/_assets/img/planet-hunting.png">Planet  Hunting</a></li>
-      </ul>
-  </section>
-  <section id="partners">
-    <h2>Partners</h2>
-    <p style="text-align: center;"><img src="http://has.concord.org/_assets/img/natgeo.png" /><img src="http://has.concord.org/_assets/img/ucsc.png" /><img src="http://has.concord.org/_assets/img/terc.png" /></p>
-    <p><small>This material is based upon work supported by the National Science Foundation under Grant No. DRL-0929774 and DRL-1220756. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.</small></p>
-  </section>
+    <p>Interested in being a field-test teacher for High-Adventure Science? <a href="http://goo.gl/forms/ibl0g4daf4">Click here!</a></p>
+  </div>
+  <div class="portal-pages-collection-page-intro col-5">
+    <figure><img src="http://has.concord.org/_assets/img/intro-pic.jpg" /></figure>
+  </div>
+  <div class="sign-up-box col-12">
+    <button onclick="Portal.openSignupModal();">Sign Up!</button>
+    <p>Create a class and register students to get reports of their progress and responses to embedded assessments.</p>
+  </div>
 </div>
-<script>
-Portal.renderMaterialsCollection(20,'#collection-1',{limit: 10, randomize: true});
-jQuery(document).ready(function() {
-  // check for 'register' hashtag in URL
-  if (window.location.hash == '#register') {
-    alert('register');
-  }
-  if (jQuery(document).scrollTop() > 0) {
-    shrinkHeader();
-  }
-  jQuery('body').append('<div id="overlay"></div>');
-  jQuery('#overlay').click(function() {
-    hidePopover();
-  });
-  jQuery('nav li a').each(function() {
-    jQuery(this).click(function() {
-      jQuery('nav a').removeClass('active');
-      var section_id = jQuery(this).attr('href');
-      navigateTo(section_id);
-      jQuery(this).addClass('active');
-    });
-  });
-});
-
-jQuery(document).scroll(function() {
-  if (jQuery(document).scrollTop() > 5) {
-    shrinkHeader();
-  } else {
-    enlargeHeader();
-  }
-  if (jQuery(document).scrollTop() > jQuery('#lessons').offset().top - 400) {
-    jQuery('nav a').removeClass('active');
-    jQuery('#lessons-link').addClass('active');
-  }
-  if (jQuery(document).scrollTop() > jQuery('#interactives-cards').offset().top - 100) {
-    jQuery('nav a').removeClass('active');
-    jQuery('#interactives-link').addClass('active');
-  }
-  if (jQuery(document).scrollTop() < 100) {
-    jQuery('nav a').removeClass('active');
-    jQuery('#intro-link').addClass('active');
-  }
-
-});
-
-function shrinkHeader() {
-  jQuery('header').css({'background': '#bddfdf', 'opacity': '.95', 'top': '0'});
-  jQuery('header').css({'height': '50px'}, 100);
-  jQuery('header h1').css({'color': '#3f3f3f', 'font-size': '1.25em'}, 100);
-  jQuery('header ul').css({'margin-top': '.65em'}, 100);
-  jQuery('header li').css({'font-size': '.8em'}, 100);
-}
-
-function enlargeHeader() {
-  jQuery('header').css({'background': '#fff', 'opacity': '1', 'top': '100px'});
-  jQuery('header').css({'height': '75px'}, 100);
-  jQuery('header h1').css({'color': '#ee864e', 'font-size': '2em'}, 100);
-  jQuery('header ul').css({'margin-top': '1em'}, 100);
-  jQuery('header li').css({'font-size': '.8em'}, 100);
-}
-
-function navigateTo(section_id) {
-  if (section_id == '#intro') {
-    jQuery('html,body').animate({scrollTop: 0}, 300);
-  } else {
-    jQuery('html,body').animate({scrollTop: jQuery(section_id).offset().top - 75}, 300);
-  }
-}
-</script>
+<div class="portal-pages-collection-resource-list skew top-only gray">
+  <div class="cols skew-cancel">
+    <div id="collection-1-heading" class="collection-heading col-12">
+      <h2>Lessons</h2>
+      <hr class="hr-thick" />
+      <p>These free online curriculum lessons were developed for five days of classroom instruction and include one or more Earth systems models plus assessment items.</p>
+    </div>
+    <div id="collection-1"></div>
+    <div class="cols">
+      <section id="interactives-cards" class="col-12">
+          <h2>Interactives</h2>
+          <p>Explore Earth systems models with these standalone interactives.</p>
+          <ul>
+            <li><a href="https://lab.concord.org/embeddable.html#interactives/air-pollution/air-pollution-master.json" target="_blank" title="Factors Affecting Air Quality"><img src="http://has.concord.org/_assets/img/air-int.png">Factors Affecting Air Quality</a></li>
+            <li><a href="https://lab.concord.org/embeddable.html#interactives/air-pollution/air-pollution-aerial.json" target="_blank" title="Movement of Pollutants"><img src="http://has.concord.org/_assets/img/air-aerial-int.png">Movement of Pollutants</a></li>
+            <li><a href="https://lab.concord.org/embeddable.html#interactives/fracking/fracking-3.json" target="_blank" title="Hydraulic Fracturing"><img src="http://has.concord.org/_assets/img/fracking-int.png">Hydraulic Fracturing</a></li>
+            <li><a href="https://lab.concord.org/embeddable.html#interactives/global-climate/globalclimatedemo.json" target="_blank" title="Climate Change"><img src="http://has.concord.org/_assets/img/climate-int.png">Climate Change</a></li>
+            <li><a href="https://lab.concord.org/embeddable.html#interactives/water/water-master.json" target="_blank" title="Groundwater Movement"><img src="http://has.concord.org/_assets/img/water-int.png">Groundwater  Movement</a></li>
+            <li><a href="https://lab.concord.org/embeddable.html#interactives/land-management/land-management-master.json" target="_blank" title="Land Management"><img src="http://has.concord.org/_assets/img/land-int.png">Land  Management</a></li>
+            <li><a href="https://lab.concord.org/embeddable.html#interactives/planet-hunting/planet-hunting-master.json" target="_blank" title="Planet Hunting"><img src="http://has.concord.org/_assets/img/planet-hunting.png">Planet  Hunting</a></li>
+          </ul>
+      </section>
+    </div>
+    <div class="material-list-footer col-12">
+      <h2>Partners</h2>
+      <p style="text-align: center;"><img src="http://has.concord.org/_assets/img/natgeo.png" /><img src="http://has.concord.org/_assets/img/ucsc.png" /><img src="http://has.concord.org/_assets/img/terc.png" /></p>
+      <p><small>This material is based upon work supported by the National Science Foundation under Grant No. DRL-0929774 and DRL-1220756. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.</small></p>
+    </div>
+  </div>
+</div>
+<footer id="page-footer" class="concord-footer"></footer>
