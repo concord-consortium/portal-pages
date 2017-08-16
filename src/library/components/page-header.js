@@ -86,7 +86,7 @@ var PageHeader = Component({
 
   renderSecondButton: function() {
     if (this.state.loggedIn) {
-      return a({href: "/users/signout", className: "portal-pages-main-nav-item__link button log-in"},
+      return a({href: "/users/sign_out", className: "portal-pages-main-nav-item__link button log-in"},
                i({className: 'icon-login'}),
                "Log Out"
       );

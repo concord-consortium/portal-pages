@@ -341,8 +341,9 @@ module.exports = (app) => {
 
                 const $ = cheerio.load(portalHTML);
                 $("head").prepend(`<base href="${portalRoot}">`);
+                $("head").append(`<!-- portal library js -->\n<script>\n${libraryJS}\n</script>`);
                 const siteRedesignLink = siteRedesign ? `<link rel="stylesheet" type="text/css" href="${selfRoot()}/site-redesign/site-redesign.css">` : "";
-                $(selector).html(`\n${injectedHTML}\n${siteRedesignLink}\n<!-- portal library css -->\n<link rel="stylesheet" type="text/css" href="${selfRoot()}/portal-pages.css">\n<!-- portal library js -->\n<script>\n${libraryJS}\n</script>\n<!-- ${scssPath} -->\n<style id="${injectedPageStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
+                $(selector).html(`\n${injectedHTML}\n${siteRedesignLink}\n<!-- portal library css -->\n<link rel="stylesheet" type="text/css" href="${selfRoot()}/portal-pages.css">\n<!-- ${scssPath} -->\n<style id="${injectedPageStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`);
 
                 res.send($.html());
               });
