@@ -25,12 +25,51 @@ input[type="submit"] {
   transition-property: background-color, border-color, color, opacity;
 }
 
+button, a.button, .button, input[type="submit"] {
+  background: #ea6d2f;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 15px 20px;
+  text-align: center;
+  &:active, &:hover {
+    background: #ffc320;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $col-darkgray;
+  font-family: museo, sans-serif;
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  }
+h2 {
+  font-family: museo-sans, sans-serif;
+  font-size: 24px;
+  line-height: 30px;
+  }
+h3 {
+  font-family: museo-sans, sans-serif;
+  font-size: 20px;
+  line-height: 26px;
+  }
+
 .landing-container {
   height: 100%;
 }
 
 .site-content { overflow: visible !important; }
 .portal-pages-page-content-contain { overflow: visible; }
+
+.portal-pages-intro-paragraph {
+  font-family: museo, verdana, helvetica, sans-serif !important;
+  font-size: 30px !important;
+  line-height: 38px !important;
+  }
 
 .blurred {
   -webkit-filter: blur(5px);
