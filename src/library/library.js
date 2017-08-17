@@ -83,5 +83,28 @@ window.PortalPages = {
     }
     options.collection = collectionId;
     ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0]);
+  },
+
+  //
+  // Log out the current user
+  //
+  logout: function() {
+
+      console.log("INFO logging out...");
+
+      jQuery.get("/api/v1/users/sign_out").done(function(data) {
+        console.log("INFO logout success", data);
+        location.reload(true);
+      }).fail(function(err) {
+        console.log("ERROR logout error", err);
+        console.log("ERROR logout error responseText", err.responseText);
+        var response = jQuery.parseJSON(err.responseText);
+
+        //
+        // TODO use some kind of styled modal dialog here.....
+        //
+        alert("Error: " + response.message);
+      });
   }
+
 };

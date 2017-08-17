@@ -1,4 +1,5 @@
-var div     = React.DOM.div;
+var div = React.DOM.div;
+var a   = React.DOM.a;
 
 var RadioInputClass     = require("./radio_input");
 var StudentFormClass    = require("./student_form");
@@ -6,10 +7,10 @@ var TeacherFormClass    = require("./teacher_form");
 
 var UserTypeSelector = function() {
 
-  var FormsyForm 	= React.createFactory(Formsy.Form);
-  var RadioInput 	= React.createFactory(RadioInputClass());
-  var StudentForm 	= React.createFactory(StudentFormClass());
-  var TeacherForm 	= React.createFactory(TeacherFormClass());
+  var FormsyForm    = React.createFactory(Formsy.Form);
+  var RadioInput    = React.createFactory(RadioInputClass());
+  var StudentForm   = React.createFactory(StudentFormClass());
+  var TeacherForm   = React.createFactory(TeacherFormClass());
 
   return React.createClass({
 
@@ -32,6 +33,16 @@ var UserTypeSelector = function() {
       console.log("INFO UserTypeSelector rendering");
       console.log("Show", this.state.show);
 
+      var cancel = 
+              a(
+                {     href: "#",
+                      onClick: function(e) {
+                          e.preventDefault();
+                          PortalPages.logout();
+                      }
+                },
+                "Cancel" );
+
       var radio = 
         RadioInput({
           handleChange: this.handleChange,
@@ -49,15 +60,15 @@ var UserTypeSelector = function() {
           ]
         });
 
-	  var form;
-	  if(this.state.show === "student") {
+      var form;
+      if(this.state.show === "student") {
         console.log("INFO create StudentForm...");
-	    form = StudentForm({
+        form = StudentForm({
           basicData:        this.props.basicData,
           onRegistration:   this.props.studentReg
         });
-	  }
-	  if(this.state.show === "teacher") {
+      }
+      if(this.state.show === "teacher") {
         console.log("INFO create TeacherForm...");
         form = TeacherForm({
           anonymous:        this.props.anonymous,
@@ -66,7 +77,7 @@ var UserTypeSelector = function() {
         });
       }
 
-      return FormsyForm({}, radio, form);
+      return FormsyForm({}, radio, form, cancel);
     }
 
   });
