@@ -67,7 +67,7 @@ var LoginModal = function() {
 
       _this = this;
 
-      return div({className: 'login-default-modal-content'}, 
+      return div({className: 'login-default-modal-content'},
         FormsyForm({
           className: 'signup-form',
           onValidSubmit: this.submit },
@@ -81,7 +81,7 @@ var LoginModal = function() {
               TextInput({
                 name: 'user[login]',
                 placeholder: '',
-                required: true }),
+                required: true })
             ),
             dt({}, "Password"),
             dd({},
@@ -89,19 +89,19 @@ var LoginModal = function() {
                 name: 'user[password]',
                 placeholder: '',
                 type: 'password',
-                required: true }),
-            ),
+                required: true })
+            )
           ),
           div({className: 'third-party-login-options'},
             p({}, 'Or, sign in with: '),
-            providerComponents,
+            providerComponents
           ),
           div({className: 'submit-button-container'},
             a({ href: "/forgot_password", title: "Click this link if you forgot your username and/or password."}, "Forgot your username or password?"),
             button({
               className: 'submit-btn',
               type: 'submit',
-            }, 'Log In!' ),
+            }, 'Log In!')
           ),
 
           footer({},
