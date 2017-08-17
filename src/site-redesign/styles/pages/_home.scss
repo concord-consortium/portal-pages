@@ -193,11 +193,20 @@
   font-size: 16px;
 }
 .portal-pages-finder-form-search {
+  a {
+    color: $col-darkgray;
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 10px;
+    text-align: right;
+  }
   form {
     padding: 0;
   }
   input {
     border: none;
+    box-sizing: border-box;
     font-size: 16px;
     margin-top: 10px;
     padding: 14px 14px 14px 55px;

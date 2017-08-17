@@ -11,6 +11,7 @@ var pluralize = require("../helpers/pluralize");
 var waitForAutoShowingLightboxToClose = require("../helpers/wait-for-auto-lightbox-to-close");
 var filters = require("../helpers/filters");
 
+var a = React.DOM.a;
 var div = React.DOM.div;
 var button = React.DOM.button;
 var svg = React.DOM.svg;
@@ -247,7 +248,8 @@ var StemFinder = Component({
       div({className: "portal-pages-finder-form-search-title"}, "Search by keyword"),
       form({onSubmit: search},
         div({className: 'portal-pages-search-input-container'},
-          input({ref: "keyword", placeholder: "Type search term here"})
+          input({ref: "keyword", placeholder: "Type search term here"}),
+          a({href: "/search"}, "Advanced Search"),
         )
       )
     );
@@ -286,7 +288,7 @@ var StemFinder = Component({
     if (keyword.length > 0) {
       filters.push(div({className: "portal-pages-finder-header-filter"},
         "Keyword: " + keyword,
-        span({onClick: this.clearKeyword}, "X")
+        span({onClick: this.clearKeyword})
       ));
     }
 
