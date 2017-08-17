@@ -29,12 +29,17 @@ var LoginModal = function() {
     displayName: 'LoginModal',
 
     submit: function(data) {
-      jQuery.post("/users/sign_in", data).done(function(data) {
-		console.log("INFO login success");
-        window.location.href = "/getting_started";
+      jQuery.post("/api/v1/users/sign_in", data).done(function(data) {
+		console.log("INFO login success", data);
+        location.reload(true);
       }).fail(function(err) {
-		console.log("INFO login error");
-        window.location.href = "/users/sign_in";
+		console.log("INFO login error", err);
+		console.log("INFO login error responseText", err.responseText);
+        var response = jQuery.parseJSON(err.responseText);
+        //
+        // TODO use some kind of styled modal dialog here.....
+        //
+        alert("Error: " + response.message);
       });
 
     },
