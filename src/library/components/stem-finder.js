@@ -191,6 +191,7 @@ var StemFinder = Component({
   },
 
   clearFilters: function () {
+    jQuery('.portal-pages-finder-form-subject-areas-logo').removeClass('selected');
     this.refs.keyword.value = "";
     this.setState({
       subjectAreasSelected: [],
@@ -210,9 +211,11 @@ var StemFinder = Component({
     var index = selectedFilters.indexOf(filter);
     if (index === -1) {
       selectedFilters.push(filter);
+      jQuery('#' + filter.key).addClass('selected');
     }
     else {
       selectedFilters.splice(index, 1);
+      jQuery('#' + filter.key).removeClass('selected');
     }
     var state = {};
     state[selectedKey] = selectedFilters;
