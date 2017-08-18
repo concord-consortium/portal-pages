@@ -29,9 +29,17 @@ var LoginModal = function() {
     displayName: 'LoginModal',
 
     submit: function(data) {
-      jQuery.post("/api/v1/users/sign_in", data).done(function(data) {
-		console.log("INFO login success", data);
-        location.reload(true);
+      if(this.props.afterSigninPath) {
+        data.after_sign_in_path = this.props.afterSigninPath;
+      }
+
+      jQuery.post("/api/v1/users/sign_in", data).done(function(response) {
+		console.log("INFO login success", response);
+        if(response.redirect_path) {
+          window.location = response.redirect_path;
+        } else {
+          location.reload(true);
+        }
       }).fail(function(err) {
 		console.log("INFO login error", err);
 		console.log("INFO login error responseText", err.responseText);
@@ -67,7 +75,7 @@ var LoginModal = function() {
 
       _this = this;
 
-      return div({className: 'login-default-modal-content'}, 
+      return div({className: 'login-default-modal-content'},
         FormsyForm({
           className: 'signup-form',
           onValidSubmit: this.submit },
@@ -81,7 +89,7 @@ var LoginModal = function() {
               TextInput({
                 name: 'user[login]',
                 placeholder: '',
-                required: true }),
+                required: true })
             ),
             dt({}, "Password"),
             dd({},
@@ -89,19 +97,19 @@ var LoginModal = function() {
                 name: 'user[password]',
                 placeholder: '',
                 type: 'password',
-                required: true }),
-            ),
+                required: true })
+            )
           ),
           div({className: 'third-party-login-options'},
             p({}, 'Or, sign in with: '),
-            providerComponents,
+            providerComponents
           ),
           div({className: 'submit-button-container'},
             a({ href: "/forgot_password", title: "Click this link if you forgot your username and/or password."}, "Forgot your username or password?"),
             button({
               className: 'submit-btn',
               type: 'submit',
-            }, 'Log In!' ),
+            }, 'Log In!')
           ),
 
           footer({},

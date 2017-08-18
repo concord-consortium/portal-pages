@@ -236,8 +236,8 @@ var TeacherForm = function() {
               processValue: function(val) {
                 return val.replace(/\s/g, '');
               }
-            }),
-          ),
+            })
+          )
         )
       ) : void 0,
       dl({},

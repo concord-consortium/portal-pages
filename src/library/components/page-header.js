@@ -49,7 +49,8 @@ var PageHeader = Component({
     e.preventDefault();
     console.log("INFO calling renderLoginModal()");
     PortalPages.renderLoginModal(
-      { oauthProviders: this.props.oauthProviders} );
+      { oauthProviders: this.props.oauthProviders,
+        afterSigninPath: this.props.afterSigninPath} );
   },
 
   handleRegisterButton: function (e) {
@@ -72,12 +73,12 @@ var PageHeader = Component({
 
   renderFirstButton: function() {
     if (this.state.loggedIn) {
-      return a({href: "/recent_activity", className: "portal-pages-main-nav-item__link button register"},
+      return a({href: "/recent_activity", title: "View Recent Activity", className: "portal-pages-main-nav-item__link button register"},
                i({className: 'icon-home'}),
                "Home"
       );
     } else {
-      return a({href: "/signup", className: "portal-pages-main-nav-item__link button register",
+      return a({href: "/signup", title: "Create an Account", className: "portal-pages-main-nav-item__link button register",
                  onClick: this.handleRegisterButton },
                "Register"
       );
@@ -86,12 +87,12 @@ var PageHeader = Component({
 
   renderSecondButton: function() {
     if (this.state.loggedIn) {
-      return a({href: "/users/sign_out", className: "portal-pages-main-nav-item__link button log-in"},
+      return a({href: "/users/sign_out", title: "Log Out", className: "portal-pages-main-nav-item__link button log-in"},
                i({className: 'icon-login'}),
                "Log Out"
       );
     } else {
-      return a({href: "/login", className: "portal-pages-main-nav-item__link button log-in",
+      return a({href: "/login", title: "Log In", className: "portal-pages-main-nav-item__link button log-in",
                   onClick: this.handleLoginButton},
                i({className: 'icon-login'}),
                "Log In"
@@ -102,13 +103,13 @@ var PageHeader = Component({
   renderNavLinks: function (e) {
     return ul({className: "portal-pages-main-nav-contain"},
       li({className: "portal-pages-main-nav-item" + (this.props.isCollections ? " current-menu-item" : "")},
-        a({href: "/collections", className: "portal-pages-main-nav-item__link"},
+        a({href: "/collections", className: "portal-pages-main-nav-item__link", title: "View Resource Collections"},
           "Collections"
         )
       ),
       li({className: "portal-pages-main-nav-item" + (this.props.isAbout ? " current-menu-item" : "")},
-        a({href: "/about", className: "portal-pages-main-nav-item__link"},
-          "About the Learn Portal"
+        a({href: "/about", className: "portal-pages-main-nav-item__link", title: "Learn More about the STEM Resource Finder"},
+          "About"
         )
       ),
       li({className: "portal-pages-main-nav-item"},
@@ -138,7 +139,7 @@ var PageHeader = Component({
       ),
       nav({className: "concord-navigation cols no-collapse"},
         div({className: "logo-contain col-3"},
-          a({href: "/"},
+          a({href: "/", title: "Go to the Home Page"},
             div({className: "concord-logo"},
               "Home"
             )

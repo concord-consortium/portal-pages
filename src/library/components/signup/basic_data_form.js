@@ -140,7 +140,7 @@ var BasicDataForm = function() {
       },
       div({className: 'third-party-login-options'},
         p({}, 'Sign up with: '),
-        providerComponents,
+        providerComponents
       ),
       anonymous ? div({},
         dl({},

@@ -1,6 +1,7 @@
 var SignupModal     = require('./signup_modal');
 var Signup          = require('./signup');
 var LoginModal      = require('./login_modal');
+var Modal           = require('../../helpers/modal');
 
 //
 // Map modal to CSS classes
@@ -37,7 +38,7 @@ var openModal = function(type, properties) {
   var comp = React.createFactory( type() );
   console.log("INFO creating modal with props", properties);
   ReactDOM.render(comp(properties), modalContainer[0]);
-  return Portal.showModal(modalContainerSelector);
+  return Modal.showModal(modalContainerSelector);
 };
 
 var openLoginModal = function(properties) {

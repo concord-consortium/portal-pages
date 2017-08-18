@@ -252,7 +252,7 @@ var StemFinder = Component({
       form({onSubmit: search},
         div({className: 'portal-pages-search-input-container'},
           input({ref: "keyword", placeholder: "Type search term here"}),
-          a({href: "/search"}, "Advanced Search"),
+          a({href: "/search"}, "Advanced Search")
         )
       )
     );
@@ -345,7 +345,7 @@ var StemFinder = Component({
         div({className: 'portal-pages-finder-results-cards'},
           resources.map(function (resource, index) {
             return StemFinderResult({key: index, resource: resource});
-          }.bind(this)),
+          }.bind(this))
         ),
         this.renderLoadMore()
       )
