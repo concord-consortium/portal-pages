@@ -157,9 +157,9 @@ var ResourceLightbox = Component({
   renderIcons: function () {
     var resource = this.state.resource;
     var links = resource.links;
-    var printIcon = links.print_url ? a({className: 'print', href: links.print_url}, "print") : null;
-    var copyIcon = links.external_copy ? a({className: 'copy', href: links.external_copy}, "copy") : null;
-    var editLink = links.lara_activity_or_sequence ? links.external_lara_edit : links.external_edit;
+    var printIcon = links.print_url ? a({className: 'print', href: links.print_url.url}, "print") : null;
+    var copyIcon = links.external_copy ? a({className: 'copy', href: links.external_copy.url}, "copy") : null;
+    var editLink = links.lara_activity_or_sequence ? links.external_lara_edit.url : links.external_edit.url;
     var editIcon = editLink ? a({className: 'edit', href: editLink}, "edit") : null;
 
     // TODO: gear icon?
@@ -188,8 +188,6 @@ var ResourceLightbox = Component({
   renderResource: function () {
     var resource = this.state.resource;
     var links = resource.links;
-    console.log('hi');
-    console.log(links);
 
     return div({className: "portal-pages-resource-lightbox-modal-content"},
       div({className: "portal-pages-resource-lightbox-modal-content-top"},
@@ -203,8 +201,8 @@ var ResourceLightbox = Component({
         p({className: "portal-pages-resource-lightbox-description"}, resource.filteredDescription),
         div({},
           links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, "Launch Activity") : null,
-          links.assign_material ? a({className: "portal-pages-secondary-button", href: links.assign_material.url}, "Assign Activity") : null,
-          links.assign_collection ? a({className: "portal-pages-secondary-button", href: links.assign_collection.url}, "Add to Collection") : null,
+          links.assign_material ? a({className: "portal-pages-secondary-button", href: links.assign_material.url, onclick: links.assign_material.onclick}, "Assign Activity") : null,
+          links.assign_collection ? a({className: "portal-pages-secondary-button", href: links.assign_collection.url, onclick: links.assign_collection.onclick}, "Add to Collection") : null,
           links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url}, "Teacher Guide") : null
         ),
         hr({}),
