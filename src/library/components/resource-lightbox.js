@@ -46,7 +46,9 @@ var ResourceLightbox = Component({
   },
 
   handleClose: function (e) {
-    this.props.toggleLightbox(e);
+    if (jQuery(e.target).is('.portal-pages-resource-lightbox') || jQuery(e.target).is('.portal-pages-resource-lightbox-background-close')) { // only close lightbox if lightbox wrapper or X is clicked
+      this.props.toggleLightbox(e);
+    }
   },
 
   renderRequirements: function () {
@@ -217,7 +219,7 @@ var ResourceLightbox = Component({
 
   render: function () {
     var resource = this.state.resource;
-    return div({className: "portal-pages-resource-lightbox"},
+    return div({className: "portal-pages-resource-lightbox", onClick: this.handleClose},
       div({className: "portal-pages-resource-lightbox-background-close", onClick: this.handleClose}, "x"),
       div({className: "portal-pages-resource-lightbox-modal"},
         resource ? this.renderResource() : this.render404()
