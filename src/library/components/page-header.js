@@ -73,7 +73,13 @@ var PageHeader = Component({
 
   renderFirstButton: function() {
     if (this.state.loggedIn) {
-      return a({href: "/recent_activity", title: "View Recent Activity", className: "portal-pages-main-nav-item__link button register"},
+      var homePath;
+      if(Portal.currentUser.homePath){
+        homePath = Portal.currentUser.homePath;
+      } else {
+        homePath = "/";
+      }
+      return a({href: homePath, title: "View Recent Activity", className: "portal-pages-main-nav-item__link button register"},
                i({className: 'icon-home'}),
                "Home"
       );
