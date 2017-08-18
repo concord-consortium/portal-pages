@@ -82,7 +82,7 @@
   cursor: pointer;
   .portal-pages-finder-form-subject-areas-logo-inner {
     background: #fff;
-    color: #col-darkgray;
+    color: $col-darkgray;
     border-radius: 50%;
     height: 80px;
     margin: 0 auto 15px;
@@ -94,7 +94,8 @@
       font: 48px icomoon;
       height: 80px;
       left: 50%;
-      margin: -23px 0 0 -40px;
+      line-height: 1;
+      margin: -24px 0 0 -40px;
       position: absolute;
       top: 50%;
       width: 80px;
