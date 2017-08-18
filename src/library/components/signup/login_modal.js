@@ -29,9 +29,17 @@ var LoginModal = function() {
     displayName: 'LoginModal',
 
     submit: function(data) {
-      jQuery.post("/api/v1/users/sign_in", data).done(function(data) {
-		console.log("INFO login success", data);
-        location.reload(true);
+      if(this.props.afterSigninPath) {
+        data.after_sign_in_path = this.props.afterSigninPath;
+      }
+
+      jQuery.post("/api/v1/users/sign_in", data).done(function(response) {
+		console.log("INFO login success", response);
+        if(response.redirect_path) {
+          window.location = response.redirect_path;
+        } else {
+          location.reload(true);
+        }
       }).fail(function(err) {
 		console.log("INFO login error", err);
 		console.log("INFO login error responseText", err.responseText);
