@@ -81,8 +81,7 @@ var StemFinderResult = Component({
     e.stopPropagation();
 
     if (!Portal.currentUser.isLoggedIn || !Portal.currentUser.isTeacher) {
-      // is there a better, non-jQuery way to do this?
-      var mouse_x = e.pageX, mouse_y = e.pageY, tooltip_timer;
+      var mouse_x = e.pageX + 31, mouse_y = e.pageY - 23, tooltip_timer;
       jQuery('body').append('<div class="portal-pages-favorite-tooltip">Log in or sign up to save resources for quick access!</div>');
       jQuery('.portal-pages-favorite-tooltip').css({'left': mouse_x + 'px', 'top': mouse_y + 'px'}).fadeIn('fast');
       tooltip_timer = setTimeout("jQuery('.portal-pages-favorite-tooltip').fadeOut('slow', function() { jQuery(this).remove(); });", 3000);
