@@ -51,6 +51,10 @@ var ResourceLightbox = Component({
     }
   },
 
+  handleButtonClick: function (a) {
+
+  },
+
   renderRequirements: function () {
     var runsInBrowser = true; // TODO: get from search results when they become available
     if (runsInBrowser) {
@@ -161,7 +165,14 @@ var ResourceLightbox = Component({
     var links = resource.links;
     var printIcon = links.print_url ? a({className: 'print', href: links.print_url.url}, "print") : null;
     var copyIcon = links.external_copy ? a({className: 'copy', href: links.external_copy.url}, "copy") : null;
-    var editLink = links.lara_activity_or_sequence ? links.external_lara_edit.url : links.external_edit.url;
+    var editLink = null;
+    if (links.lara_activity_or_sequence) {
+      editLink = links.external_lara_edit.url;
+    } else if (links.external_edit) {
+      editLink = links.external_edit.url;
+    } else if (links.edit) {
+      editLink = links.edit.url;
+    }
     var editIcon = editLink ? a({className: 'edit', href: editLink}, "edit") : null;
 
     // TODO: gear icon?
@@ -197,15 +208,15 @@ var ResourceLightbox = Component({
           this.renderIcons()
         ),
         div({className: 'preview-image'},
-          img({src: resource.icon.url.replace(/\.jpg$/, '-hr.jpg')})
+          img({src: resource.icon.url})
         ),
         h1({}, resource.name),
         p({className: "portal-pages-resource-lightbox-description"}, resource.filteredDescription),
         div({},
-          links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, "Launch Activity") : null,
-          links.assign_material ? a({className: "portal-pages-secondary-button", href: links.assign_material.url, onclick: links.assign_material.onclick}, "Assign Activity") : null,
-          links.assign_collection ? a({className: "portal-pages-secondary-button", href: links.assign_collection.url, onclick: links.assign_collection.onclick}, "Add to Collection") : null,
-          links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url}, "Teacher Guide") : null
+          links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, links.preview.text) : null,
+          links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick}, links.assign_material.text) : null,
+          links.assign_collection ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_collection.onclick}, links.assign_collection.text) : null,
+          links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank'}, links.teacher_guide.text) : null
         ),
         hr({}),
         h2({}, "Requirements"),
