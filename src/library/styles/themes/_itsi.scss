@@ -1,0 +1,40 @@
+.theme-itsi {
+  .concord-logo {
+    background-image: url(./assets/banners/itsi-logo.svg);
+    height: 90px;
+    text-indent: -999px;
+    width: 400px;
+  }
+  nav.concord-navigation {
+    background: url(./assets/banners/itsi.jpg) no-repeat center right;
+  }
+  .portal-pages-main-nav-collections {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .theme-itsi {
+    .concord-logo {
+      height: 60px;
+      width: 290px;
+    }
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .theme-itsi {
+    nav.concord-navigation {
+      background: transparent;
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .theme-itsi {
+    .mobile-nav-icon span {
+      background: #ea6d2f;
+    }
+  }
+}

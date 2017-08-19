@@ -110,13 +110,17 @@ var PageHeader = Component({
     var headerItems = [];
     if(!Portal.currentUser.isStudent){
       headerItems.push(
-        li({className: "portal-pages-main-nav-item" + (this.props.isCollections ? " current-menu-item" : "")},
+        li({className: "portal-pages-main-nav-item" +
+            " portal-pages-main-nav-collections" +
+            (this.props.isCollections ? " current-menu-item" : "")},
           a({href: "/collections", className: "portal-pages-main-nav-item__link", title: "View Resource Collections"},
             "Collections"
           )
         ) );
       headerItems.push(
-        li({className: "portal-pages-main-nav-item" + (this.props.isAbout ? " current-menu-item" : "")},
+        li({className: "portal-pages-main-nav-item" +
+           " portal-pages-main-nav-about" +
+           (this.props.isAbout ? " current-menu-item" : "")},
           a({href: "/about", className: "portal-pages-main-nav-item__link", title: "Learn More about the STEM Resource Finder"},
             "About"
           )
@@ -142,7 +146,7 @@ var PageHeader = Component({
     if (this.state.windowWidth > 950 || !this.state.nav_menu_collapsed) {
       nav_links = this.renderNavLinks();
     }
-    return div({},
+    return div({className: "theme-" + this.props.theme},
       div({className: "portal-pages-umbrella"},
         div({className: "portal-pages-umbrella-contain cols"},
           div({className: "portal-pages-concord-link col-12"},
