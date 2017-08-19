@@ -107,23 +107,33 @@ var PageHeader = Component({
   },
 
   renderNavLinks: function (e) {
-    return ul({className: "portal-pages-main-nav-contain"},
-      li({className: "portal-pages-main-nav-item" + (this.props.isCollections ? " current-menu-item" : "")},
-        a({href: "/collections", className: "portal-pages-main-nav-item__link", title: "View Resource Collections"},
-          "Collections"
-        )
-      ),
-      li({className: "portal-pages-main-nav-item" + (this.props.isAbout ? " current-menu-item" : "")},
-        a({href: "/about", className: "portal-pages-main-nav-item__link", title: "Learn More about the STEM Resource Finder"},
-          "About"
-        )
-      ),
+    var headerItems = [];
+    if(!Portal.currentUser.isStudent){
+      headerItems.push(
+        li({className: "portal-pages-main-nav-item" + (this.props.isCollections ? " current-menu-item" : "")},
+          a({href: "/collections", className: "portal-pages-main-nav-item__link", title: "View Resource Collections"},
+            "Collections"
+          )
+        ) );
+      headerItems.push(
+        li({className: "portal-pages-main-nav-item" + (this.props.isAbout ? " current-menu-item" : "")},
+          a({href: "/about", className: "portal-pages-main-nav-item__link", title: "Learn More about the STEM Resource Finder"},
+            "About"
+          )
+        ) );
+    }
+
+    headerItems.push(
       li({className: "portal-pages-main-nav-item"},
         this.renderFirstButton()
-      ),
+      ));
+    headerItems.push(
       li({className: "portal-pages-main-nav-item"},
         this.renderSecondButton()
-      )
+      ));
+
+    return ul({className: "portal-pages-main-nav-contain"},
+      headerItems
     );
   },
 
