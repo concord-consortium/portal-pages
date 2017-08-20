@@ -1,4 +1,4 @@
-.theme-itsi {
+.theme-itsi-learn {
   .concord-logo {
     background-image: url(./assets/banners/itsi-logo.svg);
     height: 90px;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .theme-itsi {
+  .theme-itsi-learn {
     .concord-logo {
       height: 60px;
       width: 290px;
@@ -24,7 +24,7 @@
 
 
 @media screen and (max-width: 700px) {
-  .theme-itsi {
+  .theme-itsi-learn {
     nav.concord-navigation {
       background: transparent;
     }
@@ -32,7 +32,7 @@
 }
 
 @media screen and (max-width: 950px) {
-  .theme-itsi {
+  .theme-itsi-learn {
     .mobile-nav-icon span {
       background: #ea6d2f;
     }

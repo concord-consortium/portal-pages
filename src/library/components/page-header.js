@@ -20,7 +20,10 @@ var PageHeader = Component({
       loggedIn: Portal.currentUser.isLoggedIn,
       opacity: 0,
       userId: 0,
-      oauthProviders: this.props.oauthProviders
+      oauthProviders: this.props.oauthProviders || Portal.oauthProviders || {},
+      theme: this.props.theme || Portal.theme || "default",
+      homePath: this.props.homePath || Portal.currentUser.homePath || "/",
+      isStudent: this.props.isStudent || Portal.currentUser.isStudent || false
     };
   },
 
@@ -49,14 +52,14 @@ var PageHeader = Component({
     e.preventDefault();
     console.log("INFO calling renderLoginModal()");
     PortalPages.renderLoginModal(
-      { oauthProviders: this.props.oauthProviders,
+      { oauthProviders: this.state.oauthProviders,
         afterSigninPath: this.props.afterSigninPath} );
   },
 
   handleRegisterButton: function (e) {
     e.preventDefault();
     PortalPages.renderSignupModal(
-      { oauthProviders: this.props.oauthProviders },
+      { oauthProviders: this.state.oauthProviders },
       "signup-default-modal"
     );
   },
@@ -73,13 +76,7 @@ var PageHeader = Component({
 
   renderFirstButton: function() {
     if (this.state.loggedIn) {
-      var homePath;
-      if(Portal.currentUser.homePath){
-        homePath = Portal.currentUser.homePath;
-      } else {
-        homePath = "/";
-      }
-      return a({href: homePath, title: "View Recent Activity", className: "portal-pages-main-nav-item__link button register"},
+      return a({href: this.state.homePath, title: "View Recent Activity", className: "portal-pages-main-nav-item__link button register"},
                i({className: 'icon-home'}),
                "Home"
       );
@@ -108,7 +105,7 @@ var PageHeader = Component({
 
   renderNavLinks: function (e) {
     var headerItems = [];
-    if(!Portal.currentUser.isStudent){
+    if(!this.state.isStudent){
       headerItems.push(
         li({className: "portal-pages-main-nav-item" +
             " portal-pages-main-nav-collections" +
@@ -146,7 +143,7 @@ var PageHeader = Component({
     if (this.state.windowWidth > 950 || !this.state.nav_menu_collapsed) {
       nav_links = this.renderNavLinks();
     }
-    return div({className: "theme-" + this.props.theme},
+    return div({className: "theme-" + this.state.theme},
       div({className: "portal-pages-umbrella"},
         div({className: "portal-pages-umbrella-contain cols"},
           div({className: "portal-pages-concord-link col-12"},
