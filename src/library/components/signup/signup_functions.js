@@ -26,7 +26,7 @@ renderSignupForm = function(properties, selectorOrElement) {
   ReactDOM.render(comp(properties), jQuery(selectorOrElement)[0]);
 };
 
-var openModal = function(type, properties) {
+var openModal = function(type, properties, closeFunc) {
   var modalContainer, modalContainerId, modalContainerSelector;
   modalContainerId = modalClasses[type];
   modalContainerSelector = '#' + modalContainerId;
@@ -34,11 +34,16 @@ var openModal = function(type, properties) {
   if (modalContainer.length === 0) {
     modalContainer = jQuery("<div id='" + modalContainerId + "'>").appendTo('body');
   }
+
   ReactDOM.unmountComponentAtNode(modalContainer[0]);
   var comp = React.createFactory( type() );
   console.log("INFO creating modal with props", properties);
   ReactDOM.render(comp(properties), modalContainer[0]);
-  return Modal.showModal(modalContainerSelector);
+
+  return Modal.showModal(modalContainerSelector, 
+                            undefined, 
+                            undefined, 
+                            closeFunc);
 };
 
 var openLoginModal = function(properties) {
@@ -46,7 +51,19 @@ var openLoginModal = function(properties) {
 };
 
 var openSignupModal = function(properties) {
-  openModal(SignupModal, properties);
+  console.log("INFO modal props", properties);
+  var closeFunc = null;
+  if(properties.omniauth) {
+    closeFunc = function() {
+        console.log("INFO closeFunc closing registration modal.");
+        var redireectPath = null;
+        if(properties.omniauth && properties.omniauth_origin) {
+            redireectPath = properties.omniauth_origin;
+        }
+        PortalPages.logout(Modal.hideModal, Modal.hideModal, redireectPath);
+    }
+  }
+  openModal(SignupModal, properties, closeFunc);
 };
 
 module.exports.openSignupModal 	= openSignupModal;

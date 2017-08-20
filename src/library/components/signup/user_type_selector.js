@@ -33,16 +33,6 @@ var UserTypeSelector = function() {
       console.log("INFO UserTypeSelector rendering");
       console.log("Show", this.state.show);
 
-      var cancel = 
-              a(
-                {     href: "#",
-                      onClick: function(e) {
-                          e.preventDefault();
-                          PortalPages.logout();
-                      }
-                },
-                "Cancel" );
-
       var radio = 
         RadioInput({
           handleChange: this.handleChange,
@@ -77,7 +67,7 @@ var UserTypeSelector = function() {
         });
       }
 
-      return FormsyForm({}, radio, form, cancel);
+      return FormsyForm({}, radio, form);
     }
 
   });

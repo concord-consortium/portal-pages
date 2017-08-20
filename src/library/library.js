@@ -92,22 +92,38 @@ window.PortalPages = {
   //
   // Log out the current user
   //
-  logout: function() {
+  logout: function(successFunc, failFunc, redirectAfter) {
 
       console.log("INFO logging out...");
 
       jQuery.get("/api/v1/users/sign_out").done(function(data) {
-        console.log("INFO logout success", data);
-        location.reload(true);
-      }).fail(function(err) {
-        console.log("ERROR logout error", err);
-        console.log("ERROR logout error responseText", err.responseText);
-        var response = jQuery.parseJSON(err.responseText);
 
-        //
-        // TODO use some kind of styled modal dialog here.....
-        //
-        alert("Error: " + response.message);
+        console.log("INFO logout success", data);
+
+        if(successFunc) {
+            successFunc();
+        }
+        
+        if(redirectAfter) {
+            console.log("INFO redirecting to " + redirectAfter);
+            location.href = redirectAfter;
+        } else {
+            location.reload(true);
+        }
+
+      }).fail(function(err) {
+
+        console.log("ERROR logout error", err);
+
+        if(err.responseText) {
+            var response = jQuery.parseJSON(err.responseText);
+            console.log("ERROR logout error responseText", response.message);
+        } 
+
+        if(failFunc) {
+            failFunc();
+        }
+
       });
   }
 
