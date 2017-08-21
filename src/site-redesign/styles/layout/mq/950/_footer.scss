@@ -20,6 +20,7 @@
 .footer-newsletter {
   margin: 20px auto;
   float: none;
+  width: 330px;
 
   &:after {
     color: $col-darkgray-50;
@@ -28,6 +29,7 @@
 
 .footer-newsletter__link {
   color: $col-darkgray-50;
+  float: none;
 }
 
 .footer-social-links {

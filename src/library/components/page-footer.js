@@ -69,19 +69,22 @@ var PageFooter = Component({
           ul({className: "footer-sitemap-contain col-2"},
             div({className: "footer-link__heading"}, "Resources"),
             li({className: "footer-link__item"},
-              a({href: "https://concord.org/resources", title: "Educational Science, Technology, Engineering, and Mathematics Resources"}, "STEM Resources")
+              a({href: "https://codap.concord.org/", title: "Common Online Data Analysis Platform (CODAP)"}, "CODAP")
             ),
             li({className: "footer-link__item"},
-              a({href: "https://concord.org/resources/for-educators", title: "Educational Technology Resources for Educators"}, "For Educators")
+              a({href: "https://energy.concord.org/energy2d", title: "Energy2D"}, "Energy2D")
             ),
             li({className: "footer-link__item"},
-              a({href: "https://concord.org/resources/for-researchers", title: "Educational Technology Resources for Researchers"}, "For Researchers")
+              a({href: "https://energy.concord.org/energysd", title: "Energy3D"}, "Energy3D")
             ),
             li({className: "footer-link__item"},
-              a({href: "https://concord.org/resources/for-developers", title: "Educational Technology Resources for Developers"}, "For Developers")
+              a({href: "https://fathom.concord.org/", title: "Fathom Dynamic Data Software"}, "Fathom")
             ),
             li({className: "footer-link__item"},
-              a({href: "https://concord.org/resources/for-parents", title: "Educational Technology Resources for Parents"}, "For Parents")
+              a({href: "http://mw.concord.org/", title: "Molecular Workbench"}, "Molecular Workbench")
+            ),
+            li({className: "footer-link__item"},
+              a({href: "http://mw.concord.org/nextgen", title: "Next-Gen Molecular Workbench"}, "Next-Gen Molecular Workbench")
             )
           ),
           ul({className: "footer-sitemap-contain col-2"},
@@ -103,17 +106,7 @@ var PageFooter = Component({
         div({className: "newsletter-social-contain col-4"},
           div({className: "footer-link__heading mobile-join-us"}, "Join Us!"),
           div({id: "mc_embed_signup", className: "footer-newsletter"},
-            form({action: "//concord.us2.list-manage.com/subscribe/post?u=2bbe04e91ce28212abca78209&amp;id=4ca9f8d47e", method: "post", id: "mc-embedded-subscribe-form", name: "mc-embedded-subscribe-form", className: "validate", target: "_blank", novalidate: ""},
-              div({id: "mc_embed_signup_scroll"},
-                input({type: "email", value: "", name: "EMAIL", className: "email footer-newsletter__link", id: "mce-EMAIL", placeholder: "Subscribe to Our eNews", required: ""}),
-                div({style: {position: "absolute", left: "-5000px"}, ariaHidden: "true"},
-                  input({type: "text", name: "b_2bbe04e91ce28212abca78209_4ca9f8d47e", tabindex: "-1", value: ""})
-                ),
-                div({style: {display: "none"}},
-                  input({type: "submit", value: "Subscribe", name: "subscribe", id: "mc-embedded-subscribe"})
-                )
-              )
-            )
+            a({href: "https://concord.org/subscribe", className: "email footer-newsletter__link"}, "Subscribe to Our eNews")
           ),
           div({className: "footer-social-links"},
             a({href: "https://www.facebook.com/concordconsortium", title: "Like the Concord Consortium on Facebook"},
