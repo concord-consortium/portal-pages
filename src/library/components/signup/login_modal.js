@@ -43,11 +43,18 @@ var LoginModal = function() {
       }).fail(function(err) {
 		console.log("INFO login error", err);
 		console.log("INFO login error responseText", err.responseText);
-        var response = jQuery.parseJSON(err.responseText);
-        //
-        // TODO use some kind of styled modal dialog here.....
-        //
-        alert("Error: " + response.message);
+        if(err && err.responseText) {
+            var response = jQuery.parseJSON(err.responseText);
+            var message = response.message;
+            if(response.error) {
+                message = response.error;
+            }
+    
+            //
+            // TODO use some kind of styled modal dialog here.....
+            //
+            alert("Error: " + message);
+        }
       });
 
     },
