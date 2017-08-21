@@ -14,8 +14,12 @@ const portalSrcFolder = path.resolve(`${__dirname}/../src/portals`);
 const portalDestFolder = path.resolve(`${__dirname}/../dest/portals`);
 const librarySrcFolder = path.resolve(`${__dirname}/../src/library`);
 const libraryDestFolder = path.resolve(`${__dirname}/../dest/library`);
-const assetsSrcFolder = path.resolve(`${__dirname}/../src/library/assets`);
-const assetsDestFolder = path.resolve(`${__dirname}/../dest/library/assets`);
+const siteRedesignSrcFolder = path.resolve(`${__dirname}/../src/site-redesign`);
+const siteRedesignDestFolder = path.resolve(`${__dirname}/../dest/site-redesign`);
+const siteRedesignAssetsSrcFolder = path.resolve(`${__dirname}/../src/site-redesign/assets`);
+const siteRedesignAssetsDestFolder = path.resolve(`${__dirname}/../dest/site-redesign/assets`);
+const libraryAssetsSrcFolder = path.resolve(`${__dirname}/../src/library/assets`);
+const libraryAssetsDestFolder = path.resolve(`${__dirname}/../dest/library/assets`);
 
 const die = (err, code) => {
   console.error(err);
@@ -88,10 +92,27 @@ sass.render({file: `${librarySrcFolder}/library.scss`}, (err, result) => {
   }
 });
 
+// build the site redesign css
+sass.render({file: `${siteRedesignSrcFolder}/site-redesign.scss`}, (err, result) => {
+  if (err) {
+    die(err, 3);
+  }
+  else {
+    mkdirp.sync(siteRedesignDestFolder);
+    fs.writeFileSync(`${siteRedesignDestFolder}/site-redesign.css`, result.css.toString());
+  }
+});
+
 // copy the assets
-mkdirp.sync(assetsDestFolder);
-ncp(assetsSrcFolder, assetsDestFolder, function (err) {
+mkdirp.sync(siteRedesignAssetsDestFolder);
+ncp(siteRedesignAssetsSrcFolder, siteRedesignAssetsDestFolder, function (err) {
   if (err) {
     die(err, 4);
+  }
+});
+mkdirp.sync(libraryAssetsDestFolder);
+ncp(libraryAssetsSrcFolder, libraryAssetsDestFolder, function (err) {
+  if (err) {
+    die(err, 5);
   }
 });

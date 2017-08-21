@@ -1,11 +1,15 @@
+var CollectionsPage = require("./components/collections-page");
 var CollectionCards = require("./components/collection-cards");
 var HeaderFilter = require("./components/header-filter");
 var ResourceLightbox = require("./components/resource-lightbox");
 var StemFinderResult = require("./components/stem-finder-result");
 var StemFinder = require("./components/stem-finder");
-var UserAuth = require("./components/user-auth");
+var PageHeader = require("./components/page-header");
+var PageFooter = require("./components/page-footer");
 var MaterialsCollection = require("./components/materials-collection");
 var GradeLevels = require("./components/grade-levels");
+
+var signup_functions    = require("./components/signup/signup_functions");
 
 var render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id));
@@ -22,6 +26,9 @@ window.PortalPages = {
 
   render: render,
 
+  CollectionsPage: CollectionsPage,
+  renderCollectionsPage: renderComponentFn(CollectionsPage),
+
   CollectionCards: CollectionCards,
   renderCollectionCards: renderComponentFn(CollectionCards),
 
@@ -37,11 +44,39 @@ window.PortalPages = {
   StemFinder: StemFinder,
   renderStemFinder: renderComponentFn(StemFinder),
 
-  UserAuth: UserAuth,
-  renderUserAuth: renderComponentFn(UserAuth),
+  PageHeader: PageHeader,
+  renderPageHeader: renderComponentFn(PageHeader),
+
+  PageFooter: PageFooter,
+  renderPageFooter: renderComponentFn(PageFooter),
 
   GradeLevels: GradeLevels,
   renderGradeLevels: renderComponentFn(GradeLevels),
+
+  //
+  // Render modal popups for login and signup.
+  // Unlike other PortalPages methods, these methods do not take a
+  // DOM id as parameter. A DOM element will be dynamically generated
+  // for these method.
+  //
+  // Params
+  //    properties  - A properties object. E.g. { oauthProviders: [ ... ] }
+  //
+  renderSignupModal: function(properties) {
+    signup_functions.openSignupModal(properties);
+  },
+  renderLoginModal: function(properties) {
+    signup_functions.openLoginModal(properties);
+  },
+
+  //
+  // Render a signup form to the specified DOM id.
+  //
+  // Params
+  //    properties  - The properties.   E.g. { oauthProviders: [ ... ] }
+  //    id          - The DOM id.       E.g. "#test-embedded-signup-form"
+  //
+  renderSignupForm: signup_functions.renderSignupForm,
 
   MaterialsCollection: MaterialsCollection,
   // this is a different format to match to existing project pages which had 2 formats itself

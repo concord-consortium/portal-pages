@@ -9,8 +9,10 @@ var h2 = React.DOM.h2;
 var h3 = React.DOM.h3;
 var hr = React.DOM.hr;
 var a = React.DOM.a;
+var li = React.DOM.li;
 var p = React.DOM.p;
 var span = React.DOM.span;
+var ul = React.DOM.ul;
 
 var ResourceLightbox = Component({
   getInitialState: function () {
@@ -44,7 +46,13 @@ var ResourceLightbox = Component({
   },
 
   handleClose: function (e) {
-    this.props.toggleLightbox(e);
+    if (jQuery(e.target).is('.portal-pages-resource-lightbox') || jQuery(e.target).is('.portal-pages-resource-lightbox-background-close')) { // only close lightbox if lightbox wrapper or X is clicked
+      this.props.toggleLightbox(e);
+    }
+  },
+
+  handleButtonClick: function (a) {
+
   },
 
   renderRequirements: function () {
@@ -111,7 +119,7 @@ var ResourceLightbox = Component({
       div({className: "portal-pages-resource-lightbox-learn-more"},
         "This resource is part of the Concord Consortium's ",
         projects.map(function (project, index) {
-          return span({},
+          return strong({},
             project.landing_page_url ? a({href: project.landing_page_url}, project.name) : project.name,
             index !== numProjects - 1 ? " and " : ""
           );
@@ -127,10 +135,12 @@ var ResourceLightbox = Component({
     if (resource.related_materials.length === 0) {
       return null;
     }
-    return div({className: "portal-pages-resource-lightbox-related-content"},
+    return div({className: "portal-pages-resource-lightbox-related-content cols"},
       h2({}, "You may also like:"),
       resource.related_materials.map(function (resource, i) {
-        return RelatedResourceResult({key: i, resource: resource, replaceResource: this.replaceResource});
+        if (i < 2) {
+          return RelatedResourceResult({key: i, resource: resource, replaceResource: this.replaceResource});
+        }
       }.bind(this))
     );
   },
@@ -138,10 +148,10 @@ var ResourceLightbox = Component({
   // TODO: add links
   renderSharing: function () {
     return div({className: "portal-pages-resource-lightbox-modal-sharing"},
-      div({}, "F"),
-      div({}, "T"),
-      div({}, "E"),
-      div({}, "+")
+      a({className: "share-facebook"}, "Facebook"),
+      a({className: "share-twitter"}, "Twitter"),
+      a({className: "share-email"}, "Email"),
+      a({className: "share-more"}, "More")
     );
   },
 
@@ -157,21 +167,38 @@ var ResourceLightbox = Component({
   renderIcons: function () {
     var resource = this.state.resource;
     var links = resource.links;
-    var printIcon = links.print_url ? a({href: links.print_url}, "P") : null;
-    var copyIcon = links.external_copy ? a({href: links.external_copy}, "C") : null;
-    var editLink = links.lara_activity_or_sequence ? links.external_lara_edit : links.external_edit;
-    var editIcon = editLink ? a({href: editLink}, "E") : null;
+    var printIcon = links.print_url ? a({className: 'print', href: links.print_url.url}, "print") : null;
+    var copyIcon = links.external_copy ? a({className: 'copy', href: links.external_copy.url}, "copy") : null;
+    var editLink = null;
+    if (links.lara_activity_or_sequence) {
+      editLink = links.external_lara_edit.url;
+    } else if (links.external_edit) {
+      editLink = links.external_edit.url;
+    } else if (links.edit) {
+      editLink = links.edit.url;
+    }
+    var editIcon = editLink ? a({className: 'edit', href: editLink}, "edit") : null;
 
     // TODO: gear icon?
+    var settingsIcon = links.settings ? a({className: 'settings', href: links.settings}, 'settings') : null;
 
     if (!printIcon && !copyIcon && !editIcon) {
       return null;
     }
 
-    return div({className: "portal-pages-resource-lightbox-icons"},
-      printIcon,
-      copyIcon,
-      editIcon
+    return ul({},
+      li({},
+        printIcon
+      ),
+      li({},
+        copyIcon
+      ),
+      li({},
+        editIcon
+      ),
+      li({},
+        settingsIcon
+      )
     )
   },
 
@@ -181,15 +208,19 @@ var ResourceLightbox = Component({
 
     return div({className: "portal-pages-resource-lightbox-modal-content"},
       div({className: "portal-pages-resource-lightbox-modal-content-top"},
-        this.renderIcons(),
-        img({src: resource.icon.url}),
+        div({className: "portal-pages-resource-lightbox-modal-utility"},
+          this.renderIcons()
+        ),
+        div({className: 'preview-image'},
+          img({src: resource.icon.url})
+        ),
         h1({}, resource.name),
-        div({className: "portal-pages-resource-lightbox-description"}, resource.filteredDescription),
+        p({className: "portal-pages-resource-lightbox-description"}, resource.filteredDescription),
         div({},
-          links.preview ? a({className: "portal-pages-primary-button", href: links.preview, target: "_blank"}, "Launch Activity") : null,
-          links.assign_material ? a({className: "portal-pages-secondary-button", href: links.assign_material}, "Assign Activity") : null,
-          links.assign_collection ? a({className: "portal-pages-secondary-button", href: links.assign_collection}, "Add to Collection") : null,
-          links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide}, "Teacher Guide") : null
+          links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, links.preview.text) : null,
+          links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick}, links.assign_material.text) : null,
+          links.assign_collection ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_collection.onclick}, links.assign_collection.text) : null,
+          links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank'}, links.teacher_guide.text) : null
         ),
         hr({}),
         h2({}, "Requirements"),
@@ -203,9 +234,8 @@ var ResourceLightbox = Component({
 
   render: function () {
     var resource = this.state.resource;
-    return div({className: "portal-pages-resource-lightbox"},
-      div({className: "portal-pages-resource-lightbox-background", onClick: this.handleClose}),
-      div({className: "portal-pages-resource-lightbox-background-close"}, "X"),
+    return div({className: "portal-pages-resource-lightbox", onClick: this.handleClose},
+      div({className: "portal-pages-resource-lightbox-background-close", onClick: this.handleClose}, "x"),
       div({className: "portal-pages-resource-lightbox-modal"},
         resource ? this.renderResource() : this.render404()
       ),

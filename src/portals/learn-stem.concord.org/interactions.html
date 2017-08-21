@@ -1,307 +1,7 @@
-<style>
-<!--
-html { height: 100%; }
-body {
-  height: 100%;
-  overflow-x: hidden;
-  }
-button {
-  border-radius: 4px;
-  color: #fff;
-  margin: 0 auto .5em;
-  padding: .5em 2em;
-  }
-header {
-  background: #fff;
-  left: 0;
-  height: 75px;
-  position: fixed;
-  position: relative;
-  top: 100px;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-  }
-  header div {
-    margin: 0 auto;
-    position: relative;
-    width: 60em;
-    }
-  header h1 { margin: .4em 0; }
-h1, h2, h3, h4, h5 { font-weight: normal; }
-h1 { color: #ee864e; }
-h2 { clear: both; color: #222; line-height: 1.2; margin-top: 2em; }
-li, p { font-size: .9em; margin-bottom: .9em; }
-nav {
-  display: none;
-  position: absolute;
-  right: 0;
-  text-align: right;
-  top: -8px;
-  width: 70%;
-  }
-  nav ul {
-    list-style: none;
-    }
-  nav li {
-    display: inline;
-    font-size: .8em;
-    }
-  nav a {
-    border-radius: 4px;
-    color: #0093b0;
-    display: inline-block;
-    padding: 5px 10px;
-    text-decoration: none;
-    }
-  nav a.active { background: #fef7e0; }
-.float-right {
-  float: right;
-  margin: 3px 0 2em 1em;
-  width: 60%;
-  }
-.orange { color: #ee864e; }
-.sign-up-box {
-  background: #fef7e0;
-  clear: both;
-  overflow: hidden;
-  padding: 2em 1em 1em;
-  text-align: center;
-  }
-  .sign-up-box button {
-    font-size: 1.5em;
-    }
-.tabs-container {
-  clear: both;
-  height: auto;
-  margin-top: 2em;
-  min-height: 200px;
-  overflow: hidden;
-  position: relative;
-  }
-.tabs {
-  display: block;
-  margin: 0;
-  padding: 0;
-  }
-.tabs li {
-  cursor: pointer;
-  display: inline-block;
-  margin: 0;
-  padding: .5em 1em;
-  }
-.tab-content {
-  background: #fef7e0;
-  overflow: hidden;
-  }
-.tab-content ul {
-  display: none;
-  list-style: none;
-  margin: 0 0 0 1em;
-  padding: 2em 0;
-  }
-.tab-content.active ul { display: block; }
-.tabs li.active {
-  background: #fef7e0;
-  }
-.tab-content h3 { margin: 0; padding: 0; }
-.tab-content ul ul { background: #fff; margin: 0; padding: 1em; width: 59em; }
-.tab-content ul ul li { clear: both; margin: 0; padding: 0; }
-.video {
-  background: #6ec4d7 url(//concord.org/sites/default/files/projects/interactions/interactions-720p.jpg) no-repeat center center;
-  background-size: cover;
-  color: #0093b0;
-  float: right;
-  font-size: 2em;
-  height: 360px;
-  line-height: 360px;
-  margin: 3px 0 1em 1em;
-  text-align: center;
-  width: 640px;
-  }
-#primary.wide, #primary.wide #content {
-  overflow: visible;
-  }
-#page-container {
-  font: 130%/1.5 arial,verdana,helvetica,sans-serif;
-  margin: 1em auto;
-  overflow: visible;
-  padding-top: 75px;
-  padding-top: 0;
-  position: relative;
-  width: 100%;
-  }
-#top-bar {
-  background: #bddfdf;
-  height: 100px;
-  }
-#intro ul {
-  font-style: italic;
-  padding-left: 0;
-  }
-#pd {
-  background: #bddfdf;
-  clear: both;
-  margin: 3em -999em 0;
-  padding: .005em 999em 4em;
-  width: 60em;
-  }
-#curriculum-details {
-  background: #fff;
-  display: none;
-  height: 85%;
-  left: 50%;
-  margin-left: -30em;
-  overflow: auto;
-  padding: 2em;
-  position: fixed;
-  top: 1em;
-  width: 56em;
-  z-index: 1000;
-  }
-  #curriculum-details h2 { margin-top: 0; }
-  ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-    }
-  ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0,0,0,.5);
-    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-    }
-  .close {
-    background: #222;
-    border: 2px solid #eee;
-    border-radius: 50%;
-    box-shadow: 0 1.25px 2.5px rgba(51, 51, 51, .5);
-    color: #ddd;
-    cursor: pointer;
-    display: block;
-    font: 14px verdana, helvetica, sans-serif;
-    padding: 0 5px 2px;
-    position: absolute;
-    right: -15px;
-    text-decoration: none !important;
-    top: -15px;
-    z-index: 25;
-    }
-#overlay {
-  background: #111;
-  display: none;
-  height: 100%;
-  left: 0;
-  opacity: .7;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  }
-.collapsible { width: 98%; }
-h3.collapsible-toggle{
-  background:#479492;
-  border-radius:3px;
-  color:#fff;
-  display: block;
-  font-size: 1em;
-  font-weight:normal;
-  margin-bottom: 0;
-  padding:.5em .5em .5em 1.5em;
-  width: 94.75%;
-  }
-.collapsible-toggle:before {
-  background:#fff;
-  border-radius:50%;
-  color:#777;
-  content:'+';
-  display: block;
-  float: left;
-  font-size: .9em;
-  height:1.215em;
-  margin: .025em .5em 0 -1em;
-  padding: 0;
-  text-align:center;
-  text-indent:0;
-  width:1.25em;
-  }
-.collapsible-toggle.open:before{ animation:spin-toggle-open 0.5s normal forwards; }
-@keyframes spin-toggle-open{ 100% { transform: rotate(45deg); } }
-#units-tab li { clear: both; margin-bottom: .25em; }
-#units-tab ul ul li { overflow: hidden; padding: 1em 1em .25em }
-#units-tab ul ul li:nth-child(even) { background: #eee; }
-#units-tab li a {}
-#units-tab li h4 {
-  color: #0093b0;
-  font-size: .9em;
-  margin: 0;
-  }
-#units-tab li img {
-  border: solid 1px #ddd;
-  float: left;
-  height: auto;
-  margin: 0 1em 1em 0;
-  width: 6em;
-  }
-#units-tab li p { font-size: .8em; margin-left: 8.75em; }
-#simulations-tab {
-  display: none;
-  padding-bottom: 2em;
-  }
-#filter input { margin: 0 .5em 0 .25em; }
-#filter label { cursor: pointer; }
-#filter p { font-size: .8em; margin: 1em 1.25em -3em; }
-#simulations-tab li {
-  background: #fff;
-  display: block;
-  float: left;
-  list-style: none;
-  height: auto;
-  margin: 1em .5em 0;
-  min-height: 16em;
-  padding: 1em;
-  width: 11.9em;
-  }
-body.guest-visitor #simulations-tab li:nth-child(4n+1) { clear: left; }
-#simulations-tab li:hover { background: #f6f6f6; }
-  #simulations-tab li a {
-    color: #3f3f3f;
-    text-decoration: none;
-    }
-  #simulations-tab li h4 {
-    color: #0093b0;
-    font-size: .9em;
-    margin: 0;
-    }
-  #simulations-tab li img {
-    height: auto;
-    margin: -1em -1em .25em;
-    width: 13.9em;
-    }
-  #simulations-tab li p { font-size: .8em; }
-body.member-visitor .sign-up-box, body.member-visitor #intro { display: none; }
-body.member-visitor h2 { font-size: 1.25em; margin-top: 0; }
-body.member-visitor p { width: 93%; }
-body.member-visitor #pd { margin: 3em 0 2em; padding: 1em; width: 100%; }
-body.member-visitor .collapsible { width: 97.5%; }
-body.member-visitor h3.collapsible-toggle { width: 93%; }
-body.member-visitor #simulations-tab li:nth-child(3n+1) { clear: left; }
-body.member-visitor #nsta-videos { display: none; }
-#signup-default-modal { position: fixed; }
--->
-</style>
-
-<div id="page-container">
-  <h1>Interactions</h1>
-  <section id="intro">
-    <div class="video">
-
-<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="640" height="360"
-  poster="//concord.org/sites/default/files/projects/interactions/interactions-720p.jpg" data-setup="{}">
-    <source src="//concord.org/sites/default/files/projects/interactions/interactions-720p.mp4" type="video/mp4">
-    <source src="//concord.org/sites/default/files/projects/interactions/interactions-720p.webm" type="video/webm">
-    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
-      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-  </video>
-    </div>
+<header id="page-header" class="portal-pages-header-contain"></header>
+<div class="cols">
+  <div class="portal-pages-collection-page-intro col-7">
+    <h1>Interactions</h1>
     <p>The Interactions curriculum introduces students to science as an endeavor, a process we engage in,
       rather than solely a set of discoveries by others. Through engaging in modeling and scientific
       explanation students explore curious aspects of the everyday world, discovering how the unseen
@@ -311,17 +11,29 @@ body.member-visitor #nsta-videos { display: none; }
       <li>Aligned with Next Generation Science Standards (NGSS)</li>
       <li>For 9th grade physical or integrated science students.</li>
     </ul>
-    <div class="sign-up-box">
-      <button onclick="Portal.openSignupModal();">Sign Up!</button>
-      <p>Curricular materials are available below. Sign up for access to comprehensive teacher guides <br />and pre-post assesssments.</p>
-    </div>
-  </section>
-  <section id="curriculum">
+  </div>
+  <div class="portal-pages-collection-page-intro col-5">
+    <figure>
+      <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="456" height="256"
+      poster="//concord.org/sites/default/files/projects/interactions/interactions-720p.jpg" data-setup="{}">
+        <source src="//concord.org/sites/default/files/projects/interactions/interactions-720p.mp4" type="video/mp4">
+        <source src="//concord.org/sites/default/files/projects/interactions/interactions-720p.webm" type="video/webm">
+        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
+          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+      </video>
+    </figure>
+  </div>
+  <div class="sign-up-box col-12">
+    <button onclick="Portal.openSignupModal();">Sign Up!</button>
+    <p>Curricular materials are available below. Sign up for access to comprehensive teacher guides <br />
+      and pre-post assesssments.</p>
+  </div>
+  <div id="curriculum" class="col-12">
     <h2>Curriculum Overview</h2>
-    <div id="nsta-videos" style="background: #bddfdf; border-radius: 8px; float: right; margin: 3px 0 0 1em; padding: 1em; width: 18em;">
+    <div id="nsta-videos" style="background: #bddfdf; float: right; margin: 3px 0 0 1em; padding: 1em; width: 18em;">
       <h3 style="font-size: 1em; margin: 0;">Featured in NSTA Video Series</h3>
       <p style="font-size: .8em;">Watch these eight videos to discover important strategies on the Framework for K-12 Science Education and the Next Generation Science Standards (NGSS). Learn about major shifts in science instruction and the new role of the teacher.</p>
-      <p style="text-align: center;"><a class="button" style="border-radius: 4px; padding: .75em 1.5em;" href="http://ngss.nsta.org/ngss-videos.aspx#mayer">Watch Videos</a></p>
+      <p style="text-align: center;"><a class="button" href="http://ngss.nsta.org/ngss-videos.aspx#mayer">Watch Videos</a></p>
     </div>
     <p>Fundamental forces, unseen yet felt in every moment of our existence, govern the interactions
       of matter and energy that in turn shape our lives. By understanding these forces, we create a
@@ -332,12 +44,20 @@ body.member-visitor #nsta-videos { display: none; }
       on activities and use online simulations to collect evidence. From their evidence, they construct
       mental models of the forces that drive interesting phenomena and test their models by predicting
       further events. <a href="#curriculum-details" onclick="showPopover('#curriculum-details'); return false;">Learn more</a> <span class="orange">&raquo;</span></p>
+  </div>
+</div>
+<div class="portal-pages-collection-resource-list skew top-only gray">
+  <div class="cols skew-cancel">
+    <div id="collection-1-heading" class="collection-heading col-12">
+      <h2>Activities</h2>
+      <hr class="hr-thick" />
+    </div>
     <div id="curriculum-tabs" class="tabs-container">
-      <ul class="tabs">
+      <ul class="tabs col-12">
         <li id="units-tab-link" class="active" onclick="showTab('#units');">Units</li>
         <li id="simulations-tab-link" onclick="showTab('#simulations');">Simulations</li>
       </ul>
-      <div id="units-tab" class="tab-content active">
+      <div id="units-tab" class="tab-content col-12 active">
         <ul>
           <li><h3 class="collapsible-toggle">Unit 1 - Part 1: Why do some clothes stick together when they come out of the dryer?</h3>
             <div class="collapsible" id="collection-1"></div>
@@ -359,423 +79,425 @@ body.member-visitor #nsta-videos { display: none; }
           </li>
         </ul>
       </div>
-      <div id="simulations-tab" class="tab-content">
- <form id="filter">
-<p><strong>Filter by Subject</strong> <br />
-    <label for="biology-filter"><input id="biology-filter" name="type" type="radio" value="biology">Biology</label> |
-    <label for="chemistry-filter"><input id="chemistry-filter" name="type" type="radio" value="chemistry">Chemistry</label> |
-    <label for="physics-filter"><input id="physics-filter" name="type" type="radio" value="physics">Physics</label> |
-    <label for="all-filter"><input id="all-filter" name="type" type="radio" value="all" checked>All</label>
-  </p>
-</form>
-        <ul id="simulations-list">
-          <li data-id="3d-exploration-bound-antibody-antigen" class="biology chemistry">
-              <a target="_blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/3D-antibody.json">
-                  <img src="//concord.org/sites/default/files/antibody.jpg" />
-                  <h4>3D Exploration of Bound Antibody and Antigen</h4>
-                  <p>Explore the role of shape in how antibodies and antigens interact.</p>
-              </a>
-          </li>
-          <li data-id="atom-ion-builder" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/atom-builder.json">
-                  <img src="https://concord.org/sites/default/files/atom-ion-builder_1.jpg">
-                  <h4>Atom and Ion Builder</h4>
-                  <p>Create multiple versions of helium atoms and make observations of how changing protons, electrons, and neutrons change atoms.</p>
-              </a>
-          </li>
-          <li data-id="atom-ion-builder-table" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/atom-builder-with-table.json">
-                  <img src="https://concord.org/sites/default/files/atom-ion-builder_0.jpg">
-                  <h4>Atom and Ion Builder (with table)</h4>
-                  <p>Create multiple versions of various atoms and record the number of protons, electrons, and neutrons in a table.</p>
-              </a>
-          </li>
-          <li data-id="boiling-point-polar-nonpolar" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/boiling-point-polar-nonpolar.json">
-                  <img src="https://concord.org/sites/default/files/boiling-point-polar-nonpolar.jpg">
-                  <h4>Boiling Point of Polar &amp; Nonpolar Substances</h4>
-                  <p>Explore the relationships between properties of molecules, temperature, and movement of particles.</p>
-              </a>
-          </li>
-          <li data-id="breaking-molecular-bond-conceptual" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/breaking-molecular-bond-no-axes.json">
-                  <img src="https://concord.org/sites/default/files/breaking-molecular-bond.jpg">
-                  <h4>Breaking a Molecular Bond (conceptual version)</h4>
-                  <p>Adjust the initial velocity of a third atom as it hits two bonded atoms and track the changes in energy during this interaction.</p>
-              </a>
-          </li>
-          <li data-id="chain-reaction-hydrogen-oxygen" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/hydrogen-oxygen-chain-reaction.json">
-                  <img src="https://concord.org/sites/default/files/chain-reaction-hydrogen-oxygen.jpg">
-                  <h4>Chain Reaction Between Hydrogen and Oxygen</h4>
-                  <p>Observe how a chemical reaction evolves over time and affects the balance of potential and kinetic energy in the system.</p>
-              </a>
-          </li>
-          <li data-id="charge-intensity-electric-force" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/amount-charge.json">
-                  <img src="https://concord.org/sites/default/files/charge-intensity_0.jpg">
-                  <h4>Charge Intensity and Electric Force</h4>
-                  <p>Explore the relationship between charge, electric fields and forces on objects by manipulating charge in this simulation.</p>
-              </a>
-          </li>
-          <li data-id="charge-intensite-electric-force" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/amount-charge-2.json">
-                  <img src="https://concord.org/sites/default/files/charge-intensity-2.jpg">
-                  <h4>Charge Intensity and Electric Force 2</h4>
-                  <p>Explore the relationship between charge, electric fields and forces on objects by manipulating charge.</p>
-              </a>
-          </li>
-          <li data-id="collisions-kinetic-energy" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/collision.json">
-                  <img src="https://concord.org/sites/default/files/collisions-kinetic-energy-2.jpg">
-                  <h4>Collisions and Kinetic Energy</h4>
-                  <p>Explore the energy exchange between colliding objects and observe how energy transfer occurs under various circumstances. </p>
-              </a>
-          </li>
-          <li data-id="comparing-attractive-forces-molecules" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/comparing-polar-non-polar.json">
-                  <img src="https://concord.org/sites/default/files/comparing-attractive-forces.jpg">
-                  <h4>Comparing Attractive Forces Between Molecules</h4>
-                  <p>Explore the difference in attractive forces between polar and nonpolar molecules.</p>
-              </a>
-          </li>
-          <li data-id="comparing-potential-energy-bond" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/comparing-potential-energy-of-bond.json">
-                  <img src="https://concord.org/sites/default/files/comparing-potential-energy.jpg">
-                  <h4>Comparing Potential Energy of a Bond</h4>
-                  <p>Compare the change in potential energy when you separate molecules from each versus when you break molecules apart. </p>
-              </a>
-          </li>
-          <li data-id="concentrating-charge-electric-fields" class="chemistry physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/rutherford-no-electrons.json">
-                  <img src="https://concord.org/sites/default/files/concentrating-fields-electric-charge.jpg">
-                  <h4>Concentrating Charge and Electric Fields</h4>
-                  <p>Simulate an analogy to Rutherford’s gold foil experiment to distinguish between the plum pudding and hard nucleus model of the atom.</p>
-              </a>
-          </li>
-          <li data-id="conversion-electric-potential-energy" class="chemistry physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/electricPE3.json">
-                  <img src="https://concord.org/sites/default/files/conversion-electric-potential-energy-2.jpg">
-                  <h4>Conversion of Electric Potential Energy</h4>
-                  <p>Explore how potential energy created by particles of varying charge is converted to thermal energy.</p>
-              </a>
-          </li>
-          <li data-id="crookes-tube" class="physics">
-              <a target="_blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/crookesElectrodes.json">
-                  <img src="//concord.org/sites/default/files/imagecache/image_activity_finder/crookes.jpg" />
-                  <h4>Crookes Tube</h4>
-                  <p>Experiment with a simulated Crookes tube for qualitative results similar to Thomson's experiments in which the electron was discovered.</p>
-              </a>
-          </li>
-          <li data-id="deformed-electron-cloud" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/deformedCloud.json">
-                  <img src="https://concord.org/sites/default/files/deformed-cloud-2.jpg">
-                  <h4>Deformed Electron Cloud</h4>
-                  <p>Explore the effect of an electric field on the electron distribution of an atom.</p>
-              </a>
-          </li>
-          <li data-id="diffusion-drop-temp" class="biology chemistry physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/dropping-dye-with-temp.json">
-                  <img src="https://concord.org/sites/default/files/diffusion-drop-temperature.jpg">
-                  <h4>Diffusion of a Drop (with temperature)</h4>
-                  <p>Add a drop of dye to water and watch how the dye molecules spread by interacting with water molecules.</p>
-              </a>
-          </li>
-          <li data-id="direction-strength-force-electric-fields" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forceStrengthDirection.json">
-                  <img src="https://concord.org/sites/default/files/direction-strength-force-electric-fields.jpg">
-                  <h4>Direction and Strength of Force in Electric Fields</h4>
-                  <p>Explore the strength and direction of forces between two charged objects by observing the color and size of force pointers.</p>
-              </a>
-          </li>
-          <li data-id="direction-force-vdg" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forceDirectionVDGnegative.json">
-                  <img src="https://concord.org/sites/default/files/direction-force-vdg-negative.jpg">
-                  <h4>Direction of Force Around a VDG (Negatively Charged)</h4>
-                  <p>Observe the direction of forces between a negatively charged Van De Graaff Generator and a positively charged object.</p>
-              </a>
-          </li>
-          <li data-id="direction-force-charged-objects" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forceDirection.json">
-                  <img src="https://concord.org/sites/default/files/direction-force-charged-object.jpg">
-                  <h4>Direction of Force on Charged Objects</h4>
-                  <p>Drag around a stationary charged object and observe the force on the stationary object when it is positive and negative.</p>
-              </a>
-          </li>
-          <li data-id="dissolving" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/dissolving-solubility.json">
-                  <img src="https://concord.org/sites/default/files/dissolving.jpg">
-                  <h4>Dissolving</h4>
-                  <p>Observe the impact on potential energy when a substance dissolves in water.</p>
-              </a>
-          </li>
-          <li data-id="dissolving-experimental" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/dissolving-experimental.json">
-                  <img src="https://concord.org/sites/default/files/dissolving-experimental.jpg">
-                  <h4>Dissolving Experimental</h4>
-                  <p>Explore how the polarity of molecules affects how they mix (or don’t) when combined.</p>
-              </a>
-          </li>
-          <li data-id="electric-potential-energy-charge-intensity" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/electricPE2.json">
-                  <img src="https://concord.org/sites/default/files/electric-potential-energy-charge-intensity-2.jpg">
-                  <h4>Electric Potential Energy and Charge Intensity</h4>
-                  <p>Set the amount and type of charge on particles and compare the potential energy of the electric field that is generated.</p>
-              </a>
-          </li>
-          <li data-id="electric-potential-energy-type-charge" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/electricPE.json">
-                  <img src="https://concord.org/sites/default/files/electric-potential-energy-2.jpg">
-                  <h4>Electric Potential Energy and Type of Charge</h4>
-                  <p>Set the charge of two particles and compare the potential energy of the electric field they generate as the particles are moved around.</p>
-              </a>
-          </li>
-          <li data-id="electrostatics-maze-game" class="physics ">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/mazeGame.json">
-                  <img src="https://concord.org/sites/default/files/electrostatics-maze-game.jpg">
-                  <h4>Electrostatics: Maze Game</h4>
-                  <p>Apply knowledge of the interaction between charged particles to guide an object through a maze.</p>
-              </a>
-          </li>
-          <li data-id="elements-polarity" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/elements-and-polarity.json">
-                  <img src="https://concord.org/sites/default/files/elements-polarity-2.jpg">
-                  <h4>Elements and Polarity</h4>
-                  <p>Compare the surface charges on various molecules and explore which atom types tend to cause uneven sharing of electrons.</p>
-              </a>
-          </li>
-          <li data-id="energy-pendulum" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/pendulumEnergy.json">
-                  <img src="https://concord.org/sites/default/files/energy-of-pendulum.jpg">
-                  <h4>Energy of a Pendulum</h4>
-                  <p>Set the initial height of a pendulum and observe how potential, kinetic, and thermal energy change during pendulum swings. </p>
-              </a>
-          </li>
-          <li data-id="energy-spring" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/spring.json">
-                  <img src="https://concord.org/sites/default/files/energy-spring.jpg">
-                  <h4>Energy of a Spring</h4>
-                  <p>Set the initial position of a mass on a spring and observe how potential, kinetic, and thermal energy change when the spring is released.</p>
-              </a>
-          </li>
-          <li data-id="energy-bond-formation-conceptual" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forming-molecules-graph-no-axes.json">
-                  <img src="https://concord.org/sites/default/files/bond-formation_0.jpg">
-                  <h4>Energy of Bond Formation (conceptual version)</h4>
-                  <p>Explore how different elements come together to form bonds and compare changes in potential energy and forces.</p>
-              </a>
-          </li>
-          <li data-id="exploring-electron-properties" class="chemistry physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/electronProperties.json">
-                  <img src="https://concord.org/sites/default/files/exploring-electron-properties.jpg">
-                  <h4>Exploring Electron Properties</h4>
-                  <p>Use this simulation to compare the behavior of charged atoms and cathode ray particles (electrons).</p>
-              </a>
-          </li>
-          <li data-id="exploring-hydrophobic-core" class="biology chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/exploring-hydrophobic-core.json">
-                  <img src="https://concord.org/sites/default/files/hydrophobic-core.jpg">
-                  <h4>Exploring Hydrophobic Core</h4>
-                  <p>Explore the structure of various proteins and see how the nonpolar amino acids form the core of many protein structures.</p>
-              </a>
-          </li>
-          <li data-id="exploring-protein-3d-structure" class="biology chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/exploring-protein-3d-structure.json">
-                  <img src="https://concord.org/sites/default/files/protein-3d-structure.jpg">
-                  <h4>Exploring Protein 3D Structure</h4>
-                  <p>Explore a protein and its components using both a simplified representation to see structure, or view all atoms to see full details.</p>
-              </a>
-          </li>
-          <li data-id="forming-molecular-bond-conceptual" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forming-molecular-bond-no-axes.json">
-                  <img src="https://concord.org/sites/default/files/forming-molecular-bond.jpg">
-                  <h4>Forming a Molecular Bond (conceptual version)</h4>
-                  <p>Explore the potential and kinetic energy as two atoms form a covalent bond.</p>
-              </a>
-          </li>
-          <li data-id="forming-molecule" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forming-molecule.json">
-                  <img src="https://concord.org/sites/default/files/forming-molecule.jpg">
-                  <h4>Forming a Molecule</h4>
-                  <p>Using a cloud model explore the balance of forces and electron distribution as two atoms are moved closer and further apart.</p>
-              </a>
-          </li>
-          <li data-id="gas-pressure-syringe" class="chemistry physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/syringe.json">
-                  <img src="https://concord.org/sites/default/files/gas-pressure-syringe.jpg">
-                  <h4>Gas Pressure in a Syringe</h4>
-                  <p>Explore how a particle model of gasses works to predict the behavior of a syringe under various conditions.</p>
-              </a>
-          </li>
-          <li data-id="making-breaking-bonds-temperature" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/dissocation-energy-2.json">
-                  <img src="https://concord.org/sites/default/files/make-break-bonds-temp.jpg">
-                  <h4>Making and Breaking Bonds: The Effect of Temperature</h4>
-                  <p>Observe the effects of temperature on chemical reactions. </p>
-              </a>
-          </li>
-          <li data-id="making-molecules" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/buildMoleculesPartialCharge.json">
-                  <img src="https://concord.org/sites/default/files/making-molecules.jpg">
-                  <h4>Making Molecules</h4>
-                  <p>Modify an existing molecule and observe how different atoms affect the electron distribution within the model.</p>
-              </a>
-          </li>
-          <li data-id="micelles" class="biology chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/micelles.json">
-                  <img src="https://concord.org/sites/default/files/micelles.jpg">
-                  <h4>Micelles</h4>
-                  <p>Observe changes in potential energy as molecules self-assemble into micelles.</p>
-              </a>
-          </li>
-          <li data-id="mixing-liquids" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/Mixing-polar-nonpolar-particle.json">
-                  <img src="https://concord.org/sites/default/files/mixing-liquids_1.jpg">
-                  <h4>Mixing Liquids</h4>
-                  <p>Explore how mixing two different liquids together can result in less total volume by investigating at the molecular level.</p>
-              </a>
-          </li>
-          <li data-id="molecular-sorting" class="biology chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/molecule-sorting.json">
-                  <img src="https://concord.org/sites/default/files/molecular-sorting.jpg">
-                  <h4>Molecular Sorting</h4>
-                  <p>Add various unknown molecules to oil and water, and observe how the molecules sort themselves in response to interactions with the surrounding environment.</p>
-              </a>
-          </li>
-          <li data-id="non-bonding-conceptual" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/non-bonding-no-axes.json">
-                  <img src="https://concord.org/sites/default/files/non-bonding-conceptual.jpg">
-                  <h4>Non-Bonding (conceptual version)</h4>
-                  <p>Compare the electron distribution, potential energy, and forces of two interacting hydrogen atom (which can bond) with two helium atoms (which don't).</p>
-              </a>
-          </li>
-          <li data-id="oil-water" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/oil-and-water.json">
-                  <img src="https://concord.org/sites/default/files/oil-water.jpg">
-                  <h4>Oil and Water</h4>
-                  <p>Observer changes in potential energy as mixtures of polar and nonpolar molecules naturally separate like oil and water after being shaken.</p>
-              </a>
-          </li>
-          <li data-id="opposites-attract" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/chargeballs.json">
-                  <img src="https://concord.org/sites/default/files/opposites-attract.jpg">
-                  <h4>Opposites Attract</h4>
-                  <p>Change the charge on spheres to positive or negative and observe how charges affect the interaction between them.</p>
-              </a>
-          </li>
-          <li data-id="polar-non-polar-interface" class="biology chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/polar-and-non-polar-interface.json">
-                  <img src="https://concord.org/sites/default/files/polar-nonpolar-interface.jpg">
-                  <h4>Polar and Non-Polar Interface</h4>
-                  <p>Observe how molecules with hydrophilic and hydrophobic regions move in a mixture of oil and water and how that affects potential energy.</p>
-              </a>
-          </li>
-          <li data-id="polarization" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/polarization.json">
-                  <img src="https://concord.org/sites/default/files/polarization.jpg">
-                  <h4>Polarization</h4>
-                  <p>Explore how the types of atoms forming a bond affect the distribution of electrons and overall shape of the molecule.</p>
-              </a>
-          </li>
-          <li data-id="protein-folding" class="biology chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/protein-folding.json">
-                  <img src="https://concord.org/sites/default/files/protein-folding.jpg">
-                  <h4>Protein Folding</h4>
-                  <p>Generate proteins with different molecular properties and observe how their folding changes the potential energy of the system.</p>
-              </a>
-          </li>
-          <li data-id="protein-folding-exploring" class="biology chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/protein-folding-exploring.json">
-                  <img src="https://concord.org/sites/default/files/protein-folding-exploring.jpg?v2">
-                  <h4>Protein Folding Exploring</h4>
-                  <p>Generate proteins with different molecular properties and observe how their folding changes the potential energy of the system.</p>
-              </a>
-          </li>
-          <li data-id="reaction-hydrogen-oxygen-atoms" class="chemistry ">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/hydrogn-oxygen-atoms-rxn.json">
-                  <img src="https://concord.org/sites/default/files/reaction-hydrogen-oxygen-atoms.jpg">
-                  <h4>Reaction Between Hydrogen and Oxygen Atoms</h4>
-                  <p>Observe a reaction between hydrogen and oxygen atoms, and watch how potential and kinetic energy change.</p>
-              </a>
-          </li>
-          <li data-id="reaction-hydrogen-oxygen-molecules" class="chemistry">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/hydrogen-oxygen-spark.json">
-                  <img src="https://concord.org/sites/default/files/reaction-hydrogen-oxygen.jpg">
-                  <h4>Reaction Between Hydrogen and Oxygen Molecules</h4>
-                  <p>Carefully observe changes in kinetic and potential energy as hydrogen and oxygen molecules react.</p>
-              </a>
-          </li>
-          <li data-id="balloon-wall" class="chemistry physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/balloonModelElectrons.json">
-                  <img src="https://concord.org/sites/default/files/balloon-wall.jpg">
-                  <h4>Sticking a Balloon to a Wall</h4>
-                  <p>Explore the interactions between a charged balloon and a neutral wall at the atomic-level.</p>
-              </a>
-          </li>
-          <li data-id="structure-atom" class="chemistry physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/structure-of-an-atom.json">
-                  <img src="https://concord.org/sites/default/files/structure-atom.jpg">
-                  <h4>Structure of an Atom</h4>
-                  <p>Map the probable locations of electrons around an atom to understand probability distributions and the electron cloud model.</p>
-              </a>
-          </li>
-          <li data-id="target-game-mag-force" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/targetGameCharge.json">
-                  <img src="https://concord.org/sites/default/files/target-game-charge-magnitude.jpg">
-                  <h4>Target Game (Charge Magnitude / Force Relationship)</h4>
-                  <p>Manipulate the magnitude of charges on two objects to get a third positively charged particle to hit a target.</p>
-              </a>
-          </li>
-          <li data-id="target-game-dist-force" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/targetGameDist.json">
-                  <img src="https://concord.org/sites/default/files/target-game-distance-force.jpg">
-                  <h4>Target Game (Distance/Force Relationship)</h4>
-                  <p>Drag the location of charges to get a positively charged particle to the target while observing forces and fields.</p>
-              </a>
-          </li>
-          <li data-id="target-game-free" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/targetFreePlay.json">
-                  <img src="https://concord.org/sites/default/files/target-game-free-play.jpg"="" width="484" height="294" alt="">"&gt;
-                  <h4>Target Game (Free Play)</h4>
-                  <p>Manipulate the location and magnitude of charges to get a positively charged particle to hit a target. </p>
-              </a>
-          </li>
-          <li data-id="understanding-probability-maps" class="chemistry physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/electron-darts.json">
-                  <img src="https://concord.org/sites/default/files/understanding-probability-maps-2.jpg">
-                  <h4>Understanding Probability Maps</h4>
-                  <p>Use a dart board simulation to understand probability distributions.</p>
-              </a>
-          </li>
-          <li data-id="vdg-discharge" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/spark.json">
-                  <img src="https://concord.org/sites/default/files/vdg-discharge.jpg"="" width="484" height="294" alt="">"&gt;
-                  <h4>Van de Graaff (VDG) Discharge</h4>
-                  <p>Explore how the charging and discharging of a Van de Graaff Generator occurs and changes in potential energy.</p>
-              </a>
-          </li>
-          <li data-id="visualizing-electric-fields-forces" class="physics">
-              <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/act2model.json">
-                  <img src="https://concord.org/sites/default/files/visualizing-electric-fields-forces_0.jpg">
-                  <h4>Visualizing Electric Fields and Forces</h4>
-                  <p>Model how electric fields change due to number and placement of charged objects.</p>
-              </a>
-          </li>
-        </ul>
-      </div>
-    </div><!-- /.tabs-container -->
-  </section>
-  <section id="pd">
+      <div id="simulations-tab" class="tab-content col-12">
+     <form id="filter">
+    <p><strong>Filter by Subject</strong> <br />
+        <label for="biology-filter"><input id="biology-filter" name="type" type="radio" value="biology">Biology</label> |
+        <label for="chemistry-filter"><input id="chemistry-filter" name="type" type="radio" value="chemistry">Chemistry</label> |
+        <label for="physics-filter"><input id="physics-filter" name="type" type="radio" value="physics">Physics</label> |
+        <label for="all-filter"><input id="all-filter" name="type" type="radio" value="all" checked>All</label>
+      </p>
+    </form>
+          <ul id="simulations-list">
+            <li data-id="3d-exploration-bound-antibody-antigen" class="biology chemistry">
+                <a target="_blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/3D-antibody.json">
+                    <img src="//concord.org/sites/default/files/antibody.jpg" />
+                    <h4>3D Exploration of Bound Antibody and Antigen</h4>
+                    <p>Explore the role of shape in how antibodies and antigens interact.</p>
+                </a>
+            </li>
+            <li data-id="atom-ion-builder" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/atom-builder.json">
+                    <img src="https://concord.org/sites/default/files/atom-ion-builder_1.jpg">
+                    <h4>Atom and Ion Builder</h4>
+                    <p>Create multiple versions of helium atoms and make observations of how changing protons, electrons, and neutrons change atoms.</p>
+                </a>
+            </li>
+            <li data-id="atom-ion-builder-table" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/atom-builder-with-table.json">
+                    <img src="https://concord.org/sites/default/files/atom-ion-builder_0.jpg">
+                    <h4>Atom and Ion Builder (with table)</h4>
+                    <p>Create multiple versions of various atoms and record the number of protons, electrons, and neutrons in a table.</p>
+                </a>
+            </li>
+            <li data-id="boiling-point-polar-nonpolar" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/boiling-point-polar-nonpolar.json">
+                    <img src="https://concord.org/sites/default/files/boiling-point-polar-nonpolar.jpg">
+                    <h4>Boiling Point of Polar &amp; Nonpolar Substances</h4>
+                    <p>Explore the relationships between properties of molecules, temperature, and movement of particles.</p>
+                </a>
+            </li>
+            <li data-id="breaking-molecular-bond-conceptual" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/breaking-molecular-bond-no-axes.json">
+                    <img src="https://concord.org/sites/default/files/breaking-molecular-bond.jpg">
+                    <h4>Breaking a Molecular Bond (conceptual version)</h4>
+                    <p>Adjust the initial velocity of a third atom as it hits two bonded atoms and track the changes in energy during this interaction.</p>
+                </a>
+            </li>
+            <li data-id="chain-reaction-hydrogen-oxygen" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/hydrogen-oxygen-chain-reaction.json">
+                    <img src="https://concord.org/sites/default/files/chain-reaction-hydrogen-oxygen.jpg">
+                    <h4>Chain Reaction Between Hydrogen and Oxygen</h4>
+                    <p>Observe how a chemical reaction evolves over time and affects the balance of potential and kinetic energy in the system.</p>
+                </a>
+            </li>
+            <li data-id="charge-intensity-electric-force" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/amount-charge.json">
+                    <img src="https://concord.org/sites/default/files/charge-intensity_0.jpg">
+                    <h4>Charge Intensity and Electric Force</h4>
+                    <p>Explore the relationship between charge, electric fields and forces on objects by manipulating charge in this simulation.</p>
+                </a>
+            </li>
+            <li data-id="charge-intensite-electric-force" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/amount-charge-2.json">
+                    <img src="https://concord.org/sites/default/files/charge-intensity-2.jpg">
+                    <h4>Charge Intensity and Electric Force 2</h4>
+                    <p>Explore the relationship between charge, electric fields and forces on objects by manipulating charge.</p>
+                </a>
+            </li>
+            <li data-id="collisions-kinetic-energy" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/collision.json">
+                    <img src="https://concord.org/sites/default/files/collisions-kinetic-energy-2.jpg">
+                    <h4>Collisions and Kinetic Energy</h4>
+                    <p>Explore the energy exchange between colliding objects and observe how energy transfer occurs under various circumstances. </p>
+                </a>
+            </li>
+            <li data-id="comparing-attractive-forces-molecules" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/comparing-polar-non-polar.json">
+                    <img src="https://concord.org/sites/default/files/comparing-attractive-forces.jpg">
+                    <h4>Comparing Attractive Forces Between Molecules</h4>
+                    <p>Explore the difference in attractive forces between polar and nonpolar molecules.</p>
+                </a>
+            </li>
+            <li data-id="comparing-potential-energy-bond" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/comparing-potential-energy-of-bond.json">
+                    <img src="https://concord.org/sites/default/files/comparing-potential-energy.jpg">
+                    <h4>Comparing Potential Energy of a Bond</h4>
+                    <p>Compare the change in potential energy when you separate molecules from each versus when you break molecules apart. </p>
+                </a>
+            </li>
+            <li data-id="concentrating-charge-electric-fields" class="chemistry physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/rutherford-no-electrons.json">
+                    <img src="https://concord.org/sites/default/files/concentrating-fields-electric-charge.jpg">
+                    <h4>Concentrating Charge and Electric Fields</h4>
+                    <p>Simulate an analogy to Rutherford’s gold foil experiment to distinguish between the plum pudding and hard nucleus model of the atom.</p>
+                </a>
+            </li>
+            <li data-id="conversion-electric-potential-energy" class="chemistry physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/electricPE3.json">
+                    <img src="https://concord.org/sites/default/files/conversion-electric-potential-energy-2.jpg">
+                    <h4>Conversion of Electric Potential Energy</h4>
+                    <p>Explore how potential energy created by particles of varying charge is converted to thermal energy.</p>
+                </a>
+            </li>
+            <li data-id="crookes-tube" class="physics">
+                <a target="_blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/crookesElectrodes.json">
+                    <img src="//concord.org/sites/default/files/imagecache/image_activity_finder/crookes.jpg" />
+                    <h4>Crookes Tube</h4>
+                    <p>Experiment with a simulated Crookes tube for qualitative results similar to Thomson's experiments in which the electron was discovered.</p>
+                </a>
+            </li>
+            <li data-id="deformed-electron-cloud" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/deformedCloud.json">
+                    <img src="https://concord.org/sites/default/files/deformed-cloud-2.jpg">
+                    <h4>Deformed Electron Cloud</h4>
+                    <p>Explore the effect of an electric field on the electron distribution of an atom.</p>
+                </a>
+            </li>
+            <li data-id="diffusion-drop-temp" class="biology chemistry physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/dropping-dye-with-temp.json">
+                    <img src="https://concord.org/sites/default/files/diffusion-drop-temperature.jpg">
+                    <h4>Diffusion of a Drop (with temperature)</h4>
+                    <p>Add a drop of dye to water and watch how the dye molecules spread by interacting with water molecules.</p>
+                </a>
+            </li>
+            <li data-id="direction-strength-force-electric-fields" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forceStrengthDirection.json">
+                    <img src="https://concord.org/sites/default/files/direction-strength-force-electric-fields.jpg">
+                    <h4>Direction and Strength of Force in Electric Fields</h4>
+                    <p>Explore the strength and direction of forces between two charged objects by observing the color and size of force pointers.</p>
+                </a>
+            </li>
+            <li data-id="direction-force-vdg" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forceDirectionVDGnegative.json">
+                    <img src="https://concord.org/sites/default/files/direction-force-vdg-negative.jpg">
+                    <h4>Direction of Force Around a VDG (Negatively Charged)</h4>
+                    <p>Observe the direction of forces between a negatively charged Van De Graaff Generator and a positively charged object.</p>
+                </a>
+            </li>
+            <li data-id="direction-force-charged-objects" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forceDirection.json">
+                    <img src="https://concord.org/sites/default/files/direction-force-charged-object.jpg">
+                    <h4>Direction of Force on Charged Objects</h4>
+                    <p>Drag around a stationary charged object and observe the force on the stationary object when it is positive and negative.</p>
+                </a>
+            </li>
+            <li data-id="dissolving" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/dissolving-solubility.json">
+                    <img src="https://concord.org/sites/default/files/dissolving.jpg">
+                    <h4>Dissolving</h4>
+                    <p>Observe the impact on potential energy when a substance dissolves in water.</p>
+                </a>
+            </li>
+            <li data-id="dissolving-experimental" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/dissolving-experimental.json">
+                    <img src="https://concord.org/sites/default/files/dissolving-experimental.jpg">
+                    <h4>Dissolving Experimental</h4>
+                    <p>Explore how the polarity of molecules affects how they mix (or don’t) when combined.</p>
+                </a>
+            </li>
+            <li data-id="electric-potential-energy-charge-intensity" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/electricPE2.json">
+                    <img src="https://concord.org/sites/default/files/electric-potential-energy-charge-intensity-2.jpg">
+                    <h4>Electric Potential Energy and Charge Intensity</h4>
+                    <p>Set the amount and type of charge on particles and compare the potential energy of the electric field that is generated.</p>
+                </a>
+            </li>
+            <li data-id="electric-potential-energy-type-charge" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/electricPE.json">
+                    <img src="https://concord.org/sites/default/files/electric-potential-energy-2.jpg">
+                    <h4>Electric Potential Energy and Type of Charge</h4>
+                    <p>Set the charge of two particles and compare the potential energy of the electric field they generate as the particles are moved around.</p>
+                </a>
+            </li>
+            <li data-id="electrostatics-maze-game" class="physics ">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/mazeGame.json">
+                    <img src="https://concord.org/sites/default/files/electrostatics-maze-game.jpg">
+                    <h4>Electrostatics: Maze Game</h4>
+                    <p>Apply knowledge of the interaction between charged particles to guide an object through a maze.</p>
+                </a>
+            </li>
+            <li data-id="elements-polarity" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/elements-and-polarity.json">
+                    <img src="https://concord.org/sites/default/files/elements-polarity-2.jpg">
+                    <h4>Elements and Polarity</h4>
+                    <p>Compare the surface charges on various molecules and explore which atom types tend to cause uneven sharing of electrons.</p>
+                </a>
+            </li>
+            <li data-id="energy-pendulum" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/pendulumEnergy.json">
+                    <img src="https://concord.org/sites/default/files/energy-of-pendulum.jpg">
+                    <h4>Energy of a Pendulum</h4>
+                    <p>Set the initial height of a pendulum and observe how potential, kinetic, and thermal energy change during pendulum swings. </p>
+                </a>
+            </li>
+            <li data-id="energy-spring" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/spring.json">
+                    <img src="https://concord.org/sites/default/files/energy-spring.jpg">
+                    <h4>Energy of a Spring</h4>
+                    <p>Set the initial position of a mass on a spring and observe how potential, kinetic, and thermal energy change when the spring is released.</p>
+                </a>
+            </li>
+            <li data-id="energy-bond-formation-conceptual" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forming-molecules-graph-no-axes.json">
+                    <img src="https://concord.org/sites/default/files/bond-formation_0.jpg">
+                    <h4>Energy of Bond Formation (conceptual version)</h4>
+                    <p>Explore how different elements come together to form bonds and compare changes in potential energy and forces.</p>
+                </a>
+            </li>
+            <li data-id="exploring-electron-properties" class="chemistry physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/electronProperties.json">
+                    <img src="https://concord.org/sites/default/files/exploring-electron-properties.jpg">
+                    <h4>Exploring Electron Properties</h4>
+                    <p>Use this simulation to compare the behavior of charged atoms and cathode ray particles (electrons).</p>
+                </a>
+            </li>
+            <li data-id="exploring-hydrophobic-core" class="biology chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/exploring-hydrophobic-core.json">
+                    <img src="https://concord.org/sites/default/files/hydrophobic-core.jpg">
+                    <h4>Exploring Hydrophobic Core</h4>
+                    <p>Explore the structure of various proteins and see how the nonpolar amino acids form the core of many protein structures.</p>
+                </a>
+            </li>
+            <li data-id="exploring-protein-3d-structure" class="biology chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/exploring-protein-3d-structure.json">
+                    <img src="https://concord.org/sites/default/files/protein-3d-structure.jpg">
+                    <h4>Exploring Protein 3D Structure</h4>
+                    <p>Explore a protein and its components using both a simplified representation to see structure, or view all atoms to see full details.</p>
+                </a>
+            </li>
+            <li data-id="forming-molecular-bond-conceptual" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forming-molecular-bond-no-axes.json">
+                    <img src="https://concord.org/sites/default/files/forming-molecular-bond.jpg">
+                    <h4>Forming a Molecular Bond (conceptual version)</h4>
+                    <p>Explore the potential and kinetic energy as two atoms form a covalent bond.</p>
+                </a>
+            </li>
+            <li data-id="forming-molecule" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/forming-molecule.json">
+                    <img src="https://concord.org/sites/default/files/forming-molecule.jpg">
+                    <h4>Forming a Molecule</h4>
+                    <p>Using a cloud model explore the balance of forces and electron distribution as two atoms are moved closer and further apart.</p>
+                </a>
+            </li>
+            <li data-id="gas-pressure-syringe" class="chemistry physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/syringe.json">
+                    <img src="https://concord.org/sites/default/files/gas-pressure-syringe.jpg">
+                    <h4>Gas Pressure in a Syringe</h4>
+                    <p>Explore how a particle model of gasses works to predict the behavior of a syringe under various conditions.</p>
+                </a>
+            </li>
+            <li data-id="making-breaking-bonds-temperature" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/dissocation-energy-2.json">
+                    <img src="https://concord.org/sites/default/files/make-break-bonds-temp.jpg">
+                    <h4>Making and Breaking Bonds: The Effect of Temperature</h4>
+                    <p>Observe the effects of temperature on chemical reactions. </p>
+                </a>
+            </li>
+            <li data-id="making-molecules" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/buildMoleculesPartialCharge.json">
+                    <img src="https://concord.org/sites/default/files/making-molecules.jpg">
+                    <h4>Making Molecules</h4>
+                    <p>Modify an existing molecule and observe how different atoms affect the electron distribution within the model.</p>
+                </a>
+            </li>
+            <li data-id="micelles" class="biology chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/micelles.json">
+                    <img src="https://concord.org/sites/default/files/micelles.jpg">
+                    <h4>Micelles</h4>
+                    <p>Observe changes in potential energy as molecules self-assemble into micelles.</p>
+                </a>
+            </li>
+            <li data-id="mixing-liquids" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/Mixing-polar-nonpolar-particle.json">
+                    <img src="https://concord.org/sites/default/files/mixing-liquids_1.jpg">
+                    <h4>Mixing Liquids</h4>
+                    <p>Explore how mixing two different liquids together can result in less total volume by investigating at the molecular level.</p>
+                </a>
+            </li>
+            <li data-id="molecular-sorting" class="biology chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/molecule-sorting.json">
+                    <img src="https://concord.org/sites/default/files/molecular-sorting.jpg">
+                    <h4>Molecular Sorting</h4>
+                    <p>Add various unknown molecules to oil and water, and observe how the molecules sort themselves in response to interactions with the surrounding environment.</p>
+                </a>
+            </li>
+            <li data-id="non-bonding-conceptual" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/non-bonding-no-axes.json">
+                    <img src="https://concord.org/sites/default/files/non-bonding-conceptual.jpg">
+                    <h4>Non-Bonding (conceptual version)</h4>
+                    <p>Compare the electron distribution, potential energy, and forces of two interacting hydrogen atom (which can bond) with two helium atoms (which don't).</p>
+                </a>
+            </li>
+            <li data-id="oil-water" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/oil-and-water.json">
+                    <img src="https://concord.org/sites/default/files/oil-water.jpg">
+                    <h4>Oil and Water</h4>
+                    <p>Observer changes in potential energy as mixtures of polar and nonpolar molecules naturally separate like oil and water after being shaken.</p>
+                </a>
+            </li>
+            <li data-id="opposites-attract" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/chargeballs.json">
+                    <img src="https://concord.org/sites/default/files/opposites-attract.jpg">
+                    <h4>Opposites Attract</h4>
+                    <p>Change the charge on spheres to positive or negative and observe how charges affect the interaction between them.</p>
+                </a>
+            </li>
+            <li data-id="polar-non-polar-interface" class="biology chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/polar-and-non-polar-interface.json">
+                    <img src="https://concord.org/sites/default/files/polar-nonpolar-interface.jpg">
+                    <h4>Polar and Non-Polar Interface</h4>
+                    <p>Observe how molecules with hydrophilic and hydrophobic regions move in a mixture of oil and water and how that affects potential energy.</p>
+                </a>
+            </li>
+            <li data-id="polarization" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/polarization.json">
+                    <img src="https://concord.org/sites/default/files/polarization.jpg">
+                    <h4>Polarization</h4>
+                    <p>Explore how the types of atoms forming a bond affect the distribution of electrons and overall shape of the molecule.</p>
+                </a>
+            </li>
+            <li data-id="protein-folding" class="biology chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/protein-folding.json">
+                    <img src="https://concord.org/sites/default/files/protein-folding.jpg">
+                    <h4>Protein Folding</h4>
+                    <p>Generate proteins with different molecular properties and observe how their folding changes the potential energy of the system.</p>
+                </a>
+            </li>
+            <li data-id="protein-folding-exploring" class="biology chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/protein-folding-exploring.json">
+                    <img src="https://concord.org/sites/default/files/protein-folding-exploring.jpg?v2">
+                    <h4>Protein Folding Exploring</h4>
+                    <p>Generate proteins with different molecular properties and observe how their folding changes the potential energy of the system.</p>
+                </a>
+            </li>
+            <li data-id="reaction-hydrogen-oxygen-atoms" class="chemistry ">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/hydrogn-oxygen-atoms-rxn.json">
+                    <img src="https://concord.org/sites/default/files/reaction-hydrogen-oxygen-atoms.jpg">
+                    <h4>Reaction Between Hydrogen and Oxygen Atoms</h4>
+                    <p>Observe a reaction between hydrogen and oxygen atoms, and watch how potential and kinetic energy change.</p>
+                </a>
+            </li>
+            <li data-id="reaction-hydrogen-oxygen-molecules" class="chemistry">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/hydrogen-oxygen-spark.json">
+                    <img src="https://concord.org/sites/default/files/reaction-hydrogen-oxygen.jpg">
+                    <h4>Reaction Between Hydrogen and Oxygen Molecules</h4>
+                    <p>Carefully observe changes in kinetic and potential energy as hydrogen and oxygen molecules react.</p>
+                </a>
+            </li>
+            <li data-id="balloon-wall" class="chemistry physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/balloonModelElectrons.json">
+                    <img src="https://concord.org/sites/default/files/balloon-wall.jpg">
+                    <h4>Sticking a Balloon to a Wall</h4>
+                    <p>Explore the interactions between a charged balloon and a neutral wall at the atomic-level.</p>
+                </a>
+            </li>
+            <li data-id="structure-atom" class="chemistry physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/structure-of-an-atom.json">
+                    <img src="https://concord.org/sites/default/files/structure-atom.jpg">
+                    <h4>Structure of an Atom</h4>
+                    <p>Map the probable locations of electrons around an atom to understand probability distributions and the electron cloud model.</p>
+                </a>
+            </li>
+            <li data-id="target-game-mag-force" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/targetGameCharge.json">
+                    <img src="https://concord.org/sites/default/files/target-game-charge-magnitude.jpg">
+                    <h4>Target Game (Charge Magnitude / Force Relationship)</h4>
+                    <p>Manipulate the magnitude of charges on two objects to get a third positively charged particle to hit a target.</p>
+                </a>
+            </li>
+            <li data-id="target-game-dist-force" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/targetGameDist.json">
+                    <img src="https://concord.org/sites/default/files/target-game-distance-force.jpg">
+                    <h4>Target Game (Distance/Force Relationship)</h4>
+                    <p>Drag the location of charges to get a positively charged particle to the target while observing forces and fields.</p>
+                </a>
+            </li>
+            <li data-id="target-game-free" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/targetFreePlay.json">
+                    <img src="https://concord.org/sites/default/files/target-game-free-play.jpg"="" width="484" height="294" alt="">"&gt;
+                    <h4>Target Game (Free Play)</h4>
+                    <p>Manipulate the location and magnitude of charges to get a positively charged particle to hit a target. </p>
+                </a>
+            </li>
+            <li data-id="understanding-probability-maps" class="chemistry physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/electron-darts.json">
+                    <img src="https://concord.org/sites/default/files/understanding-probability-maps-2.jpg">
+                    <h4>Understanding Probability Maps</h4>
+                    <p>Use a dart board simulation to understand probability distributions.</p>
+                </a>
+            </li>
+            <li data-id="vdg-discharge" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/spark.json">
+                    <img src="https://concord.org/sites/default/files/vdg-discharge.jpg"="" width="484" height="294" alt="">"&gt;
+                    <h4>Van de Graaff (VDG) Discharge</h4>
+                    <p>Explore how the charging and discharging of a Van de Graaff Generator occurs and changes in potential energy.</p>
+                </a>
+            </li>
+            <li data-id="visualizing-electric-fields-forces" class="physics">
+                <a target="blank" href="https://lab.concord.org/embeddable.html#interactives/interactions/act2model.json">
+                    <img src="https://concord.org/sites/default/files/visualizing-electric-fields-forces_0.jpg">
+                    <h4>Visualizing Electric Fields and Forces</h4>
+                    <p>Model how electric fields change due to number and placement of charged objects.</p>
+                </a>
+            </li>
+          </ul>
+        </div>
+      </div><!-- /.tabs-container -->
+
+  <section id="pd" class="col-12">
     <h2>Contact Us for PD Opportunities</h2>
     <p>Research shows professional development significantly improves implementation. To learn about professional development options and opportunities, send an email to <a href="mailto:interactions&#64;concord.org">interactions&#64;concord.org</a>.</p>
     <p>For more details about the NSF project that funded this curriculum, visit the <a href="https://concord.org/projects/interactions" title="Interactions" target="_blank">Interactions project web page</a>.</p>
   </section>
-  <section id="partners">
-    <h2 style="text-align: center;">Partners</h2>
-    <p style="text-align: center;"><img src="https://concord.org/sites/default/files/images/logos/cc/cc-logo.png" alt="The Concord Consortium" style="width: 180px;" /> <img src="https://concord.org/sites/default/files/images/learn/create-for-stem.png" alt="CREATE for STEM" style="position: relative; top: -10px;" /></p>
+  <section id="partners" class="col-12">
+    <h2>Partners</h2>
+    <p><img src="https://concord.org/sites/default/files/images/logos/cc/cc-logo.png" alt="The Concord Consortium" style="width: 180px;" /> <img src="https://concord.org/sites/default/files/images/learn/create-for-stem.png" alt="CREATE for STEM" style="position: relative; top: -10px;" /></p>
     <p><small>This material is based upon work supported by the National Science Foundation under Grant No. DRL-1232388. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.</small></p>
   </section>
-</div><!-- /#page-container -->
+</div>
+</div>
+<footer id="page-footer" class="concord-footer"></footer>
 <section id="curriculum-details" class="popover">
   <h2>Curriculum Overview</h2>
   <p>This NGSS aligned curriculum is  designed to support high school physical science students in
@@ -829,98 +551,3 @@ body.member-visitor #nsta-videos { display: none; }
 <link href="//vjs.zencdn.net/5.11.6/video-js.css" rel="stylesheet" />
 <script src="//vjs.zencdn.net/5.11.6/video.js"></script>
 <script src="https://concord.org/sites/all/themes/cc7/js/jquery.quicksand.js"></script>
-<script>
-// Custom sorting plugin
-(function(jQuery) {
-  jQuery.fn.sorted = function(customOptions) {
-    var options = {
-      reversed: false,
-      by: function(a) { return a.text(); }
-    };
-    jQuery.extend(options, customOptions);
-    $data = jQuery(this);
-    arr = $data.get();
-    arr.sort(function(a, b) {
-      var valA = options.by(jQuery(a));
-      var valB = options.by(jQuery(b));
-      if (options.reversed) {
-        return (valA < valB) ? 1 : (valA > valB) ? -1 : 0;
-      } else {
-        return (valA < valB) ? -1 : (valA > valB) ? 1 : 0;
-      }
-    });
-    return jQuery(arr);
-  };
-})(jQuery);
-
-jQuery(function() {
-
-  // bind radiobuttons in the form
-  var $filterType = jQuery('#filter input[name="type"]');
-
-  // get the first collection
-  var $sims = jQuery('#simulations-list');
-
-  // clone applications to get a second collection
-  var $data = $sims.clone();
-
-  // attempt to call Quicksand on every form change
-  $filterType.change(function(e) {
-  if (jQuery('#filter input[name="type"]:checked').val() == 'all') {
-    var $filteredData = $data.find('li');
-  } else {
-    var $filteredData = $data.find('li[class*=' + jQuery('#filter input[name="type"]:checked').val() + ']');
-  }
-
-    // call quicksand
-    $sims.quicksand($filteredData, {
-      duration: 700
-    });
-  });
-});
-
-Portal.renderMaterialsCollection(16,'#collection-1',20);
-Portal.renderMaterialsCollection(17,'#collection-2',20);
-Portal.renderMaterialsCollection(18,'#collection-3',20);
-Portal.renderMaterialsCollection(19,'#collection-4',20);
-Portal.renderMaterialsCollection(25,'#collection-6',20);
-Portal.renderMaterialsCollection(31,'#collection-5',20);
-
-jQuery(document).ready(function() {
-  jQuery('body').append('<div id="overlay"></div>');
-  jQuery('#curriculum-details').append('<p style="clear: both; cursor: pointer; text-align: center;"><a onclick="hidePopover(); return false;">close this</a></p>');
-  jQuery('#overlay').click(function() {
-    hidePopover();
-  });
-  jQuery('nav li a').each(function() {
-    jQuery(this).click(function() {
-      jQuery('nav a').removeClass('active');
-      var section_id = jQuery(this).attr('href');
-      navigateTo(section_id);
-      jQuery(this).addClass('active');
-    });
-  });
-  jQuery('.collapsible').hide();
-  jQuery('.collapsible-toggle').css({'cursor':'pointer'}).click(function(){
-    jQuery(this).toggleClass('open');
-    var toggle_top = (jQuery('#curriculum-tabs').position().top + jQuery(this).position().top) - 10;
-    jQuery('html,body').animate({scrollTop: toggle_top},'slow');
-    jQuery(this).next('.collapsible').slideToggle('fast');
-  });
-});
-
-function showTab(tab_id) {
-  jQuery('.tab-content').hide().removeClass('active');
-  jQuery(tab_id + '-tab').addClass('active').show();
-  jQuery('ul.tabs li').removeClass('active');
-  jQuery(tab_id + '-tab-link').addClass('active');
-}
-function showPopover(popover_id) {
-  jQuery('#overlay').fadeIn('fast');
-  jQuery(popover_id).fadeIn('slow');
-}
-function hidePopover() {
-  jQuery('.popover').fadeOut('fast');
-  jQuery('#overlay').fadeOut('slow');
-}
-</script>

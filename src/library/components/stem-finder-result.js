@@ -13,6 +13,7 @@ var filters = require("../helpers/filters");
 var div = React.DOM.div;
 var img = React.DOM.img;
 var a = React.DOM.a;
+var i = React.DOM.i;
 
 var StemFinderResult = Component({
   getInitialState: function () {
@@ -41,11 +42,38 @@ var StemFinderResult = Component({
     e.preventDefault();
     e.stopPropagation();
     var lightbox = !this.state.lightbox;
+
     // TODO: add pushstate
     this.setState({
       lightbox: lightbox,
       hovering: false
     });
+
+    // mount/unmount lightbox outside of homepage content
+    var mountPointId = "stem-finder-result-lightbox-mount";
+    var mountPoint = document.getElementById(mountPointId);
+    if (lightbox) {
+      if (!mountPoint) {
+        mountPoint = document.createElement("DIV");
+        mountPoint.id = mountPointId;
+        document.body.appendChild(mountPoint);
+      }
+      jQuery('html, body').css('overflow', 'hidden');
+      ReactDOM.render(ResourceLightbox({resource: this.props.resource, toggleLightbox: this.toggleLightbox}), mountPoint);
+      jQuery('<div class="portal-pages-resource-lightbox-background"></div>').insertBefore('#stem-finder-result-lightbox-mount');
+      jQuery('.portal-pages-resource-lightbox-background').click(function() {
+        ResourceLightbox.handleClose(); // this doesn't work
+      });
+      jQuery('.home-page-content').addClass('blurred');
+      jQuery('.portal-pages-resource-lightbox-background, #stem-finder-result-lightbox-mount').fadeIn();
+    }
+    else {
+      jQuery('html, body').css('overflow', 'auto');
+      ReactDOM.unmountComponentAtNode(mountPoint);
+      jQuery('.portal-pages-resource-lightbox-background').remove();
+      jQuery('.home-page-content').removeClass('blurred');
+      jQuery('.portal-pages-resource-lightbox-background, #stem-finder-result-lightbox-mount').fadeOut();
+    }
   },
 
   toggleFavorite: function (e) {
@@ -53,7 +81,10 @@ var StemFinderResult = Component({
     e.stopPropagation();
 
     if (!Portal.currentUser.isLoggedIn || !Portal.currentUser.isTeacher) {
-      alert("Sorry, only logged in teachers can favorite resources.");
+      var mouse_x = e.pageX + 31, mouse_y = e.pageY - 23, tooltip_timer;
+      jQuery('body').append('<div class="portal-pages-favorite-tooltip">Log in or sign up to save resources for quick access!</div>');
+      jQuery('.portal-pages-favorite-tooltip').css({'left': mouse_x + 'px', 'top': mouse_y + 'px'}).fadeIn('fast');
+      tooltip_timer = setTimeout("jQuery('.portal-pages-favorite-tooltip').fadeOut('slow', function() { jQuery(this).remove(); });", 3000);
       return;
     }
 
@@ -78,29 +109,35 @@ var StemFinderResult = Component({
   },
 
   renderFavoriteStar: function () {
-    var star = this.state.favorited ? "&#x2605;" : "&#x2606;";
     var active = this.state.favorited ? " portal-pages-finder-result-favorite-active" : "";
-    return div({className: "portal-pages-finder-result-favorite" + active, dangerouslySetInnerHTML: {__html: star}, onClick: this.toggleFavorite});
+    return div({className: "portal-pages-finder-result-favorite" + active, onClick: this.toggleFavorite},
+      i({className: "icon-favorite"})
+    );
   },
 
   render: function () {
     var resource = this.props.resource;
-    var options = {className: "portal-pages-finder-result", href: resource.stem_resource_url, onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut};
+    var options = {href: resource.stem_resource_url};
 
     if (this.state.hovering || this.state.lightbox) {
-      return a(options,
-        div({className: "portal-pages-finder-result-description"}, resource.filteredDescription),
+      return div({className: "portal-pages-finder-result col-4", onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
+        a(options,
+          div({className: "portal-pages-finder-result-description"}, resource.filteredDescription),
+          this.renderFavoriteStar()
+        ),
         GradeLevels({resource: resource}),
-        this.renderFavoriteStar(),
-        this.renderLightbox()
+        this.renderFavoriteStar()
       );
     }
-    return a(options,
-      img({alt: resource.name, src: resource.icon.url}),
-      div({className: "portal-pages-finder-result-name"}, resource.name),
-      GradeLevels({resource: resource}),
-      this.renderFavoriteStar(),
-      this.renderLightbox()
+    return div({className: "portal-pages-finder-result col-4", onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
+      a(options,
+        div({className: 'portal-pages-finder-result-image-preview'},
+          img({alt: resource.name, src: resource.icon.url})
+        ),
+        div({className: "portal-pages-finder-result-name"}, resource.name),
+        this.renderFavoriteStar()
+      ),
+      GradeLevels({resource: resource})
     );
   }
 });

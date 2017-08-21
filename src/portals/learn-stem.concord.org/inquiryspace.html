@@ -1,51 +1,35 @@
-<style>
-<!--
-#signup-default-modal { position: fixed; }
--->
-</style>
-<script>
-jQuery(document).ready(function() {
-  if (Portal.currentUser.isLoggedIn) {
-    var logged_in_content = '<p>Seven InquirySpace activities were designed as a sequence, with a focus on collecting and analyzing data by looking for patterns in graphs. The activities were designed to be used by small groups of students though they can also be used individually. As the teacher, you will need to facilitate the activities and provide background knowledge. Make sure to run the activities yourself before using them with students. Teacher guides are available. </p><p>Each activity brings students a step closer to designing and performing their own hands-on experiment using sensors and the CODAP environment:</p><ul><li>The <strong>Ramp Game</strong> introduces students to CODAP (Common Online Data Analysis Platform) by stepping them through the process of collecting model data, exporting it to a data table, and creating a graph. If your students have never used CODAP, start here!</li><li>The <strong>Spring and Mass</strong> activities are also highly scaffolded, guiding students through a physical spring and mass experiment and then a simulation.</li><li>The <strong>Parachute</strong> activities provide less instruction on the basics and encourage students to explore different variables.</li><li>Finally, students devise experiments based on their own experimental question with the <strong>Sensor Data Collection</strong> experiments.</li></ul><p>All sensor-based activities require the installation of the <a href="http://sensorconnector.concord.org/" title="Get the SensorConnector App">SensorConnector App</a>.</p><p><a href="http://codap.concord.org/" title="CODAP Help">Get help with CODAP</a>, our newest data analysis environment.</p>';
-    jQuery('#intro-video').hide();
-    jQuery('#intro-text').css('width', '640px');
-    jQuery('#intro-text').html(logged_in_content);
-  }
-});
-</script>
-<h1 class="page-title">InquirySpace</h1>
-<p class="tagline">Learning Science by Doing Science</p>
-
-<div id="content-upper" class="cols-5-3">
-    <div id="intro-text" class="col" style="width: 350px;">
-      <p>Students should learn science by doing science. They should select their own question, design and execute a study, draw conclusions based on their data, and communicate their findings. InquirySpace provides ideas, approaches, and technologies to make this approach to learning easier for classroom teachers to offer—and more effective. </p><p><a class="button" style="clear: both !important; display: block; float: left; font: 300 1.25em museo-slab, georgia, times, 'times new roman', serif; margin-bottom: 1em; padding: 10px 20px !important;" href="http://learn.concord.org/" onclick="Portal.openSignupModal();return false;">Register Now</a></p><p style="clear: both;">Want to learn more about the project and its research? Check out the <a href="http://concord.org/inquiryspace">InquirySpace project page</a>. <span style="color: #eb8723;">»</span></p>
-
-<p>Get <a href="http://codap.concord.org/help/">help with CODAP</a>, our new data analysis environment.</div><!-- end .col -->
-    <div id="intro-video" class="col2" style="width: 465px;">
-              <div class="login inquiryspace">
-<video id="inquiryspace-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="465" height="260" poster="http://concord.org/sites/default/files/projects/inquiryspace/inquiryspace-poster.jpg" data-setup="{}">
-              <source src="http://concord.org/sites/default/files/projects/inquiryspace/inquiryspace.mp4" type="video/mp4" />
-              <source src="http://concord.org/sites/default/files/projects/inquiryspace/inquiryspace.webm" type="video/webm" />
-              <source src="http://concord.org/sites/default/files/projects/inquiryspace/inquiryspace.ogv" type="video/ogg" />
-            </video>
-            <p><small>Watch teachers and students describe how InquirySpace has changed their classrooms.</small></p>
-          </div>
-              </div><!-- end .col -->
+<header id="page-header" class="portal-pages-header-contain"></header>
+<div class="cols">
+  <div id="introduction" class="portal-pages-collection-page-intro col-7">
+    <h1>InquirySpace</h1>
+    <p class="tagline">Learning Science by Doing Science</p>
+    <p>Students should learn science by doing science. They should select their own question, design and execute a study, draw conclusions based on their data, and communicate their findings. InquirySpace provides ideas, approaches, and technologies to make this approach to learning easier for classroom teachers to offer—and more effective. </p>
+    <p><a class="button" href="http://learn.concord.org/" onclick="Portal.openSignupModal();return false;">Register Now</a></p>
+    <p>Want to learn more about the project and its research? Check out the <a class="special-link" href="http://concord.org/inquiryspace">InquirySpace project page</a></p>
+    <p>Get <a href="http://codap.concord.org/help/">help with CODAP</a>, our new data analysis environment.</p>
+  </div>
+  <div class="portal-pages-collection-page-intro col-5">
+    <video id="inquiryspace-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="465" height="260" poster="http://concord.org/sites/default/files/projects/inquiryspace/inquiryspace-poster.jpg" data-setup="{}">
+      <source src="http://concord.org/sites/default/files/projects/inquiryspace/inquiryspace.mp4" type="video/mp4" />
+      <source src="http://concord.org/sites/default/files/projects/inquiryspace/inquiryspace.webm" type="video/webm" />
+      <source src="http://concord.org/sites/default/files/projects/inquiryspace/inquiryspace.ogv" type="video/ogg" />
+    </video>
+    <p><small>Watch teachers and students describe how InquirySpace has changed their classrooms.</small></p>
+  </div>
+</div>
+<div class="portal-pages-collection-resource-list skew top-only gray">
+  <div class="cols skew-cancel">
+    <div id="collection-1-heading" class="collection-heading col-12">
+      <h2>Activities</h2>
+      <hr class="hr-thick" />
+      <p>Follow this sequence of scaffolded InquirySpace activities that guide students in setting up and running both simulation-based and hands-on experiments.  In addition, students will learn to collect and analyze data in the CODAP environment.</p>
     </div>
-
-<h2>InquirySpace Activities</h2>
-<p>Follow this sequence of scaffolded InquirySpace activities that guide students in setting up and running both simulation-based and hands-on experiments.  In addition, students will learn to collect and analyze data in the CODAP environment.</p>
-<div id='collection-1'></div>
-
-<script>
-  // Last argument is number of visible materials.
-  Portal.renderMaterialsCollection(3, '#collection-1', 10);
-
-</script>
-<style>
-h1.page-title { margin-bottom: 0; }
-h2 { margin-top: 20px; }
-p.tagline { color: #75a643; font-size: 1.15em; }
-</style>
+    <div id="collection-1" class="material-list"></div>
+    <div class="material-list-footer col-12">
+      <p><small>This material is based upon work supported by the National Science Foundation under Grant No. IIS-1147621. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.</small></p>
+    </div>
+  </div>
+</div>
+<footer id="page-footer" class="concord-footer"></footer>
 <link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet" />
 <script src="//vjs.zencdn.net/4.12/video.js"></script>

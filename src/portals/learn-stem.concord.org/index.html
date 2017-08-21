@@ -1,29 +1,16 @@
-<div class="portal-pages-top-bar">
-  <div class="portal-pages-top-bar-inner">Lorem ipsum dolor sit ament at <a href="https://www.concord.org">Concord.org &#8599;</a></div>
-</div>
-
-<div class="portal-pages-nav">
-  <div class="portal-pages-nav-right">
-    <div class="portal-pages-nav-links">
-      <a href="#">Collections</a>
-      <a href="#">About the Learn Portal</a>
+<header id="page-header" class="portal-pages-header-contain"></header>
+<div class="cols">
+  <div class="col-1 spacer"></div>
+  <div class="portal-pages-hero col-10">
+    <h1>Interactive STEM activities, <strong>free</strong> for your Classroom</h1>
+    <div class="portal-pages-hero-info">
+      This repository is a collection of the <a href="https://concord.org/">Concord Consortium's</a> best resources for science, math, and engineering education. Our <a href="/collections">curated collections</a> offer lesson plans and units for your class based on these resources.
     </div>
-    <div class="portal-pages-nav-auth" id="portal-pages-nav-auth"><!-- filled in by React, need id for targetting --></div>
-  </div>
-  <div class="portal-pages-nav-logo"><a href="/">Home</a></div>
-</div>
-
-<div class="portal-pages-hero">
-  <h1>Interactive STEM activities, <strong>free</strong> for your Classroom</h1>
-  <div class="portal-pages-hero-info">
-    This repositiory is a collection of the <a href="https://www.concord.org/">Concord Consortium's</a> best games and
-    simulations.  Our <a href="/collections">curated collections</a> offer lesson plans and units for your class based on these resources.
-  </div>
-  <div class="portal-pages-hero-browse">
-    Browse our <strong>resources</strong> below, or head over to our <a href="http://concord.org/ngss/">NGSS Pathfinder!</a>
+    <div class="portal-pages-hero-browse">
+      Browse our <strong>resources</strong> below, or head over to our <a href="http://concord.org/ngss/">NGSS Pathfinder!</a>
+    </div>
   </div>
 </div>
-
 <div class="portal-pages-finder" id="portal-pages-finder">
   <!-- replaced by React, need outer id for targeting -->
   <div class="portal-pages-finder-form">
@@ -31,42 +18,18 @@
     </div>
   </div>
 </div>
-
-<div class="portal-pages-diagonal-spacer"></div>
-
-<div class="portal-pages-collections">
-  <div class="portal-pages-collections-inner">
-    <h2>Browse <span>Collections</span></h2>
-    <div class="portal-pages-collections-info">
+<div class="portal-pages-diagonal-spacer-2"></div>
+<section class="portal-pages-collections skew top-only mediumgray">
+  <div class="portal-pages-collections-inner cols skew-cancel">
+    <h2 class="col-12">Browse <strong>Collections</strong></h2>
+    <p class="portal-pages-collections-info col-12">
       Many of our resources are part of collections that are created by our various research projects.   Each collection has specific learning
-      goals within the context of a larger subject area.  <a href="/collections">Explore all of our collections &#10132;</a>
-    </div>
+      goals within the context of a larger subject area. <a class="special-link" href="/collections">Explore all of our collections</a>
+    </p>
     <div class="portal-pages-collections-cards" id="portal-pages-collections-cards">
       <!-- replaced by React, need outer id for targeting -->
-      <div class="portal-pages-collections-cards-loading">Loading collections...</a>
+      <div class="portal-pages-collections-cards-loading">Loading collections...</a></div>
     </div>
   </div>
-</div>
-
-<div id="log-in" class="modal" style="margin-left: -336px; min-height: 300px !important; padding: 1em; width: 640px;"><h2>Log In</h2>
-  <p class="special-msg"></p>
-  <div class="col-50 left">
-    <form method="post" action="/users/sign_in">
-      <dl>
-        <dt>Username</dt>
-        <dd><input name="user[login]" style="width: 85%;"/></dd>
-        <dt>Password</dt>
-        <dd><input type="password" name="user[password]" style="width: 85%;"/></dd>
-      </dl>
-      <input class="button" type="submit" value="Log In"/></form>
-    <p><a href="/forgot_password" title="Click this link if you forgot your username and/or password.">Forgot your
-      username or password?</a></p></div>
-  <div class="col-50 right"><h3>Don't have an account?</h3>
-    <p><a href="#" onclick="Portal.openSignupModal(); return false;">Sign up for free</a> to:</p>
-    <ul>
-      <li>Create classes and assign activities</li>
-      <li>Save student work</li>
-      <li>Track student progress</li>
-    </ul>
-  </div>
-</div>
+</section>
+<footer id="page-footer" class="concord-footer"></footer>

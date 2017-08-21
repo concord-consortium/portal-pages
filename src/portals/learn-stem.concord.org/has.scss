@@ -1,0 +1,97 @@
+/* shared partials */
+@import '_portal-restyling.scss';
+
+
+li, p { margin-bottom: 1em; }
+.notice a {
+  background: #f9eec1;
+  border-radius: 4px;
+  display: block;
+  font-size: .9em;
+  padding: .75em 0;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  }
+.notice a:hover {
+  background: #fee9aa;
+  color: #da5936;
+  }
+.float-right {
+  float: right;
+  margin: 3px 0 2em 1em;
+  }
+.sign-up-box {
+  background: #fef7e0;
+  clear: both;
+  overflow: hidden;
+  padding: 2em 1em 1em;
+  text-align: center;
+  }
+  .sign-up-box button {
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 1.5em;
+    margin: 0 auto .5em;
+    padding: .5em 2em;
+    }
+  .sign-up-box p { margin: 0 auto; width: 80%; }
+.video {
+  background: #ddd url(http://has.concord.org/_assets/img/intro-pic.jpg) center center no-repeat;
+  background-size: cover;
+  float: right;
+  font-size: 2em;
+  height: 365px;
+  line-height: 400px;
+  margin: 3px 0 1em 1em;
+  text-align: center;
+  width: 600px;
+  }
+body.guest-visitor #custom {
+  font: 121.25%/1.5 verdana,helvetica,sans-serif;
+  }
+
+.button.preview { display: none; }
+#lessons-cards, #interactives-cards { overflow: hidden; }
+  #lessons-cards a, #interactives-cards a { text-decoration: none; }
+  #lessons-cards ul, #interactives-cards ul { margin: 0; padding: 0; }
+  #lessons-cards li, #interactives-cards li {
+    background: #fff;
+    display: block;
+    float: left;
+    list-style: none;
+    margin: 0 1% 2em;
+    min-height: 180px;
+    padding: 1.5%;
+    text-align: center;
+    width: 20%;
+    }
+  #lessons-cards li:nth-child(4n+1), #interactives-cards li:nth-child(4n+1) { clear: left; }
+    #lessons-cards li img, #interactives-cards li img {
+      background: #fff;
+      border-radius: 13px;
+      clear: both;
+      display: block;
+      height: 120px;
+      margin: 1em auto 1em;
+      width: 120px;
+      }
+#interactives-cards {
+  margin: 0;
+  padding: 30px;
+  }
+  #lessons-cards li { background: #fff; font-size: .8em; }
+
+.material-list-footer h2 { margin: 0 0 30px; text-align: center; }
+.material-list-footer p:nth-child(2) {
+  margin-bottom: 1em;
+  text-align: center;
+  }
+  .material-list-footer p:nth-child(2) img {
+    margin: 0 1em;
+    }
+
+body.member-visitor .sign-up-box, body.member-visitor #intro { display: none; }
+body.member-visitor #interactives { margin: 3em 0 2em; padding: 1em; width: 95%; }

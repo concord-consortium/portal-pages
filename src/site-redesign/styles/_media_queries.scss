@@ -1,0 +1,23 @@
+@media screen and (max-width: 950px) {
+  @import 'layout/mq/950/_footer.scss',
+          'pages/mq/950/_home.scss';
+}
+
+@media screen and (max-width: 750px) {
+  @import 'common/mq/750/_typography.scss';
+  @import 'pages/mq/750/_home.scss';
+}
+
+@media screen and (max-width: 775px) {
+}
+
+@media screen and (max-width: 500px) {
+}
+
+@media screen and (max-width: 450px) {
+
+}
+
+@media screen and (max-width: 350px) {
+  // iphone 5
+}

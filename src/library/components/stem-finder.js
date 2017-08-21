@@ -11,14 +11,18 @@ var pluralize = require("../helpers/pluralize");
 var waitForAutoShowingLightboxToClose = require("../helpers/wait-for-auto-lightbox-to-close");
 var filters = require("../helpers/filters");
 
+var a = React.DOM.a;
 var div = React.DOM.div;
 var button = React.DOM.button;
 var svg = React.DOM.svg;
 var circle = React.DOM.circle;
+var image = React.DOM.image;
 var text = React.DOM.text;
 var input = React.DOM.input;
 var span = React.DOM.span;
+var strong = React.DOM.strong;
 var form = React.DOM.form;
+var label = React.DOM.label;
 
 var StemFinder = Component({
   getInitialState: function () {
@@ -156,30 +160,30 @@ var StemFinder = Component({
   },
 
   renderLogo: function (subjectArea) {
-    var size = 40;
+    //var size = 40;
     var selected = this.state.subjectAreasSelected.indexOf(subjectArea) !== -1;
     var clicked = function () {
       var subjectAreasSelected = this.state.subjectAreasSelected.slice();
       var index = subjectAreasSelected.indexOf(subjectArea);
       if (index === -1) {
         subjectAreasSelected.push(subjectArea);
+        jQuery('#' + subjectArea.key).addClass('selected');
       }
       else {
         subjectAreasSelected.splice(index, 1);
+        jQuery('#' + subjectArea.key).removeClass('selected');
       }
       this.setState({subjectAreasSelected: subjectAreasSelected}, this.search);
     }.bind(this);
-    return div({key: subjectArea.key, className: "portal-pages-finder-form-subject-areas-logo", onClick: clicked},
-      svg({height: size * 2, width: size * 2},
-        circle({cx: size, cy: size, r: size, fill: selected ? "#0592AF" : "#fff"}),
-        text({x: size, y: size + 5, textAnchor: "middle", fill: selected ? "#fff" : "#000"}, "Icon Here")
-      ),
+    return div({key: subjectArea.key, id: subjectArea.key, className: "portal-pages-finder-form-subject-areas-logo col-2", onClick: clicked},
+      div({className: "portal-pages-finder-form-subject-areas-logo-inner"}),
       div({className: "portal-pages-finder-form-subject-areas-logo-label"}, subjectArea.title)
     );
   },
 
   renderSubjectAreas: function () {
-    return div({className: "portal-pages-finder-form-subject-areas"},
+    return div({className: "portal-pages-finder-form-subject-areas col-12"},
+      div({className: "col-1 spacer"}),
       filters.subjectAreas.map(function (subjectArea) {
         return this.renderLogo(subjectArea);
       }.bind(this))
@@ -187,6 +191,7 @@ var StemFinder = Component({
   },
 
   clearFilters: function () {
+    jQuery('.portal-pages-finder-form-subject-areas-logo').removeClass('selected');
     this.refs.keyword.value = "";
     this.setState({
       subjectAreasSelected: [],
@@ -206,9 +211,11 @@ var StemFinder = Component({
     var index = selectedFilters.indexOf(filter);
     if (index === -1) {
       selectedFilters.push(filter);
+      jQuery('#' + filter.key).addClass('selected');
     }
     else {
       selectedFilters.splice(index, 1);
+      jQuery('#' + filter.key).removeClass('selected');
     }
     var state = {};
     state[selectedKey] = selectedFilters;
@@ -216,7 +223,7 @@ var StemFinder = Component({
   },
 
   renderFilters: function (type, title) {
-    return div({className: "portal-pages-finder-form-filters"},
+    return div({className: "portal-pages-finder-form-filters col-3"},
       div({className: "portal-pages-finder-form-filters-title"}, title),
       div({className: "portal-pages-finder-form-filters-options"},
         filters[type].map(function (filter) {
@@ -226,8 +233,8 @@ var StemFinder = Component({
           }.bind(this);
           var checked = this.state[selectedKey].indexOf(filter) !== -1;
           return div({key: filter.key, className: "portal-pages-finder-form-filters-option"},
-            input({type: "checkbox", onChange: handleChange, checked: checked}),
-            span({}, filter.title)
+            input({type: "checkbox", id: filter.key, name: filter.key, onChange: handleChange, checked: checked}),
+            label({htmlFor: filter.key}, filter.title)
           );
         }.bind(this))
       )
@@ -240,20 +247,25 @@ var StemFinder = Component({
       e.stopPropagation();
       this.search();
     }.bind(this);
-    return div({className: "portal-pages-finder-form-search"},
-      div({className: "portal-pages-finder-form-search-title"}, "Search by keyword:"),
+    return div({className: "portal-pages-finder-form-search col-4"},
+      div({className: "portal-pages-finder-form-search-title"}, "Search by keyword"),
       form({onSubmit: search},
-        input({ref: "keyword", placeholder: "Type search term here"})
+        div({className: 'portal-pages-search-input-container'},
+          input({ref: "keyword", placeholder: "Type search term here"}),
+          a({href: "/search"}, "Advanced Search")
+        )
       )
     );
   },
 
   renderForm: function () {
     return div({className: "portal-pages-finder-form"},
-      div({className: "portal-pages-finder-form-inner", style: {opacity: this.state.opacity}},
+      div({className: "portal-pages-finder-form-inner cols", style: {opacity: this.state.opacity}},
         this.renderSubjectAreas(),
-        this.renderFilters("featureFilters", "Filter by Feature:"),
-        this.renderFilters("gradeFilters", "Filter by Grade:"),
+        div({className: "col-1 spacer"}),
+        div({className: "mobile-filter-toggle"}, "More Filters"),
+        this.renderFilters("featureFilters", "Filter by Feature"),
+        this.renderFilters("gradeFilters", "Filter by Grade"),
         this.renderSearch()
       )
     );
@@ -279,7 +291,7 @@ var StemFinder = Component({
     if (keyword.length > 0) {
       filters.push(div({className: "portal-pages-finder-header-filter"},
         "Keyword: " + keyword,
-        span({onClick: this.clearKeyword}, "X")
+        span({onClick: this.clearKeyword})
       ));
     }
 
@@ -291,9 +303,7 @@ var StemFinder = Component({
   renderResultsHeader: function () {
     if (this.state.noResourcesFound || this.state.searching) {
       return div({className: "portal-pages-finder-header"},
-        div({className: "portal-pages-finder-header-resource-count"},
-          span({}, this.state.noResourcesFound ? "No Resources Found" : "Searching...")
-        ),
+        div({className: "portal-pages-finder-header-resource-count"}, this.state.noResourcesFound ? "No Resources Found" : "Searching..."),
         this.renderResultsHeaderFilters()
       );
     }
@@ -304,7 +314,7 @@ var StemFinder = Component({
     return div({className: "portal-pages-finder-header"},
       div({className: "portal-pages-finder-header-resource-count"},
         showingAll && multipleResources ? "Showing All " : "Showing ",
-        span({}, resourceCount + " " + pluralize(resourceCount, "Resource") + ":")
+        strong({}, resourceCount + " " + pluralize(resourceCount, "Resource"))
       ),
       this.renderResultsHeaderFilters()
     );
@@ -319,7 +329,7 @@ var StemFinder = Component({
     if ((this.state.resources.length === 0) || (this.state.displayLimit >= this.state.numTotalResources)) {
       return null;
     }
-    return div({className: "portal-pages-finder-load-all", onClick: handleLoadAll},
+    return div({className: "portal-pages-finder-load-all col-6 center", onClick: handleLoadAll},
       button({}, this.state.searching ? "Loading..." : "Load More")
     );
   },
@@ -329,12 +339,14 @@ var StemFinder = Component({
       return null;
     }
     var resources = this.state.resources.slice(0, this.state.displayLimit);
-    return div({className: "portal-pages-finder-results", style: {opacity: this.state.opacity}},
+    return div({className: "portal-pages-finder-results cols", style: {opacity: this.state.opacity}},
       div({className: "portal-pages-finder-results-inner"},
         this.renderResultsHeader(),
-        resources.map(function (resource, index) {
-          return StemFinderResult({key: index, resource: resource});
-        }.bind(this)),
+        div({className: 'portal-pages-finder-results-cards'},
+          resources.map(function (resource, index) {
+            return StemFinderResult({key: index, resource: resource});
+          }.bind(this))
+        ),
         this.renderLoadMore()
       )
     );

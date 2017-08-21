@@ -15,8 +15,36 @@ block content
       label(for='selector') Content Selector
       input(type='text' name='selector' id='selector')
     div.form-group
-      input(type='checkbox' name='mock' id='selector' value='1')
-      span Mock API Requests?
+      div
+        input(type='checkbox' name='mock' id='mock' value='1')
+        span Mock API Requests?
+      div
+        input(type='checkbox' name='siteRedesign' id='siteRedesign' value='1')
+        span Include site-redesign.css?
+    div.form-group
+      label(for='anon') User Settings
+      div
+        input(type='checkbox' name='fakeLogin' id='fakeLogin' value='1')
+        span Fake login?
+      div#fakeLoginOptions
+        div
+          input(type='checkbox' name='student' id='student' value='1')
+          span Student
+        div
+          input(type='checkbox' name='teacher' id='teacher' value='1')
+          span Teacher
+        div
+          input(type='checkbox' name='admin' id='admin' value='1')
+          span Admin
+        div
+          input(type='checkbox' name='manager' id='manager' value='1')
+          span Manager
+        div
+          input(type='checkbox' name='researcher' id='researcher' value='1')
+          span Researcher
+        div
+          input(type='checkbox' name='author' id='author' value='1')
+          span Author
     div.form-group
       input(type='submit' value='Submit')
 

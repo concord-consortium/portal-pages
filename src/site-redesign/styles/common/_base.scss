@@ -1,0 +1,50 @@
+/* apply a natural box layout model to all elements [http://www.paulirish.com/2012/box-sizing-border-box-ftw/] */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  background: $col-background url(./assets/body-bg.png) 0 5px repeat !important;
+  font-family: $font-museo-sans;
+}
+
+audio,
+canvas,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+::-moz-selection {
+  background: $col-highlight;
+  color: #fff;
+  text-shadow: none;
+}
+
+::selection {
+  background: $col-highlight;
+  color: #fff;
+  text-shadow: none;
+}

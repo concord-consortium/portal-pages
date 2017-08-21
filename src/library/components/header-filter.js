@@ -11,7 +11,7 @@ var HeaderFilter = Component({
   render: function () {
     return div({className: "portal-pages-finder-header-filter"},
       this.props.filter.title,
-      span({onClick: this.handleClear}, "X")
+      span({onClick: this.handleClear})
     );
   }
 });

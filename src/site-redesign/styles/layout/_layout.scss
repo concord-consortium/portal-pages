@@ -1,0 +1,17 @@
+// Clearfix
+// --------
+// For clearing floats like a boss
+@mixin clearfix() {
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+}
+
+// Clear after (not all clearfix need this also)
+@mixin clearfix-after() {
+  clear: both;
+}
+
+@import 'footer';
