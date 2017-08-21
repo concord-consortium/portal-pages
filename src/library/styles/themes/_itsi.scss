@@ -9,7 +9,16 @@
     background: url(./assets/banners/itsi.jpg) no-repeat center right;
   }
   .portal-pages-main-nav-collections {
-    display: none;
+    display: none !important;
+  }
+  .portal-pages-main-nav-about a {
+    color: $white;
+    &:hover {
+      border-color: $white;
+    }
+  }
+  .portal-pages-main-nav-item:nth-child(3) {
+    margin-left: 25px;
   }
 }
 
@@ -33,6 +42,9 @@
 
 @media screen and (max-width: 950px) {
   .theme-itsi-learn {
+    ul.portal-pages-main-nav-contain {
+      top: 72px;
+    }
     .mobile-nav-icon span {
       background: #ea6d2f;
     }
