@@ -16,3 +16,10 @@ PortalPages.renderCollectionCards({
 PortalPages.renderPageFooter({
   fadeIn: 1000
 }, 'page-footer');
+
+jQuery(document).ready(function(){
+  jQuery('.mobile-filter-toggle').click(function() {
+    jQuery(this).fadeOut('fast');
+    jQuery('.portal-pages-finder-form-filters').slideToggle();
+  });
+});
