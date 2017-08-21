@@ -94,9 +94,18 @@ var ResourceLightbox = Component({
       hr({}),
       h2({}, "Standards"),
       statements.map(function (statement) {
-        description = statement.description;
+        var description = statement.description;
         if(Array.isArray && Array.isArray(description)) {
-          description = description.join(' ');
+          var formatted = "";
+          for(var i = 0; i < description.length; i++) {
+            if(description[i].endsWith(":")) {
+                description[i] += " ";
+            } else if(!description[i].endsWith(".")) {
+                description[i] += ". ";
+            }
+            formatted += description[i];
+          }
+          description = formatted;
         }
         return div({},
           h3({}, statement.notation),
