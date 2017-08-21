@@ -22,13 +22,22 @@ var showOverlay = function(clickHandler,modalId,fixedPosition) {
   jQuery('#portal-pages-modal-overlay').css({'height': jQuery(document).height() + 'px'}).fadeIn('fast');
 };
 
-var showModal = function(modalId, specialMsg, fixedPosition) {
+var showModal = function(modalId, specialMsg, fixedPosition, closeFunc) {
+
+  console.log("INFO showModal", modalId, specialMsg, fixedPosition, closeFunc);
+
+  _closeFunc = hideModal;
+  if(closeFunc) {
+    console.log("INFO Modal using custom close function.");
+    _closeFunc = closeFunc;
+  }
+
   jQuery('html, body').css({'overflow': 'hidden'});
-  showOverlay(hideModal,modalId,fixedPosition);
+  showOverlay(_closeFunc,modalId,fixedPosition);
 
   if (jQuery(modalId + ' .portal-pages-close').length === 0) {
     jQuery(modalId).append('<a class="portal-pages-close">x</a>');
-    jQuery(modalId + ' .portal-pages-close').click(hideModal);
+    jQuery(modalId + ' .portal-pages-close').click(_closeFunc);
   }
   if (specialMsg != null) {
     jQuery(modalId + ' .portal-pages-special-msg').text(specialMsg).show();
@@ -45,3 +54,5 @@ var hideModal = function() {
 };
 
 module.exports.showModal = showModal;
+module.exports.hideModal = hideModal;
+

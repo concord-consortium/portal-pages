@@ -88,4 +88,5 @@ window.PortalPages = {
     options.collection = collectionId;
     ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0]);
   }
+
 };
