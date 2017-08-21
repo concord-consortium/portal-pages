@@ -87,44 +87,6 @@ window.PortalPages = {
     }
     options.collection = collectionId;
     ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0]);
-  },
-
-  //
-  // Log out the current user
-  //
-  logout: function(successFunc, failFunc, redirectAfter) {
-
-      console.log("INFO logging out...");
-
-      jQuery.get("/api/v1/users/sign_out").done(function(data) {
-
-        console.log("INFO logout success", data);
-
-        if(successFunc) {
-            successFunc();
-        }
-        
-        if(redirectAfter) {
-            console.log("INFO redirecting to " + redirectAfter);
-            location.href = redirectAfter;
-        } else {
-            location.reload(true);
-        }
-
-      }).fail(function(err) {
-
-        console.log("ERROR logout error", err);
-
-        if(err.responseText) {
-            var response = jQuery.parseJSON(err.responseText);
-            console.log("ERROR logout error responseText", response.message);
-        } 
-
-        if(failFunc) {
-            failFunc();
-        }
-
-      });
   }
 
 };

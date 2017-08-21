@@ -60,10 +60,48 @@ var openSignupModal = function(properties) {
         if(properties.omniauth && properties.omniauth_origin) {
             redireectPath = properties.omniauth_origin;
         }
-        PortalPages.logout(Modal.hideModal, Modal.hideModal, redireectPath);
+        logout(Modal.hideModal, Modal.hideModal, redireectPath);
     }
   }
   openModal(SignupModal, properties, closeFunc);
+};
+
+//
+// Log out the current user
+//
+var logout = function(successFunc, failFunc, redirectAfter) {
+
+      console.log("INFO logout() logging out...");
+
+      jQuery.get("/api/v1/users/sign_out").done(function(data) {
+
+        console.log("INFO logout success", data);
+
+        if(successFunc) {
+            successFunc();
+        }
+        
+        if(redirectAfter) {
+            console.log("INFO redirecting to " + redirectAfter);
+            location.href = redirectAfter;
+        } else {
+            location.reload(true);
+        }
+
+      }).fail(function(err) {
+
+        console.log("ERROR logout error", err);
+
+        if(err.responseText) {
+            var response = jQuery.parseJSON(err.responseText);
+            console.log("ERROR logout error responseText", response.message);
+        } 
+
+        if(failFunc) {
+            failFunc();
+        }
+
+      });
 };
 
 module.exports.openSignupModal 	= openSignupModal;
