@@ -21,19 +21,36 @@ var ResourceLightbox = Component({
     };
   },
 
+  getDefaultProps: function () {
+    return {
+      savedUrl: location.toString(),
+      savedTitle: document.title
+    };
+  },
+
   componentWillMount: function () {
-    this.savedUrl = location.toString();
-    this.savedTitle = document.title;
+    jQuery('html, body').css('overflow', 'hidden');
+    jQuery('.home-page-content').addClass('blurred');
+
     this.titleSuffix = document.title.split("|")[1] || "";
     this.replaceResource(this.props.resource);
   },
 
+  componentDidMount: function () {
+    jQuery('.portal-pages-resource-lightbox-background, .portal-pages-resource-lightbox-container').fadeIn();
+  },
+
   componentWillUnmount: function () {
-    document.title = this.savedTitle;
+    document.title = this.props.savedTitle;
     try {
-      history.replaceState({}, document.title, this.savedUrl);
+      history.replaceState({}, document.title, this.props.savedUrl);
     }
     catch (e) {}
+    jQuery('html, body').css('overflow', 'auto');
+    jQuery('.home-page-content').removeClass('blurred');
+
+    // FIXME: Not sure if this is going to work because the component will be removed
+    jQuery('.portal-pages-resource-lightbox-background, .portal-pages-resource-lightbox-container').fadeOut();
   },
 
   replaceResource: function (resource) {
@@ -243,12 +260,17 @@ var ResourceLightbox = Component({
 
   render: function () {
     var resource = this.state.resource;
-    return div({className: "portal-pages-resource-lightbox", onClick: this.handleClose},
-      div({className: "portal-pages-resource-lightbox-background-close", onClick: this.handleClose}, "x"),
-      div({className: "portal-pages-resource-lightbox-modal"},
-        resource ? this.renderResource() : this.render404()
-      ),
-      resource ? this.renderSharing() : null
+    return div({},
+      div({className: "portal-pages-resource-lightbox-background"}),
+      div({className: "portal-pages-resource-lightbox-container"},
+        div({className: "portal-pages-resource-lightbox", onClick: this.handleClose},
+          div({className: "portal-pages-resource-lightbox-background-close", onClick: this.handleClose}, "x"),
+          div({className: "portal-pages-resource-lightbox-modal"},
+            resource ? this.renderResource() : this.render404()
+          ),
+          resource ? this.renderSharing() : null
+        )
+      )
     );
   }
 });
