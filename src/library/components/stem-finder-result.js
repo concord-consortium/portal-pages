@@ -83,7 +83,7 @@ var StemFinderResult = Component({
       jQuery.post('/api/v1/materials/remove_favorite', {favorite_id: resource.favorite_id}, done);
     }
     else {
-      jQuery.post('/api/v1/materials/add_favorite', {id: resource.id, type: resource.class_name_underscored}, done);
+      jQuery.post('/api/v1/materials/add_favorite', {id: resource.id, material_type: resource.class_name_underscored}, done);
     }
   },
 
