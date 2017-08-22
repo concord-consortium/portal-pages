@@ -2,6 +2,7 @@ var Component = require('../helpers/component');
 var ResourceLightbox = require('./resource-lightbox');
 var shuffleArray = require('../helpers/shuffle-array');
 var filters = require("../helpers/filters");
+var Lightbox = require ("../helpers/lightbox")
 
 var a = React.DOM.a;
 var div = React.DOM.div;
@@ -39,44 +40,20 @@ var MaterialsCollectionItem = Component({
     e.stopPropagation();
     var lightbox = !this.state.lightbox;
 
-    // TODO: add pushstate
     this.setState({
       lightbox: lightbox,
       hovering: false
     });
 
     // mount/unmount lightbox outside of homepage content
-    var mountPointId = "stem-finder-result-lightbox-mount";
-    var mountPoint = document.getElementById(mountPointId);
     if (lightbox) {
-      if (!mountPoint) {
-        mountPoint = document.createElement("DIV");
-        mountPoint.id = mountPointId;
-        document.body.appendChild(mountPoint);
-      }
-      jQuery('html, body').css('overflow', 'hidden');
-      ReactDOM.render(ResourceLightbox({resource: this.props.item, toggleLightbox: this.toggleLightbox}), mountPoint);
-      jQuery('<div class="portal-pages-resource-lightbox-background"></div>').insertBefore('#stem-finder-result-lightbox-mount');
-      jQuery('.portal-pages-resource-lightbox-background').click(function() {
-        ResourceLightbox.handleClose(); // this doesn't work
-      });
-      jQuery('.home-page-content').addClass('blurred');
-      jQuery('.portal-pages-resource-lightbox-background, #stem-finder-result-lightbox-mount').fadeIn();
+      var resourceLightbox =
+        ResourceLightbox({resource: this.props.item, toggleLightbox: this.toggleLightbox});
+      Lightbox.open(resourceLightbox);
     }
     else {
-      jQuery('html, body').css('overflow', 'auto');
-      ReactDOM.unmountComponentAtNode(mountPoint);
-      jQuery('.portal-pages-resource-lightbox-background').remove();
-      jQuery('.home-page-content').removeClass('blurred');
-      jQuery('.portal-pages-resource-lightbox-background, #stem-finder-result-lightbox-mount').fadeOut();
+      Lightbox.close();
     }
-  },
-
-  renderLightbox: function () {
-    if (!this.state.lightbox) {
-      return null;
-    }
-    return ResourceLightbox({resource: this.props.item, toggleLightbox: this.toggleLightbox});
   },
 
   render: function () {

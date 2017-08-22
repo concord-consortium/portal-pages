@@ -201,7 +201,7 @@
   width: 100%;
 }
 
-#stem-finder-result-lightbox-mount {
+.portal-pages-resource-lightbox-container {
   display: none;
   height: 100%;
   left: 0;
@@ -209,7 +209,8 @@
   position: fixed;
   top: 0;
   width: 100%;
-  }
+}
+
 .portal-pages-resource-lightbox {
   box-sizing: content-box;
   bottom: auto;
