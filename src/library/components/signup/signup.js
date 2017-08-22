@@ -42,9 +42,11 @@ var Signup = function() {
         oauthProviders: this.props.oauthProviders
       };
     },
+
     getDefaultProps: function() {
       return {
-        signupText: "Register for " + Portal.siteName + "!",
+        siteName: (Portal && Portal.siteName) || 'Portal',
+        signupText: "Register!",
         anonymous: Portal.currentUser.isAnonymous
       };
     },
@@ -184,14 +186,9 @@ var Signup = function() {
 
       return div({},
         h2({},
-          strong({},
-            anonymous ?
-              'Register' :
-              'Finish'
-          ),
           anonymous ?
-          ' for the Learn Portal' :
-          ' Signing Up'
+            [strong({},'Register'),  ' for the ' + this.props.siteName] :
+            [strong({},'Finish'), ' Signing Up']
         ),
         div({className: 'signup-form'}, form),
         footer({},

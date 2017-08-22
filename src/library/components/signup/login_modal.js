@@ -28,6 +28,12 @@ var LoginModal = function() {
 
     displayName: 'LoginModal',
 
+    getDefaultProps: function () {
+      return {
+        siteName: (Portal && Portal.siteName) || 'Portal'
+      }
+    },
+
     submit: function(data) {
       if(this.props.afterSigninPath) {
         data.after_sign_in_path = this.props.afterSigninPath;
@@ -49,7 +55,7 @@ var LoginModal = function() {
             if(response.error) {
                 message = response.error;
             }
-    
+
             //
             // TODO use some kind of styled modal dialog here.....
             //
@@ -89,7 +95,7 @@ var LoginModal = function() {
 
           h2({},
             strong({}, 'Log in'),
-            ' to the Learn Portal'),
+            ' to the ' + this.props.siteName),
           dl({},
             dt({}, "Username"),
             dd({},
