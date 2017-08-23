@@ -74,6 +74,7 @@ var LoginModal = function() {
       if(enableAuthProviders && this.props.oauthProviders) {
 
         providers = this.props.oauthProviders;
+        providers.sort(function(a,b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); } ); // sort providers alphabetically by name 
         for(var i = 0; i < providers.length; i++) {
           providerComponents.push(
             a({
