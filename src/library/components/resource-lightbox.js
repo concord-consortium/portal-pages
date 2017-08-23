@@ -196,17 +196,16 @@ var ResourceLightbox = Component({
     var printIcon = links.print_url ? a({className: 'print', href: links.print_url.url}, "print") : null;
     var copyIcon = links.external_copy ? a({className: 'copy', href: links.external_copy.url}, "copy") : null;
     var editLink = null;
-    if (links.lara_activity_or_sequence) {
+    if (resource.lara_activity_or_sequence && links.external_lara_edit) {
       editLink = links.external_lara_edit.url;
     } else if (links.external_edit) {
       editLink = links.external_edit.url;
-    } else if (links.edit) {
-      editLink = links.edit.url;
     }
+
     var editIcon = editLink ? a({className: 'edit', href: editLink}, "edit") : null;
 
     // TODO: gear icon?
-    var settingsIcon = links.settings ? a({className: 'settings', href: links.settings}, 'settings') : null;
+    var settingsIcon = links.edit ? a({className: 'settings', href: links.edit.url}, 'settings') : null;
 
     if (!printIcon && !copyIcon && !editIcon) {
       return null;
