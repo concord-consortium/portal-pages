@@ -2,7 +2,8 @@ var Component = require('../helpers/component');
 var ResourceLightbox = require('./resource-lightbox');
 var shuffleArray = require('../helpers/shuffle-array');
 var filters = require("../helpers/filters");
-var Lightbox = require ("../helpers/lightbox")
+var Lightbox = require ("../helpers/lightbox");
+var ResourceType = require("./resource-type");
 
 var a = React.DOM.a;
 var div = React.DOM.div;
@@ -61,7 +62,8 @@ var MaterialsCollectionItem = Component({
     return div({className: "portal-pages-finder-materials-collection-item"},
       div({className: "portal-pages-finder-materials-collection-item__image col-4"},
         a({href: '#', onClick: this.toggleLightbox},
-          img({src: item.icon.url})
+          img({src: item.icon.url}),
+          ResourceType({resource: item})
         )
       ),
       div({className: "portal-pages-finder-materials-collection-item-info col-8"},

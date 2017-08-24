@@ -1,6 +1,7 @@
 var Component = require('../helpers/component');
 
 var ResourceLightbox = require('./resource-lightbox');
+var ResourceType = require("./resource-type");
 var GradeLevels = require("./grade-levels");
 
 var fadeIn = require("../helpers/fade-in");
@@ -111,7 +112,8 @@ var StemFinderResult = Component({
     return div({className: "portal-pages-finder-result col-4", onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
       a(options,
         div({className: 'portal-pages-finder-result-image-preview'},
-          img({alt: resource.name, src: resource.icon.url})
+          img({alt: resource.name, src: resource.icon.url}),
+          ResourceType({resource: resource})
         ),
         div({className: "portal-pages-finder-result-name"}, resource.name),
         this.renderFavoriteStar()

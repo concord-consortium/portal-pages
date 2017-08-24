@@ -58,6 +58,22 @@
   margin: 30px;
   pointer-events: none;
 }
+.portal-pages-finder-result-resource-types {
+  bottom: 10px;
+  left: 10px;
+  pointer-events: none;
+  position: absolute;
+  right: 10px;
+  text-align: right;
+}
+.portal-pages-finder-result-resource-type {
+  background: $light-gray;
+  color: $col-darkgray;
+  display: inline-block;
+  font: 500 11px $font-museo-sans;
+  padding: 10px;
+  text-transform: uppercase;
+}
 .portal-pages-finder-result-description {
   background-color: $blue;
   border-bottom: solid 90px #0592af;
