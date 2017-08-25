@@ -73,7 +73,7 @@
     margin-left: 10px;
   }
   a {
-    color: $col-darkgray;
+    color: $col-darkgray !important;
     border-bottom: 2px solid transparent;
     @include transition(all $transition-timing $transition-function);
 
@@ -87,24 +87,24 @@
       background: $col-orange;
       border: solid 2px $col-orange;
       border-radius: 0;
-      color: $white;
+      color: $white !important;
       font: 700 15px $font-museo-sans;
       padding: 10px 20px;
       text-align: center;
     }
     &.register {
       background: $white;
-      color: $col-orange;
+      color: $col-orange !important;
     }
     &.register:hover {
       background: $col-hover;
       border-color: $col-hover;
-      color: $white;
+      color: $white !important;
     }
     &.log-in:hover {
       background-color: $col-hover;
       border-color: $col-hover;
-      color: $white;
+      color: $white !important;
     }
     i.icon-login, i.icon-home {
       display: block;

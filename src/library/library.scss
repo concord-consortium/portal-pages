@@ -6,7 +6,6 @@
 @import './styles/helpers/_modal.scss';
 
 @import './styles/navigation/_navigation.scss';
-@import './styles/_media_queries.scss';
 
 @import './styles/themes/_itsi.scss';
 
@@ -737,3 +736,5 @@ $materials-collection-item-icon-width: 300px;
   background-color: $white;
   padding: 0 10px;
 }
+
+@import './styles/_media_queries.scss';
