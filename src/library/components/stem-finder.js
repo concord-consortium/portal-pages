@@ -264,7 +264,7 @@ var StemFinder = Component({
         this.renderSubjectAreas(),
         div({className: "col-1 spacer"}),
         div({className: "mobile-filter-toggle"}, "More Filters"),
-        this.renderFilters("featureFilters", "Filter by Feature"),
+        this.renderFilters("featureFilters", "Filter by Type"),
         this.renderFilters("gradeFilters", "Filter by Grade"),
         this.renderSearch()
       )
