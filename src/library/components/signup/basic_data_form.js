@@ -108,6 +108,11 @@ var BasicDataForm = function() {
         providers = this.props.oauthProviders;
         providers.sort(function(a,b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); } ); // sort providers alphabetically by name 
         for(var i = 0; i < providers.length; i++) {
+          if(i == 0) {
+            providerComponents.push(
+              p({}, 'Sign up with: ')
+            );
+          }
           // console.log("INFO adding provider direct path " + providers[i].directPath);
           // console.log("INFO adding provider auth check path " + providers[i].authCheckPath);
 
@@ -140,7 +145,6 @@ var BasicDataForm = function() {
         onChange: this.onChange
       },
       div({className: 'third-party-login-options'},
-        p({}, 'Sign up with: '),
         providerComponents
       ),
       anonymous ? div({},

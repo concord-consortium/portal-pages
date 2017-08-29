@@ -191,7 +191,7 @@ var Signup = function() {
             [strong({},'Finish'), ' Signing Up']
         ),
         div({className: 'signup-form'}, form),
-        footer({},
+        footer({className: "reg-footer"},
           p({},
             strong({}, 'Why sign up?'),
             " It's free and you get access to several key features, like creating classes for your students, assigning activities, saving work, tracking student progress, and more!"
