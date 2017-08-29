@@ -737,4 +737,6 @@ $materials-collection-item-icon-width: 300px;
   padding: 0 10px;
 }
 
+label.inline { display: inline-block !important; }
+
 @import './styles/_media_queries.scss';
