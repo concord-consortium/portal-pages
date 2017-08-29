@@ -133,6 +133,25 @@
     }
   }
 }
+
+/* prevent sticky hover states in iOS */
+@media (hover:none), (hover:on-demand) {
+  .portal-pages-finder-form-subject-areas-logo {
+    &:hover {
+      .portal-pages-finder-form-subject-areas-logo-inner {
+        background: $white;
+        color: $col-darkgray;
+      }
+    }
+    &.selected {
+      .portal-pages-finder-form-subject-areas-logo-inner {
+        background: $col-blue;
+        color: $white;
+      }
+    }
+  }
+}
+
 .portal-pages-finder-form-subject-areas-logo svg,
 .portal-pages-finder-form-subject-areas-logo svg text {
   pointer-events: none;  /* to prevent errors in portal javascript handlers */
