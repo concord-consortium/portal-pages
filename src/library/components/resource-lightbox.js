@@ -68,8 +68,19 @@ var ResourceLightbox = Component({
     }
   },
 
-  handleButtonClick: function (a) {
-
+  handleSocialMediaShare: function (e) {
+    e.preventDefault();
+    var width  = 575,
+        height = 400,
+        left   = (jQuery(window).width()  - width)  / 2,
+        top    = (jQuery(window).height() - height) / 2,
+        url    = e.target.href,
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+    window.open(url, 'social-media-share', opts);
   },
 
   renderRequirements: function () {
@@ -173,11 +184,12 @@ var ResourceLightbox = Component({
 
   // TODO: add links
   renderSharing: function () {
+    var resource = this.state.resource;
     return div({className: "portal-pages-resource-lightbox-modal-sharing"},
-      a({className: "share-facebook"}, "Facebook"),
-      a({className: "share-twitter"}, "Twitter"),
-      a({className: "share-email"}, "Email"),
-      a({className: "share-more"}, "More")
+      a({className: "share-facebook", href: "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href, target: '_blank', onClick: this.handleSocialMediaShare}, "Facebook"),
+      a({className: "share-twitter", href: "http://twitter.com/share?text=" + resource.name, target: '_blank', onClick: this.handleSocialMediaShare}, "Twitter"),
+      a({className: "share-email", href: "mailto:?subject=" + resource.name + "&body=" + encodeURIComponent(window.location.href), target: '_blank', onClick: this.handleSocialMediaShare}, "Email")
+      //a({className: "share-more"}, "More")
     );
   },
 
