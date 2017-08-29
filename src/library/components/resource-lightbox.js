@@ -184,6 +184,14 @@ var ResourceLightbox = Component({
 
   // TODO: add links
   renderSharing: function () {
+
+    console.log("INFO renderSharing Portal.settings", Portal.settings);
+
+    if(!Portal.settings ||
+        !Portal.settings.enable_social_media ) {
+        return null;
+    }
+
     var resource = this.state.resource;
     return div({className: "portal-pages-resource-lightbox-modal-sharing"},
       a({className: "share-facebook", href: "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href, target: '_blank', onClick: this.handleSocialMediaShare}, "Facebook"),
