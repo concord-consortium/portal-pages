@@ -163,6 +163,7 @@ var StemFinder = Component({
     //var size = 40;
     var selected = this.state.subjectAreasSelected.indexOf(subjectArea) !== -1;
     var clicked = function () {
+      jQuery('body, html').animate({scrollTop: jQuery('.portal-pages-finder-form').offset().top + 50 }, 600);
       var subjectAreasSelected = this.state.subjectAreasSelected.slice();
       var index = subjectAreasSelected.indexOf(subjectArea);
       if (index === -1) {
