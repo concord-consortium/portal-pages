@@ -339,23 +339,23 @@ var StemFinder = Component({
       return null;
     }
     var resources = this.state.resources.slice(0, this.state.displayLimit);
-    return div({className: "portal-pages-finder-results cols", style: {opacity: this.state.opacity}},
-      div({className: "portal-pages-finder-results-inner"},
-        this.renderResultsHeader(),
-        div({className: 'portal-pages-finder-results-cards'},
-          resources.map(function (resource, index) {
-            return StemFinderResult({key: index, resource: resource});
-          }.bind(this))
-        ),
-        this.renderLoadMore()
-      )
+    return div({className: "portal-pages-finder-results-inner"},
+      this.renderResultsHeader(),
+      div({className: 'portal-pages-finder-results-cards'},
+        resources.map(function (resource, index) {
+          return StemFinderResult({key: index, resource: resource});
+        }.bind(this))
+      ),
+      this.renderLoadMore()
     );
   },
 
   render: function () {
     return div({},
       this.renderForm(),
-      this.renderResults()
+      div({className: "portal-pages-finder-results cols", style: {opacity: this.state.opacity}},
+        this.renderResults()
+      )
     );
   }
 });
