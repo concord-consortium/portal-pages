@@ -11,6 +11,8 @@
 
 .portal-pages-finder-results {
   font-size: 16px;
+  height: auto;
+  min-height: 1233px;
 }
 .portal-pages-finder-results-inner {
   padding: 30px 0;
@@ -288,6 +290,10 @@
   text-align: center;
   text-indent: 100%;
   width: 30px;
+
+  &:visited {
+    color: $white;
+  }
 
   &:before {
     display: block;
@@ -736,5 +742,7 @@ $materials-collection-item-icon-width: 300px;
   background-color: $white;
   padding: 0 10px;
 }
+
+label.inline { display: inline-block !important; }
 
 @import './styles/_media_queries.scss';

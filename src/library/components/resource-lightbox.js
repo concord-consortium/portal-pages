@@ -1,6 +1,7 @@
 var Component = require('../helpers/component');
 var RelatedResourceResult = require("./related-resource-result");
 var pluralize = require("../helpers/pluralize");
+var portalObjectHelpers = require("../helpers/portal-object-helpers");
 
 var div = React.DOM.div;
 var img = React.DOM.img;
@@ -32,8 +33,13 @@ var ResourceLightbox = Component({
     jQuery('html, body').css('overflow', 'hidden');
     jQuery('.home-page-content').addClass('blurred');
 
+    var resource = this.props.resource;
+    // If the lightbox is shown directly the resource might not have been
+    // processed yet
+    portalObjectHelpers.processResource(resource);
+
     this.titleSuffix = document.title.split("|")[1] || "";
-    this.replaceResource(this.props.resource);
+    this.replaceResource(resource);
   },
 
   componentDidMount: function () {
@@ -187,7 +193,7 @@ var ResourceLightbox = Component({
     var resource = this.state.resource;
     return div({className: "portal-pages-resource-lightbox-modal-sharing"},
       a({className: "share-facebook", href: "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href, target: '_blank', onClick: this.handleSocialMediaShare}, "Facebook"),
-      a({className: "share-twitter", href: "http://twitter.com/share?text=" + resource.name, target: '_blank', onClick: this.handleSocialMediaShare}, "Twitter"),
+      a({className: "share-twitter", href: "http://twitter.com/share?text=" + resource.name + '&url=' + window.location.href, target: '_blank', onClick: this.handleSocialMediaShare}, "Twitter"),
       a({className: "share-email", href: "mailto:?subject=" + resource.name + "&body=" + encodeURIComponent(window.location.href), target: '_blank', onClick: this.handleSocialMediaShare}, "Email")
       //a({className: "share-more"}, "More")
     );
@@ -252,7 +258,7 @@ var ResourceLightbox = Component({
           img({src: resource.icon.url})
         ),
         h1({}, resource.name),
-        p({className: "portal-pages-resource-lightbox-description"}, resource.filteredDescription),
+        p({className: "portal-pages-resource-lightbox-description"}, resource.filteredLongDescription),
         div({},
           links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, links.preview.text) : null,
           links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick}, links.assign_material.text) : null,

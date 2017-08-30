@@ -2,6 +2,7 @@ var Component = require('../helpers/component');
 var ResourceLightbox = require('./resource-lightbox');
 var shuffleArray = require('../helpers/shuffle-array');
 var filters = require("../helpers/filters");
+var portalObjectHelpers = require("../helpers/portal-object-helpers");
 var Lightbox = require ("../helpers/lightbox");
 var ResourceType = require("./resource-type");
 
@@ -20,6 +21,11 @@ var MaterialsCollectionItem = Component({
       hovering: false,
       lightbox: false
     };
+  },
+
+  componentWillMount: function () {
+    var item = this.props.item;
+    portalObjectHelpers.processResource(item);
   },
 
   handleMouseOver: function () {
@@ -72,7 +78,8 @@ var MaterialsCollectionItem = Component({
             item.name
           )
         ),
-        div({className: "portal-pages-finder-materials-collection-item__description", dangerouslySetInnerHTML: {__html: item.description}})
+        div({className: "portal-pages-finder-materials-collection-item__description"},
+          item.filteredShortDescription)
       )
       //pre({}, JSON.stringify(this.props.item, null, 2))
     );
