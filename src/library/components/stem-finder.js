@@ -26,16 +26,30 @@ var form = React.DOM.form;
 var label = React.DOM.label;
 
 var StemFinder = Component({
+
   getInitialState: function () {
+
+    var subjectAreaKey  = this.props.subjectAreaKey;
+    var gradeLevelKey   = this.props.gradeLevelKey;
+
+    if(!subjectAreaKey && !gradeLevelKey) {
+        //
+        // If we are not passed props indicating filters to pre-populate
+        // then attempt to see if this information is available in the URL.
+        //
+        var params      = this.getFiltersFromURL();
+        subjectAreaKey  = params["subject"];
+        gradeLevelKey   = params["grade-level"];
+    }
 
     var subjectAreasSelected    = [];
     var subjectAreasSelectedMap = {}; 
 
-    if(this.props.subjectAreaKey) {
+    if(subjectAreaKey) {
         var subjectAreas = filters.subjectAreas;
         for(var i = 0; i < subjectAreas.length; i++) {
             var subjectArea = subjectAreas[i];
-            if(subjectArea.key == this.props.subjectAreaKey) {
+            if(subjectArea.key == subjectAreaKey) {
                 subjectAreasSelected.push(subjectArea);
                 subjectAreasSelectedMap[subjectArea.key] = subjectArea;
             }
@@ -44,11 +58,11 @@ var StemFinder = Component({
 
     var gradeFiltersSelected = [];
 
-    if(this.props.gradeLevelKey) {
+    if(gradeLevelKey) {
         var gradeLevels = filters.gradeFilters;
         for(var i = 0; i < gradeLevels.length; i++) {
             var gradeLevel = gradeLevels[i];
-            if(gradeLevel.key == this.props.gradeLevelKey) {
+            if(gradeLevel.key == gradeLevelKey) {
                 gradeFiltersSelected.push(gradeLevel);
             }
         }
@@ -73,6 +87,30 @@ var StemFinder = Component({
       lastSearchResultCount: 0,
     };
   },
+
+  //
+  // If the current URL is formatted to include stem finder filters, 
+  // return the filters specified in the URL as filter-name => filter-value
+  // pairs.
+  //
+  getFiltersFromURL: function() {
+
+    var ret = {};
+
+    var path = location.pathname;
+    if(!path.startsWith("/")) { path = "/"+path; }
+
+    var parts = path.split("/");
+
+    // console.log("INFO getFiltersFromURL() found URL parts", parts);
+
+    if(parts.length >= 4 && parts[1] == "stem-resources") {
+        ret[parts[2]] = parts[3];
+    }
+
+    return ret;
+  },
+
 
   componentWillMount: function () {
     waitForAutoShowingLightboxToClose(function () {

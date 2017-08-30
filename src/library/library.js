@@ -87,19 +87,6 @@ window.PortalPages = {
     }
     options.collection = collectionId;
     ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0]);
-  },
-
-  //
-  // Return GET params found in the URL query string.
-  //
-  getQueryParams: function() {
-    var ret = {};
-    var params = location.search.substr(1).split("&");
-    for(var i = 0; i < params.length; i++) {
-        var pair = params[i].split("=");
-        ret[pair[0]] = pair[1];
-    }
-    return ret;
   }
 
 };
