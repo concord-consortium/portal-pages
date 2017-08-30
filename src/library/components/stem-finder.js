@@ -10,6 +10,7 @@ var fadeIn = require("../helpers/fade-in");
 var pluralize = require("../helpers/pluralize");
 var waitForAutoShowingLightboxToClose = require("../helpers/wait-for-auto-lightbox-to-close");
 var filters = require("../helpers/filters");
+var portalObjectHelpers = require("../helpers/portal-object-helpers");
 
 var a = React.DOM.a;
 var div = React.DOM.div;
@@ -131,8 +132,7 @@ var StemFinder = Component({
 
       results.forEach(function (result) {
         result.materials.forEach(function (material) {
-          descriptionFilter.innerHTML = material.description;
-          material.filteredDescription = descriptionFilter.innerText;
+          portalObjectHelpers.processResource(material);
           resources.push(material);
           lastSearchResultCount++;
         });

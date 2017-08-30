@@ -1,6 +1,7 @@
 var GradeLevels = require("./grade-levels");
 var Component = require('../helpers/component');
 var filters = require("../helpers/filters");
+var portalObjectHelpers = require("../helpers/portal-object-helpers");
 
 var div = React.DOM.div;
 var img = React.DOM.img;
@@ -13,13 +14,9 @@ var RelatedResourceResult = Component({
   },
 
   componentWillMount: function () {
-    // filter the description if not already done
+    // process the related resource
     var resource = this.props.resource;
-    if (!resource.filteredDescription) {
-      var descriptionFilter = document.createElement("DIV");
-      descriptionFilter.innerHTML = resource.description;
-      resource.filteredDescription = descriptionFilter.innerText;
-    }
+    portalObjectHelpers.processResource(resource);
   },
 
   handleClick: function (e) {
@@ -42,7 +39,7 @@ var RelatedResourceResult = Component({
 
     if (this.state.hovering) {
       return div(options,
-        div({className: "portal-pages-finder-result-description"}, resource.filteredDescription),
+        div({className: "portal-pages-finder-result-description"}, resource.filteredShortDescription),
         GradeLevels({resource: resource})
       );
     }

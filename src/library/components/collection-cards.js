@@ -4,6 +4,7 @@ var fadeIn = require("../helpers/fade-in");
 var sortByName = require("../helpers/sort-by-name");
 var shuffleArray = require("../helpers/shuffle-array");
 var waitForAutoShowingLightboxToClose = require("../helpers/wait-for-auto-lightbox-to-close");
+var portalObjectHelpers = require("../helpers/portal-object-helpers");
 
 var div = React.DOM.div;
 var a = React.DOM.a;
@@ -25,11 +26,9 @@ var CollectionCards = Component({
         url: "/api/v1/projects",  // TODO: replace with Portal.API_V1 constant when available
         dataType: "json"
       }).done(function (data) {
-        var descriptionFilter = document.createElement("DIV");
         var collections = data.reduce(function (collections, collection) {
           if (collection.public && collection.landing_page_slug) {
-            descriptionFilter.innerHTML = collection.project_card_description;
-            collection.filteredDescription = descriptionFilter.innerText;
+            collection.filteredDescription = portalObjectHelpers.textOfHtml(collection.project_card_description);
             collections.push(collection);
           }
           return collections;
