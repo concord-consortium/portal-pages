@@ -10,6 +10,7 @@ var fadeIn = require("../helpers/fade-in");
 var pluralize = require("../helpers/pluralize");
 var waitForAutoShowingLightboxToClose = require("../helpers/wait-for-auto-lightbox-to-close");
 var filters = require("../helpers/filters");
+var portalObjectHelpers = require("../helpers/portal-object-helpers");
 
 var a = React.DOM.a;
 var div = React.DOM.div;
@@ -131,8 +132,7 @@ var StemFinder = Component({
 
       results.forEach(function (result) {
         result.materials.forEach(function (material) {
-          descriptionFilter.innerHTML = material.description;
-          material.filteredDescription = descriptionFilter.innerText;
+          portalObjectHelpers.processResource(material);
           resources.push(material);
           lastSearchResultCount++;
         });
@@ -163,6 +163,7 @@ var StemFinder = Component({
     //var size = 40;
     var selected = this.state.subjectAreasSelected.indexOf(subjectArea) !== -1;
     var clicked = function () {
+      jQuery('body, html').animate({scrollTop: jQuery('.portal-pages-finder-form').offset().top + 50 }, 600);
       var subjectAreasSelected = this.state.subjectAreasSelected.slice();
       var index = subjectAreasSelected.indexOf(subjectArea);
       if (index === -1) {
@@ -264,7 +265,7 @@ var StemFinder = Component({
         this.renderSubjectAreas(),
         div({className: "col-1 spacer"}),
         div({className: "mobile-filter-toggle"}, "More Filters"),
-        this.renderFilters("featureFilters", "Filter by Feature"),
+        this.renderFilters("featureFilters", "Filter by Type"),
         this.renderFilters("gradeFilters", "Filter by Grade"),
         this.renderSearch()
       )
@@ -339,23 +340,23 @@ var StemFinder = Component({
       return null;
     }
     var resources = this.state.resources.slice(0, this.state.displayLimit);
-    return div({className: "portal-pages-finder-results cols", style: {opacity: this.state.opacity}},
-      div({className: "portal-pages-finder-results-inner"},
-        this.renderResultsHeader(),
-        div({className: 'portal-pages-finder-results-cards'},
-          resources.map(function (resource, index) {
-            return StemFinderResult({key: index, resource: resource});
-          }.bind(this))
-        ),
-        this.renderLoadMore()
-      )
+    return div({className: "portal-pages-finder-results-inner"},
+      this.renderResultsHeader(),
+      div({className: 'portal-pages-finder-results-cards'},
+        resources.map(function (resource, index) {
+          return StemFinderResult({key: index, resource: resource});
+        }.bind(this))
+      ),
+      this.renderLoadMore()
     );
   },
 
   render: function () {
     return div({},
       this.renderForm(),
-      this.renderResults()
+      div({className: "portal-pages-finder-results cols", style: {opacity: this.state.opacity}},
+        this.renderResults()
+      )
     );
   }
 });

@@ -12,7 +12,7 @@
     display: none !important;
   }
   .portal-pages-main-nav-about a {
-    color: $white;
+    color: $white !important;
     &:hover {
       border-color: $white;
     }
