@@ -171,8 +171,19 @@ var ResourceLightbox = Component({
     );
   },
 
+  //
   // TODO: add links
+  //
   renderSharing: function () {
+
+    console.log("INFO renderSharing", this.state);
+
+    var enable = this.state.resource.enable_sharing;
+
+    if(!enable) {
+        return null;
+    }
+
     return div({className: "portal-pages-resource-lightbox-modal-sharing"},
       a({className: "share-facebook"}, "Facebook"),
       a({className: "share-twitter"}, "Twitter"),
