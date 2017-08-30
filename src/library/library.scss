@@ -291,6 +291,10 @@
   text-indent: 100%;
   width: 30px;
 
+  &:visited {
+    color: $white;
+  }
+
   &:before {
     display: block;
     font: 18px icomoon;

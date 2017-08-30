@@ -187,7 +187,7 @@ var ResourceLightbox = Component({
     var resource = this.state.resource;
     return div({className: "portal-pages-resource-lightbox-modal-sharing"},
       a({className: "share-facebook", href: "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href, target: '_blank', onClick: this.handleSocialMediaShare}, "Facebook"),
-      a({className: "share-twitter", href: "http://twitter.com/share?text=" + resource.name, target: '_blank', onClick: this.handleSocialMediaShare}, "Twitter"),
+      a({className: "share-twitter", href: "http://twitter.com/share?text=" + resource.name + '&url=' + window.location.href, target: '_blank', onClick: this.handleSocialMediaShare}, "Twitter"),
       a({className: "share-email", href: "mailto:?subject=" + resource.name + "&body=" + encodeURIComponent(window.location.href), target: '_blank', onClick: this.handleSocialMediaShare}, "Email")
       //a({className: "share-more"}, "More")
     );
