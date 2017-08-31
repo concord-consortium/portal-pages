@@ -230,18 +230,10 @@ var ResourceLightbox = Component({
     }
 
     return ul({},
-      li({},
-        printIcon
-      ),
-      li({},
-        copyIcon
-      ),
-      li({},
-        editIcon
-      ),
-      li({},
-        settingsIcon
-      )
+      printIcon ? li({}, printIcon) : null,
+      copyIcon ? li({}, copyIcon) : null,
+      editIcon ? li({}, editIcon) : null,
+      settingsIcon ? li({}, settingsIcon) : null
     )
   },
 
