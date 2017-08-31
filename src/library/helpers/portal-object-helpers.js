@@ -43,25 +43,22 @@ var processResource = function (resource) {
 
   resource.filteredDescription = textOfHtml(resource.description);
 
-  var shortDescription;
   if (resource.abstract) {
-    shortDescription = resource.abstract;
+    resource.shortDescription = resource.abstract;
   } else if (resource.full_description) {
-    shortDescription = shortenText(resource.full_description);
+    resource.shortDescription = shortenText(resource.full_description);
   } else {
-    shortDescription = resource.description
+    resource.shortDescription = resource.description
   }
-  resource.filteredShortDescription = textOfHtml(shortDescription);
+  resource.filteredShortDescription = textOfHtml(resource.shortDescription);
 
-  var longDescription;
   if (Portal.currentUser.isTeacher && resource.description_for_teacher){
-    longDescription = resource.description_for_teacher;
+    resource.longDescription = resource.description_for_teacher;
   } else if (resource.full_description) {
-    longDescription = resource.full_description;
+    resource.longDescription = resource.full_description;
   } else {
-    longDescription = resource.description;
+    resource.longDescription = resource.description;
   }
-  resource.filteredLongDescription = textOfHtml(longDescription);
 
   resource._processed = true;
 };

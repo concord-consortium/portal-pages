@@ -268,7 +268,8 @@ var ResourceLightbox = Component({
           img({src: resource.icon.url})
         ),
         h1({}, resource.name),
-        p({className: "portal-pages-resource-lightbox-description"}, resource.filteredLongDescription),
+        p({className: "portal-pages-resource-lightbox-description",
+           dangerouslySetInnerHTML: {__html: resource.longDescription}}),
         div({},
           links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, links.preview.text) : null,
           links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick}, links.assign_material.text) : null,
