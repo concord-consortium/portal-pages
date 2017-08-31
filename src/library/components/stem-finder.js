@@ -42,6 +42,13 @@ var StemFinder = Component({
         gradeLevelKey   = params["grade-level"];
     }
 
+    //
+    // Scroll to stem finder if we have filters specified.
+    //
+    if(subjectAreaKey || gradeLevelKey) {
+        this.scrollToFinder();
+    }
+
     var subjectAreasSelected    = [];
     var subjectAreasSelectedMap = {}; 
 
@@ -111,6 +118,12 @@ var StemFinder = Component({
     return ret;
   },
 
+  //
+  // Scroll to top of stem-finder filter form.
+  //
+  scrollToFinder: function() {
+    jQuery('body, html').animate({scrollTop: jQuery('.portal-pages-finder-form').offset().top + 50 }, 600);
+  },
 
   componentWillMount: function () {
     waitForAutoShowingLightboxToClose(function () {
@@ -240,7 +253,8 @@ var StemFinder = Component({
     }
 
     var clicked = function () {
-      jQuery('body, html').animate({scrollTop: jQuery('.portal-pages-finder-form').offset().top + 50 }, 600);
+      this.scrollToFinder();
+
       var subjectAreasSelected = this.state.subjectAreasSelected.slice();
       var subjectAreasSelectedMap = this.state.subjectAreasSelectedMap;
 
