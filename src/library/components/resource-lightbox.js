@@ -4,6 +4,7 @@ var pluralize = require("../helpers/pluralize");
 var portalObjectHelpers = require("../helpers/portal-object-helpers");
 
 var div = React.DOM.div;
+var em = React.DOM.em;
 var img = React.DOM.img;
 var h1 = React.DOM.h1;
 var h2 = React.DOM.h2;
@@ -87,6 +88,29 @@ var ResourceLightbox = Component({
                  ',top='    + top    +
                  ',left='   + left;
     window.open(url, 'social-media-share', opts);
+  },
+
+  renderIncludedActivities: function () {
+    var resource = this.state.resource;
+    if (resource.activities.length === 0) {
+      return null;
+    }
+    var activities = resource.activities;
+    return div({className: "portal-pages-resource-lightbox-included-activities"},
+      hr({}),
+      h2({}, "Included Activities"),
+      div({},
+        "This sequence includes the following activities: ",
+        activities.map(function (activity, index) {
+          return span({},
+            em({},
+              activity.name
+            ),
+            index === activities.length - 1 ? "." : "; "
+          );
+        })
+      )
+    );
   },
 
   renderRequirements: function () {
@@ -257,6 +281,7 @@ var ResourceLightbox = Component({
           links.assign_collection ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_collection.onclick}, links.assign_collection.text) : null,
           links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank'}, links.teacher_guide.text) : null
         ),
+        this.renderIncludedActivities(),
         hr({}),
         h2({}, "Requirements"),
         this.renderRequirements(),
