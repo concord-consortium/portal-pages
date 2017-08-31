@@ -212,9 +212,19 @@ var ResourceLightbox = Component({
     );
   },
 
+  //
   // TODO: add links
+  //
   renderSharing: function () {
+
+    console.log("INFO renderSharing", this.state);
+
     var resource = this.state.resource;
+
+    if(!resource.enable_sharing) {
+        return null;
+    }
+
     return div({className: "portal-pages-resource-lightbox-modal-sharing"},
       a({className: "share-facebook", href: "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href, target: '_blank', onClick: this.handleSocialMediaShare}, "Facebook"),
       a({className: "share-twitter", href: "http://twitter.com/share?text=" + resource.name + '&url=' + window.location.href, target: '_blank', onClick: this.handleSocialMediaShare}, "Twitter"),
@@ -274,7 +284,8 @@ var ResourceLightbox = Component({
           img({src: resource.icon.url})
         ),
         h1({}, resource.name),
-        p({className: "portal-pages-resource-lightbox-description"}, resource.filteredLongDescription),
+        p({className: "portal-pages-resource-lightbox-description",
+           dangerouslySetInnerHTML: {__html: resource.longDescription}}),
         div({},
           links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, links.preview.text) : null,
           links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick}, links.assign_material.text) : null,
