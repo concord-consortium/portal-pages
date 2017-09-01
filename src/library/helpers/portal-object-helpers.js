@@ -37,7 +37,8 @@ var textOfHtml = function (text) {
    - resource.description_for_teacher - database value if it exists, "" otherwise
 */
 var processResource = function (resource) {
-  if (resource._processed) {
+
+  if (resource == null || resource._processed) {
     return;
   }
 
