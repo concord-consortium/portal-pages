@@ -60,6 +60,10 @@ var ResourceLightbox = Component({
   },
 
   replaceResource: function (resource) {
+    if(!resource) {
+        return;
+    }
+
     document.title = this.titleSuffix ? resource.name + " | " + this.titleSuffix : resource.name;
     try {
       history.replaceState({}, document.title, resource.stem_resource_url);
