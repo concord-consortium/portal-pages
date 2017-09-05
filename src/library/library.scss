@@ -755,6 +755,46 @@ $materials-collection-item-icon-width: 300px;
   padding: 0 10px;
 }
 
+.embedded-signup-class {
+
+  position: absolute;
+  display: inline-block;
+  width: 45%;
+
+  top:      0px;
+  right:    0px;
+  
+  font-size: inherit;
+
+  .step {
+    position: absolute;
+    display: inline-block;
+    top: 0px;
+    right: 0px;
+  }
+
+  .text-input {
+    width: 100%;
+  }
+
+  .reg-footer {
+    display: none
+  }
+
+  .first-name-wrapper {
+    width: 100%;
+  }
+
+  .last-name-wrapper {
+    width: 100%;
+  }
+
+  .last_name {
+    margin-left: 0%;
+  }
+
+}
+
 label.inline { display: inline-block !important; }
 
 @import './styles/_media_queries.scss';
