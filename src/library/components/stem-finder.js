@@ -50,7 +50,7 @@ var StemFinder = Component({
     }
 
     var subjectAreasSelected    = [];
-    var subjectAreasSelectedMap = {}; 
+    var subjectAreasSelectedMap = {};
 
     if(subjectAreaKey) {
         var subjectAreas = filters.subjectAreas;
@@ -61,7 +61,7 @@ var StemFinder = Component({
                 subjectAreasSelectedMap[subjectArea.key] = subjectArea;
             }
         }
-    } 
+    }
 
     var gradeFiltersSelected = [];
 
@@ -73,13 +73,13 @@ var StemFinder = Component({
                 gradeFiltersSelected.push(gradeLevel);
             }
         }
-        
+
     }
 
     // console.log("INFO stem-finder initial subject areas: ", subjectAreasSelected);
 
     return {
-      opacity: 0,
+      opacity: 1,
       subjectAreasSelected:     subjectAreasSelected,
       subjectAreasSelectedMap:  subjectAreasSelectedMap,
       featureFiltersSelected:   [],
@@ -96,7 +96,7 @@ var StemFinder = Component({
   },
 
   //
-  // If the current URL is formatted to include stem finder filters, 
+  // If the current URL is formatted to include stem finder filters,
   // return the filters specified in the URL as filter-name => filter-value
   // pairs.
   //
@@ -411,6 +411,7 @@ var StemFinder = Component({
     var showingAll = this.state.displayLimit >= this.state.numTotalResources;
     var multipleResources = this.state.numTotalResources > 1;
     var resourceCount = showingAll ? this.state.numTotalResources : this.state.displayLimit + " of " + this.state.numTotalResources;
+    jQuery('#portal-pages-finder').removeClass('loading');
     return div({className: "portal-pages-finder-header"},
       div({className: "portal-pages-finder-header-resource-count"},
         showingAll && multipleResources ? "Showing All " : "Showing ",
