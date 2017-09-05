@@ -9,10 +9,10 @@ module.exports = {
 
   featureFilters: [
     {key: "sequence", title: "Sequence", searchMaterialType: "Investigation"},
-    {key: "model", title: "Model", searchMaterialType: "Interactive"},
-    {key: "browser-based", title: "Browser-Based", searchMaterialProperty: "Runs in browser"},
     {key: "activity", title: "Activity", searchMaterialType: "Activity"},
-    //{key: "sensor-based", title: "Sensor-Based (TODO)"},
+    {key: "model", title: "Model", searchMaterialType: "Interactive"},
+    {key: "browser-based", title: "Browser-Based", searchMaterialProperty: "Runs in browser"}
+    //{key: "sensor-based", title: "Sensor-Based (TODO)"}
   ],
 
   gradeFilters: [

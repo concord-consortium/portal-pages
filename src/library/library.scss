@@ -11,6 +11,8 @@
 
 .portal-pages-finder-results {
   font-size: 16px;
+  height: auto;
+  min-height: 1233px;
 }
 .portal-pages-finder-results-inner {
   padding: 30px 0;
@@ -289,6 +291,10 @@
   text-indent: 100%;
   width: 30px;
 
+  &:visited {
+    color: $white;
+  }
+
   &:before {
     display: block;
     font: 18px icomoon;
@@ -413,6 +419,18 @@
   font: 300 18px $font-museo-sans;
   line-height: 30px;
   margin: 30px 0;
+}
+.portal-pages-resource-lightbox-included-activities {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 28px;
+  margin: 10px 0;
+
+  span em {
+    background: #f5f5f5;
+    font-style: normal;
+    padding: 0 3px;
+  }
 }
 .portal-pages-resource-lightbox-requirements {
   font-size: 15px;
@@ -777,5 +795,6 @@ $materials-collection-item-icon-width: 300px;
 
 }
 
+label.inline { display: inline-block !important; }
 
 @import './styles/_media_queries.scss';

@@ -10,6 +10,7 @@ var fadeIn = require("../helpers/fade-in");
 var pluralize = require("../helpers/pluralize");
 var waitForAutoShowingLightboxToClose = require("../helpers/wait-for-auto-lightbox-to-close");
 var filters = require("../helpers/filters");
+var portalObjectHelpers = require("../helpers/portal-object-helpers");
 
 var a = React.DOM.a;
 var div = React.DOM.div;
@@ -25,12 +26,64 @@ var form = React.DOM.form;
 var label = React.DOM.label;
 
 var StemFinder = Component({
+
   getInitialState: function () {
+
+    var subjectAreaKey  = this.props.subjectAreaKey;
+    var gradeLevelKey   = this.props.gradeLevelKey;
+
+    if(!subjectAreaKey && !gradeLevelKey) {
+        //
+        // If we are not passed props indicating filters to pre-populate
+        // then attempt to see if this information is available in the URL.
+        //
+        var params      = this.getFiltersFromURL();
+        subjectAreaKey  = params["subject"];
+        gradeLevelKey   = params["grade-level"];
+    }
+
+    //
+    // Scroll to stem finder if we have filters specified.
+    //
+    if(subjectAreaKey || gradeLevelKey) {
+        this.scrollToFinder();
+    }
+
+    var subjectAreasSelected    = [];
+    var subjectAreasSelectedMap = {}; 
+
+    if(subjectAreaKey) {
+        var subjectAreas = filters.subjectAreas;
+        for(var i = 0; i < subjectAreas.length; i++) {
+            var subjectArea = subjectAreas[i];
+            if(subjectArea.key == subjectAreaKey) {
+                subjectAreasSelected.push(subjectArea);
+                subjectAreasSelectedMap[subjectArea.key] = subjectArea;
+            }
+        }
+    } 
+
+    var gradeFiltersSelected = [];
+
+    if(gradeLevelKey) {
+        var gradeLevels = filters.gradeFilters;
+        for(var i = 0; i < gradeLevels.length; i++) {
+            var gradeLevel = gradeLevels[i];
+            if(gradeLevel.key == gradeLevelKey) {
+                gradeFiltersSelected.push(gradeLevel);
+            }
+        }
+        
+    }
+
+    // console.log("INFO stem-finder initial subject areas: ", subjectAreasSelected);
+
     return {
       opacity: 0,
-      subjectAreasSelected: [],
-      featureFiltersSelected: [],
-      gradeFiltersSelected: [],
+      subjectAreasSelected:     subjectAreasSelected,
+      subjectAreasSelectedMap:  subjectAreasSelectedMap,
+      featureFiltersSelected:   [],
+      gradeFiltersSelected:     gradeFiltersSelected,
       resources: [],
       numTotalResources: 0,
       displayLimit: DISPLAY_LIMIT_INCREMENT,
@@ -40,6 +93,36 @@ var StemFinder = Component({
       noResourcesFound: false,
       lastSearchResultCount: 0,
     };
+  },
+
+  //
+  // If the current URL is formatted to include stem finder filters, 
+  // return the filters specified in the URL as filter-name => filter-value
+  // pairs.
+  //
+  getFiltersFromURL: function() {
+
+    var ret = {};
+
+    var path = location.pathname;
+    if(!path.startsWith("/")) { path = "/"+path; }
+
+    var parts = path.split("/");
+
+    // console.log("INFO getFiltersFromURL() found URL parts", parts);
+
+    if(parts.length >= 4 && parts[1] == "stem-resources") {
+        ret[parts[2]] = parts[3];
+    }
+
+    return ret;
+  },
+
+  //
+  // Scroll to top of stem-finder filter form.
+  //
+  scrollToFinder: function() {
+    jQuery('body, html').animate({scrollTop: jQuery('.portal-pages-finder-form').offset().top + 50 }, 600);
   },
 
   componentWillMount: function () {
@@ -131,8 +214,7 @@ var StemFinder = Component({
 
       results.forEach(function (result) {
         result.materials.forEach(function (material) {
-          descriptionFilter.innerHTML = material.description;
-          material.filteredDescription = descriptionFilter.innerText;
+          portalObjectHelpers.processResource(material);
           resources.push(material);
           lastSearchResultCount++;
         });
@@ -160,22 +242,39 @@ var StemFinder = Component({
   },
 
   renderLogo: function (subjectArea) {
-    //var size = 40;
-    var selected = this.state.subjectAreasSelected.indexOf(subjectArea) !== -1;
+
+    // console.log("INFO renderLogo", subjectArea);
+
+    var className = "portal-pages-finder-form-subject-areas-logo col-2";
+
+    var selected = this.state.subjectAreasSelectedMap[subjectArea.key];
+    if(selected) {
+        className += " selected";
+    }
+
     var clicked = function () {
+      this.scrollToFinder();
+
       var subjectAreasSelected = this.state.subjectAreasSelected.slice();
+      var subjectAreasSelectedMap = this.state.subjectAreasSelectedMap;
+
       var index = subjectAreasSelected.indexOf(subjectArea);
+
       if (index === -1) {
+        subjectAreasSelectedMap[subjectArea.key] = subjectArea;
         subjectAreasSelected.push(subjectArea);
         jQuery('#' + subjectArea.key).addClass('selected');
       }
       else {
+        subjectAreasSelectedMap[subjectArea.key] = undefined;
         subjectAreasSelected.splice(index, 1);
         jQuery('#' + subjectArea.key).removeClass('selected');
       }
-      this.setState({subjectAreasSelected: subjectAreasSelected}, this.search);
+      // console.log("INFO subject areas", subjectAreasSelected);
+      this.setState({subjectAreasSelected: subjectAreasSelected, subjectAreasSelectedMap: subjectAreasSelectedMap}, this.search);
     }.bind(this);
-    return div({key: subjectArea.key, id: subjectArea.key, className: "portal-pages-finder-form-subject-areas-logo col-2", onClick: clicked},
+
+    return div({key: subjectArea.key, id: subjectArea.key, className: className, onClick: clicked},
       div({className: "portal-pages-finder-form-subject-areas-logo-inner"}),
       div({className: "portal-pages-finder-form-subject-areas-logo-label"}, subjectArea.title)
     );
@@ -185,6 +284,7 @@ var StemFinder = Component({
     return div({className: "portal-pages-finder-form-subject-areas col-12"},
       div({className: "col-1 spacer"}),
       filters.subjectAreas.map(function (subjectArea) {
+        // console.log("INFO renderSubjectAreas, selected subjects:", this.state.subjectAreasSelected);
         return this.renderLogo(subjectArea);
       }.bind(this))
     );
@@ -339,23 +439,24 @@ var StemFinder = Component({
       return null;
     }
     var resources = this.state.resources.slice(0, this.state.displayLimit);
-    return div({className: "portal-pages-finder-results cols", style: {opacity: this.state.opacity}},
-      div({className: "portal-pages-finder-results-inner"},
-        this.renderResultsHeader(),
-        div({className: 'portal-pages-finder-results-cards'},
-          resources.map(function (resource, index) {
-            return StemFinderResult({key: index, resource: resource});
-          }.bind(this))
-        ),
-        this.renderLoadMore()
-      )
+    return div({className: "portal-pages-finder-results-inner"},
+      this.renderResultsHeader(),
+      div({className: 'portal-pages-finder-results-cards'},
+        resources.map(function (resource, index) {
+          return StemFinderResult({key: index, resource: resource});
+        }.bind(this))
+      ),
+      this.renderLoadMore()
     );
   },
 
   render: function () {
+    // console.log("INFO stem-finder render()");
     return div({},
       this.renderForm(),
-      this.renderResults()
+      div({className: "portal-pages-finder-results cols", style: {opacity: this.state.opacity}},
+        this.renderResults()
+      )
     );
   }
 });

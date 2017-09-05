@@ -1,8 +1,10 @@
 var Component = require('../helpers/component');
 var RelatedResourceResult = require("./related-resource-result");
 var pluralize = require("../helpers/pluralize");
+var portalObjectHelpers = require("../helpers/portal-object-helpers");
 
 var div = React.DOM.div;
+var em = React.DOM.em;
 var img = React.DOM.img;
 var h1 = React.DOM.h1;
 var h2 = React.DOM.h2;
@@ -32,8 +34,13 @@ var ResourceLightbox = Component({
     jQuery('html, body').css('overflow', 'hidden');
     jQuery('.home-page-content').addClass('blurred');
 
+    var resource = this.props.resource;
+    // If the lightbox is shown directly the resource might not have been
+    // processed yet
+    portalObjectHelpers.processResource(resource);
+
     this.titleSuffix = document.title.split("|")[1] || "";
-    this.replaceResource(this.props.resource);
+    this.replaceResource(resource);
   },
 
   componentDidMount: function () {
@@ -54,6 +61,10 @@ var ResourceLightbox = Component({
   },
 
   replaceResource: function (resource) {
+    if(!resource) {
+        return;
+    }
+
     document.title = this.titleSuffix ? resource.name + " | " + this.titleSuffix : resource.name;
     try {
       history.replaceState({}, document.title, resource.stem_resource_url);
@@ -81,6 +92,29 @@ var ResourceLightbox = Component({
                  ',top='    + top    +
                  ',left='   + left;
     window.open(url, 'social-media-share', opts);
+  },
+
+  renderIncludedActivities: function () {
+    var resource = this.state.resource;
+    if (resource.activities.length === 0) {
+      return null;
+    }
+    var activities = resource.activities;
+    return div({className: "portal-pages-resource-lightbox-included-activities"},
+      hr({}),
+      h2({}, "Included Activities"),
+      div({},
+        "This sequence includes the following activities: ",
+        activities.map(function (activity, index) {
+          return span({},
+            em({},
+              activity.name
+            ),
+            index === activities.length - 1 ? "." : "; "
+          );
+        })
+      )
+    );
   },
 
   renderRequirements: function () {
@@ -182,12 +216,22 @@ var ResourceLightbox = Component({
     );
   },
 
+  //
   // TODO: add links
+  //
   renderSharing: function () {
+
+    console.log("INFO renderSharing", this.state);
+
     var resource = this.state.resource;
+
+    if(!resource.enable_sharing) {
+        return null;
+    }
+
     return div({className: "portal-pages-resource-lightbox-modal-sharing"},
       a({className: "share-facebook", href: "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href, target: '_blank', onClick: this.handleSocialMediaShare}, "Facebook"),
-      a({className: "share-twitter", href: "http://twitter.com/share?text=" + resource.name, target: '_blank', onClick: this.handleSocialMediaShare}, "Twitter"),
+      a({className: "share-twitter", href: "http://twitter.com/share?text=" + resource.name + '&url=' + window.location.href, target: '_blank', onClick: this.handleSocialMediaShare}, "Twitter"),
       a({className: "share-email", href: "mailto:?subject=" + resource.name + "&body=" + encodeURIComponent(window.location.href), target: '_blank', onClick: this.handleSocialMediaShare}, "Email")
       //a({className: "share-more"}, "More")
     );
@@ -224,18 +268,10 @@ var ResourceLightbox = Component({
     }
 
     return ul({},
-      li({},
-        printIcon
-      ),
-      li({},
-        copyIcon
-      ),
-      li({},
-        editIcon
-      ),
-      li({},
-        settingsIcon
-      )
+      printIcon ? li({}, printIcon) : null,
+      copyIcon ? li({}, copyIcon) : null,
+      editIcon ? li({}, editIcon) : null,
+      settingsIcon ? li({}, settingsIcon) : null
     )
   },
 
@@ -252,13 +288,15 @@ var ResourceLightbox = Component({
           img({src: resource.icon.url})
         ),
         h1({}, resource.name),
-        p({className: "portal-pages-resource-lightbox-description"}, resource.filteredDescription),
+        p({className: "portal-pages-resource-lightbox-description",
+           dangerouslySetInnerHTML: {__html: resource.longDescription}}),
         div({},
           links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, links.preview.text) : null,
           links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick}, links.assign_material.text) : null,
           links.assign_collection ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_collection.onclick}, links.assign_collection.text) : null,
           links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank'}, links.teacher_guide.text) : null
         ),
+        this.renderIncludedActivities(),
         hr({}),
         h2({}, "Requirements"),
         this.renderRequirements(),
