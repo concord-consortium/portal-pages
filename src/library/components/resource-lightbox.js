@@ -74,8 +74,21 @@ var ResourceLightbox = Component({
   },
 
   handleClose: function (e) {
-    if (jQuery(e.target).is('.portal-pages-resource-lightbox') || jQuery(e.target).is('.portal-pages-resource-lightbox-background-close')) { // only close lightbox if lightbox wrapper or X is clicked
-      this.props.toggleLightbox(e);
+
+    if (jQuery(e.target).is('.portal-pages-resource-lightbox') || 
+        jQuery(e.target).is('.portal-pages-resource-lightbox-background-close')) {
+        // only close lightbox if lightbox wrapper or X is clicked
+        this.props.toggleLightbox(e);
+        return;
+    }
+
+    //
+    // Handle closing lightbox from "not found" view.
+    //
+    if( e.target.id == 'portal-pages-lightbox-close-not-found') { 
+        this.props.toggleLightbox(e);
+        e.preventDefault();
+        return;
     }
   },
 
@@ -221,8 +234,6 @@ var ResourceLightbox = Component({
   //
   renderSharing: function () {
 
-    console.log("INFO renderSharing", this.state);
-
     var resource = this.state.resource;
 
     if(!resource.enable_sharing) {
@@ -241,7 +252,10 @@ var ResourceLightbox = Component({
     return div({className: "portal-pages-resource-lightbox-modal-content"},
       div({className: "portal-pages-resource-lightbox-not-found"}, "Sorry, the requested resource was not found."),
       div({},
-        a({href: "#", onClick: this.handleClose}, "Click here"),
+        a({ id: "portal-pages-lightbox-close-not-found",
+            href: "#",
+            onClick: this.handleClose},
+            "Click here"),
         " to close this lightbox and use the search box on this page to find another resource.")
     );
   },
@@ -308,6 +322,7 @@ var ResourceLightbox = Component({
   },
 
   render: function () {
+
     var resource = this.state.resource;
     return div({},
       div({className: "portal-pages-resource-lightbox-background"}),
