@@ -60,7 +60,9 @@ var CollectionCards = Component({
       this.state.collections.map(function (collection) {
         return div({key: collection.landing_page_slug, className: "portal-pages-collections-card col-4"},
           a({href: "/" + collection.landing_page_slug},
-            img({alt: collection.name, src: collection.project_card_image_url}),
+            div({className: 'portal-pages-collections-card-image-preview'},
+              img({alt: collection.name, src: collection.project_card_image_url})
+            ),
             h3({className: "portal-pages-collections-card-name"}, collection.name),
             p({className: "portal-pages-collections-card-description"}, collection.filteredDescription)
           )

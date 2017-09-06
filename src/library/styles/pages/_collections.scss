@@ -78,8 +78,27 @@
   overflow: hidden;
   vertical-align: top;
   width: 285px;
+
+  .portal-pages-collections-card-image-preview {
+    height: 235px;
+    overflow: hidden;
+    position: relative;
+    img {
+      bottom: -300px;
+      height: 100%;
+      left: -300px;
+      margin: auto;
+      max-width: 200%;
+      pointer-events: none;
+      position: absolute;
+      right: -300px;
+      top: -300px;
+      width: auto;
+    }
+  }
+
   &:hover {
-    h3, img { display: none; }
+    h3, .portal-pages-collections-card-image-preview { display: none; }
     .portal-pages-collections-card-description {
       background: $col-blue;
       color: $white;
@@ -93,12 +112,7 @@
     height: 100%;
   }
 }
-.portal-pages-collections-card img {
-  height: 235px;
-  max-height: 235px;
-  pointer-events: none;
-  width: 100%;
-}
+
 .portal-pages-collections-card-name {
   color: $col-blue;
   font: 700 18px $font-museo-sans;

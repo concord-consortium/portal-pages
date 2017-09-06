@@ -7,9 +7,11 @@
 
 @media screen and (max-width: 750px) {
   @import 'helpers/mq/750/_modal.scss',
+          'helpers/mq/750/_cards.scss',
           'pages/mq/750/_collections.scss';
 }
 
 @media screen and (max-width: 500px) {
-  @import 'navigation/mq/500/_main_nav.scss';
+  @import 'navigation/mq/500/_main_nav.scss',
+          'helpers/mq/500/_cards.scss';
 }

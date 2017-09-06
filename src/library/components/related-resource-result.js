@@ -44,7 +44,9 @@ var RelatedResourceResult = Component({
       );
     }
     return div(options,
-      img({alt: resource.name, src: resource.icon.url}),
+      div({className: 'portal-pages-finder-result-image-preview'},
+        img({alt: resource.name, src: resource.icon.url})
+      ),
       div({className: "portal-pages-finder-result-name"}, resource.name),
       GradeLevels({resource: resource})
     );
