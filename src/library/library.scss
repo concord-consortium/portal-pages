@@ -566,12 +566,14 @@ $materials-collection-item-icon-width: 300px;
   a:active, a:hover { color: $col-gold; }
   dl, form { margin: 0; padding: 0; }
   dd {
+    clear: both;
     display: block;
     margin-bottom: 30px;
     &.first-name-wrapper {
       margin-right: 30px;
     }
     &.two-col {
+      clear: none;
       float: left;
       margin-top: 35px;
       margin-left: -87px;
@@ -590,6 +592,7 @@ $materials-collection-item-icon-width: 300px;
     }
   }
   dt {
+    clear: both;
     display: block;
     font-size: 15px;
     font-weight: 700;
@@ -597,6 +600,7 @@ $materials-collection-item-icon-width: 300px;
     margin: 0 0 20px;
     text-transform: uppercase;
     &.two-col {
+      clear: none;
       float: left;
     }
     &.multi-col {
@@ -763,7 +767,7 @@ $materials-collection-item-icon-width: 300px;
 
   top:      0px;
   right:    0px;
-  
+
   font-size: inherit;
 
   .step {
