@@ -20,7 +20,7 @@ else
     mkdir -p _site/branch
     DEPLOY_DIR=branch/$TRAVIS_BRANCH
   fi
-  mv dist _site/$DEPLOY_DIR
+  mv dest _site/$DEPLOY_DIR
   export DEPLOY_DIR
 fi
 s3_website push --site _site
