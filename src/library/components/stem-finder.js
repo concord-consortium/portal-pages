@@ -111,7 +111,7 @@ var StemFinder = Component({
 
     // console.log("INFO getFiltersFromURL() found URL parts", parts);
 
-    if(parts.length >= 4 && parts[1] == "stem-resources") {
+    if(parts.length >= 4 && parts[1] == "resources") {
         ret[parts[2]] = parts[3];
     }
 
