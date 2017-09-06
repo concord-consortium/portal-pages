@@ -72,33 +72,7 @@ var BasicDataForm = function() {
       return this.props.onSubmit(model);
     },
 
-    getStepNumber: function() {
-      var basicData, ref, studentData, teacherData;
-      ref = this.state, basicData = ref.basicData, studentData = ref.studentData, teacherData = ref.teacherData;
-
-      // console.log("INFO getStepNumber", this.props, basicData);
-
-      if (!this.props.omniauth && !basicData) {
-        return 1;
-      }
-      if (this.props.omniauth || (basicData && !studentData && !teacherData)) {
-        return 2;
-      }
-      return 3;
-    },
-
     render: function() {
-
-      var step = this.getStepNumber();
-      var stepText = "Step " + step;
-
-      if(step > 1) {
-        if(this.props.omniauth) {
-          stepText += " of 2";
-        } else {
-          stepText += " of 3";
-        }
-      }
 
       var anonymous;
       anonymous = this.props.anonymous;
@@ -106,7 +80,7 @@ var BasicDataForm = function() {
       providerComponents = [];
       if(enableAuthProviders && this.props.oauthProviders) {
         providers = this.props.oauthProviders;
-        providers.sort(function(a,b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); } ); // sort providers alphabetically by name 
+        providers.sort(function(a,b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); } ); // sort providers alphabetically by name
         for(var i = 0; i < providers.length; i++) {
           if(i == 0) {
             providerComponents.push(
@@ -196,7 +170,6 @@ var BasicDataForm = function() {
         )
       ) : void 0,
       div({className: 'submit-button-container'},
-        span({className: 'step'}, stepText),
         button({
           className: 'submit-btn',
           type: 'submit',
