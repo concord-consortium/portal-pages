@@ -244,7 +244,7 @@ var TeacherForm = function() {
         showSchool && !registerNewSchool ?
           dt({}, 'School') : void 0,
         showSchool && !registerNewSchool ?
-          dd({},
+          dd({className: 'signup-form-school-select'},
             SchoolInput({
               name: 'school_id',
               placeholder: 'School / Institution',
@@ -256,6 +256,7 @@ var TeacherForm = function() {
           ) : void 0,
         dd({},
           showSchool && !registerNewSchool ? a({
+            className: 'signup-form-add-school-link',
             onClick: this.addNewSchool
             }, CANT_FIND_SCHOOL) : void 0,
           showSchool && registerNewSchool ? div({},
