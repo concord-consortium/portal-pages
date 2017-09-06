@@ -53,7 +53,7 @@ var processResource = function (resource) {
   }
   resource.filteredShortDescription = textOfHtml(resource.shortDescription);
 
-  if (Portal.currentUser.isTeacher && resource.description_for_teacher){
+  if (resource.description_for_teacher){
     resource.longDescription = resource.description_for_teacher;
   } else if (resource.full_description) {
     resource.longDescription = resource.full_description;
