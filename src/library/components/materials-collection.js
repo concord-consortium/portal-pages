@@ -79,7 +79,7 @@ var MaterialsCollectionItem = Component({
           )
         ),
         div({className: "portal-pages-finder-materials-collection-item__description",
-            dangerouslySetInnerHTML: {__html: resource.longDescription}})
+            dangerouslySetInnerHTML: {__html: item.longDescription}})
       )
       //pre({}, JSON.stringify(this.props.item, null, 2))
     );
