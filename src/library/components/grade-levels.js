@@ -26,6 +26,8 @@ var GradeLevels = Component({
 
     return div({className: this.props.className || "portal-pages-finder-result-grade-levels"},
       levels.map(function (level, index) {
+        if (level === 'Higher Education')
+          level = 'Higher Ed';
         return div({key: index, className: "portal-pages-finder-result-grade-level"}, level);
       })
     );
