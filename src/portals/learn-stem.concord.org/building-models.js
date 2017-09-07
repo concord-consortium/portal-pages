@@ -9,14 +9,6 @@ if (Portal.currentUser.isLoggedIn) {
   jQuery('.portal-pages-collection-resource-list').remove();
 }
 
-PortalPages.renderMaterialsCollection(29, '#collection-3', {
-  limit: 10,
-  onDataLoad: function (materials) {
-    if (materials.length <= 0)
-      jQuery('#collection-3').parents('li').remove(); // remove collection if no resources available
-  }
-});
-
 PortalPages.renderMaterialsCollection(30, '#collection-4', {
   limit: 10,
   onDataLoad: function (materials) {
