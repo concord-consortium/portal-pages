@@ -3,10 +3,6 @@ PortalPages.renderPageHeader({
   fadeIn: 1000
 }, 'page-header');
 
-PortalPages.renderPageFooter({
-  fadeIn: 1000
-}, 'page-footer');
-
 jQuery(document).ready(function() {
   if (Portal.currentUser.isLoggedIn) {
     jQuery('#intro-msg').html('SEPA simulations and modeling are under development. Play around, have fun, and send any thoughts/suggestions to <a href="mailto:sepa@concord.org">the team</a>.');

@@ -3,10 +3,6 @@ PortalPages.renderPageHeader({
   fadeIn: 1000
 }, 'page-header');
 
-PortalPages.renderPageFooter({
-  fadeIn: 1000
-}, 'page-footer');
-
 if (Portal.currentUser.isLoggedIn) {
   jQuery('#curriculum-note').remove();
 } else {

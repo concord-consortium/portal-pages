@@ -1,9 +1,11 @@
 /* ----- Site Footer ----- */
 
 #footer, .concord-footer {
-  background-color: $col-mediumgray;
-  padding: 0 0 50px;
+  background: #f5f5f5;
+  border-top: 2px dotted rgba(49, 49, 49, 0.15);
+  padding: 50px 0 0;
   height: auto;
+  min-height: 450px;
 
   .mobile-join-us {
     display: none;
