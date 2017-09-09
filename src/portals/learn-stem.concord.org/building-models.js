@@ -1,8 +1,3 @@
-PortalPages.renderPageHeader({
-  isCollections: true,
-  fadeIn: 1000
-}, 'page-header');
-
 if (Portal.currentUser.isLoggedIn) {
   jQuery('#curriculum-note').remove();
 } else {
