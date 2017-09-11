@@ -27,7 +27,7 @@ var CollectionCards = Component({
         dataType: "json"
       }).done(function (data) {
         var collections = data.reduce(function (collections, collection) {
-          if (collection.public && collection.landing_page_slug) {
+          if (collection.landing_page_slug) {
             collection.filteredDescription = portalObjectHelpers.textOfHtml(collection.project_card_description);
             collections.push(collection);
           }
