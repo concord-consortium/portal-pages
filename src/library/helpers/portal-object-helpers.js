@@ -1,12 +1,12 @@
 var filterDiv = null;
 
 var shortenText = function(text, length) {
-  length = (typeof length !== 'undefined') ? length : 255;
+  length = (typeof length !== 'undefined') ? length : 350;
   if (!text) {
     return "";
   } else {
     if (text.length > length) {
-      return text.substring(0, length-6) + "…" + text.substring(text.length-5);
+      return text.substring(0, length-1) + "…";
     } else {
       return text;
     }
@@ -45,13 +45,13 @@ var processResource = function (resource) {
   resource.filteredDescription = textOfHtml(resource.description);
 
   if (resource.abstract) {
-    resource.shortDescription = resource.abstract;
+    resource.filteredShortDescription = textOfHtml(resource.abstract);
   } else if (resource.full_description) {
-    resource.shortDescription = shortenText(resource.full_description);
+    resource.filteredShortDescription =
+      shortenText(textOfHtml(resource.full_description));
   } else {
-    resource.shortDescription = resource.description
+    resource.filteredShortDescription = textOfHtml(resource.description);
   }
-  resource.filteredShortDescription = textOfHtml(resource.shortDescription);
 
   if (resource.description_for_teacher){
     resource.longDescription = resource.description_for_teacher;
