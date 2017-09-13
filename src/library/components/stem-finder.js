@@ -40,6 +40,8 @@ var StemFinder = Component({
         var params      = this.getFiltersFromURL();
         subjectAreaKey  = params["subject"];
         gradeLevelKey   = params["grade-level"];
+
+        subjectAreaKey = this.mapSubjectArea(subjectAreaKey);
     }
 
     //
@@ -116,6 +118,20 @@ var StemFinder = Component({
     }
 
     return ret;
+  },
+
+  mapSubjectArea: function(subjectArea) {
+    switch(subjectArea) {
+      case 'biology':
+      case 'life-science':
+        return 'life-sciences';
+      case 'chemistry':
+      case 'physics':
+        return 'physics-chemistry';
+      case 'engineering':
+        return 'engineering-tech';
+    }
+    return null;
   },
 
   //
