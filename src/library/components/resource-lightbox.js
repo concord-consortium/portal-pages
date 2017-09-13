@@ -304,6 +304,11 @@ var ResourceLightbox = Component({
         h1({}, resource.name),
         p({className: "portal-pages-resource-lightbox-description",
            dangerouslySetInnerHTML: {__html: resource.longDescription}}),
+        resource.has_pretest ?
+            p({className: "portal-pages-resource-lightbox-description"},
+                "Pre- and Post-tests available" )
+            :
+            null,
         div({},
           links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, links.preview.text) : null,
           links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick}, links.assign_material.text) : null,
