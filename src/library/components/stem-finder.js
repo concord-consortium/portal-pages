@@ -131,7 +131,7 @@ var StemFinder = Component({
       case 'engineering':
         return 'engineering-tech';
     }
-    return null;
+    return subjectArea;
   },
 
   //
