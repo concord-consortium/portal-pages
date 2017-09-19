@@ -4,6 +4,22 @@ if (Portal.currentUser.isLoggedIn) {
   jQuery('.portal-pages-collection-resource-list').remove();
 }
 
+PortalPages.renderMaterialsCollection(33, '#collection-5', {
+  limit: 10,
+  onDataLoad: function (materials) {
+    if (materials.length <= 0)
+      jQuery('#collection-5').parents('li').remove(); // remove collection if no resources available
+  }
+});
+
+PortalPages.renderMaterialsCollection(34, '#collection-6', {
+  limit: 10,
+  onDataLoad: function (materials) {
+    if (materials.length <= 0)
+      jQuery('#collection-6').parents('li').remove(); // remove collection if no resources available
+  }
+});
+
 PortalPages.renderMaterialsCollection(30, '#collection-4', {
   limit: 10,
   onDataLoad: function (materials) {
