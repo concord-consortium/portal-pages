@@ -311,7 +311,14 @@ var ResourceLightbox = Component({
             null,
         div({},
           links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, links.preview.text) : null,
-          links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick}, links.assign_material.text) : null,
+          links.assign_material ?  
+            a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick}, links.assign_material.text) : null,
+
+          links.bookmark_material ?
+            a({ className: "portal-pages-secondary-button", 
+                href: 'javascript:' + links.bookmark_material.onclick}, 
+                links.bookmark_material.text) : null,
+
           links.assign_collection ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_collection.onclick}, links.assign_collection.text) : null,
           links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank'}, links.teacher_guide.text) : null
         ),
