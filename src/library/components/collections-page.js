@@ -19,7 +19,7 @@ var CollectionsPage = Component({
           ),
           p({},
             a({ className: "special-link",
-                href: "https://concord.org/projects",
+                href: "https://concord.org/projects/",
                 target: "_blank"},
               "View ",
               span({ className: "complete"}, "all Concord Consortium"),
