@@ -163,6 +163,10 @@ var StemFinder = Component({
     var searchPage = incremental ? this.state.searchPage + 1 : 1;
 
     var keyword = (this.refs.keyword ? this.refs.keyword.value : "") || "";
+    if (keyword !== "") {
+      _gaq.push(['_trackEvent', 'Home Page Search', 'Search', keyword]);
+    }
+
     var query = [
       "search_term=",
       encodeURIComponent(keyword),
@@ -280,6 +284,7 @@ var StemFinder = Component({
         subjectAreasSelectedMap[subjectArea.key] = subjectArea;
         subjectAreasSelected.push(subjectArea);
         jQuery('#' + subjectArea.key).addClass('selected');
+        _gaq.push(['_trackEvent', 'Home Page Filter', 'Click', subjectArea.title]);
       }
       else {
         subjectAreasSelectedMap[subjectArea.key] = undefined;
@@ -328,6 +333,7 @@ var StemFinder = Component({
     if (index === -1) {
       selectedFilters.push(filter);
       jQuery('#' + filter.key).addClass('selected');
+      _gaq.push(['_trackEvent', 'Home Page Filter', 'Click', filter.title]);
     }
     else {
       selectedFilters.splice(index, 1);

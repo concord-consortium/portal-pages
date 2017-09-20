@@ -73,9 +73,29 @@ var ResourceLightbox = Component({
     this.setState({resource: resource});
   },
 
+  handlePreviewClick: function (e) {
+    var resource = this.state.resource;
+    _gaq.push(['_trackEvent','Resource Preview Button','Click', resource.name]);
+  },
+
+  handleAssignClick: function (e) {
+    var resource = this.state.resource;
+    _gaq.push(['_trackEvent','Assign to Class Button','Click', resources.name]);
+  },
+
+  handleTeacherGuideClick: function (e) {
+    var resource = this.state.resource;
+    _gaq.push(['_trackEvent','Teacher Guide Link','Click', resources.name]);
+  },
+
+  handleAddToCollectionClick: function (e) {
+    var resource = this.state.resource;
+    _gaq.push(['_trackEvent','Add to Collection Button','Click', resources.name]);
+  },
+
   handleClose: function (e) {
 
-    if (jQuery(e.target).is('.portal-pages-resource-lightbox') || 
+    if (jQuery(e.target).is('.portal-pages-resource-lightbox') ||
         jQuery(e.target).is('.portal-pages-resource-lightbox-background-close')) {
         // only close lightbox if lightbox wrapper or X is clicked
         this.props.toggleLightbox(e);
@@ -85,7 +105,7 @@ var ResourceLightbox = Component({
     //
     // Handle closing lightbox from "not found" view.
     //
-    if( e.target.id == 'portal-pages-lightbox-close-not-found') { 
+    if( e.target.id == 'portal-pages-lightbox-close-not-found') {
         this.props.toggleLightbox(e);
         e.preventDefault();
         return;
@@ -310,10 +330,10 @@ var ResourceLightbox = Component({
             :
             null,
         div({},
-          links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank"}, links.preview.text) : null,
-          links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick}, links.assign_material.text) : null,
-          links.assign_collection ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_collection.onclick}, links.assign_collection.text) : null,
-          links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank'}, links.teacher_guide.text) : null
+          links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank", onClick: this.handlePreviewClick}, links.preview.text) : null,
+          links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick, onClick: this.handleAssignClick}, links.assign_material.text) : null,
+          links.assign_collection ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_collection.onclick, onClick: this.handleAddToCollectionClick}, links.assign_collection.text) : null,
+          links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank', onClick: this.handleTeacherGuideClick}, links.teacher_guide.text) : null
         ),
         this.renderIncludedActivities(),
         hr({}),
