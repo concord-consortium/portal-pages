@@ -151,7 +151,11 @@ var ResourceLightbox = Component({
   },
 
   renderRequirements: function () {
-    var runsInBrowser = true; // TODO: get from search results when they become available
+    var resource = this.state.resource;
+    var runsInBrowser = true;
+    if (resource.material_properties.indexOf('Requires download') > -1) {
+      var runsInBrowser = false;
+    }
     if (runsInBrowser) {
       return div({className: "portal-pages-resource-lightbox-requirements"},
         "This activity runs entirely in a Web browser. Preferred browsers are: ",
