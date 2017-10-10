@@ -298,19 +298,18 @@ var ResourceLightbox = Component({
 
     var editIcon = editLink ? a({className: 'edit', href: editLink}, "edit") : null;
 
-    // TODO: gear icon?
     var settingsIcon = links.edit ? a({className: 'settings', href: links.edit.url}, 'settings') : null;
 
-    if (!printIcon && !copyIcon && !editIcon) {
+    if (printIcon || copyIcon || editIcon || settingsIcon) {
+      return ul({},
+        printIcon ? li({}, printIcon) : null,
+        copyIcon ? li({}, copyIcon) : null,
+        editIcon ? li({}, editIcon) : null,
+        settingsIcon ? li({}, settingsIcon) : null
+      );
+    } else {
       return null;
     }
-
-    return ul({},
-      printIcon ? li({}, printIcon) : null,
-      copyIcon ? li({}, copyIcon) : null,
-      editIcon ? li({}, editIcon) : null,
-      settingsIcon ? li({}, settingsIcon) : null
-    )
   },
 
   renderResource: function () {
