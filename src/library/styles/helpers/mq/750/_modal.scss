@@ -1,4 +1,4 @@
-.signup-default-modal-content, .login-default-modal-content {
+.signup-default-modal-content, .login-default-modal-content, .forgot-password-default-modal-content {
   left: 0;
   margin-left: 0;
   width: auto;
@@ -6,7 +6,7 @@
 .signup-form .radio-input {
   margin-bottom: 10px;
   }
-#login-default-modal, #signup-default-modal, #login-form, #register-form {
+#login-default-modal, #signup-default-modal, #forgot-password-modal, #login-form, #register-form {
   dd {
     margin: 0 0 20px;
     &.two-col {

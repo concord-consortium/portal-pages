@@ -68,6 +68,9 @@ window.PortalPages = {
   renderLoginModal: function(properties) {
     signup_functions.openLoginModal(properties);
   },
+  renderForgotPasswordModal: function(properties) {
+    signup_functions.openForgotPasswordModal(properties);
+  },
 
   //
   // Render a signup form to the specified DOM id.
