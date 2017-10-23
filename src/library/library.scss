@@ -538,7 +538,7 @@ $materials-collection-item-icon-width: 300px;
   font-weight: 700;
 }
 
-.signup-default-modal-content, .login-default-modal-content {
+.signup-default-modal-content, .login-default-modal-content, .forgot-password-default-modal-content {
   background: #fff;
   box-sizing: content-box;
   left: 50%;
@@ -553,7 +553,7 @@ $materials-collection-item-icon-width: 300px;
 .signup-form .radio-input {
   margin-bottom: 30px;
   }
-#login-default-modal, #signup-default-modal, #login-form, #register-form {
+#login-default-modal, #signup-default-modal, #forgot-password-modal, #login-form, #register-form {
   background: transparent;
   height: 100%;
   left: 0;
@@ -612,6 +612,7 @@ $materials-collection-item-icon-width: 300px;
       margin-right: 45px;
     }
   }
+  p { margin-bottom: 20px; }
   footer {
     background: $col-lightgray;
     color: $col-darkgray;
@@ -812,6 +813,17 @@ $materials-collection-item-icon-width: 300px;
     margin-left: 0%;
   }
 
+}
+
+#forgot-password-modal {
+  dl { padding-top: 10px; }
+  .text-input input {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .submit-button-container, button[type="submit"] {
+    margin-top: 0;
+  }
 }
 
 label.inline { display: inline-block !important; }

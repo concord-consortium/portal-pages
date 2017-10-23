@@ -4,20 +4,17 @@ var dl              = React.DOM.dl;
 var dt              = React.DOM.dt;
 var footer          = React.DOM.footer;
 var strong          = React.DOM.strong;
-var span            = React.DOM.span;
 var a               = React.DOM.a;
 var div             = React.DOM.div;
 var h2              = React.DOM.h2;
-var li              = React.DOM.li;
 var p               = React.DOM.p;
-var ul              = React.DOM.ul;
 var footer          = React.DOM.footer;
 
 var TextInputClass  = require('./text_input');
 
 var enableAuthProviders = true;
 
-var LoginModal = function() {
+var ForgotPasswordModal = function() {
 
   // console.log("INFO Creating LoginModal class");
 
@@ -26,7 +23,7 @@ var LoginModal = function() {
 
   return React.createClass({
 
-    displayName: 'LoginModal',
+    displayName: 'ForgotPasswordModal',
 
     getDefaultProps: function () {
       return {
@@ -34,21 +31,16 @@ var LoginModal = function() {
       }
     },
 
-    submit: function(data) {
-      if(this.props.afterSigninPath) {
-        data.after_sign_in_path = this.props.afterSigninPath;
-      }
-
-      jQuery.post("/api/v1/users/sign_in", data).done(function(response) {
-		//console.log("INFO login success", response);
-        if(response.redirect_path) {
-          window.location = response.redirect_path;
-        } else {
-          location.reload(true);
-        }
+    submit: function(login_data) {
+      var login = login_data.user.login;
+      var data = { login_or_email: login };
+      jQuery.post("/api/v1/passwords/reset_password", data).done(function(response) {
+        console.log(response);
+        jQuery('.forgot-password-form p, .forgot-password-form dl, .forgot-password-form div').fadeOut(300);
+        jQuery('.forgot-password-form footer').fadeOut(300, function() {
+          jQuery('.forgot-password-form').append('<p>' + response.message + '</p>');
+        });
       }).fail(function(err) {
-		//console.log("INFO login error", err);
-		//console.log("INFO login error responseText", err.responseText);
         if(err && err.responseText) {
             var response = jQuery.parseJSON(err.responseText);
             var message = response.message;
@@ -59,76 +51,49 @@ var LoginModal = function() {
             //
             // TODO use some kind of styled modal dialog here.....
             //
-            alert("Error: " + message);
+            jQuery('.input-error').text("Error: " + message);
+            jQuery('.input-error').css('color', '#ea6d2f').fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
         }
       });
 
-    },
-
-    handleForgotPassword: function (e) {
-      e.preventDefault();
-      PortalPages.renderForgotPasswordModal();
     },
 
     render: function() {
 
       // console.log("INFO rendering LoginModal with props", this.props);
 
-      var providerComponents = [];
-
-      if(enableAuthProviders && this.props.oauthProviders) {
-
-        providers = this.props.oauthProviders;
-        providers.sort(function(a,b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); } ); // sort providers alphabetically by name
-        for(var i = 0; i < providers.length; i++) {
-          providerComponents.push(
-            a({
-              className: "badge",
-              id: providers[i].name,
-              href: providers[i].directPath
-
-            }, 'Sign in with ' + providers[i].display_name )
-          );
-        }
-      }
-
       _this = this;
 
-      return div({className: 'login-default-modal-content'},
+      return div({className: 'forgot-password-default-modal-content'},
         FormsyForm({
-          className: 'signup-form',
+          className: 'forgot-password-form',
           onValidSubmit: this.submit },
 
           h2({},
-            strong({}, 'Log in'),
-            ' to the ' + this.props.siteName),
+            strong({}, 'Forgot'),
+            ' your login information?'),
+          p({},
+            strong({}, 'Students: '),
+            'Ask your teacher for help.'
+          ),
+          p({},
+            strong({}, 'Teachers: '),
+            'Enter your username or email address below.'
+          ),
           dl({},
-            dt({}, "Username"),
+            dt({}, "Username or Email Address"),
             dd({},
               TextInput({
                 name: 'user[login]',
                 placeholder: '',
                 required: true })
             ),
-            dt({}, "Password"),
-            dd({},
-              TextInput({
-                name: 'user[password]',
-                placeholder: '',
-                type: 'password',
-                required: true })
-            )
-          ),
-          div({className: 'third-party-login-options'},
-            p({}, 'Or, sign in with: '),
-            providerComponents
           ),
           div({className: 'submit-button-container'},
-            a({ href: "/forgot_password", onClick: this.handleForgotPassword, title: "Click this link if you forgot your username and/or password."}, "Forgot your username or password?"),
             button({
               className: 'submit-btn',
               type: 'submit',
-            }, 'Log In!')
+            }, 'Submit')
           ),
 
           footer({},
@@ -151,4 +116,4 @@ var LoginModal = function() {
   });
 };
 
-module.exports = LoginModal;
+module.exports = ForgotPasswordModal;

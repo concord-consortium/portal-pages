@@ -1,7 +1,8 @@
-var SignupModal     = require('./signup_modal');
-var Signup          = require('./signup');
-var LoginModal      = require('./login_modal');
-var Modal           = require('../../helpers/modal');
+var SignupModal         = require('./signup_modal');
+var Signup              = require('./signup');
+var LoginModal          = require('./login_modal');
+var ForgotPasswordModal = require('./forgot_password_modal');
+var Modal               = require('../../helpers/modal');
 
 //
 // Map modal to CSS classes
@@ -9,6 +10,7 @@ var Modal           = require('../../helpers/modal');
 var modalClasses = {}
 modalClasses[LoginModal]    = "login-default-modal";
 modalClasses[SignupModal]   = "signup-default-modal";
+modalClasses[ForgotPasswordModal]   = "forgot-password-modal";
 
 //
 // Render signup form with the specfiied properties to the specified DOM id.
@@ -40,14 +42,18 @@ var openModal = function(type, properties, closeFunc) {
   console.log("INFO creating modal with props", properties);
   ReactDOM.render(comp(properties), modalContainer[0]);
 
-  return Modal.showModal(modalContainerSelector, 
-                            undefined, 
-                            undefined, 
+  return Modal.showModal(modalContainerSelector,
+                            undefined,
+                            undefined,
                             closeFunc);
 };
 
 var openLoginModal = function(properties) {
   openModal(LoginModal, properties);
+};
+
+var openForgotPasswordModal = function(properties) {
+  openModal(ForgotPasswordModal, properties);
 };
 
 var openSignupModal = function(properties) {
@@ -80,7 +86,7 @@ var logout = function(successFunc, failFunc, redirectAfter) {
         if(successFunc) {
             successFunc();
         }
-        
+
         if(redirectAfter) {
             console.log("INFO redirecting to " + redirectAfter);
             location.href = redirectAfter;
@@ -95,7 +101,7 @@ var logout = function(successFunc, failFunc, redirectAfter) {
         if(err.responseText) {
             var response = jQuery.parseJSON(err.responseText);
             console.log("ERROR logout error responseText", response.message);
-        } 
+        }
 
         if(failFunc) {
             failFunc();
@@ -106,4 +112,5 @@ var logout = function(successFunc, failFunc, redirectAfter) {
 
 module.exports.openSignupModal 	= openSignupModal;
 module.exports.openLoginModal 	= openLoginModal;
+module.exports.openForgotPasswordModal 	= openForgotPasswordModal;
 module.exports.renderSignupForm = renderSignupForm;
