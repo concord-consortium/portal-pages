@@ -27,4 +27,4 @@ cloudfront_distribution_config:
   aliases:
     quantity: 1
     items:
-      CNAME0: portal-pages.concord.org
+      - portal-pages.concord.org
