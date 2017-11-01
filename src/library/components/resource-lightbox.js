@@ -316,6 +316,9 @@ var ResourceLightbox = Component({
     var resource = this.state.resource;
     var links = resource.links;
 
+    // console.log("[DEBUG] resource-lightbox links.assign_material.onclick", links.assign_material.onclick);
+    // console.log("[DEBUG] resource-lightbox links.assign_collection.onclick", links.assign_collection.onclick);
+
     return div({className: "portal-pages-resource-lightbox-modal-content"},
       div({className: "portal-pages-resource-lightbox-modal-content-top"},
         div({className: "portal-pages-resource-lightbox-modal-utility"},
@@ -333,10 +336,15 @@ var ResourceLightbox = Component({
             :
             null,
         div({},
+
           links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank", onClick: this.handlePreviewClick}, links.preview.text) : null,
+
           links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick, onClick: this.handleAssignClick}, links.assign_material.text) : null,
+
           links.assign_collection ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_collection.onclick, onClick: this.handleAddToCollectionClick}, links.assign_collection.text) : null,
+
           links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank', onClick: this.handleTeacherGuideClick}, links.teacher_guide.text) : null
+
         ),
         this.renderIncludedActivities(),
         hr({}),

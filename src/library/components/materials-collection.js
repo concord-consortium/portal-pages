@@ -96,7 +96,9 @@ var MaterialsCollection = Component({
   componentWillMount: function () {
     jQuery.ajax({
       url: Portal.API_V1.MATERIALS_BIN_COLLECTIONS,
-      data: {id: this.props.collection},
+      data: {   id:                     this.props.collection,
+                skip_lightbox_reloads:  true
+            },
       dataType: 'json',
       success: function (data) {
         materials = data[0].materials;
