@@ -67,4 +67,4 @@ var processResource = function (resource) {
 module.exports = {
   textOfHtml: textOfHtml,
   processResource: processResource
-}
+};

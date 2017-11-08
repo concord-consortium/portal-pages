@@ -1,6 +1,4 @@
-var a, div, ref;
-
-ref = React.DOM, a = ref.a, div = ref.div;
+var ref = React.DOM, a = ref.a, div = ref.div;
 
 var PrivacyPolicy = function() {
   return React.createClass({

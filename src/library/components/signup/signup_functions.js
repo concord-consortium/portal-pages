@@ -7,7 +7,7 @@ var Modal               = require('../../helpers/modal');
 //
 // Map modal to CSS classes
 //
-var modalClasses = {}
+var modalClasses = {};
 modalClasses[LoginModal]    = "login-default-modal";
 modalClasses[SignupModal]   = "signup-default-modal";
 modalClasses[ForgotPasswordModal]   = "forgot-password-modal";
@@ -67,7 +67,7 @@ var openSignupModal = function(properties) {
             redireectPath = properties.omniauth_origin;
         }
         logout(Modal.hideModal, Modal.hideModal, redireectPath);
-    }
+    };
   }
   openModal(SignupModal, properties, closeFunc);
 };

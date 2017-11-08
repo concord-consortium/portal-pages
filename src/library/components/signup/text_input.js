@@ -1,8 +1,5 @@
-var TIMEOUT, div, input, ref;
-
-ref = React.DOM, div = ref.div, input = ref.input;
-
-TIMEOUT = 350;
+var ref = React.DOM, div = ref.div, input = ref.input,
+  TIMEOUT = 350;
 
 var AsyncValidationMixin = require("./async_validation_mixin");
 
@@ -44,10 +41,9 @@ var TextInput = function() {
       }
     },
     render: function() {
-      var className, disabled, inputVal, placeholder, ref1;
-      ref1 = this.props, placeholder = ref1.placeholder, disabled = ref1.disabled;
-      inputVal = this.state.inputVal;
-      className = "text-input " + this.props.name;
+      var ref1 = this.props, placeholder = ref1.placeholder, disabled = ref1.disabled,
+        inputVal = this.state.inputVal,
+        className = "text-input " + this.props.name;
       if (this.showRequired() && !this.isPristine()) {
         className += ' required';
       }
@@ -76,4 +72,3 @@ var TextInput = function() {
 };
 
 module.exports = TextInput;
-

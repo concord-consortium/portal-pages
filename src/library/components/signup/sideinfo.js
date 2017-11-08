@@ -1,6 +1,4 @@
-var div, li, p, ref, ul;
-
-ref = React.DOM, div = ref.div, li = ref.li, p = ref.p, ul = ref.ul;
+var ref = React.DOM, div = ref.div, li = ref.li, p = ref.p, ul = ref.ul;
 
 var SideInfo = function() {
 
@@ -17,4 +15,3 @@ var SideInfo = function() {
 };
 
 module.exports = SideInfo;
-

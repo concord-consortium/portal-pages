@@ -31,7 +31,7 @@ var LoginModal = function() {
     getDefaultProps: function () {
       return {
         siteName: (Portal && Portal.siteName) || 'Portal'
-      }
+      };
     },
 
     submit: function(data) {

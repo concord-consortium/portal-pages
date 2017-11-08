@@ -17,7 +17,7 @@ var showOverlay = function(clickHandler,modalId,fixedPosition) {
   }
   jQuery('#portal-pages-modal-overlay').unbind('click');
   if(clickHandler) {
-      jQuery('#portal-pages-modal-overlay').click(clickHandler)
+      jQuery('#portal-pages-modal-overlay').click(clickHandler);
   }
   jQuery('#portal-pages-modal-overlay').css({'height': jQuery(document).height() + 'px'}).fadeIn('fast');
 };

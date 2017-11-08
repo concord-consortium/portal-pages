@@ -38,7 +38,7 @@ var StemFinder = Component({
         // then attempt to see if this information is available in the URL.
         //
         var params      = this.getFiltersFromURL();
-        subjectAreaKey  = params["subject"];
+        subjectAreaKey  = params.subject;
         gradeLevelKey   = params["grade-level"];
 
         subjectAreaKey = this.mapSubjectArea(subjectAreaKey);
@@ -53,10 +53,11 @@ var StemFinder = Component({
 
     var subjectAreasSelected    = [];
     var subjectAreasSelectedMap = {};
+    var i;
 
     if(subjectAreaKey) {
         var subjectAreas = filters.subjectAreas;
-        for(var i = 0; i < subjectAreas.length; i++) {
+        for(i = 0; i < subjectAreas.length; i++) {
             var subjectArea = subjectAreas[i];
             if(subjectArea.key == subjectAreaKey) {
                 subjectAreasSelected.push(subjectArea);
@@ -69,7 +70,7 @@ var StemFinder = Component({
 
     if(gradeLevelKey) {
         var gradeLevels = filters.gradeFilters;
-        for(var i = 0; i < gradeLevels.length; i++) {
+        for(i = 0; i < gradeLevels.length; i++) {
             var gradeLevel = gradeLevels[i];
             if(gradeLevel.key == gradeLevelKey) {
                 gradeFiltersSelected.push(gradeLevel);

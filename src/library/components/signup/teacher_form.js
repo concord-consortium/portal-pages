@@ -1,13 +1,12 @@
-var CANT_FIND_SCHOOL, EMAIL_REGEXP, EMAIL_TAKEN, GO_BACK_TO_LIST, LOGIN_INVALID, LOGIN_TOO_SHORT, a, button, div, i, invalidZipcode, newSchoolWarning, ref, zipcodeHelp;
+var invalidZipcode, newSchoolWarning, zipcodeHelp,
+  ref = React.DOM, button = ref.button, a = ref.a, i = ref.i, div = ref.div, dd = ref.dd, dl = ref.dl, dt = ref.dt;
 
-ref = React.DOM, button = ref.button, a = ref.a, i = ref.i, div = ref.div, dd = ref.dd, dl = ref.dl, dt = ref.dt;
-
-LOGIN_TOO_SHORT = 'Login is too short';
-LOGIN_INVALID = 'Invalid login. This name is either already taken or does not use only letters, numbers and the characters .+-_@';
-EMAIL_REGEXP = 'Email doesn\'t appear to be a valid email';
-EMAIL_TAKEN = 'Email belongs to an existing user';
-CANT_FIND_SCHOOL = 'I can\'t find my school in the list.';
-GO_BACK_TO_LIST = 'Go back to the school list.';
+var LOGIN_TOO_SHORT = 'Login is too short',
+  LOGIN_INVALID = 'Invalid login. This name is either already taken or does not use only letters, numbers and the characters .+-_@',
+  EMAIL_REGEXP = 'Email doesn\'t appear to be a valid email',
+  EMAIL_TAKEN = 'Email belongs to an existing user',
+  CANT_FIND_SCHOOL = 'I can\'t find my school in the list.',
+  GO_BACK_TO_LIST = 'Go back to the school list.';
 
 newSchoolWarning = function(zipOrPostal) {
   return 'You are adding a new school / institution. Please make sure that the ' + (zipOrPostal + " and school / institution name are correct!");
@@ -79,9 +78,8 @@ var TeacherForm = function() {
       });
     },
     submit: function(data, resetForm, invalidateForm) {
-      var basicData, onRegistration, params, ref1;
-      ref1 = this.props, basicData = ref1.basicData, onRegistration = ref1.onRegistration;
-      params = jQuery.extend({}, basicData, data);
+      var ref1 = this.props, basicData = ref1.basicData, onRegistration = ref1.onRegistration,
+        params = jQuery.extend({}, basicData, data);
       this.setState({
         canSubmit: false
       });
@@ -95,10 +93,9 @@ var TeacherForm = function() {
       });
     },
     onChange: function(currentValues) {
-      var country_id, currentZipcode, ref1, registerNewSchool, zipcode, zipcodeValid;
-      country_id = currentValues.country_id, zipcode = currentValues.zipcode;
-      ref1 = this.state, currentZipcode = ref1.currentZipcode, registerNewSchool = ref1.registerNewSchool;
-      zipcodeValid = this.refs.zipcode && this.refs.zipcode.isValidValue(zipcode);
+      var country_id = currentValues.country_id, zipcode = currentValues.zipcode,
+        ref1 = this.state, currentZipcode = ref1.currentZipcode, registerNewSchool = ref1.registerNewSchool,
+        zipcodeValid = this.refs.zipcode && this.refs.zipcode.isValidValue(zipcode);
       return this.setState({
         currentCountry: country_id,
         currentZipcode: zipcodeValid && zipcode || null,
@@ -157,11 +154,12 @@ var TeacherForm = function() {
       }
     },
     render: function() {
-      var anonymous, canSubmit, currentCountry, currentZipcode, ref1, registerNewSchool, showSchool, showZipcode, showZipcodeHelp;
-      anonymous = this.props.anonymous;
-      ref1 = this.state, canSubmit = ref1.canSubmit, currentCountry = ref1.currentCountry, currentZipcode = ref1.currentZipcode, registerNewSchool = ref1.registerNewSchool, showZipcodeHelp = ref1.showZipcodeHelp;
-      showZipcode = currentCountry != null;
-      showSchool = (currentCountry != null) && (currentZipcode != null);
+      var anonymous = this.props.anonymous,
+        ref1 = this.state, canSubmit = ref1.canSubmit, currentCountry = ref1.currentCountry,
+        currentZipcode = ref1.currentZipcode, registerNewSchool = ref1.registerNewSchool,
+        showZipcodeHelp = ref1.showZipcodeHelp,
+        showZipcode = currentCountry != null,
+        showSchool = (currentCountry != null) && (currentZipcode != null);
       return FormsyForm({
         ref: 'form',
         onValidSubmit: this.submit,
