@@ -65,14 +65,6 @@ jQuery(document).ready(function() {
   jQuery('#overlay').click(function() {
     hidePopover();
   });
-  jQuery('nav li a').each(function() {
-    jQuery(this).click(function() {
-      jQuery('nav a').removeClass('active');
-      var section_id = jQuery(this).attr('href');
-      navigateTo(section_id);
-      jQuery(this).addClass('active');
-    });
-  });
   jQuery('.collapsible').hide();
   jQuery('.collapsible-toggle').css({'cursor':'pointer'}).click(function() {
     jQuery(this).toggleClass('open');

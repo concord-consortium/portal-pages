@@ -14,14 +14,6 @@ jQuery(document).ready(function() {
   jQuery('#overlay').click(function() {
     hidePopover();
   });
-  jQuery('nav li a').each(function() {
-    jQuery(this).click(function() {
-      jQuery('nav a').removeClass('active');
-      var section_id = jQuery(this).attr('href');
-      navigateTo(section_id);
-      jQuery(this).addClass('active');
-    });
-  });
   jQuery('.collapsible').hide();
   jQuery('.collapsible-toggle').css({'cursor':'pointer'}).click(function(){
     jQuery(this).toggleClass('open');
@@ -59,13 +51,6 @@ function showTab(tab_id) {
   jQuery(tab_id + '-tab').addClass('active').show();
   jQuery('ul.tabs li').removeClass('active');
   jQuery(tab_id + '-tab-link').addClass('active');
-}
-function navigateTo(section_id) {
-  if (section_id == '#intro') {
-    jQuery('html,body').animate({scrollTop: 0}, 300);
-  } else {
-    jQuery('html,body').animate({scrollTop: jQuery(section_id).offset().top - 75}, 300);
-  }
 }
 function showPopover(popover_id) {
   jQuery('#overlay').fadeIn('fast');
