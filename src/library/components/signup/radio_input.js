@@ -1,6 +1,4 @@
-var div, input, label, ref;
-
-ref = React.DOM, div = ref.div, input = ref.input, label = ref.label;
+var ref = React.DOM, div = ref.div, input = ref.input, label = ref.label;
 
 var RadioInput = function() {
   return React.createClass({
@@ -39,5 +37,3 @@ var RadioInput = function() {
 };
 
 module.exports = RadioInput;
-
-

@@ -1,6 +1,4 @@
-var a, div, p, ref;
-
-ref = React.DOM, div = ref.div, p = ref.p, a = ref.a;
+var ref = React.DOM, div = ref.div, p = ref.p, a = ref.a;
 
 var TeacherRegistrationComplete = function() {
   return React.createClass({
@@ -21,4 +19,3 @@ var TeacherRegistrationComplete = function() {
 
 
 module.exports = TeacherRegistrationComplete;
-

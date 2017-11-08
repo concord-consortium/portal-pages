@@ -8,7 +8,8 @@ const fs = require("fs");
 const mkdirp = require("mkdirp");
 const sass = require('node-sass');
 const webpack = require("webpack");
-var ncp = require('ncp').ncp;
+const ncp = require('ncp').ncp;
+const jshint = require('jshint').JSHINT;
 
 const portalSrcFolder = path.resolve(`${__dirname}/../src/portals`);
 const portalDestFolder = path.resolve(`${__dirname}/../dest/portals`);
@@ -44,10 +45,34 @@ const fileContents = (filePath, tag) => {
   return contents && tag ? `<${tag}>\n${contents}\n</${tag}>` : contents;
 };
 
+// run jshint over all the source files
+let hasErrors = false;
+[portalSrcFolder, librarySrcFolder].forEach((basePath) => {
+  const files = glob.sync(`${basePath}/**/*.js`);
+  files.forEach((file) => {
+    jshint(fs.readFileSync(file, "utf8"), {}, {});
+    if (jshint.errors.length > 0) {
+      const relativePath = path.relative(__dirname, file);
+      jshint.errors.forEach((err) => {
+        console.error(`${relativePath}: line ${err.line}, col ${err.character}, ${err.reason}`);
+      });
+      hasErrors = true;
+    }
+  });
+});
+if (hasErrors) {
+  die("lint failed", 1);
+}
+
+// allow only lint runs with parameter
+if (process.argv[2] === "lint") {
+  process.exit(0);
+}
+
 // get a list of all the .html files in src
 glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
   if (err) {
-    die(err, 1);
+    die(err, 2);
   }
 
   const buildComment = `<!-- built using portal pages build script on ${new Date()} -->`;
@@ -77,14 +102,14 @@ const compiler = webpack({
 });
 compiler.run((err, stats) => {
   if (err) {
-    die(err, 2);
+    die(err, 3);
   }
 });
 
 // build the library css
 sass.render({file: `${librarySrcFolder}/library.scss`}, (err, result) => {
   if (err) {
-    die(err, 3);
+    die(err, 4);
   }
   else {
     mkdirp.sync(libraryDestFolder);
@@ -95,7 +120,7 @@ sass.render({file: `${librarySrcFolder}/library.scss`}, (err, result) => {
 // build the site redesign css
 sass.render({file: `${siteRedesignSrcFolder}/site-redesign.scss`}, (err, result) => {
   if (err) {
-    die(err, 3);
+    die(err, 5);
   }
   else {
     mkdirp.sync(siteRedesignDestFolder);
@@ -107,12 +132,12 @@ sass.render({file: `${siteRedesignSrcFolder}/site-redesign.scss`}, (err, result)
 mkdirp.sync(siteRedesignAssetsDestFolder);
 ncp(siteRedesignAssetsSrcFolder, siteRedesignAssetsDestFolder, function (err) {
   if (err) {
-    die(err, 4);
+    die(err, 6);
   }
 });
 mkdirp.sync(libraryAssetsDestFolder);
 ncp(libraryAssetsSrcFolder, libraryAssetsDestFolder, function (err) {
   if (err) {
-    die(err, 5);
+    die(err, 7);
   }
 });

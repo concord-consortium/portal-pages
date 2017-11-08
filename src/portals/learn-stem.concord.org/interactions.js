@@ -38,11 +38,12 @@ jQuery(function() {
 
   // attempt to call Quicksand on every form change
   $filterType.change(function(e) {
-  if (jQuery('#filter input[name="type"]:checked').val() == 'all') {
-    var $filteredData = $data.find('li');
-  } else {
-    var $filteredData = $data.find('li[class*=' + jQuery('#filter input[name="type"]:checked').val() + ']');
-  }
+    var $filteredData;
+    if (jQuery('#filter input[name="type"]:checked').val() == 'all') {
+      $filteredData = $data.find('li');
+    } else {
+      $filteredData = $data.find('li[class*=' + jQuery('#filter input[name="type"]:checked').val() + ']');
+    }
 
     // call quicksand
     $sims.quicksand($filteredData, {
