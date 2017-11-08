@@ -87,7 +87,7 @@ var ForgotPasswordModal = function() {
                 name: 'user[login]',
                 placeholder: '',
                 required: true })
-            ),
+            )
           ),
           div({className: 'submit-button-container'},
             button({
