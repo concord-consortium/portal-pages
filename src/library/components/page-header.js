@@ -20,6 +20,7 @@ var PageHeader = Component({
       loggedIn: Portal.currentUser.isLoggedIn,
       opacity: 0,
       userId: 0,
+      logo_class: 'concord-logo ' + this.props.logo_class,
       oauthProviders: this.props.oauthProviders || Portal.oauthProviders || {},
       theme: this.props.theme || Portal.theme || "default",
       homePath: this.props.homePath || Portal.currentUser.homePath || "/",
@@ -143,6 +144,7 @@ var PageHeader = Component({
     if (this.state.windowWidth > 950 || !this.state.nav_menu_collapsed) {
       nav_links = this.renderNavLinks();
     }
+    var logo_class = this.state.logo_class;
     return div({className: "theme-" + this.state.theme},
       div({className: "portal-pages-umbrella"},
         div({className: "portal-pages-umbrella-contain cols"},
@@ -157,7 +159,7 @@ var PageHeader = Component({
       nav({className: "concord-navigation cols no-collapse"},
         div({className: "logo-contain col-3"},
           a({href: "/", title: "Go to the Home Page"},
-            div({className: "concord-logo"},
+            div({className: logo_class},
               "Home"
             )
           )
