@@ -9,10 +9,10 @@
       evaluate learning progress.</p>
   </div>
   <div class="portal-pages-collection-page-intro col-5">
-    <figure><img src="https://concord.org/sites/default/files/images/learn/advanced-troubleshooting-series-parallel-circuits-1.png" alt="SPARKS" title="SPARKS" /></figure>
+    <figure><img src="https://concord.org/wp-content/uploads/2016/12/images/learn/advanced-troubleshooting-series-parallel-circuits-1.png" alt="SPARKS" title="SPARKS" /></figure>
   </div>
   <div class="sign-up-box col-12">
-    <button onclick="Portal.openSignupModal();">Sign Up!</button>
+    <button onclick="PortalPages.renderSignupModal( { oauthProviders: Portal.oauthProviders } ); return false;">Sign Up!</button>
     <p>Register to assign assessments to classes.</p>
   </div>
 </div>
@@ -25,38 +25,7 @@
         <li id="simulations-tab-link" class="active" onclick="showTab('#simulations');">Assessments</li>
         <li id="tutorials-tab-link" onclick="showTab('#tutorials');">Tutorials</li>
       </ul>
-      <div id="simulations-tab" class="tab-content active">
-        <!--<ul>
-          <li>
-            <a target="_blank" href="https://sparks-activities.concord.org/sparks-content/activities.html#series-resistances">
-              <img src="https://concord.org/sites/default/files/images/learn/dc-circuit-series-resistances-1.png" />
-                <h4>1. DC Circuits: Series Resistances</h4>
-                <p>Learn about series circuits by interacting with a virtual breadboard.</p>
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://sparks-activities.concord.org/sparks-content/activities.html#parallel-resistances">
-              <img src="https://concord.org/sites/default/files/images/learn/dc-circuits-parallel-resistances-1.png" />
-              <h4>2. DC Circuits: Parallel Resistances</h4>
-              <p>Learn about parallel circuits by interacting with a virtual breadboard.</p>
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://sparks-activities.concord.org/sparks-content/activities.html#series-parallel-resistances">
-              <img src="https://concord.org/sites/default/files/images/learn/dc-circuits-series-parallel-resistances-1.png" />
-              <h4>3. DC Circuits: Series-Parallel Resistances</h4>
-              <p>Learn about series-parallel circuits by interacting with a virtual breadboard.</p>
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://sparks-activities.concord.org/sparks-content/activities.html#troubleshooting-circuits">
-              <img src="https://concord.org/sites/default/files/images/learn/troubleshooting-dc-circuits-1.png" />
-              <h4>4. Troubleshooting DC Circuits</h4>
-              <p>Find the faulted resistor in a simulated circuit.</p>
-            </a>
-          </li>
-        </ul> -->
-      </div>
+      <div id="simulations-tab" class="tab-content active"></div>
       <div id="tutorials-tab" class="tab-content">
         <ol>
           <li><a target="_blank" href="http://sparks-activities.concord.org/sparks-content/tutorials/tutorial-1.html">How do breadboards work?</a></li>
