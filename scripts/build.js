@@ -50,6 +50,7 @@ glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
     die(err, 1);
   }
 
+  const siteRedesignRef = `<link rel="stylesheet" href="https://portal-pages.concord.org/site-redesign/site-redesign.css" />`;
   const buildComment = `<!-- built using portal pages build script on ${new Date()} -->`;
 
   // iterate over the list creating the concatenated css and html in dest
@@ -63,7 +64,7 @@ glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
 
     mkdirp.sync(path.dirname(htmlOutputFile));
 
-    fs.writeFileSync(htmlOutputFile, `${buildComment}\n${css}\n${html}\n${js}`);
+    fs.writeFileSync(htmlOutputFile, `${siteRedesignRef}\n${buildComment}\n${css}\n${html}\n${js}`);
   });
 });
 
