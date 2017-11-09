@@ -44,7 +44,7 @@ var PageFooter = Component({
           'Version: unknown'
         )
       )
-    )
+    );
   }
 });
 
