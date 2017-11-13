@@ -684,6 +684,9 @@ function Resource(resource_object, resource_type) {
   } else {
     this.requires_java = true;
   }
+
+  console.log(this.requires_java);
+
   var browse_url = resource_object.links.browse.url;
   this.extra_data = browse_url.replace(/http(s|)\:\/\/learn\.concord\.org\/(browse\/|)/, '') + '.json';
   if (this.requires_java === true) {

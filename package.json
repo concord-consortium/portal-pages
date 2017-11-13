@@ -33,6 +33,7 @@
     "debug": "~2.6.3",
     "express": "^4.15.3",
     "faye-websocket": "^0.11.1",
+    "jshint": "^2.9.5",
     "memory-fs": "^0.4.1",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",

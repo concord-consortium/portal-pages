@@ -1,0 +1,14 @@
+body.member-visitor .portal-pages-collection-page-intro:nth-child(1) { width: 100%; }
+body.member-visitor .portal-pages-collection-page-intro:nth-child(2) { display: none; }
+.material-list {
+  ul {list-style: none; }
+  li {
+    border-bottom: dotted 1px #ccc;
+    padding: 20px 0;
+
+    img {
+      float: left;
+      margin: 8px 20px 100px 0;
+    }
+  }
+}

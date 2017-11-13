@@ -1,6 +1,6 @@
-var INVALID_FIRST_NAME, INVALID_LAST_NAME, PASS_NOT_MATCH, PASS_TOO_SHORT, button, div, ref;
+var INVALID_FIRST_NAME, INVALID_LAST_NAME, PASS_NOT_MATCH, PASS_TOO_SHORT;
 
-ref = React.DOM, button = ref.button, div = ref.div;
+var ref = React.DOM, button = ref.button, div = ref.div;
 
 var a       = React.DOM.a;
 var dd      = React.DOM.dd;
@@ -113,69 +113,70 @@ var BasicDataForm = function() {
       }
 
       return FormsyForm({
-        onValidSubmit: this.submit,
-        onValid: this.onBasicFormValid,
-        onInvalid: this.onBasicFormInvalid,
-        onChange: this.onChange
-      },
-      div({className: 'third-party-login-options'},
-        providerComponents
-      ),
-      anonymous ? div({},
-        dl({},
-          dt({className: 'two-col'}, 'First Name'),
-          dd({className: 'name_wrapper first-name-wrapper two-col'},
-            TextInput({
-              ref: 'firstName',
-              name: 'first_name',
-              placeholder: '',
-              required: true,
-              asyncValidation: nameValidator,
-              asyncValidationError: INVALID_FIRST_NAME
-            })
-          ),
-          dt({className: 'two-col'}, 'Last Name'),
-          dd({className: 'name_wrapper last-name-wrapper two-col'},
-            TextInput({
-              ref: 'lastName',
-              name: 'last_name',
-              placeholder: '',
-              required: true,
-              asyncValidation: nameValidator,
-              asyncValidationError: INVALID_LAST_NAME
-            })
-          ),
-          dt({}, 'Password'),
-          dd({},
-            TextInput({
-              name: 'password',
-              placeholder: '',
-              type: 'password',
-              required: true,
-              validations: 'minLength:6',
-              validationError: PASS_TOO_SHORT
-            })
-          ),
-          dt({}, 'Confirm Password'),
-          dd({},
-            TextInput({
-              name: 'password_confirmation',
-              placeholder: '',
-              type: 'password',
-              required: true,
-              validations: "equals:" + this.state.password,
-              validationError: PASS_NOT_MATCH
-            })
+          onValidSubmit: this.submit,
+          onValid: this.onBasicFormValid,
+          onInvalid: this.onBasicFormInvalid,
+          onChange: this.onChange
+        },
+        div({className: 'third-party-login-options'},
+          providerComponents
+        ),
+        anonymous ? div({},
+          dl({},
+            dt({className: 'two-col'}, 'First Name'),
+            dd({className: 'name_wrapper first-name-wrapper two-col'},
+              TextInput({
+                ref: 'firstName',
+                name: 'first_name',
+                placeholder: '',
+                required: true,
+                asyncValidation: nameValidator,
+                asyncValidationError: INVALID_FIRST_NAME
+              })
+            ),
+            dt({className: 'two-col'}, 'Last Name'),
+            dd({className: 'name_wrapper last-name-wrapper two-col'},
+              TextInput({
+                ref: 'lastName',
+                name: 'last_name',
+                placeholder: '',
+                required: true,
+                asyncValidation: nameValidator,
+                asyncValidationError: INVALID_LAST_NAME
+              })
+            ),
+            dt({}, 'Password'),
+            dd({},
+              TextInput({
+                name: 'password',
+                placeholder: '',
+                type: 'password',
+                required: true,
+                validations: 'minLength:6',
+                validationError: PASS_TOO_SHORT
+              })
+            ),
+            dt({}, 'Confirm Password'),
+            dd({},
+              TextInput({
+                name: 'password_confirmation',
+                placeholder: '',
+                type: 'password',
+                required: true,
+                validations: "equals:" + this.state.password,
+                validationError: PASS_NOT_MATCH
+              })
+            )
           )
+        ) : void 0,
+        div({className: 'submit-button-container'},
+          button({
+            className: 'submit-btn',
+            type: 'submit',
+            disabled: !this.state.canSubmit
+          }, this.props.signupText)
         )
-      ) : void 0,
-      div({className: 'submit-button-container'},
-        button({
-          className: 'submit-btn',
-          type: 'submit',
-          disabled: !this.state.canSubmit
-        }, this.props.signupText))
-      )
+      );
     }
   });
 };

@@ -1,6 +1,4 @@
-var div, li, p, ref, ul;
-
-ref = React.DOM, div = ref.div, p = ref.p, ul = ref.ul, li = ref.li;
+var ref = React.DOM, div = ref.div, p = ref.p, ul = ref.ul, li = ref.li;
 
 var SignupClass     = require('./signup');
 var SideInfoClass   = require('./sideinfo');

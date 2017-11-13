@@ -1,8 +1,5 @@
-var INVALID_CLASS_WORD, button, div, ref;
-
-ref = React.DOM, button = ref.button, div = ref.div, dd = ref.dd, dl = ref.dl, dt = ref.dt;
-
-INVALID_CLASS_WORD = 'You must enter a valid class word';
+var ref = React.DOM, button = ref.button, div = ref.div, dd = ref.dd, dl = ref.dl, dt = ref.dt,
+  INVALID_CLASS_WORD = 'You must enter a valid class word';
 
 var TextInputClass = require("./text_input");
 var PrivacyPolicyClass = require("./privacy_policy");
@@ -37,9 +34,8 @@ var StudentForm = function() {
       });
     },
     submit: function(data, resetForm, invalidateForm) {
-      var basicData, onRegistration, params, ref1;
-      ref1 = this.props, basicData = ref1.basicData, onRegistration = ref1.onRegistration;
-      params = jQuery.extend({}, basicData, data);
+      var ref1 = this.props, basicData = ref1.basicData, onRegistration = ref1.onRegistration,
+        params = jQuery.extend({}, basicData, data);
       this.setState({
         canSubmit: false
       });

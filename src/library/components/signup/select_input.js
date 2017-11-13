@@ -1,6 +1,4 @@
-var div, input, label, ref;
-
-ref = React.DOM, div = ref.div, input = ref.input, label = ref.label;
+var ref = React.DOM, div = ref.div, input = ref.input, label = ref.label;
 
 var SelectInput = function() {
 
@@ -16,9 +14,8 @@ var SelectInput = function() {
       return this.props.onChange(option);
     },
     render: function() {
-      var className, disabled, loadOptions, placeholder, ref1;
-      ref1 = this.props, placeholder = ref1.placeholder, loadOptions = ref1.loadOptions, disabled = ref1.disabled;
-      className = 'select-input';
+      var ref1 = this.props, placeholder = ref1.placeholder, loadOptions = ref1.loadOptions, disabled = ref1.disabled,
+        className = 'select-input';
       if (this.getValue()) {
         className += ' valid';
       }
@@ -39,4 +36,3 @@ var SelectInput = function() {
 };
 
 module.exports = SelectInput;
-

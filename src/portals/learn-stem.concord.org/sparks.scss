@@ -1,3 +1,7 @@
+body.member-visitor #content { overflow-y: hidden; }
+body.guest-visitor .wrapper { width: auto !important; }
+#primary.wide { width: 100%; }
+#primary.wide #content { overflow: hidden; }
 body.member-visitor .portal-pages-collection-page-intro:nth-child(1) { width: 100%; }
 body.member-visitor .portal-pages-collection-page-intro:nth-child(2) { display: none; }
 .float-right {
@@ -66,13 +70,6 @@ body.member-visitor .portal-pages-collection-page-intro:nth-child(2) { display: 
   width: 600px;
   }
 .member-visitor .video { height: 182px; width: 300px; }
-
-#intro { font-size: 1.35em; }
-.member-visitor #intro { font-size: 1em; }
-#intro ul {
-  font-style: italic;
-  padding-left: 1.1em;
-  }
 #pd {
   background: #bddfdf;
   clear: both;
@@ -103,56 +100,6 @@ body.member-visitor .portal-pages-collection-page-intro:nth-child(2) { display: 
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
     }
-#overlay {
-  background: #111;
-  display: none;
-  height: 100%;
-  left: 0;
-  opacity: .7;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  }
-
-  .collapsible { width: 98%; }
-  h3.collapsible-toggle {
-    color: #0592af;
-    border-bottom: solid 5px rgba(49, 49, 49, 0.15);
-    display: block;
-    font-family: museo-sans,verdana,helvetica,sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 36px;
-    margin-bottom: 0;
-    padding: 30px 0;
-    width: 100%;
-    }
-  .collapsible-toggle:after {
-    background: #0592af;
-    border-radius:50%;
-    color: #fff;
-    content: '+';
-    display: inline-block;
-    float: right;
-    font-size: 16px;
-    font-weight: 700;
-    height: 17px;
-    line-height: 1;
-    margin: 5px 0 0 ;
-    padding: 2px;
-    text-align:center;
-    text-indent:0;
-    width: 17px;
-    }
-  h3.collapsible-toggle:hover {
-    color: #999;
-    &:after {
-      background: #999;
-    }
-  }
-  .collapsible-toggle.open:after { animation:spin-toggle-open 0.5s normal forwards; }
-  @keyframes spin-toggle-open{ 100% { transform: rotate(45deg); } }
 
 #units-tab li { margin-bottom: .25em; }
 #units-tab ul ul li { overflow: hidden; padding: 1em 1em .25em }

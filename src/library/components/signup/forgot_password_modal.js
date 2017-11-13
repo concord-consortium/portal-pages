@@ -28,7 +28,7 @@ var ForgotPasswordModal = function() {
     getDefaultProps: function () {
       return {
         siteName: (Portal && Portal.siteName) || 'Portal'
-      }
+      };
     },
 
     submit: function(login_data) {
@@ -87,7 +87,7 @@ var ForgotPasswordModal = function() {
                 name: 'user[login]',
                 placeholder: '',
                 required: true })
-            ),
+            )
           ),
           div({className: 'submit-button-container'},
             button({
