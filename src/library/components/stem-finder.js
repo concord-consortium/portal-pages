@@ -171,6 +171,7 @@ var StemFinder = Component({
     var query = [
       "search_term=",
       encodeURIComponent(keyword),
+      "&skip_lightbox_reloads=true",
       "&sort_order=Alphabetical",
       "&include_official=1",
       "&model_types=All",
