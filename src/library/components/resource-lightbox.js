@@ -203,7 +203,7 @@ var ResourceLightbox = Component({
         if(helper) {
             helper.add(statement);
         } else {
-            unhelped.append(statement);
+            unhelped.push(statement);
         }
     }
 
