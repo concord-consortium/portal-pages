@@ -10,8 +10,8 @@
       by: function(a) { return a.text(); }
     };
     jQuery.extend(options, customOptions);
-    $data = jQuery(this);
-    arr = $data.get();
+    var $data = jQuery(this);
+    var arr = $data.get();
     arr.sort(function(a, b) {
       var valA = options.by(jQuery(a));
       var valB = options.by(jQuery(b));

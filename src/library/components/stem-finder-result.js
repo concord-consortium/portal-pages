@@ -73,7 +73,7 @@ var StemFinderResult = Component({
       jQuery('body').append('<div class="portal-pages-favorite-tooltip">Log in or sign up to save resources for quick access!</div>');
       jQuery('.portal-pages-favorite-tooltip').css({'left': mouse_x + 'px', 'top': mouse_y + 'px'}).fadeIn('fast');
 
-      tooltip_timer = setTimeout(function () {
+      tooltip_timer = window.setTimeout(function () {
         jQuery('.portal-pages-favorite-tooltip').fadeOut('slow', function() { jQuery(this).remove(); });
       }, 3000);
       return;

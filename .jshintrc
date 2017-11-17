@@ -1,0 +1,20 @@
+{
+  "undef": true,
+  "globals": {
+    "React": false,
+    "window": false,
+    "jQuery": false,
+    "document": false,
+    "require": false,
+    "location": true,
+    "history": false,
+    "_gaq": false,
+    "module": false,
+    "Portal": false,
+    "PortalPages": false,
+    "console": false,
+    "Formsy": false,
+    "Select": false,
+    "ReactDOM": false
+  }
+}

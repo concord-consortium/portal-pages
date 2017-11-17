@@ -26,7 +26,7 @@ var StudentRegistrationComplete = function() {
         //
         // TODO use some kind of styled modal dialog here.....
         //
-        alert("Error: " + response.message);
+        window.alert("Error: " + response.message);
       });
 
     },

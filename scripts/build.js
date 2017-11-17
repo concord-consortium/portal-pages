@@ -11,6 +11,7 @@ const webpack = require("webpack");
 const ncp = require('ncp').ncp;
 const jshint = require('jshint').JSHINT;
 
+const projectFolder = path.resolve(`${__dirname}/..`);
 const portalSrcFolder = path.resolve(`${__dirname}/../src/portals`);
 const portalDestFolder = path.resolve(`${__dirname}/../dest/portals`);
 const librarySrcFolder = path.resolve(`${__dirname}/../src/library`);
@@ -46,11 +47,14 @@ const fileContents = (filePath, tag) => {
 };
 
 // run jshint over all the source files
+// read in the .jshintrc file which the api call doesn't pick up automatically
+let jshintrc = JSON.parse(fs.readFileSync(`${projectFolder}/.jshintrc`, "utf8"));
+
 let hasErrors = false;
 [portalSrcFolder, librarySrcFolder].forEach((basePath) => {
   const files = glob.sync(`${basePath}/**/*.js`);
   files.forEach((file) => {
-    jshint(fs.readFileSync(file, "utf8"), {}, {});
+    jshint(fs.readFileSync(file, "utf8"), jshintrc, jshintrc.globals);
     if (jshint.errors.length > 0) {
       const relativePath = path.relative(__dirname, file);
       jshint.errors.forEach((err) => {

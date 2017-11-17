@@ -19,7 +19,7 @@ modalClasses[ForgotPasswordModal]   = "forgot-password-modal";
 //  properties          - The properties
 //  selectorOrElement   - DOM element selector
 //
-renderSignupForm = function(properties, selectorOrElement) {
+var renderSignupForm = function(properties, selectorOrElement) {
   if (properties == null) {
     properties = {};
   }

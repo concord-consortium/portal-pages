@@ -81,17 +81,17 @@ var ResourceLightbox = Component({
 
   handleAssignClick: function (e) {
     var resource = this.state.resource;
-    _gaq.push(['_trackEvent','Assign to Class Button','Click', resources.name]);
+    _gaq.push(['_trackEvent','Assign to Class Button','Click', resource.name]);
   },
 
   handleTeacherGuideClick: function (e) {
     var resource = this.state.resource;
-    _gaq.push(['_trackEvent','Teacher Guide Link','Click', resources.name]);
+    _gaq.push(['_trackEvent','Teacher Guide Link','Click', resource.name]);
   },
 
   handleAddToCollectionClick: function (e) {
     var resource = this.state.resource;
-    _gaq.push(['_trackEvent','Add to Collection Button','Click', resources.name]);
+    _gaq.push(['_trackEvent','Add to Collection Button','Click', resource.name]);
   },
 
   handleClose: function (e) {
