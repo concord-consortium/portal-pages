@@ -15,6 +15,7 @@ var li = React.DOM.li;
 var p = React.DOM.p;
 var span = React.DOM.span;
 var ul = React.DOM.ul;
+var strong = React.DOM.strong;
 
 var ResourceLightbox = Component({
   getInitialState: function () {
