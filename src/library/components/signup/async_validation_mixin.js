@@ -29,9 +29,9 @@ var AsyncValidationMixin = function() {
         _asyncValidationPassed: false
       });
       if (this._asyncValidationTimeoutID) {
-        clearTimeout(this._asyncValidationTimeoutID);
+        window.clearTimeout(this._asyncValidationTimeoutID);
       }
-      this._asyncValidationTimeoutID = setTimeout((function(_this) {
+      this._asyncValidationTimeoutID = window.setTimeout((function(_this) {
         return function() {
           return _this.props.asyncValidation(value).done(function() {
             _this.setState({

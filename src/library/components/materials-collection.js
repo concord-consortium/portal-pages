@@ -101,7 +101,7 @@ var MaterialsCollection = Component({
             },
       dataType: 'json',
       success: function (data) {
-        materials = data[0].materials;
+        var materials = data[0].materials;
         if (this.props.randomize) {
           materials = shuffleArray(materials);
         }

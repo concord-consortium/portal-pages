@@ -107,7 +107,7 @@ var StemFinder = Component({
 
     var ret = {};
 
-    var path = location.pathname;
+    var path = window.location.pathname;
     if(!path.startsWith("/")) { path = "/"+path; }
 
     var parts = path.split("/");

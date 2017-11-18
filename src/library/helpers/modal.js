@@ -26,7 +26,7 @@ var showModal = function(modalId, specialMsg, fixedPosition, closeFunc) {
 
   console.log("INFO showModal", modalId, specialMsg, fixedPosition, closeFunc);
 
-  _closeFunc = hideModal;
+  var _closeFunc = hideModal;
   if(closeFunc) {
     console.log("INFO Modal using custom close function.");
     _closeFunc = closeFunc;

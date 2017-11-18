@@ -25,10 +25,10 @@ var TextInput = function() {
         inputVal: newVal
       });
       if (this.timeoutID) {
-        clearTimeout(this.timeoutID);
+        window.clearTimeout(this.timeoutID);
       }
       delay = this.isValidValue(newVal) ? 0 : TIMEOUT;
-      this.timeoutID = setTimeout((function(_this) {
+      this.timeoutID = window.setTimeout((function(_this) {
         return function() {
           if (processValue) {
             newVal = processValue(newVal);

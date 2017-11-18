@@ -11,10 +11,10 @@ var fadeIn = function (component) {
         var opacity = Math.min(component.state.opacity + increment, 1);
         component.setState({opacity: opacity});
         if (opacity === 1) {
-          clearInterval(animation);
+          window.clearInterval(animation);
         }
       },
-      animation = setInterval(animateOpacity, interval);
+      animation = window.setInterval(animateOpacity, interval);
 };
 
 module.exports = fadeIn;

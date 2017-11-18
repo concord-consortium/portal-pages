@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
   // set up report link listeners
   jQuery('.uwp-report-link').click(function(e) {
     e.preventDefault();
-    alert('Report links don\'t do anything yet.');
+    window.alert('Report links don\'t do anything yet.');
   });
 });
 

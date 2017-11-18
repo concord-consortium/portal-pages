@@ -17,7 +17,7 @@ var StudentRegistrationComplete = function() {
         if(response.redirect_path) {
           window.location = response.redirect_path;
         } else {
-          location.reload(true);
+          window.location.reload(true);
         }
       }).fail(function(err) {
     console.log("INFO login error", err);
@@ -26,7 +26,7 @@ var StudentRegistrationComplete = function() {
         //
         // TODO use some kind of styled modal dialog here.....
         //
-        alert("Error: " + response.message);
+        window.alert("Error: " + response.message);
       });
 
     },

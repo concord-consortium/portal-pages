@@ -62,7 +62,7 @@ var ForgotPasswordModal = function() {
 
       // console.log("INFO rendering LoginModal with props", this.props);
 
-      _this = this;
+      var _this = this;
 
       return div({className: 'forgot-password-default-modal-content'},
         FormsyForm({

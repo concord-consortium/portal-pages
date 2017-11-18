@@ -51,12 +51,12 @@ var SchoolInput = function() {
         return;
       }
       if (this.timeoutID) {
-        clearTimeout(this.timeoutID);
+        window.clearTimeout(this.timeoutID);
       }
       this.setState({
         isLoading: true
       });
-      this.timeoutID = setTimeout((function(_this) {
+      this.timeoutID = window.setTimeout((function(_this) {
         return function() {
           return getSchools(country, zipcode).done(function(data) {
             var options;

@@ -49,7 +49,7 @@ var Signup = function() {
       };
     },
     onBasicDataSubmit: function(data) {
-      data.sign_up_path = location.pathname;
+      data.sign_up_path = window.location.pathname;
       return this.setState({
         basicData: data
       });
