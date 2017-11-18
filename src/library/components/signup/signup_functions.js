@@ -89,9 +89,9 @@ var logout = function(successFunc, failFunc, redirectAfter) {
 
         if(redirectAfter) {
             console.log("INFO redirecting to " + redirectAfter);
-            location.href = redirectAfter;
+            window.location.href = redirectAfter;
         } else {
-            location.reload(true);
+            window.location.reload(true);
         }
 
       }).fail(function(err) {

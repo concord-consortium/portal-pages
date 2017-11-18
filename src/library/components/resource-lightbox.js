@@ -26,7 +26,7 @@ var ResourceLightbox = Component({
 
   getDefaultProps: function () {
     return {
-      savedUrl: location.toString(),
+      savedUrl: window.location.toString(),
       savedTitle: document.title
     };
   },
@@ -51,7 +51,7 @@ var ResourceLightbox = Component({
   componentWillUnmount: function () {
     document.title = this.props.savedTitle;
     try {
-      history.replaceState({}, document.title, this.props.savedUrl);
+      window.history.replaceState({}, document.title, this.props.savedUrl);
     }
     catch (e) {}
     jQuery('html, body').css('overflow', 'auto');
@@ -68,7 +68,7 @@ var ResourceLightbox = Component({
 
     document.title = this.titleSuffix ? resource.name + " | " + this.titleSuffix : resource.name;
     try {
-      history.replaceState({}, document.title, resource.stem_resource_url);
+      window.history.replaceState({}, document.title, resource.stem_resource_url);
     }
     catch (e) {}
     this.setState({resource: resource});
