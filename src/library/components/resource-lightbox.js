@@ -2,6 +2,7 @@ var Component = require('../helpers/component');
 var RelatedResourceResult = require("./related-resource-result");
 var pluralize = require("../helpers/pluralize");
 var portalObjectHelpers = require("../helpers/portal-object-helpers");
+var StandardsHelpers = require("../helpers/standards-helpers");
 
 var div = React.DOM.div;
 var em = React.DOM.em;
@@ -189,11 +190,29 @@ var ResourceLightbox = Component({
     if (!resource.standard_statements || resource.standard_statements.length === 0) {
       return null;
     }
-    var statements = resource.standard_statements;
+
+    var allStatements   = resource.standard_statements;
+    var helpers         = {};
+    var unhelped        = [];
+
+    helpers.NGSS = StandardsHelpers.getStandardsHelper('NGSS');
+
+    for(var i = 0; i < allStatements.length; i++) {
+        var statement = allStatements[i];
+        var helper = helpers[statement.type];
+
+        if(helper) {
+            helper.add(statement);
+        } else {
+            unhelped.push(statement);
+        }
+    }
+
     return div({className: "portal-pages-resource-lightbox-standards"},
       hr({}),
       h2({}, "Standards"),
-      statements.map(function (statement) {
+      helpers.NGSS.getDiv(),
+      unhelped.map(function (statement) {
         var description = statement.description;
         if(Array.isArray && Array.isArray(description)) {
           var formatted = "";
