@@ -1,0 +1,62 @@
+<style>
+  .landing-container .home-page-content { width: 100% }
+  .third-party-login-options { display: none; }
+</style>
+<div id="test-header"></div>
+
+<script>
+  var content = "<div id='field-test-note' style='margin-bottom: 10px;'><a href='http://goo.gl/forms/ibl0g4daf4' title='I am interested in being a field test teacher for High-Adventure Science!' target='_blank' style='background-color: #fee9aa; padding: 10px; display: block; border-radius: 8px; font-weight: bold; text-align: center;'>Interested in being a field-test teacher for High-Adventure Science? Click here!</a></div>";
+  //jQuery('.landing-container').before(content);
+</script>
+
+<div class="wrapper cols" id="wrapper">
+      <div class="wide col-12" id="primary">
+        <div class="landing-page-content">
+<section class="cols" style="min-height: 800px;">
+<div class="col-8">
+<p class="portal-pages-intro-paragraph">FREE online interactive lessons based around unanswered questions in Earth and Space Science to help students craft cogent scientific arguments based on the evidence.</p>
+<h6>Highlights</h6>
+<ul><li>Interactive models &amp; Real-world data</li>
+<li>Videos of scientists working to answer the questions</li></ul>
+
+<h6>Register to get</h6>
+<ul><li>Teacher Guides and Answer Keys</li>
+<li>Classroom Progress Tracking</li>
+<li>Pre- and Post-tests</li></ul>
+See the <a href="https://has-production.s3.amazonaws.com/resources/HASPortalGuide2014-2015.pdf" target="_blank">High-Adventure Science Portal User's Guide</a> for information about registration and using the classroom progress tools. Or watch the video version below!
+
+  <video style="height: auto; margin: 30px 0; width: 100%;" controls preload="auto" name="media" poster="https://s3.amazonaws.com/has-production/resources/HASPortalGuide/Resources/PortalGuideMovie-Broadband/Resources/PortalGuideMovie-Broadband---Broadband.jpg">
+  <source src="https://has-production.s3.amazonaws.com/resources/HASPortalGuide/Resources/PortalGuideMovie-Broadband/Resources/PortalGuideMovie-Broadband%20-%20Broadband.mp4" type="video/mp4">
+  <source src="https://has-production.s3.amazonaws.com/resources/HASPortalGuide/Resources/PortalGuideMovie-Broadband/Resources/PortalGuideMovie-Broadband%20-%20Broadband.webm" type="video/webm">
+  <source src="https://has-production.s3.amazonaws.com/resources/HASPortalGuide/Resources/PortalGuideMovie-Broadband/Resources/PortalGuideMovie-Broadband%20-%20Broadband.ogv" type="video/ogg">
+  <p>NOTE: You're not seeing the portal guide video because your browser doesn't support HTML5 Video. Please consider upgrading your browser, or <a href="https://has-production.s3.amazonaws.com/resources/HASPortalGuide/Resources/PortalGuideMovie-Broadband/Resources/PortalGuideMovie-Broadband%20-%20Broadband.mp4">watch the video here</a>.</p>
+  </video>
+</div>
+<div id="embedded-signup-form" class="embedded-signup-form col-4"></div>
+</section>
+</div>
+</div>
+</div>
+<script>
+  if(Portal.currentUser.isAnonymous) {
+    PortalPages.renderSignupForm(
+        { oauthProviders: Portal.oauthProviders },
+        "#embedded-signup-form"
+    );
+  }
+</script>
+
+<script>
+    PortalPages.renderPageHeader({
+      oauthProviders: [
+          { name:           "google",
+            display_name:   "Google",
+            directPath:     "http://google.com" },
+          { name:           "foo",
+            display_name:   "Foo",
+            directPath:     "http://foo.com" }
+        ],
+      theme: 'has-learn'
+      },
+      "test-header");
+</script>
