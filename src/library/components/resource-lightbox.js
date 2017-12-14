@@ -412,7 +412,7 @@ var ResourceLightbox = Component({
 
     var resource = this.state.resource;
 
-    console.log("[DEBUG] render resource", resource);
+    // console.log("[DEBUG] render resource", resource);
 
     return div({},
       div({className: "portal-pages-resource-lightbox-background"}),
