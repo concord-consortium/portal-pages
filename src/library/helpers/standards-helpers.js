@@ -211,7 +211,7 @@ var NgssHelper = function() {
                     Object.keys(groupMap).map( function(title) {
                         var statements = groupMap[title];
                         return [
-                            title,
+                            b({}, title),
                             br(),
                             statements.map( function(s) {
                                 var arrDesc = s.description;
@@ -219,6 +219,9 @@ var NgssHelper = function() {
                                 var desc = "";
                                 for(var i = 2; i < arrDesc.length; i++) {
                                     desc += arrDesc[i];
+            				        if(arrDesc[i].endsWith(".")) {
+                                        desc += " ";
+                                    }
                                 }
                                 return [    desc,
                                             br() ];
