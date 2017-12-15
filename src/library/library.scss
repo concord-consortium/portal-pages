@@ -7,6 +7,7 @@
 
 @import './styles/navigation/_navigation.scss';
 
+@import './styles/themes/_has.scss';
 @import './styles/themes/_itsi.scss';
 
 .portal-pages-finder-results {
@@ -775,11 +776,11 @@ $materials-collection-item-icon-width: 300px;
   padding: 0 10px;
 }
 
-.embedded-signup-class {
+.embedded-signup-form {
 
   position: absolute;
   display: inline-block;
-  width: 45%;
+  width: 23%;
 
   top:      0px;
   right:    0px;
@@ -811,6 +812,43 @@ $materials-collection-item-icon-width: 300px;
 
   .last_name {
     margin-left: 0%;
+  }
+
+  .submit-btn {
+    background: #ea6d2f;
+    border: none;
+    border-radius: 0 !important;
+    display: inline-block;
+    font: 700 15px museo-sans, sans-serif;
+    margin: 20px 0 20px 0;
+    padding: 10px 20px !important;
+    width: auto;
+  }
+
+  &>div {
+    border: solid 1px #ccc;
+    background: #fff;
+    padding: 20px;
+    }
+  dd { margin-bottom: 20px; }
+  dt {
+    clear: both;
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0 0 5px;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    color: $dark-gray;
+    font: 100 30px museo, sans-serif;
+
+    strong {
+      color: #0592af;
+      font-weight: 900;
+    }
   }
 
 }
