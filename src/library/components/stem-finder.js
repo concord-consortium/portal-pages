@@ -31,8 +31,9 @@ var StemFinder = Component({
 
     var subjectAreaKey  = this.props.subjectAreaKey;
     var gradeLevelKey   = this.props.gradeLevelKey;
+    var featureTypeKey   = this.props.featureTypeKey;
 
-    if(!subjectAreaKey && !gradeLevelKey) {
+    if(!subjectAreaKey && !gradeLevelKey && !featureTypeKey) {
         //
         // If we are not passed props indicating filters to pre-populate
         // then attempt to see if this information is available in the URL.
@@ -40,6 +41,7 @@ var StemFinder = Component({
         var params      = this.getFiltersFromURL();
         subjectAreaKey  = params.subject;
         gradeLevelKey   = params["grade-level"];
+        featureTypeKey  = params.feature;
 
         subjectAreaKey = this.mapSubjectArea(subjectAreaKey);
     }
@@ -47,7 +49,7 @@ var StemFinder = Component({
     //
     // Scroll to stem finder if we have filters specified.
     //
-    if(subjectAreaKey || gradeLevelKey) {
+    if(subjectAreaKey || gradeLevelKey || featureTypeKey) {
         this.scrollToFinder();
     }
 
@@ -76,7 +78,18 @@ var StemFinder = Component({
                 gradeFiltersSelected.push(gradeLevel);
             }
         }
+    }
 
+    var featureFiltersSelected = [];
+
+    if(featureTypeKey) {
+        var featureTypes = filters.featureFilters;
+        for(i = 0; i < featureTypes.length; i++) {
+            var featureType = featureTypes[i];
+            if(featureType.key == featureTypeKey) {
+                featureFiltersSelected.push(featureType);
+            }
+        }
     }
 
     // console.log("INFO stem-finder initial subject areas: ", subjectAreasSelected);
@@ -85,7 +98,7 @@ var StemFinder = Component({
       opacity: 1,
       subjectAreasSelected:     subjectAreasSelected,
       subjectAreasSelectedMap:  subjectAreasSelectedMap,
-      featureFiltersSelected:   [],
+      featureFiltersSelected:   featureFiltersSelected,
       gradeFiltersSelected:     gradeFiltersSelected,
       resources: [],
       numTotalResources: 0,
