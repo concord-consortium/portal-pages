@@ -84,10 +84,11 @@ var NgssHelper = function() {
     this.getDiv = function() {
         // console.log("[DEBUG] NGSS Helper getDiv()");
 
-        var div = React.DOM.div;
-        var h3  = React.DOM.h3;
-        var b   = React.DOM.b;
-        var br  = React.DOM.br;
+        var div     = React.DOM.div;
+        var h3      = React.DOM.h3;
+        var b       = React.DOM.b;
+        var br      = React.DOM.br;
+        var italic  = React.DOM.i;
 
         if (this.pe.length                          == 0 &&
             this.dci.length                         == 0 &&
@@ -117,7 +118,7 @@ var NgssHelper = function() {
                 //
                 // Heading
                 //
-                b({}, PE),
+                b({}, italic({}, PE) ),
                 br(),
                 this.pe.map( function(s) {
         
@@ -153,7 +154,7 @@ var NgssHelper = function() {
                 //
                 // Heading
                 //
-                b({}, DCI),
+                b({}, italic({}, DCI) ),
                 br(),
 
                 //
@@ -198,7 +199,7 @@ var NgssHelper = function() {
                     //
                     // Heading
                     //
-                    b({}, heading),
+                    b({}, italic({}, heading) ),
                     br(),
             
                     //
