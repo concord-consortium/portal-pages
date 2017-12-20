@@ -84,10 +84,11 @@ var NgssHelper = function() {
     this.getDiv = function() {
         // console.log("[DEBUG] NGSS Helper getDiv()");
 
-        var div = React.DOM.div;
-        var h3  = React.DOM.h3;
-        var b   = React.DOM.b;
-        var br  = React.DOM.br;
+        var div     = React.DOM.div;
+        var h3      = React.DOM.h3;
+        var b       = React.DOM.b;
+        var br      = React.DOM.br;
+        var italic  = React.DOM.i;
 
         if (this.pe.length                          == 0 &&
             this.dci.length                         == 0 &&
@@ -117,7 +118,7 @@ var NgssHelper = function() {
                 //
                 // Heading
                 //
-                b({}, PE),
+                b({}, italic({}, PE) ),
                 br(),
                 this.pe.map( function(s) {
         
@@ -153,7 +154,7 @@ var NgssHelper = function() {
                 //
                 // Heading
                 //
-                b({}, DCI),
+                b({}, italic({}, DCI) ),
                 br(),
 
                 //
@@ -198,7 +199,7 @@ var NgssHelper = function() {
                     //
                     // Heading
                     //
-                    b({}, heading),
+                    b({}, italic({}, heading) ),
                     br(),
             
                     //
@@ -211,7 +212,7 @@ var NgssHelper = function() {
                     Object.keys(groupMap).map( function(title) {
                         var statements = groupMap[title];
                         return [
-                            title,
+                            b({}, title),
                             br(),
                             statements.map( function(s) {
                                 var arrDesc = s.description;
@@ -219,6 +220,9 @@ var NgssHelper = function() {
                                 var desc = "";
                                 for(var i = 2; i < arrDesc.length; i++) {
                                     desc += arrDesc[i];
+            				        if(arrDesc[i].endsWith(".")) {
+                                        desc += " ";
+                                    }
                                 }
                                 return [    desc,
                                             br() ];
@@ -244,6 +248,7 @@ var NgssHelper = function() {
     //
     // Grade level arrays for DCI notation generation.
     //
+    var ES = [ "K", "1", "2", "3", "4", "5" ];
     var MS = [ "6", "7", "8" ].sort();
     var HS = [ "9", "10", "11", "12" ].sort();
 
@@ -254,7 +259,7 @@ var NgssHelper = function() {
     this.getGradeLevel = function(gradeArray) {
 
         //
-        // For elementary school, should only be one grade level.
+        // For single grade level return single grade.
         //
         if(gradeArray.length == 1) {
             return gradeArray[0];
@@ -276,11 +281,25 @@ var NgssHelper = function() {
             return false;
         };
 
+        //
+        // Check if array "b" is a subset of array "a".
+        //
+        var isSubset = function(a, b) {
+            for(var i = 0; i < b.length; i++) {
+                if(a.indexOf(b[i]) < 0) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
         if(isMatch(HS)) { return "HS"; }
         if(isMatch(MS)) { return "MS"; }
 
+        if(isSubset(ES, gradeArray)) { return "ES"; }
+
         //
-        // Possibly consider cases where there are subsets?
+        // Could not determine grade level.
         //
         return "UNKNOWN";
     };
