@@ -17,6 +17,7 @@ var p = React.DOM.p;
 var span = React.DOM.span;
 var ul = React.DOM.ul;
 var strong = React.DOM.strong;
+var br = React.DOM.br;
 
 var ResourceLightbox = Component({
   getInitialState: function () {
@@ -234,6 +235,31 @@ var ResourceLightbox = Component({
     );
   },
 
+  renderLicense: function () {
+    var resource = this.state.resource;
+    if (!resource.license_info) {
+      return null;
+    }
+
+    var license = resource.license_info;
+
+    return div({className: "portal-pages-resource-lightbox-license"},
+      hr({}),
+      h2({}, "License"),
+      img({src: license.image}),
+      br(),
+      h3({}, license.code),
+      'Name: ' + license.name,
+      br(),
+      'Description: ' + license.description,
+      br(),
+      a({href: license.deed}, license.deed),
+      br(),
+      a({href: license.legal}, license.legal)
+      // license.number
+    );
+  },
+
   renderLearnMore: function () {
     var resource = this.state.resource;
     if (resource.projects.length === 0) {
@@ -375,6 +401,7 @@ var ResourceLightbox = Component({
         h2({}, "Requirements"),
         this.renderRequirements(),
         this.renderStandards(),
+        this.renderLicense(),
         this.renderLearnMore()
       ),
       this.renderRelatedContent()
@@ -384,6 +411,9 @@ var ResourceLightbox = Component({
   render: function () {
 
     var resource = this.state.resource;
+
+    // console.log("[DEBUG] render resource", resource);
+
     return div({},
       div({className: "portal-pages-resource-lightbox-background"}),
       div({className: "portal-pages-resource-lightbox-container"},
