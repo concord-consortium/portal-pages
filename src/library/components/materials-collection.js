@@ -105,6 +105,17 @@ var MaterialsCollection = Component({
         if (this.props.randomize) {
           materials = shuffleArray(materials);
         }
+        if (this.props.featured) {
+          // props.featured is the ID of the material we
+          // wish to insert at the start of the list
+          var featuredID = this.props.featured;
+          var sortFeatured = function(a,b) {
+            if(a.id == featuredID) return -1;
+            if(b.id == featuredID) return 1;
+            return 0;
+          };
+          materials.sort(sortFeatured);
+        }
         if (this.onDataLoad) {
           this.onDataLoad(materials);
         }

@@ -9,6 +9,7 @@ var PageFooter = require("./components/page-footer");
 var MaterialsCollection = require("./components/materials-collection");
 var GradeLevels = require("./components/grade-levels");
 
+var ParseQueryString = require("./helpers/parse-query-string");
 var signup_functions    = require("./components/signup/signup_functions");
 
 var render = function (component, id) {
@@ -24,6 +25,7 @@ var renderComponentFn = function (ComponentClass) {
 window.PortalPages = {
   settings: {},  // default to empty, used to set flags from portal templates
 
+  ParseQueryString: ParseQueryString,
   render: render,
 
   CollectionsPage: CollectionsPage,
