@@ -1,6 +1,6 @@
 // from https://stackoverflow.com/questions/979975/
 var parseQueryString = function() {
-  var queryString = window.location.search;
+  var queryString = window.location.search.replace(/^\?/, "");
   var vars = queryString.split("&");
   var params = {};
   for (var i = 0; i < vars.length; i++) {
