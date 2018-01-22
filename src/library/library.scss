@@ -879,4 +879,8 @@ $materials-collection-item-icon-width: 300px;
 
 label.inline { display: inline-block !important; }
 
+#flash {
+  top: 45px !important;
+}
+
 @import './styles/_media_queries.scss';
