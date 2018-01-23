@@ -30,7 +30,9 @@ var StemFinderResult = Component({
     if (this.state.lightbox) {
       return;
     }
-    this.setState({hovering: true});
+    if (!("ontouchstart" in document.documentElement)) {
+      this.setState({hovering: true});
+    }
   },
 
   handleMouseOut: function () {
