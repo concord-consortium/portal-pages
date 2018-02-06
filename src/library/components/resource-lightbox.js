@@ -246,16 +246,23 @@ var ResourceLightbox = Component({
     return div({className: "portal-pages-resource-lightbox-license"},
       hr({}),
       h2({}, "License"),
-      img({src: license.image}),
-      br(),
+      div({},
+        img({src: license.image})
+      ),
       h3({}, license.code),
-      'Name: ' + license.name,
-      br(),
-      'Description: ' + license.description,
-      br(),
-      a({href: license.deed}, license.deed),
-      br(),
-      a({href: license.legal}, license.legal)
+      p({}, license.name),
+      p({}, license.description,
+        br(),
+        a({href: license.deed}, license.deed),
+        br(),
+        a({href: license.legal}, license.legal)
+      ),
+      p({}, 'Suggested attribution: ' + resource.name + ' by ',
+        a({href: 'https://concord.org/'}, 'The Concord Consortium'),
+        ' is licensed under ',
+        a({href: license.deed}, license.code),
+        '.'
+      )
       // license.number
     );
   },
