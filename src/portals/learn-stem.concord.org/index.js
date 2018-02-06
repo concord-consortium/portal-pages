@@ -15,7 +15,12 @@ PortalPages.renderCollectionCards({
 
 jQuery(document).ready(function(){
   jQuery('.mobile-filter-toggle').click(function() {
-    jQuery(this).fadeOut('fast');
+    jQuery(this).toggleClass('active');
+    if (jQuery(this).text() === 'More Filters') {
+      jQuery(this).text('Less Filters');
+    } else {
+      jQuery(this).text('More Filters');
+    }
     jQuery('.portal-pages-finder-form-filters').slideToggle();
   });
 });
