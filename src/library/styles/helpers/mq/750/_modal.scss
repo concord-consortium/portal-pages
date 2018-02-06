@@ -5,6 +5,10 @@
   }
 .signup-form .radio-input {
   margin-bottom: 10px;
+
+  input {
+    -webkit-appearance: radio;
+    }
   }
 #login-default-modal, #signup-default-modal, #forgot-password-modal, #login-form, #register-form {
   h2 {
