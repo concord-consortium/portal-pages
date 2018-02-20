@@ -242,16 +242,6 @@ var ResourceLightbox = Component({
     }
 
     var license = resource.license_info;
-    var license_attribution = '';
-    // don't provide suggested attribution for public domain resources
-    if (license.code !== 'CC-BY 4.0') {
-      license_attribution = p({}, 'Suggested attribution: ' + resource.name + ' by ',
-              a({href: 'https://concord.org/'}, 'The Concord Consortium'),
-              ' is licensed under ',
-              a({href: license.deed}, license.code),
-              '.'
-            );
-    }
 
     return div({className: "portal-pages-resource-lightbox-license"},
       hr({}),
@@ -266,8 +256,7 @@ var ResourceLightbox = Component({
         a({href: license.deed}, license.deed),
         br(),
         a({href: license.legal}, license.legal)
-      ),
-      license_attribution
+      )
       // license.number
     );
   },
