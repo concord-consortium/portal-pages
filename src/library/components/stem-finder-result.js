@@ -17,6 +17,9 @@ var img = React.DOM.img;
 var a = React.DOM.a;
 var i = React.DOM.i;
 
+// vars for special treatment of hover and click states on touch-enabled devices
+var page_scrolling = false, touch_initialized = false;
+
 var StemFinderResult = Component({
   getInitialState: function () {
     return {
@@ -26,11 +29,42 @@ var StemFinderResult = Component({
     };
   },
 
-  handleMouseOver: function () {
+  componentDidMount: function () {
+    document.body.addEventListener('touchstart', this.handleTouchStart);
+    document.body.addEventListener('touchmove', this.handleTouchMove);
+    document.body.addEventListener('touchend', this.handleTouchEnd);
+  },
+
+  componentWillUnmount: function () {
+    document.body.removeEventListener('touchstart', this.handleTouchStart);
+    document.body.removeEventListener('touchmove', this.handleTouchMove);
+    document.body.removeEventListener('touchend', this.handleTouchEnd);
+  },
+
+  handleTouchStart: function (e) {
+    e.stopPropagation();
+    touch_initialized = true;
+    page_scrolling = false;
+  },
+
+  handleTouchMove: function (e) {
+    e.stopPropagation();
+    touch_initialized = true;
+    page_scrolling = true;
+  },
+
+  handleTouchEnd: function (e) {
+    e.stopPropagation();
+    if (page_scrolling) {
+      return;
+    }
+  },
+
+  handleMouseOver: function (e) {
     if (this.state.lightbox) {
       return;
     }
-    if (!("ontouchstart" in document.documentElement)) {
+    if (touch_initialized == false && page_scrolling == false) {
       this.setState({hovering: true});
     }
   },
@@ -53,16 +87,18 @@ var StemFinderResult = Component({
     });
 
     // mount/unmount lightbox outside of homepage content
-    if (lightbox) {
+    if (lightbox && page_scrolling == false) {
       var resourceLightbox = ResourceLightbox({
         resource: this.props.resource,
         toggleLightbox: this.toggleLightbox
       });
       Lightbox.open(resourceLightbox);
-      _gaq.push(['_trackEvent','Home Page Resource Card','Click',this.props.resource.name]);
+      //_gaq.push(['_trackEvent','Home Page Resource Card','Click',this.props.resource.name]);
     }
     else {
       Lightbox.close();
+      // reset touch_initialized for touch screen devices with mouse or trackpad
+      touch_initialized = false;
     }
   },
 
