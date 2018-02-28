@@ -243,6 +243,33 @@ var ResourceLightbox = Component({
 
     var license = resource.license_info;
 
+    // replace Concord Consortium with proper author credit
+    var license_description;
+    if (!resource.credits) {
+      license_description = license.description;
+    } else {
+      license_description = license.description.replace('the Concord Consortium', resource.credits);
+    }
+
+    var license_attribution = '';
+    // don't provide suggested attribution for public domain resources
+    if (license.code !== 'CC0') {
+      if (!resource.credits) {
+        license_attribution = p({}, 'Suggested attribution: ' + resource.name + ' by ',
+                a({href: 'https://concord.org/'}, 'The Concord Consortium'),
+                ' is licensed under ',
+                a({href: license.deed}, license.code),
+                '.'
+              );
+      } else {
+        license_attribution = p({}, 'Suggested attribution: ' + resource.name + ' by ' + resource.credits,
+                ' is licensed under ',
+                a({href: license.deed}, license.code),
+                '.'
+              );
+      }
+    }
+
     return div({className: "portal-pages-resource-lightbox-license"},
       hr({}),
       h2({}, "License"),
@@ -251,12 +278,13 @@ var ResourceLightbox = Component({
       ),
       h3({}, license.code),
       p({}, license.name),
-      p({}, license.description,
+      p({}, license_description,
         br(),
         a({href: license.deed}, license.deed),
         br(),
         a({href: license.legal}, license.legal)
-      )
+      ),
+      license_attribution
       // license.number
     );
   },
