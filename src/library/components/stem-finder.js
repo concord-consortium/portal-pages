@@ -379,6 +379,7 @@ var StemFinder = Component({
   },
 
   renderSearch: function () {
+    this.scrollToFinder();
     var search = function (e) {
       e.preventDefault();
       e.stopPropagation();
