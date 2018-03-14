@@ -379,11 +379,11 @@ var StemFinder = Component({
   },
 
   renderSearch: function () {
-    this.scrollToFinder();
     var search = function (e) {
       e.preventDefault();
       e.stopPropagation();
       this.search();
+      this.scrollToFinder();
     }.bind(this);
     return div({className: "portal-pages-finder-form-search col-4"},
       div({className: "portal-pages-finder-form-search-title"}, "Search by keyword"),
