@@ -366,6 +366,7 @@ var StemFinder = Component({
         filters[type].map(function (filter) {
           var selectedKey = type + "Selected";
           var handleChange = function () {
+            this.scrollToFinder();
             this.toggleFilter(type, filter);
           }.bind(this);
           var checked = this.state[selectedKey].indexOf(filter) !== -1;
