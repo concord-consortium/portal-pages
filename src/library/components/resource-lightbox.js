@@ -399,10 +399,10 @@ var ResourceLightbox = Component({
         div({className: "portal-pages-resource-lightbox-modal-utility"},
           this.renderIcons()
         ),
+        h1({}, resource.name),
         div({className: 'preview-image'},
           img({src: resource.icon.url})
         ),
-        h1({}, resource.name),
         p({className: "portal-pages-resource-lightbox-description",
            dangerouslySetInnerHTML: {__html: resource.longDescription}}),
         resource.has_pretest ?
