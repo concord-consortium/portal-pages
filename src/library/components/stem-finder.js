@@ -152,7 +152,10 @@ var StemFinder = Component({
   // Scroll to top of stem-finder filter form.
   //
   scrollToFinder: function() {
-    jQuery('body, html').animate({scrollTop: jQuery('.portal-pages-finder-form').offset().top + 50 }, 600);
+    var finder_form_top = jQuery('.portal-pages-finder-form').offset().top + 50;
+    if (jQuery(document).scrollTop() < finder_form_top) {
+      jQuery('body, html').animate({scrollTop: finder_form_top }, 600);
+    }
   },
 
   componentWillMount: function () {
