@@ -105,53 +105,50 @@ var PageHeader = Component({
   },
 
   renderNavLinks: function (e) {
+    var theme = this.props.theme || Portal.theme || "default";
     var headerItems = [];
     if(!this.state.isStudent){
-      var theme = this.props.theme || Portal.theme || "default";
-      var headerItems = [];
-      if(!this.state.isStudent){
-        if (theme == 'ngsa-assessment') {
-          headerItems.push(
-            li({className: "portal-pages-main-nav-item" +
-                " portal-pages-main-nav-collections" +
-                (this.props.isCollections ? " current-menu-item" : "")},
-              a({href: "/ngsa-collections", className: "portal-pages-main-nav-item__link", title: "View Assessment Tasks"},
-                "Assessment Tasks"
-              )
-            ) );
-          headerItems.push(
-            li({className: "portal-pages-main-nav-item" +
-                " portal-pages-main-nav-collections"},
-              a({href: "http://ngsa.concord.org/forum", className: "portal-pages-main-nav-item__link", title: "Visit the NGSA Forum"},
-                "Forum"
-              )
-            ) );
-          headerItems.push(
-            li({className: "portal-pages-main-nav-item" +
-               " portal-pages-main-nav-about" +
-               (this.props.isAbout ? " current-menu-item" : "")},
-              a({href: "/about", className: "portal-pages-main-nav-item__link", title: "Learn More about the NGSA Project"},
-                "About"
-              )
-            ) );
-        } else {
-          headerItems.push(
-            li({className: "portal-pages-main-nav-item" +
-                " portal-pages-main-nav-collections" +
-                (this.props.isCollections ? " current-menu-item" : "")},
-              a({href: "/collections", className: "portal-pages-main-nav-item__link", title: "View Resource Collections"},
-                "Collections"
-              )
-            ) );
-          headerItems.push(
-            li({className: "portal-pages-main-nav-item" +
-               " portal-pages-main-nav-about" +
-               (this.props.isAbout ? " current-menu-item" : "")},
-              a({href: "/about", className: "portal-pages-main-nav-item__link", title: "Learn More about the STEM Resource Finder"},
-                "About"
-              )
-            ) );
-        }
+      if (theme == 'ngsa-assessment') {
+        headerItems.push(
+          li({className: "portal-pages-main-nav-item" +
+              " portal-pages-main-nav-collections" +
+              (this.props.isCollections ? " current-menu-item" : "")},
+            a({href: "/ngsa-collections", className: "portal-pages-main-nav-item__link", title: "View Assessment Tasks"},
+              "Assessment Tasks"
+            )
+          ) );
+        headerItems.push(
+          li({className: "portal-pages-main-nav-item" +
+              " portal-pages-main-nav-collections"},
+            a({href: "http://ngsa.concord.org/forum", className: "portal-pages-main-nav-item__link", title: "Visit the NGSA Forum"},
+              "Forum"
+            )
+          ) );
+        headerItems.push(
+          li({className: "portal-pages-main-nav-item" +
+             " portal-pages-main-nav-about" +
+             (this.props.isAbout ? " current-menu-item" : "")},
+            a({href: "/about", className: "portal-pages-main-nav-item__link", title: "Learn More about the NGSA Project"},
+              "About"
+            )
+          ) );
+      } else {
+        headerItems.push(
+          li({className: "portal-pages-main-nav-item" +
+              " portal-pages-main-nav-collections" +
+              (this.props.isCollections ? " current-menu-item" : "")},
+            a({href: "/collections", className: "portal-pages-main-nav-item__link", title: "View Resource Collections"},
+              "Collections"
+            )
+          ) );
+        headerItems.push(
+          li({className: "portal-pages-main-nav-item" +
+             " portal-pages-main-nav-about" +
+             (this.props.isAbout ? " current-menu-item" : "")},
+            a({href: "/about", className: "portal-pages-main-nav-item__link", title: "Learn More about the STEM Resource Finder"},
+              "About"
+            )
+          ) );
       }
     }
 
