@@ -1,0 +1,87 @@
+.center {
+  text-align: center;
+
+  button {
+    display: block;
+    font-size: 2em;
+    margin: 0 auto;
+  }
+}
+.portal-pages-umbrella { display: none; }
+.portal-pages-header-contain {
+  height: 155px;
+  margin-bottom: 10px;
+  }
+.logo-contain { margin-top: 55px; }
+.concord-logo {
+  background-image: url(https://staff.concord.org/~emcelroy/ngsa-logo.png);
+  background-size: 100%;
+  height: 53px;
+  width: 300px;
+  }
+.portal-pages-hero {
+  background: url(https://concord.org/wp-content/uploads/2016/12/images/projects/ngsa/students.jpg) no-repeat;
+  background-size: cover;
+  height: 500px;
+  position: relative;
+  }
+.portal-pages-brand-banner-bg {
+  background: #0a1731;
+  bottom: 0;
+  height: 200px;
+  left: 0;
+  opacity: .8;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+
+  &.fixed-header {
+    height: 100px;
+    position: fixed;
+    top: 0;
+    }
+  }
+.portal-pages-brand-logo-container {
+  bottom: 0;
+  height: 200px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 5;
+
+  div {
+    height: 200px;
+    position: relative;
+    }
+
+  h1.portal-pages-brand-logo {
+    background: url(https://staff.concord.org/~emcelroy/ngsa-logo.png) no-repeat;
+    background-size: 450px 80px;
+    bottom: 60px;
+    height: 80px;
+    overflow: hidden;
+    position: absolute;
+    text-indent: 500px;
+    white-space: nowrap;
+    width: 450px;
+    }
+
+  &.fixed-header {
+    height: 100px;
+    position: fixed;
+    top: 0;
+
+    div {
+      height: 100px;
+    }
+
+    h1.portal-pages-brand-logo {
+      background-size: 225px 40px;
+      bottom: 30px;
+      height: 40px;
+      width: 225px;
+      }
+    }
+  }
+#footer { display: none !important; }
+.portal-pages-collections { background: #fff; }
