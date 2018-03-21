@@ -144,7 +144,10 @@ var StemFinderResult = Component({
     if (this.state.hovering || this.state.lightbox) {
       return div({className: "portal-pages-finder-result col-4", onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
         a(options,
-          div({className: "portal-pages-finder-result-description"}, resource.filteredShortDescription),
+          div({className: "portal-pages-finder-result-description"},
+            div({className: "title"}, resource.name),
+            div({}, resource.filteredShortDescription)
+          ),
           this.renderFavoriteStar()
         ),
         GradeLevels({resource: resource}),
