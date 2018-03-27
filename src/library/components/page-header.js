@@ -107,7 +107,7 @@ var PageHeader = Component({
   renderNavLinks: function (e) {
     var headerItems = [];
     if(!this.state.isStudent){
-      if (this.state.theme == 'ngsa-assessment') {
+      if (this.state.theme == 'ngss-assessment') {
         headerItems.push(
           li({className: "portal-pages-main-nav-item" +
               " portal-pages-main-nav-collections" +

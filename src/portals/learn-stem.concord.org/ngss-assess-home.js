@@ -3,5 +3,5 @@ PortalPages.renderPageHeader({
   logo_class: 'ngsa',
   umbrella_link: false,
   oauthProviders: Portal.oauthProviders,
-  theme: 'ngsa-assessment'
+  theme: 'ngss-assessment'
 }, 'page-header');
