@@ -116,10 +116,10 @@ var MaterialsCollection = Component({
           };
           materials.sort(sortFeatured);
         }
-        if (this.onDataLoad) {
-          this.onDataLoad(materials);
-        }
         this.setState({materials: materials});
+        if (this.props.onDataLoad) {
+          this.props.onDataLoad(materials);
+        } 
       }.bind(this)
     });
   },
