@@ -82,15 +82,21 @@
   border-bottom: solid 90px #0592af;
   bottom: 0;
   color: $white;
-  height: 295px;
+  height: 305px;
   left: 0;
   overflow: hidden;
-  padding: 60px 30px 0;
+  padding: 50px 30px 0;
   pointer-events: none;
   position: absolute;
   right: 0;
   text-overflow: ellipsis;
   top: 0;
+
+  .title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+  }
 }
 .portal-pages-finder-result-grade-levels {
   bottom: 30px;
@@ -262,11 +268,11 @@
   bottom: auto;
   height: auto;
   left: 50%;
-  margin-left: -460px;
-  padding: 0 95px;
+  margin-left: -415px;
+  padding: 45px 45px 0;
   position: relative;
   right: auto;
-  top: 100px;
+  top: 50px;
   width: 730px;
   a {
     display: inline;
@@ -276,7 +282,7 @@
 .portal-pages-resource-lightbox-modal-sharing {
   background: transparent;
   left: 50%;
-  margin-left: -490px;
+  margin-left: -445px;
   position: absolute;
   top: 195px;
   z-index: 1003;
@@ -335,7 +341,7 @@
 }
 .portal-pages-resource-lightbox-modal-utility {
   height: 25px;
-  padding: 40px 0 30px;
+  padding: 0 0 20px;
   text-align: right;
   ul {
     height: 25px;
@@ -391,8 +397,8 @@
 .portal-pages-resource-lightbox-modal-content h1 {
   color: $col-darkgray;
   font: 700 36px $font-museo-sans;
-  line-height: 48px;
-  margin: 20px 0;
+  line-height: 1;
+  margin: 0 0 20px;
 }
 .portal-pages-resource-lightbox-modal-content h2 {
   color: $col-darkgray;
@@ -472,7 +478,7 @@
 
 .portal-pages-resource-lightbox-related-content {
   background-color: $light-gray;
-  margin: 40px -95px 100px -95px;
+  margin: 40px -45px 100px;
   padding: 40px 70px 80px;
 }
 .portal-pages-resource-lightbox-related-content h2 {
