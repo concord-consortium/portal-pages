@@ -105,10 +105,9 @@ var PageHeader = Component({
   },
 
   renderNavLinks: function (e) {
-    var theme = this.props.theme || Portal.theme || "default";
     var headerItems = [];
     if(!this.state.isStudent){
-      if (theme == 'ngsa-assessment') {
+      if (this.state.theme == 'ngsa-assessment') {
         headerItems.push(
           li({className: "portal-pages-main-nav-item" +
               " portal-pages-main-nav-collections" +
