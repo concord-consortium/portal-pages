@@ -112,14 +112,14 @@ var PageHeader = Component({
           li({className: "portal-pages-main-nav-item" +
               " portal-pages-main-nav-collections" +
               (this.props.isCollections ? " current-menu-item" : "")},
-            a({href: "/ngsa-collections", className: "portal-pages-main-nav-item__link", title: "View Assessment Tasks"},
+            a({href: "/assessment-tasks", className: "portal-pages-main-nav-item__link", title: "View Assessment Tasks"},
               "Assessment Tasks"
             )
           ) );
         headerItems.push(
           li({className: "portal-pages-main-nav-item" +
               " portal-pages-main-nav-collections"},
-            a({href: "http://ngsa.concord.org/forum", className: "portal-pages-main-nav-item__link", title: "Visit the NGSA Forum"},
+            a({href: "https://ngsa.concord.org/forum", className: "portal-pages-main-nav-item__link", title: "Visit the NGSA Forum"},
               "Forum"
             )
           ) );
