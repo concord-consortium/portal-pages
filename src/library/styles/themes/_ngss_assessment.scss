@@ -133,6 +133,7 @@
       }
     }
   }
+
 .portal-pages-footer {
   background: #f5f5f5;
   font-size: 15px;
@@ -209,24 +210,53 @@ h3.collapsible-toggle:hover:after {
 }
 
 /*----- MEDIA QUERIES -----*/
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1200px) {
   .portal-pages-hero {
+    .portal-pages-hero__text-container {
+      width: auto;
+    }
     .portal-pages-hero__text {
       width: auto;
     }
   }
 }
+@media screen and (max-width: 950px) {
+  body {
 
-@media screen and (max-width: 1200px) {
+    &[data-mobile-nav="open"] {
+      .portal-pages-main-nav-contain {
+        top: 110px !important;
+      }
+    }
+  }
+  .mobile-nav-contain { margin-top: 40px !important; }
   .portal-pages-hero {
-    .portal-pages-hero__text-container {
-      padding: 0;
+    .portal-pages-hero__text {
       width: auto;
     }
+  }
+  .cols {
+    &:not(.no-collapse) {
+
+      *[class*='col-'], *[class^=' col-'], .cols {
+        width: 93% !important;
+        margin-left: 3.5% !important;
+        margin-right: 3.5% !important;
+        &[class*='col-'] { /* for pesky ultra-specific cascades */
+          width: 100% !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+      }
+    }
+
+  }
+}
+@media screen and (max-width: 500px) {
+  .logo-contain { margin: 20px 0 !important; }
+  .portal-pages-hero {
     .portal-pages-hero__text {
-      margin: 0;
-      padding: 0;
-      width: auto;
+      padding:15px;
     }
   }
 }
