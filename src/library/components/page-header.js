@@ -123,14 +123,6 @@ var PageHeader = Component({
               "Forum"
             )
           ) );
-        headerItems.push(
-          li({className: "portal-pages-main-nav-item" +
-             " portal-pages-main-nav-about" +
-             (this.props.isAbout ? " current-menu-item" : "")},
-            a({href: "/about", className: "portal-pages-main-nav-item__link", title: "Learn More about the NGSA Project"},
-              "About"
-            )
-          ) );
       } else {
         headerItems.push(
           li({className: "portal-pages-main-nav-item" +
