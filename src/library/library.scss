@@ -263,11 +263,11 @@
   bottom: auto;
   height: auto;
   left: 50%;
-  margin-left: -460px;
-  padding: 0 95px;
+  margin-left: -395px;
+  padding: 0 30px;
   position: relative;
   right: auto;
-  top: 100px;
+  top: 50px;
   width: 730px;
   a {
     display: inline;
@@ -277,7 +277,7 @@
 .portal-pages-resource-lightbox-modal-sharing {
   background: transparent;
   left: 50%;
-  margin-left: -490px;
+  margin-left: -425px;
   position: absolute;
   top: 195px;
   z-index: 1003;
@@ -336,7 +336,7 @@
 }
 .portal-pages-resource-lightbox-modal-utility {
   height: 25px;
-  padding: 40px 0 30px;
+  padding: 10px 0 0;
   text-align: right;
   ul {
     height: 25px;
@@ -383,6 +383,7 @@
 .portal-pages-resource-lightbox-modal-content-top .preview-image {
   height: 400px;
   overflow: hidden;
+  padding-bottom: 100px;
   width: 730px;
   img {
     height: auto;
@@ -390,10 +391,10 @@
   }
 }
 .portal-pages-resource-lightbox-modal-content h1 {
-  color: $col-darkgray;
-  font: 700 36px $font-museo-sans;
-  line-height: 48px;
-  margin: 20px 0;
+  color: $col-blue;
+  font: 700 28px $font-museo-sans;
+  line-height: 40px;
+  margin: 0 0 20px;
 }
 .portal-pages-resource-lightbox-modal-content h2 {
   color: $col-darkgray;
@@ -416,12 +417,12 @@
   color:#fff;
   background-color:#fff;
   height:1px;
-  margin: 50px 0;
+  margin: 30px 0;
 }
 .portal-pages-resource-lightbox-description {
   font: 300 18px $font-museo-sans;
   line-height: 30px;
-  margin: 30px 0;
+  margin: 0 0 30px;
 }
 .portal-pages-resource-lightbox-included-activities {
   font-size: 15px;
@@ -473,8 +474,8 @@
 
 .portal-pages-resource-lightbox-related-content {
   background-color: $light-gray;
-  margin: 40px -95px 100px -95px;
-  padding: 40px 70px 80px;
+  margin: 40px -30px 100px -30px;
+  padding: 40px 30px 80px;
 }
 .portal-pages-resource-lightbox-related-content h2 {
   font-family: museo-sans, sans-serif;
@@ -525,6 +526,13 @@ $materials-collection-item-icon-width: 300px;
       }
     }
   }
+}
+
+.portal-pages-action-buttons {
+  clear: both;
+  line-height: 3;
+  margin: 10px 0 0;
+  text-align: left;
 }
 
 .portal-pages-primary-button,
