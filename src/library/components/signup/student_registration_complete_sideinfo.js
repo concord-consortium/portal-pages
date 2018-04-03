@@ -1,6 +1,4 @@
-var dd, div, dl, dt, form, input, ref;
-
-ref = React.DOM, div = ref.div, dd = ref.dd, dt = ref.dt, dl = ref.dl, form = ref.form, input = ref.input;
+var ref = React.DOM, div = ref.div, dd = ref.dd, dt = ref.dt, dl = ref.dl, form = ref.form, input = ref.input;
 
 var StudentRegistrationCompleteSideInfo = function() {
   return React.createClass({
@@ -39,4 +37,3 @@ var StudentRegistrationCompleteSideInfo = function() {
 };
 
 module.exports = StudentRegistrationCompleteSideInfo;
-

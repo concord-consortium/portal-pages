@@ -17,7 +17,7 @@ var showOverlay = function(clickHandler,modalId,fixedPosition) {
   }
   jQuery('#portal-pages-modal-overlay').unbind('click');
   if(clickHandler) {
-      jQuery('#portal-pages-modal-overlay').click(clickHandler)
+      jQuery('#portal-pages-modal-overlay').click(clickHandler);
   }
   jQuery('#portal-pages-modal-overlay').css({'height': jQuery(document).height() + 'px'}).fadeIn('fast');
 };
@@ -26,7 +26,7 @@ var showModal = function(modalId, specialMsg, fixedPosition, closeFunc) {
 
   console.log("INFO showModal", modalId, specialMsg, fixedPosition, closeFunc);
 
-  _closeFunc = hideModal;
+  var _closeFunc = hideModal;
   if(closeFunc) {
     console.log("INFO Modal using custom close function.");
     _closeFunc = closeFunc;

@@ -1,6 +1,5 @@
-var a, div, p, ref, span;
-
-ref = React.DOM, button = ref.button, dd = ref.dd, dl = ref.dl, dt = ref.dt, div = ref.div, span = ref.span, p = ref.p, a = ref.a;
+var ref = React.DOM, button = ref.button, dd = ref.dd, dl = ref.dl, dt = ref.dt,
+  div = ref.div, span = ref.span, p = ref.p, a = ref.a;
 var TextInputClass  = require('./text_input');
 
 var StudentRegistrationComplete = function() {
@@ -18,7 +17,7 @@ var StudentRegistrationComplete = function() {
         if(response.redirect_path) {
           window.location = response.redirect_path;
         } else {
-          location.reload(true);
+          window.location.reload(true);
         }
       }).fail(function(err) {
     console.log("INFO login error", err);
@@ -27,14 +26,13 @@ var StudentRegistrationComplete = function() {
         //
         // TODO use some kind of styled modal dialog here.....
         //
-        alert("Error: " + response.message);
+        window.alert("Error: " + response.message);
       });
 
     },
     render: function() {
-      var anonymous, data, first_name, last_name, login, ref1;
-      ref1 = this.props, anonymous = ref1.anonymous, data = ref1.data;
-      first_name = data.first_name, last_name = data.last_name, login = data.login;
+      var ref1 = this.props, anonymous = ref1.anonymous, data = ref1.data,
+        first_name = data.first_name, last_name = data.last_name, login = data.login;
       return div({
         className: 'registration-complete student'
       }, anonymous ? div({}, p({style: {marginBottom: '30px'}}, 'Success! Your username is: ', span({

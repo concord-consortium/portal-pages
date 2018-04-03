@@ -2,6 +2,7 @@ var Component = require('../helpers/component');
 var RelatedResourceResult = require("./related-resource-result");
 var pluralize = require("../helpers/pluralize");
 var portalObjectHelpers = require("../helpers/portal-object-helpers");
+var StandardsHelpers = require("../helpers/standards-helpers");
 
 var div = React.DOM.div;
 var em = React.DOM.em;
@@ -15,6 +16,8 @@ var li = React.DOM.li;
 var p = React.DOM.p;
 var span = React.DOM.span;
 var ul = React.DOM.ul;
+var strong = React.DOM.strong;
+var br = React.DOM.br;
 
 var ResourceLightbox = Component({
   getInitialState: function () {
@@ -25,7 +28,7 @@ var ResourceLightbox = Component({
 
   getDefaultProps: function () {
     return {
-      savedUrl: location.toString(),
+      savedUrl: window.location.toString(),
       savedTitle: document.title
     };
   },
@@ -50,7 +53,7 @@ var ResourceLightbox = Component({
   componentWillUnmount: function () {
     document.title = this.props.savedTitle;
     try {
-      history.replaceState({}, document.title, this.props.savedUrl);
+      window.history.replaceState({}, document.title, this.props.savedUrl);
     }
     catch (e) {}
     jQuery('html, body').css('overflow', 'auto');
@@ -67,7 +70,7 @@ var ResourceLightbox = Component({
 
     document.title = this.titleSuffix ? resource.name + " | " + this.titleSuffix : resource.name;
     try {
-      history.replaceState({}, document.title, resource.stem_resource_url);
+      window.history.replaceState({}, document.title, resource.stem_resource_url);
     }
     catch (e) {}
     this.setState({resource: resource});
@@ -80,17 +83,17 @@ var ResourceLightbox = Component({
 
   handleAssignClick: function (e) {
     var resource = this.state.resource;
-    _gaq.push(['_trackEvent','Assign to Class Button','Click', resources.name]);
+    _gaq.push(['_trackEvent','Assign to Class Button','Click', resource.name]);
   },
 
   handleTeacherGuideClick: function (e) {
     var resource = this.state.resource;
-    _gaq.push(['_trackEvent','Teacher Guide Link','Click', resources.name]);
+    _gaq.push(['_trackEvent','Teacher Guide Link','Click', resource.name]);
   },
 
   handleAddToCollectionClick: function (e) {
     var resource = this.state.resource;
-    _gaq.push(['_trackEvent','Add to Collection Button','Click', resources.name]);
+    _gaq.push(['_trackEvent','Add to Collection Button','Click', resource.name]);
   },
 
   handleClose: function (e) {
@@ -188,11 +191,29 @@ var ResourceLightbox = Component({
     if (!resource.standard_statements || resource.standard_statements.length === 0) {
       return null;
     }
-    var statements = resource.standard_statements;
+
+    var allStatements   = resource.standard_statements;
+    var helpers         = {};
+    var unhelped        = [];
+
+    helpers.NGSS = StandardsHelpers.getStandardsHelper('NGSS');
+
+    for(var i = 0; i < allStatements.length; i++) {
+        var statement = allStatements[i];
+        var helper = helpers[statement.type];
+
+        if(helper) {
+            helper.add(statement);
+        } else {
+            unhelped.push(statement);
+        }
+    }
+
     return div({className: "portal-pages-resource-lightbox-standards"},
       hr({}),
       h2({}, "Standards"),
-      statements.map(function (statement) {
+      helpers.NGSS.getDiv(),
+      unhelped.map(function (statement) {
         var description = statement.description;
         if(Array.isArray && Array.isArray(description)) {
           var formatted = "";
@@ -211,6 +232,60 @@ var ResourceLightbox = Component({
           description
         );
       })
+    );
+  },
+
+  renderLicense: function () {
+    var resource = this.state.resource;
+    if (!resource.license_info) {
+      return null;
+    }
+
+    var license = resource.license_info;
+
+    // replace Concord Consortium with proper author credit
+    var license_description;
+    if (!resource.credits) {
+      license_description = license.description;
+    } else {
+      license_description = license.description.replace('the Concord Consortium', resource.credits);
+    }
+
+    var license_attribution = '';
+    // don't provide suggested attribution for public domain resources
+    if (license.code !== 'CC0') {
+      if (!resource.credits) {
+        license_attribution = p({}, 'Suggested attribution: ' + resource.name + ' by ',
+                a({href: 'https://concord.org/'}, 'The Concord Consortium'),
+                ' is licensed under ',
+                a({href: license.deed}, license.code),
+                '.'
+              );
+      } else {
+        license_attribution = p({}, 'Suggested attribution: ' + resource.name + ' by ' + resource.credits,
+                ' is licensed under ',
+                a({href: license.deed}, license.code),
+                '.'
+              );
+      }
+    }
+
+    return div({className: "portal-pages-resource-lightbox-license"},
+      hr({}),
+      h2({}, "License"),
+      div({},
+        img({src: license.image})
+      ),
+      h3({}, license.code),
+      p({}, license.name),
+      p({}, license_description,
+        br(),
+        a({href: license.deed}, license.deed),
+        br(),
+        a({href: license.legal}, license.legal)
+      ),
+      license_attribution
+      // license.number
     );
   },
 
@@ -316,6 +391,9 @@ var ResourceLightbox = Component({
     var resource = this.state.resource;
     var links = resource.links;
 
+    // console.log("[DEBUG] resource-lightbox links.assign_material.onclick", links.assign_material.onclick);
+    // console.log("[DEBUG] resource-lightbox links.assign_collection.onclick", links.assign_collection.onclick);
+
     return div({className: "portal-pages-resource-lightbox-modal-content"},
       div({className: "portal-pages-resource-lightbox-modal-content-top"},
         div({className: "portal-pages-resource-lightbox-modal-utility"},
@@ -333,16 +411,26 @@ var ResourceLightbox = Component({
             :
             null,
         div({},
+
           links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank", onClick: this.handlePreviewClick}, links.preview.text) : null,
+
+          /*jshint scripturl:true */
+
           links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick, onClick: this.handleAssignClick}, links.assign_material.text) : null,
+
           links.assign_collection ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_collection.onclick, onClick: this.handleAddToCollectionClick}, links.assign_collection.text) : null,
+
+          /*jshint scripturl:false */
+
           links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank', onClick: this.handleTeacherGuideClick}, links.teacher_guide.text) : null
+
         ),
         this.renderIncludedActivities(),
         hr({}),
         h2({}, "Requirements"),
         this.renderRequirements(),
         this.renderStandards(),
+        this.renderLicense(),
         this.renderLearnMore()
       ),
       this.renderRelatedContent()
@@ -352,6 +440,9 @@ var ResourceLightbox = Component({
   render: function () {
 
     var resource = this.state.resource;
+
+    // console.log("[DEBUG] render resource", resource);
+
     return div({},
       div({className: "portal-pages-resource-lightbox-background"}),
       div({className: "portal-pages-resource-lightbox-container"},

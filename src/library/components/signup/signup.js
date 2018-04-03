@@ -1,10 +1,8 @@
-var div;
-
-div = React.DOM.div;
-footer = React.DOM.footer;
-h2 = React.DOM.h2;
-p = React.DOM.p;
-strong = React.DOM.strong;
+var div = React.DOM.div,
+  footer = React.DOM.footer,
+  h2 = React.DOM.h2,
+  p = React.DOM.p,
+  strong = React.DOM.strong;
 
 var BasicDataFormClass                      = require("./basic_data_form");
 var SideInfoClass                           = require("./sideinfo");
@@ -51,7 +49,7 @@ var Signup = function() {
       };
     },
     onBasicDataSubmit: function(data) {
-      data.sign_up_path = location.pathname;
+      data.sign_up_path = window.location.pathname;
       return this.setState({
         basicData: data
       });
@@ -69,8 +67,7 @@ var Signup = function() {
     },
 
     getStepNumber: function() {
-      var basicData, ref, studentData, teacherData;
-      ref = this.state, basicData = ref.basicData, studentData = ref.studentData, teacherData = ref.teacherData;
+      var ref = this.state, basicData = ref.basicData, studentData = ref.studentData, teacherData = ref.teacherData;
 
       // console.log("INFO getStepNumber", this.props, basicData);
 
@@ -87,9 +84,8 @@ var Signup = function() {
 
       console.log("INFO rendering signup", this.props);
 
-      var anonymous, basicData, ref, ref1, signupText, studentData, teacherData;
-      ref = this.props, signupText = ref.signupText, oauthProviders = ref.oauthProviders, anonymous = ref.anonymous;
-      ref1 = this.state, basicData = ref1.basicData, studentData = ref1.studentData, teacherData = ref1.teacherData;
+      var ref = this.props, signupText = ref.signupText, oauthProviders = ref.oauthProviders, anonymous = ref.anonymous,
+        ref1 = this.state, basicData = ref1.basicData, studentData = ref1.studentData, teacherData = ref1.teacherData;
 
       var form;
 
@@ -190,4 +186,4 @@ var Signup = function() {
   });
 };
 
-module.exports = Signup
+module.exports = Signup;

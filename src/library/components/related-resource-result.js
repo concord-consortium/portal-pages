@@ -26,7 +26,9 @@ var RelatedResourceResult = Component({
   },
 
   handleMouseOver: function () {
-    this.setState({hovering: true});
+    if (!("ontouchstart" in document.documentElement)) {
+      this.setState({hovering: true});
+    }
   },
 
   handleMouseOut: function () {

@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
   // set up report link listeners
   jQuery('.uwp-report-link').click(function(e) {
     e.preventDefault();
-    alert('Report links don\'t do anything yet.');
+    window.alert('Report links don\'t do anything yet.');
   });
 });
 
@@ -57,35 +57,38 @@ function retrieveTickets() {
     results = result.results;
 
     // get investigations
+    var i;
     if (typeof results[0] != 'undefined' && results[0].materials.length > 0) {
-      for (var i = 0; i < results[0].materials.length; i++) {
+      for (i = 0; i < results[0].materials.length; i++) {
         investigation =  new Resource(results[0].materials[i], 'Sequence');
         resources.push(investigation);
       }
     }
     // get activities
     if (typeof results[1] != 'undefined' && results[1].materials.length > 0) {
-      for (var i = 0; i < results[1].materials.length; i++) {
+      for (i = 0; i < results[1].materials.length; i++) {
         activity =  new Resource(results[1].materials[i], 'Activity');
         resources.push(activity);
       }
     }
     // get interactives
     if (typeof results[2] != 'undefined' && results[2].materials.length > 0) {
-      for (var i = 0; i < results[2].materials.length; i++) {
+      for (i = 0; i < results[2].materials.length; i++) {
         interactive =  new Resource(results[2].materials[i], 'Interactive');
         resources.push(interactive);
       }
     }
 
     // sort all resources by name value in ascending alphabetical order
-    resources.sort(sortBy('name', false, function(a){return a.toUpperCase()}));
+    resources.sort(sortBy('name', false, function(a){
+      return a.toUpperCase();
+    }));
 
     // build output HTML string
     var results_output = '';
 
     if (resources.length > 0) {
-      for (var i = 0; i < resources.length; i++) {
+      for (i = 0; i < resources.length; i++) {
         var id_str = createID(resources[i].name);
         var resource_title = resources[i].name;
 
@@ -107,14 +110,14 @@ function retrieveTickets() {
 
 function sortBy(field, reverse, primer) {
   var key = primer ?
-      function(x) {return primer(x[field])} :
-      function(x) {return x[field]};
+      function(x) {return primer(x[field]);} :
+      function(x) {return x[field];};
 
   reverse = !reverse ? 1 : -1;
 
   return function (a, b) {
     return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
-  }
+  };
 }
 
 function createID(title) {
@@ -124,7 +127,7 @@ function createID(title) {
   // replace spaces with dashes
   id_str = id_str.replace(/ /g, '-');
   // replace unwanted characters and punctuation
-  id_str = id_str.replace(/[\u2018\u2019]/g, '')
+  id_str = id_str.replace(/[\u2018\u2019]/g, '');
   id_str = id_str.replace(/[\u201C\u201D]/g, '');
   id_str = id_str.replace(/[.,:'()?!;&]/g, '');
 

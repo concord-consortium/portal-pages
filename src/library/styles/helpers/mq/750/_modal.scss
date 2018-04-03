@@ -5,43 +5,12 @@
   }
 .signup-form .radio-input {
   margin-bottom: 10px;
+
+  input {
+    -webkit-appearance: radio;
+    }
   }
 #login-default-modal, #signup-default-modal, #forgot-password-modal, #login-form, #register-form {
-  dd {
-    margin: 0 0 20px;
-    &.two-col {
-      clear: both;
-      float: none;
-      margin: 0 0 20px;
-      input[type="text"] {
-        width: 100%;
-      }
-    }
-    &.multi-col {
-      clear: both;
-      float: none;
-      margin-top: 0;
-      margin-right: 0;
-      input {
-        margin-right: 0;
-        width: 100%;
-      }
-    }
-  }
-  dt {
-    display: block;
-    font-size: 15px;
-    margin: 0 0 10px;
-    &.two-col {
-      clear: both;
-      float: none;
-    }
-    &.multi-col {
-      clear: both;
-      float: none;
-      margin-right: 0;
-    }
-  }
   h2 {
     font: 100 20px $font-museo;
     margin-bottom: 10px;

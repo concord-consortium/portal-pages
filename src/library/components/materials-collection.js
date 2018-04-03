@@ -96,17 +96,30 @@ var MaterialsCollection = Component({
   componentWillMount: function () {
     jQuery.ajax({
       url: Portal.API_V1.MATERIALS_BIN_COLLECTIONS,
-      data: {id: this.props.collection},
+      data: {   id:                     this.props.collection,
+                skip_lightbox_reloads:  true
+            },
       dataType: 'json',
       success: function (data) {
-        materials = data[0].materials;
+        var materials = data[0].materials;
         if (this.props.randomize) {
           materials = shuffleArray(materials);
         }
-        if (this.onDataLoad) {
-          this.onDataLoad(materials);
+        if (this.props.featured) {
+          // props.featured is the ID of the material we
+          // wish to insert at the start of the list
+          var featuredID = this.props.featured;
+          var sortFeatured = function(a,b) {
+            if(a.id == featuredID) return -1;
+            if(b.id == featuredID) return 1;
+            return 0;
+          };
+          materials.sort(sortFeatured);
         }
         this.setState({materials: materials});
+        if (this.props.onDataLoad) {
+          this.props.onDataLoad(materials);
+        } 
       }.bind(this)
     });
   },

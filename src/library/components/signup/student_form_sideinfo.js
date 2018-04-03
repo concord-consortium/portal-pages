@@ -1,6 +1,4 @@
-var div, p, ref;
-
-ref = React.DOM, div = ref.div, p = ref.p;
+var ref = React.DOM, div = ref.div, p = ref.p;
 
 var StudentFormSideInfo = function() {
   return React.createClass({
@@ -12,4 +10,3 @@ var StudentFormSideInfo = function() {
 };
 
 module.exports = StudentFormSideInfo;
-

@@ -1,10 +1,10 @@
-var div, input, ref;
-
-ref = React.DOM, div = ref.div, input = ref.input;
+var div = React.DOM,
+    ref = React.DOM,
+    input = ref.input;
 
 var AsyncValidationMixin = function() {
 
-  // console.log("INFO creating async_validation_mixin"); 
+  // console.log("INFO creating async_validation_mixin");
 
   return {
     getInitialState: function() {
@@ -29,9 +29,9 @@ var AsyncValidationMixin = function() {
         _asyncValidationPassed: false
       });
       if (this._asyncValidationTimeoutID) {
-        clearTimeout(this._asyncValidationTimeoutID);
+        window.clearTimeout(this._asyncValidationTimeoutID);
       }
-      return this._asyncValidationTimeoutID = setTimeout((function(_this) {
+      this._asyncValidationTimeoutID = window.setTimeout((function(_this) {
         return function() {
           return _this.props.asyncValidation(value).done(function() {
             _this.setState({
@@ -47,9 +47,9 @@ var AsyncValidationMixin = function() {
           });
         };
       })(this), this.props.asyncValidationTimeout);
+      return this._asyncValidationTimeoutID;
     }
   };
 };
 
 module.exports = AsyncValidationMixin;
-

@@ -10,8 +10,8 @@
       by: function(a) { return a.text(); }
     };
     jQuery.extend(options, customOptions);
-    $data = jQuery(this);
-    arr = $data.get();
+    var $data = jQuery(this);
+    var arr = $data.get();
     arr.sort(function(a, b) {
       var valA = options.by(jQuery(a));
       var valB = options.by(jQuery(b));
@@ -38,11 +38,12 @@ jQuery(function() {
 
   // attempt to call Quicksand on every form change
   $filterType.change(function(e) {
-  if (jQuery('#filter input[name="type"]:checked').val() == 'all') {
-    var $filteredData = $data.find('li');
-  } else {
-    var $filteredData = $data.find('li[class*=' + jQuery('#filter input[name="type"]:checked').val() + ']');
-  }
+    var $filteredData;
+    if (jQuery('#filter input[name="type"]:checked').val() == 'all') {
+      $filteredData = $data.find('li');
+    } else {
+      $filteredData = $data.find('li[class*=' + jQuery('#filter input[name="type"]:checked').val() + ']');
+    }
 
     // call quicksand
     $sims.quicksand($filteredData, {
@@ -63,14 +64,6 @@ jQuery(document).ready(function() {
   jQuery('#curriculum-details').append('<p style="clear: both; cursor: pointer; text-align: center;"><a onclick="hidePopover(); return false;">close this</a></p>');
   jQuery('#overlay').click(function() {
     hidePopover();
-  });
-  jQuery('nav li a').each(function() {
-    jQuery(this).click(function() {
-      jQuery('nav a').removeClass('active');
-      var section_id = jQuery(this).attr('href');
-      navigateTo(section_id);
-      jQuery(this).addClass('active');
-    });
   });
   jQuery('.collapsible').hide();
   jQuery('.collapsible-toggle').css({'cursor':'pointer'}).click(function() {

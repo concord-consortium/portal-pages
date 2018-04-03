@@ -31,7 +31,7 @@ var LoginModal = function() {
     getDefaultProps: function () {
       return {
         siteName: (Portal && Portal.siteName) || 'Portal'
-      }
+      };
     },
 
     submit: function(data) {
@@ -44,7 +44,7 @@ var LoginModal = function() {
         if(response.redirect_path) {
           window.location = response.redirect_path;
         } else {
-          location.reload(true);
+          window.location.reload(true);
         }
       }).fail(function(err) {
 		//console.log("INFO login error", err);
@@ -59,7 +59,7 @@ var LoginModal = function() {
             //
             // TODO use some kind of styled modal dialog here.....
             //
-            alert("Error: " + message);
+            window.alert("Error: " + message);
         }
       });
 
@@ -78,7 +78,7 @@ var LoginModal = function() {
 
       if(enableAuthProviders && this.props.oauthProviders) {
 
-        providers = this.props.oauthProviders;
+        var providers = this.props.oauthProviders;
         providers.sort(function(a,b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); } ); // sort providers alphabetically by name
         for(var i = 0; i < providers.length; i++) {
           providerComponents.push(
@@ -92,7 +92,7 @@ var LoginModal = function() {
         }
       }
 
-      _this = this;
+      var _this = this;
 
       return div({className: 'login-default-modal-content'},
         FormsyForm({

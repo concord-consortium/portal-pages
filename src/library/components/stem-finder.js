@@ -31,15 +31,17 @@ var StemFinder = Component({
 
     var subjectAreaKey  = this.props.subjectAreaKey;
     var gradeLevelKey   = this.props.gradeLevelKey;
+    var featureTypeKey   = this.props.featureTypeKey;
 
-    if(!subjectAreaKey && !gradeLevelKey) {
+    if(!subjectAreaKey && !gradeLevelKey && !featureTypeKey) {
         //
         // If we are not passed props indicating filters to pre-populate
         // then attempt to see if this information is available in the URL.
         //
         var params      = this.getFiltersFromURL();
-        subjectAreaKey  = params["subject"];
+        subjectAreaKey  = params.subject;
         gradeLevelKey   = params["grade-level"];
+        featureTypeKey  = params.feature;
 
         subjectAreaKey = this.mapSubjectArea(subjectAreaKey);
     }
@@ -47,16 +49,17 @@ var StemFinder = Component({
     //
     // Scroll to stem finder if we have filters specified.
     //
-    if(subjectAreaKey || gradeLevelKey) {
+    if(subjectAreaKey || gradeLevelKey || featureTypeKey) {
         this.scrollToFinder();
     }
 
     var subjectAreasSelected    = [];
     var subjectAreasSelectedMap = {};
+    var i;
 
     if(subjectAreaKey) {
         var subjectAreas = filters.subjectAreas;
-        for(var i = 0; i < subjectAreas.length; i++) {
+        for(i = 0; i < subjectAreas.length; i++) {
             var subjectArea = subjectAreas[i];
             if(subjectArea.key == subjectAreaKey) {
                 subjectAreasSelected.push(subjectArea);
@@ -69,13 +72,24 @@ var StemFinder = Component({
 
     if(gradeLevelKey) {
         var gradeLevels = filters.gradeFilters;
-        for(var i = 0; i < gradeLevels.length; i++) {
+        for(i = 0; i < gradeLevels.length; i++) {
             var gradeLevel = gradeLevels[i];
             if(gradeLevel.key == gradeLevelKey) {
                 gradeFiltersSelected.push(gradeLevel);
             }
         }
+    }
 
+    var featureFiltersSelected = [];
+
+    if(featureTypeKey) {
+        var featureTypes = filters.featureFilters;
+        for(i = 0; i < featureTypes.length; i++) {
+            var featureType = featureTypes[i];
+            if(featureType.key == featureTypeKey) {
+                featureFiltersSelected.push(featureType);
+            }
+        }
     }
 
     // console.log("INFO stem-finder initial subject areas: ", subjectAreasSelected);
@@ -84,7 +98,7 @@ var StemFinder = Component({
       opacity: 1,
       subjectAreasSelected:     subjectAreasSelected,
       subjectAreasSelectedMap:  subjectAreasSelectedMap,
-      featureFiltersSelected:   [],
+      featureFiltersSelected:   featureFiltersSelected,
       gradeFiltersSelected:     gradeFiltersSelected,
       resources: [],
       numTotalResources: 0,
@@ -106,7 +120,7 @@ var StemFinder = Component({
 
     var ret = {};
 
-    var path = location.pathname;
+    var path = window.location.pathname;
     if(!path.startsWith("/")) { path = "/"+path; }
 
     var parts = path.split("/");
@@ -138,7 +152,10 @@ var StemFinder = Component({
   // Scroll to top of stem-finder filter form.
   //
   scrollToFinder: function() {
-    jQuery('body, html').animate({scrollTop: jQuery('.portal-pages-finder-form').offset().top + 50 }, 600);
+    var finder_form_top = jQuery('.portal-pages-finder-form').offset().top + 50;
+    if (jQuery(document).scrollTop() < finder_form_top) {
+      jQuery('body, html').animate({scrollTop: finder_form_top }, 600);
+    }
   },
 
   componentWillMount: function () {
@@ -170,6 +187,7 @@ var StemFinder = Component({
     var query = [
       "search_term=",
       encodeURIComponent(keyword),
+      "&skip_lightbox_reloads=true",
       "&sort_order=Alphabetical",
       "&include_official=1",
       "&model_types=All",
@@ -351,6 +369,7 @@ var StemFinder = Component({
         filters[type].map(function (filter) {
           var selectedKey = type + "Selected";
           var handleChange = function () {
+            this.scrollToFinder();
             this.toggleFilter(type, filter);
           }.bind(this);
           var checked = this.state[selectedKey].indexOf(filter) !== -1;
@@ -368,6 +387,7 @@ var StemFinder = Component({
       e.preventDefault();
       e.stopPropagation();
       this.search();
+      this.scrollToFinder();
     }.bind(this);
     return div({className: "portal-pages-finder-form-search col-4"},
       div({className: "portal-pages-finder-form-search-title"}, "Search by keyword"),

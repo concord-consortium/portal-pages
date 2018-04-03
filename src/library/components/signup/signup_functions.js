@@ -7,7 +7,7 @@ var Modal               = require('../../helpers/modal');
 //
 // Map modal to CSS classes
 //
-var modalClasses = {}
+var modalClasses = {};
 modalClasses[LoginModal]    = "login-default-modal";
 modalClasses[SignupModal]   = "signup-default-modal";
 modalClasses[ForgotPasswordModal]   = "forgot-password-modal";
@@ -19,7 +19,7 @@ modalClasses[ForgotPasswordModal]   = "forgot-password-modal";
 //  properties          - The properties
 //  selectorOrElement   - DOM element selector
 //
-renderSignupForm = function(properties, selectorOrElement) {
+var renderSignupForm = function(properties, selectorOrElement) {
   if (properties == null) {
     properties = {};
   }
@@ -67,7 +67,7 @@ var openSignupModal = function(properties) {
             redireectPath = properties.omniauth_origin;
         }
         logout(Modal.hideModal, Modal.hideModal, redireectPath);
-    }
+    };
   }
   openModal(SignupModal, properties, closeFunc);
 };
@@ -89,9 +89,9 @@ var logout = function(successFunc, failFunc, redirectAfter) {
 
         if(redirectAfter) {
             console.log("INFO redirecting to " + redirectAfter);
-            location.href = redirectAfter;
+            window.location.href = redirectAfter;
         } else {
-            location.reload(true);
+            window.location.reload(true);
         }
 
       }).fail(function(err) {

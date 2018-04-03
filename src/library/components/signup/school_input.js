@@ -1,8 +1,6 @@
-var TIMEOUT, a, div, input, label, ref;
+var TIMEOUT = 500;
 
-ref = React.DOM, div = ref.div, input = ref.input, a = ref.a, label = ref.label;
-
-TIMEOUT = 500;
+var ref = React.DOM, div = ref.div, input = ref.input, a = ref.a, label = ref.label;
 
 var SchoolInput = function() {
 
@@ -26,8 +24,9 @@ var SchoolInput = function() {
       return this.updateOptions();
     },
     componentDidUpdate: function(prevProps) {
-      var country, ref1, zipcode;
-      ref1 = this.props, country = ref1.country, zipcode = ref1.zipcode;
+      var ref1 = this.props,
+        country = ref1.country,
+        zipcode = ref1.zipcode;
       if (prevProps.country !== country || prevProps.zipcode !== zipcode) {
         this.setValue('');
         return this.updateOptions();
@@ -45,18 +44,19 @@ var SchoolInput = function() {
       return this.setValue(option && option.value);
     },
     updateOptions: function() {
-      var country, ref1, zipcode;
-      ref1 = this.props, country = ref1.country, zipcode = ref1.zipcode;
+      var ref1 = this.props,
+        country = ref1.country,
+        zipcode = ref1.zipcode;
       if ((country == null) || (zipcode == null)) {
         return;
       }
       if (this.timeoutID) {
-        clearTimeout(this.timeoutID);
+        window.clearTimeout(this.timeoutID);
       }
       this.setState({
         isLoading: true
       });
-      return this.timeoutID = setTimeout((function(_this) {
+      this.timeoutID = window.setTimeout((function(_this) {
         return function() {
           return getSchools(country, zipcode).done(function(data) {
             var options;
@@ -77,12 +77,12 @@ var SchoolInput = function() {
           });
         };
       })(this), TIMEOUT);
+      return this.timeoutID;
     },
     render: function() {
-      var className, disabled, isLoading, onAddNewSchool, options, placeholder, ref1, ref2;
-      ref1 = this.props, placeholder = ref1.placeholder, disabled = ref1.disabled, onAddNewSchool = ref1.onAddNewSchool;
-      ref2 = this.state, options = ref2.options, isLoading = ref2.isLoading;
-      className = 'select-input';
+      var className = 'select-input',
+        ref1 = this.props, placeholder = ref1.placeholder, disabled = ref1.disabled, onAddNewSchool = ref1.onAddNewSchool,
+        ref2 = this.state, options = ref2.options, isLoading = ref2.isLoading;
       if (this.getValue()) {
         className += ' valid';
       }
@@ -105,5 +105,3 @@ var SchoolInput = function() {
 };
 
 module.exports = SchoolInput;
-
-
