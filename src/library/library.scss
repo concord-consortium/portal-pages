@@ -381,9 +381,10 @@
   padding: 0;
 }
 .portal-pages-resource-lightbox-modal-content-top .preview-image {
-  height: 400px;
+  height: auto;
   overflow: hidden;
-  padding-bottom: 100px;
+  margin-bottom: 20px;
+  min-height: 400px;
   width: 730px;
   img {
     height: auto;
@@ -531,7 +532,7 @@ $materials-collection-item-icon-width: 300px;
 .portal-pages-action-buttons {
   clear: both;
   line-height: 3;
-  margin: 10px 0 0;
+  margin: 20px 0;
   text-align: left;
 }
 

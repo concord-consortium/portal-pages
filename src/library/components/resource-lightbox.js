@@ -402,21 +402,21 @@ var ResourceLightbox = Component({
         h1({}, resource.name),
         div({className: 'preview-image'},
           img({src: resource.icon.url}),
-          div({className: 'portal-pages-action-buttons'},
+        ),
+        div({className: 'portal-pages-action-buttons'},
 
-            links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank", onClick: this.handlePreviewClick}, links.preview.text) : null,
+          links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank", onClick: this.handlePreviewClick}, links.preview.text) : null,
 
-            /*jshint scripturl:true */
+          /*jshint scripturl:true */
 
-            links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick, onClick: this.handleAssignClick}, links.assign_material.text) : null,
+          links.assign_material ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_material.onclick, onClick: this.handleAssignClick}, links.assign_material.text) : null,
 
-            links.assign_collection ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_collection.onclick, onClick: this.handleAddToCollectionClick}, links.assign_collection.text) : null,
+          links.assign_collection ? a({className: "portal-pages-secondary-button", href: 'javascript:' + links.assign_collection.onclick, onClick: this.handleAddToCollectionClick}, links.assign_collection.text) : null,
 
-            /*jshint scripturl:false */
+          /*jshint scripturl:false */
 
-            links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank', onClick: this.handleTeacherGuideClick}, links.teacher_guide.text) : null
+          links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank', onClick: this.handleTeacherGuideClick}, links.teacher_guide.text) : null
 
-          )
         ),
         p({className: "portal-pages-resource-lightbox-description",
            dangerouslySetInnerHTML: {__html: resource.longDescription}}),
