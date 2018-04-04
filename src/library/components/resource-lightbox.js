@@ -401,7 +401,7 @@ var ResourceLightbox = Component({
         ),
         h1({}, resource.name),
         div({className: 'preview-image'},
-          img({src: resource.icon.url}),
+          img({src: resource.icon.url})
         ),
         div({className: 'portal-pages-action-buttons'},
 
