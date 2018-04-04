@@ -181,7 +181,7 @@ var StemFinder = Component({
 
     var keyword = (this.refs.keyword ? this.refs.keyword.value : "") || "";
     if (keyword !== "") {
-      _gaq.push(['_trackEvent', 'Home Page Search', 'Search', keyword]);
+      ga('send', 'event', 'Home Page Search', 'Search', keyword);
     }
 
     var query = [
@@ -302,7 +302,7 @@ var StemFinder = Component({
         subjectAreasSelectedMap[subjectArea.key] = subjectArea;
         subjectAreasSelected.push(subjectArea);
         jQuery('#' + subjectArea.key).addClass('selected');
-        _gaq.push(['_trackEvent', 'Home Page Filter', 'Click', subjectArea.title]);
+        ga('send', 'event', 'Home Page Filter', 'Click', subjectArea.title);
       }
       else {
         subjectAreasSelectedMap[subjectArea.key] = undefined;
@@ -351,7 +351,7 @@ var StemFinder = Component({
     if (index === -1) {
       selectedFilters.push(filter);
       jQuery('#' + filter.key).addClass('selected');
-      _gaq.push(['_trackEvent', 'Home Page Filter', 'Click', filter.title]);
+      ga('send', 'event', 'Home Page Filter', 'Click', filter.title);
     }
     else {
       selectedFilters.splice(index, 1);
@@ -468,6 +468,7 @@ var StemFinder = Component({
       if (!this.state.searching) {
         this.search(true);
       }
+      ga('send', 'event', 'Load More Button', 'Click', this.state.displayLimit + ' resources displayed');
     }.bind(this);
     if ((this.state.resources.length === 0) || (this.state.displayLimit >= this.state.numTotalResources)) {
       return null;

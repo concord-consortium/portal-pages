@@ -65,6 +65,7 @@ var StudentRegistrationComplete = function() {
       );
     }
   });
+  ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Student');
 };
 
 module.exports = StudentRegistrationComplete;

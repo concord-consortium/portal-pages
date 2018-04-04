@@ -54,6 +54,7 @@ var PageHeader = Component({
     PortalPages.renderLoginModal(
       { oauthProviders: this.state.oauthProviders,
         afterSigninPath: this.props.afterSigninPath} );
+    ga('send', 'event', 'Login', 'Form', 'Opened');
   },
 
   handleRegisterButton: function (e) {
@@ -62,6 +63,7 @@ var PageHeader = Component({
       { oauthProviders: this.state.oauthProviders },
       "signup-default-modal"
     );
+    ga('send', 'event', 'Registration', 'Form', 'Opened');
   },
 
   handleNavMenuToggle: function (e) {

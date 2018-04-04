@@ -15,6 +15,7 @@ var TeacherRegistrationComplete = function() {
       }, 'Start using the site.')));
     }
   });
+  ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Teacher');
 };
 
 
