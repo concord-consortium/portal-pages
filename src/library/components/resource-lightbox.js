@@ -243,6 +243,9 @@ var ResourceLightbox = Component({
 
     var license = resource.license_info;
 
+    var attribution_name = 'The Concord Consortium';
+    var attribution_url = 'https://concord.org/';
+
     // replace Concord Consortium with proper author credit
     var license_description;
     if (!resource.credits) {
@@ -251,12 +254,19 @@ var ResourceLightbox = Component({
       license_description = license.description.replace('the Concord Consortium', resource.credits);
     }
 
+    // alter attribution values when all material should be attributed to a specific project or partner
+    if (Portal.theme == 'ngss-assessment') {
+      attribution_name = 'The Next Generation Science Assessment Project';
+      attribution_url = 'http://nextgenscienceassessment.org/';
+      license_description = license.description.replace('the Concord Consortium', attribution_name);
+    }
+
     var license_attribution = '';
     // don't provide suggested attribution for public domain resources
     if (license.code !== 'CC0') {
       if (!resource.credits) {
         license_attribution = p({}, 'Suggested attribution: ' + resource.name + ' by ',
-                a({href: 'https://concord.org/'}, 'The Concord Consortium'),
+                a({href: attribution_url}, attribution_name),
                 ' is licensed under ',
                 a({href: license.deed}, license.code),
                 '.'
