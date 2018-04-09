@@ -485,6 +485,55 @@
   text-transform: none;
 }
 
+.portal-pages-tooltip-wrapper {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  .portal-pages-tooltip {
+    background: $col-darkgray;
+    box-shadow: 0 3px 20px rgba(0,0,0,.3);
+    color: $col-white;
+    font-size: 15px;
+    height: auto;
+    left: 50%;
+    margin-left: -180px;
+    min-height: 100px;
+    padding: 30px;
+    position: absolute;
+    top: 100px;
+    width: 300px;
+    z-index: 100;
+
+    p {
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    &:after {
+      border-width: 15px 15px 0;
+      border-style: solid;
+      border-color: $col-darkgray transparent;
+      bottom: -15px;
+      content: '';
+      display: block;
+      left: 50%;
+      margin-left: -15px;
+      position: absolute;
+      width: 0;
+    }
+
+    &.under:after {
+      border-width: 0 15px 15px;
+      bottom: auto;
+      top: -15px;
+    }
+  }
+}
+
 $materials-collection-item-icon-width: 300px;
 
 .portal-pages-finder-materials-collection-item {
