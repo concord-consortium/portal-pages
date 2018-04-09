@@ -30,13 +30,13 @@ var Tooltip = Component({
   },
 
   componentWillUnmount: function () {
-    clearTimeout(this._timer);
+    window.clearTimeout(this._timer);
   },
 
   setTimer: function() {
-    this._timer != null ? clearTimeout(this._timer) : null;
+    this._timer != null ? window.clearTimeout(this._timer) : null;
 
-    this._timer = setTimeout(function() {
+    this._timer = window.setTimeout(function() {
       jQuery('#' + this.state.id).fadeOut();
       this._timer = null;
     }.bind(this), this.state.close_delay);
