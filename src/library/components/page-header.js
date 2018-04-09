@@ -1,6 +1,8 @@
 var Component = require('../helpers/component');
 
 var fadeIn = require("../helpers/fade-in");
+var Tooltip = require('../helpers/tooltip');
+var ItemTooltip = require('./tooltip');
 
 var a = React.DOM.a;
 var button = React.DOM.button;
@@ -75,6 +77,33 @@ var PageHeader = Component({
     }
   },
 
+  toggleTooltip: function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    var tooltip = !this.state.tooltip;
+
+    this.setState({
+      tooltip: tooltip
+    });
+
+    // mount/unmount tooltip outside of homepage content
+    if (tooltip) {
+      var ProtectedLinkTooltip = ItemTooltip({
+        id: e.target.id + '-tooltip',
+        text: e.target.title,
+        posx: e.pageX + 30,
+        posy: e.pageY + jQuery('#' + e.target.id).height() + 3,
+        type: 'under',
+        close_delay: 5000,
+        toggleTooltip: this.toggleTooltip
+      });
+      Tooltip.open(ProtectedLinkTooltip);
+    } else {
+      Tooltip.close();
+    }
+  },
+
   renderFirstButton: function() {
     if (this.state.loggedIn) {
       return a({href: this.state.homePath, title: "View Recent Activity", className: "portal-pages-main-nav-item__link button register"},
@@ -104,6 +133,12 @@ var PageHeader = Component({
     }
   },
 
+  renderProtectedLink: function(e) {
+    return a({href: "#", className: "portal-pages-main-nav-item__link", id: e.link_id, title: e.link_title, onClick: this.toggleTooltip},
+      e.link_text
+    );
+  },
+
   renderNavLinks: function (e) {
     var headerItems = [];
     if(!this.state.isStudent){
@@ -116,13 +151,25 @@ var PageHeader = Component({
               "Assessment Tasks"
             )
           ) );
-        headerItems.push(
+        if (this.state.isTeacher) {
+          headerItems.push(
+            li({className: "portal-pages-main-nav-item" +
+                " portal-pages-main-nav-forum"},
+              a({href: "https://ngsa.concord.org/forum", className: "portal-pages-main-nav-item__link", title: "Visit the NGSA Forum"},
+                "Forum"
+              )
+            ) );
+        } else {
+          headerItems.push(
           li({className: "portal-pages-main-nav-item" +
-              " portal-pages-main-nav-collections"},
-            a({href: "https://ngsa.concord.org/forum", className: "portal-pages-main-nav-item__link", title: "Visit the NGSA Forum"},
-              "Forum"
-            )
-          ) );
+              " portal-pages-main-nav-forum"},
+            this.renderProtectedLink({
+              link_id: 'ngsa-forum',
+              link_text: 'Forum',
+              link_title: 'Registered teachers can participate in a forum with other teachers. Login or register as a teacher to access the forum.'
+            })
+          ));
+        }
       } else {
         headerItems.push(
           li({className: "portal-pages-main-nav-item" +
@@ -131,7 +178,7 @@ var PageHeader = Component({
             a({href: "/collections", className: "portal-pages-main-nav-item__link", title: "View Resource Collections"},
               "Collections"
             )
-          ) );
+          ));
         headerItems.push(
           li({className: "portal-pages-main-nav-item" +
              " portal-pages-main-nav-about" +
