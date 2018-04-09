@@ -34,7 +34,9 @@ var Tooltip = Component({
   },
 
   setTimer: function() {
-    this._timer != null ? window.clearTimeout(this._timer) : null;
+    if (this._timer != null) {
+      window.clearTimeout(this._timer);
+    }
 
     this._timer = window.setTimeout(function() {
       jQuery('#' + this.state.id).fadeOut();
