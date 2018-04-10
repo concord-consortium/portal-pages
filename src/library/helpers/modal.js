@@ -36,13 +36,15 @@ var showModal = function(modalId, specialMsg, fixedPosition, closeFunc) {
   showOverlay(_closeFunc,modalId,fixedPosition);
 
   if (jQuery(modalId + ' .portal-pages-close').length === 0) {
-    jQuery(modalId).append('<a class="portal-pages-close">x</a>');
-    jQuery(modalId + ' .portal-pages-close').click(_closeFunc);
-    jQuery(modalId).click(function(e){
-      if (jQuery(e.target).is(modalId)) {
-        _closeFunc();
-      }
-    });
+    if (window.location.pathname != '/signup') { // don't allow closing of modal on /signup page 
+      jQuery(modalId).append('<a class="portal-pages-close">x</a>');
+      jQuery(modalId + ' .portal-pages-close').click(_closeFunc);
+      jQuery(modalId).click(function(e){
+        if (jQuery(e.target).is(modalId)) {
+          _closeFunc();
+        }
+      });
+    }
   }
   if (specialMsg != null) {
     jQuery(modalId + ' .portal-pages-special-msg').text(specialMsg).show();
