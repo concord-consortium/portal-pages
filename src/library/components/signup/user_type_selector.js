@@ -26,6 +26,7 @@ var UserTypeSelector = function() {
       var value = event.currentTarget.value;
       console.log("INFO changing type", value);
       this.setState({show: value});
+      ga('send', 'event', 'Registration', 'Form', 'Step 2 Completed - ' + value.charAt(0).toUpperCase() + value.slice(1));
     },
 
     render: function() {
@@ -33,7 +34,7 @@ var UserTypeSelector = function() {
       console.log("INFO UserTypeSelector rendering");
       console.log("Show", this.state.show);
 
-      var radio = 
+      var radio =
         RadioInput({
           handleChange: this.handleChange,
           name: 'type',
@@ -74,4 +75,3 @@ var UserTypeSelector = function() {
 };
 
 module.exports = UserTypeSelector;
-

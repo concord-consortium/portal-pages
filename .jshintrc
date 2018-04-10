@@ -11,7 +11,7 @@
     "ReactDOM": false,
     "Formsy": false,
     "Select": false,
-    "_gaq": false,
+    "ga": false,
     "Portal": false,
     "PortalPages": false
   }
