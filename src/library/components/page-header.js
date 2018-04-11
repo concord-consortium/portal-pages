@@ -153,14 +153,14 @@ var PageHeader = Component({
               "Assessment Tasks"
             )
           ) );
-        if (this.state.isTeacher) {
+        if (this.state.loggedIn) {
           headerItems.push(
             li({className: "portal-pages-main-nav-item" +
                 " portal-pages-main-nav-forum"},
-              a({href: "https://ngsa.concord.org/forum", className: "portal-pages-main-nav-item__link", title: "Visit the NGSA Forum"},
+              a({href: "https://ngsa.concord.org/forum?autosignin=true", className: "portal-pages-main-nav-item__link", title: "Visit the NGSA Forum"},
                 "Forum"
               )
-            ) );
+            ));
         } else {
           headerItems.push(
           li({className: "portal-pages-main-nav-item" +
