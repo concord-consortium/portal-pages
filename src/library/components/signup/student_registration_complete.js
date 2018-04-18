@@ -33,7 +33,7 @@ var StudentRegistrationComplete = function() {
     render: function() {
       var ref1 = this.props, anonymous = ref1.anonymous, data = ref1.data,
         first_name = data.first_name, last_name = data.last_name, login = data.login;
-        ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Student');
+        if (typeof ga !== 'undefined') { ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Student'); }
       return div({
         className: 'registration-complete student'
       }, anonymous ? div({}, p({style: {marginBottom: '30px'}}, 'Success! Your username is: ', span({

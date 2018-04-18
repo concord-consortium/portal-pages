@@ -69,7 +69,7 @@ var BasicDataForm = function() {
       });
     },
     submit: function(model) {
-      ga('send', 'event', 'Registration', 'Form', 'Step 1 Completed');
+      if (typeof ga !== 'undefined') { ga('send', 'event', 'Registration', 'Form', 'Step 1 Completed'); }
       return this.props.onSubmit(model);
     },
 
