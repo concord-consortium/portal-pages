@@ -16,16 +16,18 @@ module.exports = (app) => {
   const sass = require('node-sass');
   const MemoryFS = require("memory-fs");
   const webpack = require("webpack");
+  const webpackConfig = require("../../webpack.config");
 
   // setup library compiler
   const memfs = new MemoryFS();
-  const compiler = webpack({
+  const compiler = webpack(Object.assign({
+    mode: 'development',
     entry: path.resolve(`${__dirname}/../../src/library/library.js`),
     output: {
       path: '/',
       filename: 'library.js'
     }
-  });
+  }, webpackConfig));
   compiler.outputFileSystem = memfs;
 
   const portalSrcFolder = path.resolve(`${__dirname}/../../src/portals`);
@@ -159,8 +161,13 @@ module.exports = (app) => {
     compiler.run((err, stats) => {
       if (err) {
         callback(err);
-      }
-      else {
+      } else if (stats.hasErrors()) {
+        console.log(stats.toString({colors: true}));
+        callback(stats.toString({colors: true}));
+      } else {
+        if (stats.hasWarnings()) {
+          console.log(stats.toString({colors: true}));
+        }
         callback(null, memfs.readFileSync("/library.js"));
       }
     });
