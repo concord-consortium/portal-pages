@@ -93,7 +93,7 @@ var StemFinderResult = Component({
         toggleLightbox: this.toggleLightbox
       });
       Lightbox.open(resourceLightbox);
-      ga('send', 'event', 'Home Page Resource Card', 'Click', this.props.resource.name);
+      if (typeof ga !== 'undefined') { ga('send', 'event', 'Home Page Resource Card', 'Click', this.props.resource.name); }
     }
     else {
       Lightbox.close();

@@ -6,7 +6,7 @@ var TeacherRegistrationComplete = function() {
     render: function() {
       var anonymous;
       anonymous = this.props.anonymous;
-      ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Teacher');
+      if (typeof ga !== 'undefined') { ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Teacher'); }
       return div({
         className: 'registration-complete'
       }, p({

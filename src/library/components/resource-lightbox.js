@@ -78,22 +78,22 @@ var ResourceLightbox = Component({
 
   handlePreviewClick: function (e) {
     var resource = this.state.resource;
-    ga('send', 'event', 'Resource Preview Button', 'Click', resource.name);
+    if (typeof ga !== 'undefined') { ga('send', 'event', 'Resource Preview Button', 'Click', resource.name); }
   },
 
   handleAssignClick: function (e) {
     var resource = this.state.resource;
-    ga('send', 'event', 'Assign to Class Button', 'Click', resource.name);
+    if (typeof ga !== 'undefined') { ga('send', 'event', 'Assign to Class Button', 'Click', resource.name); }
   },
 
   handleTeacherGuideClick: function (e) {
     var resource = this.state.resource;
-    ga('send', 'event', 'Teacher Guide Link', 'Click', resource.name);
+    if (typeof ga !== 'undefined') { ga('send', 'event', 'Teacher Guide Link', 'Click', resource.name); }
   },
 
   handleAddToCollectionClick: function (e) {
     var resource = this.state.resource;
-    ga('send', 'event', 'Add to Collection Button', 'Click', resource.name);
+    if (typeof ga !== 'undefined') { ga('send', 'event', 'Add to Collection Button', 'Click', resource.name); }
   },
 
   handleClose: function (e) {
@@ -128,7 +128,7 @@ var ResourceLightbox = Component({
                  ',top='    + top    +
                  ',left='   + left;
     window.open(url, 'social-media-share', opts);
-    ga('send', 'event', 'Resource Lightbox ' + e.target.text + ' Button', 'Click', this.props.resource.name);
+    if (typeof ga !== 'undefined') { ga('send', 'event', 'Resource Lightbox ' + e.target.text + ' Button', 'Click', this.props.resource.name); }
   },
 
   renderIncludedActivities: function () {
