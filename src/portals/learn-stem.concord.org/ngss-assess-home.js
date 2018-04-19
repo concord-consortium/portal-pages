@@ -4,4 +4,4 @@ PortalPages.renderPageHeader({
   umbrella_link: false,
   oauthProviders: Portal.oauthProviders,
   theme: 'ngss-assessment'
-}, 'page-header');
+}, 'page-header')

@@ -1,26 +1,26 @@
-var filterDiv = null;
+var filterDiv = null
 
-var shortenText = function(text, length) {
-  length = (typeof length !== 'undefined') ? length : 350;
+var shortenText = function (text, length) {
+  length = (typeof length !== 'undefined') ? length : 350
   if (!text) {
-    return "";
+    return ''
   } else {
     if (text.length > length) {
-      return text.substring(0, length-1) + "…";
+      return text.substring(0, length - 1) + '…'
     } else {
-      return text;
+      return text
     }
   }
-};
+}
 
 var textOfHtml = function (text) {
   if (!filterDiv) {
-    filterDiv = document.createElement("DIV");
+    filterDiv = document.createElement('DIV')
   }
 
-  filterDiv.innerHTML = text;
-  return filterDiv.innerText;
-};
+  filterDiv.innerHTML = text
+  return filterDiv.innerText
+}
 
 /*
    The resource.description is setup by the portal. It is not the same as the description
@@ -37,34 +37,33 @@ var textOfHtml = function (text) {
    - resource.description_for_teacher - database value if it exists, "" otherwise
 */
 var processResource = function (resource) {
-
   if (resource == null || resource._processed) {
-    return;
+    return
   }
 
-  resource.filteredDescription = textOfHtml(resource.description);
+  resource.filteredDescription = textOfHtml(resource.description)
 
   if (resource.abstract) {
-    resource.filteredShortDescription = textOfHtml(resource.abstract);
+    resource.filteredShortDescription = textOfHtml(resource.abstract)
   } else if (resource.full_description) {
     resource.filteredShortDescription =
-      shortenText(textOfHtml(resource.full_description));
+      shortenText(textOfHtml(resource.full_description))
   } else {
-    resource.filteredShortDescription = textOfHtml(resource.description);
+    resource.filteredShortDescription = textOfHtml(resource.description)
   }
 
-  if (resource.description_for_teacher){
-    resource.longDescription = resource.description_for_teacher;
+  if (resource.description_for_teacher) {
+    resource.longDescription = resource.description_for_teacher
   } else if (resource.full_description) {
-    resource.longDescription = resource.full_description;
+    resource.longDescription = resource.full_description
   } else {
-    resource.longDescription = resource.description;
+    resource.longDescription = resource.description
   }
 
-  resource._processed = true;
-};
+  resource._processed = true
+}
 
 module.exports = {
   textOfHtml: textOfHtml,
   processResource: processResource
-};
+}

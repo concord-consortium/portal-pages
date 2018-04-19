@@ -1,24 +1,21 @@
-var ref = React.DOM, div = ref.div, p = ref.p, ul = ref.ul, li = ref.li;
+var ref = React.DOM
+var div = ref.div
 
-var SignupClass     = require('./signup');
-var SideInfoClass   = require('./sideinfo');
+var SignupClass = require('./signup')
 
-var SignupModal = function() {
-
+var SignupModal = function () {
   // console.log("INFO creating signup_modal");
 
-  var SideInfo, Signup;
-  Signup = React.createFactory(SignupClass());
-  SideInfo = React.createFactory(SideInfoClass());
+  var Signup = React.createFactory(SignupClass())
   return React.createClass({
     displayName: 'SignupModal',
-    render: function() {
+    render: function () {
       // console.log("INFO rendering signup modal", this.props);
       return div({
         className: 'signup-default-modal-content'
-      }, Signup( this.props ) );
+      }, Signup(this.props))
     }
-  });
-};
+  })
+}
 
-module.exports = SignupModal;
+module.exports = SignupModal

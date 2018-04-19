@@ -1,126 +1,118 @@
-var div = React.DOM.div,
-  footer = React.DOM.footer,
-  h2 = React.DOM.h2,
-  p = React.DOM.p,
-  strong = React.DOM.strong;
+var div = React.DOM.div
+var footer = React.DOM.footer
+var h2 = React.DOM.h2
+var p = React.DOM.p
+var strong = React.DOM.strong
 
-var BasicDataFormClass                      = require("./basic_data_form");
-var SideInfoClass                           = require("./sideinfo");
-var StudentFormClass                        = require("./student_form");
-var StudentFormSideInfoClass                = require("./student_form_sideinfo");
-var TeacherFormClass                        = require("./teacher_form");
-var StudentRegistrationCompleteClass        = require("./student_registration_complete");
-var StudentRegistrationCompleteSideInfoClass = require("./student_registration_complete_sideinfo");
-var TeacherRegistrationCompleteClass        = require("./teacher_registration_complete");
-var UserTypeSelectorClass                   = require("./user_type_selector");
+var BasicDataFormClass = require('./basic_data_form')
+var StudentRegistrationCompleteClass = require('./student_registration_complete')
+var TeacherRegistrationCompleteClass = require('./teacher_registration_complete')
+var UserTypeSelectorClass = require('./user_type_selector')
 
-var Signup = function() {
-
+var Signup = function () {
   // console.log("INFO creating Signup");
 
-  var BasicDataForm, SideInfo, StudentForm, StudentFormSideInfo, StudentRegistrationComplete, StudentRegistrationCompleteSideInfo, TeacherForm, TeacherRegistrationComplete;
-  BasicDataForm = React.createFactory(BasicDataFormClass());
-  SideInfo = React.createFactory(SideInfoClass());
-  StudentForm = React.createFactory(StudentFormClass());
-  StudentFormSideInfo = React.createFactory(StudentFormSideInfoClass());
-  TeacherForm = React.createFactory(TeacherFormClass());
-  StudentRegistrationComplete = React.createFactory(StudentRegistrationCompleteClass());
-  StudentRegistrationCompleteSideInfo = React.createFactory(StudentRegistrationCompleteSideInfoClass());
-  TeacherRegistrationComplete = React.createFactory(TeacherRegistrationCompleteClass());
+  var BasicDataForm, StudentRegistrationComplete, TeacherRegistrationComplete
+  BasicDataForm = React.createFactory(BasicDataFormClass())
+  StudentRegistrationComplete = React.createFactory(StudentRegistrationCompleteClass())
+  TeacherRegistrationComplete = React.createFactory(TeacherRegistrationCompleteClass())
 
-  var UserTypeSelector = React.createFactory(UserTypeSelectorClass());
+  var UserTypeSelector = React.createFactory(UserTypeSelectorClass())
 
   return React.createClass({
     displayName: 'SignUp',
-    getInitialState: function() {
+    getInitialState: function () {
       return {
         basicData: null,
         studentData: null,
         teacherData: null,
         oauthProviders: this.props.oauthProviders,
         closeable: this.props.closeable
-      };
+      }
     },
 
-    getDefaultProps: function() {
+    getDefaultProps: function () {
       return {
         siteName: (Portal && Portal.siteName) || 'Portal',
-        signupText: "Register!",
+        signupText: 'Register!',
         anonymous: Portal.currentUser.isAnonymous
-      };
+      }
     },
-    onBasicDataSubmit: function(data) {
-      data.sign_up_path = window.location.pathname;
+    onBasicDataSubmit: function (data) {
+      data.sign_up_path = window.location.pathname
       return this.setState({
         basicData: data
-      });
+      })
     },
 
-    onStudentRegistration: function(data) {
+    onStudentRegistration: function (data) {
       return this.setState({
         studentData: data
-      });
+      })
     },
-    onTeacherRegistration: function(data) {
+    onTeacherRegistration: function (data) {
       return this.setState({
         teacherData: data
-      });
+      })
     },
 
-    getStepNumber: function() {
-      var ref = this.state, basicData = ref.basicData, studentData = ref.studentData, teacherData = ref.teacherData;
+    getStepNumber: function () {
+      var ref = this.state
+      var basicData = ref.basicData
+      var studentData = ref.studentData
+      var teacherData = ref.teacherData
 
       // console.log("INFO getStepNumber", this.props, basicData);
 
       if (!this.props.omniauth && !basicData) {
-        return 1;
+        return 1
       }
       if (this.props.omniauth || (basicData && !studentData && !teacherData)) {
-        return 2;
+        return 2
       }
-      return 3;
+      return 3
     },
 
-    render: function() {
+    render: function () {
+      console.log('INFO rendering signup', this.props)
 
-      console.log("INFO rendering signup", this.props);
+      var ref = this.props
+      var signupText = ref.signupText
+      var oauthProviders = ref.oauthProviders
+      var anonymous = ref.anonymous
+      var ref1 = this.state
+      var basicData = ref1.basicData
+      var studentData = ref1.studentData
+      var teacherData = ref1.teacherData
 
-      var ref = this.props, signupText = ref.signupText, oauthProviders = ref.oauthProviders, anonymous = ref.anonymous,
-        ref1 = this.state, basicData = ref1.basicData, studentData = ref1.studentData, teacherData = ref1.teacherData;
-
-      var form;
+      var form
 
       //
       // For omniauth final step, simply redirect to omniauth_origin
       //
-      if((studentData || teacherData) && this.props.omniauth) {
-        console.log("INFO omniauth final step, redirect.", this.props);
-        var data = this.state.studentData ? this.state.studentData : this.state.teacherData;
-        window.location.href = data.omniauth_origin;
-        return null;
+      if ((studentData || teacherData) && this.props.omniauth) {
+        console.log('INFO omniauth final step, redirect.', this.props)
+        var data = this.state.studentData ? this.state.studentData : this.state.teacherData
+        window.location.href = data.omniauth_origin
+        return null
       }
 
       if (studentData) {
-
         //
         // Display completion step
         //
         form = StudentRegistrationComplete({
           anonymous: anonymous,
           data: studentData
-        });
-
+        })
       } else if (teacherData) {
-
         //
         // Display completion step
         //
         form = TeacherRegistrationComplete({
           anonymous: anonymous
-        });
-
+        })
       } else if (!basicData && !this.props.omniauth) {
-
         // console.log("INFO signup form creating basic data selector step");
 
         form = [
@@ -130,61 +122,36 @@ var Signup = function() {
             oauthProviders: oauthProviders,
             onSubmit: this.onBasicDataSubmit
           })
-        ];
-
+        ]
       } else {
-
         // console.log("INFO signup form creating type selector step");
 
         var select = UserTypeSelector({
-          studentReg:   this.onStudentRegistration,
-          teacherReg:   this.onTeacherRegistration,
-          basicData:    basicData,
-          anonymous:    anonymous
-        });
+          studentReg: this.onStudentRegistration,
+          teacherReg: this.onTeacherRegistration,
+          basicData: basicData,
+          anonymous: anonymous
+        })
 
-        form = [ select ];
-      }
-
-      var sideInfo;
-
-      if (studentData) {
-
-        // StudentRegistrationCompleteSideInfo contains a login form
-        // If the student is already logged in because of the SSO path,
-        // don't show this form or anything else in the side info section.
-        if (anonymous) {
-          sideInfo = StudentRegistrationCompleteSideInfo({});
-        }
-
-      } else if (!basicData) {
-        sideInfo = SideInfo({});
-
-      } else if (basicData.type == 'student') {
-        sideInfo = StudentFormSideInfo({});
-
-      } else {
-        sideInfo = SideInfo({});
-
+        form = [ select ]
       }
 
       return div({},
         h2({},
-          anonymous ?
-            [strong({},'Register'),  ' for the ' + this.props.siteName] :
-            [strong({},'Finish'), ' Signing Up']
+          anonymous
+            ? [strong({}, 'Register'), ' for the ' + this.props.siteName]
+            : [strong({}, 'Finish'), ' Signing Up']
         ),
         div({className: 'signup-form'}, form),
-        footer({className: "reg-footer"},
+        footer({className: 'reg-footer'},
           p({},
             strong({}, 'Why sign up?'),
             " It's free and you get access to several key features, like creating classes for your students, assigning activities, saving work, tracking student progress, and more!"
           )
         )
-      );
-
+      )
     }
-  });
-};
+  })
+}
 
-module.exports = Signup;
+module.exports = Signup

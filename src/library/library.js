@@ -1,29 +1,29 @@
-import CollectionsPage from "./components/collections-page";
-import CollectionCards from './components/collection-cards';
-import HeaderFilter from './components/header-filter';
-import ResourceLightbox from './components/resource-lightbox';
-import StemFinderResult from './components/stem-finder-result';
-import StemFinder from './components/stem-finder';
-import PageHeader from './components/page-header';
-import PageFooter from './components/page-footer';
-import MaterialsCollection from './components/materials-collection';
-import GradeLevels from './components/grade-levels';
-import Tooltip from './components/tooltip.js';
-import ParseQueryString from './helpers/parse-query-string';
-import signupFunctions from './components/signup/signup_functions';
+import CollectionsPage from './components/collections-page'
+import CollectionCards from './components/collection-cards'
+import HeaderFilter from './components/header-filter'
+import ResourceLightbox from './components/resource-lightbox'
+import StemFinderResult from './components/stem-finder-result'
+import StemFinder from './components/stem-finder'
+import PageHeader from './components/page-header'
+import PageFooter from './components/page-footer'
+import MaterialsCollection from './components/materials-collection'
+import GradeLevels from './components/grade-levels'
+import Tooltip from './components/tooltip.js'
+import ParseQueryString from './helpers/parse-query-string'
+import signupFunctions from './components/signup/signup_functions'
 
 const render = function (component, id) {
-  ReactDOM.render(component, document.getElementById(id));
-};
+  ReactDOM.render(component, document.getElementById(id))
+}
 
 const renderComponentFn = function (ComponentClass) {
   return function (options, id) {
-    render(ComponentClass(options), id);
-  };
-};
+    render(ComponentClass(options), id)
+  }
+}
 
 window.PortalPages = {
-  settings: {},  // default to empty, used to set flags from portal templates
+  settings: {}, // default to empty, used to set flags from portal templates
 
   ParseQueryString: ParseQueryString,
   render: render,
@@ -64,14 +64,14 @@ window.PortalPages = {
   // Params
   //    properties  - A properties object. E.g. { oauthProviders: [ ... ] }
   //
-  renderSignupModal: function(properties) {
-    signupFunctions.openSignupModal(properties);
+  renderSignupModal: function (properties) {
+    signupFunctions.openSignupModal(properties)
   },
-  renderLoginModal: function(properties) {
-    signupFunctions.openLoginModal(properties);
+  renderLoginModal: function (properties) {
+    signupFunctions.openLoginModal(properties)
   },
-  renderForgotPasswordModal: function(properties) {
-    signupFunctions.openForgotPasswordModal(properties);
+  renderForgotPasswordModal: function (properties) {
+    signupFunctions.openForgotPasswordModal(properties)
   },
 
   //
@@ -86,14 +86,14 @@ window.PortalPages = {
   MaterialsCollection: MaterialsCollection,
   // this is a different format to match to existing project pages which had 2 formats itself
   renderMaterialsCollection: function (collectionId, selectorOrElement, limitOrOptions) {
-    let options = limitOrOptions || {};
-    if (typeof limitOrOptions === "number") {
-      options = {limit: limitOrOptions};
+    let options = limitOrOptions || {}
+    if (typeof limitOrOptions === 'number') {
+      options = {limit: limitOrOptions}
     }
-    options.collection = collectionId;
-    ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0]);
+    options.collection = collectionId
+    ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0])
   },
 
   Tooltip: Tooltip,
   renderTooltip: renderComponentFn(Tooltip)
-};
+}

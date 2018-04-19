@@ -1,23 +1,23 @@
 var Tooltip = {
-  mountPointId: "portal-pages-tooltip-mount",
+  mountPointId: 'portal-pages-tooltip-mount',
 
-  open: function(component) {
-    var mountPoint = document.getElementById(this.mountPointId);
+  open: function (component) {
+    var mountPoint = document.getElementById(this.mountPointId)
 
     if (!mountPoint) {
-      mountPoint = document.createElement("DIV");
-      mountPoint.id = this.mountPointId;
-      document.body.appendChild(mountPoint);
+      mountPoint = document.createElement('DIV')
+      mountPoint.id = this.mountPointId
+      document.body.appendChild(mountPoint)
     }
-    ReactDOM.render(component, mountPoint);
+    ReactDOM.render(component, mountPoint)
   },
 
-  close: function() {
-    var mountPoint = document.getElementById(this.mountPointId);
+  close: function () {
+    var mountPoint = document.getElementById(this.mountPointId)
 
-    ReactDOM.unmountComponentAtNode(mountPoint);
+    ReactDOM.unmountComponentAtNode(mountPoint)
   }
 
-};
+}
 
-module.exports = Tooltip;
+module.exports = Tooltip
