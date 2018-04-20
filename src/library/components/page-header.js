@@ -61,9 +61,10 @@ var PageHeader = Component({
   },
 
   handleRegisterButton: function (e) {
+    console.log('click');
     e.preventDefault();
     PortalPages.renderSignupModal(
-      { oauthProviders: this.state.oauthProviders },
+      { oauthProviders: this.state.oauthProviders, closeable: true },
       "signup-default-modal"
     );
     ga('send', 'event', 'Registration', 'Form', 'Opened');
