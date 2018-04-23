@@ -1,7 +1,7 @@
 var sortByName = function (a, b) {
-  var aName = a.name.toUpperCase();
-  var bName = b.name.toUpperCase();
-  return ((aName > bName) - (bName > aName));
-};
+  var aName = a.name.toUpperCase()
+  var bName = b.name.toUpperCase()
+  return ((aName > bName) - (bName > aName))
+}
 
-module.exports = sortByName;
+module.exports = sortByName

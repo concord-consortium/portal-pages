@@ -1,37 +1,36 @@
-var Component = require('../helpers/component');
-var filters = require("../helpers/filters");
+var Component = require('../helpers/component')
+var filters = require('../helpers/filters')
 
-var div = React.DOM.div;
+var div = React.DOM.div
 
 var GradeLevels = Component({
 
   render: function () {
-    var resource = this.props.resource;
+    var resource = this.props.resource
     var levels = filters.gradeFilters.reduce(function (levelAcc, gradeFilter) {
       var matching = gradeFilter.grades.reduce(function (matchingAcc, grade) {
         if (resource.grade_levels && resource.grade_levels.indexOf(grade) !== -1) {
-          matchingAcc.push(grade);
+          matchingAcc.push(grade)
         }
-        return matchingAcc;
-      }, []);
+        return matchingAcc
+      }, [])
       if (matching.length > 0) {
-        levelAcc.push(gradeFilter.label);
+        levelAcc.push(gradeFilter.label)
       }
-      return levelAcc;
-    }, []);
+      return levelAcc
+    }, [])
 
     if (levels.length === 0) {
-      return null;
+      return null
     }
 
-    return div({className: this.props.className || "portal-pages-finder-result-grade-levels"},
+    return div({className: this.props.className || 'portal-pages-finder-result-grade-levels'},
       levels.map(function (level, index) {
-        if (level === 'Higher Education')
-          level = 'Higher Ed';
-        return div({key: index, className: "portal-pages-finder-result-grade-level"}, level);
+        if (level === 'Higher Education') { level = 'Higher Ed' }
+        return div({key: index, className: 'portal-pages-finder-result-grade-level'}, level)
       })
-    );
+    )
   }
-});
+})
 
-module.exports = GradeLevels;
+module.exports = GradeLevels

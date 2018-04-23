@@ -8,25 +8,25 @@ So any functionality you add to this object will probably need to be copied ther
 Code in ResourceLightbox is called in either case so it is better place to put things.
 */
 var Lightbox = {
-  mountPointId: "portal-pages-lightbox-mount",
+  mountPointId: 'portal-pages-lightbox-mount',
 
-  open: function(component) {
-    var mountPoint = document.getElementById(this.mountPointId);
+  open: function (component) {
+    var mountPoint = document.getElementById(this.mountPointId)
 
     if (!mountPoint) {
-      mountPoint = document.createElement("DIV");
-      mountPoint.id = this.mountPointId;
-      document.body.appendChild(mountPoint);
+      mountPoint = document.createElement('DIV')
+      mountPoint.id = this.mountPointId
+      document.body.appendChild(mountPoint)
     }
-    ReactDOM.render(component, mountPoint);
+    ReactDOM.render(component, mountPoint)
   },
 
-  close: function() {
-    var mountPoint = document.getElementById(this.mountPointId);
+  close: function () {
+    var mountPoint = document.getElementById(this.mountPointId)
 
-    ReactDOM.unmountComponentAtNode(mountPoint);
+    ReactDOM.unmountComponentAtNode(mountPoint)
   }
 
-};
+}
 
-module.exports = Lightbox;
+module.exports = Lightbox

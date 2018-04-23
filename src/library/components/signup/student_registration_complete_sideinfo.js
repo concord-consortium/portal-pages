@@ -1,21 +1,27 @@
-var ref = React.DOM, div = ref.div, dd = ref.dd, dt = ref.dt, dl = ref.dl, form = ref.form, input = ref.input;
+var ref = React.DOM
+var div = ref.div
+var dd = ref.dd
+var dt = ref.dt
+var dl = ref.dl
+var form = ref.form
+var input = ref.input
 
-var StudentRegistrationCompleteSideInfo = function() {
+var StudentRegistrationCompleteSideInfo = function () {
   return React.createClass({
     displayName: 'StudentRegistrationCompleteSideInfo',
-    componentDidMount: function() {
-      var authToken;
-      authToken = jQuery('meta[name="csrf-token"]').attr('content');
-      return jQuery('form[method="post"]').each(function() {
-        var $form, hiddenField;
-        $form = jQuery(this);
-        hiddenField = "<input type='hidden' name='authenticity_token' value='" + authToken + "'/>";
+    componentDidMount: function () {
+      var authToken
+      authToken = jQuery('meta[name="csrf-token"]').attr('content')
+      return jQuery('form[method="post"]').each(function () {
+        var $form, hiddenField
+        $form = jQuery(this)
+        hiddenField = "<input type='hidden' name='authenticity_token' value='" + authToken + "'/>"
         if ($form.find('input[name="authenticity_token"]').length === 0) {
-          return $form.prepend(hiddenField);
+          return $form.prepend(hiddenField)
         }
-      });
+      })
     },
-    render: function() {
+    render: function () {
       return div({}, div({
         className: 'side-info-header'
       }, 'Sign In'), form({
@@ -31,9 +37,9 @@ var StudentRegistrationCompleteSideInfo = function() {
         className: 'button',
         type: 'submit',
         value: 'Log In'
-      })));
+      })))
     }
-  });
-};
+  })
+}
 
-module.exports = StudentRegistrationCompleteSideInfo;
+module.exports = StudentRegistrationCompleteSideInfo
