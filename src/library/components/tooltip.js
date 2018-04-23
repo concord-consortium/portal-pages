@@ -2,8 +2,6 @@ var Component = require('../helpers/component')
 
 var div = React.DOM.div
 var p = React.DOM.p
-var strong = React.DOM.strong
-var br = React.DOM.br
 
 var Tooltip = Component({
   getInitialState: function () {
@@ -49,7 +47,6 @@ var Tooltip = Component({
   },
 
   render: function (e) {
-    var tooltip_timer
     return div({className: 'portal-pages-tooltip-wrapper', onClick: this.handleClose},
       div({className: 'portal-pages-tooltip ' + this.state.type, id: this.state.id, style: {left: this.state.posx, top: this.state.posy}, onClick: this.handleClose},
         p({},

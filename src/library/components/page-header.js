@@ -214,7 +214,7 @@ var PageHeader = Component({
     if (this.state.windowWidth > 950 || !this.state.nav_menu_collapsed) {
       navLinks = this.renderNavLinks()
     }
-    var logo_class = this.state.logo_class
+    var logoClass = this.state.logo_class
     return div({className: 'theme-' + this.state.theme},
       div({className: 'portal-pages-umbrella'},
         div({className: 'portal-pages-umbrella-contain cols'},
@@ -229,7 +229,7 @@ var PageHeader = Component({
       nav({className: 'concord-navigation cols no-collapse'},
         div({className: 'logo-contain col-3'},
           a({href: '/', title: 'Go to the Home Page'},
-            div({className: logo_class},
+            div({className: logoClass},
               'Home'
             )
           )
