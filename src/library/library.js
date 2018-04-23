@@ -8,6 +8,7 @@ import PageHeader from './components/page-header';
 import PageFooter from './components/page-footer';
 import MaterialsCollection from './components/materials-collection';
 import GradeLevels from './components/grade-levels';
+import Tooltip from './components/tooltip.js';
 import ParseQueryString from './helpers/parse-query-string';
 import signupFunctions from './components/signup/signup_functions';
 
@@ -91,5 +92,8 @@ window.PortalPages = {
     }
     options.collection = collectionId;
     ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0]);
-  }
+  },
+
+  Tooltip: Tooltip,
+  renderTooltip: renderComponentFn(Tooltip)
 };

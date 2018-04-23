@@ -37,6 +37,10 @@ var openModal = function(type, properties, closeFunc) {
     modalContainer = jQuery("<div id='" + modalContainerId + "'>").appendTo('body');
   }
 
+  if (properties.closeable == null) {
+    properties.closeable = true;
+  }
+
   ReactDOM.unmountComponentAtNode(modalContainer[0]);
   var comp = React.createFactory( type() );
   console.log("INFO creating modal with props", properties);
@@ -45,7 +49,8 @@ var openModal = function(type, properties, closeFunc) {
   return Modal.showModal(modalContainerSelector,
                             undefined,
                             undefined,
-                            closeFunc);
+                            closeFunc,
+                            properties.closeable);
 };
 
 var openLoginModal = function(properties) {

@@ -37,7 +37,8 @@ var Signup = function() {
         basicData: null,
         studentData: null,
         teacherData: null,
-        oauthProviders: this.props.oauthProviders
+        oauthProviders: this.props.oauthProviders,
+        closeable: this.props.closeable
       };
     },
 

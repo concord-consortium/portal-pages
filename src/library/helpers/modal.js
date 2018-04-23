@@ -22,9 +22,9 @@ var showOverlay = function(clickHandler,modalId,fixedPosition) {
   jQuery('#portal-pages-modal-overlay').css({'height': jQuery(document).height() + 'px'}).fadeIn('fast');
 };
 
-var showModal = function(modalId, specialMsg, fixedPosition, closeFunc) {
+var showModal = function(modalId, specialMsg, fixedPosition, closeFunc, modalCloseable) {
 
-  console.log("INFO showModal", modalId, specialMsg, fixedPosition, closeFunc);
+  console.log("INFO showModal", modalId, specialMsg, fixedPosition, closeFunc, modalCloseable);
 
   var _closeFunc = hideModal;
   if(closeFunc) {
@@ -36,13 +36,15 @@ var showModal = function(modalId, specialMsg, fixedPosition, closeFunc) {
   showOverlay(_closeFunc,modalId,fixedPosition);
 
   if (jQuery(modalId + ' .portal-pages-close').length === 0) {
-    jQuery(modalId).append('<a class="portal-pages-close">x</a>');
-    jQuery(modalId + ' .portal-pages-close').click(_closeFunc);
-    jQuery(modalId).click(function(e){
-      if (jQuery(e.target).is(modalId)) {
-        _closeFunc();
-      }
-    });
+    if (modalCloseable) {
+      jQuery(modalId).append('<a class="portal-pages-close">x</a>');
+      jQuery(modalId + ' .portal-pages-close').click(_closeFunc);
+      jQuery(modalId).click(function(e){
+        if (jQuery(e.target).is(modalId)) {
+          _closeFunc();
+        }
+      });
+    }
   }
   if (specialMsg != null) {
     jQuery(modalId + ' .portal-pages-special-msg').text(specialMsg).show();

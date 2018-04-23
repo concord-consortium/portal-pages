@@ -1,6 +1,8 @@
 var Component = require('../helpers/component');
 
 var fadeIn = require("../helpers/fade-in");
+var Tooltip = require('../helpers/tooltip');
+var ItemTooltip = require('./tooltip');
 
 var a = React.DOM.a;
 var button = React.DOM.button;
@@ -20,6 +22,7 @@ var PageHeader = Component({
       loggedIn: Portal.currentUser.isLoggedIn,
       opacity: 0,
       userId: 0,
+      logo_class: 'concord-logo ' + this.props.logo_class,
       oauthProviders: this.props.oauthProviders || Portal.oauthProviders || {},
       theme: this.props.theme || Portal.theme || "default",
       homePath: this.props.homePath || Portal.currentUser.homePath || "/",
@@ -58,9 +61,10 @@ var PageHeader = Component({
   },
 
   handleRegisterButton: function (e) {
+    console.log('click');
     e.preventDefault();
     PortalPages.renderSignupModal(
-      { oauthProviders: this.state.oauthProviders },
+      { oauthProviders: this.state.oauthProviders, closeable: true },
       "signup-default-modal"
     );
     ga('send', 'event', 'Registration', 'Form', 'Opened');
@@ -73,6 +77,33 @@ var PageHeader = Component({
       jQuery('body').attr('data-mobile-nav', 'closed');
     } else {
       jQuery('body').attr('data-mobile-nav', 'open');
+    }
+  },
+
+  toggleTooltip: function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    var tooltip = !this.state.tooltip;
+
+    this.setState({
+      tooltip: tooltip
+    });
+
+    // mount/unmount tooltip outside of homepage content
+    if (tooltip) {
+      var ProtectedLinkTooltip = ItemTooltip({
+        id: e.target.id + '-tooltip',
+        text: e.target.title,
+        posx: e.pageX + 30,
+        posy: e.pageY + jQuery('#' + e.target.id).height() + 3,
+        type: 'under',
+        close_delay: 5000,
+        toggleTooltip: this.toggleTooltip
+      });
+      Tooltip.open(ProtectedLinkTooltip);
+    } else {
+      Tooltip.close();
     }
   },
 
@@ -105,25 +136,61 @@ var PageHeader = Component({
     }
   },
 
+  renderProtectedLink: function(e) {
+    return a({href: "#", className: "portal-pages-main-nav-item__link", id: e.link_id, title: e.link_title, onClick: this.toggleTooltip},
+      e.link_text
+    );
+  },
+
   renderNavLinks: function (e) {
     var headerItems = [];
     if(!this.state.isStudent){
-      headerItems.push(
-        li({className: "portal-pages-main-nav-item" +
-            " portal-pages-main-nav-collections" +
-            (this.props.isCollections ? " current-menu-item" : "")},
-          a({href: "/collections", className: "portal-pages-main-nav-item__link", title: "View Resource Collections"},
-            "Collections"
-          )
-        ) );
-      headerItems.push(
-        li({className: "portal-pages-main-nav-item" +
-           " portal-pages-main-nav-about" +
-           (this.props.isAbout ? " current-menu-item" : "")},
-          a({href: "/about", className: "portal-pages-main-nav-item__link", title: "Learn More about the STEM Resource Finder"},
-            "About"
-          )
-        ) );
+      if (this.state.theme == 'ngss-assessment') {
+        headerItems.push(
+          li({className: "portal-pages-main-nav-item" +
+              " portal-pages-main-nav-collections" +
+              (this.props.isCollections ? " current-menu-item" : "")},
+            a({href: "/ngsa-collections", className: "portal-pages-main-nav-item__link", title: "View Assessment Tasks"},
+              "Assessment Tasks"
+            )
+          ) );
+        if (this.state.loggedIn) {
+          headerItems.push(
+            li({className: "portal-pages-main-nav-item" +
+                " portal-pages-main-nav-forum"},
+              a({href: "https://ngsa.concord.org/forum?autosignin=true", className: "portal-pages-main-nav-item__link", title: "Visit the NGSA Forum"},
+                "Forum"
+              )
+            ));
+        } else {
+          headerItems.push(
+          li({className: "portal-pages-main-nav-item" +
+              " portal-pages-main-nav-forum"},
+            this.renderProtectedLink({
+              link_id: 'ngsa-forum',
+              link_text: 'Forum',
+              link_title: 'Registered teachers can participate in a forum with other teachers. Login or register as a teacher to access the forum.'
+            })
+          ));
+        }
+      } else {
+        headerItems.push(
+          li({className: "portal-pages-main-nav-item" +
+              " portal-pages-main-nav-collections" +
+              (this.props.isCollections ? " current-menu-item" : "")},
+            a({href: "/collections", className: "portal-pages-main-nav-item__link", title: "View Resource Collections"},
+              "Collections"
+            )
+          ));
+        headerItems.push(
+          li({className: "portal-pages-main-nav-item" +
+             " portal-pages-main-nav-about" +
+             (this.props.isAbout ? " current-menu-item" : "")},
+            a({href: "/about", className: "portal-pages-main-nav-item__link", title: "Learn More about the STEM Resource Finder"},
+              "About"
+            )
+          ) );
+      }
     }
 
     headerItems.push(
@@ -145,6 +212,7 @@ var PageHeader = Component({
     if (this.state.windowWidth > 950 || !this.state.nav_menu_collapsed) {
       nav_links = this.renderNavLinks();
     }
+    var logo_class = this.state.logo_class;
     return div({className: "theme-" + this.state.theme},
       div({className: "portal-pages-umbrella"},
         div({className: "portal-pages-umbrella-contain cols"},
@@ -159,7 +227,7 @@ var PageHeader = Component({
       nav({className: "concord-navigation cols no-collapse"},
         div({className: "logo-contain col-3"},
           a({href: "/", title: "Go to the Home Page"},
-            div({className: "concord-logo"},
+            div({className: logo_class},
               "Home"
             )
           )
