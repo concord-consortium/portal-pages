@@ -244,6 +244,9 @@ var ResourceLightbox = Component({
 
     var license = resource.license_info;
 
+    var attribution_name = 'The Concord Consortium';
+    var attribution_url = 'https://concord.org/';
+
     // replace Concord Consortium with proper author credit
     var license_description;
     if (!resource.credits) {
@@ -252,12 +255,19 @@ var ResourceLightbox = Component({
       license_description = license.description.replace('the Concord Consortium', resource.credits);
     }
 
+    // alter attribution values when all material should be attributed to a specific project or partner
+    if (Portal.theme == 'ngss-assessment') {
+      attribution_name = 'The Next Generation Science Assessment Project';
+      attribution_url = 'http://nextgenscienceassessment.org/';
+      license_description = license.description.replace('the Concord Consortium', attribution_name);
+    }
+
     var license_attribution = '';
     // don't provide suggested attribution for public domain resources
     if (license.code !== 'CC0') {
       if (!resource.credits) {
         license_attribution = p({}, 'Suggested attribution: ' + resource.name + ' by ',
-                a({href: 'https://concord.org/'}, 'The Concord Consortium'),
+                a({href: attribution_url}, attribution_name),
                 ' is licensed under ',
                 a({href: license.deed}, license.code),
                 '.'
@@ -400,18 +410,11 @@ var ResourceLightbox = Component({
         div({className: "portal-pages-resource-lightbox-modal-utility"},
           this.renderIcons()
         ),
+        h1({}, resource.name),
         div({className: 'preview-image'},
           img({src: resource.icon.url})
         ),
-        h1({}, resource.name),
-        p({className: "portal-pages-resource-lightbox-description",
-           dangerouslySetInnerHTML: {__html: resource.longDescription}}),
-        resource.has_pretest ?
-            p({className: "portal-pages-resource-lightbox-description"},
-                "Pre- and Post-tests available" )
-            :
-            null,
-        div({},
+        div({className: 'portal-pages-action-buttons'},
 
           links.preview ? a({className: "portal-pages-primary-button", href: links.preview.url, target: "_blank", onClick: this.handlePreviewClick}, links.preview.text) : null,
 
@@ -426,6 +429,13 @@ var ResourceLightbox = Component({
           links.teacher_guide ? a({className: "portal-pages-secondary-button", href: links.teacher_guide.url, target: '_blank', onClick: this.handleTeacherGuideClick}, links.teacher_guide.text) : null
 
         ),
+        p({className: "portal-pages-resource-lightbox-description",
+           dangerouslySetInnerHTML: {__html: resource.longDescription}}),
+        resource.has_pretest ?
+            p({className: "portal-pages-resource-lightbox-description"},
+                "Pre- and Post-tests available" )
+            :
+            null,
         this.renderIncludedActivities(),
         hr({}),
         h2({}, "Requirements"),

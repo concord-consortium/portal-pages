@@ -8,6 +8,7 @@ var PageHeader = require("./components/page-header");
 var PageFooter = require("./components/page-footer");
 var MaterialsCollection = require("./components/materials-collection");
 var GradeLevels = require("./components/grade-levels");
+var Tooltip = require("./components/tooltip.js");
 
 var ParseQueryString = require("./helpers/parse-query-string");
 var signup_functions    = require("./components/signup/signup_functions");
@@ -92,6 +93,9 @@ window.PortalPages = {
     }
     options.collection = collectionId;
     ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0]);
-  }
+  },
+
+  Tooltip: Tooltip,
+  renderTooltip: renderComponentFn(Tooltip)
 
 };
