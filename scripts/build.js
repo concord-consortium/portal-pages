@@ -8,6 +8,7 @@ const fs = require("fs");
 const mkdirp = require("mkdirp");
 const sass = require('node-sass');
 const webpack = require("webpack");
+const webpackConfig = require("../webpack.config");
 const ncp = require('ncp').ncp;
 const jshint = require('jshint').JSHINT;
 
@@ -97,16 +98,24 @@ glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
 });
 
 // build the libary js
-const compiler = webpack({
+const compiler = webpack(Object.assign({
+  mode: 'production',
   entry: path.resolve(`${librarySrcFolder}/library.js`),
   output: {
     path: libraryDestFolder,
     filename: 'portal-pages.js'
   }
-});
+}, webpackConfig));
 compiler.run((err, stats) => {
   if (err) {
     die(err, 3);
+  }
+  if (stats.hasErrors()) {
+    console.log(stats.toString({colors: true}));
+    die('webpack errors', 3);
+  }
+  if (stats.hasWarnings()) {
+    console.log(stats.toString({colors: true}));
   }
 });
 

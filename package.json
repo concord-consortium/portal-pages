@@ -20,8 +20,17 @@
   },
   "homepage": "https://github.com/concord-consortium/portal-pages#readme",
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "@babel/preset-react": "^7.0.0-beta.44",
+    "babel-loader": "^8.0.0-beta.2",
+    "css-loader": "^0.28.11",
     "glob": "^7.1.2",
-    "live-server": "^1.2.0"
+    "live-server": "^1.2.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.6.0"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -42,7 +51,6 @@
     "node-sass": "^4.5.3",
     "opn": "^5.0.0",
     "pug": "~2.0.0-beta11",
-    "request": "^2.81.0",
-    "webpack": "^2.6.1"
+    "request": "^2.81.0"
   }
 }
