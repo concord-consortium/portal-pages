@@ -1,8 +1,4 @@
-import Offering from './offering'
-import Legend from './legend'
-
-// Automatically update recent activity page every X ms.
-const DATA_UPDATE_INTERVAL = 30000 // ms
+import Offerings from './offerings'
 
 const studentMapping = data => {
   return {
@@ -36,7 +32,7 @@ const offeringMapping = data => {
 }
 
 const processAPIData = data => {
-  return data
+  return data && data
     .map(offering => offeringMapping(offering))
     // Show only offerings that has been started by at least one student.
     .filter(offering => offering.lastRun !== null)
@@ -45,43 +41,55 @@ const processAPIData = data => {
 
 const reportPath = offeringId => `/portal/offerings/${offeringId}/report`
 
-export default class RecentActivityPage extends React.Component {
+// Checks if there is any data available.
+const anyData = data => data && data.length > 0
+// Checks if there are any students assigned to some offering.
+const anyStudents = data => data && data.map(o => o.students.length).filter(count => count > 0).length > 0
+
+export default class RecentActivity extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      loading: true,
-      anyData: false,
-      offerings: []
+      loading: !props.initialData,
+      anyData: anyData(props.initialData),
+      anyStudents: anyStudents(props.initialData),
+      offerings: processAPIData(props.initialData)
     }
     this.getPortalData = this.getPortalData.bind(this)
   }
 
   componentDidMount () {
-    this.getPortalData()
-    this.intervalId = window.setInterval(this.getPortalData, DATA_UPDATE_INTERVAL)
+    const { dataUrl, initialData, updateInterval } = this.props
+    if (dataUrl && !initialData) {
+      this.getPortalData()
+    }
+    if (updateInterval) {
+      this.intervalId = window.setInterval(this.getPortalData, updateInterval)
+    }
   }
 
   componentWillUnmount () {
-    window.clearInterval(this.intervalId)
+    if (this.intervalId) {
+      window.clearInterval(this.intervalId)
+    }
   }
 
   getPortalData () {
+    const { dataUrl } = this.props
     jQuery.ajax({
-      url: Portal.API_V1.OFFERINGS_OWN,
+      url: dataUrl,
       success: data => {
         this.setState({
           loading: false,
           // Note that processAPIData will skip offerings that have been never run by any student.
           offerings: processAPIData(data),
           // So, we need some additional variables:
-          // - check if there is any offering
-          anyData: data.length > 0,
-          // - check if there are any students assigned to some offering
-          anyStudents: data.map(o => o.students.length).filter(count => count > 0).length > 0
+          anyData: anyData(data),
+          anyStudents: anyStudents(data)
         })
       },
       error: () => {
-        console.error(`GET ${Portal.API_V1.OFFERINGS_OWN} failed, can't render Recent Activity page`)
+        console.error(`GET ${dataUrl} failed, can't render Recent Activity page`)
       }
     })
   }
@@ -91,30 +99,16 @@ export default class RecentActivityPage extends React.Component {
     if (loading) {
       return null
     }
-    if (!anyData) {
-      return (
-        <div>
-          <div>You need to assign investigations to your classes.</div>
-          <div>As your students get started, their progress will be displayed here.</div>
-        </div>
-      )
-    }
-    if (anyData && !anyStudents) {
-      return (
-        <div>
-          <div>You have not yet assigned students to your classes.</div>
-          <div>As your students get started, their progress will be displayed here.</div>
-        </div>
-      )
-    }
-    if (offerings.length === 0) {
-      return <div>As your students get started, their progress will be displayed here.</div>
-    }
     return (
-      <div>
-        <Legend />
-        { offerings.map(offering => <Offering key={offering.id} offering={offering} />) }
-      </div>
+      <Offerings anyData={anyData} anyStudents={anyStudents} offerings={offerings} />
     )
   }
+}
+
+RecentActivity.defaultProps = {
+  dataUrl: Portal.API_V1.OFFERINGS_OWN,
+  // If initialData is not provided, component will use API (dataUrl) to get it.
+  initialData: null,
+  // Set updateInterval to null to disable updates at all.
+  updateInterval: 300000 // ms
 }
