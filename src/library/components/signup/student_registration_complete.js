@@ -14,6 +14,9 @@ var StudentRegistrationComplete = function () {
   var FormsyForm = React.createFactory(Formsy.Form)
   return React.createClass({
     displayName: 'StudentRegistrationComplete',
+    componentDidMount: function () {
+      ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Student')
+    },
     submit: function (data) {
       if (this.props.afterSigninPath) {
         data.after_sign_in_path = this.props.afterSigninPath
@@ -41,7 +44,6 @@ var StudentRegistrationComplete = function () {
       var anonymous = ref1.anonymous
       var data = ref1.data
       var login = data.login
-      ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Student')
       return div({
         className: 'registration-complete student'
       }, anonymous ? div({}, p({style: {marginBottom: '30px'}}, 'Success! Your username is: ', span({
