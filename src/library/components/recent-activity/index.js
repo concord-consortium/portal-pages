@@ -1,5 +1,15 @@
 import Offerings from './offerings'
 
+const externalReportMapping = data => {
+  if (!data) {
+    return null
+  }
+  return {
+    url: data.url,
+    launchText: data.launch_text
+  }
+}
+
 const studentMapping = data => {
   return {
     id: data.user_id,
@@ -26,7 +36,8 @@ const offeringMapping = data => {
     notStartedStudentsCount: notStartedStudents.length,
     inProgressStudentsCount: inProgressStudents.length,
     completedStudentsCount: completedStudents.length,
-    reportPath: reportPath(data.id),
+    reportUrl: data.report_url,
+    externalReport: externalReportMapping(data.external_report),
     students: data.students.map(s => studentMapping(s))
   }
 }
@@ -38,8 +49,6 @@ const processAPIData = data => {
     .filter(offering => offering.lastRun !== null)
     .sort((o1, o2) => o2.lastRun - o1.lastRun) // Sort by lastRun, DESC order
 }
-
-const reportPath = offeringId => `/portal/offerings/${offeringId}/report`
 
 // Checks if there is any data available.
 const anyData = data => data && data.length > 0

@@ -23,7 +23,8 @@ export default class Offering extends React.Component {
 
   render () {
     const { detailsVisible } = this.state
-    const { clazz, activity, students, reportPath, completedStudentsCount, inProgressStudentsCount, notStartedStudentsCount } = this.props.offering
+    const { clazz, activity, students, reportUrl, externalReport,
+      completedStudentsCount, inProgressStudentsCount, notStartedStudentsCount } = this.props.offering
     const completedWidth = (completedStudentsCount / students.length) * 100
     const inProgressWidth = (inProgressStudentsCount / students.length) * 100
     const notStartedWidth = (notStartedStudentsCount / students.length) * 100
@@ -47,7 +48,14 @@ export default class Offering extends React.Component {
             </div>
           </div>
         </div>
-        <a href={reportPath} target='_blank' className={css.reportBtn + ' button'}>Report</a>
+        {
+          reportUrl &&
+          <div><a href={reportUrl} target='_blank' className={css.reportBtn + ' button'}>Report</a></div>
+        }
+        {
+          externalReport &&
+          <div><a href={externalReport.url} target='_blank' className={css.reportBtn + ' button'}>{ externalReport.launchText }</a></div>
+        }
         <div className={css.detailsContainer}>
           { detailsVisible && <ProgressDetails students={students} /> }
         </div>
