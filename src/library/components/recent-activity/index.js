@@ -115,7 +115,9 @@ export default class RecentActivity extends React.Component {
 }
 
 RecentActivity.defaultProps = {
-  dataUrl: Portal.API_V1.OFFERINGS_OWN,
+  // This path will return all the offerings for logged in user. Portal will probably explicitly limit scope
+  // of offerings by providing custom path with user_id param.
+  dataUrl: Portal.API_V1.OFFERING,
   // If initialData is not provided, component will use API (dataUrl) to get it.
   initialData: null,
   // Set updateInterval to null to disable updates at all.
