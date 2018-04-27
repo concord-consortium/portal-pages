@@ -11,6 +11,10 @@
 @import './styles/themes/_itsi.scss';
 @import './styles/themes/_ngss_assessment.scss';
 
+a {
+  cursor: pointer;
+}
+
 .portal-pages-finder-results {
   font-size: 16px;
   height: auto;

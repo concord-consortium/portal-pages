@@ -11,6 +11,7 @@ import GradeLevels from './components/grade-levels'
 import Tooltip from './components/tooltip.js'
 import ParseQueryString from './helpers/parse-query-string'
 import signupFunctions from './components/signup/signup_functions'
+import RecentActivity from './components/recent-activity'
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -30,6 +31,11 @@ window.PortalPages = {
 
   CollectionsPage: CollectionsPage,
   renderCollectionsPage: renderComponentFn(CollectionsPage),
+
+  RecentActivity: RecentActivity,
+  renderRecentActivity: function (options, id) {
+    render(React.createElement(RecentActivity, options), id)
+  },
 
   CollectionCards: CollectionCards,
   renderCollectionCards: renderComponentFn(CollectionCards),

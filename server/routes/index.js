@@ -20,6 +20,7 @@ module.exports = (app) => {
   const memfs = new MemoryFS()
   const compiler = webpack(Object.assign({
     mode: 'development',
+    devtool: 'source-map',
     entry: path.resolve(`${__dirname}/../../src/library/library.js`),
     output: {
       path: '/',
