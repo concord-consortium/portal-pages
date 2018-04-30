@@ -1,0 +1,40 @@
+.classAssignments {
+  h1 {
+    display: inline;
+  }
+
+  .assignMaterials {
+    text-transform: uppercase;
+    font-size: 1.2em;
+    margin-left: 10px;
+  }
+
+  .reports {
+    text-align: right;
+    margin-right: 30px;
+  }
+
+  .classInfo {
+    font-size: 1.1em;
+    margin-bottom: 0;
+
+    td:nth-child(1) {
+      padding-right: 10px;
+      font-weight: 700;
+    }
+  }
+}
+
+.offeringsTable {
+  width: 100%;
+  th {
+    text-align: left;
+  }
+  tr {
+    width: 725px;
+  }
+  .checkboxCell {
+    text-align: center;
+    width: 100px;
+  }
+}
