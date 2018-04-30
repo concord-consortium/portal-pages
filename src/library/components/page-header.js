@@ -108,7 +108,7 @@ var PageHeader = Component({
     if (this.state.loggedIn) {
       return a({href: this.state.homePath, title: 'View Recent Activity', className: 'portal-pages-main-nav-item__link button register'},
         i({className: 'icon-home'}),
-        'Home'
+        'My Classes'
       )
     } else {
       return a({href: '/signup',
