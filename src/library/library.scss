@@ -9,6 +9,11 @@
 
 @import './styles/themes/_has.scss';
 @import './styles/themes/_itsi.scss';
+@import './styles/themes/_ngss_assessment.scss';
+
+a {
+  cursor: pointer;
+}
 
 .portal-pages-finder-results {
   font-size: 16px;
@@ -268,11 +273,11 @@
   bottom: auto;
   height: auto;
   left: 50%;
-  margin-left: -460px;
-  padding: 0 95px;
+  margin-left: -395px;
+  padding: 0 30px;
   position: relative;
   right: auto;
-  top: 100px;
+  top: 50px;
   width: 730px;
   a {
     display: inline;
@@ -282,7 +287,7 @@
 .portal-pages-resource-lightbox-modal-sharing {
   background: transparent;
   left: 50%;
-  margin-left: -490px;
+  margin-left: -425px;
   position: absolute;
   top: 195px;
   z-index: 1003;
@@ -341,7 +346,7 @@
 }
 .portal-pages-resource-lightbox-modal-utility {
   height: 25px;
-  padding: 40px 0 30px;
+  padding: 10px 0 0;
   text-align: right;
   ul {
     height: 25px;
@@ -388,6 +393,7 @@
 .portal-pages-resource-lightbox-modal-content-top .preview-image {
   height: 400px;
   overflow: hidden;
+  margin-bottom: 20px;
   width: 730px;
   img {
     height: auto;
@@ -395,10 +401,10 @@
   }
 }
 .portal-pages-resource-lightbox-modal-content h1 {
-  color: $col-darkgray;
-  font: 700 36px $font-museo-sans;
-  line-height: 48px;
-  margin: 20px 0;
+  color: $col-blue;
+  font: 700 28px $font-museo-sans;
+  line-height: 40px;
+  margin: 0 0 20px;
 }
 .portal-pages-resource-lightbox-modal-content h2 {
   color: $col-darkgray;
@@ -421,12 +427,12 @@
   color:#fff;
   background-color:#fff;
   height:1px;
-  margin: 50px 0;
+  margin: 30px 0;
 }
 .portal-pages-resource-lightbox-description {
   font: 300 18px $font-museo-sans;
   line-height: 30px;
-  margin: 30px 0;
+  margin: 0 0 30px;
 }
 .portal-pages-resource-lightbox-included-activities {
   font-size: 15px;
@@ -478,8 +484,8 @@
 
 .portal-pages-resource-lightbox-related-content {
   background-color: $light-gray;
-  margin: 40px -95px 100px -95px;
-  padding: 40px 70px 80px;
+  margin: 40px -30px 100px -30px;
+  padding: 40px 30px 80px;
 }
 .portal-pages-resource-lightbox-related-content h2 {
   font-family: museo-sans, sans-serif;
@@ -487,6 +493,55 @@
   font-weight: 500;
   margin: 0 20px 30px;
   text-transform: none;
+}
+
+.portal-pages-tooltip-wrapper {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  .portal-pages-tooltip {
+    background: $col-darkgray;
+    box-shadow: 0 3px 20px rgba(0,0,0,.3);
+    color: $col-white;
+    font-size: 15px;
+    height: auto;
+    left: 50%;
+    margin-left: -180px;
+    min-height: 100px;
+    padding: 30px;
+    position: absolute;
+    top: 100px;
+    width: 300px;
+    z-index: 100;
+
+    p {
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    &:after {
+      border-width: 15px 15px 0;
+      border-style: solid;
+      border-color: $col-darkgray transparent;
+      bottom: -15px;
+      content: '';
+      display: block;
+      left: 50%;
+      margin-left: -15px;
+      position: absolute;
+      width: 0;
+    }
+
+    &.under:after {
+      border-width: 0 15px 15px;
+      bottom: auto;
+      top: -15px;
+    }
+  }
 }
 
 $materials-collection-item-icon-width: 300px;
@@ -530,6 +585,13 @@ $materials-collection-item-icon-width: 300px;
       }
     }
   }
+}
+
+.portal-pages-action-buttons {
+  clear: both;
+  line-height: 3;
+  margin: 20px 0;
+  text-align: left;
 }
 
 .portal-pages-primary-button,

@@ -1,35 +1,41 @@
-var CollectionsPage = require("./components/collections-page");
-var CollectionCards = require("./components/collection-cards");
-var HeaderFilter = require("./components/header-filter");
-var ResourceLightbox = require("./components/resource-lightbox");
-var StemFinderResult = require("./components/stem-finder-result");
-var StemFinder = require("./components/stem-finder");
-var PageHeader = require("./components/page-header");
-var PageFooter = require("./components/page-footer");
-var MaterialsCollection = require("./components/materials-collection");
-var GradeLevels = require("./components/grade-levels");
+import CollectionsPage from './components/collections-page'
+import CollectionCards from './components/collection-cards'
+import HeaderFilter from './components/header-filter'
+import ResourceLightbox from './components/resource-lightbox'
+import StemFinderResult from './components/stem-finder-result'
+import StemFinder from './components/stem-finder'
+import PageHeader from './components/page-header'
+import PageFooter from './components/page-footer'
+import MaterialsCollection from './components/materials-collection'
+import GradeLevels from './components/grade-levels'
+import Tooltip from './components/tooltip.js'
+import ParseQueryString from './helpers/parse-query-string'
+import signupFunctions from './components/signup/signup_functions'
+import RecentActivity from './components/recent-activity'
 
-var ParseQueryString = require("./helpers/parse-query-string");
-var signup_functions    = require("./components/signup/signup_functions");
+const render = function (component, id) {
+  ReactDOM.render(component, document.getElementById(id))
+}
 
-var render = function (component, id) {
-  ReactDOM.render(component, document.getElementById(id));
-};
-
-var renderComponentFn = function (ComponentClass) {
+const renderComponentFn = function (ComponentClass) {
   return function (options, id) {
-    render(ComponentClass(options), id);
-  };
-};
+    render(ComponentClass(options), id)
+  }
+}
 
 window.PortalPages = {
-  settings: {},  // default to empty, used to set flags from portal templates
+  settings: {}, // default to empty, used to set flags from portal templates
 
   ParseQueryString: ParseQueryString,
   render: render,
 
   CollectionsPage: CollectionsPage,
   renderCollectionsPage: renderComponentFn(CollectionsPage),
+
+  RecentActivity: RecentActivity,
+  renderRecentActivity: function (options, id) {
+    render(React.createElement(RecentActivity, options), id)
+  },
 
   CollectionCards: CollectionCards,
   renderCollectionCards: renderComponentFn(CollectionCards),
@@ -64,14 +70,14 @@ window.PortalPages = {
   // Params
   //    properties  - A properties object. E.g. { oauthProviders: [ ... ] }
   //
-  renderSignupModal: function(properties) {
-    signup_functions.openSignupModal(properties);
+  renderSignupModal: function (properties) {
+    signupFunctions.openSignupModal(properties)
   },
-  renderLoginModal: function(properties) {
-    signup_functions.openLoginModal(properties);
+  renderLoginModal: function (properties) {
+    signupFunctions.openLoginModal(properties)
   },
-  renderForgotPasswordModal: function(properties) {
-    signup_functions.openForgotPasswordModal(properties);
+  renderForgotPasswordModal: function (properties) {
+    signupFunctions.openForgotPasswordModal(properties)
   },
 
   //
@@ -81,17 +87,19 @@ window.PortalPages = {
   //    properties  - The properties.   E.g. { oauthProviders: [ ... ] }
   //    id          - The DOM id.       E.g. "#test-embedded-signup-form"
   //
-  renderSignupForm: signup_functions.renderSignupForm,
+  renderSignupForm: signupFunctions.renderSignupForm,
 
   MaterialsCollection: MaterialsCollection,
   // this is a different format to match to existing project pages which had 2 formats itself
   renderMaterialsCollection: function (collectionId, selectorOrElement, limitOrOptions) {
-    var options = limitOrOptions || {};
-    if (typeof limitOrOptions === "number") {
-      options = {limit: limitOrOptions};
+    let options = limitOrOptions || {}
+    if (typeof limitOrOptions === 'number') {
+      options = {limit: limitOrOptions}
     }
-    options.collection = collectionId;
-    ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0]);
-  }
+    options.collection = collectionId
+    ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0])
+  },
 
-};
+  Tooltip: Tooltip,
+  renderTooltip: renderComponentFn(Tooltip)
+}

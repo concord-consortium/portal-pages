@@ -6,8 +6,21 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node server/bin/www",
     "start:dev": "cross-env NODE_ENV=development node server/bin/www",
-    "build": "node scripts/build.js",
+    "lint": "standard --fix \"src/**/*.js\"",
+    "build": "npm run lint && node scripts/build.js",
     "live-server": "./node_modules/.bin/live-server --cors --verbose --no-browser --port=10000 ./dest"
+  },
+  "standard": {
+    "globals": [
+      "React",
+      "ReactDOM",
+      "jQuery",
+      "Portal",
+      "PortalPages",
+      "Formsy",
+      "Select",
+      "ga"
+    ]
   },
   "repository": {
     "type": "git",
@@ -20,8 +33,18 @@
   },
   "homepage": "https://github.com/concord-consortium/portal-pages#readme",
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "@babel/preset-react": "^7.0.0-beta.44",
+    "babel-loader": "^8.0.0-beta.2",
+    "css-loader": "^0.28.11",
     "glob": "^7.1.2",
-    "live-server": "^1.2.0"
+    "live-server": "^1.2.0",
+    "sass-loader": "^7.0.1",
+    "standard": "^11.0.1",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.6.0"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -33,7 +56,6 @@
     "debug": "~2.6.3",
     "express": "^4.15.3",
     "faye-websocket": "^0.11.1",
-    "jshint": "^2.9.5",
     "memory-fs": "^0.4.1",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
@@ -42,7 +64,6 @@
     "node-sass": "^4.5.3",
     "opn": "^5.0.0",
     "pug": "~2.0.0-beta11",
-    "request": "^2.81.0",
-    "webpack": "^2.6.1"
+    "request": "^2.81.0"
   }
 }
