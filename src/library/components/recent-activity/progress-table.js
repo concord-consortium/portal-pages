@@ -1,3 +1,4 @@
+import React from 'react'
 import css from './style.scss'
 
 const formatDate = date => `${date.getMonth() + 1}/${date.getDate()}`

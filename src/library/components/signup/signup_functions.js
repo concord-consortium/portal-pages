@@ -1,3 +1,4 @@
+import React from 'react'
 var SignupModal = require('./signup_modal')
 var Signup = require('./signup')
 var LoginModal = require('./login_modal')

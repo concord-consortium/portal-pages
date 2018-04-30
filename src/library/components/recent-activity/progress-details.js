@@ -1,3 +1,4 @@
+import React from 'react'
 import ProgressTable from './progress-table'
 
 export default class ProgressDetails extends React.Component {

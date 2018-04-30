@@ -1,3 +1,4 @@
+import React from 'react'
 var Component = require('../helpers/component')
 var filters = require('../helpers/filters')
 

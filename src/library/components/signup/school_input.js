@@ -1,3 +1,4 @@
+import React from 'react'
 var TIMEOUT = 500
 
 var ref = React.DOM

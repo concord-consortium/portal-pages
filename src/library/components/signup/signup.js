@@ -1,3 +1,4 @@
+import React from 'react'
 var div = React.DOM.div
 var footer = React.DOM.footer
 var h2 = React.DOM.h2

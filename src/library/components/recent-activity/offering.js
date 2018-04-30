@@ -1,6 +1,8 @@
+import React from 'react'
 import ProgressDetails from './progress-details'
 
 import css from './style.scss'
+import commonCss from '../../styles/common-css-modules.scss'
 
 export default class Offering extends React.Component {
   constructor (props) {
@@ -50,11 +52,11 @@ export default class Offering extends React.Component {
         </div>
         {
           reportUrl &&
-          <div><a href={reportUrl} target='_blank' className={css.reportBtn + ' button'}>Report</a></div>
+          <div><a href={reportUrl} target='_blank' className={commonCss.smallButton}>Report</a></div>
         }
         {
           externalReport &&
-          <div><a href={externalReport.url} target='_blank' className={css.reportBtn + ' button'}>{ externalReport.launchText }</a></div>
+          <div><a href={externalReport.url} target='_blank' className={commonCss.smallButton}>{ externalReport.launchText }</a></div>
         }
         <div className={css.detailsContainer}>
           { detailsVisible && <ProgressDetails students={students} /> }

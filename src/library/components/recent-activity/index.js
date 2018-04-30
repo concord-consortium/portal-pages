@@ -1,3 +1,4 @@
+import React from 'react'
 import Offerings from './offerings'
 
 const externalReportMapping = data => {

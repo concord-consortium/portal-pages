@@ -1,3 +1,4 @@
+import React from 'react'
 import Offering from './offering'
 import Legend from './legend'
 

@@ -1,3 +1,4 @@
+import React from 'react'
 var Component = require('../helpers/component')
 var ResourceLightbox = require('./resource-lightbox')
 var shuffleArray = require('../helpers/shuffle-array')

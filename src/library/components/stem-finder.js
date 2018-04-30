@@ -1,3 +1,4 @@
+import React from 'react'
 var Component = require('../helpers/component')
 var StemFinderResult = require('../components/stem-finder-result')
 var HeaderFilter = require('../components/header-filter')
