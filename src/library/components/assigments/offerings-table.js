@@ -4,6 +4,20 @@ import OfferingRow from './offering-row'
 
 import css from './style.scss'
 
+// These elements can be used to sort offering.
+const sortableHandles = [ css.sortIcon, css.activityNameCell ]
+
+const shouldCancelSorting = e => {
+  // Only HTML elements with selected classes can be used to reorder offerings.
+  const classList = e.target.classList
+  for (let cl of sortableHandles) {
+    if (classList.contains(cl)) {
+      return false
+    }
+  }
+  return true
+}
+
 const SortableOffering = SortableElement(OfferingRow)
 
 const SortableOfferings = SortableContainer(({ offerings, offeringDetails, onOfferingUpdate, requestOfferingDetails }) => {
@@ -31,7 +45,8 @@ export default class OfferingsTable extends React.Component {
     const { offerings, offeringDetails, onOfferingsReorder, onOfferingUpdate, requestOfferingDetails } = this.props
     return (
       <SortableOfferings offerings={offerings} offeringDetails={offeringDetails} onSortEnd={onOfferingsReorder}
-        onOfferingUpdate={onOfferingUpdate} requestOfferingDetails={requestOfferingDetails} distance={3} />
+        shouldCancelStart={shouldCancelSorting} distance={3}
+        onOfferingUpdate={onOfferingUpdate} requestOfferingDetails={requestOfferingDetails} />
     )
   }
 }

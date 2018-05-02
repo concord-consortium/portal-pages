@@ -38,9 +38,9 @@ export default class OfferingRow extends React.Component {
     const { detailsVisible } = this.state
     const { offering, offeringDetails } = this.props
     return (
-      <div className={css.offeringRow}>
-        <div className={css.rowHeader}>
-          <span className={css.iconCell}><span className='icon-menu' /></span>
+      <div className={css.offering}>
+        <div>
+          <span className={css.iconCell}><span className={`${css.sortIcon} icon-menu`} /></span>
           <span className={css.activityNameCell}>{ offering.name }</span>
           <span className={css.checkboxCell}><input type='checkbox' checked={offering.active} onChange={this.onActiveUpdate} /></span>
           <span className={css.checkboxCell}><input type='checkbox' checked={offering.locked} onChange={this.onLockedUpdate} /></span>
@@ -53,3 +53,4 @@ export default class OfferingRow extends React.Component {
     )
   }
 }
+

@@ -25,7 +25,7 @@ export default class Offering extends React.Component {
 
   render () {
     const { detailsVisible } = this.state
-    const { clazz, activity, previewUrl, students, reportUrl, externalReport,
+    const { clazz, activity, previewUrl, students, activities, reportUrl, externalReport,
       completedStudentsCount, inProgressStudentsCount, notStartedStudentsCount } = this.props.offering
     const completedWidth = (completedStudentsCount / students.length) * 100
     const inProgressWidth = (inProgressStudentsCount / students.length) * 100
@@ -62,7 +62,7 @@ export default class Offering extends React.Component {
           }
         </div>
         <div>
-          { detailsVisible && <OfferingProgress students={students} /> }
+          { detailsVisible && <OfferingProgress activities={activities} students={students} /> }
         </div>
       </div>
     )

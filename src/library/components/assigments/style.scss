@@ -31,25 +31,35 @@
   .headers {
     text-transform: uppercase;
     font-weight: 700;
+
+    .activityNameCell {
+      font-size: 1em;
+    }
   }
 }
 
-.offeringRow {
+.offering {
   padding: 10px 0;
-  cursor: move;
 }
 
 .iconCell {
   display: inline-block;
   width: 3%;
-  font-size: 0.8em;
+  padding-top: 3px;
+  font-size: 0.95em;
   vertical-align: middle;
 }
 
+.sortIcon {
+  cursor: move;
+}
+
 .activityNameCell {
+  cursor: move;
   display: inline-block;
   width: 57%;
   vertical-align: middle;
+  font-size: 1.2em;
 }
 
 .checkboxCell {

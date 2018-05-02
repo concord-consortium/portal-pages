@@ -18,6 +18,10 @@
     text-overflow: ellipsis;
   }
 
+  .date {
+    padding-left: 10px;
+  }
+
   .progressBar {
     border: solid 1px #666;
     background: white;
@@ -28,5 +32,9 @@
         background: #ff8415;
       }
     }
+  }
+
+  a > .progressBar {
+    border: solid 1px #ea6d2f;
   }
 }

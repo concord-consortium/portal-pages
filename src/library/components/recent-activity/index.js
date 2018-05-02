@@ -11,13 +11,29 @@ const externalReportMapping = data => {
   }
 }
 
+const detailedProgressMapping = data => {
+  return data && {
+    activityName: data.activity_name,
+    progress: data.progress,
+    reportUrl: data.learner_activity_report_url
+  }
+}
+
 const studentMapping = data => {
   return {
     id: data.user_id,
     name: data.last_name + ', ' + data.first_name,
-    lastRun: new Date(data.last_run),
+    lastRun: data.last_run && new Date(data.last_run),
     totalProgress: data.total_progress,
-    detailedProgress: data.detailed_progress
+    reportUrl: data.learner_report_url,
+    detailedProgress: data.detailed_progress && data.detailed_progress.map(dp => detailedProgressMapping(dp))
+  }
+}
+
+const activityMapping = data => {
+  return {
+    name: data.name,
+    reportUrl: data.activity_report_url
   }
 }
 
@@ -40,6 +56,7 @@ const offeringMapping = data => {
     completedStudentsCount: completedStudents.length,
     reportUrl: data.report_url,
     externalReport: externalReportMapping(data.external_report),
+    activities: data.activities.map(a => activityMapping(a)),
     students: data.students.map(s => studentMapping(s))
   }
 }
