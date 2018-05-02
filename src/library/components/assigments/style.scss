@@ -11,7 +11,6 @@
 
   .reports {
     text-align: right;
-    margin-right: 30px;
   }
 
   .classInfo {
@@ -27,14 +26,49 @@
 
 .offeringsTable {
   width: 100%;
-  th {
-    text-align: left;
+  margin-top: 20px;
+
+  .headers {
+    text-transform: uppercase;
+    font-weight: 700;
   }
-  tr {
-    width: 725px;
-  }
-  .checkboxCell {
-    text-align: center;
-    width: 100px;
+}
+
+.offeringRow {
+  padding: 10px 0;
+  cursor: move;
+}
+
+.iconCell {
+  display: inline-block;
+  width: 3%;
+  font-size: 0.8em;
+  vertical-align: middle;
+}
+
+.activityNameCell {
+  display: inline-block;
+  width: 57%;
+  vertical-align: middle;
+}
+
+.checkboxCell {
+  display: inline-block;
+  width: 10%;
+  text-align: center;
+}
+
+.detailsCell {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+}
+
+.offeringDetails {
+  cursor: default;
+  padding: 0 10px;
+
+  .progressContainer {
+    margin-top: 20px;
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import ProgressTable from './progress-table'
 
-export default class ProgressDetails extends React.Component {
+export default class Index extends React.Component {
   get inProgressStudents () {
     const { students } = this.props
     return students.filter(s => s.totalProgress > 0 && s.totalProgress < 100)
@@ -50,6 +50,7 @@ export default class ProgressDetails extends React.Component {
     return (
       <div>
         { this.renderInProgressList() }
+        <br />
         <b>Not Yet Started</b>
         <div>
           { this.renderNotYetStartedList() }

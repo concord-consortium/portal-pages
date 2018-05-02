@@ -1,4 +1,3 @@
-import React from 'react'
 var AsyncValidationMixin = function () {
   // console.log("INFO creating async_validation_mixin");
 

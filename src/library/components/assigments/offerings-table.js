@@ -1,37 +1,37 @@
 import React from 'react'
 import {SortableContainer, SortableElement} from 'react-sortable-hoc'
+import OfferingRow from './offering-row'
 
 import css from './style.scss'
 
-const SortableOffering = SortableElement(({ offering }) =>
-  <tr>
-    <td>{ offering.name }</td>
-    <td className={css.checkboxCell}><input type='checkbox' checked={offering.active} /></td>
-    <td className={css.checkboxCell}><input type='checkbox' checked={offering.locked} /></td>
-    <td><a>SHOW DETAILS</a></td>
-  </tr>
-)
+const SortableOffering = SortableElement(OfferingRow)
 
-const SortableOfferings = SortableContainer(({ offerings, onOfferingUpdate }) => {
+const SortableOfferings = SortableContainer(({ offerings, offeringDetails, onOfferingUpdate, requestOfferingDetails }) => {
   return (
-    <table className={css.offeringsTable}>
-      <tbody>
-        <tr>
-          <th>Name</th><th className={css.checkboxCell}>Active</th><th className={css.checkboxCell}>Locked</th><th />
-        </tr>
-        {
-          offerings.map((offering, idx) => <SortableOffering key={offering.id} index={idx} offering={offering} onOfferingUpdate={onOfferingUpdate} />)
-        }
-      </tbody>
-    </table>
+    <div className={css.offeringsTable}>
+      <div className={css.headers}>
+        <span className={css.activityNameCell}>Name</span>
+        {/* Empty icon cell just to make sure that total width is correct */}
+        <span className={css.iconCell} />
+        <span className={css.checkboxCell}>Active</span>
+        <span className={css.checkboxCell}>Locked</span>
+        <span className={css.detailsCell} />
+      </div>
+      {
+        offerings.map((offering, idx) =>
+          <SortableOffering key={offering.id} index={idx} offering={offering} offeringDetails={offeringDetails[offering.id]}
+            requestOfferingDetails={requestOfferingDetails} onOfferingUpdate={onOfferingUpdate} />)
+      }
+    </div>
   )
 })
 
 export default class OfferingsTable extends React.Component {
   render () {
-    const { offerings, onOfferingsReorder, onOfferingUpdate } = this.props
+    const { offerings, offeringDetails, onOfferingsReorder, onOfferingUpdate, requestOfferingDetails } = this.props
     return (
-      <SortableOfferings offerings={offerings} onSortEnd={onOfferingsReorder} onOfferingUpdate={onOfferingUpdate} />
+      <SortableOfferings offerings={offerings} offeringDetails={offeringDetails} onSortEnd={onOfferingsReorder}
+        onOfferingUpdate={onOfferingUpdate} requestOfferingDetails={requestOfferingDetails} distance={3} />
     )
   }
 }

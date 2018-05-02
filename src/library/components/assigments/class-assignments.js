@@ -5,7 +5,7 @@ import commonCss from '../../styles/common-css-modules.scss'
 
 export default class ClassAssignments extends React.Component {
   render () {
-    const { clazz} = this.props
+    const { clazz } = this.props
     return (
       <div className={css.classAssignments}>
         <div>

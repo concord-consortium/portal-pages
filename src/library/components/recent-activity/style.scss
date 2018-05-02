@@ -5,7 +5,7 @@
     font-weight: bold;
   }
 
-  &:nth-of-type(even) {
+  &:nth-of-type(odd) {
     background: #f5f5f5;
   }
 
@@ -44,41 +44,8 @@
     }
   }
 
-  .detailsContainer {
+  .reports {
     clear: both;
-  }
-}
-
-.progressTable {
-  width: 100%;
-  margin-top: 20px;
-  table-layout: fixed;
-
-  .names {
-    width: 110px;
-    text-align: left;
-  }
-  .lastRun {
-    width: 75px;
-    text-align: left;
-  }
-
-  th, .name {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .progressBar {
-    border: solid 1px #666;
-    background: white;
-    .bar {
-      height: 10px;
-      background: #ffcd99;
-      &.completed {
-        background: #ff8415;
-      }
-    }
   }
 }
 
