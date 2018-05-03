@@ -43,6 +43,9 @@ const SortableOfferings = SortableContainer(({ offerings, offeringDetails, onOff
 export default class OfferingsTable extends React.Component {
   render () {
     const { offerings, offeringDetails, onOfferingsReorder, onOfferingUpdate, requestOfferingDetails } = this.props
+    if (offerings.length === 0) {
+      return <div className={css.noMaterials}>No materials have been assigned to this class.</div>
+    }
     return (
       <SortableOfferings offerings={offerings} offeringDetails={offeringDetails} onSortEnd={onOfferingsReorder}
         shouldCancelStart={shouldCancelSorting} distance={3}

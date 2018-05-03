@@ -7,8 +7,8 @@
     text-transform: uppercase;
     font-size: 1.2em;
     margin-left: 10px;
+    white-space: nowrap;
   }
-
   .reports {
     text-align: right;
   }
@@ -22,6 +22,11 @@
       font-weight: 700;
     }
   }
+}
+
+.noMaterials {
+  margin-top: 20px;
+  font-size: 1.2em;
 }
 
 .offeringsTable {

@@ -69,6 +69,10 @@
 
       a > .progressBar {
         border: solid 1px #ea6d2f;
+
+        &:hover {
+          box-shadow: 0 0 3px #eab136;
+        }
       }
     }
   }
