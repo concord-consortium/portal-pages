@@ -23,42 +23,60 @@ export default class ProgressTable extends React.Component {
     }
     const noProgress = noProgressForActivities(activities)
     return (
-      <table className={css.progressTable}>
-        <tbody>
-          <tr>
-            <th className={css.names}>Student</th>
-            <th className={css.lastRun}>Last Run</th>
-            { activities.map((a, idx) => <th key={idx}><a href={a.reportUrl} target='_blank' title={`Open report for "${a.name}"`}>{ a.name }</a></th>)}
-          </tr>
-          {
-            students.map(student =>
-              <tr key={student.id}>
-                <td className={css.name}>
-                  {
-                    student.totalProgress > 0
-                      ? <a href={student.reportUrl} target='_blank' title={`Open report for ${student.name}`}>{ student.name }</a>
-                      : student.name
-                  }
-                </td>
-                <td className={css.date} title={student.lastRun && student.lastRun.toLocaleDateString()}>
-                  { student.lastRun ? formatDate(student.lastRun) : 'n/a' }
-                </td>
-                {
-                  (student.detailedProgress || noProgress).map((details, idx) =>
-                    <td key={idx}>
+      <div className={css.offeringProgress}>
+        <div className={css.namesTableContainer}>
+          <table className={css.namesTable}>
+            <tbody>
+              <tr>
+                <th>Student</th>
+                <th className={css.dateHeader}>Last Run</th>
+              </tr>
+              {
+                students.map(student =>
+                  <tr key={student.id}>
+                    <td className={css.name}>
                       {
-                        details.progress > 0
-                          ? <a href={details.reportUrl} target='_blank' title={`Open report for "${details.activityName}" and ${student.name}`}>{ this.renderBar(details) }</a>
-                          : this.renderBar(details)
+                        student.totalProgress > 0
+                          ? <a href={student.reportUrl} target='_blank' title={`Open report for ${student.name}`}>{ student.name }</a>
+                          : student.name
                       }
                     </td>
-                  )
-                }
+                    <td className={css.date} title={student.lastRun && student.lastRun.toLocaleDateString()}>
+                      { student.lastRun ? formatDate(student.lastRun) : 'n/a' }
+                    </td>
+                  </tr>
+                )
+              }
+            </tbody>
+          </table>
+        </div>
+        <div className={css.progressTableContainer}>
+          <table className={css.progressTable}>
+            <tbody>
+              <tr>
+                { activities.map((a, idx) => <th key={idx}><a href={a.reportUrl} target='_blank' title={`Open report for "${a.name}"`}>{ a.name }</a></th>)}
               </tr>
-            )
-          }
-        </tbody>
-      </table>
+              {
+                students.map(student =>
+                  <tr key={student.id}>
+                    {
+                      (student.detailedProgress || noProgress).map((details, idx) =>
+                        <td key={idx}>
+                          {
+                            details.progress > 0
+                              ? <a href={details.reportUrl} target='_blank' title={`Open report for "${details.activityName}" and ${student.name}`}>{ this.renderBar(details) }</a>
+                              : this.renderBar(details)
+                          }
+                        </td>
+                      )
+                    }
+                  </tr>
+                )
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
     )
   }
 }
