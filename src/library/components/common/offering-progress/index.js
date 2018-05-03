@@ -34,10 +34,10 @@ export default class ProgressTable extends React.Component {
               {
                 students.map(student =>
                   <tr key={student.id}>
-                    <td className={css.name}>
+                    <td>
                       {
                         student.totalProgress > 0
-                          ? <a href={student.reportUrl} target='_blank' title={`Open report for ${student.name}`}>{ student.name }</a>
+                          ? <a href={student.reportUrl} target='_blank' title={`Open report for ${student.name}`}><span className={css.name}>{ student.name }</span></a>
                           : student.name
                       }
                     </td>
@@ -54,7 +54,12 @@ export default class ProgressTable extends React.Component {
           <table className={css.progressTable}>
             <tbody>
               <tr>
-                { activities.map((a, idx) => <th key={idx}><a href={a.reportUrl} target='_blank' title={`Open report for "${a.name}"`}>{ a.name }</a></th>)}
+                {
+                  activities.map((a, idx) =>
+                    <th key={idx}><a href={a.reportUrl} target='_blank' title={`Open report for "${a.name}"`}>
+                      <span className={css.activityTitle}>{ a.name }</span></a>
+                    </th>)
+                }
               </tr>
               {
                 students.map(student =>

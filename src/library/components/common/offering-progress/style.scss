@@ -17,6 +17,8 @@
       }
 
       .name {
+        width: 100%;
+        display: inline-block;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -44,9 +46,15 @@
 
       th {
         max-width: 170px;
+      }
+
+      .activityTitle {
+        width: 100%;
+        display: inline-block;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        vertical-align: top;
       }
 
       td {
