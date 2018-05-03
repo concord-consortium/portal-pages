@@ -6,7 +6,6 @@ const formatDate = date => `${date.getMonth() + 1}/${date.getDate()}`
 const noProgressForActivities = activities => activities.map(a => ({ progress: 0, reportUrl: null }))
 
 export default class ProgressTable extends React.Component {
-
   renderBar (details) {
     return (
       <div className={css.progressBar}>

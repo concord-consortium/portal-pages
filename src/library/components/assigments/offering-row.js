@@ -47,10 +47,12 @@ export default class OfferingRow extends React.Component {
           <span className={css.detailsCell}><a onClick={this.onDetailsToggle}>{ this.detailsLabel }</a></span>
         </div>
         {
+          detailsVisible && !offeringDetails && <div className={css.loading}>Loading...</div>
+        }
+        {
           detailsVisible && offeringDetails && <OfferingDetails offering={offeringDetails} />
         }
       </div>
     )
   }
 }
-
