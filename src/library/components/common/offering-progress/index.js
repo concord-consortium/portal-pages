@@ -15,6 +15,10 @@ export default class ProgressTable extends React.Component {
     )
   }
 
+  renderStudentName (student) {
+    return <span className={css.name}>{ student.name }</span>
+  }
+
   render () {
     const { students, activities } = this.props
     if (students.length === 0) {
@@ -36,8 +40,8 @@ export default class ProgressTable extends React.Component {
                     <td>
                       {
                         student.totalProgress > 0
-                          ? <a href={student.reportUrl} target='_blank' title={`Open report for ${student.name}`}><span className={css.name}>{ student.name }</span></a>
-                          : student.name
+                          ? <a href={student.reportUrl} target='_blank' title={`Open report for ${student.name}`}>{ this.renderStudentName(student) }</a>
+                          : this.renderStudentName(student)
                       }
                     </td>
                     <td className={css.date} title={student.lastRun && student.lastRun.toLocaleDateString()}>
