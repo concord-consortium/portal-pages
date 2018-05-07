@@ -135,17 +135,17 @@ var StemFinderResult = Component({
     var options = {href: resource.stem_resource_url}
 
     // truncate title and/or description if they are too long for resource card height
-    var resource_name = resource.name;
-    var max_char_name = 125
-    if (resource_name.length >= max_char_name) {
-      resource_name = resource_name.substring(0, resource_name.lastIndexOf(' ', max_char_name)) + '...'
-      resource_name = resource_name.replace(/[^\w\s]\.\.\./, '...') // trim extraneous punctuation before ellipsis
+    var resourceName = resource.name;
+    var maxCharName = 125
+    if (resourceName.length >= maxCharName) {
+      resourceName = resourceName.substring(0, resourceName.lastIndexOf(' ', maxCharName)) + '...'
+      resourceName = resourceName.replace(/[^\w\s]\.\.\./, '...') // trim extraneous punctuation before ellipsis
     }
-    var short_desc = resource.filteredShortDescription
-    var max_char_desc = 320
-    if (short_desc.length + resource.name.length >= max_char_desc) { // use full resource name for 'back' of card
-      short_desc = short_desc.substring(0, short_desc.lastIndexOf(' ', max_char_desc - resource.name.length)) + '...'
-      short_desc = short_desc.replace(/[^\w\s]\.\.\./, '...') // trim extraneous punctuation before ellipsis
+    var shortDesc = resource.filteredShortDescription
+    var maxCharDesc = 320
+    if (shortDesc.length + resource.name.length >= maxCharDesc) { // use full resource name for 'back' of card
+      shortDesc = shortDesc.substring(0, shortDesc.lastIndexOf(' ', maxCharDesc - resource.name.length)) + '...'
+      shortDesc = shortDesc.replace(/[^\w\s]\.\.\./, '...') // trim extraneous punctuation before ellipsis
     }
 
     if (this.state.hovering || this.state.lightbox) {
@@ -153,7 +153,7 @@ var StemFinderResult = Component({
         a(options,
           div({className: 'portal-pages-finder-result-description'},
             div({className: 'title'}, resource.name), // use full resource name for 'back' of card
-            div({}, short_desc)
+            div({}, shortDesc)
           ),
           this.renderFavoriteStar()
         ),
@@ -167,7 +167,7 @@ var StemFinderResult = Component({
           img({alt: resource.name, src: resource.icon.url}), // use full resource name for img alt text
           ResourceType({resource: resource})
         ),
-        div({className: 'portal-pages-finder-result-name'}, resource_name),
+        div({className: 'portal-pages-finder-result-name'}, resourceName),
         this.renderFavoriteStar()
       ),
       GradeLevels({resource: resource})
