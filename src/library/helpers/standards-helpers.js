@@ -306,7 +306,7 @@ var NgssHelper = function () {
  *
  */
 var getStandardsHelper = function (standardType) {
-  if (standardType === 'NGSS') { return NgssHelper() }
+  if (standardType === 'NGSS') { return new NgssHelper() }
 }
 
 module.exports = {
