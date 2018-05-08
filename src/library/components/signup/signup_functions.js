@@ -28,7 +28,7 @@ var renderSignupForm = function (properties, selectorOrElement) {
   ReactDOM.render(comp(properties), jQuery(selectorOrElement)[0])
 }
 
-var openModal = function (type, properties, closeFunc) {
+var openModal = function (type, properties = {}, closeFunc) {
   var modalContainer, modalContainerId, modalContainerSelector
   modalContainerId = modalClasses[type]
   modalContainerSelector = '#' + modalContainerId
