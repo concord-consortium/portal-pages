@@ -30,6 +30,7 @@ const externalReportMapping = data => {
 
 const classMapping = data => {
   return data && {
+    id: data.id,
     name: data.name,
     classWord: data.class_word,
     teachers: teachersMapping(data.teachers),
