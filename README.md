@@ -66,6 +66,26 @@ The server will also record all the non-mocked ajax responses if you start the s
 
 `npm start -- --recordAjax` (note the two sets of --, the first -- causes the remainder of the line to be appended to the start script in package.json)
 
+## Testing local portal pages using remote portal
+
+You can use the proxy setup described above to test out some parts of portal pages with
+content from a remote portal. However several portal features do not work properly. An
+alternative which seems to work better is to use a Chrome extension to override all
+requests to the portal-pages library js and css with your local javascript.
+
+The Chrome extension is this one: https://github.com/kylepaulsen/ResourceOverride
+Most of time remote portals use tagged versios of the portal pages code. So first you
+need to find the URL for the portal-pages javascript the remote portal is using. You can
+find this in the chrome developer tools. For example lets say it is:
+https://portal-pages.concord.org/version/v1.9.0-pre.3/library/portal-pages.js
+
+Then go into ResourceOverride extension page and add this mapping:
+https://portal-pages.concord.org/version/v1.9.0-pre.3/library/portal-pages.js -> http://localhost:10000/portal-pages.js
+
+It seems that the mixed https and http content doesn't cause a problem. Also if you
+look at the Chrome DevTools Source tab you will find portal-pages.js listed under
+localhost:1000 
+
 ## License
 
 Portal Pages is released under the [MIT License](LICENSE).
