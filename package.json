@@ -64,6 +64,9 @@
     "node-sass": "^4.5.3",
     "opn": "^5.0.0",
     "pug": "~2.0.0-beta11",
+    "react": "file:./src/window-react",
+    "react-dom": "file:./src/window-react-dom",
+    "react-sortable-hoc": "^0.6.8",
     "request": "^2.81.0"
   }
 }

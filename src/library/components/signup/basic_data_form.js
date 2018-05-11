@@ -1,3 +1,4 @@
+import React from 'react'
 var INVALID_FIRST_NAME, INVALID_LAST_NAME, PASS_NOT_MATCH, PASS_TOO_SHORT
 
 var ref = React.DOM

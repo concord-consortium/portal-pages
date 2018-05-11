@@ -1,3 +1,4 @@
+import React from 'react'
 var RadioInputClass = require('./radio_input')
 var StudentFormClass = require('./student_form')
 var TeacherFormClass = require('./teacher_form')

@@ -1,3 +1,4 @@
+import React from 'react'
 var ref = React.DOM
 var a = ref.a
 var div = ref.div

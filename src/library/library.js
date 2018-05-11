@@ -12,6 +12,7 @@ import Tooltip from './components/tooltip.js'
 import ParseQueryString from './helpers/parse-query-string'
 import signupFunctions from './components/signup/signup_functions'
 import RecentActivity from './components/recent-activity'
+import Assignments from './components/assigments'
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -35,6 +36,11 @@ window.PortalPages = {
   RecentActivity: RecentActivity,
   renderRecentActivity: function (options, id) {
     render(React.createElement(RecentActivity, options), id)
+  },
+
+  Assignments: Assignments,
+  renderAssignments: function (options, id) {
+    render(React.createElement(Assignments, options), id)
   },
 
   CollectionCards: CollectionCards,

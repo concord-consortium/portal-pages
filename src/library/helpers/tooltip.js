@@ -1,3 +1,5 @@
+import ReactDOM from 'react-dom'
+
 var Tooltip = {
   mountPointId: 'portal-pages-tooltip-mount',
 

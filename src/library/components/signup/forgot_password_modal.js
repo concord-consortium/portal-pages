@@ -1,3 +1,4 @@
+import React from 'react'
 var button = React.DOM.button
 var dd = React.DOM.dd
 var dl = React.DOM.dl

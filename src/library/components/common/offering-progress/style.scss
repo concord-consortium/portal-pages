@@ -1,0 +1,87 @@
+.offeringProgress {
+  tr {
+    height: 35px;
+  }
+
+  .namesTableContainer {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+
+    .namesTable {
+      width: 100%;
+      table-layout: fixed;
+
+      th {
+        text-align: left;
+      }
+
+      .name {
+        width: 100%;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .dateHeader {
+        width: 70px;
+      }
+
+      .date {
+        padding-left: 10px;
+      }
+    }
+  }
+
+
+  .progressTableContainer {
+    width: 70%;
+    display: inline-block;
+    overflow-x: scroll;
+    vertical-align: top;
+
+    .progressTable {
+      width: 100%;
+
+      th {
+        max-width: 170px;
+      }
+
+      .activityTitle {
+        width: 100%;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: top;
+      }
+
+      td {
+        padding: 0 5px;
+      }
+
+      .progressBar {
+        min-width: 170px;
+        border: solid 1px #666;
+        background: white;
+
+        .bar {
+          height: 25px;
+          background: #ffcd99;
+          &.completed {
+            background: #ff8415;
+          }
+        }
+      }
+
+      a > .progressBar {
+        border: solid 1px #ea6d2f;
+
+        &:hover {
+          box-shadow: 0 0 3px #eab136;
+        }
+      }
+    }
+  }
+}
