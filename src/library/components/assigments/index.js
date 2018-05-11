@@ -1,5 +1,6 @@
 import React from 'react'
 import ClassAssignments from './class-assignments'
+import { activityMapping, studentMapping } from '../common/offering-progress/helpers'
 import OfferingsTable from './offerings-table'
 import { arrayMove } from 'react-sortable-hoc'
 
@@ -37,32 +38,6 @@ const classMapping = data => {
     editPath: data.edit_path,
     assignMaterialsPath: data.assign_materials_path,
     externalClassReports: data.external_class_reports.map(r => externalReportMapping(r))
-  }
-}
-
-const detailedProgressMapping = data => {
-  return {
-    activityName: data.activity_name,
-    progress: data.progress,
-    reportUrl: data.learner_activity_report_url
-  }
-}
-
-const studentMapping = data => {
-  return {
-    id: data.user_id,
-    name: data.last_name + ', ' + data.first_name,
-    lastRun: data.last_run && new Date(data.last_run),
-    totalProgress: data.total_progress,
-    reportUrl: data.learner_report_url,
-    detailedProgress: data.detailed_progress && data.detailed_progress.map(dp => detailedProgressMapping(dp))
-  }
-}
-
-const activityMapping = data => {
-  return {
-    name: data.name,
-    reportUrl: data.activity_report_url
   }
 }
 

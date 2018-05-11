@@ -1,18 +1,16 @@
 import React from 'react'
+import ProgressBar from './progress-bar'
+
 import css from './style.scss'
 
 const formatDate = date => `${date.getMonth() + 1}/${date.getDate()}`
 
-const noProgressForActivities = activities => activities.map(a => ({ progress: 0, reportUrl: null }))
+const noProgressForActivities = activities => activities.map(a => ({ activityId: a.id, progress: 0, reportUrl: null }))
 
 export default class ProgressTable extends React.Component {
-  renderBar (details) {
-    return (
-      <div className={css.progressBar}>
-        <div className={`${css.bar} ${details.progress === 100 ? css.completed : ''}`}
-          style={{width: `${details.progress}%`}} />
-      </div>
-    )
+  getFeedbackOptions (activityId) {
+    const { activities } = this.props
+    return activities.find(a => a.id === activityId).feedbackOptions
   }
 
   renderStudentName (student) {
@@ -70,11 +68,7 @@ export default class ProgressTable extends React.Component {
                     {
                       (student.detailedProgress || noProgress).map((details, idx) =>
                         <td key={idx}>
-                          {
-                            details.progress > 0
-                              ? <a href={details.reportUrl} target='_blank' title={`Open report for "${details.activityName}" and ${student.name}`}>{ this.renderBar(details) }</a>
-                              : this.renderBar(details)
-                          }
+                          <ProgressBar student={student} detailedProgress={details} feedbackOptions={this.getFeedbackOptions(details.activityId)} />
                         </td>
                       )
                     }

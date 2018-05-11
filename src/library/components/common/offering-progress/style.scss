@@ -65,23 +65,85 @@
         min-width: 170px;
         border: solid 1px #666;
         background: white;
+        position: relative;
+        height: 25px;
+
+        &.clickable {
+          border-color: #f66e2a;
+          cursor: pointer;
+
+          &:hover {
+            box-shadow: 0 0 3px #ffc320;
+          }
+        }
+
+        .textContainer {
+          width: 100%;
+          position: absolute;
+          left: 0;
+          color: black;
+          line-height: 25px;
+
+          .reportLink {
+            float: right;
+            color: #ad5100;
+            margin-right: 4px;
+            margin-top: 2px;
+
+            &:hover {
+              color: #ffc320;
+            }
+          }
+        }
 
         .bar {
-          height: 25px;
+          position: absolute;
+          left: 0;
+          height: 100%;
           background: #ffcd99;
           &.completed {
             background: #ff8415;
           }
         }
       }
-
-      a > .progressBar {
-        border: solid 1px #ea6d2f;
-
-        &:hover {
-          box-shadow: 0 0 3px #eab136;
-        }
-      }
     }
   }
+}
+
+.feedback {
+  margin-left: 5px;
+
+  .score {
+    margin-right: 13px;
+  }
+
+  .textFeedbackIcon {
+    line-height: 28px;
+    vertical-align: middle;
+    margin-right: 15px;
+    font-size: 1.1em;
+  }
+
+  .rubricContainer {
+    // Disable ability to click on the Rubric icon.
+    pointer-events: none;
+    display: inline-block;
+    vertical-align: middle;
+    height: 25px;
+    transform-origin: top left;
+
+    &:hover {
+      box-shadow: 0 0 3px #eab136;
+    }
+
+    td {
+      // Fix styling of the rubric box.
+      padding: 0.5em !important;
+      line-height: 1em;
+    }
+  }
+}
+
+.tooltipContent {
+  max-width: 400px;
 }
