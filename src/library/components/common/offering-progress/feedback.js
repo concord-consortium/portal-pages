@@ -13,11 +13,6 @@ const isPresent = val => val !== null && val !== undefined && val !== '' && JSON
 const MAX_RUBRIC_ROWS = 2
 
 export default class Feedback extends React.Component {
-  constructor (props) {
-    super(props)
-    this.textFeedbackClick = this.textFeedbackClick.bind(this)
-  }
-
   get feedbackEnabled () {
     const { options } = this.props
     return options.scoreFeedbackEnabled ||
@@ -36,11 +31,6 @@ export default class Feedback extends React.Component {
     return (options.scoreFeedbackEnabled && isPresent(feedback.score)) ||
            (options.textFeedbackEnabled && isPresent(feedback.textFeedback)) ||
            (options.rubricFeedbackEnabled && isPresent(feedback.rubricFeedback))
-  }
-
-  textFeedbackClick (e) {
-    const { feedback } = this.props
-    window.alert(feedback.textFeedback)
   }
 
   renderScore () {
