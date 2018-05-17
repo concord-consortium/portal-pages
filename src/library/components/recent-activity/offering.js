@@ -1,6 +1,8 @@
-import ProgressDetails from './progress-details'
+import React from 'react'
+import OfferingProgress from '../common/offering-progress/'
 
 import css from './style.scss'
+import commonCss from '../../styles/common-css-modules.scss'
 
 export default class Offering extends React.Component {
   constructor (props) {
@@ -13,7 +15,7 @@ export default class Offering extends React.Component {
 
   get detailsToggleLabel () {
     const { detailsVisible } = this.state
-    return detailsVisible ? '- Hide Detail' : '+ Show Detail'
+    return detailsVisible ? '- HIDE DETAIL' : '+ SHOW DETAIL'
   }
 
   toggleDetails () {
@@ -23,7 +25,7 @@ export default class Offering extends React.Component {
 
   render () {
     const { detailsVisible } = this.state
-    const { clazz, activity, students, reportUrl, externalReport,
+    const { clazz, activity, previewUrl, students, activities, reportUrl, externalReport,
       completedStudentsCount, inProgressStudentsCount, notStartedStudentsCount } = this.props.offering
     const completedWidth = (completedStudentsCount / students.length) * 100
     const inProgressWidth = (inProgressStudentsCount / students.length) * 100
@@ -48,16 +50,19 @@ export default class Offering extends React.Component {
             </div>
           </div>
         </div>
-        {
-          reportUrl &&
-          <div><a href={reportUrl} target='_blank' className={css.reportBtn + ' button'}>Report</a></div>
-        }
-        {
-          externalReport &&
-          <div><a href={externalReport.url} target='_blank' className={css.reportBtn + ' button'}>{ externalReport.launchText }</a></div>
-        }
-        <div className={css.detailsContainer}>
-          { detailsVisible && <ProgressDetails students={students} /> }
+        <div className={css.reports}>
+          <a href={previewUrl} target='_blank' className={commonCss.smallButton} title='Preview'>Preview</a>
+          {
+            reportUrl &&
+            <a href={reportUrl} target='_blank' className={commonCss.smallButton}>Report</a>
+          }
+          {
+            externalReport &&
+            <a href={externalReport.url} target='_blank' className={commonCss.smallButton}>{ externalReport.launchText }</a>
+          }
+        </div>
+        <div>
+          { detailsVisible && <OfferingProgress activities={activities} students={students} /> }
         </div>
       </div>
     )

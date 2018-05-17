@@ -18,7 +18,22 @@ module.exports = {
         }
       },
       {
+        test: /node_modules\/.*\.(css|scss)$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
+      },
+      {
         test: /\.(css|scss)$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'style-loader'
@@ -27,7 +42,8 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              sourceMap: true
+              sourceMap: true,
+              localIdentName: '[local]--[hash:base64:8]'
             }
           },
           {

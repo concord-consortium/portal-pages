@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom'
 /*
 This is just a small reusable bit of code for mounting and unmounting a react component
 in a new part of the document. The actual lightbox functionality is in resource-lightbox.

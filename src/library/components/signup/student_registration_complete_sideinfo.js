@@ -1,3 +1,4 @@
+import React from 'react'
 var ref = React.DOM
 var div = ref.div
 var dd = ref.dd

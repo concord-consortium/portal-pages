@@ -1,3 +1,4 @@
+import React from 'react'
 var GradeLevels = require('./grade-levels')
 var Component = require('../helpers/component')
 var portalObjectHelpers = require('../helpers/portal-object-helpers')

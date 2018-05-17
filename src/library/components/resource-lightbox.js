@@ -1,3 +1,4 @@
+import React from 'react'
 var Component = require('../helpers/component')
 var RelatedResourceResult = require('./related-resource-result')
 var pluralize = require('../helpers/pluralize')

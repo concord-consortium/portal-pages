@@ -1,0 +1,91 @@
+.classAssignments {
+  h1 {
+    display: inline;
+  }
+
+  .assignMaterials {
+    text-transform: uppercase;
+    font-size: 1.2em;
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+  .reports {
+    text-align: right;
+  }
+
+  .classInfo {
+    font-size: 1.1em;
+    margin-bottom: 0;
+
+    td:nth-child(1) {
+      padding-right: 10px;
+      font-weight: 700;
+    }
+  }
+}
+
+.noMaterials {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.offeringsTable {
+  width: 100%;
+  margin-top: 20px;
+
+  .headers {
+    text-transform: uppercase;
+    font-weight: 700;
+
+    .activityNameCell {
+      font-size: 1em;
+    }
+  }
+}
+
+.offering {
+  padding: 10px 0;
+
+  .loading {
+    margin-top: 10px;
+    font-size: 1.2em;
+    text-align: center;
+  }
+}
+
+.iconCell {
+  display: inline-block;
+  width: 3%;
+  padding-top: 3px;
+  font-size: 0.95em;
+  vertical-align: middle;
+}
+
+.sortIcon {
+  cursor: move;
+}
+
+.activityNameCell {
+  cursor: move;
+  display: inline-block;
+  width: 57%;
+  vertical-align: middle;
+  font-size: 1.2em;
+}
+
+.checkboxCell {
+  display: inline-block;
+  width: 10%;
+  text-align: center;
+}
+
+.detailsCell {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+}
+
+.offeringDetails {
+  cursor: default;
+  padding: 0 10px;
+}

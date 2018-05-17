@@ -1,3 +1,4 @@
+import React from 'react'
 var invalidZipcode
 var newSchoolWarning
 var ref = React.DOM

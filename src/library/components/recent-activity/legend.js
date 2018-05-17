@@ -1,3 +1,4 @@
+import React from 'react'
 import css from './style.scss'
 
 export default class Legend extends React.Component {
