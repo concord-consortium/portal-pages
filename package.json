@@ -47,6 +47,7 @@
     "webpack": "^4.6.0"
   },
   "dependencies": {
+    "@concord-consortium/portal-report": "1.7.0-pre.5",
     "body-parser": "~1.17.1",
     "cheerio": "^1.0.0-rc.1",
     "chokidar": "^1.7.0",
@@ -64,6 +65,7 @@
     "node-sass": "^4.5.3",
     "opn": "^5.0.0",
     "pug": "~2.0.0-beta11",
+    "rc-tooltip": "^3.7.2",
     "react": "file:./src/window-react",
     "react-dom": "file:./src/window-react-dom",
     "react-sortable-hoc": "^0.6.8",
