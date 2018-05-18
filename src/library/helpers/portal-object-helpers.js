@@ -1,19 +1,26 @@
-var filterDiv = null
+let filterDiv = null
 
-var shortenText = function (text, length) {
+const shortenText = (text, length, breakOnSpace) => {
+  let shortenedText = text
   length = (typeof length !== 'undefined') ? length : 350
   if (!text) {
     return ''
   } else {
     if (text.length > length) {
-      return text.substring(0, length - 1) + '…'
+      if (breakOnSpace !== 'undefined') {
+        shortenedText = shortenedText.substring(0, text.lastIndexOf(' ', length)) + '…'
+        shortenedText = shortenedText.replace(/[^\w\s]…/, '…') // trim any punctuation appearing immediately before ellipsis
+        return shortenedText
+      } else {
+        return shortenedText.substring(0, length - 1) + '…'
+      }
     } else {
       return text
     }
   }
 }
 
-var textOfHtml = function (text) {
+const textOfHtml = (text) => {
   if (!filterDiv) {
     filterDiv = document.createElement('DIV')
   }
@@ -36,7 +43,7 @@ var textOfHtml = function (text) {
    - resource.abstact - database value if it exists, "" otherwise
    - resource.description_for_teacher - database value if it exists, "" otherwise
 */
-var processResource = function (resource) {
+const processResource = (resource) => {
   if (resource == null || resource._processed) {
     return
   }
@@ -65,5 +72,6 @@ var processResource = function (resource) {
 
 module.exports = {
   textOfHtml: textOfHtml,
-  processResource: processResource
+  processResource: processResource,
+  shortenText: shortenText
 }

@@ -1,21 +1,22 @@
 import React from 'react'
-var Component = require('../helpers/component')
+import Component from '../helpers/component'
 
-var ResourceLightbox = require('./resource-lightbox')
-var ResourceType = require('./resource-type')
-var GradeLevels = require('./grade-levels')
-var Lightbox = require('../helpers/lightbox')
+import ResourceLightbox from './resource-lightbox'
+import ResourceType from './resource-type'
+import GradeLevels from './grade-levels'
+import Lightbox from '../helpers/lightbox'
+import portalObjectHelpers from '../helpers/portal-object-helpers'
 
-var div = React.DOM.div
-var img = React.DOM.img
-var a = React.DOM.a
-var i = React.DOM.i
+const div = React.DOM.div
+const img = React.DOM.img
+const a = React.DOM.a
+const i = React.DOM.i
 
 // vars for special treatment of hover and click states on touch-enabled devices
-var pageScrolling = false
-var touchInitialized = false
+let pageScrolling = false
+let touchInitialized = false
 
-var StemFinderResult = Component({
+const StemFinderResult = Component({
   getInitialState: function () {
     return {
       hovering: false,
@@ -74,7 +75,7 @@ var StemFinderResult = Component({
   toggleLightbox: function (e) {
     e.preventDefault()
     e.stopPropagation()
-    var lightbox = !this.state.lightbox
+    let lightbox = !this.state.lightbox
 
     this.setState({
       lightbox: lightbox,
@@ -83,7 +84,7 @@ var StemFinderResult = Component({
 
     // mount/unmount lightbox outside of homepage content
     if (lightbox && pageScrolling === false) {
-      var resourceLightbox = ResourceLightbox({
+      let resourceLightbox = ResourceLightbox({
         resource: this.props.resource,
         toggleLightbox: this.toggleLightbox
       })
@@ -101,8 +102,8 @@ var StemFinderResult = Component({
     e.stopPropagation()
 
     if (!Portal.currentUser.isLoggedIn || !Portal.currentUser.isTeacher) {
-      var mouseX = e.pageX + 31
-      var mouseY = e.pageY - 23
+      let mouseX = e.pageX + 31
+      let mouseY = e.pageY - 23
       jQuery('body').append('<div class="portal-pages-favorite-tooltip">Log in or sign up to save resources for quick access!</div>')
       jQuery('.portal-pages-favorite-tooltip').css({'left': mouseX + 'px', 'top': mouseY + 'px'}).fadeIn('fast')
 
@@ -112,8 +113,8 @@ var StemFinderResult = Component({
       return
     }
 
-    var resource = this.props.resource
-    var done = function () {
+    let resource = this.props.resource
+    let done = function () {
       resource.is_favorite = !resource.is_favorite
       this.setState({favorited: resource.is_favorite})
     }.bind(this)
@@ -125,35 +126,30 @@ var StemFinderResult = Component({
   },
 
   renderFavoriteStar: function () {
-    var active = this.state.favorited ? ' portal-pages-finder-result-favorite-active' : ''
+    let active = this.state.favorited ? ' portal-pages-finder-result-favorite-active' : ''
     return div({className: 'portal-pages-finder-result-favorite' + active, onClick: this.toggleFavorite},
       i({className: 'icon-favorite'})
     )
   },
 
   render: function () {
-    var resource = this.props.resource
-    var options = {href: resource.stem_resource_url}
+    const resource = this.props.resource
+    const options = {href: resource.stem_resource_url}
 
     // truncate title and/or description if they are too long for resource card height
-    var resourceName = resource.name;
-    var maxCharName = 125
-    if (resourceName.length >= maxCharName) {
-      resourceName = resourceName.substring(0, resourceName.lastIndexOf(' ', maxCharName)) + '...'
-      resourceName = resourceName.replace(/[^\w\s]\.\.\./, '...') // trim extraneous punctuation before ellipsis
-    }
-    var shortDesc = resource.filteredShortDescription
-    var maxCharDesc = 320
-    if (shortDesc.length + resource.name.length >= maxCharDesc) { // use full resource name for 'back' of card
-      shortDesc = shortDesc.substring(0, shortDesc.lastIndexOf(' ', maxCharDesc - resource.name.length)) + '...'
-      shortDesc = shortDesc.replace(/[^\w\s]\.\.\./, '...') // trim extraneous punctuation before ellipsis
+    const maxCharTitle = 125
+    const maxCharDesc = 320
+    let resourceName = portalObjectHelpers.shortenText(resource.name, maxCharTitle, true)
+    let shortDesc = resource.filteredShortDescription
+    if (shortDesc.length + resource.name.length >= maxCharDesc) { // use full resource name on 'back' of card, not truncated version
+      shortDesc = portalObjectHelpers.shortenText(shortDesc, maxCharDesc - resource.name.length, true)
     }
 
     if (this.state.hovering || this.state.lightbox) {
       return div({className: 'portal-pages-finder-result col-4', onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
         a(options,
           div({className: 'portal-pages-finder-result-description'},
-            div({className: 'title'}, resource.name), // use full resource name for 'back' of card
+            div({className: 'title'}, resource.name), // use full resource name on 'back' of card, not truncated version
             div({}, shortDesc)
           ),
           this.renderFavoriteStar()
