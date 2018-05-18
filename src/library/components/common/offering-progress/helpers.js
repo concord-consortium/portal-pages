@@ -34,7 +34,7 @@ export const studentMapping = data => ({
   detailedProgress: data.detailed_progress && data.detailed_progress.map(dp => detailedProgressMapping(dp))
 })
 
-export const activityMapping = data => ({
+export const reportableActivityMapping = data => ({
   id: data.id,
   name: data.name,
   reportUrl: data.activity_report_url,

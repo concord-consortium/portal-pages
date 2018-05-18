@@ -31,7 +31,6 @@ export default class ProgressTable extends React.Component {
   renderStudentProgressBars (student) {
     const { activities } = this.props
     let detailedProgress = []
-
     if (student.detailedProgress) {
       // Detailed progress available. Render it.
       detailedProgress = student.detailedProgress
@@ -80,7 +79,9 @@ export default class ProgressTable extends React.Component {
         <div className={css.progressTableContainer}>
           <table className={css.progressTable}>
             <tbody>
-              <tr>{ activities.map((a, idx) => <th key={idx}>{ this.renderActivityHeader(a) }</th>) }</tr>
+              <tr>
+                { activities.map((a, idx) => <th key={idx}>{ this.renderActivityHeader(a) }</th>) }
+              </tr>
               {
                 students.map(student =>
                   <tr key={student.id}>

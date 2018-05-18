@@ -25,15 +25,17 @@ export default class Offering extends React.Component {
 
   render () {
     const { detailsVisible } = this.state
-    const { clazz, activity, previewUrl, students, activities, reportUrl, externalReport,
+    const { clazz, activityName, previewUrl, students, reportableActivities, reportUrl, externalReport,
       completedStudentsCount, inProgressStudentsCount, notStartedStudentsCount } = this.props.offering
     const completedWidth = (completedStudentsCount / students.length) * 100
     const inProgressWidth = (inProgressStudentsCount / students.length) * 100
     const notStartedWidth = (notStartedStudentsCount / students.length) * 100
+    // Activities listed in the progress table are either reportable activities or just the main offering.
+    const progressTableActivities = reportableActivities || [{ id: 0, name: activityName, feedbackOptions: null }]
     return (
       <div className={css.offering}>
         <div>
-          <span className={css.offeringHeader}>{clazz}: {activity}</span>
+          <span className={css.offeringHeader}>{clazz}: { activityName }</span>
           <a className={css.detailsToggle} onClick={this.toggleDetails}>{this.detailsToggleLabel}</a>
         </div>
         <div>
@@ -62,7 +64,7 @@ export default class Offering extends React.Component {
           }
         </div>
         <div>
-          { detailsVisible && <OfferingProgress activities={activities} students={students} /> }
+          { detailsVisible && <OfferingProgress activities={progressTableActivities} students={students} /> }
         </div>
       </div>
     )

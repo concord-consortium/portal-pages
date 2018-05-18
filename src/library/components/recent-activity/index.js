@@ -1,6 +1,6 @@
 import React from 'react'
 import Offerings from './offerings'
-import { activityMapping, studentMapping } from '../common/offering-progress/helpers'
+import { reportableActivityMapping, studentMapping } from '../common/offering-progress/helpers'
 
 const externalReportMapping = data => {
   if (!data) {
@@ -23,7 +23,7 @@ const offeringMapping = data => {
   return {
     id: data.id,
     clazz: data.clazz,
-    activity: data.activity,
+    activityName: data.activity,
     previewUrl: data.activity_url,
     lastRun: lastRunDates.length > 0 ? lastRunDates[0] : null,
     notStartedStudentsCount: notStartedStudents.length,
@@ -31,7 +31,7 @@ const offeringMapping = data => {
     completedStudentsCount: completedStudents.length,
     reportUrl: data.report_url,
     externalReport: externalReportMapping(data.external_report),
-    activities: data.activities.map(a => activityMapping(a)),
+    reportableActivities: data.reportable_activities && data.reportable_activities.map(a => reportableActivityMapping(a)),
     students: data.students.map(s => studentMapping(s))
   }
 }
