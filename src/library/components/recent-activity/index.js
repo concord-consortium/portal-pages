@@ -17,9 +17,12 @@ const offeringMapping = data => {
     // Filer out offerings that have never been run.
     .filter(s => s.last_run !== null)
     .map(s => new Date(s.last_run))
-  const notStartedStudents = data.students.filter(s => s.total_progress === 0)
-  const inProgressStudents = data.students.filter(s => s.total_progress > 0 && s.total_progress < 100)
-  const completedStudents = data.students.filter(s => s.total_progress === 100)
+  // Reportable offerings will have meaningful progress specified. Non-reportable offerings will have some progress
+  // specified too (99% or 100%), but it's safer to look at started_activity property.
+  const reportable = data.reportable
+  const notStartedStudents = data.students.filter(s => reportable ? s.total_progress === 0 : !s.started_activity)
+  const inProgressStudents = data.students.filter(s => reportable ? s.total_progress > 0 && s.total_progress < 100 : false)
+  const completedStudents = data.students.filter(s => reportable ? s.total_progress === 100 : s.started_activity)
   return {
     id: data.id,
     clazz: data.clazz,
