@@ -127,14 +127,16 @@ const StemFinderResult = Component({
 
   renderFavoriteStar: function () {
     let active = this.state.favorited ? ' portal-pages-finder-result-favorite-active' : ''
-    return div({className: 'portal-pages-finder-result-favorite' + active, onClick: this.toggleFavorite},
-      i({className: 'icon-favorite'})
+    const divClass = 'portal-pages-finder-result-favorite' + active
+    return (
+      <div className={divClass} onClick={this.toggleFavorite}>
+        <i className={'icon-favorite'}></i>
+      </div>
     )
   },
 
   render: function () {
     const resource = this.props.resource
-    const options = {href: resource.stem_resource_url}
 
     // truncate title and/or description if they are too long for resource card height
     const maxCharTitle = 125
@@ -146,28 +148,38 @@ const StemFinderResult = Component({
     }
 
     if (this.state.hovering || this.state.lightbox) {
-      return div({className: 'portal-pages-finder-result col-4', onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
-        a(options,
-          div({className: 'portal-pages-finder-result-description'},
-            div({className: 'title'}, resource.name), // use full resource name on 'back' of card, not truncated version
-            div({}, shortDesc)
-          ),
-          this.renderFavoriteStar()
-        ),
-        GradeLevels({resource: resource}),
-        this.renderFavoriteStar()
+      return (
+        <div className={'portal-pages-finder-result col-4'} onClick={this.toggleLightbox} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
+          <a href={resource.stem_resource_url}>
+            <div className={'portal-pages-finder-result-description'}>
+              <div className={'title'}>
+                {resource.name}
+              </div>
+              <div>
+                {shortDesc}
+              </div>
+            </div>
+            {this.renderFavoriteStar()}
+          </a>
+          {GradeLevels({resource: resource})}
+          {this.renderFavoriteStar()}
+        </div>
       )
     }
-    return div({className: 'portal-pages-finder-result col-4', onClick: this.toggleLightbox, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut},
-      a(options,
-        div({className: 'portal-pages-finder-result-image-preview'},
-          img({alt: resource.name, src: resource.icon.url}), // use full resource name for img alt text
-          ResourceType({resource: resource})
-        ),
-        div({className: 'portal-pages-finder-result-name'}, resourceName),
-        this.renderFavoriteStar()
-      ),
-      GradeLevels({resource: resource})
+    return (
+      <div className={'portal-pages-finder-result col-4'} onClick={this.toggleLightbox} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
+        <a href={resource.stem_resource_url}>
+          <div className={'portal-pages-finder-result-image-preview'}>
+            <img alt={resource.name} src={resource.icon.url} />
+            {ResourceType({resource: resource})}
+          </div>
+          <div className={'portal-pages-finder-result-name'}>
+            {resourceName}
+          </div>
+          {this.renderFavoriteStar()}
+        </a>
+        {GradeLevels({resource: resource})}
+      </div>
     )
   }
 })
