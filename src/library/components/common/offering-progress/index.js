@@ -5,7 +5,8 @@ import css from './style.scss'
 
 const formatDate = date => `${date.getMonth() + 1}/${date.getDate()}`
 
-const noProgressForActivities = activities => activities.map(a => ({ activityId: a.id, progress: 0, reportUrl: null }))
+const notLaunchedDetailedProgress = activities => activities.map(a => ({ activityId: a.id, progress: 0, reportUrl: null }))
+const launchedDetailedProgress = activities => activities.map(a => ({ activityId: a.id, progress: 100, info: 'launched', reportUrl: null }))
 
 export default class ProgressTable extends React.Component {
   getFeedbackOptions (activityId) {
@@ -13,8 +14,39 @@ export default class ProgressTable extends React.Component {
     return activities.find(a => a.id === activityId).feedbackOptions
   }
 
+  renderActivityHeader (act) {
+    const name = <span className={css.activityTitle}>{ act.name }</span>
+    return act.reportUrl
+      ? <a href={act.reportUrl} target='_blank' title={`Open report for "${act.name}"`}>{ name }</a>
+      : name
+  }
+
   renderStudentName (student) {
-    return <span className={css.name}>{ student.name }</span>
+    const name = <span className={css.name}>{ student.name }</span>
+    return student.reportUrl && student.totalProgress > 0
+      ? <a href={student.reportUrl} target='_blank' title={`Open report for ${student.name}`}>{ name }</a>
+      : name
+  }
+
+  renderStudentProgressBars (student) {
+    const { activities } = this.props
+    let detailedProgress = []
+    if (student.detailedProgress) {
+      // Detailed progress available. Render it.
+      detailedProgress = student.detailedProgress
+    } else if (!student.startedActivity) {
+      // Otherwise, there are two options. Student has run offering or not. In this case we need to render
+      // empty bar or full progress bar with "launched" label.
+      detailedProgress = notLaunchedDetailedProgress(activities)
+    } else if (student.startedActivity) {
+      detailedProgress = launchedDetailedProgress(activities)
+    }
+
+    return detailedProgress.map((details, idx) => (
+      <td key={idx}>
+        <ProgressBar student={student} detailedProgress={details} feedbackOptions={this.getFeedbackOptions(details.activityId)} />
+      </td>
+    ))
   }
 
   render () {
@@ -22,7 +54,6 @@ export default class ProgressTable extends React.Component {
     if (students.length === 0) {
       return null
     }
-    const noProgress = noProgressForActivities(activities)
     return (
       <div className={css.offeringProgress}>
         <div className={css.namesTableContainer}>
@@ -35,13 +66,7 @@ export default class ProgressTable extends React.Component {
               {
                 students.map(student =>
                   <tr key={student.id}>
-                    <td>
-                      {
-                        student.totalProgress > 0
-                          ? <a href={student.reportUrl} target='_blank' title={`Open report for ${student.name}`}>{ this.renderStudentName(student) }</a>
-                          : this.renderStudentName(student)
-                      }
-                    </td>
+                    <td>{ this.renderStudentName(student) }</td>
                     <td className={css.date} title={student.lastRun && student.lastRun.toLocaleDateString()}>
                       { student.lastRun ? formatDate(student.lastRun) : 'n/a' }
                     </td>
@@ -55,23 +80,12 @@ export default class ProgressTable extends React.Component {
           <table className={css.progressTable}>
             <tbody>
               <tr>
-                {
-                  activities.map((a, idx) =>
-                    <th key={idx}><a href={a.reportUrl} target='_blank' title={`Open report for "${a.name}"`}>
-                      <span className={css.activityTitle}>{ a.name }</span></a>
-                    </th>)
-                }
+                { activities.map((a, idx) => <th key={idx}>{ this.renderActivityHeader(a) }</th>) }
               </tr>
               {
                 students.map(student =>
                   <tr key={student.id}>
-                    {
-                      (student.detailedProgress || noProgress).map((details, idx) =>
-                        <td key={idx}>
-                          <ProgressBar student={student} detailedProgress={details} feedbackOptions={this.getFeedbackOptions(details.activityId)} />
-                        </td>
-                      )
-                    }
+                    { this.renderStudentProgressBars(student) }
                   </tr>
                 )
               }

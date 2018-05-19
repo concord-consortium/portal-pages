@@ -29,11 +29,12 @@ export const studentMapping = data => ({
   name: data.last_name + ', ' + data.first_name,
   lastRun: data.last_run && new Date(data.last_run),
   totalProgress: data.total_progress,
+  startedActivity: data.started_activity,
   reportUrl: data.learner_report_url,
   detailedProgress: data.detailed_progress && data.detailed_progress.map(dp => detailedProgressMapping(dp))
 })
 
-export const activityMapping = data => ({
+export const reportableActivityMapping = data => ({
   id: data.id,
   name: data.name,
   reportUrl: data.activity_report_url,
