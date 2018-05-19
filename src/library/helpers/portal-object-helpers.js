@@ -7,7 +7,7 @@ const shortenText = (text, length, breakOnSpace) => {
     return ''
   } else {
     if (text.length > length) {
-      if (breakOnSpace !== 'undefined') {
+      if (breakOnSpace) {
         shortenedText = shortenedText.substring(0, text.lastIndexOf(' ', length)) + '…'
         shortenedText = shortenedText.replace(/[^\w\s]…/, '…') // trim any punctuation appearing immediately before ellipsis
         return shortenedText
