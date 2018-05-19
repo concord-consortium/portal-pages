@@ -11,7 +11,7 @@ export default class ProgressBar extends React.Component {
 
   get clickable () {
     const { detailedProgress } = this.props
-    return detailedProgress.progress > 0
+    return detailedProgress.reportUrl && detailedProgress.progress > 0
   }
 
   onClick () {
@@ -30,6 +30,9 @@ export default class ProgressBar extends React.Component {
         <div className={`${css.bar} ${detailedProgress.progress === 100 ? css.completed : ''}`}
           style={{width: `${detailedProgress.progress}%`}} />
         <div className={css.textContainer}>
+          {
+            detailedProgress.info && <span className={css.textInfo}>{ detailedProgress.info }</span>
+          }
           {
             detailedProgress.progress > 0 && feedbackOptions &&
             <Feedback feedback={detailedProgress.feedback} options={feedbackOptions} />
