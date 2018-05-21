@@ -821,6 +821,15 @@ $materials-collection-item-icon-width: 300px;
     .text-input {
       margin: 0;
     }
+    .checkbox-label {
+      font-size: 16px;
+      font-weight: 300;
+      text-transform: none;
+
+      input {
+        margin-right: 10px;
+      }
+    }
   }
   .name_wrapper {
     width: auto;

@@ -25,13 +25,15 @@ invalidZipcode = function (zipOrPostal) {
 }
 
 var TextInputClass = require('./text_input')
+var CheckboxInputClass = require('./checkbox_input')
 var SelectInputClass = require('./select_input')
 var SchoolInputClass = require('./school_input')
 var PrivacyPolicyClass = require('./privacy_policy')
 
 var TeacherForm = function () {
-  var FormsyForm, PrivacyPolicy, SchoolInput, SelectInput, TextInput, emailAvailableValidator, getCountries, isUS, loginValidValidator, registerTeacher
+  var FormsyForm, PrivacyPolicy, SchoolInput, CheckboxInput, SelectInput, TextInput, emailAvailableValidator, getCountries, isUS, loginValidValidator, registerTeacher
   TextInput = React.createFactory(TextInputClass())
+  CheckboxInput = React.createFactory(CheckboxInputClass())
   SelectInput = React.createFactory(SelectInputClass())
   SchoolInput = React.createFactory(SchoolInputClass())
   PrivacyPolicy = React.createFactory(PrivacyPolicyClass())
@@ -212,7 +214,16 @@ var TeacherForm = function () {
               asyncValidation: emailAvailableValidator,
               asyncValidationError: EMAIL_TAKEN
             })
-          )
+          ),
+        ),
+        dd({},
+          CheckboxInput({
+            name: 'email_subscriber',
+            required: false,
+            defaultChecked: true,
+            label: 'Send me updates about educational technology resources.',
+            value: 'true'
+          })
         )
       ) : void 0,
       dl({},
