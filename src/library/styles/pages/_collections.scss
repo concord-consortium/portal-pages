@@ -98,7 +98,13 @@
   }
 
   &:hover {
-    h3, .portal-pages-collections-card-image-preview { display: none; }
+    .portal-pages-collections-card-image-preview { display: none; }
+    h3 {
+      background: $col-blue;
+      color: $white;
+      margin: 0;
+      padding: 30px 30px 0;
+    }
     .portal-pages-collections-card-description {
       background: $col-blue;
       color: $white;
