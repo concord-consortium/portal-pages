@@ -7,11 +7,6 @@ import GradeLevels from './grade-levels'
 import Lightbox from '../helpers/lightbox'
 import portalObjectHelpers from '../helpers/portal-object-helpers'
 
-const div = React.DOM.div
-const img = React.DOM.img
-const a = React.DOM.a
-const i = React.DOM.i
-
 // vars for special treatment of hover and click states on touch-enabled devices
 let pageScrolling = false
 let touchInitialized = false
@@ -161,7 +156,7 @@ const StemFinderResult = Component({
             </div>
             {this.renderFavoriteStar()}
           </a>
-          {GradeLevels({resource: resource})}
+          <GradeLevels resource={resource} />
           {this.renderFavoriteStar()}
         </div>
       )
@@ -171,14 +166,14 @@ const StemFinderResult = Component({
         <a href={resource.stem_resource_url}>
           <div className={'portal-pages-finder-result-image-preview'}>
             <img alt={resource.name} src={resource.icon.url} />
-            {ResourceType({resource: resource})}
+            <ResourceType resource={resource} />
           </div>
           <div className={'portal-pages-finder-result-name'}>
             {resourceName}
           </div>
           {this.renderFavoriteStar()}
         </a>
-        {GradeLevels({resource: resource})}
+        <GradeLevels resource={resource} />
       </div>
     )
   }
