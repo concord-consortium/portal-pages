@@ -87,15 +87,22 @@ a {
   border-bottom: solid 90px #0592af;
   bottom: 0;
   color: $white;
-  height: 295px;
+  height: 305px;
   left: 0;
   overflow: hidden;
-  padding: 60px 30px 0;
+  padding: 50px 30px 0;
   pointer-events: none;
   position: absolute;
   right: 0;
   text-overflow: ellipsis;
   top: 0;
+
+  .title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    margin: 0 0 30px;
+  }
 }
 .portal-pages-finder-result-grade-levels {
   bottom: 30px;
