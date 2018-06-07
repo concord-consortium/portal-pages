@@ -1,17 +1,5 @@
-import React from 'react'
 import css from './style.scss'
 var Component = require('../../helpers/component')
-
-var a = React.DOM.a
-var div = React.DOM.div
-var span = React.DOM.span
-var i = React.DOM.i
-var form = React.DOM.form
-var select = React.DOM.select
-var button = React.DOM.button
-var option = React.DOM.option
-var ul = React.DOM.ul
-var li = React.DOM.li
 
 var Collaborator = Component({
 
@@ -22,10 +10,7 @@ var Collaborator = Component({
   render: function () {
     var c = this.props.collaborator
     return (
-      li({},
-        i({className: 'fa fa-trash-o control', onClick: this.handleRemoveCollaborator}),
-        c.name
-      )
+      <li><i className='fa fa-trash-o control' onClick={this.handleRemoveCollaborator} />{c.name}</li>
     )
   }
 })
@@ -141,21 +126,23 @@ var RunWithCollaborators = Component({
     var collaborators = this.state.collaborators
 
     if (collaborators.length === 0) {
-      return div({className: css.collaborators}, 'No collaborators added')
+      return <div className={css.collaborators}>No collaborators added</div>
     }
-    return div({className: css.collaborators},
-      ul({},
-        collaborators.map(function (collaborator) {
-          return Collaborator({collaborator: collaborator, handleRemoveCollaborator: self.handleRemoveCollaborator})
-        })
-      )
+    return (
+      <div className={css.collaborators}>
+        <ul>
+          {collaborators.map(function (collaborator) {
+            return Collaborator({collaborator: collaborator, handleRemoveCollaborator: self.handleRemoveCollaborator})
+          })}
+        </ul>
+      </div>
     )
   },
 
   renderAvailableCollaborators: function () {
-    var items = [option({key: 'empty', value: '', disabled: true}, 'Select collaborator...')]
+    var items = [<option key='empty' value='' disabled>Select collaborator...</option>]
     this.state.availableCollaborators.forEach(function (c) {
-      items.push(option({key: c.id, value: c.id}, c.name))
+      items.push(<option key={c.id} value={c.id}>{c.name}</option>)
     })
     return items
   },
@@ -164,27 +151,27 @@ var RunWithCollaborators = Component({
     var selectedCollaborator = this.state.selectedCollaborator
     var runStarted = this.state.runStarted
     return (
-      span({},
-        div({className: css.background}),
-        div({className: css.dialog},
-          div({className: css.dialogContent},
-            div({className: css.controls},
-              i({className: 'fa fa-times control close-btn', onClick: this.handleHideDialog})
-            ),
-            form({},
-              select({value: selectedCollaborator ? selectedCollaborator.id : '', onChange: this.handleSelectCollaborator},
-                this.renderAvailableCollaborators()
-              ),
-              button({disabled: runStarted || !selectedCollaborator, onClick: this.handleAddCollaborator}, 'Add')
-            ),
-            this.renderCollaborators(),
-            div({className: css.bottom},
-              button({disabled: runStarted || (this.state.collaborators.length === 0), onClick: this.handleRun}, this.props.label),
-              runStarted ? i({className: 'fa fa-spinner fa-spin'}) : null
-            )
-          )
-        )
-      )
+      <span>
+        <div className={css.background} />
+        <div className={css.dialog}>
+          <div className={css.dialogContent}>
+            <div className={css.controls}>
+              <i className='fa fa-times control close-btn' onClick={this.handleHideDialog} />
+            </div>
+            <form>
+              <select value={selectedCollaborator ? selectedCollaborator.id : ''} onChange={this.handleSelectCollaborator}>
+                {this.renderAvailableCollaborators()}
+              </select>
+              <button disabled={runStarted || !selectedCollaborator} onClick={this.handleAddCollaborator}>Add</button>
+            </form>
+            {this.renderCollaborators()}
+            <div className={css.bottom}>
+              <button disabled={runStarted || (this.state.collaborators.length === 0)} onClick={this.handleRun}>{this.props.label}</button>
+              {runStarted ? <i className='fa fa-spinner fa-spin' /> : null}
+            </div>
+          </div>
+        </div>
+      </span>
     )
   },
 
@@ -192,10 +179,10 @@ var RunWithCollaborators = Component({
     var self = this
     var p = this.props
     return (
-      span({},
-        a({target: p.target, href: p.href, className: p.class, onClick: this.handleShowDialog, ref: function (el) { self.buttonElement = el }}, p.label),
-        this.state.showingDialog ? this.renderDialog() : null
-      )
+      <span>
+        <a target={p.target} href={p.href} className={p.class} onClick={this.handleShowDialog} ref={function (el) { self.buttonElement = el }}>{p.label}</a>
+        {this.state.showingDialog ? this.renderDialog() : null}
+      </span>
     )
   }
 
