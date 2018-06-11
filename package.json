@@ -19,7 +19,8 @@
       "PortalPages",
       "Formsy",
       "Select",
-      "ga"
+      "ga",
+      "OfferingRunStatus"
     ]
   },
   "repository": {
