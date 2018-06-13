@@ -13,6 +13,7 @@ import ParseQueryString from './helpers/parse-query-string'
 import signupFunctions from './components/signup/signup_functions'
 import RecentActivity from './components/recent-activity'
 import Assignments from './components/assigments'
+import RunWithCollaborators from './components/run-with-collaborators'
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -107,5 +108,8 @@ window.PortalPages = {
   },
 
   Tooltip: Tooltip,
-  renderTooltip: renderComponentFn(Tooltip)
+  renderTooltip: renderComponentFn(Tooltip),
+
+  RunWithCollaborators: RunWithCollaborators,
+  renderRunWithCollaborators: renderComponentFn(RunWithCollaborators)
 }

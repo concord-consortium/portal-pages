@@ -125,7 +125,7 @@ const StemFinderResult = Component({
     const divClass = 'portal-pages-finder-result-favorite' + active
     return (
       <div className={divClass} onClick={this.toggleFavorite}>
-        <i className={'icon-favorite'}></i>
+        <i className={'icon-favorite'} />
       </div>
     )
   },

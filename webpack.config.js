@@ -18,13 +18,13 @@ module.exports = {
         }
       },
       {
-        test: /node_modules\/.*\.(css|scss)$/,
+        test: /node_modules[\\/].*\.(css|scss)$/,
         use: [
           {
             loader: 'style-loader'
           },
           {
-            loader: 'css-loader',
+            loader: 'css-loader'
           },
           {
             loader: 'sass-loader'
