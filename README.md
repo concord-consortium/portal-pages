@@ -16,7 +16,7 @@ At the top level there are four folders:
 * `/scripts` - contains npm build script that generates the files in /dest
 * `/mock-ajax` - contains the json responses when mocking is enabled
 
-The `/src/portals` folder is further organized by portal, using the full domain, eg `/src/portals/learn.concord.org`.  Each static page content is then named for the same page on the portal, eg `/src/portals/learn.concord.org/index.html`.  Each .html file in src should resolve to the same page on the remote portal and can optionally have a seperate .css file with the same basename, eg `/src/portals/learn.concord.org/index.css`.  The seperate css file allows for live updating of the css using the development server.   Each final static page is built using seperate css and html pages that are then concatenated (css first).
+The `/src/portals` folder is further organized by portal, using the full domain, eg `/src/portals/learn.concord.org`.  Each static page content is then named for the same page on the portal, eg `/src/portals/learn.concord.org/index.html`.  Each `.html` file in src should resolve to the same page on the remote portal and can optionally have a seperate .css file with the same basename, eg `/src/portals/learn.concord.org/index.css`.  The seperate css file allows for live updating of the css using the development server.   Each final static page is built using seperate css and html pages that are then concatenated (css first).
 
 The `/src/library` folder contains the shared component library code that is included both the in development server and built as a standalone file by the build script.
 
@@ -74,7 +74,7 @@ alternative which seems to work better is to use a Chrome extension to override 
 requests to the portal-pages library js and css with your local javascript.
 
 The Chrome extension is this one: https://github.com/kylepaulsen/ResourceOverride
-Most of time remote portals use tagged versios of the portal pages code. So first you
+Most of time remote portals use tagged versions of the portal pages code. So first you
 need to find the URL for the portal-pages javascript the remote portal is using. You can
 find this in the chrome developer tools. For example lets say it is:
 https://portal-pages.concord.org/version/v1.9.0-pre.3/library/portal-pages.js

@@ -1,0 +1,52 @@
+
+:global(#secondary) {
+  background: none;
+}
+:global(#left-navigation) {
+  background: #f5f5f5;
+  color: #ea6d2f;
+  font-size: 14px;
+  font-family: museo-sans, verdana, helvetica, arial, sans-serif;
+  a, a:hover {
+    color:#ea6d2f;
+  }
+  ul {
+    margin: 0px;
+  }
+  a:hover {
+    // text-decoration: underline;
+    font-weight: bold;
+  }
+  .head {
+    color: #313131;
+    font-size: 16px;
+    padding: 5px 20px;
+  }
+  li {
+      margin: 0px;
+      padding: 8px;
+  }
+  li.in-selected-section, li.link-selected {
+    background-color: #ea6d2f;
+    a {
+      color: white;
+    }
+  }
+  .icon {
+    width: 18px;
+  }
+  .pop-out {
+    font-style: italic;
+  }
+  li.link-selected {
+    background-color: #ea6d2f;
+    a {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+}
+
+
+
+

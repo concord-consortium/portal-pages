@@ -13,6 +13,7 @@ import ParseQueryString from './helpers/parse-query-string'
 import signupFunctions from './components/signup/signup_functions'
 import RecentActivity from './components/recent-activity'
 import Assignments from './components/assigments'
+import Navigation from './components/navigation'
 import RunWithCollaborators from './components/run-with-collaborators'
 
 const render = function (component, id) {
@@ -42,6 +43,11 @@ window.PortalPages = {
   Assignments: Assignments,
   renderAssignments: function (options, id) {
     render(React.createElement(Assignments, options), id)
+  },
+
+  Navigation: Navigation,
+  renderNavigation: function (options, id) {
+    render(React.createElement(Navigation, options), id)
   },
 
   CollectionCards: CollectionCards,
