@@ -431,6 +431,11 @@ var ResourceLightbox = Component({
           ? p({className: 'portal-pages-resource-lightbox-description'},
             'Pre- and Post-tests available')
           : null,
+        resource.saves_student_data == false
+          ? div({className: 'portal-pages-resource-lightbox-no-save-warning'},
+              strong({}, 'PLEASE NOTE:'),
+              'This resource can be assigned, but student responses will not be saved.')
+          : null,
         this.renderIncludedActivities(),
         hr({}),
         h2({}, 'Requirements'),
