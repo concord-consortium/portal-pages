@@ -120,7 +120,7 @@ var ResourceLightbox = Component({
     }
     const activities = resource.activities
 
-    const included_activities = activities.map(function (activity, index) {
+    const includedActivities = activities.map(function (activity, index) {
       return (
         <span>
           <em>
@@ -136,7 +136,7 @@ var ResourceLightbox = Component({
         <hr />
         <h2>Included Activities</h2>
         <div>
-          This sequence includes the following activities: {included_activities}
+          This sequence includes the following activities: {includedActivities}
         </div>
       </div>
     )
@@ -186,7 +186,7 @@ var ResourceLightbox = Component({
       }
     }
 
-    const unhelped_standards = unhelped.map(function (statement) {
+    const unhelpedStandards = unhelped.map(function (statement) {
       var description = statement.description
       if (Array.isArray && Array.isArray(description)) {
         var formatted = ''
@@ -213,7 +213,7 @@ var ResourceLightbox = Component({
         <hr />
         <h2>Standards</h2>
         {helpers.NGSS.getDiv()}
-        {unhelped_standards}
+        {unhelpedStandards}
       </div>
     )
   },
@@ -278,7 +278,7 @@ var ResourceLightbox = Component({
     const projects = resource.projects
     const numProjects = projects.length
 
-    const projects_list = projects.map(function (project, index) {
+    const projectsList = projects.map(function (project, index) {
       return (
         <span>
           <strong>
@@ -294,7 +294,7 @@ var ResourceLightbox = Component({
         <hr />
         <h2>Learn More</h2>
         <div className="portal-pages-resource-lightbox-learn-more">
-          This resource is part of the Concord Consortium's {projects_list} {pluralize(numProjects, ' project')}.
+          This resource is part of the Concord Consortium's {projectsList} {pluralize(numProjects, ' project')}.
         </div>
       </div>
     )
@@ -306,7 +306,7 @@ var ResourceLightbox = Component({
       return null
     }
 
-    const related_resources = resource.related_materials.map(function (resource, i) {
+    const relatedResources = resource.related_materials.map(function (resource, i) {
       if (i < 2) {
         return RelatedResourceResult({key: i, resource: resource, replaceResource: this.replaceResource})
       }
@@ -315,7 +315,7 @@ var ResourceLightbox = Component({
     return (
       <div className="portal-pages-resource-lightbox-related-content cols">
         <h2>You may also like:</h2>
-        {related_resources}
+        {relatedResources}
       </div>
     )
   },
@@ -325,10 +325,10 @@ var ResourceLightbox = Component({
   //
   renderSharing: function () {
     const resource = this.state.resource
-    const resource_url = window.location.href
-    const facebook_link = "https://www.facebook.com/sharer/sharer.php?u=" + resource_url
-    const twitter_link = "http://twitter.com/share?text=" + resource.name + "&url=" + resource_url
-    const email_link = "mailto:?subject="  + resource.name + "&body=" + resource_url
+    const resourceUrl = window.location.href
+    const facebookLink = "https://www.facebook.com/sharer/sharer.php?u=" + resourceUrl
+    const twitterLink = "http://twitter.com/share?text=" + resource.name + "&url=" + resourceUrl
+    const emailLink = "mailto:?subject="  + resource.name + "&body=" + resourceUrl
 
     if (!resource.enable_sharing) {
       return null
@@ -336,9 +336,9 @@ var ResourceLightbox = Component({
 
     return (
       <div className="portal-pages-resource-lightbox-modal-sharing">
-        <a className="share-facebook" href={facebook_link} target="_blank" onClick={this.handleSocialMediaShare}>Facebook</a>
-        <a className="share-twitter" href={twitter_link} target="_blank" onClick={this.handleSocialMediaShare}>Twitter</a>
-        <a className="share-email" href={email_link} target="_blank" onClick={this.handleSocialMediaShare}>Email</a>
+        <a className="share-facebook" href={facebookLink} target="_blank" onClick={this.handleSocialMediaShare}>Facebook</a>
+        <a className="share-twitter" href={twitterLink} target="_blank" onClick={this.handleSocialMediaShare}>Twitter</a>
+        <a className="share-email" href={emailLink} target="_blank" onClick={this.handleSocialMediaShare}>Email</a>
       </div>
     )
   },
@@ -373,14 +373,14 @@ var ResourceLightbox = Component({
     let settingsIcon = links.edit ? <a className="settings" href={links.edit.url}>settings</a> : null
 
     const icons = [printIcon, copyIcon, editIcon, settingsIcon]
-    const icons_list_items = icons.map((icon) => {
+    const iconsListItems = icons.map((icon) => {
         return icon !== null ? <li>{icon}</li> : null
       }
     );
 
     if (printIcon || copyIcon || editIcon || settingsIcon) {
       return (
-        <ul>{icons_list_items}</ul>
+        <ul>{iconsListItems}</ul>
       )
     } else {
       return null
