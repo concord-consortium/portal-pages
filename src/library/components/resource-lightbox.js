@@ -158,7 +158,7 @@ var ResourceLightbox = Component({
     return (
       <div className="portal-pages-resource-lightbox-requirements">
         <p>This resource requires Java. You can download Java for free from <a href="http://java.com/" title="Get Java">java.com</a>.</p>
-        <p>Using macOS 10.9 or newer? You'll also need to install our launcher app. <a href="http://static.concord.org/installers/cc_launcher_installer.dmg" title="Download the CCLauncher installer">Download the launcher installer</a> open the .dmg file and drag the CCLauncher app to your Applications folder, then return to this page and launch the resource.</p>
+        <p>Using macOS 10.9 or newer? You&apos;ll also need to install our launcher app. <a href="http://static.concord.org/installers/cc_launcher_installer.dmg" title="Download the CCLauncher installer">Download the launcher installer</a> open the .dmg file and drag the CCLauncher app to your Applications folder, then return to this page and launch the resource.</p>
       </div>
     )
   },
