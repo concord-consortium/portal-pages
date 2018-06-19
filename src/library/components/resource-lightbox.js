@@ -132,7 +132,7 @@ var ResourceLightbox = Component({
     })
 
     return (
-      <div className="portal-pages-resource-lightbox-included-activities">
+      <div className='portal-pages-resource-lightbox-included-activities'>
         <hr />
         <h2>Included Activities</h2>
         <div>
@@ -150,15 +150,15 @@ var ResourceLightbox = Component({
     }
     if (runsInBrowser) {
       return (
-        <div className="portal-pages-resource-lightbox-requirements">
-          This activity runs entirely in a Web browser. Preferred browsers are: <a href="http://www.google.com/chrome/" title="Get Google's Chrome Web Browser">Google Chrome</a> (versions 30 and above) <a href="http://www.apple.com/safari/" title="Get Apple's Safari Web Browser">Safari</a> (versions 7 and above), <a href="http://www.firefox.com/" title="Get the Firefox Web Browser">Firefox</a> (version 30 and above), <a href="http://www.microsoft.com/ie/" title="Get Microsoft's Internet Explorer Web Browser">Internet Explorer</a> (version 10 or higher), and <a href="https://www.microsoft.com/en-us/windows/microsoft-edge#f7x5cdShtkSvrROV.97" title="Get Microsoft's Edge Web Browser">Microsoft Edge</a>.
+        <div className='portal-pages-resource-lightbox-requirements'>
+          This activity runs entirely in a Web browser. Preferred browsers are: <a href='http://www.google.com/chrome/' title="Get Google's Chrome Web Browser">Google Chrome</a> (versions 30 and above) <a href='http://www.apple.com/safari/' title="Get Apple's Safari Web Browser">Safari</a> (versions 7 and above), <a href='http://www.firefox.com/' title='Get the Firefox Web Browser'>Firefox</a> (version 30 and above), <a href='http://www.microsoft.com/ie/' title="Get Microsoft's Internet Explorer Web Browser">Internet Explorer</a> (version 10 or higher), and <a href='https://www.microsoft.com/en-us/windows/microsoft-edge#f7x5cdShtkSvrROV.97' title="Get Microsoft's Edge Web Browser">Microsoft Edge</a>.
         </div>
       )
     }
     return (
-      <div className="portal-pages-resource-lightbox-requirements">
-        <p>This resource requires Java. You can download Java for free from <a href="http://java.com/" title="Get Java">java.com</a>.</p>
-        <p>Using macOS 10.9 or newer? You&apos;ll also need to install our launcher app. <a href="http://static.concord.org/installers/cc_launcher_installer.dmg" title="Download the CCLauncher installer">Download the launcher installer</a> open the .dmg file and drag the CCLauncher app to your Applications folder, then return to this page and launch the resource.</p>
+      <div className='portal-pages-resource-lightbox-requirements'>
+        <p>This resource requires Java. You can download Java for free from <a href='http://java.com/' title='Get Java'>java.com</a>.</p>
+        <p>Using macOS 10.9 or newer? You&apos;ll also need to install our launcher app. <a href='http://static.concord.org/installers/cc_launcher_installer.dmg' title='Download the CCLauncher installer'>Download the launcher installer</a> open the .dmg file and drag the CCLauncher app to your Applications folder, then return to this page and launch the resource.</p>
       </div>
     )
   },
@@ -209,7 +209,7 @@ var ResourceLightbox = Component({
     })
 
     return (
-      <div className="portal-pages-resource-lightbox-standards">
+      <div className='portal-pages-resource-lightbox-standards'>
         <hr />
         <h2>Standards</h2>
         {helpers.NGSS.getDiv()}
@@ -255,7 +255,7 @@ var ResourceLightbox = Component({
     }
 
     return (
-      <div className="portal-pages-resource-lightbox-license">
+      <div className='portal-pages-resource-lightbox-license'>
         <hr />
         <h2>License</h2>
         <div>
@@ -264,7 +264,7 @@ var ResourceLightbox = Component({
         <h3>license.code</h3>
         <p>{license.name}</p>
         <p>{licenseDescription}<br /><a href={license.deed}>{license.deed}</a><br />
-        <a href={license.legal}>{license.legal}</a></p>
+          <a href={license.legal}>{license.legal}</a></p>
         {licenseAttribution}
       </div>
     )
@@ -293,8 +293,8 @@ var ResourceLightbox = Component({
       <div>
         <hr />
         <h2>Learn More</h2>
-        <div className="portal-pages-resource-lightbox-learn-more">
-          This resource is part of the Concord Consortium's {projectsList} {pluralize(numProjects, ' project')}.
+        <div className='portal-pages-resource-lightbox-learn-more'>
+          This resource is part of the Concord Consortium&apos;s {projectsList} {pluralize(numProjects, ' project')}.
         </div>
       </div>
     )
@@ -313,7 +313,7 @@ var ResourceLightbox = Component({
     }.bind(this))
 
     return (
-      <div className="portal-pages-resource-lightbox-related-content cols">
+      <div className='portal-pages-resource-lightbox-related-content cols'>
         <h2>You may also like:</h2>
         {relatedResources}
       </div>
@@ -326,31 +326,31 @@ var ResourceLightbox = Component({
   renderSharing: function () {
     const resource = this.state.resource
     const resourceUrl = window.location.href
-    const facebookLink = "https://www.facebook.com/sharer/sharer.php?u=" + resourceUrl
-    const twitterLink = "http://twitter.com/share?text=" + resource.name + "&url=" + resourceUrl
-    const emailLink = "mailto:?subject="  + resource.name + "&body=" + resourceUrl
+    const facebookLink = 'https://www.facebook.com/sharer/sharer.php?u=' + resourceUrl
+    const twitterLink = 'http://twitter.com/share?text=' + resource.name + '&url=' + resourceUrl
+    const emailLink = 'mailto:?subject=' + resource.name + '&body=' + resourceUrl
 
     if (!resource.enable_sharing) {
       return null
     }
 
     return (
-      <div className="portal-pages-resource-lightbox-modal-sharing">
-        <a className="share-facebook" href={facebookLink} target="_blank" onClick={this.handleSocialMediaShare}>Facebook</a>
-        <a className="share-twitter" href={twitterLink} target="_blank" onClick={this.handleSocialMediaShare}>Twitter</a>
-        <a className="share-email" href={emailLink} target="_blank" onClick={this.handleSocialMediaShare}>Email</a>
+      <div className='portal-pages-resource-lightbox-modal-sharing'>
+        <a className='share-facebook' href={facebookLink} target='_blank' onClick={this.handleSocialMediaShare}>Facebook</a>
+        <a className='share-twitter' href={twitterLink} target='_blank' onClick={this.handleSocialMediaShare}>Twitter</a>
+        <a className='share-email' href={emailLink} target='_blank' onClick={this.handleSocialMediaShare}>Email</a>
       </div>
     )
   },
 
   render404: function () {
     return (
-      <div className="portal-pages-resource-lightbox-modal-content">
-        <div className="portal-pages-resource-lightbox-not-found">
-          Sorry, the requested resource was not found.'
+      <div className='portal-pages-resource-lightbox-modal-content'>
+        <div className='portal-pages-resource-lightbox-not-found'>
+          Sorry, the requested resource was not found.
         </div>
         <div>
-          <a id="portal-pages-lightbox-close-not-found" href="#" onClick={this.handleClose}>Click here</a> to close this lightbox and use the search box on this page to find another resource.
+          <a id='portal-pages-lightbox-close-not-found' href='#' onClick={this.handleClose}>Click here</a> to close this lightbox and use the search box on this page to find another resource.
         </div>
       </div>
     )
@@ -359,8 +359,8 @@ var ResourceLightbox = Component({
   renderIcons: function () {
     const resource = this.state.resource
     const links = resource.links
-    let printIcon = links.print_url ? <a className="print" href={links.print_url.url}>print</a> : null
-    let copyIcon = links.external_copy ? <a className="copy" href={links.external_copy.url}>copy</a> : null
+    let printIcon = links.print_url ? <a className='print' href={links.print_url.url}>print</a> : null
+    let copyIcon = links.external_copy ? <a className='copy' href={links.external_copy.url}>copy</a> : null
     let editLink = null
     if (resource.lara_activity_or_sequence && links.external_lara_edit) {
       editLink = links.external_lara_edit.url
@@ -368,15 +368,15 @@ var ResourceLightbox = Component({
       editLink = links.external_edit.url
     }
 
-    let editIcon = editLink ? <a className="edit" href={editLink}>edit</a> : null
+    let editIcon = editLink ? <a className='edit' href={editLink}>edit</a> : null
 
-    let settingsIcon = links.edit ? <a className="settings" href={links.edit.url}>settings</a> : null
+    let settingsIcon = links.edit ? <a className='settings' href={links.edit.url}>settings</a> : null
 
     const icons = [printIcon, copyIcon, editIcon, settingsIcon]
     const iconsListItems = icons.map((icon) => {
-        return icon !== null ? <li>{icon}</li> : null
-      }
-    );
+      return icon !== null ? <li>{icon}</li> : null
+    }
+    )
 
     if (printIcon || copyIcon || editIcon || settingsIcon) {
       return (
@@ -400,24 +400,24 @@ var ResourceLightbox = Component({
     // console.log("[DEBUG] resource-lightbox links.assign_collection.onclick", links.assign_collection.onclick);
 
     return (
-      <div className="portal-pages-resource-lightbox-modal-content">
-        <div className="portal-pages-resource-lightbox-modal-content-top">
-          <div className="portal-pages-resource-lightbox-modal-utility">
+      <div className='portal-pages-resource-lightbox-modal-content'>
+        <div className='portal-pages-resource-lightbox-modal-content-top'>
+          <div className='portal-pages-resource-lightbox-modal-utility'>
             {this.renderIcons()}
           </div>
           <h1>{resource.name}</h1>
-          <div className="preview-image">
+          <div className='preview-image'>
             <img src={resource.icon.url} />
           </div>
-          <div className="portal-pages-action-buttons">
-            {links.preview ? <a className="portal-pages-primary-button" href={links.preview.url} target="_blank" onClick={this.handlePreviewClick}>{links.preview.text}</a> : null}
-            {links.assign_material ? <a className="portal-pages-secondary-button" href="javascript: + {links.assign_material.onclick}" onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
-            {links.assign_collection ? <a className="portal-pages-secondary-button" href="javascript: + {links.assign_collection.onclick}" onClick={this.handleAddToCollectionClick}>{links.assign_collection.text}</a> : null}
-            {links.teacher_guide ? <a className="portal-pages-secondary-button" href={links.teacher_guide.url} target="_blank" onClick={this.handleTeacherGuideClick}>{links.teacher_guide.text}</a> : null}
+          <div className='portal-pages-action-buttons'>
+            {links.preview ? <a className='portal-pages-primary-button' href={links.preview.url} target='_blank' onClick={this.handlePreviewClick}>{links.preview.text}</a> : null}
+            {links.assign_material ? <a className='portal-pages-secondary-button' href='javascript: + {links.assign_material.onclick}' onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
+            {links.assign_collection ? <a className='portal-pages-secondary-button' href='javascript: + {links.assign_collection.onclick}' onClick={this.handleAddToCollectionClick}>{links.assign_collection.text}</a> : null}
+            {links.teacher_guide ? <a className='portal-pages-secondary-button' href={links.teacher_guide.url} target='_blank' onClick={this.handleTeacherGuideClick}>{links.teacher_guide.text}</a> : null}
           </div>
-          <p className="portal-pages-resource-lightbox-description" dangerouslySetInnerHTML={this.longDescription()}></p>
-          {resource.has_pretest ? <p className="portal-pages-resource-lightbox-description">Pre- and Post-tests available</p> : null}
-          {resource.saves_student_data === false ? <div className="portal-pages-resource-lightbox-no-save-warning"><strong>PLEASE NOTE:</strong> This resource can be assigned, but student responses will not be saved.</div> : null}
+          <p className='portal-pages-resource-lightbox-description' dangerouslySetInnerHTML={this.longDescription()} />
+          {resource.has_pretest ? <p className='portal-pages-resource-lightbox-description'>Pre- and Post-tests available</p> : null}
+          {resource.saves_student_data === false ? <div className='portal-pages-resource-lightbox-no-save-warning'><strong>PLEASE NOTE:</strong> This resource can be assigned, but student responses will not be saved.</div> : null}
           {this.renderIncludedActivities()}
           <hr />
           <h2>Requirements</h2>
@@ -438,13 +438,13 @@ var ResourceLightbox = Component({
 
     return (
       <div>
-        <div className="portal-pages-resource-lightbox-background"></div>
-        <div className="portal-pages-resource-lightbox-container">
-          <div className="portal-pages-resource-lightbox" onClick={this.handleClose}>
-            <div className="portal-pages-resource-lightbox-background-close" onClick={this.handleClose}>
+        <div className='portal-pages-resource-lightbox-background' />
+        <div className='portal-pages-resource-lightbox-container'>
+          <div className='portal-pages-resource-lightbox' onClick={this.handleClose}>
+            <div className='portal-pages-resource-lightbox-background-close' onClick={this.handleClose}>
               x
             </div>
-            <div className="portal-pages-resource-lightbox-modal">
+            <div className='portal-pages-resource-lightbox-modal'>
               {resource ? this.renderResource() : this.render404()}
             </div>
             {resource ? this.renderSharing() : null}
