@@ -411,8 +411,8 @@ var ResourceLightbox = Component({
           </div>
           <div className='portal-pages-action-buttons'>
             {links.preview ? <a className='portal-pages-primary-button' href={links.preview.url} target='_blank' onClick={this.handlePreviewClick}>{links.preview.text}</a> : null}
-            {links.assign_material ? <a className='portal-pages-secondary-button' href='javascript: + {links.assign_material.onclick}' onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
-            {links.assign_collection ? <a className='portal-pages-secondary-button' href='javascript: + {links.assign_collection.onclick}' onClick={this.handleAddToCollectionClick}>{links.assign_collection.text}</a> : null}
+            {links.assign_material ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_material.onclick}`} onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
+            {links.assign_collection ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_collection.onclick}`} onClick={this.handleAddToCollectionClick}>{links.assign_collection.text}</a> : null}
             {links.teacher_guide ? <a className='portal-pages-secondary-button' href={links.teacher_guide.url} target='_blank' onClick={this.handleTeacherGuideClick}>{links.teacher_guide.text}</a> : null}
           </div>
           <p className='portal-pages-resource-lightbox-description' dangerouslySetInnerHTML={this.longDescription()} />
