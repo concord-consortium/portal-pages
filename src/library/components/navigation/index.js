@@ -5,55 +5,134 @@ const defaultNavProps = {
   links: []
 }
 
+const ROOT_SELECTION = '__ROOT__'
+const SECTION_TYPE = 'SECTION'
 export default class Navigation extends React.Component {
   constructor (props = defaultNavProps) {
     super(props)
-    this.state = {}
+    this.state = {
+      selection: props.selected_section
+    }
   }
 
   renderHead () {
-    const {greeting, name, testing} = this.props
+    const {greeting, name} = this.props
     return (
       <div className={css.head}>
-        <p>
-          {testing} {greeting}
-          <br />
-          <strong>{name}</strong>
-        </p>
+        <span className={css.greeting}>{greeting}</span>
+        <br />
+        <strong>{name}</strong>
+        <hr/>
       </div>
     )
   }
 
+  getLinkClasses (linkDef) {
+    const classes = (linkDef.classNames && linkDef.classNames.split()) || []
+    if (linkDef.small) {
+      classes.push('small')
+    }
+    if (linkDef.divider) {
+      classes.push('divider')
+    }
+    // const visible = (
+    //   linkDef.section === this.state.selection ||
+    //   linkDef.sectionTop === this.state.selection ||
+    //   linkDef.section === ROOT_SELECTION
+    // )
+    // if (!visible) { classes.push('nav-hidden') }
+    return classes
+  }
+
   renderLink (linkDef) {
     // iconName, label, section, url, function
-    const {popOut, iconName, label, target, url, className} = linkDef
+    const {popOut, iconName, label, url, onClick} = linkDef
+    const {selection} = this.state
+    const target = popOut ? '_blank' : '_self'
     const icon = popOut ? 'icon-arrow-circle-right' : iconName
-    const linkStyles = (classNames) =>
-      classNames.split(' ')
-        .map((name) => css[name] || name)
-        .join(' ')
-        .replace(/^\s+|\s+$/g, '')
+    const classNames = this.getLinkClasses(linkDef)
+    const selected = linkDef.id === selection
+    if (selected) {
+      classNames.push('selected')
+    }
+    const linkStyles = classNames
+      .map((name) => css[name] || name)
+      .join(' ')
+      .replace(/^\s+|\s+$/g, '')
+    const clickHandler = (e) => {
+      // don't trigger on parent.
+      e.stopPropagation()
+      if (onClick) {
+        onClick(e)
+      }
+      return true
+    }
     return (
-      <li className={linkStyles(className)}>
+      <li className={linkStyles} onClick={clickHandler}>
         <a href={url} target={target}>
-          <div className={css['icon']}>
-            <i className={icon} />
-          </div>
+          {icon ? <div className={css['icon']}><i className={icon} /></div> : null }
           {label}
         </a>
       </li>
     )
   }
+
+  renderSection (section) {
+    console.log(`rendering section ${section.label} (${section.id}`)
+    const { selection } = this.state
+    const selected = section.id === selection
+    const inSelection = selection.match(section.id)
+    const inRoot = section.id === ROOT_SELECTION
+    const children = section.children.map(i => this.renderItem(i))
+
+    const classNames = ['section']
+    if (inSelection && (!inRoot)) {
+      classNames.push('selected')
+    }
+    const styles = classNames
+      .map((name) => css[name] || name)
+      .join(' ')
+      .replace(/^\s+|\s+$/g, '')
+
+    const displayName = section.id === ROOT_SELECTION ? '' : section.label
+    const clickHandler = (e) => {
+      e.stopPropagation()
+      if (selected) {
+        this.setState({selection: ROOT_SELECTION})
+      } else {
+        this.setState({selection: section.id})
+      }
+      return true
+    }
+    return (
+      <li className={styles} onClick={clickHandler}>
+        {displayName}
+        <span className={inSelection ? css.selected : css.unselected} />
+        <ul>
+          {children}
+        </ul>
+      </li>
+    )
+  }
+
+  renderItem (item) {
+    if (item.type === SECTION_TYPE) {
+      return this.renderSection(item)
+    } else {
+      return this.renderLink(item)
+    }
+  }
+
   render () {
-    // const links = defaultNavProps.links
-    // const props = this.props
-    const realLinks = this.props.links.map((link) => this.renderLink(link))
+    const items = this.props.links
+    const rendered = items.map(item => this.renderItem(item))
     const head = this.renderHead()
+
     return (
       <div id='left-navigation'>
         {head}
         <ul>
-          {realLinks}
+          {rendered}
         </ul>
       </div>
     )
