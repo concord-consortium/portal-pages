@@ -46,24 +46,11 @@
     flex-flow: row no-wrap;
     font-weight: 700;
     text-transform: uppercase;
-
-    .activityNameCell {
-      flex: 5;
-      font-size: 1em;
-      padding-right: 5px;
-    }
-    .iconCell {
-      flex: .25;
-      padding-right: 5px;
-    }
-    .checkboxCell {
-      flex: 1;
-      padding-right: 5px;
-    }
-    .detailsCell {
-      flex: 2;
-      padding-right: 5px;
-    }
+  }
+  .activityNameCell {
+    flex: 5;
+    font-size: 1em;
+    padding-right: 5px;
   }
 }
 
@@ -73,24 +60,6 @@
   div:first-child {
     display: flex;
     flex-flow: row no-wrap;
-
-    .activityNameCell {
-      flex: 5;
-      font-size: 1em;
-      padding-right: 5px;
-    }
-    .iconCell {
-      flex: .25;
-      padding-right: 5px;
-    }
-    .checkboxCell {
-      flex: 1;
-      padding-right: 5px;
-    }
-    .detailsCell {
-      flex: 2;
-      padding-right: 5px;
-    }
   }
   .loading {
     margin-top: 10px;
@@ -101,7 +70,9 @@
 
 .iconCell {
   display: inline-block;
+  flex: .25;
   padding-top: 3px;
+  padding-right: 5px;
   font-size: 0.95em;
   vertical-align: middle;
 }
@@ -119,11 +90,15 @@
 
 .checkboxCell {
   display: inline-block;
+  flex: 1;
+  padding-right: 5px;
   text-align: center;
 }
 
 .detailsCell {
   display: inline-block;
+  flex: 2;
+  padding-right: 5px;
   text-align: right;
 }
 
@@ -134,7 +109,6 @@
 
 @media screen and (max-width: 500px) {
   .classAssignments {
-
     header {
       display: block;
 
@@ -148,6 +122,20 @@
         text-align: left;
         text-transform: uppercase;
         width: 100%;
+      }
+    }
+  }
+
+  .offeringsTable {
+    .activityNameCell {
+      flex: 4;
+    }
+    .detailsCell {
+      flex: 1.5;
+    }
+    .offering {
+      .activityNameCell {
+        flex: 3;
       }
     }
   }
