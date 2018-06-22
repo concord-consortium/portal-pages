@@ -7,6 +7,7 @@ const defaultNavProps = {
 
 const ROOT_SELECTION = '__ROOT__'
 const SECTION_TYPE = 'SECTION'
+
 export default class Navigation extends React.Component {
   constructor (props = defaultNavProps) {
     super(props)
@@ -22,7 +23,7 @@ export default class Navigation extends React.Component {
         <span className={css.greeting}>{greeting}</span>
         <br />
         <strong>{name}</strong>
-        <hr/>
+        <hr />
       </div>
     )
   }
@@ -35,17 +36,10 @@ export default class Navigation extends React.Component {
     if (linkDef.divider) {
       classes.push('divider')
     }
-    // const visible = (
-    //   linkDef.section === this.state.selection ||
-    //   linkDef.sectionTop === this.state.selection ||
-    //   linkDef.section === ROOT_SELECTION
-    // )
-    // if (!visible) { classes.push('nav-hidden') }
     return classes
   }
 
   renderLink (linkDef) {
-    // iconName, label, section, url, function
     const {popOut, iconName, label, url, onClick} = linkDef
     const {selection} = this.state
     const target = popOut ? '_blank' : '_self'
@@ -78,27 +72,32 @@ export default class Navigation extends React.Component {
   }
 
   renderSection (section) {
-    console.log(`rendering section ${section.label} (${section.id}`)
     const { selection } = this.state
     const selected = section.id === selection
     const inSelection = selection.match(section.id)
     const inRoot = section.id === ROOT_SELECTION
     const children = section.children.map(i => this.renderItem(i))
-
     const classNames = ['section']
+
     if (inSelection && (!inRoot)) {
       classNames.push('selected')
     }
+
     const styles = classNames
       .map((name) => css[name] || name)
       .join(' ')
       .replace(/^\s+|\s+$/g, '')
 
     const displayName = section.id === ROOT_SELECTION ? '' : section.label
+    const parentPathTree = section.id.split('/')
+
+    parentPathTree.pop()
+    const parentId = parentPathTree.join('/') || ROOT_SELECTION
+
     const clickHandler = (e) => {
       e.stopPropagation()
       if (selected) {
-        this.setState({selection: ROOT_SELECTION})
+        this.setState({selection: parentId})
       } else {
         this.setState({selection: section.id})
       }
@@ -111,6 +110,7 @@ export default class Navigation extends React.Component {
         <ul>
           {children}
         </ul>
+        {section.divider ? <hr /> : ''}
       </li>
     )
   }
