@@ -86,6 +86,12 @@ It seems that the mixed https and http content doesn't cause a problem. Also if 
 look at the Chrome DevTools Source tab you will find portal-pages.js listed under
 localhost:1000 
 
+
+## Travis S3 Deployments ##
+Travis will automatically build these resources:
+https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/library/portal-pages.js
+
+
 ## License
 
 Portal Pages is released under the [MIT License](LICENSE).

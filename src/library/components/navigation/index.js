@@ -2,12 +2,18 @@ import React from 'react'
 import css from './style.scss'
 
 const defaultNavProps = {
+  greeting: 'Welcome,',
+  name: 'Guest',
   links: []
 }
 
 const ROOT_SELECTION = '__ROOT__'
 const SECTION_TYPE = 'SECTION'
 
+/*
+* See `README.md` in this folder
+* for the complete netsed structure of the Navigation props.
+*/
 export default class Navigation extends React.Component {
   constructor (props = defaultNavProps) {
     super(props)
@@ -54,7 +60,7 @@ export default class Navigation extends React.Component {
       .join(' ')
       .replace(/^\s+|\s+$/g, '')
     const clickHandler = (e) => {
-      // don't trigger on parent.
+      // don't trigger the event in parents.
       e.stopPropagation()
       if (onClick) {
         onClick(e)
@@ -137,12 +143,4 @@ export default class Navigation extends React.Component {
       </div>
     )
   }
-}
-
-Navigation.defaultProps = {
-  greeting: 'Hello',
-  name: 'Guest',
-  links: [
-    {label: 'help', url: '/help'}
-  ]
 }
