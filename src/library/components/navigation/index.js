@@ -18,18 +18,35 @@ export default class Navigation extends React.Component {
   constructor (props = defaultNavProps) {
     super(props)
     this.state = {
+      opened: true,
       selection: props.selected_section
+    }
+  }
+
+  componentDidMount () {
+    if (this.props.overlay) {
+      this.closeTimeout = setTimeout(() => this.setState({opened: false}), 3000)
     }
   }
 
   renderHead () {
     const {greeting, name} = this.props
+    const clickHeader = (e) => {
+      this.setState({opened: !this.state.opened})
+      if (this.closeTimeout) {
+        window.clearTimeout(this.closeTimeout)
+      }
+    }
+    const classes = [css.head]
+    classes.push(this.state.opened ? css.open : css.closed)
     return (
-      <div className={css.head}>
-        <span className={css.greeting}>{greeting}</span>
-        <br />
-        <strong>{name}</strong>
-        <hr />
+      <div className={classes.join(' ')} onClick={clickHeader} >
+        <div>
+          <span className={css.greeting}>{greeting}</span>
+          <br />
+          <strong>{name}</strong>
+          <hr />
+        </div>
       </div>
     )
   }
@@ -68,7 +85,7 @@ export default class Navigation extends React.Component {
       return true
     }
     return (
-      <li className={linkStyles} onClick={clickHandler}>
+      <li className={linkStyles} onClick={clickHandler} key={linkDef.id}>
         <a href={url} target={target}>
           {icon ? <div className={css['icon']}><i className={icon} /></div> : null }
           {label}
@@ -79,7 +96,6 @@ export default class Navigation extends React.Component {
 
   renderSection (section) {
     const { selection } = this.state
-    const selected = section.id === selection
     const inSelection = selection.match(section.id)
     const inRoot = section.id === ROOT_SELECTION
     const children = section.children.map(i => this.renderItem(i))
@@ -98,19 +114,19 @@ export default class Navigation extends React.Component {
     const parentPathTree = section.id.split('/')
 
     parentPathTree.pop()
-    const parentId = parentPathTree.join('/') || ROOT_SELECTION
+    // const parentId = parentPathTree.join('/') || ROOT_SELECTION
 
     const clickHandler = (e) => {
       e.stopPropagation()
-      if (selected) {
-        this.setState({selection: parentId})
+      if (inSelection && !inRoot) {
+        this.setState({selection: ROOT_SELECTION})
       } else {
         this.setState({selection: section.id})
       }
       return true
     }
     return (
-      <li className={styles} onClick={clickHandler}>
+      <li className={styles} onClick={clickHandler} key={section.id}>
         {displayName}
         <span className={inSelection ? css.selected : css.unselected} />
         <ul>
@@ -133,9 +149,17 @@ export default class Navigation extends React.Component {
     const items = this.props.links
     const rendered = items.map(item => this.renderItem(item))
     const head = this.renderHead()
+    const classNames = []
+
+    if (this.props.overlay) {
+      classNames.push(css.overlay)
+    }
+    if (!this.state.opened) {
+      classNames.push(css.closed)
+    }
 
     return (
-      <div id='left-navigation'>
+      <div className={classNames.join(' ')} id='left-navigation'>
         {head}
         <ul>
           {rendered}
