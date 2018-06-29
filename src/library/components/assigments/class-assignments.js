@@ -19,7 +19,7 @@ export default class ClassAssignments extends React.Component {
         <header>
           <h1>Assignments for { clazz.name }</h1>
           <div className={css.assignMaterials}>
-            <a href={this.assignMaterialsPath}>Assign Materials</a>
+            <a className='button' href={this.assignMaterialsPath}>Assign Materials</a>
           </div>
         </header>
         <table className={css.classInfo}>
