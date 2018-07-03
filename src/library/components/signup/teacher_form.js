@@ -218,8 +218,8 @@ var TeacherForm = function () {
         ),
         dd({},
           CheckboxInput({
-            ref: 'email_subscriber',
-            name: 'email_subscriber',
+            ref: 'email_subscribed',
+            name: 'email_subscribed',
             required: false,
             defaultChecked: true,
             label: 'Send me updates about educational technology resources.'
