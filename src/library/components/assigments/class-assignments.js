@@ -16,10 +16,12 @@ export default class ClassAssignments extends React.Component {
     const { clazz } = this.props
     return (
       <div className={css.classAssignments}>
-        <div>
+        <header>
           <h1>Assignments for { clazz.name }</h1>
-          <a className={css.assignMaterials} href={this.assignMaterialsPath}>Assign Materials</a>
-        </div>
+          <div className={css.assignMaterials}>
+            <a href={this.assignMaterialsPath}>Assign Materials</a>
+          </div>
+        </header>
         <table className={css.classInfo}>
           <tbody>
             <tr>

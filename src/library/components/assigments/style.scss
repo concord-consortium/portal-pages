@@ -1,13 +1,21 @@
 .classAssignments {
-  h1 {
-    display: inline;
-  }
 
-  .assignMaterials {
-    text-transform: uppercase;
-    font-size: 1.2em;
-    margin-left: 10px;
-    white-space: nowrap;
+  header {
+    display: flex;
+    flex-flow: row wrap;
+
+    h1 {
+      flex: 3;
+    }
+
+    .assignMaterials {
+      flex: 1;
+      font-size: 1.2em;
+      margin-top: 10px;
+      text-align: right;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
   }
   .reports {
     text-align: right;
@@ -31,21 +39,28 @@
 
 .offeringsTable {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 40px;
 
   .headers {
-    text-transform: uppercase;
+    display: flex;
+    flex-flow: row no-wrap;
     font-weight: 700;
-
-    .activityNameCell {
-      font-size: 1em;
-    }
+    text-transform: uppercase;
+  }
+  .activityNameCell {
+    flex: 5;
+    font-size: 1em;
+    padding-right: 5px;
   }
 }
 
 .offering {
   padding: 10px 0;
 
+  div:first-child {
+    display: flex;
+    flex-flow: row no-wrap;
+  }
   .loading {
     margin-top: 10px;
     font-size: 1.2em;
@@ -55,8 +70,9 @@
 
 .iconCell {
   display: inline-block;
-  width: 3%;
+  flex: .25;
   padding-top: 3px;
+  padding-right: 5px;
   font-size: 0.95em;
   vertical-align: middle;
 }
@@ -68,24 +84,59 @@
 .activityNameCell {
   cursor: move;
   display: inline-block;
-  width: 57%;
   vertical-align: middle;
   font-size: 1.2em;
 }
 
 .checkboxCell {
   display: inline-block;
-  width: 10%;
+  flex: 1;
+  padding-right: 5px;
   text-align: center;
 }
 
 .detailsCell {
   display: inline-block;
-  width: 20%;
+  flex: 2;
+  padding-right: 5px;
   text-align: right;
 }
 
 .offeringDetails {
   cursor: default;
   padding: 0 10px;
+}
+
+@media screen and (max-width: 500px) {
+  .classAssignments {
+    header {
+      display: block;
+
+      h1 {
+        width: 100%;
+      }
+
+      .assignMaterials {
+        display: block;
+        margin: 40px 0;
+        text-align: left;
+        text-transform: uppercase;
+        width: 100%;
+      }
+    }
+  }
+
+  .offeringsTable {
+    .activityNameCell {
+      flex: 4;
+    }
+    .detailsCell {
+      flex: 1.5;
+    }
+    .offering {
+      .activityNameCell {
+        flex: 3;
+      }
+    }
+  }
 }
