@@ -92,6 +92,10 @@ Travis will automatically build these resources:
 https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/library/portal-pages.js
 
 
+## Building an example page for a new Portal React Component ##
+Create an HTML file in `src/examples/`.  It will be easiest to copy the example in `navigation.html`. When you run `npm build` `./dest/examples` will be created. This will also be deployed to `https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/examples/<your-example>.html`. To test your example, run `live-server ./dest/` -- for now you  need to manually run `npm build` to rebuild your widget. TODO: Add a watch.
+
+
 ## License
 
 Portal Pages is released under the [MIT License](LICENSE).
