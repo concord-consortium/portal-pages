@@ -149,7 +149,7 @@ export default class Navigation extends React.Component {
     const items = this.props.links
     const rendered = items.map(item => this.renderItem(item))
     const head = this.renderHead()
-    const classNames = []
+    const classNames = [css.leftNavigation]
 
     if (this.props.overlay) {
       classNames.push(css.overlay)
@@ -159,7 +159,7 @@ export default class Navigation extends React.Component {
     }
 
     return (
-      <div className={classNames.join(' ')} id='left-navigation'>
+      <div className={classNames.join(' ')}>
         {head}
         <ul>
           {rendered}
