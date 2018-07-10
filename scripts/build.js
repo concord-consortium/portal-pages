@@ -21,6 +21,8 @@ const siteRedesignAssetsSrcFolder = path.resolve(`${__dirname}/../src/site-redes
 const siteRedesignAssetsDestFolder = path.resolve(`${__dirname}/../dest/site-redesign/assets`)
 const libraryAssetsSrcFolder = path.resolve(`${__dirname}/../src/library/assets`)
 const libraryAssetsDestFolder = path.resolve(`${__dirname}/../dest/library/assets`)
+const exampleSrcFolder = path.resolve(`${__dirname}/../src/examples`)
+const exampleDestFolder = path.resolve(`${__dirname}/../dest/examples`)
 
 const die = (err, code) => {
   console.error(err)
@@ -116,6 +118,14 @@ ncp(siteRedesignAssetsSrcFolder, siteRedesignAssetsDestFolder, function (err) {
 })
 mkdirp.sync(libraryAssetsDestFolder)
 ncp(libraryAssetsSrcFolder, libraryAssetsDestFolder, function (err) {
+  if (err) {
+    die(err, 7)
+  }
+})
+
+// make the examples directory
+mkdirp.sync(exampleDestFolder)
+ncp(exampleSrcFolder, exampleDestFolder, function (err) {
   if (err) {
     die(err, 7)
   }

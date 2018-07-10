@@ -16,7 +16,7 @@ At the top level there are four folders:
 * `/scripts` - contains npm build script that generates the files in /dest
 * `/mock-ajax` - contains the json responses when mocking is enabled
 
-The `/src/portals` folder is further organized by portal, using the full domain, eg `/src/portals/learn.concord.org`.  Each static page content is then named for the same page on the portal, eg `/src/portals/learn.concord.org/index.html`.  Each .html file in src should resolve to the same page on the remote portal and can optionally have a seperate .css file with the same basename, eg `/src/portals/learn.concord.org/index.css`.  The seperate css file allows for live updating of the css using the development server.   Each final static page is built using seperate css and html pages that are then concatenated (css first).
+The `/src/portals` folder is further organized by portal, using the full domain, eg `/src/portals/learn.concord.org`.  Each static page content is then named for the same page on the portal, eg `/src/portals/learn.concord.org/index.html`.  Each `.html` file in src should resolve to the same page on the remote portal and can optionally have a seperate .css file with the same basename, eg `/src/portals/learn.concord.org/index.css`.  The seperate css file allows for live updating of the css using the development server.   Each final static page is built using seperate css and html pages that are then concatenated (css first).
 
 The `/src/library` folder contains the shared component library code that is included both the in development server and built as a standalone file by the build script.
 
@@ -74,7 +74,7 @@ alternative which seems to work better is to use a Chrome extension to override 
 requests to the portal-pages library js and css with your local javascript.
 
 The Chrome extension is this one: https://github.com/kylepaulsen/ResourceOverride
-Most of time remote portals use tagged versios of the portal pages code. So first you
+Most of time remote portals use tagged versions of the portal pages code. So first you
 need to find the URL for the portal-pages javascript the remote portal is using. You can
 find this in the chrome developer tools. For example lets say it is:
 https://portal-pages.concord.org/version/v1.9.0-pre.3/library/portal-pages.js
@@ -85,6 +85,16 @@ https://portal-pages.concord.org/version/v1.9.0-pre.3/library/portal-pages.js ->
 It seems that the mixed https and http content doesn't cause a problem. Also if you
 look at the Chrome DevTools Source tab you will find portal-pages.js listed under
 localhost:1000 
+
+
+## Travis S3 Deployments ##
+Travis will automatically build these resources:
+https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/library/portal-pages.js
+
+
+## Building an example page for a new Portal React Component ##
+Create an HTML file in `src/examples/`.  It will be easiest to copy the example in `navigation.html`. When you run `npm build` `./dest/examples` will be created. This will also be deployed to `https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/examples/<your-example>.html`. To test your example, run `live-server ./dest/` -- for now you  need to manually run `npm build` to rebuild your widget. TODO: Add a watch.
+
 
 ## License
 
