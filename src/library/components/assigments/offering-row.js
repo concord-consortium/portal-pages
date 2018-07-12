@@ -40,7 +40,7 @@ export default class OfferingRow extends React.Component {
     return (
       <div className={css.offering}>
         <div>
-          <span className={css.iconCell}><span className={`${css.sortIcon} icon-menu`} /></span>
+          <span className={css.iconCell}><span className={`${css.sortIcon} icon-sort`} /></span>
           <span className={css.activityNameCell}>{ offering.name }</span>
           <span className={css.checkboxCell}><input type='checkbox' checked={offering.active} onChange={this.onActiveUpdate} /></span>
           <span className={css.checkboxCell}><input type='checkbox' checked={offering.locked} onChange={this.onLockedUpdate} /></span>
