@@ -27,7 +27,7 @@ const offeringMapping = data => {
     id: data.id,
     clazz: data.clazz,
     activityName: data.activity,
-    previewUrl: data.activity_url,
+    previewUrl: data.preview_url,
     lastRun: lastRunDates.length > 0 ? lastRunDates[0] : null,
     notStartedStudentsCount: notStartedStudents.length,
     inProgressStudentsCount: inProgressStudents.length,
