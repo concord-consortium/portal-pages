@@ -45,7 +45,7 @@ const offeringDetailsMapping = data => {
   return {
     id: data.id,
     activityName: data.activity,
-    previewUrl: data.activity_url,
+    previewUrl: data.preview_url,
     reportUrl: data.report_url,
     externalReport: externalReportMapping(data.external_report),
     reportableActivities: data.reportable_activities && data.reportable_activities.map(a => reportableActivityMapping(a)),
