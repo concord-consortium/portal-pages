@@ -173,6 +173,7 @@ var TeacherForm = function () {
       var registerNewSchool = ref1.registerNewSchool
       var showZipcode = currentCountry != null
       var showSchool = (currentCountry != null) && (currentZipcode != null)
+      var showEnewsSubscription = !!Portal.enewsSubscriptionEnabled
       return FormsyForm({
         ref: 'form',
         onValidSubmit: this.submit,
@@ -216,7 +217,7 @@ var TeacherForm = function () {
             })
           ),
         ),
-        dd({},
+        showEnewsSubscription ? dd({},
           CheckboxInput({
             ref: 'email_subscribed',
             name: 'email_subscribed',
@@ -224,7 +225,7 @@ var TeacherForm = function () {
             defaultChecked: true,
             label: 'Send me updates about educational technology resources.'
           })
-        )
+        ) : void 0
       ) : void 0,
       dl({},
         dt({}, 'Country'),
