@@ -29,43 +29,16 @@ const textOfHtml = (text) => {
   return filterDiv.innerText
 }
 
-/*
-   The resource.description is setup by the portal. It is not the same as the description
-   field stored in the database. The portal uses this logic:
-   - if the user is a teacher and there is a description_for_teacher, then the
-     description is the description_for_teacher
-   - else if there is an abstract, then the description is the abstract
-   - finally if the other two cases don't apply then the description is the
-     actual description shortened to 255 characters.
-
-   Portal v1.19.0-pre.12 added the following fields:
-   - resource.full_description - description database value, "" otherwise
-   - resource.abstact - database value if it exists, "" otherwise
-   - resource.description_for_teacher - database value if it exists, "" otherwise
-*/
 const processResource = (resource) => {
   if (resource == null || resource._processed) {
     return
   }
 
-  resource.filteredDescription = textOfHtml(resource.description)
-
-  if (resource.abstract) {
-    resource.filteredShortDescription = textOfHtml(resource.abstract)
-  } else if (resource.full_description) {
-    resource.filteredShortDescription =
-      shortenText(textOfHtml(resource.full_description))
-  } else {
-    resource.filteredShortDescription = textOfHtml(resource.description)
-  }
-
-  if (resource.description_for_teacher) {
-    resource.longDescription = resource.description_for_teacher
-  } else if (resource.full_description) {
-    resource.longDescription = resource.full_description
-  } else {
-    resource.longDescription = resource.description
-  }
+  resource.filteredShortDescription = textOfHtml(resource.short_description)
+  // Long description can be different based on the user type - teacher and non-teacher (student, anonymous).
+  // Note that api also provides long_description and long_description_for_teacher if any UI component needs
+  // to display both of them for given user (mostly likely teacher or admin).
+  resource.longDescription = resource.long_description_for_current_user
 
   resource._processed = true
 }
