@@ -16,4 +16,6 @@ First, create a project, then import icomoon.svg using the Import Icons button a
 
 Next, add additional icons by selecting from the default IcoMoon set or importing custom icons in SVG format.
 
+Make sure the character codes for existing icons (as shown on the Generate Font tab) haven't diverged from existing character codes in /src/library/styles/common/icomoon.scss.
+
 Finally, download the font package and update the icomoon font files in /src/library/assets/fonts
