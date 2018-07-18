@@ -3,7 +3,7 @@ window.Portal = {}
 window.Portal.API_V1 = {
   FAKE_ID: '999',
 
-  COUNTRIES: '/api/v1/countries',
+  COUNTRIES: 'mock-data/countries.json',
   SECURITY_QUESTIONS: '/api/v1/security_questions',
   STUDENTS: '/api/v1/students',
   STUDENT_CHECK_PASSWORD: '/api/v1/students/999/check_password',
@@ -13,7 +13,7 @@ window.Portal.API_V1 = {
   TEACHERS: '/api/v1/teachers',
   STATES: '/api/v1/states',
   DISTRICTS: '/api/v1/districts',
-  SCHOOLS: '/api/v1/schools',
+  SCHOOLS: 'mock-data/schools.json',
 
   //
   // Login and email availability.
