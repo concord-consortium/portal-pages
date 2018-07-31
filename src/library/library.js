@@ -15,6 +15,7 @@ import RecentActivity from './components/recent-activity'
 import Assignments from './components/assigments'
 import Navigation from './components/navigation'
 import RunWithCollaborators from './components/run-with-collaborators'
+import ActivitySettingsEditor from './components/activity-settings-editor'
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -48,6 +49,11 @@ window.PortalPages = {
   Navigation: Navigation,
   renderNavigation: function (options, id) {
     render(React.createElement(Navigation, options), id)
+  },
+
+  ActivitySettingsEditor: ActivitySettingsEditor,
+  renderActivitySettingsEditor: function (options, id) {
+    render(React.createElement(ActivitySettingsEditor, options), id)
   },
 
   CollectionCards: CollectionCards,

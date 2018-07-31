@@ -215,7 +215,7 @@ var TeacherForm = function () {
               asyncValidation: emailAvailableValidator,
               asyncValidationError: EMAIL_TAKEN
             })
-          ),
+          )
         ),
         showEnewsSubscription ? dd({},
           CheckboxInput({
