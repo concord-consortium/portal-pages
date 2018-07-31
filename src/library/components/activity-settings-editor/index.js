@@ -9,30 +9,50 @@ import React from 'react'
 // We will come back to setting up the data-store a little bit later.
 // const ActivityEditorDataStore = { }
 
-export default class ActivitySettingsEditor extends React.Component {
+class SettingsPage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = Object.assign(props)
+  }
+  render () {
+    const tabPageStyle = {
+      // display: 'none',
+      padding: '0.5em 1em',
+      border: '1px solid',
+      borderTop: 'none'
+    }
 
+    tabPageStyle.display = this.props.selected ? 'block' : 'none'
+
+    return (
+      <div style={tabPageStyle} >
+        <h2>{this.props.title}</h2>
+      </div>
+    )
+  }
+}
+
+export default class ActivitySettingsEditor extends React.Component {
   constructor (props) {
     super(props)
     this.state = Object.assign(props)
   }
 
   longDescriptorOnChange (value) {
-    console.log('The value = ' + value);
-    this.setState({long_description_for_teacher:value})
+    console.log('The value = ' + value)
+    this.setState({long_description_for_teacher: value})
   }
 
-  activateTabPage(pageToActivate) {
-    console.log('About to activate tab-page ' + pageToActivate);
-    //for loop
-    document.getElementById(pageToActivate).style.display = "block";
+  activateTabPage (pageToActivate) {
+    console.log('About to activate tab-page ' + pageToActivate)
+    this.setState({UIActivePage: pageToActivate})
   }
 
   render () {
-
     const tabBarStyle = {
       overflow: 'hidden',
       border: '1px solid'
-      };
+    }
 
     const tabButtonStyle = {
       float: 'left',
@@ -42,16 +62,10 @@ export default class ActivitySettingsEditor extends React.Component {
       padding: '1em',
       margin: '0.2em',
       background: 'orange'
-      };
+    }
 
-    const tabPageStyle = {
-      display: 'none',        // Initialize them all as hidden.
-      padding: '0.5em 1em',
-      border: '1px solid',
-      borderTop: 'none'
-      };
 
-    const setttings = this.state;
+    const settings = this.state;
 
     return (
       <div>
@@ -61,24 +75,15 @@ export default class ActivitySettingsEditor extends React.Component {
           <button style={tabButtonStyle} onClick={ () => this.activateTabPage('advanced') }>Advanced</button>
         </div>
 
-      <div id="General" style={tabPageStyle} >
-         <h2>General Settings</h2>
-      </div>
-
-      <div id="Layout" style={tabPageStyle} >
-         <h2>Layout Settings</h2>
-      </div>
-
-      <div id="Advanced" style={tabPageStyle} >
-         <h2>Advanced Settings</h2>
-      </div>
-
+        <SettingsPage title="General" selected={ settings.UIActivePage === 'general' } />
+        <SettingsPage title="Layout Settings" selected={ settings.UIActivePage === 'layout' } />
+        <SettingsPage title="Advanced Settings" selected={ settings.UIActivePage === 'advanced' } />
 
         <div>
           Long Description For Teacher:
           <textarea
-          value={ this.state.long_description_for_teacher }
-          onChange={ e => this.longDescriptorOnChange(e.target.value) } />
+            value={ this.state.long_description_for_teacher }
+            onChange={ e => this.longDescriptorOnChange(e.target.value) } />
         </div>
         Everything here, from this point down, would be the LARA editing
         experience for manipulating an activity or sequence. At the moment, we
