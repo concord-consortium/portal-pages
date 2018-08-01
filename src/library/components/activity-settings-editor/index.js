@@ -35,6 +35,34 @@ class DisplayJson extends React.Component {
   }
 }
 
+class TextComp extends React.Component {
+  render () {
+    const textAreaStyle = {
+      width: '350px',
+      height: '20px'
+    }
+    return (
+      <textarea
+        style={ textAreaStyle}
+        value={ this.props.value }
+        onChange={ e => this.props.update({ [this.props.name]: e.target.value}) }
+        />
+    )
+  }
+}
+
+class CheckboxComp extends React.Component {
+  render () {
+    return (
+      <input
+        type='checkbox'
+        checked={this.props.value === 'true'}
+        onChange={ e => this.props.update({ [this.props.name]: e.target.checked ? 'true' : 'false' })}
+      />
+    )
+  }
+}
+
 /*
  * A settings page object is the body of a tab-page. It contains some fields
  * and will update the state as the fields are modified. Eventually, I want
@@ -55,106 +83,71 @@ class SettingsPage extends React.Component {
       border: '1px solid',
       borderTop: 'none'
     }
-    const textAreaStyle = {
-      width: '350px',
-      height: '20px'
-    }
+
     console.log('HERE! ' + this.props.title + this.props.fields);
     tabPageStyle.display = this.props.selected ? 'block' : 'none';
+
+
+    const { fields, settings, update } = this.props
     return (
       <div style={tabPageStyle}>
         <h2>{this.props.title}</h2>
         <table>
           <tbody> {
-            this.props.fields.map( (field) =>
-              <tr>
-                <td>{ field.label } </td>
-                <td>
-                   <textarea
-                     style={textAreaStyle}
-                     value={ this.props.settings[field.name] }
-                     onChange={ e => this.props.update({ [field.name]: e.target.value}) }
-                     >
-                   </textarea>
-                 </td>
-               </tr>
-             ) }
-           </tbody>
-         </table>
-      </div>   
+            fields.map((field) => {
+              const componentForType = (typeName) => {
+                switch (typeName) {
+                  case 'boolean':
+                    return <CheckboxComp name={field.name} update={update} value={settings[field.name]} />
+                  case 'text':
+                  default:
+                    return <TextComp name={field.name} update={update} value={settings[field.name]} />
+                }
+              }
+              return (
+                <tr>
+                  <td>{ field.label } </td>
+                  <td> {componentForType(field.type)} </td>
+                </tr>
+              )
+            })
+          }
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
 
 
 export default class ActivitySettingsEditor extends React.Component {
+
   constructor (props) {
-    super(props);
-    this.state = Object.assign(props);
-    this.state.UIActivePage = 'general';
+    super(props)
+
+    this.state = {
+      settingsData: Object.assign({}, props.settings),
+      UISettings: Object.assign({}, props.UISettings)
+    }
+    this.state.UISettings.UIActivePage = 'general'
+  }
+
+  updateSettingsData (newParams) {
+    const newValues = Object.assign(this.state.settingsData, newParams)
+    this.setState({settingsData: newValues})
+  }
+
+  updateUISettings (newParams) {
+    const newValues = Object.assign(this.state.UISettings, newParams)
+    this.setState({UISettings: newValues})
   }
 
   activateTabPage (pageToActivate) {
     console.log('About to activate tab-page ' + pageToActivate)
-    this.setState({UIActivePage: pageToActivate})
+    this.updateUISettings({UIActivePage: pageToActivate})
   }
  
   render () {
-
-   /*
-     Dummy this up, right here, for now. Eventually, this will be passed in
-     to control the behavior of the component -- by picking which fields
-     are edited, and on what tab-page they appear.
-   */
-  const settingsVector = {
-    general: [
-      { label: "Name",                         name: "name", type: "text" },
-      { label: "CC Official",                  name: "" },
-      { label: "Locked",                       name: "is_locked", type: "boolean" },
-      { label: "Publication Status",           name: "", type: "choice:Published,Private,CC-Only" },
-      { label: "Copied From",                  name: "" },
-      { label: "Credits",                      name: "" },
-      { label: "Sort Description",             name: "" },
-      { label: "Long Description",             name: "long_description", type: "text" },
-      { label: "Long Description for Teacher", name: "long_description_for_teacher", type: "text" },
-      { label: "Teacher Guide URL",            name: "" },
-      { label: "Has Pre and Post Tests",       name: "has_pretest", type: "boolean" },
-      { label: "Student Report Enabled",       name: "" },
-      { label: "Open URL in New Windwow",      name: "" },
-      { label: "Run with Collaborators",       name: "" },
-      { label: "Do Not Copy",                  name: "" },
-      { label: "Student Assessment Item",      name: "is_assssment_item", type: "boolean" },
-      { label: "Requires Download",            name: "" },
-      { label: "Projects",                     name: "" },
-      { label: "Cohorts",                      name: "" },
-      { label: "Grade Levels",                 name: "" },
-      { label: "Subject Areas",                name: "" }
-    ],
-    layout: [
-      { label: "Display Title",                name: "" },
-      { label: "Text for Index Page",          name: "" },
-      { label: "Logo",                         name: "" },
-      { label: "Thumbnail URL",                name: "" },
-      { label: "Theme",                        name: "" },
-      { label: "LARA Project Name",            name: "" },
-      { label: "Related Content",              name: "" },
-      { label: "Estimated Time to Complete",   name: "" },
-      { label: "Activity Layout",              name: "" },
-      { label: "Authoring Mode",               name: "" },
-      { label: "Notes",                        name: "" }
-    ],
-    advanced: [
-      { label: "URL",                          name: "" },
-      { label: "Launch URL",                   name: "" },
-      { label: "External Reporting",           name: "" },
-      { label: "Custom Reporting URL",         name: "" },
-      { label: "Append Learner ID to URL",     name: "" },
-      { label: "Append Survey Monkey user ID to URL", name: "" },
-      { label: "Enable Logging",               name: "" },
-      { label: "Save Path",                    name: "" }
-    ]
-  };
-
    const tabBarStyle = {
       overflow: 'hidden',
       border: '1px solid'
@@ -168,9 +161,10 @@ export default class ActivitySettingsEditor extends React.Component {
       margin: '0.2em',
       background: 'orange'
     } 
-    //const settings = this.state;
+    const settings = this.state.settingsData
+    const UISettings = this.state.UISettings
 
-    const settings = Object.assign(this.state);
+    // const settings = Object.assign(this.state);
     return (
       <div>
         <h2>Settings</h2>
@@ -179,9 +173,11 @@ export default class ActivitySettingsEditor extends React.Component {
           <button style={tabButtonStyle} onClick={ () => this.activateTabPage('layout')  }>Layout</button>
           <button style={tabButtonStyle} onClick={ () => this.activateTabPage('advanced') }>Advanced</button>
         </div>
-        <SettingsPage title="General Settings" update={ (field_and_value) => this.setState(field_and_value) } settings={settings} fields={ settingsVector.general }  selected={ settings.UIActivePage === 'general' } />
-        <SettingsPage title="Layout Settings" settings={settings} fields={ settingsVector.layout }  selected={ settings.UIActivePage === 'layout' } />
-        <SettingsPage title="Advanced Settings" settings={settings} fields={ settingsVector.advanced } selected={ settings.UIActivePage === 'advanced' } />
+        <SettingsPage title="General Settings" update= { (nameAndValue) => this.updateSettingsData(nameAndValue) } settings={settings} fields={ UISettings.general }  selected={ UISettings.UIActivePage === 'general' } />
+
+        <SettingsPage title="Layout Settings" settings={settings} fields={ UISettings.layout }  selected={ UISettings.UIActivePage === 'layout' } />
+
+        <SettingsPage title="Advanced Settings" settings={settings} fields={ UISettings.advanced } selected={ UISettings.UIActivePage === 'advanced' } />
         <br />
         <br />
         <DisplayJson title="State" objectToDisplay={settings} />
