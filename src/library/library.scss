@@ -801,6 +801,10 @@ $materials-collection-item-icon-width: 300px;
       }
     }
   }
+  .privacy-policy {
+    margin: 0;
+    text-align: right;
+  }
   .submit-button-container {
     color: $col-darkgray-25;
     font: 700 15px $font-museo-sans;
@@ -813,9 +817,9 @@ $materials-collection-item-icon-width: 300px;
       right: auto;
       top: auto;
     }
-  }
-  .signup-form .zipcode {
-    width: 100%;
+    button[type="submit"] {
+      margin-top: 0;
+    }
   }
   .signup-default-modal-content {
     overflow: visible;
@@ -835,6 +839,18 @@ $materials-collection-item-icon-width: 300px;
 
       input {
         margin-right: 10px;
+      }
+    }
+    .zipcode {
+      width: 100%;
+    }
+    .signup-form-enews-optin-standalone {
+      background: $col-lightgray;
+      margin: 20px 0;
+      padding: 8px 15px 10px;
+      width: auto;
+      .checkbox-label {
+        font-size: .85em;
       }
     }
   }
