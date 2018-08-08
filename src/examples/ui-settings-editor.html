@@ -3,7 +3,7 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.min.js"></script>
 			<script src="./portal-api.js"></script>
-			<script src="../portal-pages.js"></script>
+			<script src="../library/portal-pages.js"></script>
 	</head>
 	<body>
 		<div id="left-nav"></div>
@@ -16,18 +16,19 @@
 			const UISettings = {
 				general: [
 					{ label: "Name",                         name: "name", type: "text" },
-					{ label: "CC Official",                  name: "" },
+					{ label: "CC Official",                  name: "is_official", type: "boolean" },
 					{ label: "Locked",                       name: "is_locked", type: "boolean" },
-					{ label: "Publication Status",           name: "", type: "choice:Published,Private,CC-Only" },
+					{ label: "Publication Status",           name: "publication_status", type: "choice",
+             option_names: "Published Private Framitz", options: "published private 42" },
 					{ label: "Copied From",                  name: "" },
-					{ label: "Credits",                      name: "" },
-					{ label: "Sort Description",             name: "" },
+					{ label: "Credits",                      name: "credits", type: "text" },
+					{ label: "Sort Description",             name: "short_description", type: "text" },
 					{ label: "Long Description",             name: "long_description", type: "text" },
 					{ label: "Long Description for Teacher", name: "long_description_for_teacher", type: "text" },
-					{ label: "Teacher Guide URL",            name: "" },
+					{ label: "Teacher Guide URL",            name: "teacher_guide_url", type: "text" },
 					{ label: "Has Pre and Post Tests",       name: "has_pretest", type: "boolean" },
-					{ label: "Student Report Enabled",       name: "" },
-					{ label: "Open URL in New Windwow",      name: "" },
+					{ label: "Student Report Enabled",       name: "student_report_enabled", type: "boolean" },
+					{ label: "Open URL in New Windwow",      name: "" },  // Is this the "popup" flag?
 					{ label: "Run with Collaborators",       name: "" },
 					{ label: "Do Not Copy",                  name: "" },
 					{ label: "Student Assessment Item",      name: "is_assssment_item", type: "boolean" },
@@ -41,7 +42,7 @@
 					{ label: "Display Title",                name: "" },
 					{ label: "Text for Index Page",          name: "" },
 					{ label: "Logo",                         name: "" },
-					{ label: "Thumbnail URL",                name: "" },
+					{ label: "Thumbnail URL",                name: "thumbnail_url", type: "text"  },
 					{ label: "Theme",                        name: "" },
 					{ label: "LARA Project Name",            name: "" },
 					{ label: "Related Content",              name: "" },
@@ -51,8 +52,8 @@
 					{ label: "Notes",                        name: "" }
 				],
 				advanced: [
-					{ label: "URL",                          name: "" },
-					{ label: "Launch URL",                   name: "" },
+					{ label: "URL",                          name: "url", type: "text" },
+					{ label: "Launch URL",                   name: "launch_url", type: "text" },
 					{ label: "External Reporting",           name: "" },
 					{ label: "Custom Reporting URL",         name: "" },
 					{ label: "Append Learner ID to URL",     name: "" },
