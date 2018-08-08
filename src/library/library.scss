@@ -732,9 +732,20 @@ $materials-collection-item-icon-width: 300px;
     font-size: 18px;
     line-height: 1.7;
   }
+  .select-input {
+    margin: 0 !important;
+    padding: 0;
+  }
+  .Select-input {
+    height: auto !important;
+    padding: 0 !important;
+  }
+  .Select-control {
+    padding: 0 10px;
+  }
   .Select-placeholder, .Select--single>.Select-control .Select-value {
-    line-height: 1.5;
-    padding: 5px;
+    line-height: 1 !important;
+    padding: 14px 10px 0;
   }
   button[type="submit"] {
     background: $col-orange;
