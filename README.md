@@ -93,7 +93,7 @@ https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/library/portal
 
 
 ## Building an example page for a new Portal React Component ##
-Create an HTML file in `src/examples/`.  It will be easiest to copy the example in `navigation.html`. When you run `npm build` `./dest/examples` will be created. This will also be deployed to `https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/examples/<your-example>.html`. To test your example, run `live-server ./dest/` -- for now you  need to manually run `npm build` to rebuild your widget. TODO: Add a watch.
+Create an HTML file in `src/examples/`.  It will be easiest to copy the example in `navigation.html`. When you run `npm run build` it will create `./dest/examples`. This will also be deployed to `https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/examples/<your-example>.html` when you push the code to github. To test your example locally, run `npm run live-server` -- for now you need to manually run `npm run build` to rebuild your widget. TODO: Add a watch.
 
 
 ## License
