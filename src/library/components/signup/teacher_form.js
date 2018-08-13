@@ -216,16 +216,16 @@ var TeacherForm = function () {
               asyncValidationError: EMAIL_TAKEN
             })
           ),
+          showEnewsSubscription ? dd({},
+            CheckboxInput({
+              ref: 'email_subscribed',
+              name: 'email_subscribed',
+              required: false,
+              defaultChecked: true,
+              label: 'Send me updates about educational technology resources.'
+            })
+          ) : void 0
         ),
-        showEnewsSubscription ? dd({},
-          CheckboxInput({
-            ref: 'email_subscribed',
-            name: 'email_subscribed',
-            required: false,
-            defaultChecked: true,
-            label: 'Send me updates about educational technology resources.'
-          })
-        ) : void 0
       ) : void 0,
       dl({},
         dt({}, 'Country'),
@@ -295,6 +295,15 @@ var TeacherForm = function () {
           }, GO_BACK_TO_LIST) : void 0
         )
       ),
+      !anonymous && showEnewsSubscription ? div({className: 'signup-form-enews-optin-standalone'},
+        CheckboxInput({
+          ref: 'email_subscribed',
+          name: 'email_subscribed',
+          required: false,
+          defaultChecked: true,
+          label: 'Send me updates about educational technology resources.'
+        })
+      ) : void 0,
       PrivacyPolicy({}),
       div({className: 'submit-button-container'},
         button({
