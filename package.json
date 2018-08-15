@@ -67,8 +67,8 @@
     "opn": "^5.0.0",
     "pug": "~2.0.0-beta11",
     "rc-tooltip": "^3.7.2",
-    "react": "file:./src/window-react",
-    "react-dom": "file:./src/window-react-dom",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
     "react-sortable-hoc": "^0.6.8",
     "request": "^2.81.0"
   }
