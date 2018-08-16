@@ -8,8 +8,9 @@
     "start:dev": "cross-env NODE_ENV=development node server/bin/www",
     "lint": "standard --fix \"src/**/*.js\"",
     "build": "npm run lint && node scripts/build.js",
-    "live-server": "./node_modules/.bin/live-server --cors --verbose --no-browser --port=10000 ./dest",
+    "live-server": "./node_modules/.bin/live-server --cors --verbose --no-browser --port=10000 ./dest2",
     "webpack": "webpack",
+    "webpack-production": "NODE_ENV=production webpack",
     "webpack:server": "webpack-dev-server"
   },
   "standard": {
@@ -45,6 +46,7 @@
     "file-loader": "^1.1.11",
     "glob": "^7.1.2",
     "live-server": "^1.2.0",
+    "mini-css-extract-plugin": "^0.4.1",
     "sass-loader": "^7.0.1",
     "standard": "^11.0.1",
     "style-loader": "^0.21.0",

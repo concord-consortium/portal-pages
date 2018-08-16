@@ -6,15 +6,20 @@
 // This project doesn't use webpack or webpack-dev-server directly from the command line.
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const destFolder = path.resolve(__dirname, 'dest2')
+// There is an alternative way to do this using a 3 file approach
+// https://webpack.js.org/guides/production/
+// it is probably better to switch that approach
+const devMode = process.env.NODE_ENV !== 'production'
+
 module.exports = {
   // These will be overriden by build.js and index.js
 
   // developement mode makes webpack-server reload pages faster
-  mode: 'development',
+  mode: devMode ? 'development' : 'production',
   entry: {
-    'portal-pages': './src/library/library.js',
-    'portal-pages-css': './src/library/library-css.js'
+    'portal-pages': './src/library/library.js'
   },
   output: {
     // path: path.resolve(destFolder, './library'),
@@ -39,7 +44,7 @@ module.exports = {
         test: [/node_modules[\\/].*\.(css|scss)$/, /library.scss$/],
         use: [
           {
-            loader: 'style-loader'
+            loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader
           },
           {
             loader: 'css-loader'
@@ -54,7 +59,7 @@ module.exports = {
         exclude: [/node_modules/, /library.scss$/],
         use: [
           {
-            loader: 'style-loader'
+            loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader
           },
           {
             loader: 'css-loader',
@@ -84,7 +89,16 @@ module.exports = {
         from: 'src/examples/',
         to: 'examples'
       }
-    ])
+    ]),
+    new MiniCssExtractPlugin(
+      {
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: 'library/[name].css',
+        // TODO figure out what this does
+        chunkFilename: '[id].css'
+      }
+    )
   ],
   externals: {
     'react': 'React',

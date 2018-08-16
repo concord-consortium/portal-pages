@@ -1,3 +1,4 @@
+import './library.scss'
 import CollectionsPage from './components/collections-page'
 import CollectionCards from './components/collection-cards'
 import HeaderFilter from './components/header-filter'
