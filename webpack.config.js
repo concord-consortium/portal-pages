@@ -6,12 +6,20 @@
 // This project doesn't use webpack or webpack-dev-server directly from the command line.
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const destFolder = path.resolve(__dirname, 'dest2')
 // There is an alternative way to do this using a 3 file approach
 // https://webpack.js.org/guides/production/
 // it is probably better to switch that approach
 const devMode = process.env.NODE_ENV !== 'production'
+
+function example (name) {
+  return new HtmlWebpackPlugin({
+    template: `src/examples/${name}.html`,
+    filename: `examples/${name}.html`
+  })
+}
 
 module.exports = {
   // These will be overriden by build.js and index.js
@@ -109,8 +117,12 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: 'src/examples/',
-        to: 'examples'
+        from: 'src/examples/portal-api.js',
+        to: 'examples/'
+      },
+      {
+        from: 'src/examples/mock-data',
+        to: 'examples/mock-data'
       }
     ]),
     new MiniCssExtractPlugin(
@@ -121,7 +133,12 @@ module.exports = {
         // TODO figure out what this does
         chunkFilename: '[id].css'
       }
-    )
+    ),
+    example('header-itsi'),
+    example('navigation-compact'),
+    example('navigation'),
+    example('signup-after-sso'),
+    example('signup')
   ],
   externals: {
     'react': 'React',
