@@ -7,22 +7,17 @@ const path = require('path')
 const fs = require('fs')
 const mkdirp = require('mkdirp')
 const sass = require('node-sass')
-const webpack = require('webpack')
-const webpackConfig = require('../webpack.config')
 const ncp = require('ncp').ncp
 
-const portalSrcFolder = path.resolve(`${__dirname}/../src/portals`)
-const portalDestFolder = path.resolve(`${__dirname}/../dest/portals`)
-const librarySrcFolder = path.resolve(`${__dirname}/../src/library`)
-const libraryDestFolder = path.resolve(`${__dirname}/../dest/library`)
-const siteRedesignSrcFolder = path.resolve(`${__dirname}/../src/site-redesign`)
-const siteRedesignDestFolder = path.resolve(`${__dirname}/../dest/site-redesign`)
-const siteRedesignAssetsSrcFolder = path.resolve(`${__dirname}/../src/site-redesign/assets`)
-const siteRedesignAssetsDestFolder = path.resolve(`${__dirname}/../dest/site-redesign/assets`)
-const libraryAssetsSrcFolder = path.resolve(`${__dirname}/../src/library/assets`)
-const libraryAssetsDestFolder = path.resolve(`${__dirname}/../dest/library/assets`)
-const exampleSrcFolder = path.resolve(`${__dirname}/../src/examples`)
-const exampleDestFolder = path.resolve(`${__dirname}/../dest/examples`)
+const srcFolder = path.resolve(`${__dirname}/../src`)
+const destFolder = path.resolve(`${__dirname}/../dest-portals`)
+
+const portalSrcFolder = path.join(srcFolder, 'portals')
+const portalDestFolder = path.join(destFolder, 'portals')
+const siteRedesignSrcFolder = path.join(srcFolder, 'site-redesign')
+const siteRedesignDestFolder = path.join(destFolder, 'site-redesign')
+const siteRedesignAssetsSrcFolder = path.join(srcFolder, 'site-redesign/assets')
+const siteRedesignAssetsDestFolder = path.join(destFolder, 'site-redesign/assets')
 
 const die = (err, code) => {
   console.error(err)
@@ -67,38 +62,6 @@ glob(`${portalSrcFolder}/**/*.html`, (err, files) => {
   })
 })
 
-// build the libary js
-const compiler = webpack(Object.assign({
-  mode: 'production',
-  entry: path.resolve(`${librarySrcFolder}/library.js`),
-  output: {
-    path: libraryDestFolder,
-    filename: 'portal-pages.js'
-  }
-}, webpackConfig))
-compiler.run((err, stats) => {
-  if (err) {
-    die(err, 3)
-  }
-  if (stats.hasErrors()) {
-    console.log(stats.toString({colors: true}))
-    die('webpack errors', 3)
-  }
-  if (stats.hasWarnings()) {
-    console.log(stats.toString({colors: true}))
-  }
-})
-
-// build the library css
-sass.render({file: `${librarySrcFolder}/library.scss`}, (err, result) => {
-  if (err) {
-    die(err, 4)
-  } else {
-    mkdirp.sync(libraryDestFolder)
-    fs.writeFileSync(`${libraryDestFolder}/portal-pages.css`, result.css.toString())
-  }
-})
-
 // build the site redesign css
 sass.render({file: `${siteRedesignSrcFolder}/site-redesign.scss`}, (err, result) => {
   if (err) {
@@ -114,19 +77,5 @@ mkdirp.sync(siteRedesignAssetsDestFolder)
 ncp(siteRedesignAssetsSrcFolder, siteRedesignAssetsDestFolder, function (err) {
   if (err) {
     die(err, 6)
-  }
-})
-mkdirp.sync(libraryAssetsDestFolder)
-ncp(libraryAssetsSrcFolder, libraryAssetsDestFolder, function (err) {
-  if (err) {
-    die(err, 7)
-  }
-})
-
-// make the examples directory
-mkdirp.sync(exampleDestFolder)
-ncp(exampleSrcFolder, exampleDestFolder, function (err) {
-  if (err) {
-    die(err, 7)
   }
 })

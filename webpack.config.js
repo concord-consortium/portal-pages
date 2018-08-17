@@ -8,7 +8,7 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const destFolder = path.resolve(__dirname, 'dest2')
+const destFolder = path.resolve(__dirname, 'dest')
 // There is an alternative way to do this using a 3 file approach
 // https://webpack.js.org/guides/production/
 // it is probably better to switch that approach
