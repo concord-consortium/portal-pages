@@ -1,0 +1,7 @@
+{
+  "devMiddleware": {
+    "headers": {
+      "Access-Control-Allow-Origin": "*"
+    }
+  }
+}

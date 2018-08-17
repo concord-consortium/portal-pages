@@ -4,14 +4,15 @@
   "description": "Concord Portal Pages",
   "main": "server/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node server/bin/www",
-    "start:dev": "cross-env NODE_ENV=development node server/bin/www",
+    "start": "cross-env NODE_ENV=development webpack-serve",
+    "start:prod": "cross-env NODE_ENV=production webpack-serve",
+    "start-portals": "cross-env NODE_ENV=development node server/bin/www",
+    "start-portals:prod": "cross-env NODE_ENV=production node server/bin/www",
     "lint": "standard --fix \"src/**/*.js\"",
     "build": "npm run lint && npm run build-portals && npm run build-library",
     "build-portals": "node scripts/build.js",
     "build-library": "cross-env NODE_ENV=production webpack",
-    "live-server": "./node_modules/.bin/live-server --cors --verbose --no-browser --port=10000 ./dest",
-    "webpack-serve": "webpack-serve"
+    "live-server": "./node_modules/.bin/live-server --cors --verbose --no-browser --port=10000 ./dest"
   },
   "standard": {
     "globals": [
