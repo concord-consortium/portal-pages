@@ -9,7 +9,7 @@ This respository serves multiple purposes:
 
 ## Organization
 
-At the top level there are four folders:
+Top level folders:
 
 * `/src` - contains the html and css for the custom portal page content and the portal pages library
 * `/server` - contains the development server for custom portal page content
