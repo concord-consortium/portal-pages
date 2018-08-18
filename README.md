@@ -65,10 +65,12 @@ Once you hit submit the following will happen:
 
 1. The server will load the local .html and .css from form field 1 and then place a watch on those files so that any change to the html results in an automatic page reload and any change to the .css will result in a automatic style change without a reload (just like [live-server](https://github.com/tapio/live-server) does)
 2. The server will fetch the contents of the remote portal url and then do the following before displaying it
-    1. It will add a <base href="..."> tag right after the opening head tag pointing to the remote portal url so that relative url references are      automatically resolved to the remote server
+    1. It will add a <base href="..."> tag right after the opening head tag pointing to the remote portal url so that relative url references are automatically resolved to the remote server
     2. It will add a style tag pointing to the local server which will return the .css file in step 1 so that automatic style changes can be done on css changes.
     3. It will use the selector in the form to create a "hole" in the document which is then filled with the .html in step 1.
-    4. It will add a script tag pointing to a script on the server that will open a websocket and either reload the page or cause the style links to reload based on a file watch change event sent from the server.  The script also overrides the XMLHttpRequest.open function so that relative urls are rewritten to point to the /ajax-proxy/ endpoint on the developement server to get around CORS restictions.
+    4. It will add a script tag pointing to a script on the server that will open a websocket and either reload the page or cause the style links to reload based on a file watch change event sent from the server.  The script also overrides the XMLHttpRequest.open function so that relative urls are rewritten to point to the /ajax-proxy/ endpoint on the development server to get around CORS restrictions.
+
+By default the `start-portals` does not replace the remote portals portal-pages.js and portal-pages.css. If you want to develop portal-pages.* at the same time as you are working on the home page or collection pages, you can use the ResourceOverride Chrome extension.  You will need to run a second server: `npm run start:prod`. This will provide the portal-pages.js and portal-pages.css. See the 'Testing local Portal Pages with a remote Portal' below for info on setting up ResourceOverride.
 
 #### Mocking AJAX Requests
 
@@ -78,7 +80,7 @@ The server will also record all the non-mocked ajax responses if you start the s
 
 `npm start -- --recordAjax` (note the two sets of --, the first -- causes the remainder of the line to be appended to the start script in package.json)
 
-## Testing local Portal Pages with Local Portal
+## Testing local Portal Pages with local Portal
 
 The best way to do this is to configure your local Portal to point at your local Portal pages server.  The portal expects both a portal-pages.js and a portal-pages.css file so you need to use `npm run start:prod` portal pages server.
 
@@ -90,13 +92,15 @@ As an alternative you can use the ResourceOverride chrome plugin described in th
 
 ## Testing local Portal Pages with a remote Portal
 
-You can use the proxy setup described above to test out some parts of portal pages with content from a remote portal. However several portal features do not work properly. An alternative which seems to work better is to use the [ResourceOverride Chrome extension](https://github.com/kylepaulsen/ResourceOverride) to override all requests to the portal-pages library js and css with your local javascript.
+You can test how your changes to portal pages will look any deployed portal with the [ResourceOverride Chrome extension](https://github.com/kylepaulsen/ResourceOverride). You use this extension to override the requests to the portal-pages.js and portal-pages.css.
 
-Most of time remote portals use tagged versions of the portal pages code. So first you need to find the URL for the portal-pages javascript the remote portal is using. You can find this in the chrome developer tools. For example lets say it is: https://portal-pages.concord.org/version/v1.9.0-pre.3/library/portal-pages.js
+Go into ResourceOverride extension page and add a Rule. Choose the `URL -> URL` type. Use these settings `From:  '**/library/portal-pages.*'  To: http://localhost:8080/portal-pages.*` The `*` and `**` have a special meaning in the ResourceOverride extension, see the Help section of the extension for more info.
 
-Then go into ResourceOverride extension page and add this mapping: https://portal-pages.concord.org/version/v1.9.0-pre.3/library/portal-pages.js -> http://localhost:8080/portal-pages.js
+Now load in the page you want to test. It is useful to verify your local code is being picked up. You can look a the Chrome DevTools Sources tab, and then Page tab to see the list of domains files have been loaded from.  You should see localhost:8080, and you should not see portal-pages.concord.org.
 
-Mixed https and http content works fine. Also if you look at the Chrome DevTools Source tab you should see that portal-pages.js and portal-pages.css are listed on the dev host that you mapped them too.
+Remember to disable the override when you are done testing.
+
+Note: live-reload or hot module replacement does not work in this case. So you will need to manually reload the page after making a change to source. If you look at the browser console you can see that it is partially working. The console prints out the compile messages. But after compiling the page is not updated. This might be fixable.
 
 ## Travis S3 Deployments ##
 

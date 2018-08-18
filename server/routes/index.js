@@ -12,25 +12,8 @@ module.exports = (app) => {
   const mkdirp = require('mkdirp')
   const crypto = require('crypto')
   const sass = require('node-sass')
-  const MemoryFS = require('memory-fs')
-  const webpack = require('webpack')
-  const webpackConfig = require('../../webpack.config')
-
-  // setup library compiler
-  const memfs = new MemoryFS()
-  const compiler = webpack(Object.assign({
-    mode: 'development',
-    devtool: 'source-map',
-    entry: path.resolve(`${__dirname}/../../src/library/library.js`),
-    output: {
-      path: '/',
-      filename: 'library.js'
-    }
-  }, webpackConfig))
-  compiler.outputFileSystem = memfs
 
   const portalSrcFolder = path.resolve(`${__dirname}/../../src/portals`)
-  const librarySrcFolder = path.resolve(`${__dirname}/../../src/library`)
   const siteRedesignSrcFolder = path.resolve(`${__dirname}/../../src/site-redesign`)
   const mockFolder = path.resolve(`${__dirname}/../../mock-ajax`)
 
@@ -107,16 +90,7 @@ module.exports = (app) => {
     }
 
     if (path.extname(changePath) === '.scss') {
-      if (changePath.indexOf('library') !== -1) {
-        compileLibraryCSS((err, libraryCSS) => {
-          if (!err) {
-            broadcast({
-              action: 'restyle',
-              url: cacheBuster(`${selfRoot()}/portal-pages.css`)
-            })
-          }
-        })
-      } else if (changePath.indexOf('site-redesign') !== -1) {
+      if (changePath.indexOf('site-redesign') !== -1) {
         compileSiteRedesignCSS((err, siteRedesignCSS) => {
           if (!err) {
             broadcast({
@@ -142,7 +116,7 @@ module.exports = (app) => {
     }
   }
 
-  const watcher = chokidar.watch([`${portalSrcFolder}/**/*`, `${librarySrcFolder}/**/*`, `${siteRedesignSrcFolder}/**/*`], {
+  const watcher = chokidar.watch([`${portalSrcFolder}/**/*`, `${siteRedesignSrcFolder}/**/*`], {
     persistent: true,
     ignoreInitial: true
   })
@@ -152,32 +126,6 @@ module.exports = (app) => {
     .on('unlink', handleWatchChange)
     .on('addDir', handleWatchChange)
     .on('unlinkDir', handleWatchChange)
-
-  const compileLibraryJS = (callback) => {
-    compiler.run((err, stats) => {
-      if (err) {
-        callback(err)
-      } else if (stats.hasErrors()) {
-        console.log(stats.toString({colors: true}))
-        callback(stats.toString({colors: true}))
-      } else {
-        if (stats.hasWarnings()) {
-          console.log(stats.toString({colors: true}))
-        }
-        callback(null, memfs.readFileSync('/library.js'))
-      }
-    })
-  }
-
-  const compileLibraryCSS = (callback) => {
-    sass.render({file: `${librarySrcFolder}/library.scss`}, (err, result) => {
-      if (err) {
-        callback(err)
-      } else {
-        callback(null, result.css.toString())
-      }
-    })
-  }
 
   const compileSiteRedesignCSS = (callback) => {
     sass.render({file: `${siteRedesignSrcFolder}/site-redesign.scss`}, (err, result) => {
@@ -246,28 +194,6 @@ module.exports = (app) => {
     })
   })
 
-  router.get('/portal-pages.js', (req, res, next) => {
-    compileLibraryJS((err, libraryJS) => {
-      if (err) {
-        res.die(err)
-      } else {
-        res.set('Content-Type', 'application/javascript')
-        res.send(libraryJS)
-      }
-    })
-  })
-
-  router.get('/portal-pages.css', (req, res, next) => {
-    compileLibraryCSS((err, libraryCSS) => {
-      if (err) {
-        res.die(err)
-      } else {
-        res.set('Content-Type', 'text/css')
-        res.send(libraryCSS)
-      }
-    })
-  })
-
   router.get('/site-redesign/site-redesign.css', (req, res, next) => {
     compileSiteRedesignCSS((err, siteRedesignCSS) => {
       if (err) {
@@ -288,7 +214,6 @@ module.exports = (app) => {
       return res.die('Invalid file or portal parameter!')
     }
 
-    const [_, fileDomain, filePath] = fileParser
     const [__, portalRoot, portalProtocol, portalDomain] = portalParser
 
     const htmlPath = path.resolve(`${portalSrcFolder}/${file}`)
@@ -306,50 +231,37 @@ module.exports = (app) => {
           // ignore no js file - that is valid
           localJS = localJS || ''
 
-          compileLibraryJS((err, libraryJS) => {
-            libraryJS = err ? `alert("#{err.toString()}");` : libraryJS
+          const options = {
+            url: portal,
+            headers: {
+              cookie: req.headers.cookie
+            }
+          }
+          request.get(options, (err, response, portalHTML) => {
+            if (err) { return res.die(err) }
 
-            compileLibraryCSS((err, libraryCSS) => {
-              libraryCSS = libraryCSS || ''
-
-              const options = {
-                url: portal,
-                headers: {
-                  cookie: req.headers.cookie
-                }
-              }
-              request.get(options, (err, response, portalHTML) => {
-                if (err) { return res.die(err) }
-
-                const injectedHTML = createInjectedHTML([htmlPath, scssPath, jsPath], !!mock, {
-                  port: app.get('port'),
-                  protocol: portalProtocol,
-                  domain: portalDomain
-                })
-
-                // redirect auth urls to proxy server
-                let localCode = localJS ? `${localHTML}\n<!-- ${jsPath} -->\n<script>\n${localJS}\n</script>` : localHTML
-                localCode = localCode.replace('/users/sign_in', `${selfRoot()}/signin-proxy/${portalProtocol}/${portalDomain}`)
-                localCode = localCode.replace('/users/sign_out', `${selfRoot()}/signout-proxy/${portalProtocol}/${portalDomain}`)
-
-                // remove portal html library js and css
-                portalHTML = portalHTML.replace(/<script.+portal-pages\.js.+>/, '')
-                portalHTML = portalHTML.replace(/<link.+portal-pages\.css.+>/, '')
-
-                // inject the fake login info if requested
-                if (fakeLogin) {
-                  portalHTML = injectFakeLogin(portalHTML, req.query)
-                }
-
-                const $ = cheerio.load(portalHTML)
-                $('head').prepend(`<base href="${portalRoot}">`)
-                $('head').append(`<!-- portal library js -->\n<script>\n${libraryJS}\n</script>`)
-                const siteRedesignLink = siteRedesign ? `<link rel="stylesheet" type="text/css" href="${selfRoot()}/site-redesign/site-redesign.css">` : ''
-                $(selector).html(`\n${injectedHTML}\n${siteRedesignLink}\n<!-- portal library css -->\n<link rel="stylesheet" type="text/css" href="${selfRoot()}/portal-pages.css">\n<!-- ${scssPath} -->\n<style id="${injectedPageStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`)
-
-                res.send($.html())
-              })
+            const injectedHTML = createInjectedHTML([htmlPath, scssPath, jsPath], !!mock, {
+              port: app.get('port'),
+              protocol: portalProtocol,
+              domain: portalDomain
             })
+
+            // redirect auth urls to proxy server
+            let localCode = localJS ? `${localHTML}\n<!-- ${jsPath} -->\n<script>\n${localJS}\n</script>` : localHTML
+            localCode = localCode.replace('/users/sign_in', `${selfRoot()}/signin-proxy/${portalProtocol}/${portalDomain}`)
+            localCode = localCode.replace('/users/sign_out', `${selfRoot()}/signout-proxy/${portalProtocol}/${portalDomain}`)
+
+            // inject the fake login info if requested
+            if (fakeLogin) {
+              portalHTML = injectFakeLogin(portalHTML, req.query)
+            }
+
+            const $ = cheerio.load(portalHTML)
+            $('head').prepend(`<base href="${portalRoot}">`)
+            const siteRedesignLink = siteRedesign ? `<link rel="stylesheet" type="text/css" href="${selfRoot()}/site-redesign/site-redesign.css">` : ''
+            $(selector).html(`\n${injectedHTML}\n${siteRedesignLink}\n<!-- ${scssPath} -->\n<style id="${injectedPageStyleId}">\n${localCSS}</style>\n<!-- ${htmlPath} -->\n${localCode}\n`)
+
+            res.send($.html())
           })
         })
       })
