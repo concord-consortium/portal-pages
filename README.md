@@ -40,15 +40,15 @@ To run the local development and testing server do a one time install of the nod
 
 `npm install`
 
-and then run one of the following to start the appropriate server. In all cases you can pass `-- --port <port>` to use a different port than 8080 (note the two sets of --, the first -- causes the remainder of the line to be appended to the start script in package.json)
+and then run one of the following to start the appropriate server. In all cases you can pass `-- --port <port>` to change the port of the server (note the two sets of --, the first -- causes the remainder of the line to be appended to the start script in package.json)
 
-`npm start` - serve up the examples as well as the library.
+`npm start` - serve up the examples as well as the library. default port 8080, will choose random port if that one is taken.
 
-`npm start:prod` - serve up the examples and library in production mode. This is used when integrating with a local portal. It will dynamically create both portal-pages.js and portal-pages.css
+`npm start:prod` - serve up the examples and library in production mode. This is used when integrating with a local portal. It will dynamically create both portal-pages.js and portal-pages.css. default port 8080, will choose random port if that one is taken.
 
-`npm start-portals` - serve up the files in src/portals with a special proxy server to make development of these pages easier.  See below.
+`npm start-portals` - serve up the files in src/portals with a special proxy server to make development of these pages easier.  See below. default port 10000.
 
-`npm start-portals:prod` - serve up the files in src/portals with a special proxy server to make development of these pages easier. See below.
+`npm start-portals:prod` - serve up the files in src/portals with a special proxy server to make development of these pages easier. See below. default port 10000.
 
 ### Development of the homepage and project/collection pages.
 
