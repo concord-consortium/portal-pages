@@ -88,7 +88,7 @@ You configure your portal by editing the `.env` file in your portal src folder. 
 
 Using this approach the live-reload feature of the portal pages server works. When you make a change in the portal pages code, the page you are looking at in the portal should reload automatically.
 
-As an alternative you can use the ResourceOverride chrome plugin described in the next section instead of modifying your local portal config. I'm not sure if the live-reload feature of the portal pages server will work in this case.
+As an alternative you can use the ResourceOverride chrome plugin described in the next section instead of modifying your local portal config. However the live-reload feature of the portal pages server does not work with ResourceOverride.
 
 ## Testing local Portal Pages with a remote Portal
 
