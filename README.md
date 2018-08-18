@@ -78,7 +78,7 @@ The server will also record all the non-mocked ajax responses if you start the s
 
 `npm start -- --recordAjax` (note the two sets of --, the first -- causes the remainder of the line to be appended to the start script in package.json)
 
-## Testing loca portal pages with Local Portal
+## Testing local Portal Pages with Local Portal
 
 The best way to do this is to configure your local Portal to point at your local Portal pages server.  The portal expects both a portal-pages.js and a portal-pages.css file so you need to use `npm run start:prod` portal pages server.
 
@@ -88,7 +88,7 @@ Using this approach the live-reload feature of the portal pages server works. Wh
 
 As an alternative you can use the ResourceOverride chrome plugin described in the next section instead of modifying your local portal config. I'm not sure if the live-reload feature of the portal pages server will work in this case.
 
-## Testing local portal pages on a Remote Portal
+## Testing local Portal Pages with a remote Portal
 
 You can use the proxy setup described above to test out some parts of portal pages with content from a remote portal. However several portal features do not work properly. An alternative which seems to work better is to use the [ResourceOverride Chrome extension](https://github.com/kylepaulsen/ResourceOverride) to override all requests to the portal-pages library js and css with your local javascript.
 
@@ -99,14 +99,18 @@ Then go into ResourceOverride extension page and add this mapping: https://porta
 Mixed https and http content works fine. Also if you look at the Chrome DevTools Source tab you should see that portal-pages.js and portal-pages.css are listed on the dev host that you mapped them too.
 
 ## Travis S3 Deployments ##
+
 Travis will automatically build these resources:
 https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/library/portal-pages.js
 
 
 ## Building an example page for a new Portal React Component ##
+
 Create an HTML file in `src/examples/`.  It will be easiest to copy one of the existing examples. `npm run start` and `npm run start:prod` can both be used to view these examples locally.  `npm run build` will build them and put the result in `dest/examples`.  When you push a branch the examples will be built by travis and deployed to  `https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/examples/<your-example>.html`.
 
 The html files in `src/examples` are modified by webpack. It adds a reference to portal-pages.js. And if `npm run start:prod` or `npm run build` is called then it will also add a reference to portal-pages.css.
+
+Note: the example pages need to bring in React and ReactDOM, often they also need to bring in other libraries that the Portal provides. This is something we should improve. The easiest approach (until we fix this) is to bring in the full portal application.js. However if you can identify which libraries are needed and only bring in those libraries from CDN sites that is better, it will help us improve this later.
 
 ## License
 
