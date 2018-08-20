@@ -7,11 +7,11 @@ var CheckboxInput = function () {
   return React.createClass({
     displayName: 'CheckboxInput',
     mixins: [Formsy.Mixin],
-    componentDidMount: function() {
-      return this.setValue(this.props.defaultChecked);
+    componentDidMount: function () {
+      return this.setValue(this.props.defaultChecked)
     },
-    changeValue: function(event) {
-      return this.setValue(event.target.checked);
+    changeValue: function (event) {
+      return this.setValue(event.target.checked)
     },
     render: function () {
       return div({

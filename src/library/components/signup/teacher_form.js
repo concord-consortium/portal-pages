@@ -225,7 +225,7 @@ var TeacherForm = function () {
               label: 'Send me updates about educational technology resources.'
             })
           ) : void 0
-        ),
+        )
       ) : void 0,
       dl({},
         dt({}, 'Country'),
