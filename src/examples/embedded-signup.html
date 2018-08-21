@@ -1,0 +1,38 @@
+<html>
+	<head>
+      <script src="https://learn.staging.concord.org/assets/application.js"></script>
+      <link rel="stylesheet" href="https://learn.staging.concord.org/assets/learn/stylesheets/application.css">
+      <script src="./portal-api.js"></script>
+	</head>
+	<body>
+		<div id="test-embedded-signup-form" style="text-align: left;"></div>
+
+		<script>
+	    Portal.currentUser = {}
+	    Portal.currentUser.isAnonymous = true
+	    // Portal.enewsSubscriptionEnabled = true
+			//
+	    // // mock google analytics
+	    // window.ga = function(){}
+		</script>
+		<script>
+   		window.onload = function () {
+		    PortalPages.renderSignupForm(
+				{
+					oauthProviders: [
+
+						{ 	name:           "google",
+							display_name:   "Google",
+							directPath:     "http://google.com" },
+
+						{ 	name:           "foo",
+							display_name:   "Foo",
+							directPath:     "http://foo.com" }
+					]
+				},
+		        "#test-embedded-signup-form"
+			);
+		};
+		</script>
+</body>
+</html>
