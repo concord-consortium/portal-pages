@@ -134,9 +134,14 @@ module.exports = {
         chunkFilename: '[id].css'
       }
     ),
+    example('assignments'),
+    example('embedded-signup'),
+    example('header'),
     example('header-itsi'),
+    example('header-has'),
     example('navigation-compact'),
     example('navigation'),
+    example('recent-activity'),
     example('signup-after-sso'),
     example('signup'),
     example('unit-test-example')
