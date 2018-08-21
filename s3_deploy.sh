@@ -9,6 +9,9 @@ fi
 
 if [ "$TRAVIS_BRANCH" = "master" ]; then
   mv dest _site
+  # the main page and collection pages use this site-redesign from master so it needs
+	# to be at the root of the site.  There should be a better solution for this.
+  mv dest-portals/site-redesign _site/
 else
   # the 2> is to prevent error messages when no match is found
   CURRENT_TAG=`git describe --tags --exact-match $TRAVIS_COMMIT 2> /dev/null`
