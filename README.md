@@ -110,7 +110,9 @@ https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/library/portal
 
 ## Building an example page for a new Portal React Component ##
 
-Create an HTML file in `src/examples/`.  It will be easiest to copy one of the existing examples. `npm run start` and `npm run start:prod` can both be used to view these examples locally.  `npm run build` will build them and put the result in `dest/examples`.  When you push a branch the examples will be built by travis and deployed to  `https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/examples/<your-example>.html`.
+Create an HTML file in `src/examples/`.  It will be easiest to copy one of the existing examples. You also need to a new line to webpack.config.js: look for the lines that look like `example(...)`, and add a new one for your example.  
+
+`npm run start` and `npm run start:prod` can both be used to view these examples locally.  `npm run build` will build them and put the result in `dest/examples`.  When you push a branch the examples will be built by travis and deployed to  `https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/examples/<your-example>.html`.
 
 The html files in `src/examples` are modified by webpack. It adds a reference to portal-pages.js. And if `npm run start:prod` or `npm run build` is called then it will also add a reference to portal-pages.css.
 
@@ -127,11 +129,10 @@ Although the most desirable developer experience is one where we start by writin
 This example can be demonstrated by using the techniques previously described in this document. It goes something like this:
 
 * Refresh the dependencies. Typically done with `npm install`.
-* Build the `portal-pages.js` library. Typically `npm run build`.
-* Serve up the example page, say, with live-server. `npm run live-server`.
-* Navigating a browser to the unit-testing-example's html page. `localhost:10000/examples/unit-test-example.html`.
+* Serve example page: `npm run start`
+* Navigating a browser to the unit-testing-example's html page. `localhost:8080/examples/unit-test-example.html`. Note: if you already have a server running on 8080, a random port will be chosen. The base URL is added to the clipboard so you can paste it into your browser.
 
-At this point you should see a boring little html page with some descriptive text. But most important, is a small display at the bottom of the page, 
+At this point you should see a boring little html page with some descriptive text. But most important, is a small display at the bottom of the page,
 
 ```
 The Meaning of Life:"42"
