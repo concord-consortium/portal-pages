@@ -213,7 +213,13 @@ var StemFinder = Component({
         query.push('&material_properties[]=')
         query.push(encodeURIComponent(featureFilter.searchMaterialProperty))
       }
-      // TODO: model and sensor-based
+      if (featureFilter.searchSensors) {
+        featureFilter.searchSensors.forEach(function (searchSensor) {
+          query.push('&sensors[]=')
+          query.push(encodeURIComponent(searchSensor))
+        })
+      }
+      // TODO: model
     })
 
     // grade
