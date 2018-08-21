@@ -116,6 +116,46 @@ The html files in `src/examples` are modified by webpack. It adds a reference to
 
 Note: the example pages need to bring in React and ReactDOM, often they also need to bring in other libraries that the Portal provides. This is something we should improve. The easiest approach (until we fix this) is to bring in the full portal application.js. However if you can identify which libraries are needed and only bring in those libraries from CDN sites that is better, it will help us improve this later.
 
+
+## Unit Testing of React Components
+
+A **Jest** unit-testing framework is included in portal-pages. To see how it works, an example with the name `unit-test-example` contains a React component called `DisplayText` that will be our "code under test".
+
+Although the most desirable developer experience is one where we start by writing a failing test; followed by adding just enough code to make the test pass; and, finally demonstrating the visual result for human eyeballs. However, to demo this framework, it will be described in the reverse order.
+
+
+This example can be demonstrated by using the techniques previously described in this document. It goes something like this:
+
+* Refresh the dependencies. Typically done with `npm install`.
+* Build the `portal-pages.js` library. Typically `npm run build`.
+* Serve up the example page, say, with live-server. `npm run live-server`.
+* Navigating a browser to the unit-testing-example's html page. `localhost:10000/examples/unit-test-example.html`.
+
+At this point you should see a boring little html page with some descriptive text. But most important, is a small display at the bottom of the page, 
+
+```
+The Meaning of Life:"42"
+```
+
+This display is coming from our React component that is under test, `DisplayText`.
+
+To run the unit tests, use the command `npm test`, which will run all the tests and start a file watcher. As files change, the tests will be re-run for you. The display should looks something like this:
+
+```
+ PASS  tests/library/components/unit-test-example/display-text.test.js  When I try to display some text
+    ✓ shows what I asked for in the body (3ms)
+    ✓ shows what I asked for as the value
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 totalSnapshots:   0 total
+Time:        7.237s
+Ran all test suites related to changed files.
+
+Watch Usage: Press w to show more.
+```
+
+Of course, as time proceeds, this display will show the results of more and more unit tests are they are added to the Portal-Pages project.
+
 ## License
 
 Portal Pages is released under the [MIT License](LICENSE).

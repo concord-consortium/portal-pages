@@ -1,0 +1,22 @@
+<html>
+	<head>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.min.js"></script>
+			<script src="./portal-api.js"></script>
+	</head>
+	<body>
+		<div id="root_div"></div>
+		<script>
+
+		window.onload = function () {
+			const params = {
+				label: 'The Meaning of Life',
+				value: '42'
+			}
+			PortalPages.renderUnitTestExample(params, "root_div");
+		}
+
+	</script>
+</body>
+
+</html>

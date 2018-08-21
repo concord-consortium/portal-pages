@@ -1,12 +1,19 @@
 import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-15';
+import DisplayText from
+  '../../../../src/library/components/unit-test-example/display-text'
 
-describe('some unit test', () => {
-  it('which passes on a simple test', () => {
-    expect(3).toBe(3);
+Enzyme.configure( { adapter: new Adapter() });
+
+describe('When I try to display some text', () => {
+  const label = "this is a label";
+  const value = "this is a value";
+  const display_text = Enzyme.mount(<DisplayText label={label} value={value} />);
+  it ('shows what I asked for in the body', () => {
+    expect(display_text.prop('value')).toBe(value);
   });
-  it('which can contain some JSX and is a passing test', () => {
-    expect(<div>a</div>).not.toBe(
-      <div>b</div>
-    );
+  it ('shows what I asked for as the value', () => {
+    expect(display_text.prop('label')).toBe(label)
   });
 });

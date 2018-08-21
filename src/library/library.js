@@ -15,6 +15,7 @@ import signupFunctions from './components/signup/signup_functions'
 import RecentActivity from './components/recent-activity'
 import Assignments from './components/assigments'
 import Navigation from './components/navigation'
+import UnitTestExample from './components/unit-test-example'
 import RunWithCollaborators from './components/run-with-collaborators'
 
 const render = function (component, id) {
@@ -49,6 +50,11 @@ window.PortalPages = {
   Navigation: Navigation,
   renderNavigation: function (options, id) {
     render(React.createElement(Navigation, options), id)
+  },
+
+  UnitTestExample: UnitTestExample,
+  renderUnitTestExample: function (options, id) {
+    render(React.createElement(UnitTestExample, options), id)
   },
 
   CollectionCards: CollectionCards,

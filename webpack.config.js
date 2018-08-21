@@ -138,7 +138,8 @@ module.exports = {
     example('navigation-compact'),
     example('navigation'),
     example('signup-after-sso'),
-    example('signup')
+    example('signup'),
+    example('unit-test-example')
   ],
   externals: {
     'react': 'React',
