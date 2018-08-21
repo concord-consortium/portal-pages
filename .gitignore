@@ -1,6 +1,7 @@
 /temp
 /dest
 /dest-portals
+/coverage
 node_modules
 npm-debug.log
 \.DS_Store

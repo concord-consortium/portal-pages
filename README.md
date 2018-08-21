@@ -129,10 +129,12 @@ Although the most desirable developer experience is one where we start by writin
 This example can be demonstrated by using the techniques previously described in this document. It goes something like this:
 
 * Refresh the dependencies. Typically done with `npm install`.
-* Serve example page: `npm run start`
-* Navigating a browser to the unit-testing-example's html page. `localhost:8080/examples/unit-test-example.html`. Note: if you already have a server running on 8080, a random port will be chosen. The base URL is added to the clipboard so you can paste it into your browser.
+* Build and serve up the example page: `npm run start`
+* Navigating a browser to the unit-testing-example's html page.
 
-At this point you should see a boring little html page with some descriptive text. But most important, is a small display at the bottom of the page,
+  Use `localhost:8080/examples/unit-test-example.html`. Note: if you already have a server running on 8080, a random port will be chosen. The base URL is added to the clipboard so you can paste it into your browser.
+
+At this point you should see a boring little html page with some descriptive text. But most important, there is a small display at the bottom of the page,
 
 ```
 The Meaning of Life:"42"
@@ -140,16 +142,18 @@ The Meaning of Life:"42"
 
 This display is coming from our React component that is under test, `DisplayText`.
 
-To run the unit tests, use the command `npm test`, which will run all the tests and start a file watcher. As files change, the tests will be re-run for you. The display should looks something like this:
+To run the unit tests, use the command `npm test`, which will run all the tests and start a file watcher. As files change, the tests will be re-run for you. The display should look something like this:
 
 ```
- PASS  tests/library/components/unit-test-example/display-text.test.js  When I try to display some text
-    ✓ shows what I asked for in the body (3ms)
+ PASS  tests/library/components/unit-test-example/display-text.test.js
+   When I try to display some text
+    ✓ shows what I asked for in the label (3ms)
     ✓ shows what I asked for as the value
 
 Test Suites: 1 passed, 1 total
-Tests:       2 passed, 2 totalSnapshots:   0 total
-Time:        7.237s
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.098s
 Ran all test suites related to changed files.
 
 Watch Usage: Press w to show more.
