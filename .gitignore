@@ -1,5 +1,6 @@
 /temp
 /dest
+/dest-portals
 node_modules
 npm-debug.log
 \.DS_Store

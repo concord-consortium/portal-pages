@@ -4,11 +4,16 @@
   "description": "Concord Portal Pages",
   "main": "server/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node server/bin/www",
-    "start:dev": "cross-env NODE_ENV=development node server/bin/www",
+    "start": "cross-env NODE_ENV=development webpack-serve",
+    "start:prod": "cross-env NODE_ENV=production webpack-serve",
+    "start-portals": "cross-env NODE_ENV=development node server/bin/www",
+    "start-portals:prod": "cross-env NODE_ENV=production node server/bin/www",
     "lint": "standard --fix \"src/**/*.js\"",
-    "build": "npm run lint && node scripts/build.js",
-    "live-server": "./node_modules/.bin/live-server --cors --verbose --no-browser --port=10000 ./dest"
+    "build": "npm run lint && npm run build-portals && npm run build-library",
+    "build-portals": "node scripts/build.js",
+    "build-library": "cross-env NODE_ENV=production webpack",
+    "live-server": "./node_modules/.bin/live-server --cors --verbose --no-browser --port=10000 ./dest",
+    "test": "jest --watch"
   },
   "standard": {
     "globals": [
@@ -34,18 +39,30 @@
   },
   "homepage": "https://github.com/concord-consortium/portal-pages#readme",
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.44",
-    "@babel/preset-env": "^7.0.0-beta.44",
-    "@babel/preset-react": "^7.0.0-beta.44",
-    "babel-loader": "^8.0.0-beta.2",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.4.2",
+    "babel-loader": "^8.0.0-beta.4",
+    "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^0.28.11",
+    "enzyme": "^3.4.4",
+    "enzyme-adapter-react-15": "^1.0.6",
+    "file-loader": "^1.1.11",
     "glob": "^7.1.2",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.5.0",
     "live-server": "^1.2.0",
-    "sass-loader": "^7.0.1",
+    "mini-css-extract-plugin": "^0.4.1",
+    "react-test-renderer": "^16.4.2",
+    "sass-loader": "^7.1.0",
     "standard": "^11.0.1",
     "style-loader": "^0.21.0",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.6.0"
+    "url-loader": "^1.1.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-serve": "^2.0.2"
   },
   "dependencies": {
     "@concord-consortium/portal-report": "1.7.0-pre.5",
@@ -54,7 +71,7 @@
     "chokidar": "^1.7.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
-    "cross-env": "^5.0.0",
+    "cross-env": "^5.2.0",
     "debug": "~2.6.3",
     "express": "^4.15.3",
     "faye-websocket": "^0.11.1",
@@ -63,13 +80,13 @@
     "mkdirp": "^0.5.1",
     "morgan": "~1.8.1",
     "ncp": "^2.0.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.9.3",
     "opn": "^5.0.0",
     "pug": "~2.0.0-beta11",
     "rc-tooltip": "^3.7.2",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-sortable-hoc": "^0.6.8",
-    "request": "^2.81.0"
+    "request": "^2.88.0"
   }
 }
