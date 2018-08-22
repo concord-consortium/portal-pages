@@ -1,0 +1,529 @@
+<link rel="stylesheet" href="https://portal-pages.concord.org/site-redesign/site-redesign.css" />
+<style>
+body.member-visitor #content { overflow-y: hidden; }
+body.guest-visitor .wrapper { width: auto !important; }
+.cols { margin-bottom: 30px; }
+#primary.wide { width: 100%; }
+#primary.wide #content { overflow: hidden; }
+.alert-banner {
+  background: #fee9aa;
+  color: #e16a3e;
+  margin: .5em 0 1.5em;
+  padding: .75em;
+  text-align: center; }
+  .alert-banner p {
+    margin-bottom: 0; }
+</style>
+
+<div class="cols">
+<div class="col-3">
+  <div id="clazzes_nav"></div>
+</div>
+<div class="col-9">
+<h2>Innovative Technology in Science Inquiry</h2>
+
+<p>The Innovative Technology in Science Inquiry project engages students in STEM activities through the integrated use of technologies that include modeling, computational thinking, and real-time data acquisition. This comprehensive project will assist teachers in preparing diverse students for STEM careers by engaging them in exciting, inquiry-based science projects.</p>
+
+<p class="hide-from-all-visitors show-to-author-visitor">
+<a href="/eresources/1/copy" class="button pie" target="_blank">Create ITSI Activity</a>
+</p>
+<div id="bin-view"></div>
+</div>
+</div>
+<script>
+  // this was removed for the time being because it was empty
+  var earlyElementaryBin =    {
+      category: "Early Elementary K-2 Physical Science",
+      className: "earlyelementary-K2",
+      children: [
+        {
+          collections: [
+            {
+              id: 1
+            }
+          ]
+        }
+      ]
+    };
+
+  var MATERIALS = [
+ {
+      category: "Elementary 3-4 Engineering",
+      className: "elementary-34",
+      children: [
+        {
+          collections: [
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/energy-production-teacher-guide'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/playground-design'
+            },
+            {
+              id: 1
+            }
+          ]
+        }
+      ]
+    },
+   {
+      category: "Elementary 3-4 Life Science",
+      className: "elementary-34",
+      children: [
+        {
+          collections: [
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/habitat-and-life-cycles'
+            },
+            {
+              id: 1
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/senses'
+            }
+          ]
+        }
+      ]
+   },
+   {
+      category: "Elementary 3-4 Physical Science",
+      className: "elementary-34",
+      children: [
+        {
+          collections: [
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/electricity-and-magnetism-teacher-guide'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/friction'
+            },
+            {
+              id: 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      category: "Elementary 5-6 Earth Science",
+      className: "elementary-56",
+      children: [
+        {
+          collections: [
+            {
+              id: 1,
+               teacherGuideUrl: 'https://guides.itsi.concord.org/planets-and-moons'
+            },
+            {
+              id: 1,
+               teacherGuideUrl: 'https://guides.itsi.concord.org/soil-and-rocks'
+            },
+            {
+              id: 1,
+               teacherGuideUrl: 'https://guides.itsi.concord.org/water-cycle-teacher-guide'
+            }
+          ]
+        }
+      ]
+    },
+   {
+      category: "Elementary 5-6 Life Science",
+      className: "elementary-56",
+      children: [
+        {
+          collections: [
+            {
+              id: 1
+            },
+            {
+              id: 1,
+               teacherGuideUrl: 'https://guides.itsi.concord.org/living-environment-teacher-guide'
+            },
+            {
+              id: 1
+            }
+          ]
+        }
+      ]
+    },
+   {
+      category: "Elementary 5-6 Physical Science",
+      className: "elementary-56",
+      children: [
+        {
+          collections: [
+           {
+              id: 1,
+               teacherGuideUrl: 'https://guides.itsi.concord.org/cycles-teacher-guide'
+            },
+           {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/energy-transformations-es-teacher-guide'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/forces-and-motion-teacher-guide'
+            }
+          ]
+        }
+      ]
+    },
+{
+      category: "Middle School Earth Science",
+      className: "middle-school",
+      children: [
+        {
+          collections: [
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/climate-change-teacher-guide-ms'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/crystals-teacher-guide'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/earthquakes-teacher-guide'
+            },
+            {
+              id: 1
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/water-cycle-teacher-guide-middle-school'
+            },
+            {
+              id: 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      category: "Middle School Engineering",
+      className: "middle-school",
+      children: [
+        {
+          collections: [
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/energy-transformations-teacher-guide'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      category: "Middle School Environmental Science",
+      className: "middle-school",
+      children: [
+        {
+          collections: [
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/water-science-teacher-guides'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      category: "Middle School Life Science",
+      className: "middle-school",
+      children: [
+        {
+          collections: [
+            {
+              id: 1
+            },
+            {
+              id: 1
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/inheritance-teacher-guide'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/photosynthesis-teacher-guide'
+            },
+            {
+              id: 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      category: "Middle School Physical Science",
+      className: "middle-school",
+      children: [
+        {
+          collections: [
+            {
+              id: 1
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/heat-and-temperature'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/molecular-motion-teacher-guide'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/motion'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/phase-change'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/sound'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      category: "High School Biology",
+      className: "high-school",
+      children: [
+        {
+          collections: [
+            {
+              id: 1
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/evolution'
+            },
+            {
+              id: 1
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/molecular-motion'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/populations-hs-teacher-guide'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/protein-structure'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      category: "High School Chemistry",
+      className: "high-school",
+      children: [
+        {
+          collections: [
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/atomic-structure'
+            },
+            {
+              id: 1,
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/driving-forces-of-reactions'
+            },
+            {
+              id: 1,
+            },
+            {
+              id: 1,
+            },
+            {
+              id: 1,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      category: "High School Environmental Science",
+      className: "high-school",
+      children: [
+        {
+          collections: [
+            {
+              id: 1,
+              teacherGuideUrl:'https://guides.itsi.concord.org/teaching-environmental-sustainability-model-my-watershed-teacher-guide-2016'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      category: "High School Physics",
+      className: "high-school",
+      children: [
+        {
+          collections: [
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/climate-change'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/collisions-teacher-guide'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/electricity'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/heat-transfer'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/light-and-matter-teacher-guide'
+            },
+            {
+              id: 1
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/ramps-and-friction'
+            },
+            {
+              id: 1,
+              teacherGuideUrl: 'https://guides.itsi.concord.org/waves'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      category: "STEM Career Surveys",
+      className: "high-school",
+      children: [
+        {
+          collections: [
+            {
+              id: 1
+            },
+            {
+              id: 1
+            }
+         ]
+       }
+     ]
+    },
+    {
+      category: "My activities",
+      loginRequired: true,
+      className: "other-cat",
+      children: [
+        {
+          ownMaterials: true
+        }
+      ]
+    },
+    {
+      category: "Other activities",
+      loginRequired: true,
+      className: "other-cat",
+      children: [
+        {
+          materialsByAuthor: true
+        }
+      ]
+    }
+  ];
+
+Portal.renderMaterialsBin(MATERIALS, '#bin-view');
+PortalPages.renderNavigation(Portal.API_V1.getNavigation(), 'clazzes_nav');
+</script>
+
+
+  
+
+<style>
+.earlyelementary-K2 {
+  background: #fee9aa;
+  color: #166971;
+}
+.elementary-34 {
+  background: #8cbbb8;
+  color: #166971;
+}
+.elementary-56 {
+  background: #368991;
+  color: #cfe3e3;
+}
+.middle-school {
+  background: #ea9b18;
+  color: #555555;
+}
+.high-school {
+  background: #8fbf5f;
+  color: #555555;
+}
+.stem-career {
+  background: #8fbf5f;
+  color: #555555;
+}
+.math-math {
+  background: #fee9aa;
+  color: #555555;
+}
+.other-cat {
+  background: #DBDBDB;
+  color: #555555;
+}
+.mb-collection {
+  min-width: 200px;
+}
+.materials-bin {
+  background: #f4f4f4;
+}
+.mb-collection-name {
+  color: #ee864e;
+  font-size: 20px;
+}
+.mb-material-name {
+  font-weight: bold;
+}
+.mb-toggle-info {
+  background: url('/assets/components/materials_bin/itsi_info.png') no-repeat;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+}
+.mb-toggle-info-text {
+  display: none;
+}
+.mb-run {
+  background: url('/assets/components/materials_bin/itsi_run.png') no-repeat;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+.mb-run-text {
+  display: none;
+}
+.mb-assign-to-class, .mb-assign-to-collection {
+  display: none;
+}
+.mb-collection-name:hover {
+  color: #E75100;
+}
+</style>
