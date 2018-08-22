@@ -1,0 +1,82 @@
+body.member-visitor #content { overflow-y: hidden; }
+body.guest-visitor .wrapper { width: auto !important; }
+.cols { margin-bottom: 30px; }
+#primary.wide { width: 100%; }
+#primary.wide #content { overflow: hidden; }
+.alert-banner {
+  background: #fee9aa;
+  color: #e16a3e;
+  margin: .5em 0 1.5em;
+  padding: .75em;
+  text-align: center; }
+  .alert-banner p {
+    margin-bottom: 0; }
+    .earlyelementary-K2 {
+  background: #fee9aa;
+  color: #166971;
+}
+.elementary-34 {
+  background: #8cbbb8;
+  color: #166971;
+}
+.elementary-56 {
+  background: #368991;
+  color: #cfe3e3;
+}
+.middle-school {
+  background: #ea9b18;
+  color: #555555;
+}
+.high-school {
+  background: #8fbf5f;
+  color: #555555;
+}
+.stem-career {
+  background: #8fbf5f;
+  color: #555555;
+}
+.math-math {
+  background: #fee9aa;
+  color: #555555;
+}
+.other-cat {
+  background: #DBDBDB;
+  color: #555555;
+}
+.mb-collection {
+  min-width: 200px;
+}
+.materials-bin {
+  background: #f4f4f4;
+}
+.mb-collection-name {
+  color: #ee864e;
+  font-size: 20px;
+}
+.mb-material-name {
+  font-weight: bold;
+}
+.mb-toggle-info {
+  background: url('/assets/components/materials_bin/itsi_info.png') no-repeat;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+}
+.mb-toggle-info-text {
+  display: none;
+}
+.mb-run {
+  background: url('/assets/components/materials_bin/itsi_run.png') no-repeat;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+.mb-run-text {
+  display: none;
+}
+.mb-assign-to-class, .mb-assign-to-collection {
+  display: none;
+}
+.mb-collection-name:hover {
+  color: #E75100;
+}
