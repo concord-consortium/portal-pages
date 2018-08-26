@@ -145,8 +145,26 @@ export default class Navigation extends React.Component {
     }
   }
 
+  sortLinks (links) {
+    links.forEach((item) => {
+      if (item.children) {
+        item.children = this.sortLinks(item.children)
+      }
+    })
+
+    return links.sort((a, b) => {
+      if (a.sort < b.sort) {
+        return -1
+      }
+      if (a.sort > b.sort) {
+        return 1
+      }
+      return 0
+    })
+  }
+
   render () {
-    const items = this.props.links
+    const items = this.sortLinks(this.props.links)
     const rendered = items.map(item => this.renderItem(item))
     const head = this.renderHead()
     const classNames = [css.leftNavigation]
@@ -168,3 +186,4 @@ export default class Navigation extends React.Component {
     )
   }
 }
+Navigation.defaultProps = defaultNavProps
