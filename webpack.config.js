@@ -134,6 +134,7 @@ module.exports = {
         chunkFilename: '[id].css'
       }
     ),
+    example('activity-settings-editor'),
     example('assignments'),
     example('embedded-signup'),
     example('header'),

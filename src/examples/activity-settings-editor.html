@@ -1,0 +1,66 @@
+<html>
+	<head>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.min.js"></script>
+			<script src="./portal-api.js"></script>
+	</head>
+	<body>
+		<div id="left-nav"></div>
+		<script>
+			var settingsData = {
+				"allow_collaboration": false,
+				"append_auth_token": null,
+				"append_learner_id_to_url": null,
+				"append_survey_monkey_uid": null,
+				"archive_date": null,
+				"archived_description": null,
+				"author_email": "dlove@dev.com",
+				"author_url": "http://app.lara.docker/activities/2/edit",
+				"created_at": "2018-07-26T21:57:08Z",
+				"credits": null,
+				"enable_sharing": true,
+				"external_report_id": null,
+				"has_pretest": false,
+				"id": 2,
+				"is_archived": false,
+				"is_assessment_item": false,
+				"is_featured": false,
+				"is_locked": false,
+				"is_official": true,
+				"launch_url": "http://app.lara.docker/activities/2",
+				"license_code": null,
+				"logging": false,
+				"long_description": null,
+				"long_description_for_teacher": null,
+				"material_type": "Activity",
+				"name": "One VERY Froggy Evening",
+				"offerings_count": 0,
+				"popup": true,
+				"print_url": "http://app.lara.docker/activities/2/print_blank",
+				"publication_status": "published",
+				"rubric_url": null,
+				"save_path": null,
+				"saves_student_data": true,
+				"short_description": null,
+				"student_report_enabled": true,
+				"teacher_guide_url": null,
+				"template_id": 2,
+				"template_type": "Activity",
+				"thumbnail_url": "",
+				"updated_at": "2018-07-26T21:57:08Z",
+				"url": "http://app.lara.docker/activities/2",
+				"user_id": 12,
+				"uuid": "d754f666-911e-11e8-9f1e-0242ac120009"
+			};
+
+		window.onload = function () {
+			const params = {
+				settings: settingsData
+			}
+      PortalPages.renderActivitySettingsEditor(params, "left-nav");
+		}
+
+	</script>
+</body>
+
+</html>
