@@ -29,20 +29,6 @@ export default class SettingsPage extends React.Component {
     const { fields, settings, update } = this.props
     return (
       <div>
-        <span>
-          <p>
-            A message from your developer: This list describes the state of
-            each setting -- as indicated by a letter at the beginning of each
-            description, for each setting.
-            <ul>
-              <li>W: appears to work</li>
-              <li>N: needs a portal "setting" name</li>
-              <li>A: broken in the portal API</li>
-              <li>D: needs descriptive text</li>
-            </ul>
-            <br />
-          </p>
-        </span>
         <table>
           <tbody>
             {
