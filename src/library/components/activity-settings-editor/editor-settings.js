@@ -30,11 +30,15 @@ export default function editor_settings() {
     editor_page: [
       { label: 'Name',               type: 'text',     name: 'name',
         dscrp: 'The display name of this activity.'},
-      { label: '**Source Type',        type: 'choice',   name: '',
-        dscrp: 'Just a placeholder till I talk to Scott',
-        options: [
-          { option: 'LARA', value: 'lara' },
-          { option: 'Native', value: 'native' } ]},
+      // The following setting, Source Type, has been removed pending changes
+      // in portal to supply the setting and to accept the change of setting
+      // when passed to the update-API.
+      //
+      // { label: '**Source Type',        type: 'choice',   name: '',
+      //   dscrp: 'Just a placeholder, for now.',
+      //   options: [
+      //     { option: 'LARA', value: 'lara' },
+      //     { option: 'Native', value: 'native' } ]},
       { label: 'CC Official',        type: 'boolean',  name: 'is_official',
         dscrp: 'Designate this as an "official" Concord activity in lists.' },
       { label: 'Locked',             type: 'boolean',  name: 'is_locked',
@@ -45,8 +49,6 @@ export default function editor_settings() {
           { option: 'Published', value: 'published' },
           { option: 'Private',   value: 'private' },
           { option: 'Draft',     value: 'draft' } ]},
-      { label: '**Copied From',        type: 'text',     name: '',
-        dscrp: 'Don\'t know what to do with this one.' },
       { label: 'Credits',            type: 'text',     name: 'credits',
         dscrp: 'If present, overrides the default credits of "Admin Admin".' },
       { label: 'Short Description',  type: 'text',     name: 'short_description',
@@ -102,7 +104,7 @@ export default function editor_settings() {
           { label: 'Save Student Data', type: 'boolean', name: 'saves_student_data',
             dscrp: 'This activity saves student data which can be viewed by their teacher.' },
           { label: 'Save Path', type: 'text', name: 'save_path',
-            dscrp: '' },
+            dscrp: 'Extra parameter for custom activities.' },
           { label: 'Material Type', type: 'choice', name: 'material_type',
             dscrp: 'Users can see the type of material in various places, ' +
                     'use this field to change that type',

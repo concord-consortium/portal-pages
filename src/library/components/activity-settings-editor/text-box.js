@@ -9,6 +9,7 @@ export default class TextBox extends React.Component {
     const { api, value, update, name } = this.props;
     return (
       <textarea style={textAreaStyle} value={value}
+        className="mceNoEditor"
         onChange={(e) => { update({ [name]: e.target.value }); }}
         onBlur={(e) => { api(e) }}
       />
