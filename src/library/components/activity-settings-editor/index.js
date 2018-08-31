@@ -1,5 +1,5 @@
 import React from 'react'
-import DisplayJson from '../../helpers/display-json' // Remove after debugging.
+// import DisplayJson from '../../helpers/display-json' // Remove after debugging.
 import editor_settings from './editor-settings'
 import SettingsPage from './settings-page'
 
@@ -38,10 +38,18 @@ export default class ActivitySettingsEditor extends React.Component {
           settings={activity_settings}
           fields={editor_page}
           />
+        { /*
+           * The following div contains two handy debugging elements used to
+           * display the original JSON object representing the settings when
+           * the editor if first started and the current state of the object
+           * as it's being modified. This is still useful for some testing
+           * but will probably be removed fairly soon.
+           *
         <div>
           <DisplayJson title='State (edited values)' objectToDisplay={activity_settings} />
           <DisplayJson title='Property (input values)' objectToDisplay={this.props} />
         </div>
+        */ }
       </div>
     );
   }
