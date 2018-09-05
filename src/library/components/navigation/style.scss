@@ -8,7 +8,7 @@
   padding: 0;
   vertical-align: top;
   width: 100%;
-  
+
   &.overlay {
     position: absolute;
     z-index: 1;
@@ -119,8 +119,24 @@
     .icon {
       width: 18px;
     }
-    &:last-of-type {
-      border-bottom: solid 1px #ccc;
+    &.selected {
+      background: #f5f5f5;
+      color: #313131;
+    }
+  }
+  li.small + li.selected:not(.small) {
+    margin-top: 20px;
+  }
+  li.small + li:not(.small):not(.selected) {
+    margin-top: 30px;
+
+    &:before {
+        border-top: solid 1px #ccc;
+        content: '';
+        display: block;
+        height: 0;
+        margin: -20px 0 20px;
+        width: 100%;
     }
   }
 
