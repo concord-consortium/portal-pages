@@ -41,12 +41,11 @@ export default class Navigation extends React.Component {
     classes.push(this.state.opened ? css.open : css.closed)
     return (
       <div className={classes.join(' ')} onClick={clickHeader} >
-        <div>
+        <p>
           <span className={css.greeting}>{greeting}</span>
           <br />
           <strong>{name}</strong>
-          <hr />
-        </div>
+        </p>
       </div>
     )
   }
