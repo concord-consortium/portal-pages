@@ -166,6 +166,7 @@
     margin: 0px;
     padding: 13px 20px;
     color: #ea6d2f;
+    text-transform: capitalize;
     &.selected {
       color: white;
       background-color: #ea6d2f;
@@ -199,12 +200,14 @@
       font-family: 'icomoon';
       font-size: 0.8em;
       content: "\e905";
+      margin-top: 3px;
     }
     > .selected:after {
       float: right;
       font-family: 'icomoon';
       font-size: 0.8em;
       content: "\e906";
+      margin-top: 3px;
     }
   }
   li.nav-hidden {
