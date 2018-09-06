@@ -19,8 +19,8 @@ export default class Navigation extends React.Component {
     super(props)
     this.state = {
       opened: true,
-      selection: props.selected_section,
-      sectionOpen: props.section_open
+      location: props.selected_section,
+      openedSection: props.selected_section
     }
   }
 
@@ -64,11 +64,11 @@ export default class Navigation extends React.Component {
 
   renderLink (linkDef) {
     const {popOut, iconName, label, url, onClick} = linkDef
-    const {selection} = this.state
+    const {location} = this.state
     const target = popOut ? '_blank' : '_self'
     const icon = popOut ? 'icon-arrow-circle-right' : iconName
     const classNames = this.getLinkClasses(linkDef)
-    const selected = linkDef.id === selection
+    const selected = linkDef.id === location
     if (selected) {
       classNames.push('selected')
     }
@@ -95,23 +95,14 @@ export default class Navigation extends React.Component {
   }
 
   renderSection (section) {
-    const { selection } = this.state
-    const { sectionOpen } = this.state
+    const { openedSection } = this.state
+    const inSection = openedSection.match(section.id)
+    const inRoot = section.id === ROOT_SELECTION
+    const children = section.children.map(i => this.renderItem(i))
     const classNames = ['section']
-    let isParent, inSelection, inRoot, children
-    if (typeof sectionOpen !== 'undefined') {
-      if (section.id == '/classes') { // is there something less specific to check for here? parent.id?
-        isParent = true
-      } else {
-        isParent = false
-      }
-      inSelection = sectionOpen.match(section.id)
-      inRoot = section.id === ROOT_SELECTION
-      children = section.children.map(i => this.renderItem(i))
 
-      if (inSelection && (!inRoot)) {
-        classNames.push('open')
-      }
+    if (inSection && (!inRoot)) {
+      classNames.push('open')
     }
 
     const styles = classNames
@@ -126,23 +117,18 @@ export default class Navigation extends React.Component {
     // const parentId = parentPathTree.join('/') || ROOT_SELECTION
 
     const clickHandler = (e) => {
-      console.log(section)
       e.stopPropagation()
-      if (inSelection && !inRoot) {
-        if (isParent) {
-          this.setState({sectionOpen: ROOT_SELECTION})
-        } else {
-          this.setState({sectionOpen: '/classes'}) // is there something less specific to check for here? parent.id?
-        }
+      if (inSection && !inRoot) {
+        this.setState({openedSection: ROOT_SELECTION})
       } else {
-        this.setState({sectionOpen: section.id})
+        this.setState({openedSection: section.id})
       }
       return true
     }
     return (
       <li className={styles} onClick={clickHandler} key={section.id}>
         {displayName}
-        <span className={inSelection ? css.open : css.closed} />
+        <span className={inSection ? css.open : css.closed} />
         <ul>
           {children}
         </ul>
