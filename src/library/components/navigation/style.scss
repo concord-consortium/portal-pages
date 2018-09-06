@@ -96,13 +96,28 @@
     list-style: none;
     margin: 0;
     padding: 0;
+
+    ul {
+      margin: 10px 10px;
+
+      ul {
+        margin: 0;
+      }
+    }
   }
   li {
     list-style: none;
     cursor: pointer;
     margin: 0;
     padding: 0;
-    li { font-size: 14px;}
+    li {
+      font-size: 14px;
+      padding: 10px 0;
+
+      li {
+        padding: 5px 10px;
+      }
+    }
   }
 
   a, a:visited, a:active {
@@ -170,16 +185,16 @@
     &.selected {
       color: white;
       background-color: #ea6d2f;
+    }
+    &.open {
+      background: #eee;
       > ul {
         max-height: 100vh;
-        margin-bottom: 1em;
         // margin: 0px;
         transition-duration: 200ms;
         font-weight: 100;
       }
       li {
-        color: white;
-        background-color: #ea6d2f;
         .unselected:after {
           content: "";
         }
@@ -195,19 +210,34 @@
     }
   }
   .section {
-    > .unselected:after {
-      float: right;
-      font-family: 'icomoon';
-      font-size: 0.8em;
-      content: "\e905";
-      margin-top: 3px;
+    > .closed {
+
+      &:after {
+        float: right;
+        font-family: 'icomoon';
+        font-size: 0.8em;
+        content: "\e905";
+        margin-top: 3px;
+      }
+      span.closed:after {
+        content: '+' !important;
+        font-family: museo-sans,verdana,helvetica,sans-serif !important;
+      }
     }
-    > .selected:after {
-      float: right;
-      font-family: 'icomoon';
-      font-size: 0.8em;
-      content: "\e906";
-      margin-top: 3px;
+    > .open {
+
+      &:after {
+        float: right;
+        font-family: 'icomoon';
+        font-size: 0.8em;
+        content: "\e906";
+        margin-top: 3px;
+      }
+
+      span.open:after {
+        content: '-' !important;
+        font-family: museo-sans,verdana,helvetica,sans-serif !important;
+      }
     }
   }
   li.nav-hidden {
