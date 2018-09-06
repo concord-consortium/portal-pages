@@ -95,15 +95,14 @@ export default class Navigation extends React.Component {
   }
 
   renderSection (section) {
-    const { openedSection } = this.state
-    const inSection = openedSection.match(section.id)
+    const { openedSection, location } = this.state
+    const inSection = openedSection.match(section.id) && openedSection.match(section.id)[0]
+    const inLocation = location.match(section.id)
     const inRoot = section.id === ROOT_SELECTION
     const children = section.children.map(i => this.renderItem(i))
-    const classNames = ['section']
-
-    if (inSection && (!inRoot)) {
-      classNames.push('open')
-    }
+    const classNames = [css.section]
+    if (inSection && (!inRoot)) { classNames.push(css.open) }
+    if (inLocation && (!inRoot)) { classNames.push('in-selection') }
 
     const styles = classNames
       .map((name) => css[name] || name)
@@ -119,7 +118,12 @@ export default class Navigation extends React.Component {
     const clickHandler = (e) => {
       e.stopPropagation()
       if (inSection && !inRoot) {
-        this.setState({openedSection: ROOT_SELECTION})
+        if (section.id === inSection) {
+          const parentId = inSection.split('/').slice(0, -1).join('/')
+          this.setState({openedSection: parentId})
+        } else {
+          this.setState({openedSection: inSection})
+        }
       } else {
         this.setState({openedSection: section.id})
       }
