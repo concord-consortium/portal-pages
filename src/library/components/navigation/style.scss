@@ -98,10 +98,10 @@
     padding: 0;
 
     ul {
-      margin: 10px 10px;
+      margin: 0 -20px;
 
       ul {
-        margin: 0;
+        margin: 0 -21px 0 -30px;
       }
     }
   }
@@ -112,10 +112,10 @@
     padding: 0;
     li {
       font-size: 14px;
-      padding: 10px 0;
+      padding: 10px 21px 10px 30px;
 
       li {
-        padding: 5px 10px;
+        padding: 5px 21px 5px 30px;
       }
     }
   }
@@ -187,7 +187,15 @@
       background-color: #ea6d2f;
     }
     &.open {
-      background: #eee;
+      background: #ea6d2f;
+      color: #fff;
+      li, a {
+        color: #fff;
+
+        &.selected {
+          font-weight: 500;
+        }
+      }
       > ul {
         max-height: 100vh;
         // margin: 0px;
@@ -219,10 +227,7 @@
         content: "\e905";
         margin-top: 3px;
       }
-      span.closed:after {
-        content: '+' !important;
-        font-family: museo-sans,verdana,helvetica,sans-serif !important;
-      }
+
     }
     > .open {
 
@@ -234,10 +239,6 @@
         margin-top: 3px;
       }
 
-      span.open:after {
-        content: '-' !important;
-        font-family: museo-sans,verdana,helvetica,sans-serif !important;
-      }
     }
   }
   li.nav-hidden {
