@@ -19,7 +19,8 @@ export default class Navigation extends React.Component {
     super(props)
     this.state = {
       opened: true,
-      selection: props.selected_section
+      selection: props.selected_section,
+      sectionOpen: props.section_open
     }
   }
 
@@ -95,13 +96,22 @@ export default class Navigation extends React.Component {
 
   renderSection (section) {
     const { selection } = this.state
-    const inSelection = selection.match(section.id)
-    const inRoot = section.id === ROOT_SELECTION
-    const children = section.children.map(i => this.renderItem(i))
+    const { sectionOpen } = this.state
     const classNames = ['section']
+    let isParent, inSelection, inRoot, children
+    if (typeof sectionOpen !== 'undefined') {
+      if (section.id == '/classes') { // is there something less specific to check for here? parent.id?
+        isParent = true
+      } else {
+        isParent = false
+      }
+      inSelection = sectionOpen.match(section.id)
+      inRoot = section.id === ROOT_SELECTION
+      children = section.children.map(i => this.renderItem(i))
 
-    if (inSelection && (!inRoot)) {
-      classNames.push('selected')
+      if (inSelection && (!inRoot)) {
+        classNames.push('open')
+      }
     }
 
     const styles = classNames
@@ -116,18 +126,23 @@ export default class Navigation extends React.Component {
     // const parentId = parentPathTree.join('/') || ROOT_SELECTION
 
     const clickHandler = (e) => {
+      console.log(section)
       e.stopPropagation()
       if (inSelection && !inRoot) {
-        this.setState({selection: ROOT_SELECTION})
+        if (isParent) {
+          this.setState({sectionOpen: ROOT_SELECTION})
+        } else {
+          this.setState({sectionOpen: '/classes'}) // is there something less specific to check for here? parent.id?
+        }
       } else {
-        this.setState({selection: section.id})
+        this.setState({sectionOpen: section.id})
       }
       return true
     }
     return (
       <li className={styles} onClick={clickHandler} key={section.id}>
         {displayName}
-        <span className={inSelection ? css.selected : css.unselected} />
+        <span className={inSelection ? css.open : css.closed} />
         <ul>
           {children}
         </ul>
