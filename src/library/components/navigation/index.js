@@ -19,7 +19,8 @@ export default class Navigation extends React.Component {
     super(props)
     this.state = {
       opened: true,
-      selection: props.selected_section
+      location: props.selected_section,
+      openedSection: props.selected_section
     }
   }
 
@@ -41,12 +42,11 @@ export default class Navigation extends React.Component {
     classes.push(this.state.opened ? css.open : css.closed)
     return (
       <div className={classes.join(' ')} onClick={clickHeader} >
-        <div>
+        <p>
           <span className={css.greeting}>{greeting}</span>
           <br />
           <strong>{name}</strong>
-          <hr />
-        </div>
+        </p>
       </div>
     )
   }
@@ -64,11 +64,11 @@ export default class Navigation extends React.Component {
 
   renderLink (linkDef) {
     const {popOut, iconName, label, url, onClick} = linkDef
-    const {selection} = this.state
+    const {location} = this.state
     const target = popOut ? '_blank' : '_self'
     const icon = popOut ? 'icon-arrow-circle-right' : iconName
     const classNames = this.getLinkClasses(linkDef)
-    const selected = linkDef.id === selection
+    const selected = linkDef.id === location
     if (selected) {
       classNames.push('selected')
     }
@@ -95,15 +95,14 @@ export default class Navigation extends React.Component {
   }
 
   renderSection (section) {
-    const { selection } = this.state
-    const inSelection = selection.match(section.id)
+    const { openedSection, location } = this.state
+    const inSection = openedSection.match(section.id) && openedSection.match(section.id)[0]
+    const inLocation = location.match(section.id)
     const inRoot = section.id === ROOT_SELECTION
     const children = section.children.map(i => this.renderItem(i))
-    const classNames = ['section']
-
-    if (inSelection && (!inRoot)) {
-      classNames.push('selected')
-    }
+    const classNames = [css.section]
+    if (inSection && (!inRoot)) { classNames.push(css.open) }
+    if (inLocation && (!inRoot)) { classNames.push('in-selection') }
 
     const styles = classNames
       .map((name) => css[name] || name)
@@ -118,17 +117,22 @@ export default class Navigation extends React.Component {
 
     const clickHandler = (e) => {
       e.stopPropagation()
-      if (inSelection && !inRoot) {
-        this.setState({selection: ROOT_SELECTION})
+      if (inSection && !inRoot) {
+        if (section.id === inSection) {
+          const parentId = inSection.split('/').slice(0, -1).join('/')
+          this.setState({openedSection: parentId})
+        } else {
+          this.setState({openedSection: inSection})
+        }
       } else {
-        this.setState({selection: section.id})
+        this.setState({openedSection: section.id})
       }
       return true
     }
     return (
       <li className={styles} onClick={clickHandler} key={section.id}>
         {displayName}
-        <span className={inSelection ? css.selected : css.unselected} />
+        <span className={inSection ? css.open : css.closed} />
         <ul>
           {children}
         </ul>
