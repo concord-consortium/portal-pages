@@ -2,8 +2,8 @@
 
 .cols {
   &:not(.no-collapse) {
-    margin-left: 7%; 
-    margin-right: 7%; 
+    margin-left: 7%;
+    margin-right: 7%;
 
     *[class*='col-'], *[class^=' col-'], .cols {
       float: none;
@@ -14,8 +14,12 @@
         width: 100%;
         margin-left: 0;
         margin-right: 0;
-      }   
-    }   
+      }
+    }
   }
 
+}
+
+#primary {
+  margin: 30px 0 0 0;
 }
