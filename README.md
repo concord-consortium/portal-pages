@@ -44,11 +44,11 @@ and then run one of the following to start the appropriate server. In all cases 
 
 `npm start` - serve up the examples as well as the library. default port 8080, will choose random port if that one is taken.
 
-`npm start:prod` - serve up the examples and library in production mode. This is used when integrating with a local portal. It will dynamically create both portal-pages.js and portal-pages.css. default port 8080, will choose random port if that one is taken.
+`npm run start:prod` - serve up the examples and library in production mode. This is used when integrating with a local portal. It will dynamically create both portal-pages.js and portal-pages.css. default port 8080, will choose random port if that one is taken.
 
-`npm start-portals` - serve up the files in src/portals with a special proxy server to make development of these pages easier.  See below. default port 10000.
+`npm run start-portals` - serve up the files in src/portals with a special proxy server to make development of these pages easier.  See below. default port 10000.
 
-`npm start-portals:prod` - serve up the files in src/portals with a special proxy server to make development of these pages easier. See below. default port 10000.
+`npm run start-portals:prod` - serve up the files in src/portals with a special proxy server to make development of these pages easier. See below. default port 10000.
 
 ### Development of the homepage and project/collection pages.
 
