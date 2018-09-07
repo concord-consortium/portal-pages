@@ -9,11 +9,6 @@
   vertical-align: top;
   width: 100%;
 
-  /* what is this for? */
-  .pop-out {
-    font-style: italic;
-  }
-
   a {
     color: #ea6d2f;
     display: inline-block;
@@ -28,7 +23,6 @@
     &:active { color: #313131; }
   }
 
-  /* greeting */
   .head {
     align-items: center;
     display: flex;
@@ -42,16 +36,14 @@
     }
   }
 
-  /* all lists */
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
 
-    /* sub list */
     ul {
       margin: 15px -20px 0;
-      /* sub sub list */
+
       ul {
         margin: 10px -20px 0;
       }
@@ -59,7 +51,6 @@
 
   }
 
-  /* all list items */
   li {
     color: #ea6d2f;
     cursor: pointer;
@@ -68,11 +59,10 @@
     padding: 13px 20px;
     text-transform: capitalize;
 
-    /* sub list items */
     li {
       font-size: 14px;
       padding: 10px 21px 10px 30px;
-      /* sub sub list item */
+
       li {
         padding: 10px 21px 10px 30px;
       }
@@ -140,9 +130,9 @@
   .small {
     font-size: 12px;
     font-weight: 500;
-    height: 19px;
-    margin: 10px 0 10px 20px;
-    padding: 0;
+    height: 13px;
+    margin: 0;
+    padding: 10px 0 10px 20px;
     text-transform: uppercase;
     .icon {
       width: 18px;
@@ -170,7 +160,6 @@
     }
   }
 
-  /* horizontal rules */
   hr {
     background-color: #ccc;
     border: 0;
