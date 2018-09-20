@@ -5,9 +5,9 @@
   font: 100 16px museo-sans, verdana, helvetica, arial, sans-serif;
   height: auto;
   margin: 0;
-  padding: 0;
   vertical-align: top;
   width: 100%;
+  padding: 0 0 30px;
 
   a {
     color: #ea6d2f;
@@ -223,6 +223,8 @@
 
   &.overlay {
     position: absolute;
+    padding: 0;
+    width: 250px;
     z-index: 1;
     .head {
       border-right: 1px solid white;
