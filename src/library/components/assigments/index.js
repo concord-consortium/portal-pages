@@ -1,6 +1,7 @@
 import React from 'react'
 import ClassAssignments from './class-assignments'
 import { reportableActivityMapping, studentMapping } from '../common/offering-progress/helpers'
+import sortByName from '../../helpers/sort-by-name'
 import OfferingsTable from './offerings-table'
 import { arrayMove } from 'react-sortable-hoc'
 
@@ -49,7 +50,7 @@ const offeringDetailsMapping = data => {
     reportUrl: data.report_url,
     externalReport: externalReportMapping(data.external_report),
     reportableActivities: data.reportable_activities && data.reportable_activities.map(a => reportableActivityMapping(a)),
-    students: data.students.map(s => studentMapping(s))
+    students: data.students.map(s => studentMapping(s)).sort(sortByName)
   }
 }
 
