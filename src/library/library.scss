@@ -635,6 +635,21 @@ $materials-collection-item-icon-width: 300px;
   }
 .signup-form .radio-input {
   margin-bottom: 30px;
+
+    &.stacked {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      height: 60px;
+
+      .title.inline {
+        flex: 0 0 100%;
+        }
+
+      label {
+        width: 90%;
+        }
+      }
   }
 #login-default-modal, #signup-default-modal, #forgot-password-modal, #login-form, #register-form {
   background: transparent;

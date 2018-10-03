@@ -18,21 +18,21 @@ var RadioInput = function () {
     render: function () {
       var option
       return div({
-        className: 'radio-input'
-      }, this.props.title, (function () {
+        className: 'radio-input stacked'
+      }, div({className: 'title inline'}, this.props.title), (function () {
           var i, len, ref1, results
           ref1 = this.props.options
           results = []
           for (i = 0, len = ref1.length; i < len; i++) {
             option = ref1[i]
             results.push(label({
-              key: option.value
-            }, option.label, input({
+              key: option.value,
+            }, input({
               type: 'radio',
               onChange: this.changeValue,
               value: option.value,
               checked: this.getValue() === option.value
-            })))
+            }), option.label))
           }
           return results
         }.call(this)))
