@@ -1,36 +1,36 @@
 import React from 'react'
-var RadioInputClass = require('./radio_input')
-var StudentFormClass = require('./student_form')
-var TeacherFormClass = require('./teacher_form')
+import RadioInputClass from './radio_input'
+import StudentFormClass from './student_form'
+import TeacherFormClass from './teacher_form'
 
-var UserTypeSelector = function () {
-  var FormsyForm = React.createFactory(Formsy.Form)
-  var RadioInput = React.createFactory(RadioInputClass())
-  var StudentForm = React.createFactory(StudentFormClass())
-  var TeacherForm = React.createFactory(TeacherFormClass())
+const UserTypeSelector = () => {
+  const FormsyForm = React.createFactory(Formsy.Form)
+  const RadioInput = React.createFactory(RadioInputClass())
+  const StudentForm = React.createFactory(StudentFormClass())
+  const TeacherForm = React.createFactory(TeacherFormClass())
 
   return React.createClass({
 
     displayName: 'UserTypeSelector',
 
-    getInitialState: function () {
+    getInitialState () {
       return {
         show: null
       }
     },
 
-    handleChange: function (event) {
-      var value = event.currentTarget.value
+    handleChange (event) {
+      let value = event.currentTarget.value
       console.log('INFO changing type', value)
       this.setState({show: value})
       ga('send', 'event', 'Registration', 'Form', 'Step 2 Completed - ' + value.charAt(0).toUpperCase() + value.slice(1))
     },
 
-    render: function () {
+    render () {
       console.log('INFO UserTypeSelector rendering')
       console.log('Show', this.state.show)
 
-      var radio =
+      let radio =
         RadioInput({
           handleChange: this.handleChange,
           name: 'type',
@@ -47,7 +47,7 @@ var UserTypeSelector = function () {
           ]
         })
 
-      var form
+      let form
       if (this.state.show === 'student') {
         console.log('INFO create StudentForm...')
         form = StudentForm({
