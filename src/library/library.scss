@@ -640,13 +640,14 @@ $materials-collection-item-icon-width: 300px;
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      height: 60px;
+      height: 80px;
 
       .title.inline {
         flex: 0 0 100%;
         }
 
       label {
+        margin-bottom: 10px;
         width: 90%;
         }
       }
