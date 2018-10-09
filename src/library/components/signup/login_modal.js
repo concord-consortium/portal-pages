@@ -1,4 +1,5 @@
 import React from 'react'
+
 var button = React.DOM.button
 var dd = React.DOM.dd
 var dl = React.DOM.dl
@@ -9,6 +10,7 @@ var div = React.DOM.div
 var h2 = React.DOM.h2
 var p = React.DOM.p
 var footer = React.DOM.footer
+var span = React.DOM.span
 
 var TextInputClass = require('./text_input')
 
@@ -95,6 +97,13 @@ var LoginModal = function () {
         h2({},
           strong({}, 'Log in'),
           ' to the ' + this.props.siteName),
+        div({className: 'third-party-login-options'},
+          p({}, 'Sign in with: '),
+          providerComponents
+        ),
+        div({className: 'or-separator'},
+          span({className: 'or-separator-text'}, 'Or')
+        ),
         dl({},
           dt({}, 'Username'),
           dd({},
@@ -111,10 +120,6 @@ var LoginModal = function () {
               type: 'password',
               required: true })
           )
-        ),
-        div({className: 'third-party-login-options'},
-          p({}, 'Or, sign in with: '),
-          providerComponents
         ),
         div({className: 'submit-button-container'},
           a({ href: '/forgot_password', onClick: this.handleForgotPassword, title: 'Click this link if you forgot your username and/or password.' }, 'Forgot your username or password?'),
