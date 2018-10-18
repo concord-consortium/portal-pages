@@ -278,7 +278,7 @@ var ResourceLightbox = Component({
         <div>
           <img src={license.image} />
         </div>
-        <h3>license.code</h3>
+        <h3>{license.code}</h3>
         <p>{license.name}</p>
         <p>{licenseDescription}<br /><a href={license.deed}>{license.deed}</a><br />
           <a href={license.legal}>{license.legal}</a></p>
