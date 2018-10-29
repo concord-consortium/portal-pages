@@ -1,13 +1,22 @@
 import React from 'react'
-var ref = React.DOM
-var div = ref.div
-var input = ref.input
-var label = ref.label
 
-var RadioInput = function () {
+const RadioInput = () => {
+
   return React.createClass({
     displayName: 'RadioInput',
     mixins: [Formsy.Mixin],
+
+    renderOptions (options) {
+      let i, len, option, ref1, results
+      ref1 = options
+      results = []
+      for (i = 0, len = ref1.length; i < len; i++) {
+        option = ref1[i]
+        results.push(<label><input type="radio" onChange={this.changeValue} value={option.value} checked={this.getValue() === option.value} /> {option.label}</label>)
+      }
+      return results
+    },
+
     changeValue: function (event) {
       console.log('INFO RadioInput changeValue', event)
       if (this.props.handleChange) {
@@ -15,27 +24,16 @@ var RadioInput = function () {
       }
       return this.setValue(event.currentTarget.value)
     },
-    render: function () {
-      var option
-      return div({
-        className: 'radio-input'
-      }, this.props.title, (function () {
-          var i, len, ref1, results
-          ref1 = this.props.options
-          results = []
-          for (i = 0, len = ref1.length; i < len; i++) {
-            option = ref1[i]
-            results.push(label({
-              key: option.value
-            }, option.label, input({
-              type: 'radio',
-              onChange: this.changeValue,
-              value: option.value,
-              checked: this.getValue() === option.value
-            })))
-          }
-          return results
-        }.call(this)))
+
+    render () {
+      return (
+        <div className="radio-input stacked">
+          <div className="title inline">
+            {this.props.title}
+          </div>
+          {this.renderOptions(this.props.options)}
+        </div>
+      )
     }
   })
 }

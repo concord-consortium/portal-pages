@@ -103,7 +103,7 @@ var BasicDataForm = function () {
             //
             div({className: 'or-separator'},
 
-              span({className: 'or-separator-text'}, 'Or, create an account:')
+              span({className: 'or-separator-text'}, 'Or, create an account')
             )
           )
         }

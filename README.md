@@ -94,7 +94,7 @@ As an alternative you can use the ResourceOverride chrome plugin described in th
 
 You can test how your changes to portal pages will look any deployed portal with the [ResourceOverride Chrome extension](https://github.com/kylepaulsen/ResourceOverride). You use this extension to override the requests to the portal-pages.js and portal-pages.css.
 
-Go into ResourceOverride extension page and add a Rule. Choose the `URL -> URL` type. Use these settings `From:  '**/library/portal-pages.*'  To: http://localhost:8080/portal-pages.*` The `*` and `**` have a special meaning in the ResourceOverride extension, see the Help section of the extension for more info.
+Go into ResourceOverride extension page and add a Rule. Choose the `URL -> URL` type. Use these settings `From:  '**/library/portal-pages.*'  To: http://localhost:8080/library/portal-pages.*` The `*` and `**` have a special meaning in the ResourceOverride extension, see the Help section of the extension for more info.
 
 Now load in the page you want to test. It is useful to verify your local code is being picked up. You can look a the Chrome DevTools Sources tab, and then Page tab to see the list of domains files have been loaded from.  You should see localhost:8080, and you should not see portal-pages.concord.org.
 

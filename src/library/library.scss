@@ -635,6 +635,22 @@ $materials-collection-item-icon-width: 300px;
   }
 .signup-form .radio-input {
   margin-bottom: 30px;
+
+    &.stacked {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      height: 80px;
+
+      .title.inline {
+        flex: 0 0 100%;
+        }
+
+      label {
+        margin-bottom: 10px;
+        width: 90%;
+        }
+      }
   }
 #login-default-modal, #signup-default-modal, #forgot-password-modal, #login-form, #register-form {
   background: transparent;
@@ -770,45 +786,25 @@ $materials-collection-item-icon-width: 300px;
       float: left;
       font-size: 15px;
       font-weight: 700;
-      margin: 11px 20px 0 0;
+      margin: 11px 15px 0 0;
     }
     a.badge {
-      border-radius: 50%;
-      color: $white;
       display: inline-block;
-      height: 40px;
+      height: 46px;
       margin-right: 10px;
       overflow: hidden;
       position: relative;
       text-indent: 200%;
-      width: 40px;
       white-space: nowrap;
       &#google {
-        background: #df4a32;
-        color: $white;
-        &:before {
-          content: "\e90f";
-          font: 24px "icomoon";
-          left: 50%;
-          margin: -12px 0 0 -12px;
-          position: absolute;
-          text-indent: 0;
-          top: 50%;
-        }
+        background: transparent url(./assets/google-signin.png) no-repeat;
+        background-size: 100%;
+        width: 111.5px;
       }
       &#schoology {
-        background: #82c6e2 url(./assets/schoology.png) no-repeat center center; /* drop this once a Schoology icon is added to the icomoon font */
-        background-size: 24px;
-        color: $white;
-        &:before {
-          content: "";
-          font: 24px "icomoon";
-          left: 50%;
-          margin: -12px 0 0 -12px;
-          position: absolute;
-          text-indent: 0;
-          top: 50%;
-        }
+        background: transparent url(./assets/schoology-signin.png) no-repeat;
+        background-size: 100%;
+        width: 137.5px;
       }
     }
   }
