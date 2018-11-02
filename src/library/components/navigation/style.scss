@@ -81,7 +81,7 @@
       }
       > ul {
         font-weight: 100;
-        max-height: 100vh;
+        height: auto;
         transition-duration: 200ms;
       }
       li {
@@ -120,7 +120,7 @@
     }
 
     ul {
-      max-height: 0;
+      height: 0;
       transition-duration: 200ms;
       overflow: hidden;
     }
@@ -231,13 +231,13 @@
     }
     > ul {
       box-shadow: 4px 4px 3px  hsla(0,0%,60%, 0.2);
-      max-height: 500px;
+      height: auto;
       overflow: hidden;
       transition-duration: 400ms;
     }
     &.closed {
       > ul {
-        max-height: 1px;
+        height: 1px;
         transition-duration: 400ms;
       }
     }
