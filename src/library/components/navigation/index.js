@@ -94,9 +94,24 @@ export default class Navigation extends React.Component {
     )
   }
 
+  isInSection (openSection, thisSection) {
+    const _sections = openSection.split('/')
+    const _thisSections = thisSection.split('/')
+    let found = true
+    let index = 0
+    while (index < _thisSections.length && found) {
+      found = _thisSections[index] === _sections[index]
+      index++
+    }
+    if (found) {
+      return thisSection
+    }
+    return false
+  }
+
   renderSection (section) {
     const { openedSection, location } = this.state
-    const inSection = openedSection.match(section.id) && openedSection.match(section.id)[0]
+    const inSection = this.isInSection(openedSection, section.id)
     const inLocation = location.match(section.id)
     const inRoot = section.id === ROOT_SELECTION
     const children = section.children.map(i => this.renderItem(i))
