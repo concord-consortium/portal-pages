@@ -231,13 +231,13 @@
     }
     > ul {
       box-shadow: 4px 4px 3px  hsla(0,0%,60%, 0.2);
-      max-height: 500px;
+      height: auto;
       overflow: hidden;
       transition-duration: 400ms;
     }
     &.closed {
       > ul {
-        max-height: 1px;
+        height: 1px;
         transition-duration: 400ms;
       }
     }
