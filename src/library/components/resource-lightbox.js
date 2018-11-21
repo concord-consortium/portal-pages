@@ -276,12 +276,13 @@ var ResourceLightbox = Component({
         <hr />
         <h2>License</h2>
         <div>
-          <img src={license.image} />
+          <img src={license.image} alt={license.code} />
         </div>
         <h3>{license.code}</h3>
         <p>{license.name}</p>
-        <p>{licenseDescription}<br /><a href={license.deed}>{license.deed}</a><br />
-          <a href={license.legal}>{license.legal}</a></p>
+        <p>{licenseDescription}</p>
+        <p><a href={license.deed}>{license.code} (human-readable summary)</a><br />
+          <a href={license.legal}>{license.code} (full license text)</a></p>
         {licenseAttribution}
       </div>
     )
