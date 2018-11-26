@@ -144,7 +144,8 @@ module.exports = {
     example('recent-activity'),
     example('signup-after-sso'),
     example('signup'),
-    example('unit-test-example')
+    example('unit-test-example'),
+    example('teacher-edition-links')
   ],
   externals: {
     'react': 'React',
