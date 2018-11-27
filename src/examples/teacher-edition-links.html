@@ -25,7 +25,11 @@
 		window.onload = function () {
 			// Mock Data (`Portal`, would usually be set by the Portal)
 			window.Portal = { currentUser: { userId: 22 } };
-			PortalPages.MakeTeacherEditionLinks("#teacher-edition-links a")
+
+			// see: `make-teacher-edition-links.js` for a complete description.
+			// in this example we set the portal domain for authentication
+			// purposes to `https://learn.staging.concord.org`
+			PortalPages.MakeTeacherEditionLinks("#teacher-edition-links a", "https://learn.staging.concord.org")
 		}
 	</script>
 </body>
