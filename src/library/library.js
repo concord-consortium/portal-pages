@@ -11,6 +11,7 @@ import MaterialsCollection from './components/materials-collection'
 import GradeLevels from './components/grade-levels'
 import Tooltip from './components/tooltip.js'
 import ParseQueryString from './helpers/parse-query-string'
+import MakeTeacherEditionLinks from './helpers/make-teacher-edition-links'
 import signupFunctions from './components/signup/signup_functions'
 import RecentActivity from './components/recent-activity'
 import Assignments from './components/assigments'
@@ -31,6 +32,7 @@ const renderComponentFn = function (ComponentClass) {
 window.PortalPages = {
   settings: {}, // default to empty, used to set flags from portal templates
 
+  MakeTeacherEditionLinks: MakeTeacherEditionLinks,
   ParseQueryString: ParseQueryString,
   render: render,
 
