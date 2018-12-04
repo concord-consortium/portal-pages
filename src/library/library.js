@@ -18,6 +18,7 @@ import Assignments from './components/assigments'
 import Navigation from './components/navigation'
 import UnitTestExample from './components/unit-test-example'
 import RunWithCollaborators from './components/run-with-collaborators'
+import ResearcherReportForm from './components/researcher-report-form'
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -47,6 +48,11 @@ window.PortalPages = {
   Assignments: Assignments,
   renderAssignments: function (options, id) {
     render(React.createElement(Assignments, options), id)
+  },
+
+  ResearcherReportForm: ResearcherReportForm,
+  renderResearcherReportForm: function (options, id) {
+    render(React.createElement(ResearcherReportForm, options), id)
   },
 
   Navigation: Navigation,
