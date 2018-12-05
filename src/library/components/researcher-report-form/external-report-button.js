@@ -16,7 +16,7 @@ const postToUrl = (url, json, signature) => {
   tempForm.remove()
 }
 
-export default class LogReportButton extends React.Component {
+export default class ExternalReportButton extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -54,7 +54,7 @@ export default class LogReportButton extends React.Component {
   }
 }
 
-LogReportButton.defaultProps = {
-  queryUrl: typeof Portal !== 'undefined' ? Portal.API_V1.LOGS_QUERY : '',
+ExternalReportButton.defaultProps = {
+  queryUrl: typeof Portal !== 'undefined' ? Portal.API_V1.EXTERNAL_RESEARCHER_REPORT_QUERY : '',
   postToUrl: postToUrl
 }

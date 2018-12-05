@@ -1,5 +1,5 @@
 import React from 'react'
-import LogReportButton from './log-report-button'
+import ExternalReportButton from './external-report-button'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import 'react-day-picker/lib/style.css'
@@ -279,7 +279,7 @@ export default class ResearcherReportForm extends React.Component {
   }
 
   renderForm () {
-    const { logReports } = this.props
+    const { externalReports } = this.props
     return (
       <form method='get'>
         {this.renderInput('schools')}
@@ -296,8 +296,8 @@ export default class ResearcherReportForm extends React.Component {
         {this.renderButton('Details Report')}
         {this.renderButton('Arg Block Report')}
 
-        {logReports.map(lr =>
-          <LogReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} getQueryParams={this.getQueryParams} />
+        {externalReports.map(lr =>
+          <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} getQueryParams={this.getQueryParams} />
         )}
       </form>
     )
@@ -320,5 +320,5 @@ export default class ResearcherReportForm extends React.Component {
 }
 
 ResearcherReportForm.defaultProps = {
-  logReports: []
+  externalReports: []
 }

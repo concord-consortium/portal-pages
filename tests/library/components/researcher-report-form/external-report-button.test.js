@@ -2,12 +2,12 @@
 import React from 'react'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
-import LogReportButton from 'components/researcher-report-form/log-report-button'
+import ExternalReportButton from 'components/researcher-report-form/external-report-button'
 import nock from 'nock'
 
 Enzyme.configure({adapter: new Adapter()})
 
-describe('LogReportButton', () => {
+describe('ExternalReportButton', () => {
   const getQueryParams = () => ({ teachers: 1, otherParam: 'abc' })
   const postToUrlMock = jest.fn()
   const queryUrl = 'http://query-test.concord.org'
@@ -17,7 +17,7 @@ describe('LogReportButton', () => {
   const reportUrl = 'http://log-puller-test.concord.org'
 
   const wrapper = Enzyme.shallow(
-    <LogReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
+    <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
   )
 
   it('displays the label', () => {

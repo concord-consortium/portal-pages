@@ -3,16 +3,16 @@ import React from 'react'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import ResearcherReportForm from 'components/researcher-report-form'
-import LogReportButton from 'components/researcher-report-form/log-report-button'
+import ExternalReportButton from 'components/researcher-report-form/external-report-button'
 import Select from 'react-select'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 
 Enzyme.configure({adapter: new Adapter()})
 
 describe('ResearcherReportForm', () => {
-  const logReports = [{url: 'url1', label: 'label1'}, {url: 'url2', label: 'label2'}]
+  const externalReports = [{url: 'url1', label: 'label1'}, {url: 'url2', label: 'label2'}]
   const wrapper = Enzyme.shallow(
-    <ResearcherReportForm logReports={logReports} />
+    <ResearcherReportForm externalReports={externalReports} />
   )
 
   it('renders all the report buttons', () => {
@@ -21,8 +21,8 @@ describe('ResearcherReportForm', () => {
     expect(wrapper.html()).toEqual(expect.stringContaining('Arg Block Report'))
   })
 
-  it('renders custom Log report buttons', () => {
-    expect(wrapper.find(LogReportButton).length).toEqual(2)
+  it('renders custom external report buttons', () => {
+    expect(wrapper.find(ExternalReportButton).length).toEqual(2)
     expect(wrapper.find({reportUrl: 'url1', label: 'label1'}).length).toEqual(1)
     expect(wrapper.find({reportUrl: 'url2', label: 'label2'}).length).toEqual(1)
   })
