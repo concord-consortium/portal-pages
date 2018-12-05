@@ -1,5 +1,5 @@
 import React from 'react'
-import LogReportButton from './logs-report-button'
+import LogReportButton from './log-report-button'
 
 const ReactSelect = React.createFactory(Select)
 const DayP = React.createFactory(DayPickerOverlay)
@@ -272,7 +272,7 @@ export default class ResearcherReportForm extends React.Component {
   renderForm () {
     const { logReports } = this.props
     return (
-      <form url={window.location.pathname} method='get'>
+      <form method='get'>
         {this.renderInput('schools')}
         {this.renderInput('teachers')}
         {this.renderInput('runnables')}
@@ -288,7 +288,7 @@ export default class ResearcherReportForm extends React.Component {
         {this.renderButton('Arg Block Report')}
 
         {logReports.map(lr =>
-          <LogReportButton label={lr.label} url={lr.url} getQueryParams={this.getQueryParams} />
+          <LogReportButton label={lr.label} reportUrl={lr.url} getQueryParams={this.getQueryParams} />
         )}
       </form>
     )

@@ -1,6 +1,7 @@
 import React from 'react'
+import jQuery from 'jquery'
 
-export const postToUrl = (url, json, signature) => {
+const postToUrl = (url, json, signature) => {
   // Issue POST request to Log app. We can't use GET, as URL could get too long. Generating a fake
   // form is a way to send non-Ajax POST request and open the target page.
   const tempForm = jQuery(
@@ -31,7 +32,7 @@ export default class LogReportButton extends React.Component {
   }
 
   handleClick (event) {
-    const { url, getQueryParams } = this.props
+    const { reportUrl, queryUrl, getQueryParams, postToUrl } = this.props
     // Make sure we don't submit a form if this component is part of a form (it's possible but not required).
     event.preventDefault()
     // Get the signed query JSON first.
@@ -39,17 +40,21 @@ export default class LogReportButton extends React.Component {
       type: 'GET',
       dataType: 'json',
       // jQuery.param nicely converts JS hash into query params string.
-      url: `${Portal.API_V1.LOGS_QUERY}?${jQuery.param(getQueryParams())}`,
+      url: `${queryUrl}?${jQuery.param(getQueryParams())}`,
       success: response => {
-        postToUrl(url, response.json, response.signature)
+        postToUrl(reportUrl, response.json, response.signature)
       },
       error: (jqXHR, textStatus, error) => {
+        console.error('logs_query request failed', error)
         window.alert('Logs query generation failed. Please reload the page and try again.')
-        console.error('logs_query request failed')
         this.setState({disabled: false})
       }
     })
-
     this.setState({disabled: true})
   }
+}
+
+LogReportButton.defaultProps = {
+  queryUrl: typeof Portal !== 'undefined' ? Portal.API_V1.LOGS_QUERY : '',
+  postToUrl: postToUrl
 }
