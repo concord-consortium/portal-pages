@@ -1,4 +1,6 @@
 import React from 'react'
+import Select from 'react-select'
+
 var TIMEOUT = 500
 
 var ref = React.DOM
