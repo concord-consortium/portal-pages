@@ -91,6 +91,7 @@
     "memory-fs": "^0.4.1",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
+    "moment": "^2.22.2",
     "morgan": "~1.8.1",
     "ncp": "^2.0.0",
     "node-sass": "^4.9.3",
@@ -98,6 +99,7 @@
     "pug": "~2.0.0-beta11",
     "rc-tooltip": "^3.7.2",
     "react": "^15.6.2",
+    "react-day-picker": "^7.2.4",
     "react-dom": "^15.6.2",
     "react-sortable-hoc": "^0.6.8",
     "request": "^2.88.0"

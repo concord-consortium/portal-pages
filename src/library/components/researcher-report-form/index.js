@@ -1,8 +1,11 @@
 import React from 'react'
 import LogReportButton from './log-report-button'
+import DayPickerInput from 'react-day-picker/DayPickerInput'
+import { formatDate, parseDate } from 'react-day-picker/moment'
+import 'react-day-picker/lib/style.css'
+import css from './style.scss'
 
 const ReactSelect = React.createFactory(Select)
-const DayP = React.createFactory(DayPickerOverlay)
 
 const title = str => (str.charAt(0).toUpperCase() + str.slice(1)).replace(/_/g, ' ')
 
@@ -223,18 +226,26 @@ export default class ResearcherReportForm extends React.Component {
     const label = name === 'start_date' ? 'Earliest date of last run' : 'Latest date of last run'
 
     const handleChange = value => {
-      this.setState({[name]: value}, () => {
+      if (!value) {
+        // Incorrect date.
+        return
+      }
+      this.setState({[name]: formatDate(value)}, () => {
         this.updateFilters()
       })
     }
 
     return (
       <div>
-        <span>{label}</span>
-        <DayP
+        <div>{label}</div>
+        <DayPickerInput
           name={name}
-          value={this.state[name]}
-          onChange={handleChange}
+          placeholder={'MM/DD/YYYY'}
+          format={'MM/DD/YYYY'}
+          parseDate={parseDate}
+          formatDate={formatDate}
+          selectedDay={this.state[name]}
+          onDayChange={handleChange}
         />
       </div>
     )
@@ -249,7 +260,6 @@ export default class ResearcherReportForm extends React.Component {
         <input
           name={name}
           type='checkbox'
-          style={{margin: '15px 10px 0 0'}}
           checked={this.state[name]}
           onChange={handleChange}
         />
@@ -261,7 +271,6 @@ export default class ResearcherReportForm extends React.Component {
   renderButton (name) {
     return (
       <input
-        style={{margin: '10px 10px 0 0'}}
         type='submit'
         name='commit'
         value={name}
@@ -296,12 +305,15 @@ export default class ResearcherReportForm extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className={css.researcherReportForm}>
         <div>
           <h3>Your filter matches:</h3>
           {this.renderTopInfo()}
         </div>
         {this.renderForm()}
+        {/* Spacer element is added so there's some space for the date picker element. Portal footer doesn't
+            work too well with this form otherwise. */}
+        <div className={css.spacerForDayPicker} />
       </div>
     )
   }
