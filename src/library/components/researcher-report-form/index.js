@@ -4,8 +4,8 @@ import DayPickerInput from 'react-day-picker/DayPickerInput'
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import 'react-day-picker/lib/style.css'
 import css from './style.scss'
-
-const ReactSelect = React.createFactory(Select)
+import Select from 'react-select'
+import jQuery from 'jquery'
 
 const title = str => (str.charAt(0).toUpperCase() + str.slice(1)).replace(/_/g, ' ')
 
@@ -207,7 +207,7 @@ export default class ResearcherReportForm extends React.Component {
     return (
       <div style={{marginTop: '6px'}}>
         <span>{title(name)}</span>
-        <ReactSelect
+        <Select
           name={name}
           options={options}
           multi
@@ -297,7 +297,7 @@ export default class ResearcherReportForm extends React.Component {
         {this.renderButton('Arg Block Report')}
 
         {logReports.map(lr =>
-          <LogReportButton label={lr.label} reportUrl={lr.url} getQueryParams={this.getQueryParams} />
+          <LogReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} getQueryParams={this.getQueryParams} />
         )}
       </form>
     )
@@ -317,4 +317,8 @@ export default class ResearcherReportForm extends React.Component {
       </div>
     )
   }
+}
+
+ResearcherReportForm.defaultProps = {
+  logReports: []
 }
