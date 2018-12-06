@@ -24,11 +24,13 @@
       "PortalPages",
       "Formsy",
       "Select",
+      "DayPickerOverlay",
       "ga",
       "OfferingRunStatus"
     ]
   },
   "jest": {
+    "testURL": "http://portal-test.concord.org",
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy"
     },
@@ -62,9 +64,12 @@
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.5.0",
+    "jquery": "^3.3.1",
     "live-server": "^1.2.0",
     "mini-css-extract-plugin": "^0.4.1",
-    "react-test-renderer": "^16.4.2",
+    "nock": "^10.0.3",
+    "react-select": "^1.2.0",
+    "react-test-renderer": "^15.6.2",
     "sass-loader": "^7.1.0",
     "standard": "^11.0.1",
     "style-loader": "^0.21.0",
@@ -87,6 +92,7 @@
     "memory-fs": "^0.4.1",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
+    "moment": "^2.22.2",
     "morgan": "~1.8.1",
     "ncp": "^2.0.0",
     "node-sass": "^4.9.3",
@@ -94,6 +100,7 @@
     "pug": "~2.0.0-beta11",
     "rc-tooltip": "^3.7.2",
     "react": "^15.6.2",
+    "react-day-picker": "^7.2.4",
     "react-dom": "^15.6.2",
     "react-sortable-hoc": "^0.6.8",
     "request": "^2.88.0"
