@@ -54,7 +54,36 @@
   &.cc-no-tagline {
     background-image: url(./assets/banners/concord-logo-no-tag.svg);
     }
+
   }
+.theme-learn .logo-contain {
+  margin-bottom: 33px;
+  }
+.theme-learn .concord-logo {
+  background: url(./assets/banners/concord-logo-25.svg) no-repeat top;
+  height: 120px;
+  position: relative;
+  text-indent: 0;
+
+  .concord-logo__tagline {
+      bottom: 0;
+      color: #313131;
+      font-size: 24px;
+      font-weight: 100;
+      letter-spacing: .028em;
+      position: absolute;
+      }
+  }
+@media screen and (max-width: 500px) {
+  .theme-learn .concord-logo {
+    height: 95px;
+
+    .concord-logo__tagline {
+      font-size: 18px;
+      letter-spacing: 0.0375em;
+    }
+  }
+}
 
 .portal-pages-nav-auth {
   min-width: 200px;

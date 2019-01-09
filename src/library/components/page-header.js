@@ -215,6 +215,12 @@ var PageHeader = Component({
       navLinks = this.renderNavLinks()
     }
     var logoClass = this.state.logo_class
+    var logoText
+    if (this.state.theme === 'learn') {
+      logoText = 'STEM Resource Finder';
+    } else {
+      logoText = 'Home';
+    }
     return div({className: 'theme-' + this.state.theme},
       div({className: 'portal-pages-umbrella'},
         div({className: 'portal-pages-umbrella-contain cols'},
@@ -230,7 +236,9 @@ var PageHeader = Component({
         div({className: 'logo-contain col-3'},
           a({href: '/', title: 'Go to the Home Page'},
             div({className: logoClass},
-              'Home'
+              div({className: 'concord-logo__tagline'},
+              logoText
+              )
             )
           )
         ),
