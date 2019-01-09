@@ -209,7 +209,7 @@ const PageHeader = Component({
           <div className={'logo-contain col-3'}>
             <a href={'/'} title={'Go to the Home Page'}>
               <div className={logoClass}>
-                <div className={'concord-logo__tagline'}>
+                <div className={'concord-logo__linktext'}>
                   {logoText}
                 </div>
               </div>
