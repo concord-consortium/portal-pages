@@ -1,19 +1,11 @@
 import React from 'react'
-var Component = require('../helpers/component')
+import Component from '../helpers/component'
 
-var fadeIn = require('../helpers/fade-in')
-var Tooltip = require('../helpers/tooltip')
-var ItemTooltip = require('./tooltip')
+import fadeIn from '../helpers/fade-in'
+import Tooltip from '../helpers/tooltip'
+import ItemTooltip from './tooltip'
 
-var a = React.DOM.a
-var div = React.DOM.div
-var i = React.DOM.i
-var li = React.DOM.li
-var nav = React.DOM.nav
-var span = React.DOM.span
-var ul = React.DOM.ul
-
-var PageHeader = Component({
+const PageHeader = Component({
 
   getInitialState: function () {
     return {
@@ -33,7 +25,7 @@ var PageHeader = Component({
   componentDidMount: function () {
     window.addEventListener('resize', this.handleResize.bind(this))
     if (this.state.loggedIn) {
-      var self = this
+      let self = this
       jQuery.ajax({
         url: '/auth/user', // TODO: replace with Portal.API_V1 constant when available
         dataType: 'json'
@@ -69,7 +61,7 @@ var PageHeader = Component({
   },
 
   handleNavMenuToggle: function (e) {
-    var collapsed = !this.state.nav_menu_collapsed
+    let collapsed = !this.state.nav_menu_collapsed
     this.setState({nav_menu_collapsed: collapsed})
     if (collapsed) {
       jQuery('body').attr('data-mobile-nav', 'closed')
@@ -82,7 +74,7 @@ var PageHeader = Component({
     e.preventDefault()
     e.stopPropagation()
 
-    var tooltip = !this.state.tooltip
+    let tooltip = !this.state.tooltip
 
     this.setState({
       tooltip: tooltip
@@ -90,7 +82,7 @@ var PageHeader = Component({
 
     // mount/unmount tooltip outside of homepage content
     if (tooltip) {
-      var ProtectedLinkTooltip = ItemTooltip({
+      let ProtectedLinkTooltip = ItemTooltip({
         id: e.target.id + '-tooltip',
         text: e.target.title,
         posx: e.pageX + 30,
@@ -107,40 +99,31 @@ var PageHeader = Component({
 
   renderFirstButton: function () {
     if (this.state.loggedIn) {
-      return a({href: this.state.homePath, title: 'View Recent Activity', className: 'portal-pages-main-nav-item__link button register'},
-        i({className: 'icon-home'}),
-        'My Classes'
+      return (
+        <a href={this.state.homePath} title={'View Recent Activity'} className={'portal-pages-main-nav-item__link button register'}><i className={'icon-home'}></i>{'My Classes'}</a>
       )
     } else {
-      return a({href: '/signup',
-        title: 'Create an Account',
-        className: 'portal-pages-main-nav-item__link button register',
-        onClick: this.handleRegisterButton },
-      'Register'
+      return (
+        <a href={'/signup'} title={'Create an Account'} className={'portal-pages-main-nav-item__link button register'} onClick={this.handleRegisterButton}>{'Register'}</a>
       )
     }
   },
 
   renderSecondButton: function () {
     if (this.state.loggedIn) {
-      return a({href: '/users/sign_out', title: 'Log Out', className: 'portal-pages-main-nav-item__link button log-in'},
-        i({className: 'icon-login'}),
-        'Log Out'
+      return (
+        <a href={'/users/sign_out'} title={'Log Out'} className={'portal-pages-main-nav-item__link button log-in'}><i className={'icon-login'}></i>{'Log Out'}</a>
       )
     } else {
-      return a({href: '/login',
-        title: 'Log In',
-        className: 'portal-pages-main-nav-item__link button log-in',
-        onClick: this.handleLoginButton},
-      i({className: 'icon-login'}),
-      'Log In'
+      return (
+        <a href={'/login'} title={'Log In'} className={'portal-pages-main-nav-item__link button log-in'} onClick={this.handleLoginButton}><i className={'icon-login'}></i>{'Log In'}</a>
       )
     }
   },
 
-  renderProtectedLink: function (e) {
-    return a({href: '#', className: 'portal-pages-main-nav-item__link', id: e.link_id, title: e.link_title, onClick: this.toggleTooltip},
-      e.link_text
+  renderProtectedLink: function (linkID, linkTitle, linkText) {
+    return (
+      <a href={'#'} className={'portal-pages-main-nav-item__link'} id={linkID} title={linkTitle} onClick={this.toggleTooltip}>{linkText}</a>
     )
   },
 
@@ -149,114 +132,105 @@ var PageHeader = Component({
     if (!this.state.isStudent) {
       if (this.state.theme === 'ngss-assessment') {
         headerItems.push(
-          li({className: 'portal-pages-main-nav-item' +
-              ' portal-pages-main-nav-collections' +
-              (this.props.isCollections ? ' current-menu-item' : '')},
-          a({href: '/ngsa-collections', className: 'portal-pages-main-nav-item__link', title: 'View Assessment Tasks'},
-            'Assessment Tasks'
-          )
-          ))
+          <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-collections' + (this.props.isCollections ? ' current-menu-item' : '')}>
+            <a href={'/ngsa-collections'} className={'portal-pages-main-nav-item__link'} title={'View Assessment Tasks'}>{'Assessment Tasks'}</a>
+          </li>
+        )
         if (this.state.loggedIn) {
           headerItems.push(
-            li({className: 'portal-pages-main-nav-item' +
-                ' portal-pages-main-nav-forum'},
-            a({href: 'https://ngsa.concord.org/forum?autosignin=true', className: 'portal-pages-main-nav-item__link', title: 'Visit the NGSA Forum'},
-              'Forum'
-            )
-            ))
+            <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-forum'}>
+              <a href={'https://ngsa.concord.org/forum?autosignin=true'} className={'portal-pages-main-nav-item__link'} title={'Visit the NGSA Forum'}>{'Forum'}</a>
+            </li>
+          )
         } else {
+          let linkID = 'ngsa-forum'
+          let linkTitle = 'Registered teachers can participate in a forum with other teachers. Login or register as a teacher to access the forum.'
+          let linkText = 'Forum'
           headerItems.push(
-            li({className: 'portal-pages-main-nav-item' +
-              ' portal-pages-main-nav-forum'},
-            this.renderProtectedLink({
-              link_id: 'ngsa-forum',
-              link_text: 'Forum',
-              link_title: 'Registered teachers can participate in a forum with other teachers. Login or register as a teacher to access the forum.'
-            })
-            ))
+            <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-forum'}>
+              {this.renderProtectedLink(linkID, linkTitle, linkText)}
+            </li>
+          )
         }
       } else {
         headerItems.push(
-          li({className: 'portal-pages-main-nav-item' +
-              ' portal-pages-main-nav-collections' +
-              (this.props.isCollections ? ' current-menu-item' : '')},
-          a({href: '/collections', className: 'portal-pages-main-nav-item__link', title: 'View Resource Collections'},
-            'Collections'
-          )
-          ))
+          <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-collections' + (this.props.isCollections ? ' current-menu-item' : '')}>
+            <a href={'/collections'} className={'portal-pages-main-nav-item__link'} title={'View Resource Collections'}>{'Collections'}</a>
+          </li>
+        )
         headerItems.push(
-          li({className: 'portal-pages-main-nav-item' +
-             ' portal-pages-main-nav-about' +
-             (this.props.isAbout ? ' current-menu-item' : '')},
-          a({href: '/about', className: 'portal-pages-main-nav-item__link', title: 'Learn More about the STEM Resource Finder'},
-            'About'
-          )
-          ))
+          <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-about' + (this.props.isAbout ? ' current-menu-item' : '')}>
+            <a href={'/about'} className={'portal-pages-main-nav-item__link'} title={'Learn More about the STEM Resource Finder'}>{'About'}</a>
+          </li>
+        )
       }
     }
 
     headerItems.push(
-      li({className: 'portal-pages-main-nav-item'},
-        this.renderFirstButton()
-      ))
+      <li className={'portal-pages-main-nav-item'}>
+        {this.renderFirstButton()}
+      </li>
+    )
     headerItems.push(
-      li({className: 'portal-pages-main-nav-item'},
-        this.renderSecondButton()
-      ))
+      <li className={'portal-pages-main-nav-item'}>
+        {this.renderSecondButton()}
+      </li>
+    )
 
-    return ul({className: 'portal-pages-main-nav-contain'},
-      headerItems
+    return (
+      <ul className={'portal-pages-main-nav-contain'}>
+      {headerItems}
+      </ul>
     )
   },
 
   renderHeader: function () {
-    var navLinks = ''
+    let navLinks = ''
     if (this.state.windowWidth > 950 || !this.state.nav_menu_collapsed) {
       navLinks = this.renderNavLinks()
     }
-    var logoClass = this.state.logo_class
-    var logoText
+    let logoClass = this.state.logo_class
+    let logoText
     if (this.state.theme === 'learn') {
       logoText = 'STEM Resource Finder';
     } else {
       logoText = 'Home';
     }
-    return div({className: 'theme-' + this.state.theme},
-      div({className: 'portal-pages-umbrella'},
-        div({className: 'portal-pages-umbrella-contain cols'},
-          div({className: 'portal-pages-concord-link col-12'},
-            a({href: 'https://concord.org/', className: 'portal-pages-concord-link__item'},
-              'Learn about the Concord Consortium ',
-              i({className: 'icon-arrow-diagonal'}, '')
-            )
-          )
-        )
-      ),
-      nav({className: 'concord-navigation cols no-collapse'},
-        div({className: 'logo-contain col-3'},
-          a({href: '/', title: 'Go to the Home Page'},
-            div({className: logoClass},
-              div({className: 'concord-logo__tagline'},
-              logoText
-              )
-            )
-          )
-        ),
-        div({className: 'portal-pages-main-nav col-9'},
-          navLinks,
-          div({className: 'mobile-nav-contain'},
-            div({className: 'mobile-nav-btn'},
-              span({className: 'opener'}, 'Menu'),
-              span({className: 'closer'}, 'Close'),
-              div({className: 'mobile-nav-icon', onClick: this.handleNavMenuToggle},
-                span(),
-                span(),
-                span()
-              )
-            )
-          )
-        )
-      )
+    return (
+      <div className={'theme-' + this.state.theme}>
+        <div className={'portal-pages-umbrella'}>
+          <div className={'portal-pages-umbrella-contain cols'}>
+            <div className={'portal-pages-concord-link col-12'}>
+              <a href={'https://concord.org/'} className={'portal-pages-concord-link__item'}>{'Learn about the Concord Consortium '} <i className={'icon-arrow-diagonal'}></i></a>
+            </div>
+          </div>
+        </div>
+        <nav className={'concord-navigation cols no-collapse'}>
+          <div className={'logo-contain col-3'}>
+            <a href={'/'} title={'Go to the Home Page'}>
+              <div className={logoClass}>
+                <div className={'concord-logo__tagline'}>
+                  {logoText}
+                </div>
+              </div>
+            </a>
+          </div>
+          <div className={'portal-pages-main-nav col-9'}>
+            {navLinks}
+            <div className={'mobile-nav-contain'}>
+              <div className={'mobile-nav-btn'}>
+                <span className={'opener'}>{'Menu'}</span>
+                <span className={'closer'}>{'Close'}</span>
+                <div className={'mobile-nav-icon'} onClick={this.handleNavMenuToggle}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
     )
   },
 
