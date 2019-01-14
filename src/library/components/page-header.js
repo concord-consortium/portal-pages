@@ -190,11 +190,9 @@ const PageHeader = Component({
       navLinks = this.renderNavLinks()
     }
     let logoClass = this.state.logo_class
-    let logoText
+    let logoText = 'Home'
     if (this.state.theme === 'learn') {
-      logoText = 'STEM Resource Finder';
-    } else {
-      logoText = 'Home';
+      logoText = 'STEM Resource Finder'
     }
     return (
       <div className={'theme-' + this.state.theme}>
