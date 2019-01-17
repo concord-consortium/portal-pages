@@ -100,11 +100,11 @@ const PageHeader = Component({
   renderFirstButton: function () {
     if (this.state.loggedIn) {
       return (
-        <a href={this.state.homePath} title={'View Recent Activity'} className={'portal-pages-main-nav-item__link button register'}><i className={'icon-home'}></i>{'My Classes'}</a>
+        <a href={this.state.homePath} title="View Recent Activity" className={'portal-pages-main-nav-item__link button register'}><i className={'icon-home'}></i>My Classes</a>
       )
     } else {
       return (
-        <a href={'/signup'} title={'Create an Account'} className={'portal-pages-main-nav-item__link button register'} onClick={this.handleRegisterButton}>{'Register'}</a>
+        <a href="/signup" title="Create an Account" className={'portal-pages-main-nav-item__link button register'} onClick={this.handleRegisterButton}>Register</a>
       )
     }
   },
@@ -112,18 +112,18 @@ const PageHeader = Component({
   renderSecondButton: function () {
     if (this.state.loggedIn) {
       return (
-        <a href={'/users/sign_out'} title={'Log Out'} className={'portal-pages-main-nav-item__link button log-in'}><i className={'icon-login'}></i>{'Log Out'}</a>
+        <a href="/users/sign_out" title="Log Out" className={'portal-pages-main-nav-item__link button log-in'}><i className={'icon-login'}></i>Log Out</a>
       )
     } else {
       return (
-        <a href={'/login'} title={'Log In'} className={'portal-pages-main-nav-item__link button log-in'} onClick={this.handleLoginButton}><i className={'icon-login'}></i>{'Log In'}</a>
+        <a href="/login" title="Log In" className={'portal-pages-main-nav-item__link button log-in'} onClick={this.handleLoginButton}><i className={'icon-login'}></i>Log In</a>
       )
     }
   },
 
   renderProtectedLink: function (linkID, linkTitle, linkText) {
     return (
-      <a href={'#'} className={'portal-pages-main-nav-item__link'} id={linkID} title={linkTitle} onClick={this.toggleTooltip}>{linkText}</a>
+      <a href="#" className={'portal-pages-main-nav-item__link'} id={linkID} title={linkTitle} onClick={this.toggleTooltip}>{linkText}</a>
     )
   },
 
@@ -133,13 +133,13 @@ const PageHeader = Component({
       if (this.state.theme === 'ngss-assessment') {
         headerItems.push(
           <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-collections' + (this.props.isCollections ? ' current-menu-item' : '')}>
-            <a href={'/ngsa-collections'} className={'portal-pages-main-nav-item__link'} title={'View Assessment Tasks'}>{'Assessment Tasks'}</a>
+            <a href="/ngsa-collections" className={'portal-pages-main-nav-item__link'} title="View Assessment Tasks">Assessment Tasks</a>
           </li>
         )
         if (this.state.loggedIn) {
           headerItems.push(
             <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-forum'}>
-              <a href={'https://ngsa.concord.org/forum?autosignin=true'} className={'portal-pages-main-nav-item__link'} title={'Visit the NGSA Forum'}>{'Forum'}</a>
+              <a href="https://ngsa.concord.org/forum?autosignin=true" className={'portal-pages-main-nav-item__link'} title="Visit the NGSA Forum">Forum</a>
             </li>
           )
         } else {
@@ -155,12 +155,12 @@ const PageHeader = Component({
       } else {
         headerItems.push(
           <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-collections' + (this.props.isCollections ? ' current-menu-item' : '')}>
-            <a href={'/collections'} className={'portal-pages-main-nav-item__link'} title={'View Resource Collections'}>{'Collections'}</a>
+            <a href="/collections" className={'portal-pages-main-nav-item__link'} title="View Resource Collections">Collections</a>
           </li>
         )
         headerItems.push(
           <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-about' + (this.props.isAbout ? ' current-menu-item' : '')}>
-            <a href={'/about'} className={'portal-pages-main-nav-item__link'} title={'Learn More about the STEM Resource Finder'}>{'About'}</a>
+            <a href="/about" className={'portal-pages-main-nav-item__link'} title="Learn More about the STEM Resource Finder">About</a>
           </li>
         )
       }
@@ -199,13 +199,13 @@ const PageHeader = Component({
         <div className={'portal-pages-umbrella'}>
           <div className={'portal-pages-umbrella-contain cols'}>
             <div className={'portal-pages-concord-link col-12'}>
-              <a href={'https://concord.org/'} className={'portal-pages-concord-link__item'}>{'Learn about the Concord Consortium '} <i className={'icon-arrow-diagonal'}></i></a>
+              <a href="https://concord.org/" className={'portal-pages-concord-link__item'}>Learn about the Concord Consortium <i className={'icon-arrow-diagonal'}></i></a>
             </div>
           </div>
         </div>
         <nav className={'concord-navigation cols no-collapse'}>
           <div className={'logo-contain col-3'}>
-            <a href={'/'} title={'Go to the Home Page'}>
+            <a href="/" title="Go to the Home Page">
               <div className={logoClass}>
                 <div className={'concord-logo__linktext'}>
                   {logoText}
