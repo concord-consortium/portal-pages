@@ -45,7 +45,7 @@ var showModal = function (modalId, specialMsg, fixedPosition, closeFunc, modalCl
       })
     }
   }
-  if (specialMsg != null) {
+  if (specialMsg !== null) {
     jQuery(modalId + ' .portal-pages-special-msg').text(specialMsg).show()
   }
   jQuery('#portal-pages-modal-overlay').css({'height': jQuery(document).height() + 'px'}).fadeIn('fast')

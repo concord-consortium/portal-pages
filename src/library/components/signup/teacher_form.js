@@ -171,8 +171,8 @@ var TeacherForm = function () {
       var currentCountry = ref1.currentCountry
       var currentZipcode = ref1.currentZipcode
       var registerNewSchool = ref1.registerNewSchool
-      var showZipcode = currentCountry != null
-      var showSchool = (currentCountry != null) && (currentZipcode != null)
+      var showZipcode = currentCountry !== null
+      var showSchool = (currentCountry !== null) && (currentZipcode !== null)
       var showEnewsSubscription = !!Portal.enewsSubscriptionEnabled
       return FormsyForm({
         ref: 'form',

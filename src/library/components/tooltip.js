@@ -33,7 +33,7 @@ var Tooltip = Component({
   },
 
   setTimer: function () {
-    if (this._timer != null) {
+    if (this._timer !== null) {
       window.clearTimeout(this._timer)
     }
 
