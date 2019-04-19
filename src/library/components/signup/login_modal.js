@@ -64,7 +64,7 @@ var LoginModal = function () {
 
     handleForgotPassword: function (e) {
       e.preventDefault()
-      PortalPages.renderForgotPasswordModal()
+      PortalPages.renderForgotPasswordModal({ oauthProviders: this.props.oauthProviders })
     },
 
     render: function () {
