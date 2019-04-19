@@ -115,7 +115,7 @@ export default class ResearcherReportForm extends React.Component {
       }
     })(_fieldName)
 
-    if ((queryCache[cacheKey] !== null ? queryCache[cacheKey].then : undefined)) { // already made a Promise that is still pending
+    if ((queryCache[cacheKey] != null ? queryCache[cacheKey].then : undefined)) { // already made a Promise that is still pending
       queryCache[cacheKey].then(handleResponse) // chain a new Then
     } else if (queryCache[cacheKey]) { // have data that has already returned
       handleResponse(queryCache[cacheKey]) // use it directly
@@ -131,12 +131,12 @@ export default class ResearcherReportForm extends React.Component {
   getQueryParams () {
     const params = {}
     for (var filter of ['schools', 'teachers', 'runnables', 'permission_forms']) {
-      if ((this.state[filter] !== null ? this.state[filter].length : undefined) > 0) {
+      if ((this.state[filter] != null ? this.state[filter].length : undefined) > 0) {
         params[filter] = this.state[filter].map(v => v.value).sort().join(',')
       }
     }
     for (filter of ['start_date', 'end_date']) {
-      if ((this.state[filter] !== null ? this.state[filter].length : undefined) > 0) { params[filter] = this.state[filter] }
+      if ((this.state[filter] != null ? this.state[filter].length : undefined) > 0) { params[filter] = this.state[filter] }
     }
     return params
   }
