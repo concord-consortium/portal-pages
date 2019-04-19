@@ -18,6 +18,7 @@
 
 @media screen and (max-width: 500px) {
   @import 'navigation/mq/500/_main_nav.scss',
+          'common/mq/500/_forms.scss',
           'helpers/mq/500/_cards.scss',
           'helpers/mq/500/_lightbox.scss',
           'helpers/mq/500/_modal.scss';
