@@ -35,7 +35,7 @@ var Signup = function () {
     getDefaultProps: function () {
       return {
         siteName: (Portal && Portal.siteName) || 'Portal',
-        signupText: 'Register!',
+        signupText: 'Next',
         anonymous: Portal.currentUser.isAnonymous
       }
     },

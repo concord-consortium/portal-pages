@@ -82,7 +82,7 @@ var StudentForm = function () {
           className: 'submit-btn',
           type: 'submit',
           disabled: !canSubmit
-        }, 'Sign Up!')
+        }, 'Register!')
       )
       )
     }
