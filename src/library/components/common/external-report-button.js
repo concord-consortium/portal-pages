@@ -6,6 +6,7 @@ const postToUrl = (url, json, signature) => {
   // form is a way to send non-Ajax POST request and open the target page.
   const tempForm = jQuery(
     `<form action="${url}" method="POST">` +
+    `<input type="hidden" name="allowDebug" value="1">` +
     `<input type="hidden" name="json" value='${JSON.stringify(json)}'>` +
     `<input type="hidden" name="signature" value="${signature}">` +
     `</form>`
@@ -20,9 +21,13 @@ export default class ExternalReportButton extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      disabled: false
+      disabled: this.isDisabled(props)
     }
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.setState({disabled: this.isDisabled(nextProps)})
   }
 
   render () {
@@ -51,6 +56,10 @@ export default class ExternalReportButton extends React.Component {
       }
     })
     this.setState({disabled: true})
+  }
+
+  isDisabled (props) {
+    return Object.keys(props.getQueryParams()).length == 0
   }
 }
 

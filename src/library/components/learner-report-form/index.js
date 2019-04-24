@@ -1,5 +1,5 @@
 import React from 'react'
-import ExternalReportButton from './external-report-button'
+import ExternalReportButton from '../common/external-report-button'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import 'react-day-picker/lib/style.css'
@@ -11,7 +11,7 @@ const title = str => (str.charAt(0).toUpperCase() + str.slice(1)).replace(/_/g, 
 
 const queryCache = {}
 
-export default class ResearcherReportForm extends React.Component {
+export default class LearnerReportForm extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -280,6 +280,9 @@ export default class ResearcherReportForm extends React.Component {
 
   renderForm () {
     const { externalReports } = this.props
+    // ...LEARNER_QUERY is the renamed ...REPORT_QUERY, use a fallback to wait for the portal to update
+    const queryUrl = Portal.API_V1.EXTERNAL_RESEARCHER_REPORT_LEARNER_QUERY || Portal.API_V1.EXTERNAL_RESEARCHER_REPORT_QUERY
+
     return (
       <form method='get'>
         {this.renderInput('schools')}
@@ -297,7 +300,7 @@ export default class ResearcherReportForm extends React.Component {
         {this.renderButton('Arg Block Report')}
 
         {externalReports.map(lr =>
-          <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} getQueryParams={this.getQueryParams} />
+          <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} queryUrl={queryUrl} getQueryParams={this.getQueryParams} />
         )}
       </form>
     )
@@ -305,7 +308,7 @@ export default class ResearcherReportForm extends React.Component {
 
   render () {
     return (
-      <div className={css.researcherReportForm}>
+      <div className={css.learnerReportForm}>
         <div>
           <h3>Your filter matches:</h3>
           {this.renderTopInfo()}
@@ -319,6 +322,6 @@ export default class ResearcherReportForm extends React.Component {
   }
 }
 
-ResearcherReportForm.defaultProps = {
+LearnerReportForm.defaultProps = {
   externalReports: []
 }
