@@ -50,7 +50,7 @@ export default class UserReportForm extends React.Component {
       data: {totals: true}
     }).then(data => {
       if (data.error) {
-        alert(data.error)
+        window.alert(data.error)
       }
       if (data.totals) {
         this.setState({totals: data.totals})
@@ -162,10 +162,10 @@ export default class UserReportForm extends React.Component {
       this.query({load_all: name}, name)
     }
 
-    const titleCounts = this.state.totals.hasOwnProperty(name) ? ` (${hits.length} of ${this.state.totals[name]})` : ""
+    const titleCounts = this.state.totals.hasOwnProperty(name) ? ` (${hits.length} of ${this.state.totals[name]})` : ''
     let loadAllLink
     if ((this.state.totals[name] > 0) && (hits.length !== this.state.totals[name])) {
-      loadAllLink = <a href="#" onClick={handleLoadAll} style={{marginLeft: 10}}>load all</a>
+      loadAllLink = <a href='#' onClick={handleLoadAll} style={{marginLeft: 10}}>load all</a>
     }
 
     return (

@@ -59,7 +59,7 @@ export default class ExternalReportButton extends React.Component {
   }
 
   isDisabled (props) {
-    return Object.keys(props.getQueryParams()).length == 0
+    return Object.keys(props.getQueryParams()).length === 0
   }
 }
 
