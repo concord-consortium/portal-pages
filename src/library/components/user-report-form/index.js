@@ -213,11 +213,7 @@ export default class UserReportForm extends React.Component {
   }
 
   renderForm () {
-    //const { externalReports } = this.props
-    // REMOVE!!!
-    const externalReports  = [
-      {url: "http://localhost:5000/portal-report", label: "Export Logs (Local Override)"}
-    ]
+    const { externalReports } = this.props
     const queryUrl = Portal.API_V1.EXTERNAL_RESEARCHER_REPORT_USER_QUERY
 
     const handleRemoveCCTeachers = e => {
