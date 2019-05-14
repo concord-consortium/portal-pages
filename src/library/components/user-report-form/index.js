@@ -21,7 +21,6 @@ export default class UserReportForm extends React.Component {
       runnables: [],
       start_date: '',
       end_date: '',
-      hide_names: false,
       // all possible values for each pulldown
       filterables: {
         teachers: [],
@@ -29,25 +28,25 @@ export default class UserReportForm extends React.Component {
         runnables: []
       },
       // waiting for results
-      waiting: {},
       waitingFor_teachers: false,
       waitingFor_cohorts: false,
       waitingFor_runnables: false,
-      totals: {}
+      totals: {},
+      // checkbox options
+      removeCCTeachers: false
     }
     this.getQueryParams = this.getQueryParams.bind(this)
   }
 
   componentWillMount () {
     this.getTotals()
-    this.query(this.getQueryParams(), 'cohorts')
   }
 
   getTotals () {
     jQuery.ajax({
       url: '/api/v1/report_users',
       type: 'GET',
-      data: {totals: true}
+      data: {totals: true, remove_cc_teachers: this.state.removeCCTeachers}
     }).then(data => {
       if (data.error) {
         window.alert(data.error)
@@ -112,7 +111,7 @@ export default class UserReportForm extends React.Component {
   }
 
   getQueryParams () {
-    const params = {}
+    const params = {remove_cc_teachers: this.state.removeCCTeachers}
     for (var filter of ['teachers', 'cohorts', 'runnables']) {
       if ((this.state[filter] != null ? this.state[filter].length : undefined) > 0) {
         params[filter] = this.state[filter].map(v => v.value).sort().join(',')
@@ -214,12 +213,26 @@ export default class UserReportForm extends React.Component {
   }
 
   renderForm () {
-    const { externalReports } = this.props
+    //const { externalReports } = this.props
+    // REMOVE!!!
+    const externalReports  = [
+      {url: "http://localhost:5000/portal-report", label: "Export Logs (Local Override)"}
+    ]
     const queryUrl = Portal.API_V1.EXTERNAL_RESEARCHER_REPORT_USER_QUERY
+
+    const handleRemoveCCTeachers = e => {
+      this.setState({removeCCTeachers: e.target.checked}, () => {
+        this.getTotals()
+        this.updateFilters()
+      })
+    }
 
     return (
       <form method='get' style={{minHeight: 700}}>
         {this.renderInput('teachers')}
+        <div style={{marginTop: '6px'}}>
+          <input type="checkbox" checked={this.state.removeCCTeachers} onChange={handleRemoveCCTeachers} /> Remove Concord Consortium Teachers? *
+        </div>
         {this.renderInput('cohorts')}
         {this.renderInput('runnables')}
 
@@ -230,6 +243,10 @@ export default class UserReportForm extends React.Component {
           {externalReports.map(lr =>
             <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} queryUrl={queryUrl} getQueryParams={this.getQueryParams} />
           )}
+        </div>
+
+        <div style={{marginTop: '24px'}}>
+          * Concord Consortium Teachers belong to schools named "Concord Consortium".
         </div>
       </form>
     )
