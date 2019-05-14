@@ -158,7 +158,7 @@ export default class UserReportForm extends React.Component {
 
     const handleLoadAll = e => {
       e.preventDefault()
-      this.query({load_all: name}, name)
+      this.query({load_all: name, remove_cc_teachers: this.state.removeCCTeachers}, name)
     }
 
     const titleCounts = this.state.totals.hasOwnProperty(name) ? ` (${hits.length} of ${this.state.totals[name]})` : ''
