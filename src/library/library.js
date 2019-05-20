@@ -18,7 +18,8 @@ import Assignments from './components/assigments'
 import Navigation from './components/navigation'
 import UnitTestExample from './components/unit-test-example'
 import RunWithCollaborators from './components/run-with-collaborators'
-import ResearcherReportForm from './components/researcher-report-form'
+import LearnerReportForm from './components/learner-report-form'
+import UserReportForm from './components/user-report-form'
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -50,9 +51,23 @@ window.PortalPages = {
     render(React.createElement(Assignments, options), id)
   },
 
-  ResearcherReportForm: ResearcherReportForm,
+  LearnerReportForm: LearnerReportForm,
+  renderLearnerReportForm: function (options, id) {
+    render(React.createElement(LearnerReportForm, options), id)
+  },
+
+  // renderResearcherReportForm was renamed renderLearnerReportForm so to allow
+  // independent deploys of the this repo and the portal keep this alias in for now
+  // NOTE: this should be removed once the user report work in the portal is in production
+  //       and no other code references this export.
+  ResearcherReportForm: LearnerReportForm,
   renderResearcherReportForm: function (options, id) {
-    render(React.createElement(ResearcherReportForm, options), id)
+    render(React.createElement(LearnerReportForm, options), id)
+  },
+
+  UserReportForm: UserReportForm,
+  renderUserReportForm: function (options, id) {
+    render(React.createElement(UserReportForm, options), id)
   },
 
   Navigation: Navigation,

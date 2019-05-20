@@ -2,17 +2,24 @@
 import React from 'react'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
-import ResearcherReportForm from 'components/researcher-report-form'
-import ExternalReportButton from 'components/researcher-report-form/external-report-button'
+import LearnerReportForm from 'components/learner-report-form'
+import ExternalReportButton from 'components/common/external-report-button'
 import Select from 'react-select'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 
 Enzyme.configure({adapter: new Adapter()})
 
-describe('ResearcherReportForm', () => {
+// form uses Portal global
+global.Portal = {
+  API_V1: {
+    EXTERNAL_RESEARCHER_REPORT_LEARNER_QUERY: 'http://query-test.concord.org'
+  }
+}
+
+describe('LearnerReportForm', () => {
   const externalReports = [{url: 'url1', label: 'label1'}, {url: 'url2', label: 'label2'}]
   const wrapper = Enzyme.shallow(
-    <ResearcherReportForm externalReports={externalReports} />
+    <LearnerReportForm externalReports={externalReports} />
   )
 
   it('renders all the report buttons', () => {

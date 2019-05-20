@@ -1,7 +1,6 @@
 import React from 'react'
 
 const RadioInput = () => {
-
   return React.createClass({
     displayName: 'RadioInput',
     mixins: [Formsy.Mixin],
@@ -12,7 +11,7 @@ const RadioInput = () => {
       results = []
       for (i = 0, len = ref1.length; i < len; i++) {
         option = ref1[i]
-        results.push(<label><input type="radio" onChange={this.changeValue} value={option.value} checked={this.getValue() === option.value} /> {option.label}</label>)
+        results.push(<label><input type='radio' onChange={this.changeValue} value={option.value} checked={this.getValue() === option.value} /> {option.label}</label>)
       }
       return results
     },
@@ -27,8 +26,8 @@ const RadioInput = () => {
 
     render () {
       return (
-        <div className="radio-input stacked">
-          <div className="title inline">
+        <div className='radio-input stacked'>
+          <div className='title inline'>
             {this.props.title}
           </div>
           {this.renderOptions(this.props.options)}
