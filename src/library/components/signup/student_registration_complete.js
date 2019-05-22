@@ -16,7 +16,7 @@ var StudentRegistrationComplete = function () {
   return React.createClass({
     displayName: 'StudentRegistrationComplete',
     componentDidMount: function () {
-      ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Student')
+      //ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Student')
     },
     submit: function (data) {
       if (this.props.afterSigninPath) {

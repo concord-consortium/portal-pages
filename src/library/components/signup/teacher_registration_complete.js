@@ -8,7 +8,7 @@ var TeacherRegistrationComplete = function () {
   return React.createClass({
     displayName: 'TeacherRegistrationComplete',
     componentDidMount: function () {
-      ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Teacher')
+      //ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Teacher')
     },
     render: function () {
       var anonymous

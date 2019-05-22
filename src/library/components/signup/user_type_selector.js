@@ -23,7 +23,7 @@ const UserTypeSelector = () => {
       let value = event.currentTarget.value
       console.log('INFO changing type', value)
       this.setState({show: value})
-      ga('send', 'event', 'Registration', 'Form', 'Step 2 Completed - ' + value.charAt(0).toUpperCase() + value.slice(1))
+      //ga('send', 'event', 'Registration', 'Form', 'Step 2 Completed - ' + value.charAt(0).toUpperCase() + value.slice(1))
     },
 
     render () {
