@@ -11,7 +11,7 @@ var guessPortalDomain = function () {
 // @function MakeTeacherEditionLinks(selector, domain)
 // @param `selector`: dom selector, should look like `#teacher-edition-links a`
 // @param `specDomain`: specify a host url eg: `https://learn.concord.org`
-// if `specDomain` is omited, we guess it from the window.location.
+// if `specDomain` is omitted, we guess it from the window.location.
 // This function decorates <a href=""/> style links and modifies the href value.
 // It appends query params that let the runtime use login credentials specified
 // by the `specDomain` portal.
@@ -26,7 +26,7 @@ var MakeTeacherEditionLinks = function (selector, specDomain = null) {
     var newLink = oldLink +
       '?domain=' + encodedDomain +
       '&domain_uid=' + domainUid +
-      '&mode=teacher-edition&show_index=true'
+      '&mode=teacher-edition&show_index=true&logging=true'
     anchor.setAttribute('href', newLink)
   }
 
