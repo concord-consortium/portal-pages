@@ -1,4 +1,7 @@
 import React from 'react'
+import StudentFormClass from './student_form'
+import TeacherFormClass from './teacher_form'
+
 var div = React.DOM.div
 var footer = React.DOM.footer
 var h2 = React.DOM.h2
@@ -10,20 +13,23 @@ var StudentRegistrationCompleteClass = require('./student_registration_complete'
 var TeacherRegistrationCompleteClass = require('./teacher_registration_complete')
 var UserTypeSelectorClass = require('./user_type_selector')
 
+
 var Signup = function () {
   // console.log("INFO creating Signup");
 
-  var BasicDataForm, StudentRegistrationComplete, TeacherRegistrationComplete
+  var BasicDataForm, StudentRegistrationComplete, TeacherRegistrationComplete, UserTypeSelector, StudentForm, TeacherForm
   BasicDataForm = React.createFactory(BasicDataFormClass())
   StudentRegistrationComplete = React.createFactory(StudentRegistrationCompleteClass())
   TeacherRegistrationComplete = React.createFactory(TeacherRegistrationCompleteClass())
-
-  var UserTypeSelector = React.createFactory(UserTypeSelectorClass())
+  UserTypeSelector  = React.createFactory(UserTypeSelectorClass())
+  StudentForm = React.createFactory(StudentFormClass())
+  TeacherForm = React.createFactory(TeacherFormClass())
 
   return React.createClass({
     displayName: 'SignUp',
     getInitialState: function () {
       return {
+        userType: null,
         basicData: null,
         studentData: null,
         teacherData: null,
@@ -39,6 +45,13 @@ var Signup = function () {
         anonymous: Portal.currentUser.isAnonymous
       }
     },
+
+    onUserTypeSelect: function (data) {
+      return this.setState({
+        userType: data
+      })
+    },
+
     onBasicDataSubmit: function (data) {
       data.sign_up_path = window.location.pathname
       return this.setState({
@@ -59,6 +72,7 @@ var Signup = function () {
 
     getStepNumber: function () {
       var ref = this.state
+      var userType = ref.userType
       var basicData = ref.basicData
       var studentData = ref.studentData
       var teacherData = ref.teacherData
@@ -82,6 +96,7 @@ var Signup = function () {
       var oauthProviders = ref.oauthProviders
       var anonymous = ref.anonymous
       var ref1 = this.state
+      var userType = ref1.userType
       var basicData = ref1.basicData
       var studentData = ref1.studentData
       var teacherData = ref1.teacherData
@@ -113,9 +128,37 @@ var Signup = function () {
         form = TeacherRegistrationComplete({
           anonymous: anonymous
         })
-      } else if (!basicData && !this.props.omniauth) {
-        // console.log("INFO signup form creating basic data selector step");
+      //} else if (!basicData && !this.props.omniauth) {
+      } else if (!userType) {
+        // console.log("INFO signup form creating type selector step");
 
+        var select = UserTypeSelector({
+          //studentReg: this.onStudentRegistration,
+          //teacherReg: this.onTeacherRegistration,
+          anonymous: anonymous,
+          onUserTypeSelect: this.onUserTypeSelect
+        })
+
+        form = [ select ]
+      } else if (basicData) {
+        if (userType === 'teacher') {
+          form = [
+            TeacherForm({
+              anonymous: this.props.anonymous,
+              basicData: basicData,
+              onRegistration: this.onTeacherRegistration
+            })
+          ]
+        } else {
+          form = [
+            StudentForm({
+              basicData: basicData,
+              onRegistration: this.onStudentRegistration
+            })
+          ]
+        }
+      } else {
+        // console.log("INFO signup form creating basic data selector step");
         form = [
           BasicDataForm({
             anonymous: anonymous,
@@ -124,17 +167,6 @@ var Signup = function () {
             onSubmit: this.onBasicDataSubmit
           })
         ]
-      } else {
-        // console.log("INFO signup form creating type selector step");
-
-        var select = UserTypeSelector({
-          studentReg: this.onStudentRegistration,
-          teacherReg: this.onTeacherRegistration,
-          basicData: basicData,
-          anonymous: anonymous
-        })
-
-        form = [ select ]
       }
 
       return div({},

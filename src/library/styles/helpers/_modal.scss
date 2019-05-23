@@ -53,3 +53,22 @@
     margin-bottom: 1em;
   }
 }
+
+.signup-form {
+  .user-type-select {
+    margin: 10px 0 30px;
+    text-align: center;
+
+    button {
+      display: inline-block;
+      font-size: 22px;
+      font-weight: 300;
+      margin: 0 15px;
+      padding: 15px 20px;
+
+      strong {
+        font-weight: 900;
+      }
+    }
+  }
+}
