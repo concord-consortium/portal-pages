@@ -188,10 +188,15 @@ var Signup = function () {
         ]
       }
 
+      let formTitleIntro = 'Register'
+      if (this.state.userType != null) {
+        formTitleIntro = 'Register as a ' + userType.charAt(0).toUpperCase() + userType.slice(1)
+      }
+
       return div({},
         h2({},
           anonymous
-            ? [strong({}, 'Register'), ' for the ' + this.props.siteName]
+            ? [strong({}, formTitleIntro), ' for the ' + this.props.siteName]
             : [strong({}, 'Finish'), ' Signing Up']
         ),
         div({className: 'signup-form'}, form),
