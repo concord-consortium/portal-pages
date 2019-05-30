@@ -13,7 +13,6 @@ var StudentRegistrationCompleteClass = require('./student_registration_complete'
 var TeacherRegistrationCompleteClass = require('./teacher_registration_complete')
 var UserTypeSelectorClass = require('./user_type_selector')
 
-
 var Signup = function () {
   // console.log("INFO creating Signup");
 
@@ -21,7 +20,7 @@ var Signup = function () {
   BasicDataForm = React.createFactory(BasicDataFormClass())
   StudentRegistrationComplete = React.createFactory(StudentRegistrationCompleteClass())
   TeacherRegistrationComplete = React.createFactory(TeacherRegistrationCompleteClass())
-  UserTypeSelector  = React.createFactory(UserTypeSelectorClass())
+  UserTypeSelector = React.createFactory(UserTypeSelectorClass())
   StudentForm = React.createFactory(StudentFormClass())
   TeacherForm = React.createFactory(TeacherFormClass())
 
@@ -47,6 +46,8 @@ var Signup = function () {
     },
 
     onUserTypeSelect: function (data) {
+      let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?userType=' + data;
+      window.history.pushState({path: newUrl}, '', newUrl);
       return this.setState({
         userType: data
       })
@@ -103,6 +104,8 @@ var Signup = function () {
 
       var form
 
+      var currentPath = window.location.pathname
+
       //
       // For omniauth final step, simply redirect to omniauth_origin
       //
@@ -128,13 +131,28 @@ var Signup = function () {
         form = TeacherRegistrationComplete({
           anonymous: anonymous
         })
-      //} else if (!basicData && !this.props.omniauth) {
+      // } else if (!basicData && !this.props.omniauth) {
+      } else if (currentPath.search('teacher_form') > -1) {
+        form = [
+          TeacherForm({
+            anonymous: this.props.anonymous,
+            basicData: basicData,
+            onRegistration: this.onTeacherRegistration
+          })
+        ]
+      } else if (currentPath.search('student_form') > -1) {
+        form = [
+          StudentForm({
+            basicData: basicData,
+            onRegistration: this.onStudentRegistration
+          })
+        ]
       } else if (!userType) {
         // console.log("INFO signup form creating type selector step");
 
         var select = UserTypeSelector({
-          //studentReg: this.onStudentRegistration,
-          //teacherReg: this.onTeacherRegistration,
+          // studentReg: this.onStudentRegistration,
+          // teacherReg: this.onTeacherRegistration,
           anonymous: anonymous,
           onUserTypeSelect: this.onUserTypeSelect
         })
@@ -162,6 +180,7 @@ var Signup = function () {
         form = [
           BasicDataForm({
             anonymous: anonymous,
+            userType: userType,
             signupText: signupText,
             oauthProviders: oauthProviders,
             onSubmit: this.onBasicDataSubmit
