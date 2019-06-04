@@ -52,10 +52,10 @@ var Signup = function () {
 
       if (window.location.search) {
         let params = ParseQueryString()
-        let param_keys = Object.keys(params)
-        for (var i = 0; i < param_keys.length; i++) {
-          if (param_keys[i] != 'userType') {
-            queryString = queryString + param_keys[i] + '=' + params[param_keys[i]] + '&'
+        let paramKeys = Object.keys(params)
+        for (let i = 0; i < paramKeys.length; i++) {
+          if (paramKeys[i] !== 'userType') {
+            queryString = queryString + paramKeys[i] + '=' + params[paramKeys[i]] + '&'
           }
         }
       }
