@@ -1,6 +1,7 @@
 import React from 'react'
 import StudentFormClass from './student_form'
 import TeacherFormClass from './teacher_form'
+import ParseQueryString from '../../helpers/parse-query-string'
 
 var div = React.DOM.div
 var footer = React.DOM.footer
@@ -46,8 +47,22 @@ var Signup = function () {
     },
 
     onUserTypeSelect: function (data) {
-      let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?userType=' + data;
-      window.history.pushState({path: newUrl}, '', newUrl);
+      let newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname
+      let queryString = '?'
+
+      if (window.location.search) {
+        let params = ParseQueryString()
+        let param_keys = Object.keys(params)
+        for (var i = 0; i < param_keys.length; i++) {
+          if (param_keys[i] != 'userType') {
+            queryString = queryString + param_keys[i] + '=' + params[param_keys[i]] + '&'
+          }
+        }
+      }
+      queryString = queryString + 'userType=' + data
+      newUrl = newUrl + queryString
+
+      window.history.pushState({path: newUrl}, '', newUrl)
       return this.setState({
         userType: data
       })
@@ -96,6 +111,7 @@ var Signup = function () {
       var signupText = ref.signupText
       var oauthProviders = ref.oauthProviders
       var anonymous = ref.anonymous
+      var omniauthOrigin = ref.omniauth_origin
       var ref1 = this.state
       var userType = ref1.userType
       var basicData = ref1.basicData
@@ -103,8 +119,6 @@ var Signup = function () {
       var teacherData = ref1.teacherData
 
       var form
-
-      var currentPath = window.location.pathname
 
       //
       // For omniauth final step, simply redirect to omniauth_origin
@@ -131,22 +145,24 @@ var Signup = function () {
         form = TeacherRegistrationComplete({
           anonymous: anonymous
         })
-      // } else if (!basicData && !this.props.omniauth) {
-      } else if (currentPath.search('teacher_form') > -1) {
-        form = [
-          TeacherForm({
-            anonymous: this.props.anonymous,
-            basicData: basicData,
-            onRegistration: this.onTeacherRegistration
-          })
-        ]
-      } else if (currentPath.search('student_form') > -1) {
-        form = [
-          StudentForm({
-            basicData: basicData,
-            onRegistration: this.onStudentRegistration
-          })
-        ]
+      } else if (omniauthOrigin != null) {
+        if (omniauthOrigin.search('teacher') > -1) {
+          form = [
+            TeacherForm({
+              anonymous: this.props.anonymous,
+              basicData: basicData,
+              onRegistration: this.onTeacherRegistration
+            })
+          ]
+        } else if (omniauthOrigin.search('student') > -1) {
+          form = [
+            StudentForm({
+              basicData: basicData,
+              onRegistration: this.onStudentRegistration
+            })
+          ]
+        }
+
       } else if (!userType) {
         // console.log("INFO signup form creating type selector step");
 
@@ -164,6 +180,7 @@ var Signup = function () {
             TeacherForm({
               anonymous: this.props.anonymous,
               basicData: basicData,
+              onSwitchToStudent: this.onSwitchToStudent,
               onRegistration: this.onTeacherRegistration
             })
           ]
