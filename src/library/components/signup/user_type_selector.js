@@ -14,8 +14,8 @@ const UserTypeSelector = () => {
     handleClick (event) {
       let value = event.currentTarget.value
       console.log('INFO changing type', value)
-      return this.props.onUserTypeSelect(value)
       ga('send', 'event', 'User Registration', 'Form', 'Step 1 Completed - ' + value.charAt(0).toUpperCase() + value.slice(1))
+      return this.props.onUserTypeSelect(value)
     },
 
     render () {
