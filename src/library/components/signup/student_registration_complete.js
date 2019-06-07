@@ -1,22 +1,13 @@
 import React from 'react'
-var ref = React.DOM
-var button = ref.button
-var dd = ref.dd
-var dl = ref.dl
-var dt = ref.dt
-var div = ref.div
-var span = ref.span
-var p = ref.p
-var a = ref.a
-var TextInputClass = require('./text_input')
 
-var StudentRegistrationComplete = function () {
-  var TextInput = React.createFactory(TextInputClass())
-  var FormsyForm = React.createFactory(Formsy.Form)
+const TextInputClass = require('./text_input')
+
+const StudentRegistrationComplete = function () {
+  const TextInput = TextInputClass()
   return React.createClass({
     displayName: 'StudentRegistrationComplete',
     componentDidMount: function () {
-      //ga('send', 'event', 'Registration', 'Form', 'Final Step Completed - Student')
+      ga('send', 'event', 'User Registration', 'Form', 'Final Step Completed - Student')
     },
     submit: function (data) {
       if (this.props.afterSigninPath) {
@@ -33,7 +24,7 @@ var StudentRegistrationComplete = function () {
       }).fail(function (err) {
         console.log('INFO login error', err)
         console.log('INFO login error responseText', err.responseText)
-        var response = jQuery.parseJSON(err.responseText)
+        let response = jQuery.parseJSON(err.responseText)
         //
         // TODO use some kind of styled modal dialog here.....
         //
@@ -41,39 +32,32 @@ var StudentRegistrationComplete = function () {
       })
     },
     render: function () {
-      var ref1 = this.props
-      var anonymous = ref1.anonymous
-      var data = ref1.data
-      var login = data.login
-      return div({
-        className: 'registration-complete student'
-      }, anonymous ? div({}, p({style: {marginBottom: '30px'}}, 'Success! Your username is: ', span({
-        className: 'login'
-      }, login)), p({style: {marginBottom: '30px'}}, 'Use your new account to sign in below.')) : p({}, a({
-        href: '/'
-      }, 'Start using the site.')),
-      FormsyForm({className: 'signup-form', onValidSubmit: this.submit},
-        dl({},
-          dt({}, 'Username'),
-          dd({},
-            TextInput({
-              name: 'user[login]',
-              placeholder: '',
-              required: true })
-          ),
-          dt({}, 'Password'),
-          dd({},
-            TextInput({
-              name: 'user[password]',
-              placeholder: '',
-              type: 'password',
-              required: true })
-          )
-        ),
-        div({className: 'submit-button-container'},
-          button({className: 'submit-btn', type: 'submit'}, 'Log In!')
-        )
-      )
+      const ref1 = this.props
+      let anonymous = ref1.anonymous
+      let data = ref1.data
+      let login = data.login
+
+      let successMessage = anonymous ? <div><p style={{marginBottom: '30px'}}>Success! Your username is <span className='login'>{login}</span></p><p style={{marginBottom: '30px'}}>Use your new account to sign in below.</p></div> : <p><a href='/'>Start using the site.</a></p>
+
+      return (
+        <div className='registration-complete student'>
+          {successMessage}
+          <Formsy.Form className='signup-form' onValidSubmit={this.submit}>
+            <dl>
+              <dt>Username</dt>
+              <dd>
+                <TextInput name='user[login]' placeholder='' required />
+              </dd>
+              <dt>Password</dt>
+              <dd>
+                <TextInput name='user[password]' placeholder='' type='password' required />
+              </dd>
+            </dl>
+            <div className='submit-button-container'>
+              <button className='submit-btn' type='submit'>Log In!</button>
+            </div>
+          </Formsy.Form>
+        </div>
       )
     }
   })

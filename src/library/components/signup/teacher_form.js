@@ -1,13 +1,6 @@
 import React from 'react'
 var invalidZipcode
 var newSchoolWarning
-var ref = React.DOM
-var button = ref.button
-var a = ref.a
-var div = ref.div
-var dd = ref.dd
-var dl = ref.dl
-var dt = ref.dt
 
 var LOGIN_TOO_SHORT = 'Login is too short'
 var LOGIN_INVALID = 'Invalid login. This name is either already taken or does not use only letters, numbers and the characters .+-_@'
@@ -15,6 +8,14 @@ var EMAIL_REGEXP = 'Email doesn\'t appear to be a valid email'
 var EMAIL_TAKEN = 'Email belongs to an existing user'
 var CANT_FIND_SCHOOL = 'I can\'t find my school in the list.'
 var GO_BACK_TO_LIST = 'Go back to the school list.'
+
+var ref = React.DOM
+var a = ref.a
+var button = ref.button
+var div = ref.div
+var dd = ref.dd
+var dl = ref.dl
+var dt = ref.dt
 
 newSchoolWarning = function (zipOrPostal) {
   return 'You are adding a new school / institution. Please make sure that the ' + (zipOrPostal + ' and school / institution name are correct!')

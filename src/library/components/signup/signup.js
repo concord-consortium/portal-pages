@@ -3,27 +3,20 @@ import StudentFormClass from './student_form'
 import TeacherFormClass from './teacher_form'
 import ParseQueryString from '../../helpers/parse-query-string'
 
-var div = React.DOM.div
-var footer = React.DOM.footer
-var h2 = React.DOM.h2
-var p = React.DOM.p
-var strong = React.DOM.strong
+const BasicDataFormClass = require('./basic_data_form')
+const StudentRegistrationCompleteClass = require('./student_registration_complete')
+const TeacherRegistrationCompleteClass = require('./teacher_registration_complete')
+const UserTypeSelectorClass = require('./user_type_selector')
 
-var BasicDataFormClass = require('./basic_data_form')
-var StudentRegistrationCompleteClass = require('./student_registration_complete')
-var TeacherRegistrationCompleteClass = require('./teacher_registration_complete')
-var UserTypeSelectorClass = require('./user_type_selector')
-
-var Signup = function () {
+const Signup = function () {
   // console.log("INFO creating Signup");
 
-  var BasicDataForm, StudentRegistrationComplete, TeacherRegistrationComplete, UserTypeSelector, StudentForm, TeacherForm
-  BasicDataForm = React.createFactory(BasicDataFormClass())
-  StudentRegistrationComplete = React.createFactory(StudentRegistrationCompleteClass())
-  TeacherRegistrationComplete = React.createFactory(TeacherRegistrationCompleteClass())
-  UserTypeSelector = React.createFactory(UserTypeSelectorClass())
-  StudentForm = React.createFactory(StudentFormClass())
-  TeacherForm = React.createFactory(TeacherFormClass())
+  const BasicDataForm = React.createFactory(BasicDataFormClass())
+  const StudentRegistrationComplete = React.createFactory(StudentRegistrationCompleteClass())
+  const TeacherRegistrationComplete = React.createFactory(TeacherRegistrationCompleteClass())
+  const UserTypeSelector = React.createFactory(UserTypeSelectorClass())
+  const StudentForm = React.createFactory(StudentFormClass())
+  const TeacherForm = React.createFactory(TeacherFormClass())
 
   return React.createClass({
     displayName: 'SignUp',
@@ -87,11 +80,10 @@ var Signup = function () {
     },
 
     getStepNumber: function () {
-      var ref = this.state
-      var userType = ref.userType
-      var basicData = ref.basicData
-      var studentData = ref.studentData
-      var teacherData = ref.teacherData
+      const ref = this.state
+      let basicData = ref.basicData
+      let studentData = ref.studentData
+      let teacherData = ref.teacherData
 
       // console.log("INFO getStepNumber", this.props, basicData);
 
@@ -107,25 +99,25 @@ var Signup = function () {
     render: function () {
       console.log('INFO rendering signup', this.props)
 
-      var ref = this.props
-      var signupText = ref.signupText
-      var oauthProviders = ref.oauthProviders
-      var anonymous = ref.anonymous
-      var omniauthOrigin = ref.omniauth_origin
-      var ref1 = this.state
-      var userType = ref1.userType
-      var basicData = ref1.basicData
-      var studentData = ref1.studentData
-      var teacherData = ref1.teacherData
+      const ref = this.props
+      let signupText = ref.signupText
+      let oauthProviders = ref.oauthProviders
+      let anonymous = ref.anonymous
+      let omniauthOrigin = ref.omniauth_origin
+      let ref1 = this.state
+      let userType = ref1.userType
+      let basicData = ref1.basicData
+      let studentData = ref1.studentData
+      let teacherData = ref1.teacherData
 
-      var form
+      let form
 
       //
       // For omniauth final step, simply redirect to omniauth_origin
       //
       if ((studentData || teacherData) && this.props.omniauth) {
         console.log('INFO omniauth final step, redirect.', this.props)
-        var data = this.state.studentData ? this.state.studentData : this.state.teacherData
+        let data = this.state.studentData ? this.state.studentData : this.state.teacherData
         window.location.href = data.omniauth_origin
         return null
       }
@@ -162,11 +154,10 @@ var Signup = function () {
             })
           ]
         }
-
       } else if (!userType) {
         // console.log("INFO signup form creating type selector step");
 
-        var select = UserTypeSelector({
+        let select = UserTypeSelector({
           // studentReg: this.onStudentRegistration,
           // teacherReg: this.onTeacherRegistration,
           anonymous: anonymous,
@@ -180,7 +171,6 @@ var Signup = function () {
             TeacherForm({
               anonymous: this.props.anonymous,
               basicData: basicData,
-              onSwitchToStudent: this.onSwitchToStudent,
               onRegistration: this.onTeacherRegistration
             })
           ]
@@ -210,19 +200,18 @@ var Signup = function () {
         formTitleIntro = 'Register as a ' + userType.charAt(0).toUpperCase() + userType.slice(1)
       }
 
-      return div({},
-        h2({},
-          anonymous
-            ? [strong({}, formTitleIntro), ' for the ' + this.props.siteName]
-            : [strong({}, 'Finish'), ' Signing Up']
-        ),
-        div({className: 'signup-form'}, form),
-        footer({className: 'reg-footer'},
-          p({},
-            strong({}, 'Why sign up?'),
-            " It's free and you get access to several key features, like creating classes for your students, assigning activities, saving work, tracking student progress, and more!"
-          )
-        )
+      let formTitle = anonymous ? <h2><strong>{formTitleIntro}</strong> for the {this.props.siteName}</h2> : <h2><strong>Finish</strong> Signing Up</h2>
+
+      return (
+        <div>
+          {formTitle}
+          <div className='signup-form'>
+            {form}
+          </div>
+          <footer className='reg-footer'>
+            <p><strong>Why sign up?</strong> It's free and you get access to several key features, like creating classes for your students, assigning activities, saving work, tracking student progress, and more!</p>
+          </footer>
+        </div>
       )
     }
   })
