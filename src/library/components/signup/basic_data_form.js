@@ -9,6 +9,7 @@ PASS_NOT_MATCH = 'Passwords do not match'
 INVALID_FIRST_NAME = 'Invalid first name. Use only letters and numbers.'
 INVALID_LAST_NAME = 'Invalid last name. Use only letters and numbers.'
 
+const Formsy = global.Formsy
 const TextInputClass = require('./text_input')
 
 const enableAuthProviders = true

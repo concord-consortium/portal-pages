@@ -1,5 +1,6 @@
 import React from 'react'
 
+const Formsy = global.Formsy
 const TextInputClass = require('./text_input')
 
 const StudentRegistrationComplete = function () {
