@@ -57,7 +57,7 @@ const PageHeader = Component({
       { oauthProviders: this.state.oauthProviders, closeable: true },
       'signup-default-modal'
     )
-    ga('send', 'event', 'Registration', 'Form', 'Opened')
+    ga('send', 'event', 'User Registration', 'Form', 'Opened')
   },
 
   handleNavMenuToggle: function (e) {
