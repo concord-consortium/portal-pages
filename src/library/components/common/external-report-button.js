@@ -34,7 +34,7 @@ export default class ExternalReportButton extends React.Component {
   render () {
     const {label} = this.props
     const {disabled} = this.state
-    return <input type='submit' onClick={this.handleClick} disabled={disabled} value={label} />
+    return <input style={{marginRight: 10}} type='submit' onClick={this.handleClick} disabled={disabled} value={label} />
   }
 
   handleClick (event) {

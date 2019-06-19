@@ -25,7 +25,7 @@ describe('ExternalReportButton', () => {
   })
 
   it('does not disable the button when there are query params', () => {
-    expect(wrapper.find('input').html()).toEqual('<input type="submit" value="test label"/>');
+    expect(wrapper.find('input').html()).toEqual('<input type="submit" style="margin-right:10px;" value="test label"/>');
   })
 
   describe('when there are no query params', () => {
@@ -35,7 +35,7 @@ describe('ExternalReportButton', () => {
     )
 
     it('disables the button', () => {
-      expect(wrapper.find('input').html()).toEqual('<input type="submit" disabled="" value="test disabled"/>');
+      expect(wrapper.find('input').html()).toEqual('<input type="submit" style="margin-right:10px;" disabled="" value="test disabled"/>');
     })
   })
 
