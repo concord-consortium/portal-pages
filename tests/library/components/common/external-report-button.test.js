@@ -47,6 +47,11 @@ describe('ExternalReportButton', () => {
         .query(getQueryParams())
         .reply(200, {json: queryJson, signature: querySignature})
 
+      const postToUrlMock = jest.fn()
+      const wrapper = Enzyme.shallow(
+        <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
+      )
+
       const eventMock = { preventDefault: jest.fn() }
       wrapper.simulate('click', eventMock)
 
@@ -57,10 +62,37 @@ describe('ExternalReportButton', () => {
         logsQueryRequest.done()
         // Note that it's impossible to use Nock to check second POST request, because JSDOM doesn't implement
         // form.submit() function. That's browser navigation and JSODM doesn't seem to handle it.
-        // FIXME: fix test and uncomment
-        // expect(postToUrlMock).toBeCalledWith(reportUrl, queryJson, querySignature)
+        expect(postToUrlMock).toBeCalledWith(reportUrl, queryJson, querySignature, undefined)
         done()
-      }, 50)
+      }, 100)
+    })
+
+    it('includes the portal token in the post to the report URL if it exists', (done) => {
+      const postToUrlMock = jest.fn()
+      const portalToken = "testtoken"
+      const wrapper = Enzyme.shallow(
+        <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} getQueryParams={getQueryParams} postToUrl={postToUrlMock} portalToken={portalToken} />
+      )
+
+      const logsQueryRequest = nock(queryUrl)
+        .defaultReplyHeaders({ 'access-control-allow-origin': '*' })
+        .get('/')
+        .query(getQueryParams())
+        .reply(200, {json: queryJson, signature: querySignature, portalToken})
+
+      const eventMock = { preventDefault: jest.fn() }
+      wrapper.simulate('click', eventMock)
+
+      expect(eventMock.preventDefault).toBeCalled()
+
+      setTimeout(() => {
+        // This will ensure that logsQueryRequest has been done.
+        logsQueryRequest.done()
+        // Note that it's impossible to use Nock to check second POST request, because JSDOM doesn't implement
+        // form.submit() function. That's browser navigation and JSODM doesn't seem to handle it.
+        expect(postToUrlMock).toBeCalledWith(reportUrl, queryJson, querySignature, portalToken)
+        done()
+      }, 100)
     })
   })
 })
