@@ -22,13 +22,13 @@ export default class ExternalReportButton extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      disabled: this.isDisabled(props)
+      disabled: props.isDisabled()
     }
     this.handleClick = this.handleClick.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
-    this.setState({disabled: this.isDisabled(nextProps)})
+    this.setState({disabled: nextProps.isDisabled()})
   }
 
   render () {
@@ -57,10 +57,6 @@ export default class ExternalReportButton extends React.Component {
       }
     })
     this.setState({disabled: true})
-  }
-
-  isDisabled (props) {
-    return Object.keys(props.getQueryParams()).length === 0
   }
 }
 

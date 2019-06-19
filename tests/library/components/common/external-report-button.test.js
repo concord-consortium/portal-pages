@@ -9,6 +9,7 @@ Enzyme.configure({adapter: new Adapter()})
 
 describe('ExternalReportButton', () => {
   const getQueryParams = () => ({ teachers: 1, otherParam: 'abc' })
+  const isDisabled = () => false
   const postToUrlMock = jest.fn()
   const queryUrl = 'http://query-test.concord.org'
   const queryJson = {fakeQueryJson: true}
@@ -17,7 +18,7 @@ describe('ExternalReportButton', () => {
   const reportUrl = 'http://log-puller-test.concord.org'
 
   const wrapper = Enzyme.shallow(
-    <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
+    <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
   )
 
   it('displays the label', () => {
@@ -30,8 +31,9 @@ describe('ExternalReportButton', () => {
 
   describe('when there are no query params', () => {
     const getQueryParams = () => ({})
+    const isDisabled = () => true
     const wrapper = Enzyme.shallow(
-      <ExternalReportButton label='test disabled' reportUrl={reportUrl} queryUrl={queryUrl} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
+      <ExternalReportButton label='test disabled' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
     )
 
     it('disables the button', () => {
@@ -49,7 +51,7 @@ describe('ExternalReportButton', () => {
 
       const postToUrlMock = jest.fn()
       const wrapper = Enzyme.shallow(
-        <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
+        <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
       )
 
       const eventMock = { preventDefault: jest.fn() }
@@ -71,7 +73,7 @@ describe('ExternalReportButton', () => {
       const postToUrlMock = jest.fn()
       const portalToken = "testtoken"
       const wrapper = Enzyme.shallow(
-        <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} getQueryParams={getQueryParams} postToUrl={postToUrlMock} portalToken={portalToken} />
+        <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} getQueryParams={getQueryParams} postToUrl={postToUrlMock} portalToken={portalToken} />
       )
 
       const logsQueryRequest = nock(queryUrl)
