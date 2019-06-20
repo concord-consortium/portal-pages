@@ -266,7 +266,7 @@ var TeacherForm = function () {
         showSchool && !registerNewSchool
           ? dt({}, 'School') : void 0,
         showSchool && !registerNewSchool
-          ? dd({className: 'signup-form-school-select'},
+          ? dd({ className: 'signup-form-school-select' },
             SchoolInput({
               name: 'school_id',
               placeholder: 'School / Institution',
@@ -296,7 +296,7 @@ var TeacherForm = function () {
           }, GO_BACK_TO_LIST) : void 0
         )
       ),
-      !anonymous && showEnewsSubscription ? div({className: 'signup-form-enews-optin-standalone'},
+      !anonymous && showEnewsSubscription ? div({ className: 'signup-form-enews-optin-standalone' },
         CheckboxInput({
           ref: 'email_subscribed',
           name: 'email_subscribed',
@@ -306,7 +306,7 @@ var TeacherForm = function () {
         })
       ) : void 0,
       PrivacyPolicy({}),
-      div({className: 'submit-button-container'},
+      div({ className: 'submit-button-container' },
         button({
           className: 'submit-btn',
           type: 'submit',

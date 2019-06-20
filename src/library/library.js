@@ -137,7 +137,7 @@ window.PortalPages = {
   renderMaterialsCollection: function (collectionId, selectorOrElement, limitOrOptions) {
     let options = limitOrOptions || {}
     if (typeof limitOrOptions === 'number') {
-      options = {limit: limitOrOptions}
+      options = { limit: limitOrOptions }
     }
     options.collection = collectionId
     ReactDOM.render(MaterialsCollection(options), jQuery(selectorOrElement)[0])

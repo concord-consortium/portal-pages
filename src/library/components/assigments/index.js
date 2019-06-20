@@ -94,7 +94,7 @@ export default class Assignments extends React.Component {
     })
   }
 
-  onOfferingsReorder ({oldIndex, newIndex}) {
+  onOfferingsReorder ({ oldIndex, newIndex }) {
     if (oldIndex === newIndex) {
       return
     }
@@ -116,7 +116,7 @@ export default class Assignments extends React.Component {
 
   onOfferingUpdate (offering, prop, value) {
     const { offerings } = this.state
-    const newOffering = Object.assign({}, offering, {[prop]: value})
+    const newOffering = Object.assign({}, offering, { [prop]: value })
     const newOfferings = offerings.slice()
     newOfferings.splice(offerings.indexOf(offering), 1, newOffering)
     this.setState({ offerings: newOfferings })
@@ -140,7 +140,7 @@ export default class Assignments extends React.Component {
         const newData = offeringDetailsMapping(data)
         const { offeringDetails } = this.state
         this.setState({
-          offeringDetails: Object.assign({}, offeringDetails, {[offering.id]: newData})
+          offeringDetails: Object.assign({}, offeringDetails, { [offering.id]: newData })
         })
       },
       error: () => {

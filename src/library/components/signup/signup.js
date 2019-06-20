@@ -55,7 +55,7 @@ const Signup = function () {
       queryString = queryString + 'userType=' + data
       newUrl = newUrl + queryString
 
-      window.history.pushState({path: newUrl}, '', newUrl)
+      window.history.pushState({ path: newUrl }, '', newUrl)
       return this.setState({
         userType: data
       })

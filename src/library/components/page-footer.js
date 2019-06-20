@@ -18,24 +18,24 @@ var PageFooter = Component({
   },
 
   render: function () {
-    return div({id: 'footer'},
-      div({className: 'footer-inner'},
+    return div({ id: 'footer' },
+      div({ className: 'footer-inner' },
         p({},
           'Copyright ',
-          span({className: 'copyright'},
+          span({ className: 'copyright' },
             '©'
           ),
           '2017 ',
-          a({href: 'https://concord.org', id: 'footer_cc_link'},
+          a({ href: 'https://concord.org', id: 'footer_cc_link' },
             'Concord Consortium'
           ),
           '. All rights reserved.',
           br({}),
-          a({href: 'https://concord.org/privacy-policy', id: 'privacy-policy-link', target: '_blank'},
+          a({ href: 'https://concord.org/privacy-policy', id: 'privacy-policy-link', target: '_blank' },
             'Privacy Policy'
           ),
           ' · Questions/Feedback: ',
-          a({href: 'mailto:help@concord.org?subject=STEM%20Resource%20Finder%20question'},
+          a({ href: 'mailto:help@concord.org?subject=STEM%20Resource%20Finder%20question' },
             'Send us an email'
           ),
           br({}),

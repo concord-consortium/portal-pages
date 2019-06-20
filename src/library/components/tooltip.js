@@ -48,8 +48,8 @@ var Tooltip = Component({
   },
 
   render: function (e) {
-    return div({className: 'portal-pages-tooltip-wrapper', onClick: this.handleClose},
-      div({className: 'portal-pages-tooltip ' + this.state.type, id: this.state.id, style: {left: this.state.posx, top: this.state.posy}, onClick: this.handleClose},
+    return div({ className: 'portal-pages-tooltip-wrapper', onClick: this.handleClose },
+      div({ className: 'portal-pages-tooltip ' + this.state.type, id: this.state.id, style: { left: this.state.posx, top: this.state.posy }, onClick: this.handleClose },
         p({},
           this.state.text
         )
