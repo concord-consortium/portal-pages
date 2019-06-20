@@ -123,6 +123,11 @@ export default class UserReportForm extends React.Component {
     return params
   }
 
+  isExternalReportDisabled () {
+    // <= 1 is used because the params always has remove_cc_teachers defined
+    return Object.keys(this.getQueryParams()).length <= 1
+  }
+
   updateFilters () {
     const params = this.getQueryParams()
     this.query(params)
@@ -213,7 +218,7 @@ export default class UserReportForm extends React.Component {
   }
 
   renderForm () {
-    const { externalReports } = this.props
+    const { externalReports, portalToken } = this.props
     const queryUrl = Portal.API_V1.EXTERNAL_RESEARCHER_REPORT_USER_QUERY
 
     const handleRemoveCCTeachers = e => {
@@ -237,7 +242,7 @@ export default class UserReportForm extends React.Component {
 
         <div style={{ marginTop: '12px' }}>
           {externalReports.map(lr =>
-            <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} queryUrl={queryUrl} getQueryParams={this.getQueryParams} />
+            <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} queryUrl={queryUrl} isDisabled={this.isExternalReportDisabled} getQueryParams={this.getQueryParams} portalToken={portalToken} />
           )}
         </div>
 

@@ -141,6 +141,10 @@ export default class LearnerReportForm extends React.Component {
     return params
   }
 
+  isExternalReportDisabled () {
+    return Object.keys(this.getQueryParams()).length === 0
+  }
+
   updateFilters () {
     const params = this.getQueryParams()
     // update the counts, and the values in all the dropdowns. We have to do
@@ -300,7 +304,7 @@ export default class LearnerReportForm extends React.Component {
         {this.renderButton('Arg Block Report')}
 
         {externalReports.map(lr =>
-          <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} queryUrl={queryUrl} getQueryParams={this.getQueryParams} />
+          <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} queryUrl={queryUrl} isDisabled={this.isExternalReportDisabled} getQueryParams={this.getQueryParams} />
         )}
       </form>
     )

@@ -1,7 +1,7 @@
 import React from 'react'
 import jQuery from 'jquery'
 
-const postToUrl = (url, json, signature) => {
+const postToUrl = (url, json, signature, portalToken) => {
   // Issue POST request to Log app. We can't use GET, as URL could get too long. Generating a fake
   // form is a way to send non-Ajax POST request and open the target page.
   const tempForm = jQuery(
@@ -9,6 +9,7 @@ const postToUrl = (url, json, signature) => {
     `<input type="hidden" name="allowDebug" value="1">` +
     `<input type="hidden" name="json" value='${JSON.stringify(json)}'>` +
     `<input type="hidden" name="signature" value="${signature}">` +
+    (portalToken ? `<input type="hidden" name="portal_token" value="${portalToken}">` : '') +
     `</form>`
   )
   tempForm.appendTo('body').submit()
@@ -21,7 +22,7 @@ export default class ExternalReportButton extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      disabled: this.isDisabled(props)
+      disabled: props.isDisabled()
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -33,11 +34,11 @@ export default class ExternalReportButton extends React.Component {
   render () {
     const { label } = this.props
     const { disabled } = this.state
-    return <input type='submit' onClick={this.handleClick} disabled={disabled} value={label} />
+    return <input style={{ marginRight: 10 }} type='submit' onClick={this.handleClick} disabled={disabled} value={label} />
   }
 
   handleClick (event) {
-    const { reportUrl, queryUrl, getQueryParams, postToUrl } = this.props
+    const { reportUrl, queryUrl, getQueryParams, postToUrl, portalToken } = this.props
     // Make sure we don't submit a form if this component is part of a form (it's possible but not required).
     event.preventDefault()
     // Get the signed query JSON first.
@@ -47,7 +48,7 @@ export default class ExternalReportButton extends React.Component {
       // jQuery.param nicely converts JS hash into query params string.
       url: `${queryUrl}?${jQuery.param(getQueryParams())}`,
       success: response => {
-        postToUrl(reportUrl, response.json, response.signature)
+        postToUrl(reportUrl, response.json, response.signature, portalToken)
       },
       error: (jqXHR, textStatus, error) => {
         console.error('logs_query request failed', error)
@@ -56,10 +57,6 @@ export default class ExternalReportButton extends React.Component {
       }
     })
     this.setState({ disabled: true })
-  }
-
-  isDisabled (props) {
-    return Object.keys(props.getQueryParams()).length === 0
   }
 }
 
