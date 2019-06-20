@@ -1,4 +1,6 @@
 import React from 'react'
+import TextInputClass from './text_input'
+
 let INVALID_FIRST_NAME
 let INVALID_LAST_NAME
 let PASS_NOT_MATCH
@@ -10,7 +12,6 @@ INVALID_FIRST_NAME = 'Invalid first name. Use only letters and numbers.'
 INVALID_LAST_NAME = 'Invalid last name. Use only letters and numbers.'
 
 const Formsy = window.Formsy
-const TextInputClass = require('./text_input')
 
 const enableAuthProviders = true
 
