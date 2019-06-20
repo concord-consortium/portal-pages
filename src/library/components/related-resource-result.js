@@ -27,30 +27,30 @@ var RelatedResourceResult = Component({
 
   handleMouseOver: function () {
     if (!('ontouchstart' in document.documentElement)) {
-      this.setState({hovering: true})
+      this.setState({ hovering: true })
     }
   },
 
   handleMouseOut: function () {
-    this.setState({hovering: false})
+    this.setState({ hovering: false })
   },
 
   render: function () {
     var resource = this.props.resource
-    var options = {className: 'portal-pages-finder-result col-6', onClick: this.handleClick, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut}
+    var options = { className: 'portal-pages-finder-result col-6', onClick: this.handleClick, onMouseOver: this.handleMouseOver, onMouseOut: this.handleMouseOut }
 
     if (this.state.hovering) {
       return div(options,
-        div({className: 'portal-pages-finder-result-description'}, resource.filteredShortDescription),
-        GradeLevels({resource: resource})
+        div({ className: 'portal-pages-finder-result-description' }, resource.filteredShortDescription),
+        GradeLevels({ resource: resource })
       )
     }
     return div(options,
-      div({className: 'portal-pages-finder-result-image-preview'},
-        img({alt: resource.name, src: resource.icon.url})
+      div({ className: 'portal-pages-finder-result-image-preview' },
+        img({ alt: resource.name, src: resource.icon.url })
       ),
-      div({className: 'portal-pages-finder-result-name'}, resource.name),
-      GradeLevels({resource: resource})
+      div({ className: 'portal-pages-finder-result-name' }, resource.name),
+      GradeLevels({ resource: resource })
     )
   }
 })

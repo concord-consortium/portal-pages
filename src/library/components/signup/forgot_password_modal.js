@@ -59,7 +59,7 @@ var ForgotPasswordModal = function () {
 
       var _this = this
 
-      return div({className: 'forgot-password-default-modal-content'},
+      return div({ className: 'forgot-password-default-modal-content' },
         FormsyForm({
           className: 'forgot-password-form',
           onValidSubmit: this.submit },
@@ -84,7 +84,7 @@ var ForgotPasswordModal = function () {
               required: true })
           )
         ),
-        div({className: 'submit-button-container'},
+        div({ className: 'submit-button-container' },
           button({
             className: 'submit-btn',
             type: 'submit'

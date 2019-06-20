@@ -30,7 +30,7 @@ const PageHeader = Component({
         url: '/auth/user', // TODO: replace with Portal.API_V1 constant when available
         dataType: 'json'
       }).done(function (data) {
-        self.setState({userId: data.id})
+        self.setState({ userId: data.id })
         fadeIn(this, 1000)
       }.bind(this))
     } else {
@@ -39,7 +39,7 @@ const PageHeader = Component({
   },
 
   handleResize: function (e) {
-    this.setState({windowWidth: window.innerWidth})
+    this.setState({ windowWidth: window.innerWidth })
   },
 
   handleLoginButton: function (e) {
@@ -47,7 +47,7 @@ const PageHeader = Component({
     console.log('INFO calling renderLoginModal()')
     PortalPages.renderLoginModal(
       { oauthProviders: this.state.oauthProviders,
-        afterSigninPath: this.props.afterSigninPath})
+        afterSigninPath: this.props.afterSigninPath })
     ga('send', 'event', 'Login', 'Form', 'Opened')
   },
 
@@ -62,7 +62,7 @@ const PageHeader = Component({
 
   handleNavMenuToggle: function (e) {
     let collapsed = !this.state.nav_menu_collapsed
-    this.setState({nav_menu_collapsed: collapsed})
+    this.setState({ nav_menu_collapsed: collapsed })
     if (collapsed) {
       jQuery('body').attr('data-mobile-nav', 'closed')
     } else {

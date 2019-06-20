@@ -21,7 +21,7 @@ var CollectionsPage = Component({
           p({},
             a({ className: 'special-link',
               href: 'https://concord.org/projects/',
-              target: '_blank'},
+              target: '_blank' },
             'View ',
             span({ className: 'complete' }, 'all Concord Consortium'),
             ' projects ',
@@ -33,7 +33,7 @@ var CollectionsPage = Component({
       div({ className: 'portal-pages-collections-page-diagonal-spacer-2' }),
       section({ className: 'portal-pages-collections-page-list skew top-only.mediumgray' },
         div({ className: 'portal-pages-collections-page-list-inner cols skew-cancel' },
-          CollectionCards({fadeIn: 1000})
+          CollectionCards({ fadeIn: 1000 })
         )
       )
     )

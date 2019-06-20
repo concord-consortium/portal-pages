@@ -13,8 +13,8 @@ var ResourceType = Component({
       return null
     }
 
-    return div({className: this.props.className || 'portal-pages-finder-result-resource-types'},
-      div({className: 'portal-pages-finder-result-resource-type'}, 'Sequence')
+    return div({ className: this.props.className || 'portal-pages-finder-result-resource-types' },
+      div({ className: 'portal-pages-finder-result-resource-type' }, 'Sequence')
     )
   }
 })

@@ -54,7 +54,7 @@ export default class LearnerReportForm extends React.Component {
   // no new request is made.
   query (_params, _fieldName, searchString) {
     if (_fieldName) {
-      this.setState({[`waitingFor_${_fieldName}`]: true})
+      this.setState({ [`waitingFor_${_fieldName}`]: true })
     }
     const params = jQuery.extend({}, _params) // clone
     if (_fieldName) {
@@ -75,8 +75,8 @@ export default class LearnerReportForm extends React.Component {
         queryCache[cacheKey] = data
         const aggs = data.aggregations
         if (fieldName) {
-          newState = {filterables: this.state.filterables}
-          let {buckets} = aggs[fieldName]
+          newState = { filterables: this.state.filterables }
+          let { buckets } = aggs[fieldName]
           const idsField = `${fieldName}_ids`
           if (aggs[idsField]) {
             // some fields have a separate id aggregration that is filtered
@@ -158,9 +158,9 @@ export default class LearnerReportForm extends React.Component {
     const { counts } = this.state
     if ((Object.keys(counts)).length > 0) {
       return Object.keys(counts).map(k => (
-        <span key={k} style={{paddingLeft: 12}}>
-          <span style={{fontWeight: 'bold'}}>{k}</span>
-          <span style={{paddingLeft: 6}}>{this.state.counts[k]}</span>
+        <span key={k} style={{ paddingLeft: 12 }}>
+          <span style={{ fontWeight: 'bold' }}>{k}</span>
+          <span style={{ paddingLeft: 6 }}>{this.state.counts[k]}</span>
         </span>
       ))
     } else {
@@ -184,7 +184,7 @@ export default class LearnerReportForm extends React.Component {
     // split into values/labels
     options = options.map(function (f) {
       const idName = typeof f === 'string' ? f.split(/:(.+)/) : f.key.split(/:(.+)/)
-      return {value: idName[0], label: idName[1]}
+      return { value: idName[0], label: idName[1] }
     })
 
     // rm messed-up ES values
@@ -199,13 +199,13 @@ export default class LearnerReportForm extends React.Component {
     }
 
     const handleSelectChange = value => {
-      this.setState({[name]: value}, () => {
+      this.setState({ [name]: value }, () => {
         this.updateFilters()
       })
     }
 
     return (
-      <div style={{marginTop: '6px'}}>
+      <div style={{ marginTop: '6px' }}>
         <span>{title(name)}</span>
         <Select
           name={name}
@@ -230,7 +230,7 @@ export default class LearnerReportForm extends React.Component {
         // Incorrect date.
         return
       }
-      this.setState({[name]: formatDate(value)}, () => {
+      this.setState({ [name]: formatDate(value) }, () => {
         this.updateFilters()
       })
     }
@@ -253,7 +253,7 @@ export default class LearnerReportForm extends React.Component {
 
   renderCheck (name) {
     const handleChange = evt => {
-      this.setState({[name]: evt.target.checked})
+      this.setState({ [name]: evt.target.checked })
     }
     return (
       <div>

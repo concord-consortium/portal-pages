@@ -26,14 +26,14 @@ export default class Navigation extends React.Component {
 
   componentDidMount () {
     if (this.props.overlay) {
-      this.closeTimeout = setTimeout(() => this.setState({opened: false}), 3000)
+      this.closeTimeout = setTimeout(() => this.setState({ opened: false }), 3000)
     }
   }
 
   renderHead () {
-    const {greeting, name} = this.props
+    const { greeting, name } = this.props
     const clickHeader = (e) => {
-      this.setState({opened: !this.state.opened})
+      this.setState({ opened: !this.state.opened })
       if (this.closeTimeout) {
         window.clearTimeout(this.closeTimeout)
       }
@@ -63,8 +63,8 @@ export default class Navigation extends React.Component {
   }
 
   renderLink (linkDef) {
-    const {popOut, iconName, label, url, onClick} = linkDef
-    const {location} = this.state
+    const { popOut, iconName, label, url, onClick } = linkDef
+    const { location } = this.state
     const target = popOut ? '_blank' : '_self'
     const icon = popOut ? 'icon-arrow-circle-right' : iconName
     const classNames = this.getLinkClasses(linkDef)
@@ -135,12 +135,12 @@ export default class Navigation extends React.Component {
       if (inSection && !inRoot) {
         if (section.id === inSection) {
           const parentId = inSection.split('/').slice(0, -1).join('/')
-          this.setState({openedSection: parentId})
+          this.setState({ openedSection: parentId })
         } else {
-          this.setState({openedSection: inSection})
+          this.setState({ openedSection: inSection })
         }
       } else {
-        this.setState({openedSection: section.id})
+        this.setState({ openedSection: section.id })
       }
       return true
     }

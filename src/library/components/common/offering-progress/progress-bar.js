@@ -28,7 +28,7 @@ export default class ProgressBar extends React.Component {
       <div className={`${css.progressBar}  ${this.clickable ? css.clickable : ''}`} onClick={this.onClick}
         title={`Open report for "${detailedProgress.activityName}" and ${student.name}`}>
         <div className={`${css.bar} ${detailedProgress.progress === 100 ? css.completed : ''}`}
-          style={{width: `${detailedProgress.progress}%`}} />
+          style={{ width: `${detailedProgress.progress}%` }} />
         <div className={css.textContainer}>
           {
             detailedProgress.info && <span className={css.textInfo}>{ detailedProgress.info }</span>

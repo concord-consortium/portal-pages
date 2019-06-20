@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Formsy = global.Formsy
+const Formsy = window.Formsy
 const TextInputClass = require('./text_input')
 
 const StudentRegistrationComplete = function () {
@@ -38,7 +38,7 @@ const StudentRegistrationComplete = function () {
       let data = ref1.data
       let login = data.login
 
-      let successMessage = anonymous ? <div><p style={{marginBottom: '30px'}}>Success! Your username is <span className='login'>{login}</span></p><p style={{marginBottom: '30px'}}>Use your new account to sign in below.</p></div> : <p><a href='/'>Start using the site.</a></p>
+      let successMessage = anonymous ? <div><p style={{ marginBottom: '30px' }}>Success! Your username is <span className='login'>{login}</span></p><p style={{ marginBottom: '30px' }}>Use your new account to sign in below.</p></div> : <p><a href='/'>Start using the site.</a></p>
 
       return (
         <div className='registration-complete student'>

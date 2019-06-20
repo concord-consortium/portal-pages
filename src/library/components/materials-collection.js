@@ -29,14 +29,14 @@ var MaterialsCollectionItem = Component({
     if (this.state.lightbox) {
       return
     }
-    this.setState({hovering: true})
+    this.setState({ hovering: true })
   },
 
   handleMouseOut: function () {
     if (this.state.lightbox) {
       return
     }
-    this.setState({hovering: false})
+    this.setState({ hovering: false })
   },
 
   toggleLightbox: function (e) {
@@ -52,7 +52,7 @@ var MaterialsCollectionItem = Component({
     // mount/unmount lightbox outside of homepage content
     if (lightbox) {
       var resourceLightbox =
-        ResourceLightbox({resource: this.props.item, toggleLightbox: this.toggleLightbox})
+        ResourceLightbox({ resource: this.props.item, toggleLightbox: this.toggleLightbox })
       Lightbox.open(resourceLightbox)
     } else {
       Lightbox.close()
@@ -61,21 +61,21 @@ var MaterialsCollectionItem = Component({
 
   render: function () {
     var item = this.props.item
-    return div({className: 'portal-pages-finder-materials-collection-item'},
-      div({className: 'portal-pages-finder-materials-collection-item__image col-4'},
-        a({href: '#', onClick: this.toggleLightbox},
-          img({src: item.icon.url}),
-          ResourceType({resource: item})
+    return div({ className: 'portal-pages-finder-materials-collection-item' },
+      div({ className: 'portal-pages-finder-materials-collection-item__image col-4' },
+        a({ href: '#', onClick: this.toggleLightbox },
+          img({ src: item.icon.url }),
+          ResourceType({ resource: item })
         )
       ),
-      div({className: 'portal-pages-finder-materials-collection-item-info col-8'},
-        h3({className: 'portal-pages-finder-materials-collection-item__title'},
-          a({href: '#', onClick: this.toggleLightbox},
+      div({ className: 'portal-pages-finder-materials-collection-item-info col-8' },
+        h3({ className: 'portal-pages-finder-materials-collection-item__title' },
+          a({ href: '#', onClick: this.toggleLightbox },
             item.name
           )
         ),
-        div({className: 'portal-pages-finder-materials-collection-item__description',
-          dangerouslySetInnerHTML: {__html: item.longDescription}})
+        div({ className: 'portal-pages-finder-materials-collection-item__description',
+          dangerouslySetInnerHTML: { __html: item.longDescription } })
       )
       // pre({}, JSON.stringify(this.props.item, null, 2))
     )
@@ -112,7 +112,7 @@ var MaterialsCollection = Component({
           }
           materials.sort(sortFeatured)
         }
-        this.setState({materials: materials})
+        this.setState({ materials: materials })
         if (this.props.onDataLoad) {
           this.props.onDataLoad(materials)
         }
@@ -125,9 +125,9 @@ var MaterialsCollection = Component({
       return null
     }
 
-    return div({className: 'portal-pages-finder-materials-collection'},
+    return div({ className: 'portal-pages-finder-materials-collection' },
       this.state.materials.map(function (material, i) {
-        return MaterialsCollectionItem({key: i, item: material})
+        return MaterialsCollectionItem({ key: i, item: material })
       })
     )
   }

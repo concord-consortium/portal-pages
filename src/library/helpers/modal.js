@@ -19,7 +19,7 @@ var showOverlay = function (clickHandler, modalId, fixedPosition) {
   if (clickHandler) {
     jQuery('#portal-pages-modal-overlay').click(clickHandler)
   }
-  jQuery('#portal-pages-modal-overlay').css({'height': jQuery(document).height() + 'px'}).fadeIn('fast')
+  jQuery('#portal-pages-modal-overlay').css({ 'height': jQuery(document).height() + 'px' }).fadeIn('fast')
 }
 
 var showModal = function (modalId, specialMsg, fixedPosition, closeFunc, modalCloseable) {
@@ -31,7 +31,7 @@ var showModal = function (modalId, specialMsg, fixedPosition, closeFunc, modalCl
     _closeFunc = closeFunc
   }
 
-  jQuery('html, body').css({'overflow': 'hidden'})
+  jQuery('html, body').css({ 'overflow': 'hidden' })
   showOverlay(_closeFunc, modalId, fixedPosition)
 
   if (jQuery(modalId + ' .portal-pages-close').length === 0) {
@@ -48,12 +48,12 @@ var showModal = function (modalId, specialMsg, fixedPosition, closeFunc, modalCl
   if (specialMsg != null) {
     jQuery(modalId + ' .portal-pages-special-msg').text(specialMsg).show()
   }
-  jQuery('#portal-pages-modal-overlay').css({'height': jQuery(document).height() + 'px'}).fadeIn('fast')
+  jQuery('#portal-pages-modal-overlay').css({ 'height': jQuery(document).height() + 'px' }).fadeIn('fast')
   jQuery(modalId).fadeIn('slow')
 }
 
 var hideModal = function () {
-  jQuery('html, body').css({'overflow': 'auto'})
+  jQuery('html, body').css({ 'overflow': 'auto' })
   jQuery('.portal-pages-modal').fadeOut('fast')
   jQuery('#portal-pages-modal-overlay').fadeOut('slow')
   jQuery('.portal-pages-special-msg').text('').hide()

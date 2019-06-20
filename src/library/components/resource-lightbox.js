@@ -57,7 +57,7 @@ var ResourceLightbox = Component({
     try {
       window.history.replaceState({}, document.title, resource.stem_resource_url)
     } catch (e) {}
-    this.setState({resource: resource})
+    this.setState({ resource: resource })
   },
 
   handlePreviewClick: function (e) {
@@ -326,7 +326,7 @@ var ResourceLightbox = Component({
 
     const relatedResources = resource.related_materials.map(function (resource, i) {
       if (i < 2) {
-        return RelatedResourceResult({key: i, resource: resource, replaceResource: this.replaceResource})
+        return RelatedResourceResult({ key: i, resource: resource, replaceResource: this.replaceResource })
       }
     }.bind(this))
 
@@ -407,7 +407,7 @@ var ResourceLightbox = Component({
 
   longDescription: function () {
     const resource = this.state.resource
-    return {__html: resource.longDescription}
+    return { __html: resource.longDescription }
   },
 
   renderResource: function () {

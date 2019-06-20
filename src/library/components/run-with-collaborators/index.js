@@ -38,9 +38,9 @@ var RunWithCollaborators = Component({
     jQuery.ajax({
       type: 'GET',
       url: Portal.API_V1.AVAILABLE_COLLABORATORS,
-      data: {offering_id: this.props.offeringId},
+      data: { offering_id: this.props.offeringId },
       success: function (data) {
-        self.setState({availableCollaborators: data})
+        self.setState({ availableCollaborators: data })
       },
       error: function () {
         window.alert('Error loading available collaborators')
@@ -50,19 +50,19 @@ var RunWithCollaborators = Component({
 
   handleShowDialog: function (e) {
     e.preventDefault()
-    this.setState({showingDialog: true})
+    this.setState({ showingDialog: true })
   },
 
   handleHideDialog: function (e) {
     e.preventDefault()
-    this.setState({showingDialog: false})
+    this.setState({ showingDialog: false })
   },
 
   handleSelectCollaborator: function (e) {
     var id = parseInt(e.target.value, 10)
-    this.setState({selectedCollaborator: this.state.availableCollaborators.find(function (c) {
+    this.setState({ selectedCollaborator: this.state.availableCollaborators.find(function (c) {
       return c.id === id
-    })})
+    }) })
   },
 
   handleAddCollaborator: function (e) {
@@ -72,7 +72,7 @@ var RunWithCollaborators = Component({
 
     if (selectedCollaborator && (collaborators.indexOf(selectedCollaborator) === -1)) {
       collaborators.push(selectedCollaborator)
-      this.setState({collaborators: collaborators, selectedCollaborator: null})
+      this.setState({ collaborators: collaborators, selectedCollaborator: null })
     }
   },
 
@@ -81,7 +81,7 @@ var RunWithCollaborators = Component({
     var index = collaborators.indexOf(collaborator)
     if (index !== -1) {
       collaborators.splice(index, 1)
-      this.setState({collaborators: collaborators})
+      this.setState({ collaborators: collaborators })
     }
   },
 
@@ -92,7 +92,7 @@ var RunWithCollaborators = Component({
     if (collaborators.length === 0) {
       return
     }
-    this.setState({runStarted: true})
+    this.setState({ runStarted: true })
     jQuery.ajax({
       type: 'POST',
       url: Portal.API_V1.COLLABORATIONS,
@@ -100,10 +100,10 @@ var RunWithCollaborators = Component({
       contentType: 'application/json; charset=utf-8',
       data: JSON.stringify({
         offering_id: this.props.offeringId,
-        students: collaborators.map(function (c) { return {id: c.id} })
+        students: collaborators.map(function (c) { return { id: c.id } })
       }),
       success: function (data) {
-        self.setState({showingDialog: false}, function () {
+        self.setState({ showingDialog: false }, function () {
           if (jnlpUrl) {
             // NOTE: this block was copied from the old portal angular code
             // I'm not sure why we are updating the run status and then immediately redirecting
@@ -132,7 +132,7 @@ var RunWithCollaborators = Component({
       <div className={css.collaborators}>
         <ul>
           {collaborators.map(function (collaborator) {
-            return Collaborator({collaborator: collaborator, handleRemoveCollaborator: self.handleRemoveCollaborator})
+            return Collaborator({ collaborator: collaborator, handleRemoveCollaborator: self.handleRemoveCollaborator })
           })}
         </ul>
       </div>
