@@ -8,8 +8,9 @@ install:
 - travis_retry npm ci
 script:
 - npx jest
+- npm run lint
 - npm run build
-after_script: ./s3_deploy.sh
+after_success: ./s3_deploy.sh
 cache:
   bundler: true
   directories:
