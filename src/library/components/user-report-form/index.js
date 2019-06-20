@@ -123,6 +123,11 @@ export default class UserReportForm extends React.Component {
     return params
   }
 
+  isExternalReportDisabled () {
+    // <= 1 is used because the params always has remove_cc_teachers defined
+    return Object.keys(this.getQueryParams()).length <= 1
+  }
+
   updateFilters () {
     const params = this.getQueryParams()
     this.query(params)
@@ -227,7 +232,7 @@ export default class UserReportForm extends React.Component {
       <form method='get' style={{minHeight: 700}}>
         {this.renderInput('teachers')}
         <div style={{marginTop: '6px'}}>
-          <input type="checkbox" checked={this.state.removeCCTeachers} onChange={handleRemoveCCTeachers} /> Remove Concord Consortium Teachers? *
+          <input type='checkbox' checked={this.state.removeCCTeachers} onChange={handleRemoveCCTeachers} /> Remove Concord Consortium Teachers? *
         </div>
         {this.renderInput('cohorts')}
         {this.renderInput('runnables')}
@@ -237,7 +242,7 @@ export default class UserReportForm extends React.Component {
 
         <div style={{marginTop: '12px'}}>
           {externalReports.map(lr =>
-            <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} queryUrl={queryUrl} getQueryParams={this.getQueryParams} portalToken={portalToken} />
+            <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} queryUrl={queryUrl} isDisabled={this.isExternalReportDisabled} getQueryParams={this.getQueryParams} portalToken={portalToken} />
           )}
         </div>
 
