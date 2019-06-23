@@ -28,7 +28,7 @@ export default class ExternalReportButton extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    this.setState({ disabled: this.isDisabled(nextProps) })
+    this.setState({ disabled: this.isDisabled() })
   }
 
   render () {
