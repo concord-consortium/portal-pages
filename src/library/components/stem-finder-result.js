@@ -56,7 +56,7 @@ const StemFinderResult = Component({
       return
     }
     if (touchInitialized === false && pageScrolling === false) {
-      this.setState({hovering: true})
+      this.setState({ hovering: true })
     }
   },
 
@@ -64,7 +64,7 @@ const StemFinderResult = Component({
     if (this.state.lightbox) {
       return
     }
-    this.setState({hovering: false})
+    this.setState({ hovering: false })
   },
 
   toggleLightbox: function (e) {
@@ -100,7 +100,7 @@ const StemFinderResult = Component({
       let mouseX = e.pageX + 31
       let mouseY = e.pageY - 23
       jQuery('body').append('<div class="portal-pages-favorite-tooltip">Log in or sign up to save resources for quick access!</div>')
-      jQuery('.portal-pages-favorite-tooltip').css({'left': mouseX + 'px', 'top': mouseY + 'px'}).fadeIn('fast')
+      jQuery('.portal-pages-favorite-tooltip').css({ 'left': mouseX + 'px', 'top': mouseY + 'px' }).fadeIn('fast')
 
       window.setTimeout(function () {
         jQuery('.portal-pages-favorite-tooltip').fadeOut('slow', function () { jQuery(this).remove() })
@@ -111,12 +111,12 @@ const StemFinderResult = Component({
     let resource = this.props.resource
     let done = function () {
       resource.is_favorite = !resource.is_favorite
-      this.setState({favorited: resource.is_favorite})
+      this.setState({ favorited: resource.is_favorite })
     }.bind(this)
     if (resource.is_favorite) {
-      jQuery.post('/api/v1/materials/remove_favorite', {favorite_id: resource.favorite_id}, done)
+      jQuery.post('/api/v1/materials/remove_favorite', { favorite_id: resource.favorite_id }, done)
     } else {
-      jQuery.post('/api/v1/materials/add_favorite', {id: resource.id, material_type: resource.class_name_underscored}, done)
+      jQuery.post('/api/v1/materials/add_favorite', { id: resource.id, material_type: resource.class_name_underscored }, done)
     }
   },
 

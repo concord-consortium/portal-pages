@@ -41,10 +41,10 @@ PortalPages.renderMaterialsCollection(15, '#collection-2', {
 
 jQuery(document).ready(function () {
   jQuery('.collapsible').hide()
-  jQuery('.collapsible-toggle').css({'cursor': 'pointer'}).click(function () {
+  jQuery('.collapsible-toggle').css({ 'cursor': 'pointer' }).click(function () {
     jQuery(this).toggleClass('open')
     var toggleTop = jQuery(this).position().top + 650
-    jQuery('html,body').animate({scrollTop: toggleTop}, 'slow')
+    jQuery('html,body').animate({ scrollTop: toggleTop }, 'slow')
     jQuery(this).siblings('.collapsible').slideToggle('fast')
   })
 })

@@ -28,13 +28,13 @@ export default class ExternalReportButton extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    this.setState({disabled: nextProps.isDisabled()})
+    this.setState({ disabled: this.isDisabled() })
   }
 
   render () {
-    const {label} = this.props
-    const {disabled} = this.state
-    return <input style={{marginRight: 10}} type='submit' onClick={this.handleClick} disabled={disabled} value={label} />
+    const { label } = this.props
+    const { disabled } = this.state
+    return <input style={{ marginRight: 10 }} type='submit' onClick={this.handleClick} disabled={disabled} value={label} />
   }
 
   handleClick (event) {
@@ -53,10 +53,10 @@ export default class ExternalReportButton extends React.Component {
       error: (jqXHR, textStatus, error) => {
         console.error('logs_query request failed', error)
         window.alert('Logs query generation failed. Please reload the page and try again.')
-        this.setState({disabled: false})
+        this.setState({ disabled: false })
       }
     })
-    this.setState({disabled: true})
+    this.setState({ disabled: true })
   }
 }
 

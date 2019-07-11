@@ -45,7 +45,7 @@ var CollectionCards = Component({
           collections = collections.slice(0, this.props.count)
         }
 
-        this.setState({collections: collections})
+        this.setState({ collections: collections })
 
         fadeIn(this, 1000)
       }.bind(this))
@@ -56,15 +56,15 @@ var CollectionCards = Component({
     if (this.state.collections.length === 0) {
       return null
     }
-    return div({style: {opacity: this.state.opacity}},
+    return div({ style: { opacity: this.state.opacity } },
       this.state.collections.map(function (collection) {
-        return div({key: collection.landing_page_slug, className: 'portal-pages-collections-card col-4'},
-          a({href: '/' + collection.landing_page_slug},
-            div({className: 'portal-pages-collections-card-image-preview'},
-              img({alt: collection.name, src: collection.project_card_image_url})
+        return div({ key: collection.landing_page_slug, className: 'portal-pages-collections-card col-4' },
+          a({ href: '/' + collection.landing_page_slug },
+            div({ className: 'portal-pages-collections-card-image-preview' },
+              img({ alt: collection.name, src: collection.project_card_image_url })
             ),
-            h3({className: 'portal-pages-collections-card-name'}, collection.name),
-            p({className: 'portal-pages-collections-card-description'}, collection.filteredDescription)
+            h3({ className: 'portal-pages-collections-card-name' }, collection.name),
+            p({ className: 'portal-pages-collections-card-description' }, collection.filteredDescription)
           )
         )
       })

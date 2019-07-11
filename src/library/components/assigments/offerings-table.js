@@ -1,5 +1,5 @@
 import React from 'react'
-import {SortableContainer, SortableElement} from 'react-sortable-hoc'
+import { SortableContainer, SortableElement } from 'react-sortable-hoc'
 import OfferingRow from './offering-row'
 
 import css from './style.scss'

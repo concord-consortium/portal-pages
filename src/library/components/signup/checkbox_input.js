@@ -16,7 +16,7 @@ var CheckboxInput = function () {
     render: function () {
       return div({
         className: 'checkbox-input ' + this.props.name
-      }, label({className: 'checkbox-label'},
+      }, label({ className: 'checkbox-label' },
         input({
           type: 'checkbox',
           onChange: this.changeValue,

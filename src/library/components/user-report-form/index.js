@@ -46,20 +46,20 @@ export default class UserReportForm extends React.Component {
     jQuery.ajax({
       url: '/api/v1/report_users',
       type: 'GET',
-      data: {totals: true, remove_cc_teachers: this.state.removeCCTeachers}
+      data: { totals: true, remove_cc_teachers: this.state.removeCCTeachers }
     }).then(data => {
       if (data.error) {
         window.alert(data.error)
       }
       if (data.totals) {
-        this.setState({totals: data.totals})
+        this.setState({ totals: data.totals })
       }
     })
   }
 
   query (_params, _fieldName, searchString) {
     if (_fieldName) {
-      this.setState({[`waitingFor_${_fieldName}`]: true})
+      this.setState({ [`waitingFor_${_fieldName}`]: true })
     }
     const params = jQuery.extend({}, _params) // clone
     if (_fieldName) {
@@ -76,7 +76,7 @@ export default class UserReportForm extends React.Component {
 
     const handleResponse = (fieldName => {
       return data => {
-        let newState = {filterables: this.state.filterables}
+        let newState = { filterables: this.state.filterables }
 
         queryCache[cacheKey] = data
 
@@ -111,7 +111,7 @@ export default class UserReportForm extends React.Component {
   }
 
   getQueryParams () {
-    const params = {remove_cc_teachers: this.state.removeCCTeachers}
+    const params = { remove_cc_teachers: this.state.removeCCTeachers }
     for (var filter of ['teachers', 'cohorts', 'runnables']) {
       if ((this.state[filter] != null ? this.state[filter].length : undefined) > 0) {
         params[filter] = this.state[filter].map(v => v.value).sort().join(',')
@@ -145,7 +145,7 @@ export default class UserReportForm extends React.Component {
     const placeholder = !isLoading ? (hits.length === 0 ? 'Search...' : 'Select or search...') : 'Loading ...'
 
     const options = hits.map(hit => {
-      return {value: hit.id, label: hit.label}
+      return { value: hit.id, label: hit.label }
     })
 
     const handleSelectInputChange = value => {
@@ -156,24 +156,24 @@ export default class UserReportForm extends React.Component {
     }
 
     const handleSelectChange = value => {
-      this.setState({[name]: value}, () => {
+      this.setState({ [name]: value }, () => {
         this.updateFilters()
       })
     }
 
     const handleLoadAll = e => {
       e.preventDefault()
-      this.query({load_all: name, remove_cc_teachers: this.state.removeCCTeachers}, name)
+      this.query({ load_all: name, remove_cc_teachers: this.state.removeCCTeachers }, name)
     }
 
     const titleCounts = this.state.totals.hasOwnProperty(name) ? ` (${hits.length} of ${this.state.totals[name]})` : ''
     let loadAllLink
     if ((this.state.totals[name] > 0) && (hits.length !== this.state.totals[name])) {
-      loadAllLink = <a href='#' onClick={handleLoadAll} style={{marginLeft: 10}}>load all</a>
+      loadAllLink = <a href='#' onClick={handleLoadAll} style={{ marginLeft: 10 }}>load all</a>
     }
 
     return (
-      <div style={{marginTop: '6px'}}>
+      <div style={{ marginTop: '6px' }}>
         <span>{`${title(name)}${titleCounts}`}{loadAllLink}</span>
         <Select
           name={name}
@@ -198,11 +198,11 @@ export default class UserReportForm extends React.Component {
         // Incorrect date.
         return
       }
-      this.setState({[name]: formatDate(value)})
+      this.setState({ [name]: formatDate(value) })
     }
 
     return (
-      <div style={{marginTop: '6px'}}>
+      <div style={{ marginTop: '6px' }}>
         <div>{label}</div>
         <DayPickerInput
           name={name}
@@ -222,16 +222,16 @@ export default class UserReportForm extends React.Component {
     const queryUrl = Portal.API_V1.EXTERNAL_RESEARCHER_REPORT_USER_QUERY
 
     const handleRemoveCCTeachers = e => {
-      this.setState({removeCCTeachers: e.target.checked}, () => {
+      this.setState({ removeCCTeachers: e.target.checked }, () => {
         this.getTotals()
         this.updateFilters()
       })
     }
 
     return (
-      <form method='get' style={{minHeight: 700}}>
+      <form method='get' style={{ minHeight: 700 }}>
         {this.renderInput('teachers')}
-        <div style={{marginTop: '6px'}}>
+        <div style={{ marginTop: '6px' }}>
           <input type='checkbox' checked={this.state.removeCCTeachers} onChange={handleRemoveCCTeachers} /> Remove Concord Consortium Teachers? *
         </div>
         {this.renderInput('cohorts')}
@@ -240,13 +240,13 @@ export default class UserReportForm extends React.Component {
         {this.renderDatePicker('start_date')}
         {this.renderDatePicker('end_date')}
 
-        <div style={{marginTop: '12px'}}>
+        <div style={{ marginTop: '12px' }}>
           {externalReports.map(lr =>
             <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} queryUrl={queryUrl} isDisabled={this.isExternalReportDisabled} getQueryParams={this.getQueryParams} portalToken={portalToken} />
           )}
         </div>
 
-        <div style={{marginTop: '24px'}}>
+        <div style={{ marginTop: '24px' }}>
           * Concord Consortium Teachers belong to schools named "Concord Consortium".
         </div>
       </form>

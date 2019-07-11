@@ -8,7 +8,8 @@
     "start:prod": "cross-env NODE_ENV=production webpack-serve",
     "start-portals": "cross-env NODE_ENV=development node server/bin/www",
     "start-portals:prod": "cross-env NODE_ENV=production node server/bin/www",
-    "lint": "standard --fix \"src/**/*.js\"",
+    "lint": "standard \"src/**/*.js\"",
+    "lint:fix": "standard --fix \"src/**/*.js\"",
     "build": "npm run lint && npm run build-portals && npm run build-library",
     "build-portals": "node scripts/build.js",
     "build-library": "cross-env NODE_ENV=production webpack",
@@ -16,6 +17,7 @@
     "test": "jest --watch"
   },
   "standard": {
+    "parser": "babel-eslint",
     "globals": [
       "React",
       "ReactDOM",
@@ -53,6 +55,7 @@
     "@babel/preset-env": "^7.0.0-rc.1",
     "@babel/preset-react": "^7.0.0-rc.1",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.2",
     "babel-jest": "^23.4.2",
     "babel-loader": "^8.0.0-beta.4",
     "copy-webpack-plugin": "^4.5.2",
@@ -71,7 +74,7 @@
     "react-select": "^1.2.0",
     "react-test-renderer": "^15.6.2",
     "sass-loader": "^7.1.0",
-    "standard": "^11.0.1",
+    "standard": "^12.0.1",
     "style-loader": "^0.21.0",
     "url-loader": "^1.1.1",
     "webpack": "^4.16.5",

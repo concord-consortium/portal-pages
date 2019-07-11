@@ -77,7 +77,7 @@ var StudentForm = function () {
         )
       ),
       PrivacyPolicy({}),
-      div({className: 'submit-button-container'},
+      div({ className: 'submit-button-container' },
         button({
           className: 'submit-btn',
           type: 'submit',
