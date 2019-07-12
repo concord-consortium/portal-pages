@@ -21,24 +21,16 @@ const postToUrl = (url, json, signature, portalToken) => {
 export default class ExternalReportButton extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      disabled: props.isDisabled()
-    }
     this.handleClick = this.handleClick.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.setState({ disabled: this.isDisabled() })
-  }
-
   render () {
-    const { label } = this.props
-    const { disabled } = this.state
-    return <input style={{ marginRight: 10 }} type='submit' onClick={this.handleClick} disabled={disabled} value={label} />
+    const { label, isDisabled } = this.props
+    return <input style={{ marginRight: 10 }} type='submit' onClick={this.handleClick} disabled={isDisabled} value={label} />
   }
 
   handleClick (event) {
-    const { reportUrl, queryUrl, getQueryParams, postToUrl, portalToken } = this.props
+    const { reportUrl, queryUrl, queryParams, postToUrl, portalToken } = this.props
     // Make sure we don't submit a form if this component is part of a form (it's possible but not required).
     event.preventDefault()
     // Get the signed query JSON first.
@@ -46,7 +38,7 @@ export default class ExternalReportButton extends React.Component {
       type: 'GET',
       dataType: 'json',
       // jQuery.param nicely converts JS hash into query params string.
-      url: `${queryUrl}?${jQuery.param(getQueryParams())}`,
+      url: `${queryUrl}?${jQuery.param(queryParams)}`,
       success: response => {
         postToUrl(reportUrl, response.json, response.signature, portalToken)
       },
