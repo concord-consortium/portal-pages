@@ -33,9 +33,10 @@ export default class UserReportForm extends React.Component {
       waitingFor_runnables: false,
       totals: {},
       // checkbox options
-      removeCCTeachers: false
+      removeCCTeachers: false,
+      externalReportButtonDisabled: true,
+      queryParams: {}
     }
-    this.getQueryParams = this.getQueryParams.bind(this)
   }
 
   componentWillMount () {
@@ -123,9 +124,11 @@ export default class UserReportForm extends React.Component {
     return params
   }
 
-  isExternalReportDisabled () {
+  updateQueryParams () {
+    const queryParams = this.getQueryParams()
     // <= 1 is used because the params always has remove_cc_teachers defined
-    return Object.keys(this.getQueryParams()).length <= 1
+    const externalReportButtonDisabled = Object.keys(queryParams).length <= 1
+    this.setState({ queryParams, externalReportButtonDisabled })
   }
 
   updateFilters () {
@@ -158,6 +161,7 @@ export default class UserReportForm extends React.Component {
     const handleSelectChange = value => {
       this.setState({ [name]: value }, () => {
         this.updateFilters()
+        this.updateQueryParams()
       })
     }
 
@@ -198,7 +202,9 @@ export default class UserReportForm extends React.Component {
         // Incorrect date.
         return
       }
-      this.setState({ [name]: formatDate(value) })
+      this.setState({ [name]: formatDate(value) }, () => {
+        this.updateQueryParams()
+      })
     }
 
     return (
@@ -219,6 +225,7 @@ export default class UserReportForm extends React.Component {
 
   renderForm () {
     const { externalReports, portalToken } = this.props
+    const { queryParams, externalReportButtonDisabled } = this.state
     const queryUrl = Portal.API_V1.EXTERNAL_RESEARCHER_REPORT_USER_QUERY
 
     const handleRemoveCCTeachers = e => {
@@ -242,7 +249,7 @@ export default class UserReportForm extends React.Component {
 
         <div style={{ marginTop: '12px' }}>
           {externalReports.map(lr =>
-            <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} queryUrl={queryUrl} isDisabled={this.isExternalReportDisabled} getQueryParams={this.getQueryParams} portalToken={portalToken} />
+            <ExternalReportButton key={lr.url + lr.label} label={lr.label} reportUrl={lr.url} queryUrl={queryUrl} isDisabled={externalReportButtonDisabled} queryParams={queryParams} portalToken={portalToken} />
           )}
         </div>
 

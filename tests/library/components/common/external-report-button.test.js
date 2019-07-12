@@ -8,8 +8,8 @@ import nock from 'nock'
 Enzyme.configure({adapter: new Adapter()})
 
 describe('ExternalReportButton', () => {
-  const getQueryParams = () => ({ teachers: 1, otherParam: 'abc' })
-  const isDisabled = () => false
+  const queryParams = { teachers: 1, otherParam: 'abc' }
+  const isDisabled = false
   const postToUrlMock = jest.fn()
   const queryUrl = 'http://query-test.concord.org'
   const queryJson = {fakeQueryJson: true}
@@ -18,7 +18,7 @@ describe('ExternalReportButton', () => {
   const reportUrl = 'http://log-puller-test.concord.org'
 
   const wrapper = Enzyme.shallow(
-    <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
+    <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} queryParams={queryParams} postToUrl={postToUrlMock} />
   )
 
   it('displays the label', () => {
@@ -30,10 +30,10 @@ describe('ExternalReportButton', () => {
   })
 
   describe('when there are no query params', () => {
-    const getQueryParams = () => ({})
-    const isDisabled = () => true
+    const queryParams = {}
+    const isDisabled = true
     const wrapper = Enzyme.shallow(
-      <ExternalReportButton label='test disabled' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
+      <ExternalReportButton label='test disabled' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} queryParams={queryParams} postToUrl={postToUrlMock} />
     )
 
     it('disables the button', () => {
@@ -46,12 +46,12 @@ describe('ExternalReportButton', () => {
       const logsQueryRequest = nock(queryUrl)
         .defaultReplyHeaders({ 'access-control-allow-origin': '*' })
         .get('/')
-        .query(getQueryParams())
+        .query(queryParams)
         .reply(200, {json: queryJson, signature: querySignature})
 
       const postToUrlMock = jest.fn()
       const wrapper = Enzyme.shallow(
-        <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} getQueryParams={getQueryParams} postToUrl={postToUrlMock} />
+        <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} queryParams={queryParams} postToUrl={postToUrlMock} />
       )
 
       const eventMock = { preventDefault: jest.fn() }
@@ -73,13 +73,13 @@ describe('ExternalReportButton', () => {
       const postToUrlMock = jest.fn()
       const portalToken = "testtoken"
       const wrapper = Enzyme.shallow(
-        <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} getQueryParams={getQueryParams} postToUrl={postToUrlMock} portalToken={portalToken} />
+        <ExternalReportButton label='test label' reportUrl={reportUrl} queryUrl={queryUrl} isDisabled={isDisabled} queryParams={queryParams} postToUrl={postToUrlMock} portalToken={portalToken} />
       )
 
       const logsQueryRequest = nock(queryUrl)
         .defaultReplyHeaders({ 'access-control-allow-origin': '*' })
         .get('/')
-        .query(getQueryParams())
+        .query(queryParams)
         .reply(200, {json: queryJson, signature: querySignature, portalToken})
 
       const eventMock = { preventDefault: jest.fn() }
