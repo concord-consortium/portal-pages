@@ -25,7 +25,7 @@ export default class Offering extends React.Component {
 
   render () {
     const { detailsVisible } = this.state
-    const { clazz, activityName, previewUrl, students, reportableActivities, reportUrl, externalReport,
+    const { clazz, activityName, previewUrl, students, reportableActivities, reportUrl, externalReports,
       completedStudentsCount, inProgressStudentsCount, notStartedStudentsCount } = this.props.offering
     const completedWidth = (completedStudentsCount / students.length) * 100
     const inProgressWidth = (inProgressStudentsCount / students.length) * 100
@@ -59,8 +59,17 @@ export default class Offering extends React.Component {
             <a href={reportUrl} target='_blank' className={commonCss.smallButton}>Report</a>
           }
           {
-            externalReport &&
-            <a href={externalReport.url} target='_blank' className={commonCss.smallButton}>{ externalReport.launchText }</a>
+            externalReports && externalReports.map((externalReport, index) => {
+              return (
+                <a href={externalReport.url}
+                  key={index}
+                  target='_blank'
+                  className={commonCss.smallButton}>
+                  { externalReport.launchText }
+                </a>
+              )
+            })
+
           }
         </div>
         <div>
