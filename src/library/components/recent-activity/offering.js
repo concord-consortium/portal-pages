@@ -59,9 +59,10 @@ export default class Offering extends React.Component {
             <a href={reportUrl} target='_blank' className={commonCss.smallButton}>Report</a>
           }
           {
-            externalReports && externalReports.map((externalReport) => {
+            externalReports && externalReports.map((externalReport, index) => {
               return (
                 <a href={externalReport.url}
+                  key={index}
                   target='_blank'
                   className={commonCss.smallButton}>
                   { externalReport.launchText }
