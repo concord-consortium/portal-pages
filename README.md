@@ -1,6 +1,6 @@
 # Concord Portal Pages
 
-This respository serves multiple purposes:
+This repository serves multiple purposes:
 
 1. It contains the code for portal-pages.js which is a library of React components used by the Portal.
 1. It allows for version control for the various custom portal page content areas like the homepage and project or collection pages.
@@ -110,7 +110,7 @@ https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/library/portal
 
 ## Building an example page for a new Portal React Component ##
 
-Create an HTML file in `src/examples/`.  It will be easiest to copy one of the existing examples. You also need to a new line to webpack.config.js: look for the lines that look like `example(...)`, and add a new one for your example.  
+Create an HTML file in `src/examples/`.  It will be easiest to copy one of the existing examples. You also need to add a new line to webpack.config.js: look for the lines that look like `example(...)`, and add a new one for your example.  
 
 `npm run start` and `npm run start:prod` can both be used to view these examples locally.  `npm run build` will build them and put the result in `dest/examples`.  When you push a branch the examples will be built by travis and deployed to  `https://portal-pages.concord.org/<branch|version>/<branch-or-tag>/examples/<your-example>.html`.
 
