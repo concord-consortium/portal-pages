@@ -48,7 +48,7 @@ const offeringDetailsMapping = data => {
     activityName: data.activity,
     previewUrl: data.preview_url,
     reportUrl: data.report_url,
-    externalReport: externalReportMapping(data.external_report),
+    externalReports: data.external_reports && data.external_reports.map(r => externalReportMapping(r)),
     reportableActivities: data.reportable_activities && data.reportable_activities.map(a => reportableActivityMapping(a)),
     students: data.students.map(s => studentMapping(s)).sort(sortByName)
   }
