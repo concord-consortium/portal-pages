@@ -21,13 +21,15 @@ var MakeTeacherEditionLinks = function (selector, specDomain = null) {
 
   var updateAnchorTag = function (anchor) {
     var oldLink = anchor.getAttribute('href')
-    var encodedDomain = encodeURIComponent(domain)
+    var url = new URL(oldLink)
+    var searchParams = url.searchParams
     var domainUid = Portal.currentUser.userId
-    var newLink = oldLink +
-      '?domain=' + encodedDomain +
-      '&domain_uid=' + domainUid +
-      '&mode=teacher-edition&show_index=true&logging=true'
-    anchor.setAttribute('href', newLink)
+    searchParams.set('domain', domain)
+    searchParams.set('domain_uid', domainUid)
+    searchParams.set('mode', 'teacher-edition')
+    searchParams.set('show_index', 'true')
+    searchParams.set('logging', 'true')
+    anchor.setAttribute('href', url.toString())
   }
 
   var links = document.querySelectorAll(selector)
