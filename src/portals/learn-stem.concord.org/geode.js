@@ -5,7 +5,7 @@ jQuery(document).ready(function() {
     jQuery('#intro-text').css('width', '640px')
     jQuery('#intro-text').html(loggedInContent)
   }
-})
+});
 
 // Last argument is number of visible materials.
 PortalPages.renderMaterialsCollection(41, '#collection-2', {

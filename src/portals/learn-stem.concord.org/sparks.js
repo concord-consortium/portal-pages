@@ -1,10 +1,10 @@
-jQuery(document).ready(function () {
+jQuery(document).ready(function() {
   // Last argument is number of visible materials.
-  PortalPages.renderMaterialsCollection(21, '#simulations-tab', 100)
+  PortalPages.renderMaterialsCollection(21, '#simulations-tab', 100);
   if (Portal.currentUser.isLoggedIn) {
-    jQuery('.sign-up-box').remove()
+    jQuery('.sign-up-box').remove();
   }
-})
+});
 
 function showTab(tabId) {
   jQuery('.tab-content').hide().removeClass('active')
