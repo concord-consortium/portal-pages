@@ -6,9 +6,12 @@ const ADD_EXTERNAL_REPORT = 'add_external_report'
 export const appendOfferingApiQueryParams = apiUrl => {
   const currentUrl = new URL(window.location)
   if (currentUrl.searchParams.has(ADD_EXTERNAL_REPORT)) {
-    const apiUrlParsed = new URL(apiUrl)
+    // Note that URL module only works with absolute URLs. FAKE_BASE_URL will be ignored if apiUrl is already absolute,
+    // or used otherwise and finally stripped out (return statement).
+    const FAKE_BASE_URL = 'http://fake.base.url.com'
+    const apiUrlParsed = new URL(apiUrl, FAKE_BASE_URL)
     apiUrlParsed.searchParams.set(ADD_EXTERNAL_REPORT, currentUrl.searchParams.get(ADD_EXTERNAL_REPORT))
-    return apiUrlParsed.toString()
+    return apiUrlParsed.toString().replace(FAKE_BASE_URL, '')
   } else {
     return apiUrl
   }

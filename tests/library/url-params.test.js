@@ -19,4 +19,10 @@ describe('appendOfferingApiQueryParams', () => {
     url = appendOfferingApiQueryParams('http://test.portal.com/offering/1?another_param=321')
     expect(url).toEqual('http://test.portal.com/offering/1?another_param=321&add_external_report=123')
   })
+
+  it('works with relative API path', () => {
+    window.history.pushState({}, 'Test Param', '/?add_external_report=123')
+    let url = appendOfferingApiQueryParams('/offering/1?another_param=321')
+    expect(url).toEqual('/offering/1?another_param=321&add_external_report=123')
+  })
 })
