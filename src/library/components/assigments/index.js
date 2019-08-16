@@ -5,6 +5,8 @@ import sortByName from '../../helpers/sort-by-name'
 import OfferingsTable from './offerings-table'
 import { arrayMove } from 'react-sortable-hoc'
 
+import { appendOfferingApiQueryParams } from '../../url-params'
+
 const teachersMapping = data => {
   return data.map(teacher => `${teacher.first_name} ${teacher.last_name}`).join(', ')
 }
@@ -135,7 +137,7 @@ export default class Assignments extends React.Component {
   requestOfferingDetails (offering) {
     jQuery.ajax({
       type: 'GET',
-      url: offering.apiUrl,
+      url: appendOfferingApiQueryParams(offering.apiUrl),
       success: data => {
         const newData = offeringDetailsMapping(data)
         const { offeringDetails } = this.state
