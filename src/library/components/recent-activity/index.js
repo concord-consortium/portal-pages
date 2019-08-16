@@ -1,6 +1,7 @@
 import React from 'react'
 import Offerings from './offerings'
 import { reportableActivityMapping, studentMapping } from '../common/offering-progress/helpers'
+import { appendOfferingApiQueryParams } from '../../url-params'
 
 const externalReportMapping = data => {
   if (!data) {
@@ -83,7 +84,7 @@ export default class RecentActivity extends React.Component {
   getPortalData () {
     const { dataUrl } = this.props
     jQuery.ajax({
-      url: dataUrl,
+      url: appendOfferingApiQueryParams(dataUrl),
       success: data => {
         this.setState({
           loading: false,
