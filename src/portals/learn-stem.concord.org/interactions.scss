@@ -1,9 +1,20 @@
-body.member-visitor #content { overflow-y: hidden; }
-body.guest-visitor .wrapper { width: auto !important; }
-#primary.wide { width: 100%; }
-#primary.wide #content { overflow: hidden; }
-body.member-visitor .portal-pages-collection-page-intro:nth-child(1) { width: 100%; }
-body.member-visitor .portal-pages-collection-page-intro:nth-child(2) { display: none; }
+body.member-visitor #content {
+  overflow-y: hidden; }
+
+body.guest-visitor .wrapper {
+  width: auto !important; }
+
+#primary.wide {
+  width: 100%; }
+
+#primary.wide #content {
+  overflow: hidden; }
+
+body.member-visitor .portal-pages-collection-page-intro:nth-child(1) {
+  width: 100%; }
+
+body.member-visitor .portal-pages-collection-page-intro:nth-child(2) {
+  display: none; }
 
 .portal-pages-collection-page-intro li {
   margin-bottom: 10px; }
@@ -76,16 +87,16 @@ body.member-visitor .portal-pages-collection-page-intro:nth-child(2) { display: 
   padding: 0; }
 
 .video {
-  background: #6ec4d7 url(//concord.org/sites/default/files/projects/interactions/interactions-720p.jpg) no-repeat center center;
+  background: #6ec4d7 url(https://concord.org/wp-content/uploads/projects/interactions/interactions-720p.jpg) no-repeat center center;
   background-size: cover;
   color: #0093b0;
   float: right;
   font-size: 2em;
-  height: 256px;
+  height: 244px;
   line-height: 360px;
   margin: 3px 0 1em 1em;
   text-align: center;
-  width: 456px; }
+  width: 433px; }
 
 #intro ul {
   font-style: italic;
@@ -96,18 +107,22 @@ body.member-visitor .portal-pages-collection-page-intro:nth-child(2) { display: 
   clear: both;
   margin: 15px;
   overflow: hidden; }
-  #pd a:hover {
-    color: #ea6d2f; }
-  #pd p {
-    padding: 0 30px 0; }
-  #pd h2 {
-    padding: 30px; }
+
+#pd a:hover {
+  color: #ea6d2f; }
+
+#pd p {
+  padding: 0 30px 0; }
+
+#pd h2 {
+  padding: 30px; }
 
 #partners {
   text-align: center; }
-  #partners h2 {
-    margin-bottom: 30px;
-    text-align: center; }
+
+#partners h2 {
+  margin-bottom: 30px;
+  text-align: center; }
 
 #curriculum {
   clear: both; }
@@ -200,8 +215,9 @@ h3.collapsible-toggle {
 
 h3.collapsible-toggle:hover {
   color: #999; }
-  h3.collapsible-toggle:hover:after {
-    background: #999; }
+
+h3.collapsible-toggle:hover:after {
+  background: #999; }
 
 .collapsible-toggle.open {
   border-bottom: none; }
@@ -320,3 +336,7 @@ body.member-visitor #nsta-videos {
 
 #signup-default-modal {
   position: fixed; }
+
+.thicker-font {
+  font-weight: 300;
+}

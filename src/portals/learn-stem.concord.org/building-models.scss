@@ -2,7 +2,7 @@ body.member-visitor #content { overflow-y: hidden; }
 #primary.wide { width: 100%; }
 #primary.wide #content { overflow: hidden; }
 .video {
-  background: #6ec4d7 url(//concord.org/sites/default/files/projects/building-models/building-models-poster.jpg) no-repeat center center;
+  background: #6ec4d7 url(https://concord.org/wp-content/uploads/2016/12/projects/building-models/building-models-poster.jpg) no-repeat center center;
   background-size: cover;
   color: #0093b0;
   float: right;
@@ -23,6 +23,8 @@ body.member-visitor .my-video-dimensions {
   width: 100%; }
 
 body.member-visitor .portal-pages-collection-page-intro { width: 100% !important; }
+
+.portal-pages-collection-page-intro:nth-child(2) figure { margin-top: 54px; }
 
 .project-image {
   float: right;
@@ -84,6 +86,13 @@ h3.collapsible-toggle:hover {
   100% {
     transform: rotate(45deg); } }
 
+#partners {
+  text-align: center; }
+
+#partners h2 {
+  margin-bottom: 30px;
+  text-align: center; }
+
 #units-tab li {
   clear: both;
   list-style: none;
@@ -124,3 +133,16 @@ body.member-visitor .collapsible {
 
 body.member-visitor h3.collapsible-toggle {
   width: 93%; }
+
+#sagemodeler {
+  background: #f5f5f5;
+  margin-bottom: 30px;
+  padding: 20px;
+}
+
+.thicker-font {
+  font-weight: 300;
+}
+
+#sagemodeler p  { margin-bottom: 20px; }
+#sagemodeler p:nth-child(4) { line-height: 140%; margin-bottom: 0; }

@@ -6,7 +6,7 @@ jQuery(document).ready(function () {
   }
 })
 
-window.showTab = function showTab (tabId) {
+function showTab(tabId) {
   jQuery('.tab-content').hide().removeClass('active')
   jQuery(tabId + '-tab').addClass('active').show()
   jQuery('ul.tabs li').removeClass('active')

@@ -1,0 +1,113 @@
+body.member-visitor #content { overflow-y: hidden; }
+body.guest-visitor .wrapper { width: auto !important; }
+#primary.wide { width: 100%; }
+#primary.wide #content { overflow: hidden; }
+.skew {
+  margin-top: 0;
+}
+.portal-pages-collection-page-intro:nth-child(2) figure {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%; /*16:9*/
+  padding-top: 0px;
+  position: relative;
+}
+#intro-video {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+body.admin-visitor .portal-pages-collection-page-intro.col-7,
+body.manager-visitor .portal-pages-collection-page-intro.col-7,
+body.author-visitor .portal-pages-collection-page-intro.col-7,
+body.member-visitor .portal-pages-collection-page-intro.col-7 {
+  width: 97.70175%;
+}
+body.admin-visitor .portal-pages-collection-page-intro.col-5,
+body.manager-visitor .portal-pages-collection-page-intro.col-5,
+body.author-visitor .portal-pages-collection-page-intro.col-5,
+body.member-visitor .portal-pages-collection-page-intro.col-5 {
+  display: none;
+}
+
+.collapsible {
+  border-bottom: solid 5px rgba(49, 49, 49, 0.15);
+  }
+
+h3.collapsible-toggle {
+  color: #0592af;
+  border-bottom: solid 5px rgba(49, 49, 49, 0.15);
+  display: block;
+  font-family: museo-sans,verdana,helvetica,sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  margin-bottom: 0;
+  padding: 30px 45px 30px 0;
+  position: relative;
+  }
+
+.collapsible-toggle:after {
+  background: #0592af;
+  border-radius: 50%;
+  color: #fff;
+  content: '+';
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  height: 17px;
+  line-height: 1;
+  margin: -10px 0 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  text-indent: 0;
+  top: 50%;
+  width: 17px;
+  }
+
+h3.collapsible-toggle:hover {
+  color: #999;
+  }
+h3.collapsible-toggle:hover:after {
+  background: #999;
+  }
+
+.collapsible-toggle.open {
+  border-bottom: none;
+  }
+
+.collapsible-toggle.open:after {
+  animation: spin-toggle-open 0.5s normal forwards;
+  }
+
+@keyframes spin-toggle-open {
+  100% {
+    transform: rotate(45deg);
+  }
+}
+
+#units-tab ul {
+  list-style: none;
+  margin: 0;
+  }
+
+#units-tab li {
+  clear: both;
+  }
+
+#units-tab ul ul {
+  list-style: disc;
+  margin: 0 0 30px 20px;
+  }
+
+@media screen and (max-width: 950px) {
+  .portal-pages-collection-page-intro:nth-child(2) figure {
+    height: auto;
+    margin-bottom: 60px;
+  }
+}

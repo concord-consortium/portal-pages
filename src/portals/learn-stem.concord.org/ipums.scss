@@ -1,0 +1,14 @@
+body.member-visitor #content { overflow-y: hidden; }
+body.guest-visitor .wrapper { width: auto !important; }
+#primary.wide { width: 100%; }
+#primary.wide #content { overflow: hidden; }
+.alert-banner {
+  background: #fee9aa;
+  color: #e16a3e;
+  margin: .5em 0 1.5em;
+  padding: .75em;
+  text-align: center;
+}
+.alert-banner p {
+  margin-bottom: 0;
+}
