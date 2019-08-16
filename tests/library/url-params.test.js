@@ -14,5 +14,9 @@ describe('appendOfferingApiQueryParams', () => {
     window.history.pushState({}, 'Test Param', '/?add_external_report=123')
     url = appendOfferingApiQueryParams('http://test.portal.com/offering/1')
     expect(url).toEqual('http://test.portal.com/offering/1?add_external_report=123')
+    // supported query param + query param in API => the api url updated, but old params preserved
+    window.history.pushState({}, 'Test Param', '/?add_external_report=123')
+    url = appendOfferingApiQueryParams('http://test.portal.com/offering/1?another_param=321')
+    expect(url).toEqual('http://test.portal.com/offering/1?another_param=321&add_external_report=123')
   })
 })
