@@ -16,14 +16,16 @@
       var valA = options.by(jQuery(a))
       var valB = options.by(jQuery(b))
       if (options.reversed) {
-        return (valA < valB) ? 1 : (valA > valB) ? -1 : 0
+        return (valA < valB) ? 1 : (valA > valB) ? -1 : 0;
       } else {
-        return (valA < valB) ? -1 : (valA > valB) ? 1 : 0
+        return (valA < valB) ? -1 : (valA > valB) ? 1 : 0;
       }
-    })
-    return jQuery(arr)
-  }
-})(jQuery)
+    });
+    return jQuery(arr);
+  };
+})(jQuery);
+
+jQuery(function() {
 
 jQuery(function() {
 
@@ -48,9 +50,9 @@ jQuery(function() {
     // call quicksand
     sims.quicksand(filteredData, {
       duration: 700
-    })
-  })
-})
+    });
+  });
+});
 
 PortalPages.renderMaterialsCollection(16,'#collection-1',20)
 PortalPages.renderMaterialsCollection(17,'#collection-2',20)

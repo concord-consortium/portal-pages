@@ -1,34 +1,34 @@
 jQuery(document).ready(function () {
-  jQuery('.collapsible').hide();
-  jQuery('.collapsible-toggle').css({'cursor': 'pointer'}).click(function () {
-    var toggle_top = jQuery(this).offset().top;
-    jQuery(this).toggleClass('open');
-    jQuery('html,body').animate({scrollTop: toggle_top},'slow');
-    jQuery(this).siblings('.collapsible').slideToggle('fast');
+  jQuery('.collapsible').hide()
+  jQuery('.collapsible-toggle').css({ 'cursor': 'pointer' }).click(function () {
+    var toggleTop = jQuery(this).offset().top
+    jQuery(this).toggleClass('open')
+    jQuery('html,body').animate({ scrollTop: toggleTop },'slow')
+    jQuery(this).siblings('.collapsible').slideToggle('fast')
   });
 });
 
-  // Selector should look like '#teacher-edition-links a'
-  var makeTeacherLinks = function(selector) {
-    var updateAnchorTag = function(anchor) {
-      var oldLink = anchor.getAttribute('href');
-      var domain = encodeURIComponent('https://learn.concord.org');
-      var domain_uid = Portal.currentUser.userId;
-      var newLink = oldLink +
-        '?domain=' + domain +
-        '&domain_uid=' + domain_uid +
-        '&mode=teacher-edition&show_index=true';
-      anchor.setAttribute('href',newLink);
-    };
+// Selector should look like '#teacher-edition-links a'
+var makeTeacherLinks = function (selector) {
+  var updateAnchorTag = function (anchor) {
+    var oldLink = anchor.getAttribute('href')
+    var domain = encodeURIComponent('https://learn.concord.org')
+    var domainUid = Portal.currentUser.userId
+    var newLink = oldLink +
+      '?domain=' + domain +
+      '&domainUid=' + domainUid +
+      '&mode=teacher-edition&show_index=true'
+    anchor.setAttribute('href', newLink)
+  };
 
-    var links = document.querySelectorAll(selector);
-    links.forEach(updateAnchorTag);
-  }
+  var links = document.querySelectorAll(selector)
+  links.forEach(updateAnchorTag)
+}
 
-  // Don't show teacher edition to non-teacher users.
-  if(Portal.currentUser.isTeacher) {
-    makeTeacherLinks('#teacher-edition-links a')
-  }
+// Don't show teacher edition to non-teacher users.
+if (Portal.currentUser.isTeacher) {
+  makeTeacherLinks('#teacher-edition-links a')
+}
 
 // Last argument is number of visible materials.
 PortalPages.renderMaterialsCollection(48, '#collection-1', {

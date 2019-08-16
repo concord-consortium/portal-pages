@@ -8,7 +8,7 @@ if ( PortalPages.ParseQueryString) {
 var featured = params['prioritize']
 var options = { limit: 10, randomize: true }
 
-if (featured) options.featured = parseInt(featured)
+if (featured) options.featured = parseInt(featured);
 
 PortalPages.renderMaterialsCollection(20,'#collection-1', options)
 

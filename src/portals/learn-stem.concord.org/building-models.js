@@ -1,5 +1,5 @@
 if (Portal.currentUser.isLoggedIn) {
-  jQuery('#curriculum-note').remove();
+  jQuery('#curriculum-note').remove()
 }
 // else {
 //  jQuery('.portal-pages-collection-resource-list').remove();
@@ -76,35 +76,35 @@ PortalPages.renderMaterialsCollection(15, '#collection-2', {
   limit: 10,
   onDataLoad: function (materials) {
     if (materials.length <= 0) {
-      jQuery('#collection-2').parent('li').remove(); // remove collection if no resources available
+      jQuery('#collection-2').parent('li').remove() // remove collection if no resources available
     }
   },
   header: ''
 });
 
 if (Portal.currentUser.isLoggedIn) {
-  jQuery('.portal-pages-collection-page-intro:nth-child(2)').remove();
+  jQuery('.portal-pages-collection-page-intro:nth-child(2)').remove()
 }
 
-var collections_check_timer;
+var collectionsCheckTimer
 jQuery(document).ready(function() {
   jQuery('.collapsible').hide();
   jQuery('.collapsible-toggle').css({'cursor':'pointer'}).click(function() {
-    jQuery(this).toggleClass('open');
-    //var toggle_top = jQuery(this).position().top + 650;
-    //jQuery('html,body').animate({scrollTop: toggle_top},'slow');
-    jQuery(this).siblings('.collapsible').slideToggle('fast');
+    jQuery(this).toggleClass('open')
+    //var toggle_top = jQuery(this).position().top + 650
+    //jQuery('html,body').animate({scrollTop: toggle_top},'slow')
+    jQuery(this).siblings('.collapsible').slideToggle('fast')
   });
-  collections_check_timer = setTimeout('postMaterialsLoadTest()', 2000);
+  collectionsCheckTimer = setTimeout('postMaterialsLoadTest()', 2000)
 });
 
 function postMaterialsLoadTest() {
   console.log('test');
-  var coll_cont_ids = ['1','2','3','4','5'];
-  for (var i = 0; i < coll_cont_ids.length; i++) {
-    if (jQuery.trim(jQuery('#collection-' + coll_cont_ids[i]).html()) == '<!-- react-empty: 1 -->' || jQuery.trim(jQuery('#collection-' + coll_cont_ids[i]).html()) == '<!--react-empty: 1-->') {
-      jQuery('#collection-' + coll_cont_ids[i]).parents('li').remove();
+  var collContIds = ['1','2','3','4','5']
+  for (var i = 0; i < collContIds.length; i++) {
+    if (jQuery.trim(jQuery('#collection-' + collContIds[i]).html()) === '<!-- react-empty: 1 -->' || jQuery.trim(jQuery('#collection-' + collContIds[i]).html()) === '<!--react-empty: 1-->') {
+      jQuery('#collection-' + collContIds[i]).parents('li').remove()
     }
   }
-  clearTimeout(collections_check_timer);
+  clearTimeout(collectionsCheckTimer)
 }
