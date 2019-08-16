@@ -1,6 +1,6 @@
-body.guest-visitor .landing-page-content { height: 100%; }
 body.guest-visitor #content { height: 100%; padding-top: 0; }
 body.guest-visitor #primary.wide, body.guest-visitor #wrapper { height: 100% !important; width: 100%; }
+body.guest-visitor .landing-page-content { height: 100%; }
 body.guest-visitor #intro {
   background: url(https://concord.org/sites/default/files/images/ast/students.jpg) center center no-repeat;
   background-size: cover;
@@ -34,7 +34,12 @@ body.guest-visitor .header-login-box {
   }
 body.guest-visitor .header-login-box div:first-child { float: right; }
 body.guest-visitor #footer { display: none; }
-
+body.member-visitor .landing-page-content {
+  margin: 0 auto;
+  max-width: 1110px;
+  padding: 0 30px;
+  width: 100%;
+  }
 button {
   background: #00c6e4 !important;
   border: none !important;

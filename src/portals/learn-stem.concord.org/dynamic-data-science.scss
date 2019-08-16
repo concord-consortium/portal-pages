@@ -1,0 +1,44 @@
+body.member-visitor #content { overflow-y: visible; overflow: unset; }
+body.guest-visitor .wrapper { width: auto !important; }
+#primary.wide { display: block; float: none; width: 100%; }
+#primary.wide #content { overflow-y: visible; overflow: unset; }
+div.skew { margin-top: 0; }
+.portal-pages-collection-page-intro:nth-child(2) figure {
+  height: 0;
+  overflow: visible;
+  padding-bottom: 56.25%; /*16:9*/
+  padding-top: 0px;
+  position: relative;
+}
+#intro-video {
+  border-top: solid 1px #999;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+figcaption {
+  bottom: -80px;
+  font-size: 14px;
+  color: #0592af;
+  position: absolute;
+}
+.portal-pages-finder-materials-collection-item__image {
+  background: #fff;
+}
+.portal-pages-finder-materials-collection-item__description p:not(:first-child) {
+  display: none;
+}
+.more-link {
+  color: #0592af;
+  cursor: pointer;
+  font-size: .8em;
+  }
+@media screen and (max-width: 950px) {
+  .portal-pages-collection-page-intro:nth-child(2) figure {
+    height: auto;
+    margin-bottom: 60px;
+  }
+  div.skew { margin-top: 60px; }
+}

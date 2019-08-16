@@ -1,2 +1,2 @@
 // Last argument is number of visible materials.
-PortalPages.renderMaterialsCollection(6, '#collection-1')
+PortalPages.renderMaterialsCollection(6, '#collection-1');
