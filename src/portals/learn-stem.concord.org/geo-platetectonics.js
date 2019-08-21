@@ -1,5 +1,5 @@
 // Don't show teacher edition to non-teacher users.
-if(Portal.currentUser.isTeacher) {
+if (Portal.currentUser.isTeacher) {
   PortalPages.MakeTeacherEditionLinks('#teacher-edition-links a')
   PortalPages.MakeTeacherEditionLinks('#density-teacher-edition-link a')
 } else {
@@ -7,7 +7,7 @@ if(Portal.currentUser.isTeacher) {
   jQuery('#collection-2-heading').remove()
 }
 // Don't show teacher edition to non-teacher users.
-if(Portal.currentUser.isTeacher) {
+if (Portal.currentUser.isTeacher) {
   PortalPages.MakeTeacherEditionLinks('#teacher-edition-links a')
   jQuery('#teacher-edition-links, .view-resources, #teacher-resources').show()
 } else {
