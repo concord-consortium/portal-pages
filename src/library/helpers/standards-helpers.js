@@ -249,6 +249,11 @@ var NgssHelper = function () {
   // notation string for a DCI.
   //
   this.getGradeLevel = function (gradeArray) {
+    // some gradeArrays have been null
+    if (!gradeArray) {
+      return 'UNKNOWN'
+    }
+
     //
     // For single grade level return single grade.
     //
