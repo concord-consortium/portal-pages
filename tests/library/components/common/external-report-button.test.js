@@ -3,6 +3,7 @@ import React from 'react'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import ExternalReportButton from 'components/common/external-report-button'
+import {generateJQueryForm} from 'components/common/external-report-button'
 import nock from 'nock'
 
 Enzyme.configure({adapter: new Adapter()})
@@ -95,6 +96,15 @@ describe('ExternalReportButton', () => {
         expect(postToUrlMock).toBeCalledWith(reportUrl, queryJson, querySignature, portalToken)
         done()
       }, 100)
+    })
+  })
+
+  describe('when the query contains a value that includes a single quote', () => {
+    it('escapes the generated form correctly', () => {
+      const json = {query: "What's up doc?"}
+      const portalToken = "testtoken"
+      const form = generateJQueryForm(reportUrl, json, querySignature, portalToken);
+      expect(form.html()).toBe("<input type=\"hidden\" name=\"allowDebug\" value=\"1\"><input type=\"hidden\" name=\"json\" value=\"{&quot;query&quot;:&quot;What's up doc?&quot;}\"><input type=\"hidden\" name=\"signature\" value=\"fakeQueryHMACSignature\"><input type=\"hidden\" name=\"portal_token\" value=\"testtoken\">");
     })
   })
 })
