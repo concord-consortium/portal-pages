@@ -1,17 +1,24 @@
 import React from 'react'
 import jQuery from 'jquery'
 
+// changed from string based form generation to using jQuery to fix issue with single quoted
+// values in json field (it was delimited with single quotes and would break if the json
+// contained values with single quotes)
+export const generateJQueryForm = (url, json, signature, portalToken) => {
+  const form = jQuery('<form>', { action: url, method: 'POST' })
+    .append(jQuery('<input>', { type: 'hidden', name: 'allowDebug', value: '1' }))
+    .append(jQuery('<input>', { type: 'hidden', name: 'json', value: JSON.stringify(json) }))
+    .append(jQuery('<input>', { type: 'hidden', name: 'signature', value: signature }))
+  if (portalToken) {
+    form.append(jQuery('<input>', { type: 'hidden', name: 'portal_token', value: portalToken }))
+  }
+  return form
+}
+
 const postToUrl = (url, json, signature, portalToken) => {
   // Issue POST request to Log app. We can't use GET, as URL could get too long. Generating a fake
   // form is a way to send non-Ajax POST request and open the target page.
-  const tempForm = jQuery(
-    `<form action="${url}" method="POST">` +
-    `<input type="hidden" name="allowDebug" value="1">` +
-    `<input type="hidden" name="json" value='${JSON.stringify(json)}'>` +
-    `<input type="hidden" name="signature" value="${signature}">` +
-    (portalToken ? `<input type="hidden" name="portal_token" value="${portalToken}">` : '') +
-    `</form>`
-  )
+  const tempForm = generateJQueryForm(url, json, signature, portalToken)
   tempForm.appendTo('body').submit()
   // Unless form uses target="_blank", this action results in redirect and cleanup is not necessary.
   // But it won't hurt and if target="_blank" is ever used, it's gonna be useful.
