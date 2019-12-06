@@ -270,12 +270,28 @@
   }
 }
 
-li {
-  img {
-    float: left;
-    height: 50px;
-    margin-right: 10px;
-    width: 50px;
+.recentCollectionsPages__list {
+
+  .recentCollectionsPages__list_item {
+    font-size: 14px;
+    padding-bottom: 0;
+    overflow: hidden;
+
+    a {
+
+      .recentCollectionsPages__list_item_img {
+        background-position: center center;
+        background-size: cover;
+        float: left;
+        height: 50px;
+        margin: 0 10px 0 0;
+        width: 50px;
+      }
+      .recentCollectionsPages__list_item_name {
+        float: right;
+        width: calc(100% - 60px);
+      }
+    }
   }
 }
 

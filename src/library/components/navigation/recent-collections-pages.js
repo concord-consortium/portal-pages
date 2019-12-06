@@ -1,4 +1,5 @@
 import React from 'react'
+import css from './style.scss'
 
 export default class RecentCollectionsPages extends React.Component {
   constructor (props) {
@@ -26,16 +27,21 @@ export default class RecentCollectionsPages extends React.Component {
 
   render () {
     return (
-      <div className={'recentCollectionsPages'}>
+      <div className={css.recentCollectionsPages}>
         <h2>Recently Visited Collections</h2>
-        <ul className={'recentCollectionsPages__list'}>
+        <ul className={css.recentCollectionsPages__list}>
         {
           Object.keys(this.state.recentCollectionsPages).map(key => {
+            let imgStyle = {
+              backgroundImage: 'url(' + this.state.recentCollectionsPages[key].project_card_image_url + ')'
+            }
             return (
-              <li className={'recentCollectionsPages__list-item'}>
+              <li className={css.recentCollectionsPages__list_item}>
                 <a href={this.state.recentCollectionsPages[key].landing_page_slug}>
-                  <img src={this.state.recentCollectionsPages[key].project_card_image_url} />
-                  {this.state.recentCollectionsPages[key].name}
+                  <span className={css.recentCollectionsPages__list_item_img} style={imgStyle}></span>
+                  <span className={css.recentCollectionsPages__list_item_name}>
+                    {this.state.recentCollectionsPages[key].name}
+                  </span>
                 </a>
               </li>
             )
