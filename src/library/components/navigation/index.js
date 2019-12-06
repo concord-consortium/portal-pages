@@ -1,5 +1,6 @@
 import React from 'react'
 import css from './style.scss'
+import RecentCollectionsPages from './recent-collections-pages'
 
 const defaultNavProps = {
   greeting: 'Welcome,',
@@ -201,6 +202,7 @@ export default class Navigation extends React.Component {
         <ul>
           {rendered}
         </ul>
+        <RecentCollectionsPages />
       </div>
     )
   }

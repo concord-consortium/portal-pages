@@ -36,6 +36,15 @@
     }
   }
 
+  h2 {
+    border-top: solid 1px #ccc;
+    color: #313131;
+    font-size: 16px;
+    font-weight: 100;
+    margin: 20px 20px 10px;
+    padding-top: 20px;
+  }
+
   ul {
     list-style: none;
     margin: 0;
@@ -258,6 +267,15 @@
         content: "\e906";
       }
     }
+  }
+}
+
+li {
+  img {
+    float: left;
+    height: 50px;
+    margin-right: 10px;
+    width: 50px;
   }
 }
 
