@@ -26,30 +26,34 @@ export default class RecentCollectionsPages extends React.Component {
   }
 
   render () {
-    return (
-      <div className={css.recentCollectionsPages}>
-        <h2>Recently Visited Collections</h2>
-        <ul className={css.recentCollectionsPages__list}>
-        {
-          Object.keys(this.state.recentCollectionsPages).map(key => {
-            let imgStyle = {
-              backgroundImage: 'url(' + this.state.recentCollectionsPages[key].project_card_image_url + ')'
-            }
-            return (
-              <li className={css.recentCollectionsPages__list_item}>
-                <a href={this.state.recentCollectionsPages[key].landing_page_slug}>
-                  <span className={css.recentCollectionsPages__list_item_img} style={imgStyle}></span>
-                  <span className={css.recentCollectionsPages__list_item_name}>
-                    {this.state.recentCollectionsPages[key].name}
-                  </span>
-                </a>
-              </li>
-            )
-          })
-        }
-        </ul>
-      </div>
-    )
+    if (Portal.currentUser.isTeacher && this.state.recentCollectionsPages.length > 0) {
+      return (
+        <div className={css.recentCollectionsPages}>
+          <h2>Recently Visited Collections</h2>
+          <ul className={css.recentCollectionsPages__list}>
+          {
+            Object.keys(this.state.recentCollectionsPages).map(key => {
+              let imgStyle = {
+                backgroundImage: 'url(' + this.state.recentCollectionsPages[key].project_card_image_url + ')'
+              }
+              return (
+                <li className={css.recentCollectionsPages__list_item}>
+                  <a href={this.state.recentCollectionsPages[key].landing_page_slug}>
+                    <span className={css.recentCollectionsPages__list_item_img} style={imgStyle}></span>
+                    <span className={css.recentCollectionsPages__list_item_name}>
+                      {this.state.recentCollectionsPages[key].name}
+                    </span>
+                  </a>
+                </li>
+              )
+            })
+          }
+          </ul>
+        </div>
+      )
+    } else {
+      return null
+    }
   }
 }
 
