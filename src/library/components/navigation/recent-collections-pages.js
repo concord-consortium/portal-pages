@@ -19,7 +19,6 @@ export default class RecentCollectionsPages extends React.Component {
       url: Portal.API_V1.GET_RECENT_COLLECTIONS_PAGES,
       dataType: 'json',
       success: function (data) {
-        //console.log(data)
         this.setState({ recentCollectionsPages: data })
       }.bind(this)
     })
@@ -37,7 +36,7 @@ export default class RecentCollectionsPages extends React.Component {
                   backgroundImage: 'url(' + this.state.recentCollectionsPages[key].project_card_image_url + ')'
                 }
                 return (
-                  <li className={css.recentCollectionsPages__list_item}>
+                  <li className={css.recentCollectionsPages__list_item} key={this.state.recentCollectionsPages[key].id}>
                     <a href={this.state.recentCollectionsPages[key].landing_page_slug}>
                       <span className={css.recentCollectionsPages__list_item_img} style={imgStyle} />
                       <span className={css.recentCollectionsPages__list_item_name}>
