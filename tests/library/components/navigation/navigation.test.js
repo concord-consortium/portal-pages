@@ -3,8 +3,20 @@ import React from 'react'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import Navigation from 'components/navigation/index'
+import jQuery from 'jquery'
+window.jQuery = jQuery
 
 Enzyme.configure({adapter: new Adapter()})
+
+// form uses Portal global
+global.Portal = {
+  API_V1: {
+    EXTERNAL_RESEARCHER_REPORT_LEARNER_QUERY: 'http://query-test.concord.org'
+  },
+  currentUser: {
+    isTeacher: true
+  }
+}
 
 const NAV_SPEC = {
   'name': 'Harry Potter',
