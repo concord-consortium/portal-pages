@@ -33,6 +33,10 @@ var ResourceLightbox = Component({
   },
 
   componentDidMount: function () {
+    const hasTeacherEdition = this.state.resource.has_teacher_edition
+    if (Portal.currentUser.isTeacher && hasTeacherEdition) {
+      PortalPages.MakeTeacherEditionLinks('.teacherEditionLink')
+    }
     jQuery('.portal-pages-resource-lightbox-background, .portal-pages-resource-lightbox-container').fadeIn()
   },
 
@@ -63,6 +67,11 @@ var ResourceLightbox = Component({
   handlePreviewClick: function (e) {
     const resource = this.state.resource
     ga('send', 'event', 'Resource Preview Button', 'Click', resource.name)
+  },
+
+  handleTeacherEditionClick: function (e) {
+    const resource = this.state.resource
+    ga('send', 'event', 'Resource Teacher Edition Button', 'Click', resource.name)
   },
 
   handleAssignClick: function (e) {
@@ -429,6 +438,7 @@ var ResourceLightbox = Component({
           </div>
           <div className='portal-pages-action-buttons'>
             {links.preview ? <a className='portal-pages-primary-button' href={links.preview.url} target='_blank' onClick={this.handlePreviewClick}>{links.preview.text}</a> : null}
+            {Portal.currentUser.isTeacher && resource.has_teacher_edition ? <a className='teacherEditionLink portal-pages-secondary-button' href={links.preview.url} target='_blank'>Teacher Edition</a> : null}
             {links.assign_material ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_material.onclick}`} onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
             {links.assign_collection ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_collection.onclick}`} onClick={this.handleAddToCollectionClick}>{links.assign_collection.text}</a> : null}
             {links.teacher_guide ? <a className='portal-pages-secondary-button' href={links.teacher_guide.url} target='_blank' onClick={this.handleTeacherGuideClick}>{links.teacher_guide.text}</a> : null}
