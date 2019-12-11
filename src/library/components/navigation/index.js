@@ -1,6 +1,6 @@
 import React from 'react'
 import css from './style.scss'
-import RecentCollectionsPages from './recent-collections-pages'
+import TeacherProjectViews from './teacher-project-views'
 
 const defaultNavProps = {
   greeting: 'Welcome,',
@@ -202,7 +202,7 @@ export default class Navigation extends React.Component {
         <ul>
           {rendered}
         </ul>
-        <RecentCollectionsPages />
+        <TeacherProjectViews />
       </div>
     )
   }
