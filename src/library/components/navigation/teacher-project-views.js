@@ -5,13 +5,26 @@ export default class TeacherProjectViews extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      TeacherProjectViews: null
+      loaded: false,
+      showLoadingMessage: false,
+      teacherProjectViews: null
     }
     this.getTeacherProjectViews = this.getTeacherProjectViews.bind(this)
   }
 
   componentDidMount () {
+    this.timerHandler = setTimeout(() => {
+      this.setState({ showLoadingMessage: true })
+      this.timerHandler = 0
+    }, 500)
     this.getTeacherProjectViews()
+  }
+
+  componentWillUnmount() {
+    if (this.timerHandle) {
+      clearTimeout(this.timerHandle);
+      this.timerHandle = 0;
+    }
   }
 
   getTeacherProjectViews () {
@@ -19,28 +32,43 @@ export default class TeacherProjectViews extends React.Component {
       url: Portal.API_V1.GET_TEACHER_PROJECT_VIEWS,
       dataType: 'json',
       success: function (data) {
-        this.setState({ TeacherProjectViews: data })
+        this.setState({
+          teacherProjectViews: data,
+          loaded: true
+        })
       }.bind(this)
     })
   }
 
-  render () {
-    if (Portal.currentUser.isTeacher && this.state.TeacherProjectViews !== null && this.state.TeacherProjectViews.length > 0) {
+  teacherProjectViewsList () {
+    const { showLoadingMessage, teacherProjectViews, loaded } = this.state
+    if (!loaded) {
+      if (showLoadingMessage === false) {
+        return null
+      }
       return (
-        <div className={css.teacherProjectViews}>
-          <h2>Recently Visited Collections</h2>
+        <div className={css.loading}>
+          Loading...
+        </div>
+      )
+    // below is for when list data is loaded
+    } else {
+      if (teacherProjectViews.length === 0) {
+        return null
+      }
+      return (
           <ul className={css.teacherProjectViews__list}>
             {
-              Object.keys(this.state.TeacherProjectViews).map(key => {
+              Object.keys(teacherProjectViews).map(key => {
                 let imgStyle = {
-                  backgroundImage: 'url(' + this.state.TeacherProjectViews[key].project_card_image_url + ')'
+                  backgroundImage: 'url(' + teacherProjectViews[key].project_card_image_url + ')'
                 }
                 return (
-                  <li className={css.teacherProjectViews__list_item} key={this.state.TeacherProjectViews[key].id}>
-                    <a href={this.state.TeacherProjectViews[key].landing_page_slug}>
+                  <li className={css.teacherProjectViews__list_item} key={teacherProjectViews[key].id}>
+                    <a href={teacherProjectViews[key].landing_page_slug}>
                       <span className={css.teacherProjectViews__list_item_img} style={imgStyle} />
                       <span className={css.teacherProjectViews__list_item_name}>
-                        {this.state.TeacherProjectViews[key].name}
+                        {teacherProjectViews[key].name}
                       </span>
                     </a>
                   </li>
@@ -48,12 +76,23 @@ export default class TeacherProjectViews extends React.Component {
               })
             }
           </ul>
-        </div>
-      )
-    } else {
-      return null
+        )
     }
   }
-}
 
-module.exports = TeacherProjectViews
+  render () {
+    if (Portal.currentUser.isTeacher) {
+      let teacherProjectViewsList = this.teacherProjectViewsList()
+      if (teacherProjectViewsList) {
+        return (
+          <div className={css.teacherProjectViews}>
+            <h2>Recently Visited Collections</h2>
+            {teacherProjectViewsList}
+          </div>
+        )
+      }
+    }
+
+    return null
+  }
+}
