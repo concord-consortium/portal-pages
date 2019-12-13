@@ -5,7 +5,7 @@ export default class TeacherProjectViews extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      TeacherProjectViews: []
+      TeacherProjectViews: null
     }
     this.getTeacherProjectViews = this.getTeacherProjectViews.bind(this)
   }
@@ -25,7 +25,7 @@ export default class TeacherProjectViews extends React.Component {
   }
 
   render () {
-    if (Portal.currentUser.isTeacher && this.state.TeacherProjectViews.length > 0) {
+    if (Portal.currentUser.isTeacher && this.state.TeacherProjectViews !== null && this.state.TeacherProjectViews.length > 0) {
       return (
         <div className={css.teacherProjectViews}>
           <h2>Recently Visited Collections</h2>
