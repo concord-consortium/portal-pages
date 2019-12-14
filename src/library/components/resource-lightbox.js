@@ -4,7 +4,7 @@ import RelatedResourceResult from './related-resource-result'
 import pluralize from '../helpers/pluralize'
 import portalObjectHelpers from '../helpers/portal-object-helpers'
 import StandardsHelpers from '../helpers/standards-helpers'
-import {MakeTeacherEditionLink} from '../helpers/make-teacher-edition-links'
+import { MakeTeacherEditionLink } from '../helpers/make-teacher-edition-links'
 
 var ResourceLightbox = Component({
   getInitialState: function () {

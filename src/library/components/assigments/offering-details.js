@@ -1,6 +1,6 @@
 import React from 'react'
 import OfferingProgress from '../common/offering-progress'
-import {MakeTeacherEditionLink} from '../../helpers/make-teacher-edition-links'
+import { MakeTeacherEditionLink } from '../../helpers/make-teacher-edition-links'
 import css from './style.scss'
 import commonCss from '../../styles/common-css-modules.scss'
 
