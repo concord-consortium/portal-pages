@@ -20,10 +20,10 @@ export default class TeacherProjectViews extends React.Component {
     this.getTeacherProjectViews()
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     if (this.timerHandle) {
-      clearTimeout(this.timerHandle);
-      this.timerHandle = 0;
+      clearTimeout(this.timerHandle)
+      this.timerHandle = 0
     }
   }
 
@@ -57,26 +57,26 @@ export default class TeacherProjectViews extends React.Component {
         return null
       }
       return (
-          <ul className={css.teacherProjectViews__list}>
-            {
-              Object.keys(teacherProjectViews).map(key => {
-                let imgStyle = {
-                  backgroundImage: 'url(' + teacherProjectViews[key].project_card_image_url + ')'
-                }
-                return (
-                  <li className={css.teacherProjectViews__list_item} key={teacherProjectViews[key].id}>
-                    <a href={teacherProjectViews[key].landing_page_slug}>
-                      <span className={css.teacherProjectViews__list_item_img} style={imgStyle} />
-                      <span className={css.teacherProjectViews__list_item_name}>
-                        {teacherProjectViews[key].name}
-                      </span>
-                    </a>
-                  </li>
-                )
-              })
-            }
-          </ul>
-        )
+        <ul className={css.teacherProjectViews__list}>
+          {
+            Object.keys(teacherProjectViews).map(key => {
+              let imgStyle = {
+                backgroundImage: 'url(' + teacherProjectViews[key].project_card_image_url + ')'
+              }
+              return (
+                <li className={css.teacherProjectViews__list_item} key={teacherProjectViews[key].id}>
+                  <a href={teacherProjectViews[key].landing_page_slug}>
+                    <span className={css.teacherProjectViews__list_item_img} style={imgStyle} />
+                    <span className={css.teacherProjectViews__list_item_name}>
+                      {teacherProjectViews[key].name}
+                    </span>
+                  </a>
+                </li>
+              )
+            })
+          }
+        </ul>
+      )
     }
   }
 
