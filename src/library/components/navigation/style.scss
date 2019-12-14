@@ -36,6 +36,15 @@
     }
   }
 
+  h2 {
+    border-top: solid 1px #ccc;
+    color: #313131;
+    font-size: 16px;
+    font-weight: 100;
+    margin: 20px 20px 10px;
+    padding-top: 20px;
+  }
+
   ul {
     list-style: none;
     margin: 0;
@@ -256,6 +265,38 @@
         color: #ea6d2f;
         font-size: 1em;
         content: "\e906";
+      }
+    }
+  }
+}
+
+.teacherProjectViews {
+
+  .loading {
+    padding: 10px 20px;
+    text-align: center;
+  }
+  .teacherProjectViews__list {
+
+    .teacherProjectViews__list_item {
+      font-size: 14px;
+      padding-bottom: 0;
+      overflow: hidden;
+
+      a {
+
+        .teacherProjectViews__list_item_img {
+          background-position: center center;
+          background-size: cover;
+          float: left;
+          height: 50px;
+          margin: 0 10px 0 0;
+          width: 50px;
+        }
+        .teacherProjectViews__list_item_name {
+          float: right;
+          width: calc(100% - 60px);
+        }
       }
     }
   }
