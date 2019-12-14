@@ -15,25 +15,28 @@ var guessPortalDomain = function () {
 // This function decorates <a href=""/> style links and modifies the href value.
 // It appends query params that let the runtime use login credentials specified
 // by the `specDomain` portal.
-var MakeTeacherEditionLinks = function (selector, specDomain = null) {
-  var defaultDomain = guessPortalDomain()
-  var domain = specDomain || defaultDomain
-
+export function MakeTeacherEditionLinks(selector, specDomain = null) {
   var updateAnchorTag = function (anchor) {
     var oldLink = anchor.getAttribute('href')
-    var url = new URL(oldLink)
-    var searchParams = url.searchParams
-    var domainUid = Portal.currentUser.userId
-    searchParams.set('domain', domain)
-    searchParams.set('domain_uid', domainUid)
-    searchParams.set('mode', 'teacher-edition')
-    searchParams.set('show_index', 'true')
-    searchParams.set('logging', 'true')
-    anchor.setAttribute('href', url.toString())
+    var url = MakeTeacherEditionLink(oldLink, specDomain)
+    anchor.setAttribute('href', url)
   }
 
   var links = document.querySelectorAll(selector)
   links.forEach(updateAnchorTag)
 }
 
-module.exports = MakeTeacherEditionLinks
+export function MakeTeacherEditionLink(linkURL, specDomain = null) {
+  var defaultDomain = guessPortalDomain()
+  var domain = specDomain || defaultDomain
+  var url = new URL(linkURL)
+  var searchParams = url.searchParams
+  var domainUid = Portal.currentUser.userId
+  searchParams.set('domain', domain)
+  searchParams.set('domain_uid', domainUid)
+  searchParams.set('mode', 'teacher-edition')
+  searchParams.set('show_index', 'true')
+  searchParams.set('logging', 'true')
+
+  return url.toString()
+}
