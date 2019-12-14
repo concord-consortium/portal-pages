@@ -270,26 +270,33 @@
   }
 }
 
-.teacherProjectViews__list {
+.teacherProjectViews {
 
-  .teacherProjectViews__list_item {
-    font-size: 14px;
-    padding-bottom: 0;
-    overflow: hidden;
+  .loading {
+    padding: 10px 20px;
+    text-align: center;
+  }
+  .teacherProjectViews__list {
 
-    a {
+    .teacherProjectViews__list_item {
+      font-size: 14px;
+      padding-bottom: 0;
+      overflow: hidden;
 
-      .teacherProjectViews__list_item_img {
-        background-position: center center;
-        background-size: cover;
-        float: left;
-        height: 50px;
-        margin: 0 10px 0 0;
-        width: 50px;
-      }
-      .teacherProjectViews__list_item_name {
-        float: right;
-        width: calc(100% - 60px);
+      a {
+
+        .teacherProjectViews__list_item_img {
+          background-position: center center;
+          background-size: cover;
+          float: left;
+          height: 50px;
+          margin: 0 10px 0 0;
+          width: 50px;
+        }
+        .teacherProjectViews__list_item_name {
+          float: right;
+          width: calc(100% - 60px);
+        }
       }
     }
   }
