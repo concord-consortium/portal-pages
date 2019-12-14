@@ -15,7 +15,7 @@ var guessPortalDomain = function () {
 // This function decorates <a href=""/> style links and modifies the href value.
 // It appends query params that let the runtime use login credentials specified
 // by the `specDomain` portal.
-export function MakeTeacherEditionLinks(selector, specDomain = null) {
+export function MakeTeacherEditionLinks (selector, specDomain = null) {
   var updateAnchorTag = function (anchor) {
     var oldLink = anchor.getAttribute('href')
     var url = MakeTeacherEditionLink(oldLink, specDomain)
@@ -26,7 +26,7 @@ export function MakeTeacherEditionLinks(selector, specDomain = null) {
   links.forEach(updateAnchorTag)
 }
 
-export function MakeTeacherEditionLink(linkURL, specDomain = null) {
+export function MakeTeacherEditionLink (linkURL, specDomain = null) {
   var defaultDomain = guessPortalDomain()
   var domain = specDomain || defaultDomain
   var url = new URL(linkURL)
