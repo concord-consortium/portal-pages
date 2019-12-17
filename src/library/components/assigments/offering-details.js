@@ -6,7 +6,7 @@ import commonCss from '../../styles/common-css-modules.scss'
 
 export default class OfferingDetails extends React.Component {
   render () {
-    const { activityName, previewUrl, hasTeacherEdition, reportUrl, externalReports, students, reportableActivities } = this.props.offering
+    const { activityName, previewUrl, activityUrl, hasTeacherEdition, reportUrl, externalReports, students, reportableActivities } = this.props.offering
     // Activities listed in the progress table are either reportable activities or just the main offering.
     const progressTableActivities = reportableActivities || [{ id: 0, name: activityName, feedbackOptions: null }]
     return (
@@ -14,7 +14,7 @@ export default class OfferingDetails extends React.Component {
         <a href={previewUrl} target='_blank' className={commonCss.smallButton} title='Preview'>Preview</a>
         {
           hasTeacherEdition &&
-          <a href={MakeTeacherEditionLink(previewUrl)} target='_blank' className={'teacherEditionLink ' + commonCss.smallButton} title='Teacher Edition'>Teacher Edition</a>
+          <a href={MakeTeacherEditionLink(activityUrl)} target='_blank' className={'teacherEditionLink ' + commonCss.smallButton} title='Teacher Edition'>Teacher Edition</a>
         }
         {
           reportUrl &&
