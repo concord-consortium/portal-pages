@@ -28,6 +28,10 @@ export default class TeacherProjectViews extends React.Component {
   }
 
   getTeacherProjectViews () {
+    if (!Portal.API_V1.GET_TEACHER_PROJECT_VIEWS) {
+      // This can happen if this component is rendered by someone other than a teacher
+      return
+    }
     jQuery.ajax({
       url: Portal.API_V1.GET_TEACHER_PROJECT_VIEWS,
       dataType: 'json',
@@ -81,18 +85,16 @@ export default class TeacherProjectViews extends React.Component {
   }
 
   render () {
-    if (Portal.currentUser.isTeacher) {
-      let teacherProjectViewsList = this.teacherProjectViewsList()
-      if (teacherProjectViewsList) {
-        return (
-          <div className={css.teacherProjectViews}>
-            <h2>Recently Visited Collections</h2>
-            {teacherProjectViewsList}
-          </div>
-        )
-      }
+    let teacherProjectViewsList = this.teacherProjectViewsList()
+    if (!teacherProjectViewsList) {
+      return null
     }
 
-    return null
+    return (
+      <div className={css.teacherProjectViews}>
+        <h2>Recently Visited Collections</h2>
+        {teacherProjectViewsList}
+      </div>
+    )
   }
 }
