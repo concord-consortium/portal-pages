@@ -202,7 +202,7 @@ export default class Navigation extends React.Component {
         <ul>
           {rendered}
         </ul>
-        <TeacherProjectViews />
+        { Portal.currentUser.isTeacher && <TeacherProjectViews /> }
       </div>
     )
   }
