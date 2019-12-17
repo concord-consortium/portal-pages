@@ -595,35 +595,38 @@ $materials-collection-item-icon-width: 300px;
   margin: 20px 0;
   text-align: left;
 
-  a {
+  %button-shared {
     border: 2px solid $col-orange;
     display: inline-block;
     font-weight: 700;
     margin: 0 7px 7px 0;
     padding: 0 20px;
     transition: all 0.2s ease-in-out;
+  }
 
-    &.portal-pages-primary-button {
-      background: $col-orange;
-      color: $white;
+  .portal-pages-primary-button {
+    @extend %button-shared;
+    background: $col-orange;
+    color: $white;
 
-      &:hover {
-        background: $col-gold;
-        border-color: $col-gold;
-      }
-    }
-
-    &.portal-pages-secondary-button {
-      background: $white;
-      color: $col-orange;
-
-      &:hover {
-        background: $col-gold;
-        border-color: $col-gold;
-        color: $white;
-      }
+    &:hover {
+      background: $col-gold;
+      border-color: $col-gold;
     }
   }
+
+  .portal-pages-secondary-button {
+    @extend %button-shared;
+    background: $white;
+    color: $col-orange;
+
+    &:hover {
+      background: $col-gold;
+      border-color: $col-gold;
+      color: $white;
+    }
+  }
+
 }
 
 .signup-default-modal-content, .login-default-modal-content, .forgot-password-default-modal-content {
