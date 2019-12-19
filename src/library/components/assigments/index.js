@@ -49,6 +49,8 @@ const offeringDetailsMapping = data => {
     id: data.id,
     activityName: data.activity,
     previewUrl: data.preview_url,
+    activityUrl: data.activity_url,
+    hasTeacherEdition: data.has_teacher_edition,
     reportUrl: data.report_url,
     externalReports: data.external_reports && data.external_reports.map(r => externalReportMapping(r)),
     reportableActivities: data.reportable_activities && data.reportable_activities.map(a => reportableActivityMapping(a)),

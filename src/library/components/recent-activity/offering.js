@@ -1,5 +1,6 @@
 import React from 'react'
 import OfferingProgress from '../common/offering-progress/'
+import { MakeTeacherEditionLink } from '../../helpers/make-teacher-edition-links'
 
 import css from './style.scss'
 import commonCss from '../../styles/common-css-modules.scss'
@@ -25,7 +26,7 @@ export default class Offering extends React.Component {
 
   render () {
     const { detailsVisible } = this.state
-    const { clazz, activityName, previewUrl, students, reportableActivities, reportUrl, externalReports,
+    const { clazz, activityName, previewUrl, activityUrl, hasTeacherEdition, students, reportableActivities, reportUrl, externalReports,
       completedStudentsCount, inProgressStudentsCount, notStartedStudentsCount } = this.props.offering
     const completedWidth = (completedStudentsCount / students.length) * 100
     const inProgressWidth = (inProgressStudentsCount / students.length) * 100
@@ -54,6 +55,10 @@ export default class Offering extends React.Component {
         </div>
         <div className={css.reports}>
           <a href={previewUrl} target='_blank' className={commonCss.smallButton} title='Preview'>Preview</a>
+          {
+            hasTeacherEdition &&
+            <a href={MakeTeacherEditionLink(activityUrl)} target='_blank' className={'teacherEditionLink ' + commonCss.smallButton} title='Teacher Edition'>Teacher Edition</a>
+          }
           {
             reportUrl &&
             <a href={reportUrl} target='_blank' className={commonCss.smallButton}>Report</a>

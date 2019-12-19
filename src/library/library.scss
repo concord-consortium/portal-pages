@@ -594,32 +594,39 @@ $materials-collection-item-icon-width: 300px;
   line-height: 3;
   margin: 20px 0;
   text-align: left;
-}
 
-.portal-pages-primary-button,
-.portal-pages-primary-button:hover,
-.portal-pages-primary-button:visited {
-  border-radius: 0;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  padding: 15px 20px;
-  background: $col-orange;
-  color: $white;
-  border: 2px solid $col-orange;
-  font-weight: 700;
-}
-.portal-pages-secondary-button,
-.portal-pages-secondary-button:hover,
-.portal-pages-secondary-button:visited {
-  border-radius: 0;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  margin-left: 7px;
-  padding: 15px 20px;
-  background: $white;
-  color: $col-orange;
-  border: 2px solid $col-orange;
-  font-weight: 700;
+  %button-shared {
+    border: 2px solid $col-orange;
+    display: inline-block;
+    font-weight: 700;
+    margin: 0 7px 7px 0;
+    padding: 0 20px;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .portal-pages-primary-button {
+    @extend %button-shared;
+    background: $col-orange;
+    color: $white;
+
+    &:hover {
+      background: $col-gold;
+      border-color: $col-gold;
+    }
+  }
+
+  .portal-pages-secondary-button {
+    @extend %button-shared;
+    background: $white;
+    color: $col-orange;
+
+    &:hover {
+      background: $col-gold;
+      border-color: $col-gold;
+      color: $white;
+    }
+  }
+
 }
 
 .signup-default-modal-content, .login-default-modal-content, .forgot-password-default-modal-content {
