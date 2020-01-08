@@ -191,9 +191,6 @@ const PageHeader = Component({
     }
     let logoClass = this.state.logo_class
     let logoText = 'Home'
-    if (this.state.theme === 'learn') {
-      logoText = 'STEM Resource Finder'
-    }
     return (
       <div className={'theme-' + this.state.theme}>
         <div className='portal-pages-umbrella'>
