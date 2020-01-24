@@ -248,7 +248,7 @@ export default class LearnerReportForm extends React.Component {
       <div>
         <div>{label}</div>
         <DayPickerInput
-          name={name}
+          inputProps={{ name: name }}
           placeholder={'MM/DD/YYYY'}
           format={'MM/DD/YYYY'}
           parseDate={parseDate}
