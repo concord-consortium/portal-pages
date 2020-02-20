@@ -1,39 +1,30 @@
 import React from 'react'
-var Component = require('../helpers/component')
-var StemFinderResult = require('../components/stem-finder-result')
-var HeaderFilter = require('../components/header-filter')
+const Component = require('../helpers/component')
+const StemFinderResult = require('../components/stem-finder-result')
+const HeaderFilter = require('../components/header-filter')
 
-var DISPLAY_LIMIT_INCREMENT = 6
+const DISPLAY_LIMIT_INCREMENT = 6
 
-var sortByName = require('../helpers/sort-by-name')
-var fadeIn = require('../helpers/fade-in')
-var pluralize = require('../helpers/pluralize')
-var waitForAutoShowingLightboxToClose = require('../helpers/wait-for-auto-lightbox-to-close')
-var filters = require('../helpers/filters')
-var portalObjectHelpers = require('../helpers/portal-object-helpers')
+const sortByName = require('../helpers/sort-by-name')
+const fadeIn = require('../helpers/fade-in')
+const pluralize = require('../helpers/pluralize')
+const waitForAutoShowingLightboxToClose = require('../helpers/wait-for-auto-lightbox-to-close')
+const filters = require('../helpers/filters')
+const portalObjectHelpers = require('../helpers/portal-object-helpers')
 
-var a = React.DOM.a
-var div = React.DOM.div
-var button = React.DOM.button
-var input = React.DOM.input
-var span = React.DOM.span
-var strong = React.DOM.strong
-var form = React.DOM.form
-var label = React.DOM.label
-
-var StemFinder = Component({
+const StemFinder = Component({
 
   getInitialState: function () {
-    var subjectAreaKey = this.props.subjectAreaKey
-    var gradeLevelKey = this.props.gradeLevelKey
-    var featureTypeKey = this.props.featureTypeKey
+    let subjectAreaKey = this.props.subjectAreaKey
+    let gradeLevelKey = this.props.gradeLevelKey
+    let featureTypeKey = this.props.featureTypeKey
 
     if (!subjectAreaKey && !gradeLevelKey && !featureTypeKey) {
       //
       // If we are not passed props indicating filters to pre-populate
       // then attempt to see if this information is available in the URL.
       //
-      var params = this.getFiltersFromURL()
+      const params = this.getFiltersFromURL()
       subjectAreaKey = params.subject
       gradeLevelKey = params['grade-level']
       featureTypeKey = params.feature
@@ -48,14 +39,14 @@ var StemFinder = Component({
       this.scrollToFinder()
     }
 
-    var subjectAreasSelected = []
-    var subjectAreasSelectedMap = {}
-    var i
+    let subjectAreasSelected = []
+    let subjectAreasSelectedMap = {}
+    let i
 
     if (subjectAreaKey) {
-      var subjectAreas = filters.subjectAreas
+      let subjectAreas = filters.subjectAreas
       for (i = 0; i < subjectAreas.length; i++) {
-        var subjectArea = subjectAreas[i]
+        let subjectArea = subjectAreas[i]
         if (subjectArea.key === subjectAreaKey) {
           subjectAreasSelected.push(subjectArea)
           subjectAreasSelectedMap[subjectArea.key] = subjectArea
@@ -63,24 +54,24 @@ var StemFinder = Component({
       }
     }
 
-    var gradeFiltersSelected = []
+    let gradeFiltersSelected = []
 
     if (gradeLevelKey) {
-      var gradeLevels = filters.gradeFilters
+      let gradeLevels = filters.gradeFilters
       for (i = 0; i < gradeLevels.length; i++) {
-        var gradeLevel = gradeLevels[i]
+        let gradeLevel = gradeLevels[i]
         if (gradeLevel.key === gradeLevelKey) {
           gradeFiltersSelected.push(gradeLevel)
         }
       }
     }
 
-    var featureFiltersSelected = []
+    let featureFiltersSelected = []
 
     if (featureTypeKey) {
-      var featureTypes = filters.featureFilters
+      let featureTypes = filters.featureFilters
       for (i = 0; i < featureTypes.length; i++) {
-        var featureType = featureTypes[i]
+        let featureType = featureTypes[i]
         if (featureType.key === featureTypeKey) {
           featureFiltersSelected.push(featureType)
         }
@@ -112,12 +103,12 @@ var StemFinder = Component({
   // pairs.
   //
   getFiltersFromURL: function () {
-    var ret = {}
+    let ret = {}
 
-    var path = window.location.pathname
+    let path = window.location.pathname
     if (!path.startsWith('/')) { path = '/' + path }
 
-    var parts = path.split('/')
+    let parts = path.split('/')
 
     // console.log("INFO getFiltersFromURL() found URL parts", parts);
 
@@ -146,7 +137,7 @@ var StemFinder = Component({
   // Scroll to top of stem-finder filter form.
   //
   scrollToFinder: function () {
-    var finderFormTop = jQuery('.portal-pages-finder-form').offset().top + 50
+    let finderFormTop = jQuery('.portal-pages-finder-form').offset().top + 50
     if (jQuery(document).scrollTop() < finderFormTop) {
       jQuery('body, html').animate({ scrollTop: finderFormTop }, 600)
     }
@@ -159,7 +150,7 @@ var StemFinder = Component({
   },
 
   search: function (incremental) {
-    var displayLimit = incremental ? this.state.displayLimit + DISPLAY_LIMIT_INCREMENT : DISPLAY_LIMIT_INCREMENT
+    let displayLimit = incremental ? this.state.displayLimit + DISPLAY_LIMIT_INCREMENT : DISPLAY_LIMIT_INCREMENT
 
     // short circuit further incremental searches when all data has been downloaded
     if (incremental && (this.state.lastSearchResultCount === 0)) {
@@ -169,15 +160,15 @@ var StemFinder = Component({
       return
     }
 
-    var resources = incremental ? this.state.resources.slice(0) : []
-    var searchPage = incremental ? this.state.searchPage + 1 : 1
+    let resources = incremental ? this.state.resources.slice(0) : []
+    let searchPage = incremental ? this.state.searchPage + 1 : 1
 
-    var keyword = (this.refs.keyword ? this.refs.keyword.value : '') || ''
+    let keyword = (this.refs.keyword ? this.refs.keyword.value : '') || ''
     if (keyword !== '') {
       ga('send', 'event', 'Home Page Search', 'Search', keyword)
     }
 
-    var query = [
+    let query = [
       'search_term=',
       encodeURIComponent(keyword),
       '&skip_lightbox_reloads=true',
@@ -244,9 +235,9 @@ var StemFinder = Component({
       data: query.join(''),
       dataType: 'json'
     }).done(function (result) {
-      var numTotalResources = 0
-      var results = result.results
-      var lastSearchResultCount = 0
+      let numTotalResources = 0
+      const results = result.results
+      let lastSearchResultCount = 0
 
       results.forEach(function (result) {
         result.materials.forEach(function (material) {
@@ -279,20 +270,20 @@ var StemFinder = Component({
   renderLogo: function (subjectArea) {
     // console.log("INFO renderLogo", subjectArea);
 
-    var className = 'portal-pages-finder-form-subject-areas-logo col-2'
+    let className = 'portal-pages-finder-form-subject-areas-logo col-2'
 
     var selected = this.state.subjectAreasSelectedMap[subjectArea.key]
     if (selected) {
       className += ' selected'
     }
 
-    var clicked = function () {
+    const clicked = function () {
       this.scrollToFinder()
 
-      var subjectAreasSelected = this.state.subjectAreasSelected.slice()
-      var subjectAreasSelectedMap = this.state.subjectAreasSelectedMap
+      const subjectAreasSelected = this.state.subjectAreasSelected.slice()
+      const subjectAreasSelectedMap = this.state.subjectAreasSelectedMap
 
-      var index = subjectAreasSelected.indexOf(subjectArea)
+      const index = subjectAreasSelected.indexOf(subjectArea)
 
       if (index === -1) {
         subjectAreasSelectedMap[subjectArea.key] = subjectArea
@@ -308,19 +299,25 @@ var StemFinder = Component({
       this.setState({ subjectAreasSelected: subjectAreasSelected, subjectAreasSelectedMap: subjectAreasSelectedMap }, this.search)
     }.bind(this)
 
-    return div({ key: subjectArea.key, id: subjectArea.key, className: className, onClick: clicked },
-      div({ className: 'portal-pages-finder-form-subject-areas-logo-inner' }),
-      div({ className: 'portal-pages-finder-form-subject-areas-logo-label' }, subjectArea.title)
+    return (
+      <div key={subjectArea.key} id={subjectArea.key} className={className} onClick={clicked}>
+        <div className={'portal-pages-finder-form-subject-areas-logo-inner'} />
+        <div className={'portal-pages-finder-form-subject-areas-logo-label'}>
+          {subjectArea.title}
+        </div>
+      </div>
     )
   },
 
   renderSubjectAreas: function () {
-    return div({ className: 'portal-pages-finder-form-subject-areas col-12' },
-      div({ className: 'col-1 spacer' }),
-      filters.subjectAreas.map(function (subjectArea) {
-        // console.log("INFO renderSubjectAreas, selected subjects:", this.state.subjectAreasSelected);
-        return this.renderLogo(subjectArea)
-      }.bind(this))
+    return (
+      <div className={'portal-pages-finder-form-subject-areas col-12'}>
+        <div className={'col-1 spacer'} />
+        {filters.subjectAreas.map(function (subjectArea) {
+          // console.log("INFO renderSubjectAreas, selected subjects:", this.state.subjectAreasSelected);
+          return this.renderLogo(subjectArea)
+        }.bind(this))}
+      </div>
     )
   },
 
@@ -340,9 +337,9 @@ var StemFinder = Component({
   },
 
   toggleFilter: function (type, filter) {
-    var selectedKey = type + 'Selected'
-    var selectedFilters = this.state[selectedKey].slice()
-    var index = selectedFilters.indexOf(filter)
+    const selectedKey = type + 'Selected'
+    const selectedFilters = this.state[selectedKey].slice()
+    const index = selectedFilters.indexOf(filter)
     if (index === -1) {
       selectedFilters.push(filter)
       jQuery('#' + filter.key).addClass('selected')
@@ -351,69 +348,87 @@ var StemFinder = Component({
       selectedFilters.splice(index, 1)
       jQuery('#' + filter.key).removeClass('selected')
     }
-    var state = {}
+    let state = {}
     state[selectedKey] = selectedFilters
     this.setState(state, this.search)
   },
 
   renderFilters: function (type, title) {
-    return div({ className: 'portal-pages-finder-form-filters col-3' },
-      div({ className: 'portal-pages-finder-form-filters-title' }, title),
-      div({ className: 'portal-pages-finder-form-filters-options' },
-        filters[type].map(function (filter) {
-          var selectedKey = type + 'Selected'
-          var handleChange = function () {
-            this.scrollToFinder()
-            this.toggleFilter(type, filter)
-          }.bind(this)
-          var checked = this.state[selectedKey].indexOf(filter) !== -1
-          return div({ key: filter.key, className: 'portal-pages-finder-form-filters-option' },
-            input({ type: 'checkbox', id: filter.key, name: filter.key, onChange: handleChange, checked: checked }),
-            label({ htmlFor: filter.key }, filter.title)
-          )
-        }.bind(this))
-      )
+    return (
+      <div className={'portal-pages-finder-form-filters col-3'}>
+        <div className={'portal-pages-finder-form-filters-title'}>
+          {title}
+        </div>
+        <div className={'portal-pages-finder-form-filters-options'}>
+          {filters[type].map(function (filter) {
+            const selectedKey = type + 'Selected'
+            const handleChange = function () {
+              this.scrollToFinder()
+              this.toggleFilter(type, filter)
+            }.bind(this)
+            const checked = this.state[selectedKey].indexOf(filter) !== -1
+            return (
+              <div key={filter.key} className={'portal-pages-finder-form-filters-option'}>
+                <input type={'checkbox'} id={filter.key} name={filter.key} onChange={handleChange} checked={checked} />
+                <label htmlFor={filter.key}>
+                  {filter.title}
+                </label>
+              </div>
+            )
+          }.bind(this))}
+        </div>
+      </div>
     )
   },
 
   renderSearch: function () {
-    var search = function (e) {
+    const search = function (e) {
       e.preventDefault()
       e.stopPropagation()
       this.search()
       this.scrollToFinder()
     }.bind(this)
-    return div({ className: 'portal-pages-finder-form-search col-4' },
-      div({ className: 'portal-pages-finder-form-search-title' }, 'Search by keyword'),
-      form({ onSubmit: search },
-        div({ className: 'portal-pages-search-input-container' },
-          input({ ref: 'keyword', placeholder: 'Type search term here' }),
-          a({ href: '/search' }, 'Advanced Search')
-        )
-      )
+    return (
+      <div className={'portal-pages-finder-form-search col-4'}>
+        <div className={'portal-pages-finder-form-search-title'}>
+          Search by keyword
+        </div>
+        <form onSubmit={search}>
+          <div className={'portal-pages-search-input-container'}>
+            <input ref={'keyword'} placeholder={'Type search term here'} />
+            <a href={'/search'}>
+              Advanced Search
+            </a>
+          </div>
+        </form>
+      </div>
     )
   },
 
   renderForm: function () {
-    return div({ className: 'portal-pages-finder-form' },
-      div({ className: 'portal-pages-finder-form-inner cols', style: { opacity: this.state.opacity } },
-        this.renderSubjectAreas(),
-        div({ className: 'col-1 spacer' }),
-        div({ className: 'mobile-filter-toggle' }, 'More Filters'),
-        this.renderFilters('featureFilters', 'Filter by Type'),
-        this.renderFilters('gradeFilters', 'Filter by Grade'),
-        this.renderSearch()
-      )
+    return (
+      <div className={'portal-pages-finder-form'}>
+        <div className={'portal-pages-finder-form-inner cols'} style={{ opacity: this.state.opacity }}>
+          {this.renderSubjectAreas()}
+          <div className={'col-1 spacer'} />
+          <div className={'mobile-filter-toggle'}>
+            More Filters
+          </div>
+          {this.renderFilters('featureFilters', 'Filter by Type')}
+          {this.renderFilters('gradeFilters', 'Filter by Grade')}
+          {this.renderSearch()}
+        </div>
+      </div>
     )
   },
 
   renderResultsHeaderFilters: function () {
-    var keyword = jQuery.trim((this.refs.keyword ? this.refs.keyword.value : '') || '')
+    const keyword = jQuery.trim((this.refs.keyword ? this.refs.keyword.value : '') || '')
     if (keyword.length + this.state.subjectAreasSelected.length + this.state.featureFiltersSelected.length + this.state.gradeFiltersSelected.length === 0) {
       return null
     }
 
-    var filters = []
+    let filters = []
     this.state.subjectAreasSelected.forEach(function (subjectArea) {
       filters.push(HeaderFilter({ key: subjectArea.key, type: 'subjectAreas', filter: subjectArea, toggleFilter: this.toggleFilter }))
     }.bind(this))
@@ -425,40 +440,58 @@ var StemFinder = Component({
     }.bind(this))
 
     if (keyword.length > 0) {
-      filters.push(div({ className: 'portal-pages-finder-header-filter' },
-        'Keyword: ' + keyword,
-        span({ onClick: this.clearKeyword })
-      ))
+      filters.push(
+        <div className={'portal-pages-finder-header-filter'}>
+          {'Keyword: ' + keyword}
+          <span onClick={this.clearKeyword} />
+        </div>
+      )
     }
 
-    filters.push(div({ key: 'clear', className: 'portal-pages-finder-header-filters-clear', onClick: this.clearFilters }, 'Clear Filters'))
+    filters.push(
+      <div key={'clear'} className={'portal-pages-finder-header-filters-clear'} onClick={this.clearFilters}>
+        Clear Filters
+      </div>
+    )
 
-    return div({ className: 'portal-pages-finder-header-filters' }, filters)
+    return (
+      <div className={'portal-pages-finder-header-filters'}>
+        {filters}
+      </div>
+    )
   },
 
   renderResultsHeader: function () {
     if (this.state.noResourcesFound || this.state.searching) {
-      return div({ className: 'portal-pages-finder-header' },
-        div({ className: 'portal-pages-finder-header-resource-count' }, this.state.noResourcesFound ? 'No Resources Found' : 'Searching...'),
-        this.renderResultsHeaderFilters()
+      return (
+        <div className={'portal-pages-finder-header'}>
+          <div className={'portal-pages-finder-header-resource-count'}>
+            {this.state.noResourcesFound ? 'No Resources Found' : 'Searching...'}
+          </div>
+          {this.renderResultsHeaderFilters()}
+        </div>
       )
     }
 
-    var showingAll = this.state.displayLimit >= this.state.numTotalResources
-    var multipleResources = this.state.numTotalResources > 1
-    var resourceCount = showingAll ? this.state.numTotalResources : this.state.displayLimit + ' of ' + this.state.numTotalResources
+    const showingAll = this.state.displayLimit >= this.state.numTotalResources
+    const multipleResources = this.state.numTotalResources > 1
+    const resourceCount = showingAll ? this.state.numTotalResources : this.state.displayLimit + ' of ' + this.state.numTotalResources
     jQuery('#portal-pages-finder').removeClass('loading')
-    return div({ className: 'portal-pages-finder-header' },
-      div({ className: 'portal-pages-finder-header-resource-count' },
-        showingAll && multipleResources ? 'Showing All ' : 'Showing ',
-        strong({}, resourceCount + ' ' + pluralize(resourceCount, 'Resource'))
-      ),
-      this.renderResultsHeaderFilters()
+    return (
+      <div className={'portal-pages-finder-header'}>
+        <div className={'portal-pages-finder-header-resource-count'}>
+          {showingAll && multipleResources ? 'Showing All ' : 'Showing '}
+          <strong>
+            {resourceCount + ' ' + pluralize(resourceCount, 'Resource')}
+          </strong>
+        </div>
+        {this.renderResultsHeaderFilters()}
+      </div>
     )
   },
 
   renderLoadMore: function () {
-    var handleLoadAll = function () {
+    const handleLoadAll = function () {
       if (!this.state.searching) {
         this.search(true)
       }
@@ -467,8 +500,12 @@ var StemFinder = Component({
     if ((this.state.resources.length === 0) || (this.state.displayLimit >= this.state.numTotalResources)) {
       return null
     }
-    return div({ className: 'portal-pages-finder-load-all col-6 center', onClick: handleLoadAll },
-      button({}, this.state.searching ? 'Loading...' : 'Load More')
+    return (
+      <div className={'portal-pages-finder-load-all col-6 center'} onClick={handleLoadAll}>
+        <button>
+          {this.state.searching ? 'Loading...' : 'Load More'}
+        </button>
+      </div>
     )
   },
 
@@ -476,25 +513,29 @@ var StemFinder = Component({
     if (this.state.firstSearch) {
       return null
     }
-    var resources = this.state.resources.slice(0, this.state.displayLimit)
-    return div({ className: 'portal-pages-finder-results-inner' },
-      this.renderResultsHeader(),
-      div({ className: 'portal-pages-finder-results-cards' },
-        resources.map(function (resource, index) {
-          return StemFinderResult({ key: index, resource: resource })
-        })
-      ),
-      this.renderLoadMore()
+    const resources = this.state.resources.slice(0, this.state.displayLimit)
+    return (
+      <div className={'portal-pages-finder-results-inner'}>
+        {this.renderResultsHeader()}
+        <div className={'portal-pages-finder-results-cards'}>
+          {resources.map(function (resource, index) {
+            return StemFinderResult({ key: index, resource: resource })
+          })}
+        </div>
+        {this.renderLoadMore()}
+      </div>
     )
   },
 
   render: function () {
     // console.log("INFO stem-finder render()");
-    return div({},
-      this.renderForm(),
-      div({ className: 'portal-pages-finder-results cols', style: { opacity: this.state.opacity } },
-        this.renderResults()
-      )
+    return (
+      <div>
+        {this.renderForm()}
+        <div className={'portal-pages-finder-results cols'} style={{ opacity: this.state.opacity }}>
+          {this.renderResults()}
+        </div>
+      </div>
     )
   }
 })
