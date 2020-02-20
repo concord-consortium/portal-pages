@@ -250,7 +250,7 @@ var StemFinder = Component({
 
       results.forEach(function (result) {
         result.materials.forEach(function (material) {
-          portalObjectHelpers.processResource(material)
+          portalObjectHelpers.processResource(material, result.type)
           resources.push(material)
           lastSearchResultCount++
         })

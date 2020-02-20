@@ -5,16 +5,12 @@ const ResourceType = Component({
 
   render: function () {
     const resource = this.props.resource
-
-    // for now we're only tagging investigations (aka sequences)
-    if (!resource.has_activities) {
-      return null
-    }
+    const resourceType = resource.materialType
 
     return (
       <div className={this.props.className || 'portal-pages-finder-result-resource-types'}>
         <div className={'portal-pages-finder-result-resource-type'}>
-          Sequence
+          {resourceType}
         </div>
       </div>
     )
