@@ -10,12 +10,7 @@ const CollectionsPage = Component({
           <div className={'portal-pages-collections-page-header col-12'}>
             <h1>Collections</h1>
             <p className={'portal-pages-collections-page-header-info'}>
-              Many of our resources are part of collections that are created by our various research projects. Each collection has specific learning goals within the context of a larger subject area.
-            </p>
-            <p>
-              <a className={'special-link'} href={'https://concord.org/projects/'} target={'_blank'}>
-                View all Concord Consortium projects on concord.org
-              </a>
+              Many of our resources are part of collections that are created by our various <a href={'https://concord.org/our-work/research-projects/'} target={'_blank'}>research projects</a>. Each collection has specific learning goals within the context of a larger subject area.
             </p>
           </div>
         </div>
