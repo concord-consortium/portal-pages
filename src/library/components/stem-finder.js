@@ -390,12 +390,14 @@ const StemFinder = Component({
     }.bind(this)
     return (
       <div className={'portal-pages-finder-form-search col-4'}>
-        <div className={'portal-pages-finder-form-search-title'}>
-          Search by keyword
-        </div>
         <form onSubmit={search}>
+          <div className={'portal-pages-finder-form-search-title'}>
+            <label htmlFor={'search-terms'}>
+              Search by keyword
+            </label>
+          </div>
           <div className={'portal-pages-search-input-container'}>
-            <input ref={'keyword'} placeholder={'Type search term here'} />
+            <input id={'search-terms'} ref={'keyword'} placeholder={'Type search term here'} />
             <a href={'/search'}>
               Advanced Search
             </a>
