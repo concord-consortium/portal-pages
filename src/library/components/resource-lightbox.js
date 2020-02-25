@@ -71,6 +71,11 @@ var ResourceLightbox = Component({
     ga('send', 'event', 'Resource Teacher Edition Button', 'Click', resource.name)
   },
 
+  handleTeacherResourcesClick: function (e) {
+    const resource = this.state.resource
+    ga('send', 'event', 'Resource Teacher Resources Button', 'Click', resource.name)
+  },
+
   handleAssignClick: function (e) {
     const resource = this.state.resource
     ga('send', 'event', 'Assign to Class Button', 'Click', resource.name)
@@ -416,6 +421,13 @@ var ResourceLightbox = Component({
     return { __html: resource.longDescription }
   },
 
+  getParentPageType: function () {
+    const siteRootUrl = window.location.protocol + '//' + window.location.host
+    const siteRootRegex = new RegExp('^' + siteRootUrl + '(|\/)$')
+    const parentPageType = this.props.savedUrl.match(siteRootRegex) ? 'Home' : 'Collection'
+    return parentPageType
+  },
+
   renderResource: function () {
     const resource = this.state.resource
     const links = resource.links
@@ -436,6 +448,7 @@ var ResourceLightbox = Component({
           <div className='portal-pages-action-buttons'>
             {links.preview ? <a className='portal-pages-primary-button' href={links.preview.url} target='_blank' onClick={this.handlePreviewClick}>{links.preview.text}</a> : null}
             {Portal.currentUser.isTeacher && resource.has_teacher_edition ? <a className='teacherEditionLink portal-pages-secondary-button' href={MakeTeacherEditionLink(resource.external_url)} target='_blank' onClick={this.handleTeacherEditionClick}>Teacher Edition</a> : null}
+            {links.teacher_resources && this.getParentPageType() == 'Home' ? <a className='teacherResourcesLink portal-pages-secondary-button' href={links.teacher_resources.url} target='_blank' onClick={this.handleTeacherResourcesClick}>{links.teacher_resources.text}</a> : null}
             {links.assign_material ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_material.onclick}`} onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
             {links.assign_collection ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_collection.onclick}`} onClick={this.handleAddToCollectionClick}>{links.assign_collection.text}</a> : null}
             {links.teacher_guide ? <a className='portal-pages-secondary-button' href={links.teacher_guide.url} target='_blank' onClick={this.handleTeacherGuideClick}>{links.teacher_guide.text}</a> : null}
