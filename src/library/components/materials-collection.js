@@ -71,8 +71,7 @@ const MaterialsCollectionItem = Component({
             </a>
           </h3>
         </div>
-        <div className={'portal-pages-finder-materials-collection-item__description'} dangerouslySetInnerHTML={{__html: item.longDescription}}>
-        </div>
+        <div className={'portal-pages-finder-materials-collection-item__description'} dangerouslySetInnerHTML={{ __html: item.longDescription }} />
       // pre({}, JSON.stringify(this.props.item, null, 2))
       </div>
     )
@@ -93,7 +92,6 @@ const MaterialsCollection = Component({
   },
 
   componentWillMount: function () {
-    const showTeacherResourcesButton = this.props.showTeacherResourcesButton
     jQuery.ajax({
       url: Portal.API_V1.MATERIALS_BIN_COLLECTIONS,
       data: { id: this.props.collection,

@@ -26,7 +26,6 @@ var ResourceLightbox = Component({
     jQuery('.home-page-content').addClass('blurred')
 
     const resource = this.props.resource
-    const showTeacherResourcesButton = this.props.showTeacherResourcesButton
     // If the lightbox is shown directly the resource might not have been
     // processed yet
     portalObjectHelpers.processResource(resource)
