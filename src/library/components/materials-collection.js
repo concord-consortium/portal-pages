@@ -47,7 +47,7 @@ const MaterialsCollectionItem = Component({
     // mount/unmount lightbox outside of homepage content
     if (lightbox) {
       let resourceLightbox =
-        ResourceLightbox({ resource: this.props.item, toggleLightbox: this.toggleLightbox })
+        ResourceLightbox({ resource: this.props.item, toggleLightbox: this.toggleLightbox, showTeacherResourcesButton: this.props.showTeacherResourcesButton })
       Lightbox.open(resourceLightbox)
     } else {
       Lightbox.close()
@@ -86,7 +86,14 @@ const MaterialsCollection = Component({
     }
   },
 
+  getDefaultProps: function () {
+    return {
+      showTeacherResourcesButton: true
+    }
+  },
+
   componentWillMount: function () {
+    const showTeacherResourcesButton = this.props.showTeacherResourcesButton
     jQuery.ajax({
       url: Portal.API_V1.MATERIALS_BIN_COLLECTIONS,
       data: { id: this.props.collection,
@@ -118,6 +125,8 @@ const MaterialsCollection = Component({
   },
 
   render: function () {
+    const showTeacherResourcesButton = this.props.showTeacherResourcesButton
+
     if (this.state.materials.length === 0) {
       return null
     }
@@ -125,7 +134,7 @@ const MaterialsCollection = Component({
     return (
       <div className={'portal-pages-finder-materials-collection'}>
         {this.state.materials.map(function (material, i) {
-          return MaterialsCollectionItem({ key: i, item: material })
+          return MaterialsCollectionItem({ key: i, item: material, showTeacherResourcesButton: showTeacherResourcesButton })
         })}
       </div>
     )

@@ -16,7 +16,8 @@ var ResourceLightbox = Component({
   getDefaultProps: function () {
     return {
       savedUrl: window.location.toString(),
-      savedTitle: document.title
+      savedTitle: document.title,
+      showTeacherResourcesButton: true
     }
   },
 
@@ -25,6 +26,7 @@ var ResourceLightbox = Component({
     jQuery('.home-page-content').addClass('blurred')
 
     const resource = this.props.resource
+    const showTeacherResourcesButton = this.props.showTeacherResourcesButton
     // If the lightbox is shown directly the resource might not have been
     // processed yet
     portalObjectHelpers.processResource(resource)
@@ -430,6 +432,7 @@ var ResourceLightbox = Component({
 
   renderResource: function () {
     const resource = this.state.resource
+    const showTeacherResourcesButton = this.props.showTeacherResourcesButton
     const links = resource.links
 
     // console.log("[DEBUG] resource-lightbox links.assign_material.onclick", links.assign_material.onclick);
@@ -448,7 +451,7 @@ var ResourceLightbox = Component({
           <div className='portal-pages-action-buttons'>
             {links.preview ? <a className='portal-pages-primary-button' href={links.preview.url} target='_blank' onClick={this.handlePreviewClick}>{links.preview.text}</a> : null}
             {Portal.currentUser.isTeacher && resource.has_teacher_edition ? <a className='teacherEditionLink portal-pages-secondary-button' href={MakeTeacherEditionLink(resource.external_url)} target='_blank' onClick={this.handleTeacherEditionClick}>Teacher Edition</a> : null}
-            {links.teacher_resources && this.getParentPageType() === 'Home' ? <a className='teacherResourcesLink portal-pages-secondary-button' href={links.teacher_resources.url} target='_blank' onClick={this.handleTeacherResourcesClick}>{links.teacher_resources.text}</a> : null}
+            {links.teacher_resources && showTeacherResourcesButton ? <a className='teacherResourcesLink portal-pages-secondary-button' href={links.teacher_resources.url} target='_blank' onClick={this.handleTeacherResourcesClick}>{links.teacher_resources.text}</a> : null}
             {links.assign_material ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_material.onclick}`} onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
             {links.assign_collection ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_collection.onclick}`} onClick={this.handleAddToCollectionClick}>{links.assign_collection.text}</a> : null}
             {links.teacher_guide ? <a className='portal-pages-secondary-button' href={links.teacher_guide.url} target='_blank' onClick={this.handleTeacherGuideClick}>{links.teacher_guide.text}</a> : null}
