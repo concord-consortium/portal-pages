@@ -40,7 +40,7 @@
     max-width: 100%;
   }
   .rollover img {
-    max-width: inherit;
+    max-width: 36px;
   }
   $total-columns: 12;
   @for $i from 1 through $total-columns {

@@ -222,8 +222,11 @@
   }
 }
 
-.portal-pages-finder-form-search-title {
+.portal-pages-finder-form-search-title label {
+  display: block;
   font-size: 16px;
+  font-weight: bold;
+  text-transform: none;
 }
 .portal-pages-finder-form-search {
   a {

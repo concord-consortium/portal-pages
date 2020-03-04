@@ -13,14 +13,7 @@
   color: $col-darkgray;
   font: 300 24px $font-museo-sans;
   line-height: 36px;
-}
-.portal-pages-collections-page-header a {
-  font-size: 18px;
-  font-weight: 700;
-  &.special-link:after {
-    font-size: 18px;
-    margin-top: 4px !important;
-  }
+  margin-bottom: 40px;
 }
 .portal-pages-collections-page-diagonal-spacer {
   background:#fff;
