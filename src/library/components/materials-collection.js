@@ -1,17 +1,12 @@
 import React from 'react'
-var Component = require('../helpers/component')
-var ResourceLightbox = require('./resource-lightbox')
-var shuffleArray = require('../helpers/shuffle-array')
-var portalObjectHelpers = require('../helpers/portal-object-helpers')
-var Lightbox = require('../helpers/lightbox')
-var ResourceType = require('./resource-type')
+const Component = require('../helpers/component')
+const ResourceLightbox = require('./resource-lightbox')
+const shuffleArray = require('../helpers/shuffle-array')
+const portalObjectHelpers = require('../helpers/portal-object-helpers')
+const Lightbox = require('../helpers/lightbox')
+const ResourceType = require('./resource-type')
 
-var a = React.DOM.a
-var div = React.DOM.div
-var img = React.DOM.img
-var h3 = React.DOM.h2
-
-var MaterialsCollectionItem = Component({
+const MaterialsCollectionItem = Component({
 
   getInitialState: function () {
     return {
@@ -21,7 +16,7 @@ var MaterialsCollectionItem = Component({
   },
 
   componentWillMount: function () {
-    var item = this.props.item
+    const item = this.props.item
     portalObjectHelpers.processResource(item)
   },
 
@@ -42,7 +37,7 @@ var MaterialsCollectionItem = Component({
   toggleLightbox: function (e) {
     e.preventDefault()
     e.stopPropagation()
-    var lightbox = !this.state.lightbox
+    let lightbox = !this.state.lightbox
 
     this.setState({
       lightbox: lightbox,
@@ -51,8 +46,8 @@ var MaterialsCollectionItem = Component({
 
     // mount/unmount lightbox outside of homepage content
     if (lightbox) {
-      var resourceLightbox =
-        ResourceLightbox({ resource: this.props.item, toggleLightbox: this.toggleLightbox })
+      let resourceLightbox =
+        ResourceLightbox({ resource: this.props.item, toggleLightbox: this.toggleLightbox, showTeacherResourcesButton: this.props.showTeacherResourcesButton })
       Lightbox.open(resourceLightbox)
     } else {
       Lightbox.close()
@@ -60,32 +55,39 @@ var MaterialsCollectionItem = Component({
   },
 
   render: function () {
-    var item = this.props.item
-    return div({ className: 'portal-pages-finder-materials-collection-item' },
-      div({ className: 'portal-pages-finder-materials-collection-item__image col-4' },
-        a({ href: '#', onClick: this.toggleLightbox },
-          img({ src: item.icon.url }),
-          ResourceType({ resource: item })
-        )
-      ),
-      div({ className: 'portal-pages-finder-materials-collection-item-info col-8' },
-        h3({ className: 'portal-pages-finder-materials-collection-item__title' },
-          a({ href: '#', onClick: this.toggleLightbox },
-            item.name
-          )
-        ),
-        div({ className: 'portal-pages-finder-materials-collection-item__description',
-          dangerouslySetInnerHTML: { __html: item.longDescription } })
-      )
+    const item = this.props.item
+    return (
+      <div className={'portal-pages-finder-materials-collection-item'}>
+        <div className={'portal-pages-finder-materials-collection-item__image col-4'}>
+          <a href={'#'} onClick={this.toggleLightbox}>
+            <img src={item.icon.url} />
+            {ResourceType({ resource: item })}
+          </a>
+        </div>
+        <div className={'portal-pages-finder-materials-collection-item-info col-8'}>
+          <h3 className={'portal-pages-finder-materials-collection-item__title'}>
+            <a href={'#'} onClick={this.toggleLightbox}>
+              {item.name}
+            </a>
+          </h3>
+        </div>
+        <div className={'portal-pages-finder-materials-collection-item__description'} dangerouslySetInnerHTML={{ __html: item.longDescription }} />
       // pre({}, JSON.stringify(this.props.item, null, 2))
+      </div>
     )
   }
 })
 
-var MaterialsCollection = Component({
+const MaterialsCollection = Component({
   getInitialState: function () {
     return {
       materials: []
+    }
+  },
+
+  getDefaultProps: function () {
+    return {
+      showTeacherResourcesButton: true
     }
   },
 
@@ -97,15 +99,15 @@ var MaterialsCollection = Component({
       },
       dataType: 'json',
       success: function (data) {
-        var materials = data[0].materials
+        let materials = data[0].materials
         if (this.props.randomize) {
           materials = shuffleArray(materials)
         }
         if (this.props.featured) {
           // props.featured is the ID of the material we
           // wish to insert at the start of the list
-          var featuredID = this.props.featured
-          var sortFeatured = function (a, b) {
+          let featuredID = this.props.featured
+          let sortFeatured = function (a, b) {
             if (a.id === featuredID) return -1
             if (b.id === featuredID) return 1
             return 0
@@ -121,14 +123,18 @@ var MaterialsCollection = Component({
   },
 
   render: function () {
+    const showTeacherResourcesButton = this.props.showTeacherResourcesButton
+
     if (this.state.materials.length === 0) {
       return null
     }
 
-    return div({ className: 'portal-pages-finder-materials-collection' },
-      this.state.materials.map(function (material, i) {
-        return MaterialsCollectionItem({ key: i, item: material })
-      })
+    return (
+      <div className={'portal-pages-finder-materials-collection'}>
+        {this.state.materials.map(function (material, i) {
+          return MaterialsCollectionItem({ key: i, item: material, showTeacherResourcesButton: showTeacherResourcesButton })
+        })}
+      </div>
     )
   }
 })
