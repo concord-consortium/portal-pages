@@ -7,6 +7,10 @@ const ResourceType = Component({
     const resource = this.props.resource
     const resourceType = resource.materialType
 
+    if (resource.materialType === 'activity') {
+      return null
+    }
+
     return (
       <div className={this.props.className || 'portal-pages-finder-result-resource-types'}>
         <div className={'portal-pages-finder-result-resource-type'}>

@@ -70,9 +70,8 @@ const MaterialsCollectionItem = Component({
               {item.name}
             </a>
           </h3>
+          <div className={'portal-pages-finder-materials-collection-item__description'} dangerouslySetInnerHTML={{ __html: item.longDescription }} />
         </div>
-        <div className={'portal-pages-finder-materials-collection-item__description'} dangerouslySetInnerHTML={{ __html: item.longDescription }} />
-      // pre({}, JSON.stringify(this.props.item, null, 2))
       </div>
     )
   }
