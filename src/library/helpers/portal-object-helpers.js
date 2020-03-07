@@ -29,17 +29,10 @@ const textOfHtml = (text) => {
   return filterDiv.innerText
 }
 
-const processResource = (resource, materialType) => {
+const processResource = (resource) => {
   if (resource == null || resource._processed) {
     return
   }
-
-  const materialTypeLabels = {
-    'interactives': 'model',
-    'activities': 'activity',
-    'investigations': 'sequence'
-  }
-  resource.materialType = materialTypeLabels[materialType]
 
   resource.filteredShortDescription = textOfHtml(resource.short_description)
   // Long description can be different based on the user type - teacher and non-teacher (student, anonymous).
