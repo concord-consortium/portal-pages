@@ -175,7 +175,7 @@ const StemFinder = Component({
       '&sort_order=Alphabetical',
       '&include_official=1',
       '&model_types=All',
-      '&include_related=4',
+      '&include_related=2',
       '&investigation_page=',
       searchPage,
       '&activity_page=',
