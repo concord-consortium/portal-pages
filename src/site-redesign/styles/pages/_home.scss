@@ -71,7 +71,7 @@
   background: $yellow-gradient-to;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, $yellow-gradient-from, $yellow-gradient-to);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, $yellow-gradient-from, $yellow-gradient-to); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  min-height: 440px;
+  min-height: 390px;
   font-weight: bold;
 }
 .portal-pages-find-form--hidden {
@@ -79,14 +79,14 @@
 }
 .portal-pages-finder-form-inner.cols {
   margin: 0 auto;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   position: relative;
   width: auto;
 }
 .portal-pages-finder-form-subject-areas {
   text-align: center;
-  margin-bottom: 55px;
+  margin-bottom: 50px;
 }
 .portal-pages-finder-form-subject-areas-logo {
   display: inline-block;
@@ -98,7 +98,7 @@
     color: $col-darkgray;
     border-radius: 50%;
     height: 80px;
-    margin: 0 auto 15px;
+    margin: 0 auto 10px;
     position: relative;
     text-align: center;
     width: 80px;
