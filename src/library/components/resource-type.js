@@ -5,9 +5,14 @@ const ResourceType = Component({
 
   render: function () {
     const resource = this.props.resource
-    const resourceType = resource.materialType
+    const materialTypeLabels = {
+      'Interactive': 'model',
+      'Activity': 'activity',
+      'Investigation': 'sequence'
+    }
+    const resourceType = materialTypeLabels[resource.material_type]
 
-    if (resource.materialType === 'activity') {
+    if (resourceType === 'activity' || !resourceType) {
       return null
     }
 
