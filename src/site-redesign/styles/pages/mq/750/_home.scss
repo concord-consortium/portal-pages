@@ -19,6 +19,35 @@
   }
 }
 
+.portal-pages-finder-form-inner.cols {
+  padding-top: 180px;
+  padding-bottom: 30px;
+}
+
+.portal-pages-finder-form-subject-areas-logo .portal-pages-finder-form-subject-areas-logo-inner {
+  float: left;
+  margin: 0;
+}
+.portal-pages-finder-form-subject-areas-logo-label {
+  float: left;
+  margin: 30px 0 0 20px;
+}
+.portal-pages-finder-form-search {
+  position: absolute;
+  top: 30px;
+
+  input { width: 90.5%; }
+}
+.portal-pages-search-input-container a { text-align: left; }
+
+.portal-pages-finder-form-filters {
+
+  .portal-pages-finder-form-filters-option {
+    float: none !important;
+    width: 100% !important;
+  }
+}
+
 .portal-pages-finder-header {
   margin: 0;
 }
