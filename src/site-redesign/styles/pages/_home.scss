@@ -1,3 +1,34 @@
+body.member-visitor #page-introduction {
+  padding-top: 15px;
+
+  .portal-pages-hero h1 {
+    font-size: 32px;
+    line-height: 38px;
+    margin: 0 0 20px;
+    overflow: hidden;
+    position: relative;
+    text-indent: 100%;
+    white-space: nowrap;
+
+    &:before {
+      content: 'Find STEM activities for your classroom';
+      font-weight: 500;
+      left: 0;
+      position: absolute;
+      text-align: center;
+      text-indent: 0;
+      width: 100%;
+    }
+
+    strong:before {
+      display: inline;
+    }
+  }
+  .portal-pages-hero-info {
+    display: none;
+  }
+}
+
 /* hero */
 .portal-pages-hero {
   margin: 0;
@@ -10,8 +41,8 @@
 }
 .portal-pages-hero h1 {
   color: $col-darkgray;
-  font: 100 62px $font-museo;
-  line-height: 68px;
+  font: 100 60px $font-museo;
+  line-height: 64px;
   margin: 0;
 }
 .portal-pages-hero h1 strong:before {
@@ -26,8 +57,8 @@
   }
 }
 .portal-pages-hero-info {
-  font: 300 22px $font-museo-sans;
-  line-height: 34px;
+  font: 300 20px $font-museo-sans;
+  line-height: 30px;
   margin: 30px 0 40px;
 }
 .portal-pages-hero-browse {
@@ -54,7 +85,7 @@
 }
 
 .portal-pages-finder-header {
-  margin: 20px 80px;
+  margin: 0 80px 20px;
   font-size: 28px;
 }
 .portal-pages-finder-header-resource-count {
