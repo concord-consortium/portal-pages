@@ -5,10 +5,15 @@
     float: left !important;
     margin-bottom: 25px;
     text-align: center;
-    width: 50% !important;
+    width: 33.33333% !important;
 
-    &:last-child {
-      width: 100% !important;
+    &:nth-child(5) {
+      margin-left: 15% !important;
+      width: 35% !important;
+    }
+    &:nth-child(6) {
+      margin-right: 15% !important;
+      width: 35% !important;
     }
 
     .portal-pages-finder-form-subject-areas-logo-inner {
@@ -21,24 +26,4 @@
       margin: 0;
     }
   }
-
-  .portal-pages-finder-form-filters {
-    display: none;
-  }
-}
-
-// Mobile Toggle
-.mobile-filter-toggle {
-  color: $col-darkgray;
-  cursor: pointer;
-  display: block;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 900;
-  font-family: $font-museo-sans;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }

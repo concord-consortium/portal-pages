@@ -34,13 +34,19 @@
 }
 .portal-pages-finder-form-search {
   position: absolute;
-  top: 30px;
+  top: 20px;
+  width: 97.36842% !important;
 
-  input { width: 90.5%; }
+  input { width: 96.5%; }
 }
 .portal-pages-search-input-container a { text-align: left; }
 
 .portal-pages-finder-form-filters {
+  float: left !important;
+  margin-right: 1.31579%;
+  margin-bottom: 20px;
+  margin-left: 1.31579%;
+  width: 47.36842% !important;
 
   .portal-pages-finder-form-filters-option {
     float: none !important;
@@ -62,4 +68,24 @@
     margin-left: 0 !important;
     width: 100% !important;
   }
+}
+
+.portal-pages-finder-form-filters {
+  display: none;
+}
+
+// Mobile Toggle
+.mobile-filter-toggle {
+  color: $col-darkgray;
+  cursor: pointer;
+  display: block;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 900;
+  font-family: $font-museo-sans;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
