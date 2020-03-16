@@ -1,10 +1,10 @@
 body.member-visitor #page-introduction {
-  padding-top: 15px;
+  padding-top: 0;
 
   .portal-pages-hero h1 {
-    font-size: 32px;
-    line-height: 38px;
-    margin: 0 0 20px;
+    font-size: 36px;
+    line-height: 36px;
+    margin: 0 0 5px;
     overflow: hidden;
     position: relative;
     text-indent: 100%;
@@ -25,7 +25,10 @@ body.member-visitor #page-introduction {
     }
   }
   .portal-pages-hero-info {
-    display: none;
+    margin: 0 0 20px;
+    .guests-only {
+      display: none;
+    }
   }
 }
 
@@ -85,13 +88,13 @@ body.member-visitor #page-introduction {
 }
 
 .portal-pages-finder-header {
-  margin: 0 80px 20px;
+  margin: 0 15px 20px;
   font-size: 28px;
 }
 .portal-pages-finder-header-resource-count {
   color: $col-darkgray;
   font-family: $font-museo;
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 100;
   strong {
     font-weight: 900;
