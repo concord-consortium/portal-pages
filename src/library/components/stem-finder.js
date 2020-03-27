@@ -137,7 +137,7 @@ const StemFinder = Component({
   // Scroll to top of stem-finder filter form.
   //
   scrollToFinder: function () {
-    let finderFormTop = jQuery('.portal-pages-finder-form').offset().top + 50
+    let finderFormTop = jQuery('.portal-pages-finder-form').offset().top - 100
     if (jQuery(document).scrollTop() < finderFormTop) {
       jQuery('body, html').animate({ scrollTop: finderFormTop }, 600)
     }
@@ -175,7 +175,7 @@ const StemFinder = Component({
       '&sort_order=Alphabetical',
       '&include_official=1',
       '&model_types=All',
-      '&include_related=4',
+      '&include_related=2',
       '&investigation_page=',
       searchPage,
       '&activity_page=',

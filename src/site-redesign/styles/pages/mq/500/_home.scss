@@ -1,0 +1,29 @@
+.portal-pages-finder-form-subject-areas {
+  margin-bottom: 30px;
+
+  .portal-pages-finder-form-subject-areas-logo {
+    float: left !important;
+    margin-bottom: 25px;
+    text-align: center;
+    width: 33.33333% !important;
+
+    &:nth-child(5) {
+      margin-left: 15% !important;
+      width: 35% !important;
+    }
+    &:nth-child(6) {
+      margin-right: 15% !important;
+      width: 35% !important;
+    }
+
+    .portal-pages-finder-form-subject-areas-logo-inner {
+      float: none;
+      margin: 0 auto 10px;
+      text-align: center;
+    }
+    .portal-pages-finder-form-subject-areas-logo-label {
+      float: none;
+      margin: 0;
+    }
+  }
+}

@@ -1,42 +1,37 @@
-.portal-pages-finder-form-inner.cols {
-  padding-top: 210px;
-  padding-bottom: 60px;
-}
+.portal-pages-finder-form-subject-areas {
+  margin-bottom: 30px;
 
-.portal-pages-finder-form-subject-areas-logo .portal-pages-finder-form-subject-areas-logo-inner {
-  float: left;
-  margin: 0;
-}
-.portal-pages-finder-form-subject-areas-logo-label {
-  float: left;
-  margin: 30px 0 0 20px;
-}
-.portal-pages-finder-form-search {
-  position: absolute;
-  top: 60px;
+  .portal-pages-finder-form-subject-areas-logo {
+    float: left !important;
+    margin-bottom: 25px;
+    text-align: center;
+    width: 20% !important;
 
-  input { width: 90.5%; }
+    .portal-pages-finder-form-subject-areas-logo-inner {
+      float: none;
+      margin: 0 auto 10px;
+      text-align: center;
+    }
+    .portal-pages-finder-form-subject-areas-logo-label {
+      float: none;
+      margin: 0;
+    }
+  }
 }
-.portal-pages-search-input-container a { text-align: left; }
 
 .portal-pages-finder-form-filters {
-  display: none;
+  float: left !important;
+  margin-right: 1.31579%;
+  margin-bottom: 20px;
+  margin-left: 1.31579%;
+  width: 22.36842% !important;
 }
-
-// Mobile Toggle
-.mobile-filter-toggle {
-  color: $col-darkgray;
-  cursor: pointer;
-  display: block;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 900;
-  font-family: $font-museo-sans;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.portal-pages-finder-form-search {
+  float: left !important;
+  margin-top: 20px;
+  margin-right: 1.31579%;
+  margin-left: 1.31579%;
+  width: 50% !important;
 }
 
 .portal-pages-finder-results-cards, .portal-pages-collections-page-list {

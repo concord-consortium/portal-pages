@@ -1,3 +1,37 @@
+body.member-visitor #page-introduction {
+  padding-top: 0;
+
+  .portal-pages-hero h1 {
+    font-size: 36px;
+    line-height: 36px;
+    margin: 0 0 5px;
+    overflow: hidden;
+    position: relative;
+    text-indent: 100%;
+    white-space: nowrap;
+
+    &:before {
+      content: 'Find STEM activities for your classroom';
+      font-weight: 700;
+      left: 0;
+      position: absolute;
+      text-align: center;
+      text-indent: 0;
+      width: 100%;
+    }
+
+    strong:before {
+      display: inline;
+    }
+  }
+  .portal-pages-hero-info {
+    margin: 0 0 20px;
+    .guests-only {
+      display: none;
+    }
+  }
+}
+
 /* hero */
 .portal-pages-hero {
   margin: 0;
@@ -10,8 +44,8 @@
 }
 .portal-pages-hero h1 {
   color: $col-darkgray;
-  font: 100 66px $font-museo;
-  line-height: 72px;
+  font: 100 56px $font-museo;
+  line-height: 60px;
   margin: 0;
 }
 .portal-pages-hero h1 strong:before {
@@ -26,9 +60,9 @@
   }
 }
 .portal-pages-hero-info {
-  font: 300 24px $font-museo-sans;
-  line-height: 36px;
-  margin: 50px 0 40px;
+  font: 300 20px $font-museo-sans;
+  line-height: 26px;
+  margin: 20px 0;
 }
 .portal-pages-hero-browse {
   font: 300 18px $font-museo-sans;
@@ -54,13 +88,13 @@
 }
 
 .portal-pages-finder-header {
-  margin: 20px 80px;
+  margin: 0 15px 20px;
   font-size: 28px;
 }
 .portal-pages-finder-header-resource-count {
   color: $col-darkgray;
   font-family: $font-museo;
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 100;
   strong {
     font-weight: 900;
@@ -71,7 +105,7 @@
   background: $yellow-gradient-to;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, $yellow-gradient-from, $yellow-gradient-to);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, $yellow-gradient-from, $yellow-gradient-to); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  min-height: 440px;
+  min-height: 390px;
   font-weight: bold;
 }
 .portal-pages-find-form--hidden {
@@ -79,14 +113,15 @@
 }
 .portal-pages-finder-form-inner.cols {
   margin: 0 auto;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   position: relative;
   width: auto;
 }
 .portal-pages-finder-form-subject-areas {
   text-align: center;
-  margin-bottom: 55px;
+  margin-bottom: 40px;
+  overflow: hidden;
 }
 .portal-pages-finder-form-subject-areas-logo {
   display: inline-block;
@@ -98,7 +133,7 @@
     color: $col-darkgray;
     border-radius: 50%;
     height: 80px;
-    margin: 0 auto 15px;
+    margin: 0 auto 10px;
     position: relative;
     text-align: center;
     width: 80px;

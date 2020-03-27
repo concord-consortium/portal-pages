@@ -4,15 +4,15 @@
 }
 
 @media screen and (max-width: 750px) {
-  @import 'common/mq/750/_typography.scss';
-  @import 'pages/mq/750/_home.scss';
+  @import 'common/mq/750/_typography.scss',
+          'pages/mq/750/_home.scss';
 }
 
 @media screen and (max-width: 775px) {
 }
 
 @media screen and (max-width: 500px) {
-
+  @import 'pages/mq/500/_home.scss';
 }
 
 @media screen and (max-width: 450px) {
