@@ -186,6 +186,7 @@ var ResourceLightbox = Component({
     }
     return (
       <div className='portal-pages-resource-lightbox-requirements'>
+        <h2>Requirements</h2>
         {requirementsOutput}
         {requirementsSensors}
       </div>
@@ -433,6 +434,8 @@ var ResourceLightbox = Component({
     const resource = this.state.resource
     const showTeacherResourcesButton = this.props.showTeacherResourcesButton
     const links = resource.links
+    const isCollection = resource.material_type === 'Project' ? true : false
+    const previewButtonText = isCollection ? 'View Collection' : links.preview.text
 
     // console.log("[DEBUG] resource-lightbox links.assign_material.onclick", links.assign_material.onclick);
     // console.log("[DEBUG] resource-lightbox links.assign_collection.onclick", links.assign_collection.onclick);
@@ -448,25 +451,24 @@ var ResourceLightbox = Component({
             <img src={resource.icon.url} />
           </div>
           <div className='portal-pages-action-buttons'>
-            {links.preview ? <a className='portal-pages-primary-button' href={links.preview.url} target='_blank' onClick={this.handlePreviewClick}>{links.preview.text}</a> : null}
-            {Portal.currentUser.isTeacher && resource.has_teacher_edition ? <a className='teacherEditionLink portal-pages-secondary-button' href={MakeTeacherEditionLink(resource.external_url)} target='_blank' onClick={this.handleTeacherEditionClick}>Teacher Edition</a> : null}
-            {links.teacher_resources && showTeacherResourcesButton ? <a className='teacherResourcesLink portal-pages-secondary-button' href={links.teacher_resources.url} target='_blank' onClick={this.handleTeacherResourcesClick}>{links.teacher_resources.text}</a> : null}
-            {links.assign_material ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_material.onclick}`} onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
-            {links.assign_collection ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_collection.onclick}`} onClick={this.handleAddToCollectionClick}>{links.assign_collection.text}</a> : null}
-            {links.teacher_guide ? <a className='portal-pages-secondary-button' href={links.teacher_guide.url} target='_blank' onClick={this.handleTeacherGuideClick}>{links.teacher_guide.text}</a> : null}
+            {links.preview ? <a className='portal-pages-primary-button' href={links.preview.url} target='_blank' onClick={this.handlePreviewClick}>{previewButtonText}</a> : null}
+            {Portal.currentUser.isTeacher && resource.has_teacher_edition && !isCollection ? <a className='teacherEditionLink portal-pages-secondary-button' href={MakeTeacherEditionLink(resource.external_url)} target='_blank' onClick={this.handleTeacherEditionClick}>Teacher Edition</a> : null}
+            {links.teacher_resources && showTeacherResourcesButton && !isCollection ? <a className='teacherResourcesLink portal-pages-secondary-button' href={links.teacher_resources.url} target='_blank' onClick={this.handleTeacherResourcesClick}>{links.teacher_resources.text}</a> : null}
+            {links.assign_material && !isCollection ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_material.onclick}`} onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
+            {links.assign_collection && !isCollection ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_collection.onclick}`} onClick={this.handleAddToCollectionClick}>{links.assign_collection.text}</a> : null}
+            {links.teacher_guide && !isCollection ? <a className='portal-pages-secondary-button' href={links.teacher_guide.url} target='_blank' onClick={this.handleTeacherGuideClick}>{links.teacher_guide.text}</a> : null}
           </div>
           <p className='portal-pages-resource-lightbox-description' dangerouslySetInnerHTML={this.longDescription()} />
           {resource.has_pretest ? <p className='portal-pages-resource-lightbox-description'>Pre- and Post-tests available</p> : null}
           {resource.saves_student_data === false ? <div className='portal-pages-resource-lightbox-no-save-warning'><strong>PLEASE NOTE:</strong> This resource can be assigned, but student responses will not be saved.</div> : null}
           {this.renderIncludedActivities()}
           <hr />
-          <h2>Requirements</h2>
-          {this.renderRequirements()}
-          {this.renderStandards()}
-          {this.renderLicense()}
-          {this.renderLearnMore()}
+          {!isCollection ? this.renderRequirements() : null}
+          {!isCollection ? this.renderStandards() : null}
+          {!isCollection ? this.renderLicense() : null}
+          {!isCollection ? this.renderLearnMore() : null}
         </div>
-        {this.renderRelatedContent()}
+        {!isCollection ? this.renderRelatedContent() : null}
       </div>
     )
   },
