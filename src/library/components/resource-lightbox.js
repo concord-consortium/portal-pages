@@ -463,12 +463,12 @@ var ResourceLightbox = Component({
           {resource.saves_student_data === false ? <div className='portal-pages-resource-lightbox-no-save-warning'><strong>PLEASE NOTE:</strong> This resource can be assigned, but student responses will not be saved.</div> : null}
           {this.renderIncludedActivities()}
           <hr />
-          {!isCollection ? this.renderRequirements() : null}
-          {!isCollection ? this.renderStandards() : null}
-          {!isCollection ? this.renderLicense() : null}
-          {!isCollection ? this.renderLearnMore() : null}
+          {!isCollection && this.renderRequirements()}
+          {!isCollection && this.renderStandards()}
+          {!isCollection && this.renderLicense()}
+          {!isCollection && this.renderLearnMore()}
         </div>
-        {!isCollection ? this.renderRelatedContent() : null}
+        {!isCollection && this.renderRelatedContent()}
       </div>
     )
   },
