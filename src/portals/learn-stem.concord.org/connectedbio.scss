@@ -1,0 +1,49 @@
+body.member-visitor #content { overflow-y: hidden; }
+body.guest-visitor .wrapper { width: auto !important; }
+#primary.wide { width: 100%; }
+#primary.wide #content { overflow: hidden; }
+.skew {
+  margin-top: 90px;
+}
+#partners {
+  text-align: center;
+  }
+#partners h2 {
+  margin-bottom: 30px;
+  text-align: center; }
+#standards {
+  background: #f3f3f3;
+  padding: 15px 20px;
+}
+#standards .collapsible {
+  display: block !important;
+}
+#standards .collapsible p {
+  margin-bottom: 0;
+}
+#standards .collapsible p:first-child {
+  margin-bottom: 10px;
+}
+#standards .collapsible .description {
+  display: none;
+  transition: .2s;
+}
+#standards .collapsible .description.open {
+  display: inline;
+}
+#standards .collapsible strong {
+  color: #0592af;
+  cursor: pointer;
+  }
+
+.portal-pages-resource-lightbox-modal {
+  margin-bottom: 40px;
+  }
+.portal-pages-resource-lightbox-modal-content {
+  padding-bottom: 20px;
+  }
+@media screen and (max-width: 950px) {
+  .skew {
+    margin-top: 50px;
+  }
+}

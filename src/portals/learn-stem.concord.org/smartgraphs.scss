@@ -1,6 +1,9 @@
+body.member-visitor #content { overflow-y: visible; overflow: unset; }
+body.guest-visitor .wrapper { width: auto !important; }
+#primary.wide { display: block; float: none; width: 100%; }
+#primary.wide #content { overflow-y: visible; overflow: unset; }
 body.member-visitor .portal-pages-collection-page-intro:nth-child(1) { width: 100%; }
 body.member-visitor .portal-pages-collection-page-intro:nth-child(2) { display: none; }
 #tablet-note {
   font-style: italic;
-  margin-top: 1.5em;
-  }
+  margin-top: 1.5em; }

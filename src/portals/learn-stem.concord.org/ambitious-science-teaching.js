@@ -1,13 +1,15 @@
+/* exported astPageHtml, showTicketForm, getUrlVars */
+
 jQuery(document).ready(function () {
   // add click listener to overlay and close button
   jQuery('#edit-form-frame #close-button, #overlay').click(function () {
     hideTicketForm()
   })
-
   // decide which content to display based on user type
+  // var astPageHtml = ''
   if (Portal.currentUser.isLoggedIn) {
     jQuery('#intro').html('')
-    jQuery('#intro').html('<div id="uwp-top"><img src="https://concord.org/sites/default/files/images/ast/students.jpg" alt="Ambitious Science Teaching" /><h1 class="page-title">Ambitious Science Teaching</h1><p>As a network of elementary, middle and high school science teams, we are aiming to improve students\' written and spoken scientific explanations, models and arguments.</p></div><!-- <div id="uwp-reports-button"><p style="margin-bottom:.675em">To generate an activity report, click the button below.</p><button>Generate Report</button><p style="margin-bottom:0;text-align:center"><small>Please allow up to 24 hours for your report to be generated.</small></p></div>--><div id="uwp-tickets"><h2>Exit Tickets</h2><ul><li>Basic AST Exit Ticket <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/384.run_resource_html" target="_blank">Preview</a> <a class="uwp-create-link" href="https://learn.concord.org/eresources/384/copy" target="_blank">Create</a></div></li><li>Modeling Exit Ticket <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/386.run_resource_html" target="_blank">Preview</a> <a class="uwp-create-link" href="https://learn.concord.org/eresources/386/copy" target="_blank">Create</a></div></li><li>Peer Feedback Exit Ticket <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/387.run_resource_html" target="_blank">Preview</a> <a class="uwp-create-link" href="https://learn.concord.org/eresources/387/copy" target="_blank">Create</a></div></li><li>Structured Talk Exit Ticket <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/388.run_resource_html" target="_blank">Preview</a> <a class="uwp-create-link" href="https://learn.concord.org/eresources/388/copy" target="_blank">Create</a></div></li><li>Assessment Ticket <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/272.run_resource_html" target="_blank">Preview</a> <a class="uwp-create-link" href="https://learn.concord.org/eresources/272/copy" target="_blank">Create</a></div></li><li>Question Bank <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/217.run_resource_html" target="_blank">View</a></div></li></ul></div>')
+    jQuery('#intro').html('<div id="uwp-top"><img src="https://concord.org/wp-content/uploads/2016/12/images/ast/students.jpg" alt="Ambitious Science Teaching" /><h1 class="page-title">Ambitious Science Teaching</h1><p>As a network of elementary, middle and high school science teams, we are aiming to improve students\' written and spoken scientific explanations, models and arguments.</p></div><!-- <div id="uwp-reports-button"><p style="margin-bottom:.675em">To generate an activity report, click the button below.</p><button>Generate Report</button><p style="margin-bottom:0text-align:center"><small>Please allow up to 24 hours for your report to be generated.</small></p></div>--><div id="uwp-tickets"><h2>Exit Tickets</h2><ul><li>Basic AST Exit Ticket <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/384.run_resource_html" target="_blank">Preview</a> <a class="uwp-create-link" href="https://learn.concord.org/eresources/384/copy" target="_blank">Create</a></div></li><li>Modeling Exit Ticket <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/386.run_resource_html" target="_blank">Preview</a> <a class="uwp-create-link" href="https://learn.concord.org/eresources/386/copy" target="_blank">Create</a></div></li><li>Peer Feedback Exit Ticket <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/387.run_resource_html" target="_blank">Preview</a> <a class="uwp-create-link" href="https://learn.concord.org/eresources/387/copy" target="_blank">Create</a></div></li><li>Structured Talk Exit Ticket <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/388.run_resource_html" target="_blank">Preview</a> <a class="uwp-create-link" href="https://learn.concord.org/eresources/388/copy" target="_blank">Create</a></div></li><li>Assessment Ticket <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/272.run_resource_html" target="_blank">Preview</a> <a class="uwp-create-link" href="https://learn.concord.org/eresources/272/copy" target="_blank">Create</a></div></li><li>Question Bank <div class="ticket-links"><a class="uwp-preview-link" href="https://learn.concord.org/eresources/217.run_resource_html" target="_blank">View</a></div></li></ul></div>')
   }
 
   retrieveTickets()
@@ -15,11 +17,11 @@ jQuery(document).ready(function () {
 
 jQuery(document).ready(function () {
   // set up create link listeners -- disabled for now
-  /* jQuery('.uwp-create-link').click(function(e) {
-    e.preventDefault();
-    var target_url = jQuery(this).attr('href');
-    showTicketForm(target_url);
-  }); */
+  /* jQuery('.uwp-create-link').click(function (e) {
+    e.preventDefault()
+    var targetUrl = jQuery(this).attr('href')
+    showTicketForm(targetUrl)
+  }) */
   // set up report link listeners
   jQuery('.uwp-report-link').click(function (e) {
     e.preventDefault()
@@ -27,9 +29,19 @@ jQuery(document).ready(function () {
   })
 })
 
+function showTicketForm (targetUrl) { // eslint-disable-line no-unused-vars
+  jQuery('#overlay, #edit-form-frame').fadeIn('fast')
+  if (jQuery('#edit-form-frame iframe').attr('src') !== targetUrl) {
+    var ticketId = parseFloat(targetUrl)
+    var assignCode = 'get_Assign_To_Class_Popup(' + ticketId + ',\'ExternalActivity\',\'Materials\')'
+    jQuery('#edit-form-frame iframe').attr('src', targetUrl)
+    jQuery('#assign-button').attr('onclick', assignCode)
+  }
+}
+
 function hideTicketForm () {
   jQuery('#overlay, #edit-form-frame').fadeOut('fast')
-  // jQuery('#edit-form-frame iframe').attr('src', '');
+  // jQuery('#edit-form-frame iframe').attr('src', '')
 }
 
 function retrieveTickets () {
@@ -41,14 +53,14 @@ function retrieveTickets () {
     var investigation = ''
     var activity = ''
     var interactive = ''
+    var results = []
     var resources = []
 
-    var results = result.results
+    results = result.results
 
     // get investigations
-    var i
     if (typeof results[0] !== 'undefined' && results[0].materials.length > 0) {
-      for (i = 0; i < results[0].materials.length; i++) {
+      for (var i = 0; i < results[0].materials.length; i++) {
         investigation = new Resource(results[0].materials[i], 'Sequence')
         resources.push(investigation)
       }
@@ -69,9 +81,7 @@ function retrieveTickets () {
     }
 
     // sort all resources by name value in ascending alphabetical order
-    resources.sort(sortBy('name', false, function (a) {
-      return a.toUpperCase()
-    }))
+    resources.sort(sortBy('name', false, function (a) { return a.toUpperCase() }))
 
     // build output HTML string
     var resultsOutput = ''
@@ -91,22 +101,20 @@ function retrieveTickets () {
       jQuery('#uwp-my-tickets ul').html(resultsOutput)
       jQuery('#uwp-my-tickets-status').remove()
     }
-
-    // var visible_resources = jQuery('#my-tickets li').is(':visible');
+    // var visible_resources = jQuery('#my-tickets li').is(':visible')
   })
 }
 
 function sortBy (field, reverse, primer) {
-  var key = primer
-    ? function (x) { return primer(x[field]) }
-    : function (x) { return x[field] }
+  var key = primer ? function (x) { return primer(x[field]) } : function (x) { return x[field] }
 
   reverse = !reverse ? 1 : -1
 
   return function (a, b) {
-    a = key(a)
-    b = key(b)
-    return reverse * ((a > b) - (b > a))
+    var aKey = key(a)
+    var bKey = key(b)
+    // eslint-disable-next-line no-sequences
+    return aKey, bKey, reverse * ((a > b) - (b > a))
   }
 }
 
@@ -119,15 +127,15 @@ function createID (title) {
   // replace unwanted characters and punctuation
   idStr = idStr.replace(/[\u2018\u2019]/g, '')
   idStr = idStr.replace(/[\u201C\u201D]/g, '')
-  idStr = idStr.replace(/[.,:'()?!;&]/g, '')
+  idStr = idStr.replace(/[.,:'()?!&]/g, '')
 
   return idStr
 }
 
-window.getUrlVars = function getUrlVars (url) {
+function getUrlVars (url) { // eslint-disable-line no-unused-vars
   var vars = []
   var qs
-  var qsVars = url.slice(url.indexOf('?') + 1).split('&amp;')
+  var qsVars = url.slice(url.indexOf('?') + 1).split('&amp')
   for (var i = 0; i < qsVars.length; i++) {
     qs = qsVars[i].split('=')
     vars.push(qs[0])
@@ -136,7 +144,7 @@ window.getUrlVars = function getUrlVars (url) {
   return vars
 }
 
-function Resource (resourceObject) {
+function Resource (resourceObject, resourceType) {
   this.id = resourceObject.id
   this.name = resourceObject.name
   this.copy_url = resourceObject.copy_url

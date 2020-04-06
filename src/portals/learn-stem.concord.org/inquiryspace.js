@@ -1,5 +1,5 @@
 // Last argument is number of visible materials.
-PortalPages.renderMaterialsCollection(3, '#collection-1', 10)
+PortalPages.renderMaterialsCollection(35, '#collection-1', 10)
 
 jQuery(document).ready(function () {
   if (Portal.currentUser.isLoggedIn) {
@@ -7,3 +7,58 @@ jQuery(document).ready(function () {
     jQuery('#introduction').html(loggedInContent)
   }
 })
+
+if (Portal.currentUser.isLoggedIn) {
+  jQuery('#curriculum-note').remove()
+}
+// else {
+//  jQuery('.portal-pages-collection-resource-list').remove()
+// }
+
+// Last argument is number of visible materials.
+PortalPages.renderMaterialsCollection(43, '#collection-2', {
+  limit: 10,
+  onDataLoad: function (materials) {
+    if (materials.length <= 0) {
+      jQuery('#collection-4').parent('li').remove() // remove collection if no resources available
+    }
+  },
+  header: ''
+})
+
+// Last argument is number of visible materials.
+PortalPages.renderMaterialsCollection(44, '#collection-3', {
+  limit: 10,
+  onDataLoad: function (materials) {
+    if (materials.length <= 0) {
+      jQuery('#collection-5').parent('li').remove() // remove collection if no resources available
+    }
+  },
+  header: ''
+})
+
+if (Portal.currentUser.isLoggedIn) {
+  jQuery('.portal-pages-collection-page-intro:nth-child(2)').remove()
+}
+
+var collectionsCheckTimer
+jQuery(document).ready(function () {
+  jQuery('.collapsible').hide()
+  jQuery('.collapsible-toggle').css({ 'cursor': 'pointer' }).click(function () {
+    jQuery(this).toggleClass('open')
+    // var toggleTop = jQuery(this).position().top + 650
+    // jQuery('html,body').animate({scrollTop: toggleTop},'slow')
+    jQuery(this).siblings('.collapsible').slideToggle('fast')
+  })
+  collectionsCheckTimer = setTimeout(postMaterialsLoadTest(), 2000)
+})
+
+function postMaterialsLoadTest () {
+  var collContIds = ['1', '2', '3']
+  for (var i = 0; i < collContIds.length; i++) {
+    if (jQuery.trim(jQuery('#collection-' + collContIds[i]).html()) === '<!-- react-empty: 1 -->' || jQuery.trim(jQuery('#collection-' + collContIds[i]).html()) === '<!--react-empty: 1-->') {
+      jQuery('#collection-' + collContIds[i]).parents('li').remove()
+    }
+  }
+  clearTimeout(collectionsCheckTimer)
+}

@@ -1,4 +1,6 @@
-figcaption {
-  font-size: 14px;
-  font-weight: 300;
-}
+body.member-visitor #content { overflow-y: hidden; }
+body.guest-visitor .wrapper { width: auto !important; }
+#primary.wide { width: 100%; }
+#primary.wide #content { overflow: hidden; }
+body.member-visitor .portal-pages-collection-page-intro:nth-child(1) { width: 100%; }
+body.member-visitor .portal-pages-collection-page-intro:nth-child(2) { display: none; }

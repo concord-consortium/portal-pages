@@ -4,4 +4,4 @@ PortalPages.renderPageHeader({
 }, 'page-header')
 
 // Last argument is number of visible materials.
-// PortalPages.renderMaterialsCollection(7, '#collection-1');
+PortalPages.renderMaterialsCollection(11, '#collection-1')
