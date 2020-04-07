@@ -434,7 +434,7 @@ var ResourceLightbox = Component({
     const resource = this.state.resource
     const showTeacherResourcesButton = this.props.showTeacherResourcesButton
     const links = resource.links
-    const isCollection = resource.material_type === 'Project'
+    const isCollection = resource.material_type === 'Collection'
     const previewButtonText = isCollection ? 'View Collection' : links.preview.text
 
     // console.log("[DEBUG] resource-lightbox links.assign_material.onclick", links.assign_material.onclick);
