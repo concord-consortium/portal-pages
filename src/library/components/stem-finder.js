@@ -182,7 +182,7 @@ const StemFinder = Component({
       searchPage,
       '&interactive_page=',
       searchPage,
-      '&project_page=',
+      '&collection_page=',
       searchPage,
       '&per_page=',
       DISPLAY_LIMIT_INCREMENT

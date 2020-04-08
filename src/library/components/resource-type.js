@@ -9,7 +9,7 @@ const ResourceType = Component({
       'Interactive': 'model',
       'Activity': 'activity',
       'Investigation': 'sequence',
-      'Project': 'collection'
+      'Collection': 'collection'
     }
     const resourceType = materialTypeLabels[resource.material_type]
 
