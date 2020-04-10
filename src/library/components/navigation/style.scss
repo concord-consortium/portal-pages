@@ -230,6 +230,7 @@
   }
 
   &.overlay {
+    box-shadow: 3px 5px 3px rgba(153, 153, 153, 0.2);
     position: absolute;
     padding: 0;
     width: 250px;
@@ -238,15 +239,29 @@
       border-right: 1px solid white;
     }
     > ul {
-      box-shadow: 4px 4px 3px  hsla(0,0%,60%, 0.2);
       height: auto;
       overflow: hidden;
       transition-duration: 400ms;
     }
+    .teacherProjectViews {
+      padding-bottom: 10px;
+    }
     &.closed {
+      box-shadow: 0 0 0 rgba(153, 153, 153, 0);
       > ul {
         height: 1px;
         transition-duration: 400ms;
+      }
+      > .teacherProjectViews {
+        height: 1px;
+        overflow: hidden;
+        padding-bottom: 0;
+        transition-duration: 400ms;
+
+        .teacherProjectViews__list {
+          height: 1px;
+          transition-duration: 400ms;
+        }
       }
     }
 
