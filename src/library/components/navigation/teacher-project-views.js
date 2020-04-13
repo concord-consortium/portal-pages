@@ -69,7 +69,7 @@ export default class TeacherProjectViews extends React.Component {
               }
               return (
                 <li className={css.teacherProjectViews__list_item} key={teacherProjectViews[key].id}>
-                  <a href={teacherProjectViews[key].landing_page_slug}>
+                  <a href={'/' + teacherProjectViews[key].landing_page_slug}>
                     <span className={css.teacherProjectViews__list_item_img} style={imgStyle} />
                     <span className={css.teacherProjectViews__list_item_name}>
                       {teacherProjectViews[key].name}
