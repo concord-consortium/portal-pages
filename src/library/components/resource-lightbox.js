@@ -15,13 +15,7 @@ var ResourceLightbox = Component({
   },
 
   getDefaultProps: function () {
-    let params = ParseQueryString(window.location.search.replace('?', ''))
-    let openAssign = params.openAssign
-
     return {
-      savedUrl: window.location.toString(),
-      openAssign: openAssign,
-      savedTitle: document.title,
       showTeacherResourcesButton: true
     }
   },
@@ -36,21 +30,25 @@ var ResourceLightbox = Component({
     portalObjectHelpers.processResource(resource)
 
     this.titleSuffix = document.title.split('|')[1] || ''
+    this.setState({
+      openAssign: false
+    })
     this.replaceResource(resource)
   },
 
   componentDidMount: function () {
-    if (this.props.openAssign) {
+    if (this.state.openAssign) {
       jQuery('#assign-button')[0].click()
     }
     jQuery('.portal-pages-resource-lightbox-background, .portal-pages-resource-lightbox-container').fadeIn()
   },
 
   componentWillUnmount: function () {
-    document.title = this.props.savedTitle
+    document.title = this.state.savedTitle
     try {
-      window.history.replaceState({}, document.title, this.props.savedUrl)
+      window.history.replaceState({}, document.title, this.state.savedUrl)
     } catch (e) {}
+
     jQuery('html, body').css('overflow', 'auto')
     jQuery('.home-page-content').removeClass('blurred')
 
@@ -59,6 +57,19 @@ var ResourceLightbox = Component({
   },
 
   replaceResource: function (resource) {
+    let params = ParseQueryString()
+    let openAssign = params.openAssign
+    let redirect = params.redirecting_after_sign_in
+    let savedUrl = window.location.toString().replace(/\?.*/, '')
+
+    if (redirect) {
+      // Currently, a redirect after login will always return you to the
+      // lightbox over the home page even if you logged in at a collection page.
+      // If that gets fixed, this should be updated to account for the
+      // possibility the lightbox is being shown on a collection page.
+      savedUrl = '/'
+    }
+
     if (!resource) {
       return
     }
@@ -67,7 +78,12 @@ var ResourceLightbox = Component({
     try {
       window.history.replaceState({}, document.title, resource.stem_resource_url)
     } catch (e) {}
-    this.setState({ resource: resource })
+    this.setState({
+      resource: resource,
+      savedUrl: savedUrl,
+      savedTitle: document.title,
+      openAssign: openAssign
+    })
   },
 
   handlePreviewClick: function (e) {
@@ -460,7 +476,7 @@ var ResourceLightbox = Component({
   getParentPageType: function () {
     const siteRootUrl = window.location.protocol + '//' + window.location.host
     const siteRootRegex = new RegExp('^' + siteRootUrl + '(|/)$')
-    const parentPageType = this.props.savedUrl.match(siteRootRegex) ? 'Home' : 'Collection'
+    const parentPageType = this.state.savedUrl.match(siteRootRegex) ? 'Home' : 'Collection'
     return parentPageType
   },
 
