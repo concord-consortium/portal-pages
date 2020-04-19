@@ -9,7 +9,16 @@ import ParseQueryString from '../helpers/parse-query-string'
 
 var ResourceLightbox = Component({
   getInitialState: function () {
+    let params = ParseQueryString()
+    let parentPage = '/'
+    if (params.parentPage) {
+      parentPage = params.parentPage
+    } else if (this.props.parentPage) {
+      parentPage = this.props.parentPage
+    }
+
     return {
+      parentPage: parentPage,
       resource: this.props.resource
     }
   },
@@ -46,7 +55,12 @@ var ResourceLightbox = Component({
   componentWillUnmount: function () {
     document.title = this.state.savedTitle
     try {
-      window.history.replaceState({}, document.title, this.state.savedUrl)
+      if (this.state.parentPage !== '/' && this.state.isRedirected) {
+        window.history.replaceState({}, document.title, this.state.parentPage)
+        location.reload(true)
+      } else {
+        window.history.replaceState({}, document.title, '/')
+      }
     } catch (e) {}
 
     jQuery('html, body').css('overflow', 'auto')
@@ -60,14 +74,11 @@ var ResourceLightbox = Component({
     let params = ParseQueryString()
     let openAssign = params.openAssign
     let redirect = params.redirecting_after_sign_in
-    let savedUrl = window.location.toString().replace(/\?.*/, '')
-
-    if (redirect) {
-      // Currently, a redirect after login will always return you to the
-      // lightbox over the home page even if you logged in at a collection page.
-      // If that gets fixed, this should be updated to account for the
-      // possibility the lightbox is being shown on a collection page.
-      savedUrl = '/'
+    let parentPage = '/'
+    if (params.parentPage) {
+      parentPage = params.parentPage
+    } else if (this.props.parentPage) {
+      parentPage = this.props.parentPage
     }
 
     if (!resource) {
@@ -76,13 +87,14 @@ var ResourceLightbox = Component({
 
     document.title = this.titleSuffix ? resource.name + ' | ' + this.titleSuffix : resource.name
     try {
-      window.history.replaceState({}, document.title, resource.stem_resource_url)
+      window.history.replaceState({}, document.title, resource.stem_resource_url + '?parentPage=' + this.props.parentPage)
     } catch (e) {}
     this.setState({
       resource: resource,
-      savedUrl: savedUrl,
+      parentPage: parentPage,
       savedTitle: document.title,
-      openAssign: openAssign
+      openAssign: openAssign,
+      isRedirected: redirect
     })
   },
 
@@ -476,7 +488,7 @@ var ResourceLightbox = Component({
   getParentPageType: function () {
     const siteRootUrl = window.location.protocol + '//' + window.location.host
     const siteRootRegex = new RegExp('^' + siteRootUrl + '(|/)$')
-    const parentPageType = this.state.savedUrl.match(siteRootRegex) ? 'Home' : 'Collection'
+    const parentPageType = this.state.parentPage.match(siteRootRegex) ? 'Home' : 'Collection'
     return parentPageType
   },
 
