@@ -57,7 +57,7 @@ var ResourceLightbox = Component({
     try {
       if (this.state.parentPage !== '/' && this.state.isRedirected) {
         window.history.replaceState({}, document.title, this.state.parentPage)
-        location.reload(true)
+        window.location.reload(true)
       } else {
         window.history.replaceState({}, document.title, '/')
       }
