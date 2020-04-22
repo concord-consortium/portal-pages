@@ -143,8 +143,9 @@
       background: $white;
       margin-bottom: 30px;
       margin-left: 0;
-      min-height: 300px;
-      padding: 0;
+      min-height: 200px;
+      padding: 0 0 100px;
+      position: relative;
     }
     .portal-pages-finder-materials-collection-item__title {
       font: 700 18px $font-museo-sans;
@@ -178,6 +179,32 @@
         position: absolute;
         right: 10px;
         text-transform: uppercase;
+      }
+    }
+    .portal-pages-finder-materials-collection-item__links {
+      bottom: 23px;
+      left: 30px;
+      margin: 0;
+      position: absolute;
+      text-align: left;
+      width: auto;
+
+      a {
+        background: $col-white;
+        border: solid 2px $col-orange;
+        color: $col-orange;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 700;
+        margin: 0 7px 7px 0;
+        padding: 10px 15px;
+        transition: .3s;
+
+        &:hover {
+          background: $col-gold;
+          border: solid 2px $col-gold;
+          color: $col-white;
+        }
       }
     }
   }
