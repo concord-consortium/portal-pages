@@ -83,6 +83,7 @@ const MaterialsCollectionItem = Component({
   render: function () {
     const item = this.props.item
     const links = item.links
+    const showTeacherResourcesButton = this.props.showTeacherResourcesButton
 
     return (
       <div className={'portal-pages-finder-materials-collection-item'}>
@@ -102,8 +103,8 @@ const MaterialsCollectionItem = Component({
           <div className={'portal-pages-finder-materials-collection-item__links'}>
             {links.preview ? <a className='portal-pages-primary-button' href={links.preview.url} target='_blank' onClick={this.handlePreviewClick}>Preview</a> : null}
             {Portal.currentUser.isTeacher && item.has_teacher_edition ? <a className='teacherEditionLink portal-pages-secondary-button' href={MakeTeacherEditionLink(item.external_url)} target='_blank' onClick={this.handleTeacherEditionClick}>Teacher Edition</a> : null}
+            {links.teacher_resources && showTeacherResourcesButton ? <a className='teacherResourcesLink portal-pages-secondary-button' href={links.teacher_resources.url} target='_blank' onClick={this.handleTeacherResourcesClick}>{links.teacher_resources.text}</a> : null}
             {links.assign_material ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_material.onclick}`} onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
-            {links.teacher_guide ? <a className='portal-pages-secondary-button' href={links.teacher_guide.url} target='_blank' onClick={this.handleTeacherGuideClick}>{links.teacher_guide.text}</a> : null}
             <a className={'portal-pages-secondary-button'} href={'#'} onClick={this.toggleLightbox}>More...</a>
           </div>
         </div>
