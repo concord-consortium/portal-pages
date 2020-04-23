@@ -10,15 +10,14 @@ import ParseQueryString from '../helpers/parse-query-string'
 var ResourceLightbox = Component({
   getInitialState: function () {
     let params = ParseQueryString()
-    let parentPage = '/'
+    let parentPage = this.props.parentPage || '/'
     if (params.parentPage) {
       parentPage = params.parentPage
-    } else if (this.props.parentPage) {
-      parentPage = this.props.parentPage
     }
 
     return {
       parentPage: parentPage,
+      savedTitle: PortalPages.settings.savedTitle || document.title,
       resource: this.props.resource
     }
   },
@@ -55,11 +54,10 @@ var ResourceLightbox = Component({
   componentWillUnmount: function () {
     document.title = this.state.savedTitle
     try {
-      if (this.state.parentPage !== '/' && this.state.isRedirected) {
-        window.history.replaceState({}, document.title, this.state.parentPage)
-        window.location.reload(true)
+      if (this.state.parentPage !== '/' && this.state.parentPage !== PortalPages.initialPath) {
+        window.location.href = this.state.parentPage
       } else {
-        window.history.replaceState({}, document.title, '/')
+        window.history.replaceState({}, document.title, this.state.parentPage)
       }
     } catch (e) {}
 
@@ -73,13 +71,6 @@ var ResourceLightbox = Component({
   replaceResource: function (resource) {
     let params = ParseQueryString()
     let openAssign = params.openAssign
-    let redirect = params.redirecting_after_sign_in
-    let parentPage = '/'
-    if (params.parentPage) {
-      parentPage = params.parentPage
-    } else if (this.props.parentPage) {
-      parentPage = this.props.parentPage
-    }
 
     if (!resource) {
       return
@@ -87,14 +78,15 @@ var ResourceLightbox = Component({
 
     document.title = this.titleSuffix ? resource.name + ' | ' + this.titleSuffix : resource.name
     try {
-      window.history.replaceState({}, document.title, resource.stem_resource_url + '?parentPage=' + this.props.parentPage)
+      let parentPageSuffix = ''
+      if (this.state.parentPage !== '/') {
+        parentPageSuffix = '?parentPage=' + this.state.parentPage
+      }
+      window.history.replaceState({}, document.title, resource.stem_resource_url + parentPageSuffix)
     } catch (e) {}
     this.setState({
       resource: resource,
-      parentPage: parentPage,
-      savedTitle: document.title,
-      openAssign: openAssign,
-      isRedirected: redirect
+      openAssign: openAssign
     })
   },
 
