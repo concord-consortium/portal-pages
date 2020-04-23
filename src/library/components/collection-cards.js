@@ -53,11 +53,12 @@ const CollectionCards = Component({
 
   renderCollectionCards: function () {
     let collectionsCards = []
+    let defaultProjectCardImageUrl = 'https://learn-resources.concord.org/images/collections/default-collection.jpg'
     this.state.collections.map(function (collection) {
       collectionsCards.push(<div key={collection.landing_page_slug} className={'portal-pages-collections-card col-4'}>
         <a href={'/' + collection.landing_page_slug}>
           <div className={'portal-pages-collections-card-image-preview'}>
-            <img alt={collection.name} src={collection.project_card_image_url} />
+            <img alt={collection.name} src={collection.project_card_image_url ? collection.project_card_image_url : defaultProjectCardImageUrl} />
           </div>
           <h3 className={'portal-pages-collections-card-name'}>
             {collection.name}
