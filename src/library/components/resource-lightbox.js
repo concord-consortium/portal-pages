@@ -10,11 +10,19 @@ import ParseQueryString from '../helpers/parse-query-string'
 var ResourceLightbox = Component({
   getInitialState: function () {
     let params = ParseQueryString()
+    // The parentPage is used to change the URL when the lightbox is closed.
+    // If there is a URL parameter with a parentPage it will override any other value.
+    // The lightbox may be opened automatically by the portal, in which case a parentPage property will be set.
+    // Or if the lightbox is opened from a collection page the parentPage property will be set from that code.
+    // If the parentPage value is not '/' it will be added to the URL. So if the page is reloaded, this parentPage is remembered.
     let parentPage = this.props.parentPage || '/'
     if (params.parentPage) {
       parentPage = params.parentPage
     }
 
+    // The savedTitle is used to reset the page title when the lightbox is closed.
+    // The portal will set PortalPages.settings.savedTitle to be the portal's main title when it automatically opens a lightbox from a URL for the resource that was loaded.
+    // When the parent page is a collection page, we force a browser reload when closing the lightbox. So in that case, the savedTitle is ignored.
     return {
       parentPage: parentPage,
       savedTitle: PortalPages.settings.savedTitle || document.title,
