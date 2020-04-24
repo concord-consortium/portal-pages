@@ -485,13 +485,6 @@ var ResourceLightbox = Component({
     return { __html: resource.longDescription }
   },
 
-  getParentPageType: function () {
-    const siteRootUrl = window.location.protocol + '//' + window.location.host
-    const siteRootRegex = new RegExp('^' + siteRootUrl + '(|/)$')
-    const parentPageType = this.state.parentPage.match(siteRootRegex) ? 'Home' : 'Collection'
-    return parentPageType
-  },
-
   renderResource: function () {
     const resource = this.state.resource
     const links = resource.links
