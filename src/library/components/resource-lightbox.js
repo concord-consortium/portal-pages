@@ -62,6 +62,13 @@ var ResourceLightbox = Component({
   componentWillUnmount: function () {
     document.title = this.state.savedTitle
     try {
+      // When the parentPage is not / and it doesn't match the initiaPath then
+      // reload the page. This can happen when a resource URL is opened directly.
+      // The parentPage URL parameter can be set to be a collection page but the
+      // initialPath will be the direct resource URL. If the lightbox was opened
+      // from a collection page, the initialPath will be the collection page and
+      // the parentPage will be the collection page, so then we can just update
+      // the URL and close the lightbox.
       if (this.state.parentPage !== '/' && this.state.parentPage !== PortalPages.initialPath) {
         jQuery('.landing-container').css('opacity', 0)
         window.location.href = this.state.parentPage

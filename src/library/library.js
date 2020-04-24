@@ -33,6 +33,10 @@ const renderComponentFn = function (ComponentClass) {
 
 window.PortalPages = {
   settings: {}, // default to empty, used to set flags from portal templates
+
+  // The URL of the page will change as the user opens resource lightboxes. This
+  // initialPath provides a way for the code to know the initial page loaded was
+  // the STEM Resource Finder, a collection page, or a direct resource url.
   initialPath: window.location.pathname,
 
   MakeTeacherEditionLinks: MakeTeacherEditionLinks,
