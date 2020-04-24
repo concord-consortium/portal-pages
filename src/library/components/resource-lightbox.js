@@ -63,17 +63,17 @@ var ResourceLightbox = Component({
     document.title = this.state.savedTitle
     try {
       if (this.state.parentPage !== '/' && this.state.parentPage !== PortalPages.initialPath) {
+        jQuery('.landing-container').css('opacity', 0)
         window.location.href = this.state.parentPage
       } else {
         window.history.replaceState({}, document.title, this.state.parentPage)
+        jQuery('html, body').css('overflow', 'auto')
+        jQuery('.home-page-content').removeClass('blurred')
+        // FIXME: Not sure if this is going to work because the component will be removed
+        jQuery('.portal-pages-resource-lightbox-background, .portal-pages-resource-lightbox-container').fadeOut()
       }
     } catch (e) {}
 
-    jQuery('html, body').css('overflow', 'auto')
-    jQuery('.home-page-content').removeClass('blurred')
-
-    // FIXME: Not sure if this is going to work because the component will be removed
-    jQuery('.portal-pages-resource-lightbox-background, .portal-pages-resource-lightbox-container').fadeOut()
   },
 
   replaceResource: function (resource) {
