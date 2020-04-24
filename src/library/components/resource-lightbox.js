@@ -73,7 +73,6 @@ var ResourceLightbox = Component({
         jQuery('.portal-pages-resource-lightbox-background, .portal-pages-resource-lightbox-container').fadeOut()
       }
     } catch (e) {}
-
   },
 
   replaceResource: function (resource) {
