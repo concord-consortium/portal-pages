@@ -81,6 +81,7 @@ const StemFinderResult = Component({
     if (lightbox && pageScrolling === false) {
       let resourceLightbox = ResourceLightbox({
         resource: this.props.resource,
+        parentPage: window.location.pathname,
         toggleLightbox: this.toggleLightbox
       })
       Lightbox.open(resourceLightbox)

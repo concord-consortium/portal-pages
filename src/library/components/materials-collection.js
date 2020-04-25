@@ -47,7 +47,7 @@ const MaterialsCollectionItem = Component({
     // mount/unmount lightbox outside of homepage content
     if (lightbox) {
       let resourceLightbox =
-        ResourceLightbox({ resource: this.props.item, toggleLightbox: this.toggleLightbox, showTeacherResourcesButton: this.props.showTeacherResourcesButton })
+        ResourceLightbox({ resource: this.props.item, parentPage: window.location.pathname, toggleLightbox: this.toggleLightbox, showTeacherResourcesButton: this.props.showTeacherResourcesButton })
       Lightbox.open(resourceLightbox)
     } else {
       Lightbox.close()
