@@ -12,15 +12,15 @@ var p = React.DOM.p
 var footer = React.DOM.footer
 var span = React.DOM.span
 
-var TextInputClass = require('./text_input')
+const TextInputClass = require('./text_input')
 
-var enableAuthProviders = true
+let enableAuthProviders = true
 
-var LoginModal = function () {
+const LoginModal = function () {
   // console.log("INFO Creating LoginModal class");
 
-  var TextInput = React.createFactory(TextInputClass())
-  var FormsyForm = React.createFactory(Formsy.Form)
+  const TextInput = React.createFactory(TextInputClass())
+  const FormsyForm = React.createFactory(Formsy.Form)
 
   return React.createClass({
 
@@ -48,8 +48,8 @@ var LoginModal = function () {
         // console.log("INFO login error", err);
         // console.log("INFO login error responseText", err.responseText);
         if (err && err.responseText) {
-          var response = jQuery.parseJSON(err.responseText)
-          var message = response.message
+          let response = jQuery.parseJSON(err.responseText)
+          let message = response.message
           if (response.error) {
             message = response.error
           }
@@ -67,86 +67,89 @@ var LoginModal = function () {
       PortalPages.renderForgotPasswordModal({ oauthProviders: this.props.oauthProviders })
     },
 
+    handleRegister: function (e) {
+      e.preventDefault()
+      PortalPages.renderSignupModal({ oauthProviders: this.props.oauthProviders })
+    },
+
     render: function () {
       // console.log("INFO rendering LoginModal with props", this.props);
 
-      var providerComponents = []
+      let providerComponents = []
 
       if (enableAuthProviders && this.props.oauthProviders) {
-        var providers = this.props.oauthProviders
+        let providers = this.props.oauthProviders
         providers.sort(function (a, b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0) }) // sort providers alphabetically by name
-        for (var i = 0; i < providers.length; i++) {
+        for (let i = 0; i < providers.length; i++) {
           if (this.props.afterSigninPath) {
             providers[i].directPath += '?after_sign_in_path=' + this.props.afterSigninPath
           }
           providerComponents.push(
-            a({
-              className: 'badge',
-              id: providers[i].name,
-              href: providers[i].directPath
-
-            }, 'Sign in with ' + providers[i].display_name)
+            <a className={'badge'} id={providers[i].name} href={providers[i].directPath}>
+              Sign in with {providers[i].display_name}
+            </a>
           )
         }
       }
 
-      var _this = this
+      const _this = this
 
-      return div({ className: 'login-default-modal-content' },
-        FormsyForm({
-          className: 'signup-form',
-          onValidSubmit: this.submit },
-
-        h2({},
-          strong({}, 'Log in'),
-          ' to the ' + this.props.siteName),
-        div({ className: 'third-party-login-options' },
-          p({}, 'Sign in with: '),
-          providerComponents
-        ),
-        div({ className: 'or-separator' },
-          span({ className: 'or-separator-text' }, 'Or')
-        ),
-        dl({},
-          dt({}, 'Username'),
-          dd({},
-            TextInput({
-              name: 'user[login]',
-              placeholder: '',
-              required: true })
-          ),
-          dt({}, 'Password'),
-          dd({},
-            TextInput({
-              name: 'user[password]',
-              placeholder: '',
-              type: 'password',
-              required: true })
-          )
-        ),
-        div({ className: 'submit-button-container' },
-          a({ href: '/forgot_password', onClick: this.handleForgotPassword, title: 'Click this link if you forgot your username and/or password.' }, 'Forgot your username or password?'),
-          button({
-            className: 'submit-btn',
-            type: 'submit'
-          }, 'Log In!')
-        ),
-
-        footer({},
-          p({},
-            "Don't have an account? ",
-            a(
-              { href: '#',
-                onClick: function (e) {
-                  e.preventDefault()
-                  PortalPages.renderSignupModal({ oauthProviders: _this.props.oauthProviders })
-                }
-              },
-              'Sign up for free'),
-            ' to create classes, assign activities, save student work, track student progress, and more!'
-          )
-        )
-        )
+      return (
+        <div className={'login-default-modal-content' }>
+          <Formsy.Form className={'signup-form'} onValidSubmit={this.submit}>
+            <h2>
+              <strong>
+                Log in
+              </strong>
+              {' '}
+              to the {this.props.siteName}
+            </h2>
+            <div className={'third-party-login-options'}>
+              <p>
+                Sign in with:
+              </p>
+              {providerComponents}
+            </div>
+            <div className={'or-separator'}>
+              <span className={'or-separator-text'}>
+                Or
+              </span>
+            </div>
+            <dl>
+              <dt>
+                Username
+              </dt>
+              <dd>
+                <TextInput name={'user[login]'} placeholder={''} required={true} />
+              </dd>
+              <dt>
+                Password
+              </dt>
+              <dd>
+                <TextInput name={'user[password]'} placeholder={''} type={'password'} required={true} />
+              </dd>
+            </dl>
+            <div className={'submit-button-container'}>
+              <a href={'/forgot_password'} onClick={this.handleForgotPassword} title={'Click this link if you forgot your username and/or password.'}>
+                Forgot your username or password?
+              </a>
+              <button className={'submit-btn'} type={'submit'}>
+                Log In!
+              </button>
+            </div>
+            <footer>
+              <p>
+                Don't have an account?
+                {' '}
+                <a href={'#'} onClick={this.handleRegister}>
+                  Sign up for free
+                </a>
+                {' '}
+                to create classes, assign activities, save student work, track student progress, and more!
+              </p>
+            </footer>
+          </Formsy.Form>
+        </div>
       )
     }
   })
