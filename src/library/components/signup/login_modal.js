@@ -1,17 +1,5 @@
 import React from 'react'
 
-var button = React.DOM.button
-var dd = React.DOM.dd
-var dl = React.DOM.dl
-var dt = React.DOM.dt
-var strong = React.DOM.strong
-var a = React.DOM.a
-var div = React.DOM.div
-var h2 = React.DOM.h2
-var p = React.DOM.p
-var footer = React.DOM.footer
-var span = React.DOM.span
-
 const TextInputClass = require('./text_input')
 
 let enableAuthProviders = true
@@ -82,7 +70,7 @@ const LoginModal = function () {
         providers.sort(function (a, b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0) }) // sort providers alphabetically by name
         for (let i = 0; i < providers.length; i++) {
           if (this.props.afterSigninPath) {
-            providers[i].directPath += '?after_sign_in_path=' + this.props.afterSigninPath
+            providers[i].directPath += '?after_sign_in_path=' + encodeURIComponent(this.props.afterSigninPath)
           }
           providerComponents.push(
             <a className={'badge'} id={providers[i].name} href={providers[i].directPath}>
