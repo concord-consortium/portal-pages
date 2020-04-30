@@ -7,8 +7,8 @@ let enableAuthProviders = true
 const LoginModal = function () {
   // console.log("INFO Creating LoginModal class");
 
-  const TextInput = React.createFactory(TextInputClass())
-  const FormsyForm = React.createFactory(Formsy.Form)
+  const TextInput = TextInputClass()
+  const Formsy = window.Formsy
 
   return React.createClass({
 
@@ -80,10 +80,8 @@ const LoginModal = function () {
         }
       }
 
-      const _this = this
-
       return (
-        <div className={'login-default-modal-content' }>
+        <div className={'login-default-modal-content'}>
           <Formsy.Form className={'signup-form'} onValidSubmit={this.submit}>
             <h2>
               <strong>
@@ -108,13 +106,13 @@ const LoginModal = function () {
                 Username
               </dt>
               <dd>
-                <TextInput name={'user[login]'} placeholder={''} required={true} />
+                <TextInput name={'user[login]'} placeholder={''} required />
               </dd>
               <dt>
                 Password
               </dt>
               <dd>
-                <TextInput name={'user[password]'} placeholder={''} type={'password'} required={true} />
+                <TextInput name={'user[password]'} placeholder={''} type={'password'} required />
               </dd>
             </dl>
             <div className={'submit-button-container'}>
