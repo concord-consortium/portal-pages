@@ -69,11 +69,12 @@ const LoginModal = function () {
         let providers = this.props.oauthProviders
         providers.sort(function (a, b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0) }) // sort providers alphabetically by name
         for (let i = 0; i < providers.length; i++) {
+          let directPath = providers[i].directPath
           if (this.props.afterSigninPath) {
-            providers[i].directPath += '?after_sign_in_path=' + encodeURIComponent(this.props.afterSigninPath)
+            directPath += '?after_sign_in_path=' + encodeURIComponent(this.props.afterSigninPath)
           }
           providerComponents.push(
-            <a className={'badge'} id={providers[i].name} href={providers[i].directPath}>
+            <a className={'badge'} id={providers[i].name} href={directPath}>
               Sign in with {providers[i].display_name}
             </a>
           )
