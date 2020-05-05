@@ -1,11 +1,10 @@
 import React from 'react'
-var Component = require('../helpers/component')
-
-var fadeIn = require('../helpers/fade-in')
-var sortByName = require('../helpers/sort-by-name')
-var shuffleArray = require('../helpers/shuffle-array')
-var waitForAutoShowingLightboxToClose = require('../helpers/wait-for-auto-lightbox-to-close')
-var portalObjectHelpers = require('../helpers/portal-object-helpers')
+import Component from '../helpers/component'
+import fadeIn from '../helpers/fade-in'
+import sortByName from '../helpers/sort-by-name'
+import shuffleArray from '../helpers/shuffle-array'
+import waitForAutoShowingLightboxToClose from '../helpers/wait-for-auto-lightbox-to-close'
+import portalObjectHelpers from '../helpers/portal-object-helpers'
 
 var div = React.DOM.div
 var a = React.DOM.a
@@ -13,7 +12,7 @@ var h3 = React.DOM.h3
 var img = React.DOM.img
 var p = React.DOM.p
 
-var CollectionCards = Component({
+const CollectionCards = Component({
   getInitialState: function () {
     return {
       opacity: 0,
@@ -52,22 +51,39 @@ var CollectionCards = Component({
     }.bind(this))
   },
 
+  renderCollectionCards: function () {
+    let collectionsCards = []
+    let defaultProjectCardImageUrl = 'https://learn-resources.concord.org/images/collections/default-collection.jpg'
+    this.state.collections.map(function (collection) {
+      collectionsCards.push(<div key={collection.landing_page_slug} className={'portal-pages-collections-card col-4'}>
+        <a href={'/' + collection.landing_page_slug}>
+          <div className={'portal-pages-collections-card-image-preview'}>
+            <img alt={collection.name} src={collection.project_card_image_url ? collection.project_card_image_url : defaultProjectCardImageUrl} />
+          </div>
+          <h3 className={'portal-pages-collections-card-name'}>
+            {collection.name}
+          </h3>
+          <p className={'portal-pages-collections-card-description'}>
+            {collection.filteredDescription}
+          </p>
+        </a>
+      </div>)
+    })
+    return (
+      <div>
+        {collectionsCards}
+      </div>
+    )
+  },
+
   render: function () {
     if (this.state.collections.length === 0) {
       return null
     }
-    return div({ style: { opacity: this.state.opacity } },
-      this.state.collections.map(function (collection) {
-        return div({ key: collection.landing_page_slug, className: 'portal-pages-collections-card col-4' },
-          a({ href: '/' + collection.landing_page_slug },
-            div({ className: 'portal-pages-collections-card-image-preview' },
-              img({ alt: collection.name, src: collection.project_card_image_url })
-            ),
-            h3({ className: 'portal-pages-collections-card-name' }, collection.name),
-            p({ className: 'portal-pages-collections-card-description' }, collection.filteredDescription)
-          )
-        )
-      })
+    return (
+      <div style={{ opacity: this.state.opacity }}>
+        {this.renderCollectionCards()}
+      </div>
     )
   }
 })
