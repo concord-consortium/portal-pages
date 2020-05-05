@@ -29,3 +29,19 @@
     padding-left: 30px;
   }
 }
+
+.portal-pages-finder-materials-collection {
+  .portal-pages-finder-materials-collection-item {
+    clear: both;
+    float: none;
+    margin: 0;
+    width: 100%;
+
+    .portal-pages-finder-materials-collection-item__image {
+      height: 300px;
+      overflow: hidden;
+      max-width: 100%;
+      position: relative;
+    }
+  }
+}

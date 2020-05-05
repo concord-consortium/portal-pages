@@ -5,18 +5,33 @@ import pluralize from '../helpers/pluralize'
 import portalObjectHelpers from '../helpers/portal-object-helpers'
 import StandardsHelpers from '../helpers/standards-helpers'
 import { MakeTeacherEditionLink } from '../helpers/make-teacher-edition-links'
+import ParseQueryString from '../helpers/parse-query-string'
 
 var ResourceLightbox = Component({
   getInitialState: function () {
+    let params = ParseQueryString()
+    // The parentPage is used to change the URL when the lightbox is closed.
+    // If there is a URL parameter with a parentPage it will override any other value.
+    // The lightbox may be opened automatically by the portal, in which case a parentPage property will be set.
+    // Or if the lightbox is opened from a collection page the parentPage property will be set from that code.
+    // If the parentPage value is not '/' it will be added to the URL. So if the page is reloaded, this parentPage is remembered.
+    let parentPage = this.props.parentPage || '/'
+    if (params.parentPage) {
+      parentPage = params.parentPage
+    }
+
+    // The savedTitle is used to reset the page title when the lightbox is closed.
+    // The portal will set PortalPages.settings.savedTitle to be the portal's main title when it automatically opens a lightbox from a URL for the resource that was loaded.
+    // When the parent page is a collection page, we force a browser reload when closing the lightbox. So in that case, the savedTitle is ignored.
     return {
+      parentPage: parentPage,
+      savedTitle: PortalPages.settings.savedTitle || document.title,
       resource: this.props.resource
     }
   },
 
   getDefaultProps: function () {
     return {
-      savedUrl: window.location.toString(),
-      savedTitle: document.title,
       showTeacherResourcesButton: true
     }
   },
@@ -31,35 +46,62 @@ var ResourceLightbox = Component({
     portalObjectHelpers.processResource(resource)
 
     this.titleSuffix = document.title.split('|')[1] || ''
+    this.setState({
+      openAssign: false
+    })
     this.replaceResource(resource)
   },
 
   componentDidMount: function () {
+    if (this.state.openAssign) {
+      jQuery('#assign-button')[0].click()
+    }
     jQuery('.portal-pages-resource-lightbox-background, .portal-pages-resource-lightbox-container').fadeIn()
   },
 
   componentWillUnmount: function () {
-    document.title = this.props.savedTitle
+    document.title = this.state.savedTitle
     try {
-      window.history.replaceState({}, document.title, this.props.savedUrl)
+      // When the parentPage is not / and it doesn't match the initiaPath then
+      // reload the page. This can happen when a resource URL is opened directly.
+      // The parentPage URL parameter can be set to be a collection page but the
+      // initialPath will be the direct resource URL. If the lightbox was opened
+      // from a collection page, the initialPath will be the collection page and
+      // the parentPage will be the collection page, so then we can just update
+      // the URL and close the lightbox.
+      if (this.state.parentPage !== '/' && this.state.parentPage !== PortalPages.initialPath) {
+        jQuery('.landing-container').css('opacity', 0)
+        window.location.href = this.state.parentPage
+      } else {
+        window.history.replaceState({}, document.title, this.state.parentPage)
+        jQuery('html, body').css('overflow', 'auto')
+        jQuery('.home-page-content').removeClass('blurred')
+        // FIXME: Not sure if this is going to work because the component will be removed
+        jQuery('.portal-pages-resource-lightbox-background, .portal-pages-resource-lightbox-container').fadeOut()
+      }
     } catch (e) {}
-    jQuery('html, body').css('overflow', 'auto')
-    jQuery('.home-page-content').removeClass('blurred')
-
-    // FIXME: Not sure if this is going to work because the component will be removed
-    jQuery('.portal-pages-resource-lightbox-background, .portal-pages-resource-lightbox-container').fadeOut()
   },
 
   replaceResource: function (resource) {
+    let params = ParseQueryString()
+    let openAssign = params.openAssign
+
     if (!resource) {
       return
     }
 
     document.title = this.titleSuffix ? resource.name + ' | ' + this.titleSuffix : resource.name
     try {
-      window.history.replaceState({}, document.title, resource.stem_resource_url)
+      let parentPageSuffix = ''
+      if (this.state.parentPage !== '/') {
+        parentPageSuffix = '?parentPage=' + this.state.parentPage
+      }
+      window.history.replaceState({}, document.title, resource.stem_resource_url + parentPageSuffix)
     } catch (e) {}
-    this.setState({ resource: resource })
+    this.setState({
+      resource: resource,
+      openAssign: openAssign
+    })
   },
 
   handlePreviewClick: function (e) {
@@ -437,7 +479,7 @@ var ResourceLightbox = Component({
       <span>
         {Portal.currentUser.isTeacher && resource.has_teacher_edition ? <a className='teacherEditionLink portal-pages-secondary-button' href={MakeTeacherEditionLink(resource.external_url)} target='_blank' onClick={this.handleTeacherEditionClick}>Teacher Edition</a> : null}
         {links.teacher_resources && showTeacherResourcesButton ? <a className='teacherResourcesLink portal-pages-secondary-button' href={links.teacher_resources.url} target='_blank' onClick={this.handleTeacherResourcesClick}>{links.teacher_resources.text}</a> : null}
-        {links.assign_material ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_material.onclick}`} onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
+        {links.assign_material ? <a id={'assign-button'} className='portal-pages-secondary-button' href={`javascript: ${links.assign_material.onclick}`} onClick={this.handleAssignClick}>{links.assign_material.text}</a> : null}
         {links.assign_collection ? <a className='portal-pages-secondary-button' href={`javascript: ${links.assign_collection.onclick}`} onClick={this.handleAddToCollectionClick}>{links.assign_collection.text}</a> : null}
         {links.teacher_guide ? <a className='portal-pages-secondary-button' href={links.teacher_guide.url} target='_blank' onClick={this.handleTeacherGuideClick}>{links.teacher_guide.text}</a> : null}
       </span>
@@ -447,13 +489,6 @@ var ResourceLightbox = Component({
   longDescription: function () {
     const resource = this.state.resource
     return { __html: resource.longDescription }
-  },
-
-  getParentPageType: function () {
-    const siteRootUrl = window.location.protocol + '//' + window.location.host
-    const siteRootRegex = new RegExp('^' + siteRootUrl + '(|/)$')
-    const parentPageType = this.props.savedUrl.match(siteRootRegex) ? 'Home' : 'Collection'
-    return parentPageType
   },
 
   renderResource: function () {
