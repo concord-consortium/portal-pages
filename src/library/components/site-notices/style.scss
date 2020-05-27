@@ -1,0 +1,24 @@
+.notice_list {
+  border-collapse: collapse;
+  border-right: solid 1px #555;
+  border-bottom: solid 1px #555;
+  width: 100%;
+
+  td {
+    border-top: solid 1px #555;
+    border-left: solid 1px #555;
+    padding: 10px;
+    text-align: left;
+  }
+
+  th {
+    background: #555;
+    border-top: solid 1px #555;
+    border-left: solid 1px #555;
+    color: #fff;
+    font-weight: 100;
+    padding: 10px;
+    text-align: left;
+  }
+
+}

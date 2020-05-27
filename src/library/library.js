@@ -20,6 +20,9 @@ import UnitTestExample from './components/unit-test-example'
 import RunWithCollaborators from './components/run-with-collaborators'
 import LearnerReportForm from './components/learner-report-form'
 import UserReportForm from './components/user-report-form'
+import SiteNotices from './components/site-notices'
+import SiteNoticesNewForm from './components/site-notices/new'
+import SiteNoticesEditForm from './components/site-notices/edit'
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -83,6 +86,21 @@ window.PortalPages = {
   UnitTestExample: UnitTestExample,
   renderUnitTestExample: function (options, id) {
     render(React.createElement(UnitTestExample, options), id)
+  },
+
+  SiteNotices: SiteNotices,
+  renderSiteNotices: function (options, id) {
+    render(React.createElement(SiteNotices, options), id)
+  },
+
+  SiteNoticesNewForm: SiteNoticesNewForm,
+  renderSiteNoticesNewForm: function (options, id) {
+    render(React.createElement(SiteNoticesNewForm, options), id)
+  },
+
+  SiteNoticesEditForm: SiteNoticesEditForm,
+  renderSiteNoticesEditForm: function (options, id) {
+    render(React.createElement(SiteNoticesEditForm, options), id)
   },
 
   CollectionCards: CollectionCards,
