@@ -62,7 +62,7 @@ export default class ShowSiteNotices extends React.Component {
     const { noticeDisplay, toggleDisplayPath } = this.state
     jQuery.ajax({
       url: toggleDisplayPath,
-      method: "post",
+      method: 'post',
       success: data => {
         // this.setState({})
       },
@@ -70,10 +70,10 @@ export default class ShowSiteNotices extends React.Component {
         console.error(`POST ${toggleDisplayPath} failed`)
       }
     })
-    if (noticeDisplay === "collapsed") {
-      this.setState({noticeDisplay: ''})
+    if (noticeDisplay === 'collapsed') {
+      this.setState({ noticeDisplay: '' })
     } else {
-      this.setState({noticeDisplay: 'collapsed'})
+      this.setState({ noticeDisplay: 'collapsed' })
     }
   }
 
@@ -84,7 +84,7 @@ export default class ShowSiteNotices extends React.Component {
         <td>
           {notice.created_at.slice(0, 10)}
         </td>
-        <td dangerouslySetInnerHTML={ { __html: notice.notice_html } }></td>
+        <td dangerouslySetInnerHTML={{ __html: notice.notice_html }} />
         <td>
           <a href={'#'} onClick={() => this.handleDelete(notice)} title={'Dismiss'}>x</a>
         </td>
@@ -96,7 +96,7 @@ export default class ShowSiteNotices extends React.Component {
     const { notices, noNotice, noticeDisplay } = this.state
     if (noNotice) {
       return (
-        <div></div>
+        <div />
       )
     }
 
