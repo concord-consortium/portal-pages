@@ -23,6 +23,7 @@ import UserReportForm from './components/user-report-form'
 import SiteNotices from './components/site-notices'
 import SiteNoticesNewForm from './components/site-notices/new'
 import SiteNoticesEditForm from './components/site-notices/edit'
+import ShowSiteNotices from './components/site-notices/show'
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -101,6 +102,11 @@ window.PortalPages = {
   SiteNoticesEditForm: SiteNoticesEditForm,
   renderSiteNoticesEditForm: function (options, id) {
     render(React.createElement(SiteNoticesEditForm, options), id)
+  },
+
+  ShowSiteNotices: ShowSiteNotices,
+  renderShowSiteNotices: function (options, id) {
+    render(React.createElement(ShowSiteNotices, options), id)
   },
 
   CollectionCards: CollectionCards,
