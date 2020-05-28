@@ -24,6 +24,7 @@ import SiteNotices from './components/site-notices'
 import SiteNoticesNewForm from './components/site-notices/new'
 import SiteNoticesEditForm from './components/site-notices/edit'
 import ShowSiteNotices from './components/site-notices/show'
+import FeaturedMaterials from './components/featured-materials/featured-materials'
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -176,5 +177,15 @@ window.PortalPages = {
   renderTooltip: renderComponentFn(Tooltip),
 
   RunWithCollaborators: RunWithCollaborators,
-  renderRunWithCollaborators: renderComponentFn(RunWithCollaborators)
+  renderRunWithCollaborators: renderComponentFn(RunWithCollaborators),
+
+  FeaturedMaterials: FeaturedMaterials,
+  renderFeaturedMaterials = function(selectorOrElement) {
+    let query = window.location.search;
+    if (query[0] === '?') {
+      query = query.slice(1);
+    }
+    return ReactDOM.render(FeaturedMaterials({queryString: query}), jQuery(selectorOrElement)[0]);
+  },
+
 }
