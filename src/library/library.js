@@ -25,6 +25,7 @@ import SiteNoticesNewForm from './components/site-notices/new'
 import SiteNoticesEditForm from './components/site-notices/edit'
 import ShowSiteNotices from './components/site-notices/show'
 import FeaturedMaterials from './components/featured-materials/featured-materials'
+import MaterialsCollection from './components/materials-collection/materials-collection'
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -187,5 +188,18 @@ window.PortalPages = {
     }
     return ReactDOM.render(FeaturedMaterials({queryString: query}), jQuery(selectorOrElement)[0]);
   },
+
+  // Supported options: limit, randomize, header, onDataLoad
+  // Keep API backward compatible, so accept either 'limit' option as the last argument or hash.
+  MaterialsCollection: MaterialsCollection,
+  renderMaterialsCollection = function(collectionId, selectorOrElement, limitOrOptions) {
+    if (limitOrOptions == null) { limitOrOptions = Infinity; }
+    const props = typeof limitOrOptions === 'number'
+      ? {limit: limitOrOptions}
+      : limitOrOptions;
+    props.collection = collectionId;
+    return ReactDOM.render(MaterialsCollection(props), jQuery(selectorOrElement)[0]);
+  },
+
 
 }
