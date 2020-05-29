@@ -24,9 +24,6 @@ export default class ShowSiteNotices extends React.Component {
     }
   }
 
-  componentWillUnmount () {
-  }
-
   getPortalData () {
     const { dataUrl } = this.props
     jQuery.ajax({
@@ -43,18 +40,19 @@ export default class ShowSiteNotices extends React.Component {
   }
 
   handleDelete (notice) {
+    const dismissUrl = '/api/v1/site_notices/' + notice.id + '/dismiss_notice'
     const authToken = jQuery('meta[name="csrf-token"]').attr('content')
-    if (confirm('Are you sure you want to dismiss this notice?')) {
-      new Ajax.Request('/admin/site_notices/' + notice.id + '/dismiss_notice',
-        {
-          asynchronous: true,
-          evalScripts: true,
-          method: 'post',
-          parameters: 'authenticity_token=' + encodeURIComponent(authToken)
+    if (window.confirm('Are you sure you want to dismiss this notice?')) {
+      jQuery.ajax({
+        url: dismissUrl,
+        type: 'post',
+        data: 'authenticity_token=' + encodeURIComponent(authToken),
+        success: data => {},
+        error: () => {
+          console.error(`POST failed, can't dismiss notice`)
         }
-      )
+      })
     }
-    this.getPortalData()
     return false
   }
 
@@ -130,8 +128,7 @@ export default class ShowSiteNotices extends React.Component {
 }
 
 ShowSiteNotices.defaultProps = {
-  // This path will return all the offerings for logged in user. Portal will probably explicitly limit scope
-  // of offerings by providing custom path with user_id param.
+  // This path will return all site notices for logged in user.
   dataUrl: Portal.API_V1.GET_NOTICES_FOR_USER,
   // If initialData is not provided, component will use API (dataUrl) to get it.
   initialData: null

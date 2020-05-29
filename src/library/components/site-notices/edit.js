@@ -8,17 +8,9 @@ export default class SiteNoticesEditForm extends React.Component {
     }
   }
 
-  componentDidMount () {
-
-  }
-
-  componentWillUnmount () {
-  }
-
   render () {
     const { notice } = this.state
-    console.log(notice)
-    const formAction = '/admin/site_notices/' + notice.id
+    const formAction = '/api/v1/site_notices/' + notice.id
     const formId = 'edit_admin_site_notice_' + notice.id
     const authToken = jQuery('meta[name="csrf-token"]').attr('content')
     return (

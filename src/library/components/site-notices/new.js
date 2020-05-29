@@ -1,26 +1,12 @@
 import React from 'react'
 
 export default class SiteNoticesNewForm extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-
-    }
-  }
-
-  componentDidMount () {
-
-  }
-
-  componentWillUnmount () {
-  }
-
   render () {
     const authToken = jQuery('meta[name="csrf-token"]').attr('content')
     return (
       <div id={'admin_notice_edit_container-inner'}>
         <h1>Create Notice</h1>
-        <form acceptCharset='UTF-8' action='create' method='post'>
+        <form acceptCharset='UTF-8' action={Portal.API_V1.SITE_NOTICES_CREATE} method='post'>
           <div>
             <input name='utf8' type='hidden' value='✓' />
             <input name='authenticity_token' type='hidden' value={authToken} />

@@ -17,9 +17,6 @@ export default class SiteNotices extends React.Component {
     }
   }
 
-  componentWillUnmount () {
-  }
-
   getPortalData () {
     const { dataUrl } = this.props
     jQuery.ajax({
@@ -40,7 +37,7 @@ export default class SiteNotices extends React.Component {
     return (
       <div id={'admin_notice_listing_container-inner'}>
         <h1>Notices</h1>
-        <Notices notices={notices} getPortalData={this.getPortalData} />
+        <Notices notices={notices} />
         <div className={'floatR'}>
           <a href='/admin/site_notices/new' className={'button'}>Create New Notice</a>
         </div>
@@ -50,8 +47,7 @@ export default class SiteNotices extends React.Component {
 }
 
 SiteNotices.defaultProps = {
-  // This path will return all the offerings for logged in user. Portal will probably explicitly limit scope
-  // of offerings by providing custom path with user_id param.
+  // This path will return all site notices.
   dataUrl: Portal.API_V1.SITE_NOTICES_INDEX,
   // If initialData is not provided, component will use API (dataUrl) to get it.
   initialData: null

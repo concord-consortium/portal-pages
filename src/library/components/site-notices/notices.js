@@ -30,7 +30,7 @@ export default class Notices extends React.Component {
               Options
             </th>
           </tr>
-          { notices.map(notice => <Notice key={notice.id} notice={notice} getPortalData={this.props.getPortalData} />) }
+          { notices.map(notice => <Notice key={notice.id} notice={notice} />) }
         </tbody>
       </table>
     )

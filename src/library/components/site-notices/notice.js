@@ -8,18 +8,19 @@ export default class Notice extends React.Component {
 
   handleDelete () {
     const { notice } = this.props
+    const deleteUrl = '/api/v1/site_notices/' + notice.id + '/remove_notice'
     const authToken = jQuery('meta[name="csrf-token"]').attr('content')
-    if (confirm('Are you sure you want to delete this notice?')) {
-      new Ajax.Request('/admin/site_notices/' + notice.id + '/remove_notice',
-        {
-          asynchronous: true,
-          evalScripts: true,
-          method: 'delete',
-          parameters: 'authenticity_token=' + encodeURIComponent(authToken)
+    if (window.confirm('Are you sure you want to delete this notice?')) {
+      jQuery.ajax({
+        url: deleteUrl,
+        type: 'delete',
+        data: 'authenticity_token=' + encodeURIComponent(authToken),
+        success: data => {},
+        error: () => {
+          console.error(`DELETE failed, can't delete notice`)
         }
-      )
+      })
     }
-    this.props.getPortalData()
     return false
   }
 
