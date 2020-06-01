@@ -5,7 +5,15 @@ import css from './style.scss'
 
 export default class Notices extends React.Component {
   render () {
-    const { notices } = this.props
+    const { notices, receivedData } = this.props
+
+    if (!receivedData) {
+      return (
+        <div>
+          Loading notices...
+        </div>
+      )
+    }
 
     if (notices.length === 0) {
       return (

@@ -5,7 +5,8 @@ export default class SiteNotices extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      notices: []
+      notices: [],
+      receivedData: false
     }
     this.getPortalData = this.getPortalData.bind(this)
   }
@@ -23,7 +24,8 @@ export default class SiteNotices extends React.Component {
       url: dataUrl,
       success: data => {
         this.setState({
-          notices: data
+          notices: data,
+          receivedData: true
         })
       },
       error: () => {
@@ -33,11 +35,11 @@ export default class SiteNotices extends React.Component {
   }
 
   render () {
-    const { notices } = this.state
+    const { notices, receivedData } = this.state
     return (
       <div id={'admin_notice_listing_container-inner'}>
         <h1>Notices</h1>
-        <Notices notices={notices} />
+        <Notices notices={notices} receivedData={receivedData} />
         <div className={'floatR'}>
           <a href='/admin/site_notices/new' className={'button'}>Create New Notice</a>
         </div>

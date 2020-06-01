@@ -94,7 +94,9 @@ export default class ShowSiteNotices extends React.Component {
     const { notices, noNotice, noticeDisplay } = this.state
     if (noNotice) {
       return (
-        <div />
+        <div>
+          There are currently no notices.
+        </div>
       )
     }
 
