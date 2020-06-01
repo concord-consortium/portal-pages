@@ -9,7 +9,7 @@ export default class ShowSiteNotices extends React.Component {
       notices: [],
       noNotice: props.noNotice,
       noticeDisplay: props.noticeDisplay,
-      toggleDisplayPath: props.toggleDisplayPath
+      toggleDisplayPath: Portal.API_V1.SITE_NOTICES_TOGGLE_DISPLAY
     }
     this.getPortalData = this.getPortalData.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
@@ -30,7 +30,8 @@ export default class ShowSiteNotices extends React.Component {
       url: dataUrl,
       success: data => {
         this.setState({
-          notices: data
+          notices: data.notices,
+          noticeDisplay: data.notice_display
         })
       },
       error: () => {
@@ -61,9 +62,7 @@ export default class ShowSiteNotices extends React.Component {
     jQuery.ajax({
       url: toggleDisplayPath,
       method: 'post',
-      success: data => {
-        // this.setState({})
-      },
+      success: data => {},
       error: () => {
         console.error(`POST ${toggleDisplayPath} failed`)
       }
@@ -78,7 +77,7 @@ export default class ShowSiteNotices extends React.Component {
   renderRow (notice) {
     let noticeRowId = 'admin__site_notice_' + notice.id
     return (
-      <tr id={noticeRowId}>
+      <tr key={notice.id} id={noticeRowId}>
         <td>
           {notice.created_at.slice(0, 10)}
         </td>
