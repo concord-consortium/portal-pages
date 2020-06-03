@@ -13,11 +13,23 @@ global.Portal = {
   }
 }
 
-const materials = [
-  "TODO",
-  "use real materials",
-  "once they are created"
-]
+const materials = [{
+  id: 1,
+  icon: {
+    url: "http://example.com/icon"
+  },
+  links: {},
+  material_properties: "",
+  activities: []
+}, {
+  id: 2,
+  icon: {
+    url: "http://example.com/icon"
+  },
+  links: {},
+  material_properties: "",
+  activities: []
+}]
 
 global.jQuery = {
   ajax: jest.fn().mockImplementation((options) => {
@@ -41,13 +53,25 @@ describe('When I try to render materials collection', () => {
         collection: 1,
         header: null,
         limit: Infinity,
-        materials: [
-          "TODO",
-          "use real materials",
-          "once they are created",
-        ],
+        materials: [{
+          id: 1,
+          activities: [],
+          icon: {
+            url: "http://example.com/icon"
+          },
+          links: {},
+          material_properties: ""
+        }, {
+          id: 2,
+          activities: [],
+          icon: {
+            url: "http://example.com/icon"
+          },
+          links: {},
+          material_properties: ""
+        }],
         onDataLoad: null,
-        randomize: false,
+        randomize: false
       });
     });
 
@@ -57,10 +81,100 @@ describe('When I try to render materials collection', () => {
 
     it("should render the default props", () => {
       expect(materialsCollection.html()).toBe(pack(`
-        <div>
-          <div>TODO / use real materials / once they are created</div>
+      <div>
+      <div class="material_list">
+        <div class="material_list_item" data-material_id="1" id="search_undefined_1">
+          <div class="main-part">
+            <div class="material_icon" style="border: 0px;">
+              <a class="thumb_link"><img src="http://example.com/icon" width="100%"></a>
+              <div class="legacy-favorite">★</div>
+              <div class="legacy-favorite legacy-favorite-outline" style="color: rgb(204, 204, 204);">☆</div>
+            </div>
+            <div>
+              <div style="overflow: hidden;">
+                <table width="100%">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="material_header">
+                        <span class="material_meta_data">
+                        <span class="RunsInBrowser">Runs in browser</span>
+                        <span class="is_community">Community</span>
+                        <span class="publication_status"></span>
+                        </span>
+                        <br>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="material_body"></div>
+          </div>
+          <div class="toggle-details">
+            <i class="toggle-details-icon fa fa-chevron-down"></i>
+            <i class="toggle-details-icon fa fa-chevron-up" style="display: none;"></i>
+            <div class="material-details" style="display: none;">
+              <div class="material-description one-col">
+                <h3>Description</h3>
+                <div>
+                </div>
+              </div>
+              <div class="material-activities"></div>
+            </div>
+          </div>
         </div>
-      `));
+        <div class="material_list_item" data-material_id="2" id="search_undefined_2">
+          <div class="main-part">
+            <div class="material_icon" style="border: 0px;">
+              <a class="thumb_link"><img src="http://example.com/icon" width="100%"></a>
+              <div class="legacy-favorite">★</div>
+              <div class="legacy-favorite legacy-favorite-outline" style="color: rgb(204, 204, 204);">☆</div>
+            </div>
+            <div>
+              <div style="overflow: hidden;">
+                <table width="100%">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><span class="material_header"><span class="material_meta_data"><span class="RunsInBrowser">Runs in browser</span><span class="is_community">Community</span><span class="publication_status"></span></span><br></span></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="material_body"></div>
+          </div>
+          <div class="toggle-details">
+            <i class="toggle-details-icon fa fa-chevron-down"></i><i class="toggle-details-icon fa fa-chevron-up" style="display: none;"></i>
+            <div class="material-details" style="display: none;">
+              <div class="material-description one-col">
+                <h3>Description</h3>
+                <div></div>
+              </div>
+              <div class="material-activities"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    `));
     })
   })
 
@@ -85,12 +199,82 @@ describe('When I try to render materials collection', () => {
       expect(materialsCollection.html()).toBe(pack(`
         <div>
           <h1 class="collection-header">this is the header</h1>
-          <div>TODO / use real materials</div>
-          <a class="mc-truncate" href="">
-            <i class="fa fa-chevron-down"></i>
-            <span class="mc-truncate-text"> show all materials</span>
-          </a>
-        </div>`));
+          <div class="material_list">
+            <div class="material_list_item" data-material_id="1" id="search_undefined_1">
+              <div class="main-part">
+                <div class="material_icon" style="border: 0px;"><a class="thumb_link"><img src="http://example.com/icon" width="100%"></a>
+                <div class="legacy-favorite">★</div>
+                <div class="legacy-favorite legacy-favorite-outline" style="color: rgb(204, 204, 204);">☆
+              </div>
+            </div>
+            <div>
+              <div style="overflow: hidden;">
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="material_header"><span class="material_meta_data"><span class="RunsInBrowser">Runs in browser</span><span class="is_community">Community</span><span class="publication_status"></span></span><br></span></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="material_body"></div>
+        </div>
+        <div class="toggle-details">
+          <i class="toggle-details-icon fa fa-chevron-down"></i><i class="toggle-details-icon fa fa-chevron-up" style="display: none;"></i><div class="material-details" style="display: none;">
+          <div class="material-description one-col">
+            <h3>Description</h3>
+            <div></div>
+          </div>
+          <div class="material-activities"></div>
+        </div>
+        </div></div>
+        <div class="material_list_item" data-material_id="2" id="search_undefined_2">
+          <div class="main-part">
+            <div class="material_icon" style="border: 0px;"><a class="thumb_link"><img src="http://example.com/icon" width="100%"></a>
+            <div class="legacy-favorite">★</div>
+            <div class="legacy-favorite legacy-favorite-outline" style="color: rgb(204, 204, 204);">☆
+          </div>
+        </div>
+        <div>
+          <div style="overflow: hidden;">
+          <table width="100%">
+            <tbody>
+              <tr>
+                <td>
+                  <div></div>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="material_header"><span class="material_meta_data"><span class="RunsInBrowser">Runs in browser</span><span class="is_community">Community</span><span class="publication_status"></span></span><br></span></td>
+              </tr>
+              <tr>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+        <div class="material_body"></div>
+        </div>
+        <div class="toggle-details">
+          <i class="toggle-details-icon fa fa-chevron-down"></i><i class="toggle-details-icon fa fa-chevron-up" style="display: none;"></i><div class="material-details" style="display: none;">
+          <div class="material-description one-col">
+            <h3>Description</h3>
+            <div></div>
+          </div>
+          <div class="material-activities"></div>
+        </div>
+        </div></div></div></div>
+          `));
     })
   })
 

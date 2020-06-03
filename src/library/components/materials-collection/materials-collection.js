@@ -1,5 +1,7 @@
 import React from 'react'
 
+import SMaterialsList from "../search/materials-list"
+
 const shuffle = function(a) {
   let idx = a.length;
   while (--idx > 0) {
@@ -10,15 +12,6 @@ const shuffle = function(a) {
   }
   return a;
 };
-
-// TODO: remove when real SMaterialsList is created
-class SMaterialsList extends React.Component {
-  render() {
-    return (
-      <div>{this.props.materials.join(" / ")}</div>
-    )
-  }
-}
 
 export default class MaterialsCollection extends React.Component {
 

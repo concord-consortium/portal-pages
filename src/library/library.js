@@ -26,6 +26,9 @@ import SiteNoticesEditForm from './components/site-notices/edit'
 import ShowSiteNotices from './components/site-notices/show'
 import FeaturedMaterials from './components/featured-materials/featured-materials'
 import MaterialsCollection from './components/materials-collection/materials-collection'
+import SearchResults from "./components/search/results"
+import SMaterialsList from "./components/search/materials-list"
+import MaterialsBin from "./components/materials-bin/materials-bin"
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -34,6 +37,12 @@ const render = function (component, id) {
 const renderComponentFn = function (ComponentClass) {
   return function (options, id) {
     render(ComponentClass(options), id)
+  }
+}
+
+const renderSelectorComponentFn = function (ComponentClass) {
+  return function (options, selectorOrElement) {
+    render(ComponentClass(options), jQuery(selectorOrElement)[0])
   }
 }
 
@@ -181,25 +190,46 @@ window.PortalPages = {
   renderRunWithCollaborators: renderComponentFn(RunWithCollaborators),
 
   FeaturedMaterials: FeaturedMaterials,
-  renderFeaturedMaterials = function(selectorOrElement) {
+  renderFeaturedMaterials: function(selectorOrElement) {
     let query = window.location.search;
     if (query[0] === '?') {
       query = query.slice(1);
     }
-    return ReactDOM.render(FeaturedMaterials({queryString: query}), jQuery(selectorOrElement)[0]);
+    ReactDOM.render(FeaturedMaterials({queryString: query}), jQuery(selectorOrElement)[0]);
   },
 
   // Supported options: limit, randomize, header, onDataLoad
   // Keep API backward compatible, so accept either 'limit' option as the last argument or hash.
   MaterialsCollection: MaterialsCollection,
-  renderMaterialsCollection = function(collectionId, selectorOrElement, limitOrOptions) {
-    if (limitOrOptions == null) { limitOrOptions = Infinity; }
+  renderMaterialsCollection: function(collectionId, selectorOrElement, limitOrOptions) {
+    if (limitOrOptions == null) {
+      limitOrOptions = Infinity;
+    }
     const props = typeof limitOrOptions === 'number'
       ? {limit: limitOrOptions}
       : limitOrOptions;
     props.collection = collectionId;
-    return ReactDOM.render(MaterialsCollection(props), jQuery(selectorOrElement)[0]);
+    ReactDOM.render(MaterialsCollection(props), jQuery(selectorOrElement)[0]);
   },
 
+  SearchResults,
+  renderSearchResults: function(results, selectorOrElement) {
+    ReactDOM.render(SearchResults({results}), jQuery(selectorOrElement)[0]);
+  },
+
+  SMaterialsList,
+  renderMaterialsList: function (materials, selectorOrElement){
+    ReactDOM.render(SMaterialsList({materials}), jQuery(selectorOrElement)[0]);
+  },
+
+  MaterialsBin: MaterialsBin,
+  renderMaterialsBin: function(definition, selectorOrElement, queryString = null) {
+    if (queryString === null) {
+      queryString = window.location.search;
+    }
+    const matches = queryString.match(/assign_to_class=(\d+)/);
+    const assignToSpecificClass = matches ? matches[1] : null;
+    ReactDOM.render(MaterialsBin({materials: definition, assignToSpecificClass}), jQuery(selectorOrElement)[0]);
+  }
 
 }
