@@ -1,4 +1,5 @@
 import React from 'react'
+import formatDate from '../../helpers/format-date'
 
 import css from './style.scss'
 
@@ -34,7 +35,7 @@ export default class Notice extends React.Component {
       <tr id={notice.id} className={css.adminSiteNoticesListItem}>
         <td className={css.adminSiteNoticesListItemText} dangerouslySetInnerHTML={{ __html: notice.notice_html }} />
         <td className={css.adminSiteNoticesListDate}>
-          {notice.updated_at.slice(0, 10)}
+          {formatDate(notice.updated_at.slice(0, 10))}
         </td>
         <td className={css.adminSiteNoticesListItemOptions}>
           <span className={css.adminSiteNoticesListItemEdit}>

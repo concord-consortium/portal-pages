@@ -1,4 +1,5 @@
 import React from 'react'
+import formatDate from '../../helpers/format-date'
 
 import css from './style.scss'
 
@@ -79,7 +80,7 @@ export default class ShowSiteNotices extends React.Component {
     return (
       <tr key={notice.id} id={noticeRowId}>
         <td>
-          {notice.created_at.slice(0, 10)}
+          {formatDate(notice.created_at.slice(0, 10))}
         </td>
         <td dangerouslySetInnerHTML={{ __html: notice.notice_html }} />
         <td>
