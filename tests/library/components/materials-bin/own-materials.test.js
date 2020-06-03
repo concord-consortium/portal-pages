@@ -71,4 +71,6 @@ describe('When I try to render materials-bin own materials', () => {
     `));
   });
 
+  // TODO: add test for archiveSingle()
+
 })

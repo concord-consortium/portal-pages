@@ -34,11 +34,9 @@ export default class MBUserMaterials extends React.Component {
           userId={this.props.userId}
           visible={this.state.materialsVisible}
           assignToSpecificClass={this.props.assignToSpecificClass}
-          archive={this.archiveSingle}
+          archive={this.props.archiveSingle}
         />
       </div>
     )
   }
 }
-
-// TODO: resolve archiveSingle

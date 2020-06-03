@@ -13,6 +13,7 @@
     "build": "npm run lint && npm run build-portals && npm run build-library",
     "build-portals": "node scripts/build.js",
     "build-library": "cross-env NODE_ENV=production webpack",
+    "dev:build-library": "cross-env NODE_ENV=development webpack",
     "live-server": "./node_modules/.bin/live-server --cors --verbose --no-browser --port=10000 ./dest",
     "test": "jest --watch"
   },

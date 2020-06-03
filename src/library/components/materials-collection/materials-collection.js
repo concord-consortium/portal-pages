@@ -1,3 +1,8 @@
+//
+// NOTE: this is direct conversion from the portal materials-collection coffeescript
+// HOWEVER: there is already a root level materials-collection library that is used in the library
+//
+
 import React from 'react'
 
 import SMaterialsList from "../search/materials-list"

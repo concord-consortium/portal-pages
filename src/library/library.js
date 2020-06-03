@@ -25,7 +25,6 @@ import SiteNoticesNewForm from './components/site-notices/new'
 import SiteNoticesEditForm from './components/site-notices/edit'
 import ShowSiteNotices from './components/site-notices/show'
 import FeaturedMaterials from './components/featured-materials/featured-materials'
-import MaterialsCollection from './components/materials-collection/materials-collection'
 import SearchResults from "./components/search/results"
 import SMaterialsList from "./components/search/materials-list"
 import MaterialsBin from "./components/materials-bin/materials-bin"
@@ -195,31 +194,17 @@ window.PortalPages = {
     if (query[0] === '?') {
       query = query.slice(1);
     }
-    ReactDOM.render(FeaturedMaterials({queryString: query}), jQuery(selectorOrElement)[0]);
+    ReactDOM.render(React.createElement(FeaturedMaterials, {queryString: query}), jQuery(selectorOrElement)[0]);
   },
 
-  // Supported options: limit, randomize, header, onDataLoad
-  // Keep API backward compatible, so accept either 'limit' option as the last argument or hash.
-  MaterialsCollection: MaterialsCollection,
-  renderMaterialsCollection: function(collectionId, selectorOrElement, limitOrOptions) {
-    if (limitOrOptions == null) {
-      limitOrOptions = Infinity;
-    }
-    const props = typeof limitOrOptions === 'number'
-      ? {limit: limitOrOptions}
-      : limitOrOptions;
-    props.collection = collectionId;
-    ReactDOM.render(MaterialsCollection(props), jQuery(selectorOrElement)[0]);
-  },
-
-  SearchResults,
+  SearchResults: SearchResults,
   renderSearchResults: function(results, selectorOrElement) {
-    ReactDOM.render(SearchResults({results}), jQuery(selectorOrElement)[0]);
+    ReactDOM.render(React.createElement(SearchResults, {results}), jQuery(selectorOrElement)[0]);
   },
 
-  SMaterialsList,
+  SMaterialsList: SMaterialsList,
   renderMaterialsList: function (materials, selectorOrElement){
-    ReactDOM.render(SMaterialsList({materials}), jQuery(selectorOrElement)[0]);
+    ReactDOM.render(React.createElement(SMaterialsList, {materials}), jQuery(selectorOrElement)[0]);
   },
 
   MaterialsBin: MaterialsBin,
@@ -229,7 +214,7 @@ window.PortalPages = {
     }
     const matches = queryString.match(/assign_to_class=(\d+)/);
     const assignToSpecificClass = matches ? matches[1] : null;
-    ReactDOM.render(MaterialsBin({materials: definition, assignToSpecificClass}), jQuery(selectorOrElement)[0]);
+    ReactDOM.render(React.createElement(MaterialsBin, {materials: definition, assignToSpecificClass}), jQuery(selectorOrElement)[0]);
   }
 
 }

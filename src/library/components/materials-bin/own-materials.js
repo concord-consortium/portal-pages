@@ -21,7 +21,7 @@ class _MBOwnMaterials extends React.Component {
           <MBMaterialsCollection
             name="My activities"
             materials={this.props.materials}
-            archive={this.archiveSingle}
+            archive={this.props.archiveSingle}
             assignToSpecificClass={this.props.assignToSpecificClass}
           />
         :

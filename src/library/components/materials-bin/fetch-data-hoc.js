@@ -64,40 +64,41 @@ export default function MBFetchDataHOC(WrappedComponent, optionsFn) {
       });
     },
 
+    archive(material_id, archive_url) {
+      if (!this.state.collectionsData) {
+        return;
+      }
+      // TODO: this uses normal requests instead of JSON
+      return jQuery.ajax({
+        url: archive_url,
+        success: data => {
+          const newState = this.state.collectionsData.map(function(d) {
+            const copy = Object.clone(d);
+            copy.materials = d.materials.filter(m => m.id !== material_id);
+            return copy;
+          });
+          return this.setState({collectionsData: newState});
+        }
+      });
+    },
+
+    archiveSingle(material_id, archive_url) {
+      if (!this.state.materials) {
+        return;
+      }
+      // TODO: this uses normal requests instead of JSON
+      return jQuery.ajax({
+        url: archive_url,
+        success: data => {
+          const newState = this.state.materials.filter(m => m.id !== material_id);
+          return this.setState({materials: newState});
+        }
+      });
+    },
+
     render: function() {
       // Use JSX spread syntax to pass all props and state down automatically.
-      return <WrappedComponent {...this.props} {...this.state} />;
+      return <WrappedComponent {...this.props} {...this.state} archive={this.archive} archiveSingle={this.archiveSingle} />;
     }
   })
 }
-
-/*
-
-  TODO: handle archive
-
-  archive(material_id, archive_url) {
-    // TODO: this uses normal requests instead of JSON
-    return jQuery.ajax({
-      url: archive_url,
-      success: data => {
-        const newState = this.state.collectionsData.map(function(d) {
-          const copy = Object.clone(d);
-          copy.materials = d.materials.filter(m => m.id !== material_id);
-          return copy;
-        });
-        return this.setState({collectionsData: newState});
-      }
-    });
-  },
-
-  archiveSingle(material_id, archive_url) {
-    // TODO: this uses normal requests instead of JSON
-    return jQuery.ajax({
-      url: archive_url,
-      success: data => {
-        const newState = this.state.materials.filter(m => m.id !== material_id);
-        return this.setState({materials: newState});
-      }
-    });
-  }
-*/

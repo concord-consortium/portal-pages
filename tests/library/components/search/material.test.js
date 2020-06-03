@@ -73,4 +73,6 @@ describe('When I try to render search material', () => {
     `));
   });
 
+  // TODO: add test for archive click
+
 });
