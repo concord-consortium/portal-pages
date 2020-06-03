@@ -16,7 +16,9 @@ export class SMaterialLinks extends React.Component {
 export class SGenericLink extends React.Component {
   optionallyWrapConfirm (link) {
     if (link.ccConfirm) {
-      const followLink = () => window.location = link.url
+      const followLink = () => {
+        window.location = link.url
+      }
       link.onclick = function (event) {
         Portal.confirm({
           message: link.ccConfirm,
@@ -28,6 +30,7 @@ export class SGenericLink extends React.Component {
   }
 
   wrapOnClick (str) {
+    /* eslint no-eval: "off" */
     return () => eval(str)
   }
 

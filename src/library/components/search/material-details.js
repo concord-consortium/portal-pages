@@ -10,7 +10,7 @@ export default class SMaterialDetails extends React.Component {
   }
 
   hasActivitiesOrPretest () {
-    this.props.material.has_activities || this.props.material.has_pretest
+    return this.props.material.has_activities || this.props.material.has_pretest
   }
 
   getMaterialDescClass () {

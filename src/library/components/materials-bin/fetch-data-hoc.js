@@ -64,17 +64,17 @@ export default function MBFetchDataHOC (WrappedComponent, optionsFn) {
       })
     },
 
-    archive (material_id, archive_url) {
+    archive (materialId, archiveUrl) {
       if (!this.state.collectionsData) {
         return
       }
       // TODO: this uses normal requests instead of JSON
       return jQuery.ajax({
-        url: archive_url,
+        url: archiveUrl,
         success: data => {
           const newState = this.state.collectionsData.map(function (d) {
             const copy = Object.clone(d)
-            copy.materials = d.materials.filter(m => m.id !== material_id)
+            copy.materials = d.materials.filter(m => m.id !== materialId)
             return copy
           })
           return this.setState({ collectionsData: newState })
@@ -82,15 +82,15 @@ export default function MBFetchDataHOC (WrappedComponent, optionsFn) {
       })
     },
 
-    archiveSingle (material_id, archive_url) {
+    archiveSingle (materialId, archiveUrl) {
       if (!this.state.materials) {
         return
       }
       // TODO: this uses normal requests instead of JSON
       return jQuery.ajax({
-        url: archive_url,
+        url: archiveUrl,
         success: data => {
-          const newState = this.state.materials.filter(m => m.id !== material_id)
+          const newState = this.state.materials.filter(m => m.id !== materialId)
           return this.setState({ materials: newState })
         }
       })

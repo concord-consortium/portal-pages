@@ -1,5 +1,10 @@
 import React from 'react'
 
+import MBMaterialsCategory from './materials-category'
+import MBCollections from './materials-collection'
+import MBOwnMaterials from './own-materials'
+import MBMaterialsByAuthor from './materials-by-author'
+
 export default class MaterialsBin extends React.Component {
   constructor (props) {
     super(props)

@@ -39,12 +39,6 @@ const renderComponentFn = function (ComponentClass) {
   }
 }
 
-const renderSelectorComponentFn = function (ComponentClass) {
-  return function (options, selectorOrElement) {
-    render(ComponentClass(options), jQuery(selectorOrElement)[0])
-  }
-}
-
 window.PortalPages = {
   settings: {}, // default to empty, used to set flags from portal templates
 

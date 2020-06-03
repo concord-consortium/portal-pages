@@ -4,11 +4,11 @@ export default class SMaterialIcon extends React.Component {
   handleClick () {
     const { material } = this.props
 
-    let apiUrl 	= null
-    let params	= {}
+    let apiUrl = null
+    let params = {}
 
     if (!Portal.currentUser.isTeacher) {
-      alert('You must be logged in as a teacher to favorite material.')
+      window.alert('You must be logged in as a teacher to favorite material.')
       return
     }
 

@@ -5,7 +5,7 @@ import SearchResultGroup from './result-group'
 
 export default class SearchResults extends React.Component {
   generateScrollTo (type) {
-    return event => window.scrollTo(0, $(`${type}_bookmark`).offsetTop)
+    return event => window.scrollTo(0, jQuery(`${type}_bookmark`).offsetTop)
   }
 
   renderMessage () {
