@@ -1,19 +1,18 @@
-import React from "react"
+import React from 'react'
 
-import MBMaterial from "./material"
+import MBMaterial from './material'
 
 export default class MBMaterialsCollection extends React.Component {
-
-  renderTeacherGuide() {
+  renderTeacherGuide () {
     if (Portal.currentUser.isTeacher && (this.props.teacherGuideUrl != null)) {
-      return <a href={this.props.teacherGuideUrl} target="_blank">Teacher Guide</a>;
+      return <a href={this.props.teacherGuideUrl} target='_blank'>Teacher Guide</a>
     }
   }
 
-  render() {
+  render () {
     return (
-      <div className="mb-collection">
-        <div className="mb-collection-name">{this.props.name}</div>
+      <div className='mb-collection'>
+        <div className='mb-collection-name'>{this.props.name}</div>
         {this.renderTeacherGuide()}
         {(this.props.materials || []).map((material) =>
           <MBMaterial
@@ -23,6 +22,6 @@ export default class MBMaterialsCollection extends React.Component {
             assignToSpecificClass={this.props.assignToSpecificClass}
           />)}
       </div>
-    );
+    )
   }
 }

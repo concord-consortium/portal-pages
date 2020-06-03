@@ -1,53 +1,52 @@
-import React from "react"
+import React from 'react'
 
 export default class SMaterialDetails extends React.Component {
-
-  toggle(event) {
-    window.toggleDetails(jQuery(event.target));
+  toggle (event) {
+    window.toggleDetails(jQuery(event.target))
   }
 
-  toggleFromChild(event) {
-    window.toggleDetails(jQuery(event.target.parentElement));
+  toggleFromChild (event) {
+    window.toggleDetails(jQuery(event.target.parentElement))
   }
 
-  hasActivitiesOrPretest() {
-    this.props.material.has_activities || this.props.material.has_pretest;
+  hasActivitiesOrPretest () {
+    this.props.material.has_activities || this.props.material.has_pretest
   }
 
-  getMaterialDescClass() {
-    return `material-description ${this.hasActivitiesOrPretest() ? 'two-cols' : 'one-col'}`;
+  getMaterialDescClass () {
+    return `material-description ${this.hasActivitiesOrPretest() ? 'two-cols' : 'one-col'}`
   }
 
-  renderActivities() {
-    const activities = (this.props.material.activities || []);
-    return activities.map(function(activity) {
+  renderActivities () {
+    const activities = (this.props.material.activities || [])
+    return activities.map(function (activity) {
       if (activity != null) {
-        return <li key={activity.id}>{activity.name}</li>;
+        return <li key={activity.id}>{activity.name}</li>
       }
-    });
+    })
   }
 
-  render() {
-    const { material } = this.props;
+  render () {
+    const { material } = this.props
     return (
-      <div className="toggle-details" onClick={this.toggle.bind(this)}>
-        <i className="toggle-details-icon fa fa-chevron-down" onClick={this.toggleFromChild.bind(this)} />
-        <i className="toggle-details-icon fa fa-chevron-up" style={{display: 'none'}} onClick={this.toggleFromChild.bind(this)} />
-        <div className="material-details" style={{display: 'none'}}>
+      <div className='toggle-details' onClick={this.toggle.bind(this)}>
+        <i className='toggle-details-icon fa fa-chevron-down' onClick={this.toggleFromChild.bind(this)} />
+        <i className='toggle-details-icon fa fa-chevron-up' style={{ display: 'none' }} onClick={this.toggleFromChild.bind(this)} />
+        <div className='material-details' style={{ display: 'none' }}>
           <div className={this.getMaterialDescClass()}>
             <h3>Description</h3>
-            <div dangerouslySetInnerHTML={{__html: material.short_description}} />
+            <div dangerouslySetInnerHTML={{ __html: material.short_description }} />
           </div>
-          <div className="material-activities">
+          <div className='material-activities'>
             {material.has_pretest ? <h4>Pre- and Post-tests available.</h4> : undefined}
-            {material.activities.length > 0 ?
-              <div>
+            {material.activities.length > 0
+              ? <div>
                 <h3>Activities</h3>
                 {this.renderActivities()}
               </div> : undefined}
           </div>
         </div>
       </div>
-    );
+    )
   }
 }

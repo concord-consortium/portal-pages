@@ -1,24 +1,23 @@
-import React from "react"
+import React from 'react'
 
-import MBFetchDataHOC from "./fetch-data-hoc"
-import MBMaterialsCollection from "./materials-collection"
+import MBFetchDataHOC from './fetch-data-hoc'
+import MBMaterialsCollection from './materials-collection'
 
 class _MBCollections extends React.Component {
-
-  getVisibilityClass() {
+  getVisibilityClass () {
     if (!this.props.visible) {
-      return 'mb-hidden';
+      return 'mb-hidden'
     } else {
-      return '';
+      return ''
     }
   }
 
-  render() {
-    const className = `mb-cell ${this.getVisibilityClass()}`;
+  render () {
+    const className = `mb-cell ${this.getVisibilityClass()}`
     return (
       <div className={className}>
-        {this.props.collectionsData != null ?
-          this.props.collectionsData.map((collection, idx) =>
+        {this.props.collectionsData != null
+          ? this.props.collectionsData.map((collection, idx) =>
             <MBMaterialsCollection
               key={idx}
               name={collection.name}
@@ -28,10 +27,9 @@ class _MBCollections extends React.Component {
               teacherGuideUrl={this.props.collections[idx].teacherGuideUrl}
               assignToSpecificClass={this.props.assignToSpecificClass}
             />)
-        :
-          <div>Loading...</div>}
+          : <div>Loading...</div>}
       </div>
-    );
+    )
   }
 }
 
@@ -41,17 +39,16 @@ const MBCollections = React.createFactory(MBFetchDataHOC(_MBCollections, () => (
 
   dataUrl: Portal.API_V1.MATERIALS_BIN_COLLECTIONS,
 
-  requestParams() {
+  requestParams () {
     if (this.props.assignToSpecificClass) {
       return {
         id: this.props.collections.map(c => c.id),
         assigned_to_class: this.props.assignToSpecificClass
-      };
+      }
     } else {
-      return {id: this.props.collections.map(c => c.id)};
+      return { id: this.props.collections.map(c => c.id) }
     }
   }
 })))
 
 export default MBCollections
-

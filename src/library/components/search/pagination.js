@@ -1,70 +1,69 @@
-import React from "react"
+import React from 'react'
 
 export default class SPagination extends React.Component {
-
-  componentDidMount() {
+  componentDidMount () {
     if (this.props.info.total_pages < 2) {
-       // don't display pagination if there's only 1 page
-      return;
+      // don't display pagination if there's only 1 page
+      return
     }
 
-    const node = jQuery(ReactDOM.findDOMNode(this));
+    const node = jQuery(ReactDOM.findDOMNode(this))
     node.paging(this.props.info.total_items, {
       format: '<  . (qq -) nnncnnn (- pp) >',
       perpage: this.props.info.per_page,
       lapping: 0,
       page: this.props.info.current_page,
       onSelect: this.props.onSelect,
-      onFormat(type){
+      onFormat (type) {
         switch (type) {
           case 'block':
             if (!this.active) {
-              return `<span class='disabled'>${this.value}</span>`;
+              return `<span class='disabled'>${this.value}</span>`
             } else if (this.value !== this.page) {
-              return `<em><a href='javascript:void(0)' class='page'>${this.value}</a></em>`;
+              return `<em><a href='javascript:void(0)' class='page'>${this.value}</a></em>`
             }
-            return `<span class='current page'>${this.value}</span>`;
+            return `<span class='current page'>${this.value}</span>`
 
           case 'next':
             if (this.active) {
-              return "<a href='javascript:void(0)' class='next'>Next →</a>";
+              return "<a href='javascript:void(0)' class='next'>Next →</a>"
             }
-            return '<span class="disabled">Next →</span>';
+            return '<span class="disabled">Next →</span>'
 
           case 'prev':
             if (this.active) {
-              return "<a href='javascript:void(0)' class='prev'>← Previous</a>";
+              return "<a href='javascript:void(0)' class='prev'>← Previous</a>"
             }
-            return '<span class="disabled">← Previous</span>';
+            return '<span class="disabled">← Previous</span>'
 
           case 'first':
             if (this.active) {
-              return "<a href='javascript:void(0)' class='first'>|&lt;</a>";
+              return "<a href='javascript:void(0)' class='first'>|&lt;</a>"
             }
-            return '<span class="disabled">|&lt;</span>';
+            return '<span class="disabled">|&lt;</span>'
 
           case 'last':
             if (this.active) {
-              return"<a href='javascript:void(0)' class='last'>&gt;|</a>";
+              return "<a href='javascript:void(0)' class='last'>&gt;|</a>"
             }
-            return '<span class="disabled">&gt;|</span>';
+            return '<span class="disabled">&gt;|</span>'
 
-          case "leap":
-            if (this.active) { return "   "; } else { return ''; }
+          case 'leap':
+            if (this.active) { return '   ' } else { return '' }
           case 'fill':
-            if (this.active) { return "..."; } else { return ""; }
+            if (this.active) { return '...' } else { return '' }
           default:
-            return "";
+            return ''
         }
       }
     })
   }
 
-  shouldComponentUpdate() {
-    return false;
+  shouldComponentUpdate () {
+    return false
   }
 
-  render() {
-    return <div className="pagination" />;
+  render () {
+    return <div className='pagination' />
   }
 }

@@ -1,33 +1,32 @@
-import React from "react"
+import React from 'react'
 
-import MBUserMaterialsContainer from "./user-materials-container"
+import MBUserMaterialsContainer from './user-materials-container'
 
 export default class MBUserMaterials extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       materialsVisible: false
     }
   }
 
-  toggleMaterials() {
-    this.setState({materialsVisible: !this.state.materialsVisible});
+  toggleMaterials () {
+    this.setState({ materialsVisible: !this.state.materialsVisible })
   }
 
-  renderToggleIcon() {
+  renderToggleIcon () {
     if (this.state.materialsVisible) {
-      return '-';
+      return '-'
     } else {
-      return '+';
+      return '+'
     }
   }
 
-  render() {
+  render () {
     return (
       <div>
-        <div className="mb-collection-name mb-clickable" onClick={this.toggleMaterials.bind(this)}>
-          <span className="mb-toggle-symbol">{this.renderToggleIcon()}</span> {this.props.name}
+        <div className='mb-collection-name mb-clickable' onClick={this.toggleMaterials.bind(this)}>
+          <span className='mb-toggle-symbol'>{this.renderToggleIcon()}</span> {this.props.name}
         </div>
 
         <MBUserMaterialsContainer

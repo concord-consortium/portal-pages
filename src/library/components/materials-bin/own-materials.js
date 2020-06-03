@@ -1,33 +1,31 @@
-import React from "react"
+import React from 'react'
 
-import MBFetchDataHOC from "./fetch-data-hoc"
-import MBMaterialsCollection from "./materials-collection"
+import MBFetchDataHOC from './fetch-data-hoc'
+import MBMaterialsCollection from './materials-collection'
 
 class _MBOwnMaterials extends React.Component {
-
-  getVisibilityClass() {
+  getVisibilityClass () {
     if (!this.props.visible) {
-      return 'mb-hidden';
+      return 'mb-hidden'
     } else {
-      return '';
+      return ''
     }
   }
 
-  render() {
-    const className = `mb-cell ${this.getVisibilityClass()}`;
+  render () {
+    const className = `mb-cell ${this.getVisibilityClass()}`
     return (
       <div className={className}>
-        {this.props.materials != null ?
-          <MBMaterialsCollection
-            name="My activities"
+        {this.props.materials != null
+          ? <MBMaterialsCollection
+            name='My activities'
             materials={this.props.materials}
             archive={this.props.archiveSingle}
             assignToSpecificClass={this.props.assignToSpecificClass}
           />
-        :
-          <div>Loading...</div>}
+          : <div>Loading...</div>}
       </div>
-    );
+    )
   }
 }
 
@@ -37,13 +35,13 @@ const MBOwnMaterials = React.createFactory(MBFetchDataHOC(_MBOwnMaterials, () =>
 
   dataUrl: Portal.API_V1.MATERIALS_OWN,
 
-  requestParams() {
+  requestParams () {
     if (this.props.assignToSpecificClass) {
-      return {assigned_to_class: this.props.assignToSpecificClass};
+      return { assigned_to_class: this.props.assignToSpecificClass }
     } else {
-      return {};
+      return {}
     }
-  },
+  }
 })))
 
 export default MBOwnMaterials

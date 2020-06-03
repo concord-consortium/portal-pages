@@ -1,54 +1,52 @@
-import React from "react"
+import React from 'react'
 
-import { SGenericLink } from "./material-links"
-import SearchResultGroup from "./result-group"
+import { SGenericLink } from './material-links'
+import SearchResultGroup from './result-group'
 
 export default class SearchResults extends React.Component {
-
-  generateScrollTo(type){
-    return event => window.scrollTo(0, $(`${type}_bookmark`).offsetTop);
+  generateScrollTo (type) {
+    return event => window.scrollTo(0, $(`${type}_bookmark`).offsetTop)
   }
 
-  renderMessage() {
+  renderMessage () {
     return this.props.results.map((group, idx) => {
-      const link = {url: "javascript:void(0)", onclick: this.generateScrollTo(group.type), text: group.header, className: ''};
+      const link = { url: 'javascript:void(0)', onclick: this.generateScrollTo(group.type), text: group.header, className: '' }
       return (
         <span key={group.type}>
           {group.pagination.total_items}
-          {" "}
+          {' '}
           <SGenericLink link={link} />
-          {idx !== (this.props.results.length - 1) ? ", " : ""}
+          {idx !== (this.props.results.length - 1) ? ', ' : ''}
         </span>
-      );
+      )
     })
   }
 
-  renderAllResults() {
-    return this.props.results.map((group) => <SearchResultGroup group={group} key={group.type} />);
+  renderAllResults () {
+    return this.props.results.map((group) => <SearchResultGroup group={group} key={group.type} />)
   }
 
-  renderSearchTerm() {
-    if (jQuery("#search_term").val().length > 0) {
-      return ` search term "${jQuery("#search_term").val()}" and`;
+  renderSearchTerm () {
+    if (jQuery('#search_term').val().length > 0) {
+      return ` search term "${jQuery('#search_term').val()}" and`
     } else {
-      return "";
+      return ''
     }
   }
 
-  render() {
+  render () {
     return (
-      <div id="offering_list">
-        <p style={{fontWeight: "bold"}}>
+      <div id='offering_list'>
+        <p style={{ fontWeight: 'bold' }}>
           {this.renderMessage()}
-          {" matching "}
+          {' matching '}
           {this.renderSearchTerm()}
-          {" selected criteria"}
+          {' selected criteria'}
         </p>
-        <div className="results_container">
+        <div className='results_container'>
           {this.renderAllResults()}
         </div>
       </div>
-    );
+    )
   }
 }
-

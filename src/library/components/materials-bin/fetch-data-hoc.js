@@ -1,5 +1,5 @@
-import React from "react"
-import createReactClass from "create-react-class"
+import React from 'react'
+import createReactClass from 'create-react-class'
 
 //
 // This was converted from a React 15 mixin to a high-order component (HOC)
@@ -13,92 +13,92 @@ import createReactClass from "create-react-class"
 //  - .requestParams property (hash), argument of jQuery.ajax
 //  - .processData() (method), it can process raw AJAX response before state is updated
 
-export default function MBFetchDataHOC(WrappedComponent, optionsFn) {
+export default function MBFetchDataHOC (WrappedComponent, optionsFn) {
   return createReactClass({
-    getInitialState() {
-      const state = {};
-      const {dataStateKey} = optionsFn();
-      state[dataStateKey] = null;
-      return state;
+    getInitialState () {
+      const state = {}
+      const { dataStateKey } = optionsFn()
+      state[dataStateKey] = null
+      return state
     },
 
-    componentDidMount() {
+    componentDidMount () {
       // Download data only if component is visibile.
       this.mounted = true
       if (this.props.visible) {
-        this.fetchData();
+        this.fetchData()
       }
     },
 
-    componentWillUnmount() {
+    componentWillUnmount () {
       this.mounted = false
     },
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps (nextProps) {
       // Download data only if component is going to be visibile.
       if (nextProps.visible) {
-        this.fetchData();
+        this.fetchData()
       }
     },
 
-    fetchData() {
-      const {dataUrl, dataStateKey, requestParams, processData} = optionsFn();
+    fetchData () {
+      const { dataUrl, dataStateKey, requestParams, processData } = optionsFn()
 
       // Don't download data if it's been already done.
       if (this.state[dataStateKey] != null) {
-        return;
+        return
       }
-      const params = (requestParams != null) ? requestParams.call(this) : {};
+      const params = (requestParams != null) ? requestParams.call(this) : {}
       jQuery.ajax({
         url: dataUrl,
         data: params,
         dataType: 'json',
         success: data => {
           if (this.mounted) {
-            const newState = {};
+            const newState = {}
             // Use processData method if defined.
-            newState[dataStateKey] = (processData != null) ? processData.call(this, data) : data;
-            this.setState(newState);
+            newState[dataStateKey] = (processData != null) ? processData.call(this, data) : data
+            this.setState(newState)
           }
         }
-      });
+      })
     },
 
-    archive(material_id, archive_url) {
+    archive (material_id, archive_url) {
       if (!this.state.collectionsData) {
-        return;
+        return
       }
       // TODO: this uses normal requests instead of JSON
       return jQuery.ajax({
         url: archive_url,
         success: data => {
-          const newState = this.state.collectionsData.map(function(d) {
-            const copy = Object.clone(d);
-            copy.materials = d.materials.filter(m => m.id !== material_id);
-            return copy;
-          });
-          return this.setState({collectionsData: newState});
+          const newState = this.state.collectionsData.map(function (d) {
+            const copy = Object.clone(d)
+            copy.materials = d.materials.filter(m => m.id !== material_id)
+            return copy
+          })
+          return this.setState({ collectionsData: newState })
         }
-      });
+      })
     },
 
-    archiveSingle(material_id, archive_url) {
+    archiveSingle (material_id, archive_url) {
       if (!this.state.materials) {
-        return;
+        return
       }
       // TODO: this uses normal requests instead of JSON
       return jQuery.ajax({
         url: archive_url,
         success: data => {
-          const newState = this.state.materials.filter(m => m.id !== material_id);
-          return this.setState({materials: newState});
+          const newState = this.state.materials.filter(m => m.id !== material_id)
+          return this.setState({ materials: newState })
         }
-      });
+      })
     },
 
-    render: function() {
+    render: function () {
       // Use JSX spread syntax to pass all props and state down automatically.
-      return <WrappedComponent {...this.props} {...this.state} archive={this.archive} archiveSingle={this.archiveSingle} />;
+      return <WrappedComponent {...this.props} {...this.state} archive={this.archive} archiveSingle={this.archiveSingle} />
     }
   })
 }
