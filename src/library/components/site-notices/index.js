@@ -1,6 +1,8 @@
 import React from 'react'
 import Notices from './notices'
 
+import css from './style.scss'
+
 export default class SiteNotices extends React.Component {
   constructor (props) {
     super(props)
@@ -37,11 +39,11 @@ export default class SiteNotices extends React.Component {
   render () {
     const { notices, receivedData } = this.state
     return (
-      <div id={'admin_notice_listing_container-inner'}>
+      <div className={css.adminSiteNotices}>
         <h1>Notices</h1>
         <Notices notices={notices} receivedData={receivedData} />
-        <div className={'floatR'}>
-          <a href='/admin/site_notices/new' className={'button'}>Create New Notice</a>
+        <div className={css.adminSiteNoticesCreate + ' floatR'}>
+          <a href='/admin/site_notices/new' className='button'>Create New Notice</a>
         </div>
       </div>
     )

@@ -83,7 +83,7 @@ export default class ShowSiteNotices extends React.Component {
         </td>
         <td dangerouslySetInnerHTML={{ __html: notice.notice_html }} />
         <td>
-          <a href={'#'} onClick={() => this.handleDelete(notice)} title={'Dismiss'}>x</a>
+          <a href='#' onClick={() => this.handleDelete(notice)} title='Dismiss'>x</a>
         </td>
       </tr>
     )
@@ -99,24 +99,25 @@ export default class ShowSiteNotices extends React.Component {
       )
     }
 
-    let userNoticeContainerClass = 'user_notice_container_div webkit_scrollbars'
+    let siteNoticesContainerClasses = [css.siteNoticesListContainer, 'webkit_scrollbars']
     let toggleText = 'Hide Notices'
     if (noticeDisplay === 'collapsed') {
-      userNoticeContainerClass = [userNoticeContainerClass, css.collapsed].join(' ')
+      siteNoticesContainerClasses.push(css.collapsed)
       toggleText = 'Show Notices'
     }
+    let siteNoticesContainerClass = siteNoticesContainerClasses.join(' ')
 
     return (
-      <div id={'notice_container'} className={'notice_container'}>
-        <div className={'notices_top'}>
-          <div className={'showhide_notices'}>
-            <a href={'#'} id={'oHideShowLink'} onClick={this.handleToggle} title={toggleText}>{toggleText}</a>
+      <div id={css.siteNotices} className={css.siteNotices}>
+        <div className={css.siteNoticesTop}>
+          <div className={css.siteNoticesToggle}>
+            <a href='#' id='oHideShowLink' onClick={this.handleToggle} title={toggleText}>{toggleText}</a>
           </div>
-          <div className={'notice_header'}>
+          <div className={css.siteNoticesHeader}>
             Notices
           </div>
-          <div className={userNoticeContainerClass} id={'user_notice_container_div'}>
-            <table className={'all_notice_to_render'} id={'all_notice_to_render'}>
+          <div className={siteNoticesContainerClass}>
+            <table className={css.siteNoticesList} id={css.all_notice_to_render}>
               <tbody>
                 { notices.map(this.renderRow) }
               </tbody>

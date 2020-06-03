@@ -17,7 +17,7 @@ export default class Notices extends React.Component {
 
     if (notices.length === 0) {
       return (
-        <div id={'no_notice_msg'}>
+        <div class={css.adminSiteNoticesNone}>
           You have no notices.<br />
           To create a notice click the "Create New Notice" button.
         </div>
@@ -25,7 +25,7 @@ export default class Notices extends React.Component {
     }
 
     return (
-      <table id={'notice_list'} className={css.notice_list}>
+      <table id={css.notice_list} className={css.adminSiteNoticesList}>
         <tbody>
           <tr>
             <th>

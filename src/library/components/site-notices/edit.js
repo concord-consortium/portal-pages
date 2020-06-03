@@ -1,5 +1,7 @@
 import React from 'react'
 
+import css from './style.scss'
+
 export default class SiteNoticesEditForm extends React.Component {
   constructor (props) {
     super(props)
@@ -22,22 +24,20 @@ export default class SiteNoticesEditForm extends React.Component {
     const formId = 'edit_admin_site_notice_' + notice.id
     const authToken = jQuery('meta[name="csrf-token"]').attr('content')
     return (
-      <div id={'admin_notice_edit_container-inner'}>
+      <div className={css.adminSiteNoticesEdit}>
         <h1>Edit Notice</h1>
-        <form acceptCharset='UTF-8' action={formAction} method='post' id={formId} className={'edit_admin_site_notice'}>
-          <div>
+        <form acceptCharset='UTF-8' action={formAction} method='post' id={formId}>
+          <div id='editor' className={css.adminSiteNoticesEditEditor}>
+            <textarea className='tinymce_textarea' rows='40' name='notice_html' defaultValue={notice.notice_html} />
+          </div>
+          <div className={css.adminSiteNoticesEditBackLink}>
+            <a href='/admin/site_notices'>Cancel</a>
+          </div>
+          <div className={css.adminSiteNoticesEditSubmit}>
             <input name='utf8' type='hidden' value='✓' />
             <input name='_method' type='hidden' value='put' />
             <input name='authenticity_token' type='hidden' value={authToken} />
-          </div>
-          <div id={'editor'} className={'editor'}>
-            <textarea className={'tinymce_textarea'} rows={'40'} name={'notice_html'} defaultValue={notice.notice_html} />
-          </div>
-          <div className={'back_link'}>
-            <a href='/admin/site_notices'>Cancel</a>
-          </div>
-          <div id={'submit_button_container'} className={'submit_button_container'}>
-            <input className={'pie'} name='commit' type='submit' value='Update Notice' />
+            <input className='pie' name='commit' type='submit' value='Update Notice' />
           </div>
         </form>
       </div>
