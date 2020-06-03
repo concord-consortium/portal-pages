@@ -85,7 +85,7 @@ export default class StandardsRow extends React.Component {
           <div dangerouslySetInnerHTML={{ __html: leaf }} />
         </td>
         <td className="asn_results_td_right">
-          <button onClick={this.handleButton}>{buttonText}</button>
+          <button onClick={this.handleButton.bind(this)}>{buttonText}</button>
         </td>
       </tr>
     );

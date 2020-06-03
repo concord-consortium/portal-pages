@@ -36,11 +36,11 @@ export default class StandardsTable extends React.Component {
         <tr>
           <td colSpan={5} className="asn_results_pagination_row">
             {showDown
-              ? <a className="asn_results_pagination_arrows" onClick={this.paginateDown}>{"<<"}</a>
+              ? <a className="asn_results_pagination_arrows" onClick={this.paginateDown.bind(this)}>{"<<"}</a>
               : "<<" }
             Showing {start + 1} - {end} of {count}
             {showUp
-              ? <a className="asn_results_pagination_arrows" onClick={this.paginateUp}>{">>"}</a>
+              ? <a className="asn_results_pagination_arrows" onClick={this.paginateUp.bind(this)}>{">>"}</a>
               : ">>" }
           </td>
         </tr>

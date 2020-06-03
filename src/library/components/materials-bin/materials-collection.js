@@ -11,7 +11,6 @@ export default class MBMaterialsCollection extends React.Component {
   }
 
   render() {
-    console.log("foo")
     return (
       <div className="mb-collection">
         <div className="mb-collection-name">{this.props.name}</div>

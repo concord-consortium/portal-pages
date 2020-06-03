@@ -116,7 +116,7 @@ export default class MaterialsBin extends React.Component {
                 slug={cellDef.slug}
                 customClass={cellDef.className}
                 loginRequired={cellDef.loginRequired}
-                handleClick={this.handleCellClick}
+                handleClick={this.handleCellClick.bind(this)}
                 assignToSpecificClass={this.props.assignToSpecificClass}
               >
                 {cellDef.category}
@@ -156,6 +156,3 @@ export default class MaterialsBin extends React.Component {
   }
 }
 
-MaterialsBin.propTypes = {
-  materials: React.PropTypes.array.isRequired
-};

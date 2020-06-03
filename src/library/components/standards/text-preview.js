@@ -27,7 +27,7 @@ export default class TextPreview extends React.Component {
     }
 
     return (
-      <div onClick={this.togglePreview} style={{cursor: "default"}}>
+      <div onClick={this.togglePreview.bind(this)} style={{cursor: "default"}}>
         {text}
       </div>
     );

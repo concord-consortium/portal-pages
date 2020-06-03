@@ -24,7 +24,6 @@ export default class FeaturedMaterials extends React.Component {
       data: this.props.queryString,
       dataType: 'json',
       success: data => {
-        console.log("SCUCESS")
         if (this.mounted) {
           this.setState({materials: data});
         }

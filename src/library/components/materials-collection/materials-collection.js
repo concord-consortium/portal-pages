@@ -66,7 +66,7 @@ export default class MaterialsCollection extends React.Component {
     const chevron = this.state.truncated ? 'down' : 'up';
     const text = this.state.truncated ? ' show all materials' : ' show less';
     return (
-      <a className="mc-truncate" onClick={this.toggle} href="">
+      <a className="mc-truncate" onClick={this.toggle.bind(this)} href="">
         <i className={`fa fa-chevron-${chevron}`} />
         <span className="mc-truncate-text">{text}</span>
       </a>
