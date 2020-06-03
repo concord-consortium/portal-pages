@@ -5,7 +5,7 @@ import jQuery from 'jquery'
 // values in json field (it was delimited with single quotes and would break if the json
 // contained values with single quotes)
 export const generateJQueryForm = (url, json, signature, portalToken) => {
-  const form = jQuery('<form>', { action: url, method: 'POST' })
+  const form = jQuery('<form>', { action: url, method: 'POST', target: '_blank' })
     .append(jQuery('<input>', { type: 'hidden', name: 'allowDebug', value: '1' }))
     .append(jQuery('<input>', { type: 'hidden', name: 'json', value: JSON.stringify(json) }))
     .append(jQuery('<input>', { type: 'hidden', name: 'signature', value: signature }))
@@ -20,8 +20,7 @@ const postToUrl = (url, json, signature, portalToken) => {
   // form is a way to send non-Ajax POST request and open the target page.
   const tempForm = generateJQueryForm(url, json, signature, portalToken)
   tempForm.appendTo('body').submit()
-  // Unless form uses target="_blank", this action results in redirect and cleanup is not necessary.
-  // But it won't hurt and if target="_blank" is ever used, it's gonna be useful.
+  // Form uses target="_blank", so we remove this form to clean it up
   tempForm.remove()
 }
 
