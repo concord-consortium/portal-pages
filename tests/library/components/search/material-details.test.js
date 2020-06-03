@@ -46,7 +46,7 @@ describe('When I try to render search material details', () => {
         <i class="toggle-details-icon fa fa-chevron-down"></i>
         <i class="toggle-details-icon fa fa-chevron-up" style="display:none;"></i>
         <div class="material-details" style="display:none;">
-          <div class="material-description one-col">
+          <div class="material-description two-cols">
             <h3>Description</h3>
             <div>short_description</div>
           </div>
