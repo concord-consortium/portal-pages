@@ -3,6 +3,7 @@ import React from 'react'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import FeaturedMaterials from 'components/featured-materials/featured-materials'
+import {mockJqueryAjaxSuccess} from "../../helpers/mock-jquery"
 
 Enzyme.configure({adapter: new Adapter()})
 
@@ -14,14 +15,10 @@ global.Portal = {
 
 const materials = "TODO: figure out materials props";
 
-global.jQuery = {
-  ajax: jest.fn().mockImplementation((options) => {
-    options.success(materials)
-  })
-};
-
 describe('When I try to render featured materials', () => {
   let featuredMaterials;
+
+  mockJqueryAjaxSuccess(materials)
 
   beforeEach(() => {
     featuredMaterials = Enzyme.shallow(<FeaturedMaterials queryString="test" />);

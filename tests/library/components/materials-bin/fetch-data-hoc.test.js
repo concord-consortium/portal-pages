@@ -5,14 +5,9 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import MBFetchDataHOC from 'components/materials-bin/fetch-data-hoc'
 import { pack } from "../../helpers/pack"
+import {mockJqueryAjaxSuccess} from "../../helpers/mock-jquery"
 
 const fetchedData = ["foo", "bar", "baz"]
-
-global.jQuery = {
-  ajax: (options) => {
-    options.success(fetchedData)
-  }
-};
 
 Enzyme.configure({adapter: new Adapter()})
 
@@ -40,6 +35,8 @@ const Wrapper = React.createFactory(MBFetchDataHOC(Wrapped, () => ({
 })));
 
 describe('When I try to render materials-bin fetch data HOC', () => {
+
+  mockJqueryAjaxSuccess(fetchedData)
 
   it("should render with default props", () => {
     const wrapper = Enzyme.mount(<Wrapper wrapperProp={true} />);

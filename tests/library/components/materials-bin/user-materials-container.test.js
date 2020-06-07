@@ -5,6 +5,7 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import MBUserMaterialsContainer from 'components/materials-bin/user-materials-container'
 import { pack } from "../../helpers/pack"
+import {mockJqueryAjaxSuccess} from "../../helpers/mock-jquery"
 
 const materials = [{
   id: 1,
@@ -35,15 +36,11 @@ global.Portal = {
   }
 };
 
-global.jQuery = {
-  ajax: (options) => {
-    options.success(materials)
-  }
-};
-
 Enzyme.configure({adapter: new Adapter()})
 
 describe('When I try to render materials-bin user materials container', () => {
+
+  mockJqueryAjaxSuccess(materials)
 
   it("should render with default props", () => {
     const userMaterialsContainer = Enzyme.mount(<MBUserMaterialsContainer userId={1} />);

@@ -4,16 +4,19 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import SearchResults from 'components/search/results'
 import { pack } from "../../helpers/pack"
+import {mockJquery} from "../../helpers/mock-jquery"
 
 Enzyme.configure({adapter: new Adapter()})
 
-window.jQuery = () => ({
+const mockedJQuery = () => ({
   val: () => ({
     length: 0
   })
 })
 
 describe('When I try to render search results', () => {
+
+  mockJquery(mockedJQuery)
 
   it("should render with default props", () => {
     const results = [];

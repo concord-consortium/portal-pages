@@ -5,6 +5,7 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import MBMaterialsByAuthor from 'components/materials-bin/materials-by-author'
 import { pack } from "../../helpers/pack"
+import {mockJqueryAjaxSuccess} from "../../helpers/mock-jquery"
 
 const authors = [{
   id: 1,
@@ -42,15 +43,11 @@ global.Portal = {
   }
 };
 
-global.jQuery = {
-  ajax: (options) => {
-    options.success(authors)
-  }
-};
-
 Enzyme.configure({adapter: new Adapter()})
 
 describe('When I try to render materials-bin materials by author', () => {
+
+  mockJqueryAjaxSuccess(authors)
 
   it("should render with default props", () => {
     const materialsByAuthor = Enzyme.mount(<MBMaterialsByAuthor userId={1} />);

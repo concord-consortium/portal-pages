@@ -5,6 +5,7 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import MaterialsBin from 'components/materials-bin/materials-bin'
 import { pack } from "../../helpers/pack"
+import {mockJquery} from "../../helpers/mock-jquery"
 
 const materials = [{
   id: 1,
@@ -32,14 +33,16 @@ global.Portal = {
   }
 };
 
-global.jQuery = () => ({
+const mockedJQuery = () => ({
   on: (message) => {}
 });
-global.jQuery.trim = (s) => s.trim()
+mockedJQuery.trim = (s) => s.trim()
 
 Enzyme.configure({adapter: new Adapter()})
 
 describe('When I try to render materials-bin', () => {
+
+  mockJquery(mockedJQuery)
 
   it("should render with default props", () => {
     const materialsBin = Enzyme.shallow(<MaterialsBin materials={materials} />);

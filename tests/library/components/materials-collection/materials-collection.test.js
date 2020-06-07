@@ -4,6 +4,7 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import MaterialsCollection from 'components/materials-collection/materials-collection'
 import { pack } from "../../helpers/pack"
+import {mockJqueryAjaxSuccess} from "../../helpers/mock-jquery"
 
 Enzyme.configure({adapter: new Adapter()})
 
@@ -31,14 +32,10 @@ const materials = [{
   activities: []
 }]
 
-global.jQuery = {
-  ajax: jest.fn().mockImplementation((options) => {
-    options.success([{materials}])
-  })
-};
-
 describe('When I try to render materials collection', () => {
   let materialsCollection;
+
+  mockJqueryAjaxSuccess([{materials}])
 
   describe("with required props", () => {
     beforeEach(() => {

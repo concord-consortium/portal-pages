@@ -4,6 +4,7 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import SPagination from 'components/search/pagination'
 import { pack } from "../../helpers/pack"
+import {mockJquery} from "../../helpers/mock-jquery"
 
 Enzyme.configure({adapter: new Adapter()})
 
@@ -19,11 +20,9 @@ window.ReactDOM = {
   findDOMNode: () => node
 };
 
-window.jQuery = (node) => {
-  return node;
-};
-
 describe('When I try to render search pagination', () => {
+  mockJquery((node) => node)
+
   it("should render an empty div", () => {
     const info = {}
     const pagination = Enzyme.shallow(<SPagination info={info} />);

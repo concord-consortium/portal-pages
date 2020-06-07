@@ -5,6 +5,7 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-15'
 import MBCollections from 'components/materials-bin/collections'
 import { pack } from "../../helpers/pack"
+import {mockJqueryAjaxSuccess} from "../../helpers/mock-jquery"
 
 const collections = [{
   name: "Collection Name",
@@ -38,15 +39,11 @@ global.Portal = {
   }
 };
 
-global.jQuery = {
-  ajax: (options) => {
-    options.success(collections)
-  }
-};
-
 Enzyme.configure({adapter: new Adapter()})
 
 describe('When I try to render materials-bin collections', () => {
+
+  mockJqueryAjaxSuccess(collections)
 
   it("should render with default props", () => {
     const _collections = Enzyme.mount(<MBCollections />);
