@@ -37,6 +37,9 @@ export default class MaterialsBin extends React.Component {
     // - 'category-b' is selected in the second column,
     // - 'category-c' is selected in the third column.
     this.state = { selectedSlugs: this.selectFirstSlugs() }
+
+    this.checkHash = this.checkHash.bind(this)
+    this.handleCellClick = this.handleCellClick.bind(this)
   }
 
   componentWillMount () {
@@ -120,7 +123,7 @@ export default class MaterialsBin extends React.Component {
                 slug={cellDef.slug}
                 customClass={cellDef.className}
                 loginRequired={cellDef.loginRequired}
-                handleClick={this.handleCellClick.bind(this)}
+                handleClick={this.handleCellClick}
                 assignToSpecificClass={this.props.assignToSpecificClass}
               >
                 {cellDef.category}
