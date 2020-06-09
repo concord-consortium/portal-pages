@@ -13,7 +13,7 @@ var RelatedResourceResult = Component({
     }
   },
 
-  componentWillMount: function () {
+  UNSAFE_componentWillMount: function () {
     // process the related resource
     var resource = this.props.resource
     portalObjectHelpers.processResource(resource)

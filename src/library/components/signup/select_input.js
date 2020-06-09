@@ -1,4 +1,6 @@
 import React from 'react'
+import createFactory from "./../../helpers/create-factory"
+
 var ref = React.DOM
 var div = ref.div
 
@@ -6,7 +8,7 @@ var SelectInput = function () {
   // console.log("INFO creating select_input");
 
   var SelectAsync
-  SelectAsync = React.createFactory(Select.Async)
+  SelectAsync = createFactory(Select.Async)
   return React.createClass({
     displayName: 'SelectInput',
     mixins: [Formsy.Mixin],

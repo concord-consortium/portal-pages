@@ -1,7 +1,7 @@
 /* globals describe it expect */
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import SMaterialDetails from 'components/search/material-details'
 import { pack } from "../../helpers/pack"
 
@@ -18,8 +18,8 @@ describe('When I try to render search material details', () => {
     expect(materialDetails.html()).toBe(pack(`
       <div class="toggle-details">
         <i class="toggle-details-icon fa fa-chevron-down"></i>
-        <i class="toggle-details-icon fa fa-chevron-up" style="display:none;"></i>
-        <div class="material-details" style="display:none;">
+        <i class="toggle-details-icon fa fa-chevron-up" style="display:none"></i>
+        <div class="material-details" style="display:none">
           <div class="material-description one-col">
             <h3>Description</h3>
             <div>short_description</div>
@@ -44,8 +44,8 @@ describe('When I try to render search material details', () => {
     expect(materialDetails.html()).toBe(pack(`
       <div class="toggle-details">
         <i class="toggle-details-icon fa fa-chevron-down"></i>
-        <i class="toggle-details-icon fa fa-chevron-up" style="display:none;"></i>
-        <div class="material-details" style="display:none;">
+        <i class="toggle-details-icon fa fa-chevron-up" style="display:none"></i>
+        <div class="material-details" style="display:none">
           <div class="material-description two-cols">
             <h3>Description</h3>
             <div>short_description</div>

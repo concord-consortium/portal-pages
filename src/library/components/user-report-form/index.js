@@ -39,7 +39,7 @@ export default class UserReportForm extends React.Component {
     }
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.getTotals()
   }
 

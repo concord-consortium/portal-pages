@@ -41,7 +41,7 @@ export default class LearnerReportForm extends React.Component {
     }
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.updateFilters()
   }
 

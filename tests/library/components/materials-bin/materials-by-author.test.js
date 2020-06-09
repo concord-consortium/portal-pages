@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import MBMaterialsByAuthor from 'components/materials-bin/materials-by-author'
 import { pack } from "../../helpers/pack"
 import {mockJqueryAjaxSuccess} from "../../helpers/mock-jquery"
@@ -61,19 +61,13 @@ describe('When I try to render materials-bin materials by author', () => {
     expect(materialsByAuthor.html()).toBe(pack(`
       <div class="mb-cell ">
         <div>
-          <div class="mb-collection-name mb-clickable">
-            <span class="mb-toggle-symbol">+</span>
-            <!-- react-text: 6 --> <!-- /react-text --><!-- react-text: 7 -->author 1<!-- /react-text -->
-          </div>
+          <div class="mb-collection-name mb-clickable"><span class="mb-toggle-symbol">+</span> author 1</div>
           <div class="mb-hidden">
             <div>Loading...</div>
           </div>
         </div>
         <div>
-          <div class="mb-collection-name mb-clickable">
-            <span class="mb-toggle-symbol">+</span>
-            <!-- react-text: 13 --> <!-- /react-text --><!-- react-text: 14 -->author 2<!-- /react-text -->
-          </div>
+          <div class="mb-collection-name mb-clickable"><span class="mb-toggle-symbol">+</span> author 2</div>
           <div class="mb-hidden">
             <div>Loading...</div>
           </div>

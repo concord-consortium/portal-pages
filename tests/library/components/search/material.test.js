@@ -1,7 +1,7 @@
 /* globals describe it expect */
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import SMaterial from 'components/search/material'
 import { pack } from "../../helpers/pack"
 
@@ -21,15 +21,15 @@ describe('When I try to render search material', () => {
     expect(materialInfo.html()).toBe(pack(`
       <div class="material_list_item" id="search_undefined_undefined">
         <div class="main-part">
-          <div class="material_icon" style="border:0px;">
+          <div class="material_icon" style="border:0px">
             <a class="thumb_link">
               <img src="http://example.com/icon" width="100%"/>
             </a>
             <div class="legacy-favorite">★</div>
-            <div class="legacy-favorite legacy-favorite-outline" style="color:#CCCCCC;">☆</div>
+            <div class="legacy-favorite legacy-favorite-outline" style="color:#CCCCCC">☆</div>
           </div>
           <div>
-            <div style="overflow:hidden;">
+            <div style="overflow:hidden">
               <table width="100%">
                 <tbody>
                   <tr>
@@ -60,8 +60,8 @@ describe('When I try to render search material', () => {
         </div>
         <div class="toggle-details">
           <i class="toggle-details-icon fa fa-chevron-down"></i>
-          <i class="toggle-details-icon fa fa-chevron-up" style="display:none;"></i>
-          <div class="material-details" style="display:none;">
+          <i class="toggle-details-icon fa fa-chevron-up" style="display:none"></i>
+          <div class="material-details" style="display:none">
             <div class="material-description one-col">
               <h3>Description</h3>
               <div></div>

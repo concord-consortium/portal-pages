@@ -1,7 +1,7 @@
 /* globals describe it expect */
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import SMaterialBody from 'components/search/material-body'
 import { pack } from "../../helpers/pack"
 
@@ -22,7 +22,7 @@ describe('When I try to render search material bodies', () => {
         </div>
         <div class="required_equipment_container">
           <span>Required sensor(s):</span>
-          <span style="font-weight:bold;">sensor</span>
+          <span style="font-weight:bold">sensor</span>
         </div>
       </div>
     `));
@@ -41,7 +41,7 @@ describe('When I try to render search material bodies', () => {
         </div>
         <div class="required_equipment_container">
           <span>Required sensor(s):</span>
-          <span style="font-weight:bold;">sensor1, sensor2</span>
+          <span style="font-weight:bold">sensor1, sensor2</span>
         </div>
       </div>
     `));

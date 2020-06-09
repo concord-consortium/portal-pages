@@ -1,7 +1,7 @@
 /* globals describe it expect */
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import SearchResults from 'components/search/results'
 import { pack } from "../../helpers/pack"
 import {mockJquery} from "../../helpers/mock-jquery"
@@ -23,7 +23,7 @@ describe('When I try to render search results', () => {
     const searchResults = Enzyme.shallow(<SearchResults results={results} />);
     expect(searchResults.html()).toBe(pack(`
       <div id="offering_list">
-        <p style="font-weight:bold;"> matching  selected criteria</p>
+        <p style="font-weight:bold"> matching  selected criteria</p>
         <div class="results_container"></div>
       </div>
     `));
@@ -43,7 +43,7 @@ describe('When I try to render search results', () => {
     const searchResults = Enzyme.shallow(<SearchResults results={results} />);
     expect(searchResults.html()).toBe(pack(`
       <div id="offering_list">
-        <p style="font-weight:bold;"><span>10 <a href="javascript:void(0)" class=""></a></span> matching  selected criteria</p>
+        <p style="font-weight:bold"><span>10 <a href="#" class=""></a></span> matching  selected criteria</p>
         <div class="results_container">
           <div id="investigations_bookmark" class="materials_container investigations">
             <div class="material_list_header"></div>

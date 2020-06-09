@@ -34,7 +34,7 @@ export default function MBFetchDataHOC (WrappedComponent, optionsFn) {
       this.mounted = false
     },
 
-    componentWillReceiveProps (nextProps) {
+    UNSAFE_componentWillReceiveProps (nextProps) {
       // Download data only if component is going to be visibile.
       if (nextProps.visible) {
         this.fetchData()

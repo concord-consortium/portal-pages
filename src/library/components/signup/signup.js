@@ -2,6 +2,7 @@ import React from 'react'
 import StudentFormClass from './student_form'
 import TeacherFormClass from './teacher_form'
 import ParseQueryString from '../../helpers/parse-query-string'
+import createFactory from "./../../helpers/create-factory"
 
 const BasicDataFormClass = require('./basic_data_form')
 const StudentRegistrationCompleteClass = require('./student_registration_complete')
@@ -11,12 +12,12 @@ const UserTypeSelectorClass = require('./user_type_selector')
 const Signup = function () {
   // console.log("INFO creating Signup");
 
-  const BasicDataForm = React.createFactory(BasicDataFormClass())
-  const StudentRegistrationComplete = React.createFactory(StudentRegistrationCompleteClass())
-  const TeacherRegistrationComplete = React.createFactory(TeacherRegistrationCompleteClass())
-  const UserTypeSelector = React.createFactory(UserTypeSelectorClass())
-  const StudentForm = React.createFactory(StudentFormClass())
-  const TeacherForm = React.createFactory(TeacherFormClass())
+  const BasicDataForm = createFactory(BasicDataFormClass())
+  const StudentRegistrationComplete = createFactory(StudentRegistrationCompleteClass())
+  const TeacherRegistrationComplete = createFactory(TeacherRegistrationCompleteClass())
+  const UserTypeSelector = createFactory(UserTypeSelectorClass())
+  const StudentForm = createFactory(StudentFormClass())
+  const TeacherForm = createFactory(TeacherFormClass())
 
   return React.createClass({
     displayName: 'SignUp',

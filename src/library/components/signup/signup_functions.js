@@ -1,4 +1,6 @@
 import React from 'react'
+import createFactory from "./../../helpers/create-factory"
+
 var SignupModal = require('./signup_modal')
 var Signup = require('./signup')
 var LoginModal = require('./login_modal')
@@ -24,7 +26,7 @@ var renderSignupForm = function (properties, selectorOrElement) {
   if (properties == null) {
     properties = {}
   }
-  var comp = React.createFactory(Signup())
+  var comp = createFactory(Signup())
 
   ReactDOM.render(comp(properties), jQuery(selectorOrElement)[0])
 }
@@ -43,7 +45,7 @@ var openModal = function (type, properties = {}, closeFunc) {
   }
 
   ReactDOM.unmountComponentAtNode(modalContainer[0])
-  var comp = React.createFactory(type())
+  var comp = createFactory(type())
   console.log('INFO creating modal with props', properties)
   ReactDOM.render(comp(properties), modalContainer[0])
 

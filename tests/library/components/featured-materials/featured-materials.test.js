@@ -1,7 +1,7 @@
 /* globals describe it expect */
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import FeaturedMaterials from 'components/featured-materials/featured-materials'
 import {mockJqueryAjaxSuccess} from "../../helpers/mock-jquery"
 

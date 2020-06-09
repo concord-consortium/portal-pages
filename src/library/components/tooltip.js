@@ -20,7 +20,7 @@ var Tooltip = Component({
     return {}
   },
 
-  componentWillMount: function () {
+  UNSAFE_componentWillMount: function () {
 
   },
 

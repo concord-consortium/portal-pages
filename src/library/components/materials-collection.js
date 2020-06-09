@@ -16,7 +16,7 @@ const MaterialsCollectionItem = Component({
     }
   },
 
-  componentWillMount: function () {
+  UNSAFE_componentWillMount: function () {
     const item = this.props.item
     portalObjectHelpers.processResource(item)
   },
@@ -126,7 +126,7 @@ const MaterialsCollection = Component({
     }
   },
 
-  componentWillMount: function () {
+  UNSAFE_componentWillMount: function () {
     jQuery.ajax({
       url: Portal.API_V1.MATERIALS_BIN_COLLECTIONS,
       data: { id: this.props.collection,

@@ -1,4 +1,6 @@
 import React from 'react'
+import createFactory from "./../../helpers/create-factory"
+
 var invalidZipcode
 var newSchoolWarning
 
@@ -33,12 +35,12 @@ var PrivacyPolicyClass = require('./privacy_policy')
 
 var TeacherForm = function () {
   var FormsyForm, PrivacyPolicy, SchoolInput, CheckboxInput, SelectInput, TextInput, emailAvailableValidator, getCountries, isUS, loginValidValidator, registerTeacher
-  TextInput = React.createFactory(TextInputClass())
-  CheckboxInput = React.createFactory(CheckboxInputClass())
-  SelectInput = React.createFactory(SelectInputClass())
-  SchoolInput = React.createFactory(SchoolInputClass())
-  PrivacyPolicy = React.createFactory(PrivacyPolicyClass())
-  FormsyForm = React.createFactory(Formsy.Form)
+  TextInput = createFactory(TextInputClass())
+  CheckboxInput = createFactory(CheckboxInputClass())
+  SelectInput = createFactory(SelectInputClass())
+  SchoolInput = createFactory(SchoolInputClass())
+  PrivacyPolicy = createFactory(PrivacyPolicyClass())
+  FormsyForm = createFactory(Formsy.Form)
   loginValidValidator = function (value) {
     return jQuery.get(Portal.API_V1.LOGIN_VALID + '?username=' + value)
   }

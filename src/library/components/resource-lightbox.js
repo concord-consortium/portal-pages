@@ -36,7 +36,7 @@ var ResourceLightbox = Component({
     }
   },
 
-  componentWillMount: function () {
+  UNSAFE_componentWillMount: function () {
     jQuery('html, body').css('overflow', 'hidden')
     jQuery('.home-page-content').addClass('blurred')
 

@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import MBUserMaterialsContainer from 'components/materials-bin/user-materials-container'
 import { pack } from "../../helpers/pack"
 import {mockJqueryAjaxSuccess} from "../../helpers/mock-jquery"

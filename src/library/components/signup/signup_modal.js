@@ -1,4 +1,6 @@
 import React from 'react'
+import createFactory from "./../../helpers/create-factory"
+
 var ref = React.DOM
 var div = ref.div
 
@@ -7,7 +9,7 @@ var SignupClass = require('./signup')
 var SignupModal = function () {
   // console.log("INFO creating signup_modal");
 
-  var Signup = React.createFactory(SignupClass())
+  var Signup = createFactory(SignupClass())
   return React.createClass({
     displayName: 'SignupModal',
     render: function () {

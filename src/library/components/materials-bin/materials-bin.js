@@ -42,7 +42,7 @@ export default class MaterialsBin extends React.Component {
     this.handleCellClick = this.handleCellClick.bind(this)
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     // check the hash at startup and for each change
     jQuery(window).on('hashchange', this.checkHash)
     this.checkHash()

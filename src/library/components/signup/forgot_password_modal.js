@@ -1,4 +1,6 @@
 import React from 'react'
+import createFactory from "./../../helpers/create-factory"
+
 var button = React.DOM.button
 var dd = React.DOM.dd
 var dl = React.DOM.dl
@@ -15,8 +17,8 @@ var TextInputClass = require('./text_input')
 var ForgotPasswordModal = function () {
   // console.log("INFO Creating LoginModal class");
 
-  var TextInput = React.createFactory(TextInputClass())
-  var FormsyForm = React.createFactory(Formsy.Form)
+  var TextInput = createFactory(TextInputClass())
+  var FormsyForm = createFactory(Formsy.Form)
 
   return React.createClass({
 

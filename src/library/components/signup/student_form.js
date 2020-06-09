@@ -1,4 +1,6 @@
 import React from 'react'
+import createFactory from "./../../helpers/create-factory"
+
 var ref = React.DOM
 var button = ref.button
 var div = ref.div
@@ -12,9 +14,9 @@ var PrivacyPolicyClass = require('./privacy_policy')
 
 var StudentForm = function () {
   var FormsyForm, PrivacyPolicy, TextInput, classWordValidator, registerStudent
-  TextInput = React.createFactory(TextInputClass())
-  PrivacyPolicy = React.createFactory(PrivacyPolicyClass())
-  FormsyForm = React.createFactory(Formsy.Form)
+  TextInput = createFactory(TextInputClass())
+  PrivacyPolicy = createFactory(PrivacyPolicyClass())
+  FormsyForm = createFactory(Formsy.Form)
   classWordValidator = function (value) {
     return jQuery.get(Portal.API_V1.CLASSWORD + '?class_word=' + value)
   }

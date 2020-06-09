@@ -1,5 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
+import createFactory from "./../../helpers/create-factory"
 
 var TIMEOUT = 500
 
@@ -10,7 +11,7 @@ var SchoolInput = function () {
   // console.log("INFO creating school_input");
 
   var ReactSelect, getSchools
-  ReactSelect = React.createFactory(Select)
+  ReactSelect = createFactory(Select)
   getSchools = function (country, zipcode) {
     return jQuery.get(Portal.API_V1.SCHOOLS + '?country_id=' + country + '&zipcode=' + zipcode)
   }

@@ -1,7 +1,7 @@
 /* globals describe it expect */
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import { SMaterialLinks, SGenericLink, SMaterialLink, SMaterialDropdownLink } from 'components/search/material-links'
 import { pack } from "../../helpers/pack"
 
@@ -42,7 +42,7 @@ describe('When I try to render search material link', () => {
     }
     const materialLink = Enzyme.shallow(<SMaterialLink link={link} />);
     expect(materialLink.html()).toBe(pack(`
-      <div style="float:right;margin-right:5px;">
+      <div style="float:right;margin-right:5px">
         <a href="http://example.com/url" class="button">text</a>
       </div>
     `));
@@ -59,7 +59,7 @@ describe('When I try to render search material link', () => {
     }
     const materialLink = Enzyme.shallow(<SMaterialLink link={link} />);
     expect(materialLink.html()).toBe(pack(`
-      <div style="float:right;margin-right:5px;">
+      <div style="float:right;margin-right:5px">
         <a href="http://example.com/url" class="className" target="target" data-cc-confirm="ccConfirm">text</a>
       </div>
     `));
@@ -75,9 +75,9 @@ describe('When I try to render search dropdown link', () => {
     }
     const dropdownLink = Enzyme.shallow(<SMaterialDropdownLink link={link} />);
     expect(dropdownLink.html()).toBe(pack(`
-      <div style="float:right;">
+      <div style="float:right">
         <a href="http://example.com/url" class="button">text</a>
-        <div class="Expand_Collapse Expand_Collapse_preview" style="display:none;"></div>
+        <div class="Expand_Collapse Expand_Collapse_preview" style="display:none"></div>
       </div>
     `));
   });
@@ -97,9 +97,9 @@ describe('When I try to render search dropdown link', () => {
     }
     const dropdownLink = Enzyme.shallow(<SMaterialDropdownLink link={link} />);
     expect(dropdownLink.html()).toBe(pack(`
-      <div style="float:right;">
+      <div style="float:right">
         <a href="http://example.com/url" class="className" target="target" data-cc-confirm="ccConfirm">text</a>
-        <div class="Expand_Collapse Expand_Collapse_preview" style="display:none;">
+        <div class="Expand_Collapse Expand_Collapse_preview" style="display:none">
           <div class="preview_link">
             <a href="http://example.com/option1" class="button">option 1</a>
           </div>
@@ -140,12 +140,12 @@ describe('When I try to render search material links', () => {
     const materialsLinks = Enzyme.shallow(<SMaterialLinks links={links} />);
     expect(materialsLinks.html()).toBe(pack(`
       <div>
-        <div style="float:right;margin-right:5px;">
+        <div style="float:right;margin-right:5px">
           <a href="http://example.com/url" class="className" target="target" data-cc-confirm="ccConfirm">text</a>
         </div>
-        <div style="float:right;">
+        <div style="float:right">
           <a href="http://example.com/url" class="className" target="target" data-cc-confirm="ccConfirm">text</a>
-          <div class="Expand_Collapse Expand_Collapse_preview" style="display:none;">
+          <div class="Expand_Collapse Expand_Collapse_preview" style="display:none">
             <div class="preview_link">
               <a href="http://example.com/option1" class="button">option 1</a>
             </div>
