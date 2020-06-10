@@ -23,7 +23,7 @@ const PageHeader = Component({
   },
 
   componentDidMount: function () {
-    window.addEventListener('resize', this.handleResize.bind(this))
+    window.addEventListener('resize', this.handleResize)
     if (this.state.loggedIn) {
       let self = this
       jQuery.ajax({

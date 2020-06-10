@@ -24,6 +24,10 @@ import SiteNotices from './components/site-notices'
 import SiteNoticesNewForm from './components/site-notices/new'
 import SiteNoticesEditForm from './components/site-notices/edit'
 import ShowSiteNotices from './components/site-notices/show'
+import FeaturedMaterials from './components/featured-materials/featured-materials'
+import SearchResults from './components/search/results'
+import SMaterialsList from './components/search/materials-list'
+import MaterialsBin from './components/materials-bin/materials-bin'
 
 const render = function (component, id) {
   ReactDOM.render(component, document.getElementById(id))
@@ -176,5 +180,35 @@ window.PortalPages = {
   renderTooltip: renderComponentFn(Tooltip),
 
   RunWithCollaborators: RunWithCollaborators,
-  renderRunWithCollaborators: renderComponentFn(RunWithCollaborators)
+  renderRunWithCollaborators: renderComponentFn(RunWithCollaborators),
+
+  FeaturedMaterials: FeaturedMaterials,
+  renderFeaturedMaterials: function (selectorOrElement) {
+    let query = window.location.search
+    if (query[0] === '?') {
+      query = query.slice(1)
+    }
+    ReactDOM.render(React.createElement(FeaturedMaterials, { queryString: query }), jQuery(selectorOrElement)[0])
+  },
+
+  SearchResults: SearchResults,
+  renderSearchResults: function (results, selectorOrElement) {
+    ReactDOM.render(React.createElement(SearchResults, { results }), jQuery(selectorOrElement)[0])
+  },
+
+  SMaterialsList: SMaterialsList,
+  renderMaterialsList: function (materials, selectorOrElement) {
+    ReactDOM.render(React.createElement(SMaterialsList, { materials }), jQuery(selectorOrElement)[0])
+  },
+
+  MaterialsBin: MaterialsBin,
+  renderMaterialsBin: function (definition, selectorOrElement, queryString = null) {
+    if (queryString === null) {
+      queryString = window.location.search
+    }
+    const matches = queryString.match(/assign_to_class=(\d+)/)
+    const assignToSpecificClass = matches ? matches[1] : null
+    ReactDOM.render(React.createElement(MaterialsBin, { materials: definition, assignToSpecificClass }), jQuery(selectorOrElement)[0])
+  }
+
 }

@@ -13,6 +13,7 @@
     "build": "npm run lint && npm run build-portals && npm run build-library",
     "build-portals": "node scripts/build.js",
     "build-library": "cross-env NODE_ENV=production webpack",
+    "dev:build-library": "cross-env NODE_ENV=development webpack",
     "live-server": "./node_modules/.bin/live-server --cors --verbose --no-browser --port=10000 ./dest",
     "test": "jest --watch"
   },
@@ -88,6 +89,7 @@
     "chokidar": "^1.7.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
+    "create-react-class": "^15.6.3",
     "cross-env": "^5.2.0",
     "debug": "~2.6.3",
     "express": "^4.15.3",
