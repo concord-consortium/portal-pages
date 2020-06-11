@@ -1,7 +1,7 @@
 import React from 'react'
 import Formsy from 'formsy-react'
 
-import TextInput from './text_input'
+import TextInput, { asyncValidator } from './text_input'
 import CheckboxInput from './checkbox_input'
 import SelectInput from './select_input'
 import SchoolInput from './school_input'
@@ -151,6 +151,16 @@ export default class TeacherForm extends React.Component {
   }
 
   renderAnonymous (showEnewsSubscription) {
+    const loginValidator = asyncValidator({
+      validator: loginValidValidator,
+      error: LOGIN_INVALID,
+      ref: this.refs.login
+    })
+    const emailValidator = asyncValidator({
+      validator: emailAvailableValidator,
+      error: EMAIL_TAKEN,
+      ref: this.refs.email
+    })
     return (
       <div>
         <dl>
@@ -168,8 +178,7 @@ export default class TeacherForm extends React.Component {
               validationErrors={{
                 minLength: LOGIN_TOO_SHORT
               }}
-              asyncValidation={loginValidValidator}
-              asyncValidationError={LOGIN_INVALID}
+              {...loginValidator}
             />
           </dd>
           <dt>Email</dt>
@@ -186,8 +195,7 @@ export default class TeacherForm extends React.Component {
               validationErrors={{
                 isEmail: EMAIL_REGEXP
               }}
-              asyncValidation={emailAvailableValidator}
-              asyncValidationError={EMAIL_TAKEN}
+              {...emailValidator}
             />
           </dd>
           {showEnewsSubscription

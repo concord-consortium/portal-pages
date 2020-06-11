@@ -1,6 +1,6 @@
 import React from 'react'
 import Formsy from 'formsy-react'
-import TextInput from './text_input'
+import TextInput, { asyncValidator } from './text_input'
 
 let INVALID_FIRST_NAME
 let INVALID_LAST_NAME
@@ -57,6 +57,17 @@ export default class BasicDataForm extends React.Component {
   render () {
     const anonymous = this.props.anonymous
 
+    const firstNameValidator = asyncValidator({
+      validator: nameValidator,
+      error: INVALID_FIRST_NAME,
+      ref: this.refs.firstName
+    })
+    const lastNameValidator = asyncValidator({
+      validator: nameValidator,
+      error: INVALID_LAST_NAME,
+      ref: this.refs.lastName
+    })
+
     const providerComponents = []
     if (enableAuthProviders && this.props.oauthProviders) {
       const providers = this.props.oauthProviders
@@ -96,9 +107,9 @@ export default class BasicDataForm extends React.Component {
             <div>
               <dl>
                 <dt className='two-col'>First Name</dt>
-                <dd className='name_wrapper first-name-wrapper two-col'><TextInput ref='firstName' name='first_name' placeholder='' required asyncValidation={nameValidator} asyncValidationError={INVALID_FIRST_NAME} /></dd>
+                <dd className='name_wrapper first-name-wrapper two-col'><TextInput ref='firstName' name='first_name' placeholder='' required {...firstNameValidator} /></dd>
                 <dt className='two-col'>Last Name</dt>
-                <dd className='name_wrapper last-name-wrapper two-col'><TextInput ref='lastName' name='last_name' placeholder='' required asyncValidation={nameValidator} asyncValidationError={INVALID_LAST_NAME} /></dd>
+                <dd className='name_wrapper last-name-wrapper two-col'><TextInput ref='lastName' name='last_name' placeholder='' required {...lastNameValidator} /></dd>
                 <dt>Password</dt>
                 <dd><TextInput name='password' placeholder='' type='password' required validations='minLength:6' validationError={PASS_TOO_SHORT} /></dd>
                 <dt>Confirm Password</dt>

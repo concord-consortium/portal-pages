@@ -23,7 +23,7 @@ class SchoolInput extends React.Component {
   componentDidUpdate (prevProps) {
     const { country, zipcode } = this.props
     if (prevProps.country !== country || prevProps.zipcode !== zipcode) {
-      this.setValue('')
+      this.props.setValue('')
       this.updateOptions()
     }
   }
@@ -33,7 +33,7 @@ class SchoolInput extends React.Component {
   }
 
   changeValue (option) {
-    this.setValue(option && option.value)
+    this.props.setValue(option && option.value)
   }
 
   updateOptions () {
@@ -67,7 +67,7 @@ class SchoolInput extends React.Component {
     const { placeholder, disabled } = this.props
     const { options, isLoading } = this.state
 
-    if (this.value) {
+    if (this.props.value) {
       className += ' valid'
     }
 
@@ -80,13 +80,13 @@ class SchoolInput extends React.Component {
           options={options}
           isLoading={isLoading}
           disabled={disabled}
-          value={this.value || ''}
+          value={this.props.value || ''}
           onChange={this.changeValue}
           clearable={false}
           noResultsText={noResultsText}
         >
           <div className='input-error'>
-            {this.errorMessage}
+            {this.props.errorMessage}
           </div>
         </Select>
       </div>

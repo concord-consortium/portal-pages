@@ -9,14 +9,14 @@ class SelectInput extends React.Component {
   }
 
   changeValue (option) {
-    this.setValue(option && option.value)
+    this.props.setValue(option && option.value)
     this.props.onChange(option)
   }
 
   render () {
     const { placeholder, loadOptions, disabled } = this.props
     let className = 'select-input'
-    if (this.value) {
+    if (this.props.value) {
       className += ' valid'
     }
 
@@ -26,12 +26,12 @@ class SelectInput extends React.Component {
           placeholder={placeholder}
           loadOptions={loadOptions}
           disabled={disabled}
-          value={this.value || ''}
+          value={this.props.value || ''}
           onChange={this.changeValue}
           clearable={false}
         >
           <div className='input-error'>
-            {this.errorMessage}
+            {this.props.errorMessage}
           </div>
         </SelectAsync>
       </div>

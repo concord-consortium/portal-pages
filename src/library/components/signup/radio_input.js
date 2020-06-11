@@ -10,7 +10,7 @@ class RadioInput extends React.Component {
   renderOptions (options) {
     return options.map((option, index) => (
       <label key={index}>
-        <input type='radio' onChange={this.changeValue} value={option.value} name={this.props.name} checked={this.value === option.value} /> {option.label}
+        <input type='radio' onChange={this.changeValue} value={option.value} name={this.props.name} checked={this.props.value === option.value} /> {option.label}
       </label>
     ))
   }
@@ -20,7 +20,7 @@ class RadioInput extends React.Component {
     if (this.props.handleChange) {
       this.props.handleChange(e)
     }
-    this.setValue(e.currentTarget.value)
+    this.props.setValue(e.currentTarget.value)
   }
 
   render () {
