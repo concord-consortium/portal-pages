@@ -18,12 +18,12 @@ describe('When I try to render signup side info', () => {
           Why sign up?
           <p>
             It's free and you get access to several key features:
-            <ul>
-              <li>Create classes for your students and assign them activities</li>
-              <li>Save student work</li>
-              <li>Track student progress through activities</li>
-            </ul>
           </p>
+          <ul>
+            <li>Create classes for your students and assign them activities</li>
+            <li>Save student work</li>
+            <li>Track student progress through activities</li>
+          </ul>
         </div>
       </div>
     `));

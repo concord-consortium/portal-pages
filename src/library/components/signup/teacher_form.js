@@ -160,7 +160,8 @@ export default class TeacherForm extends React.Component {
               ref='login'
               name='login'
               placeholder=''
-              required='true'
+              // eslint-disable-next-line
+              required={true}
               validations={{
                 minLength: 3
               }}
@@ -177,7 +178,8 @@ export default class TeacherForm extends React.Component {
               ref='email'
               name='email'
               placeholder=''
-              required='true'
+              // eslint-disable-next-line
+              required={true}
               validations={{
                 isEmail: true
               }}
@@ -213,7 +215,8 @@ export default class TeacherForm extends React.Component {
               ref='zipcode'
               name='zipcode'
               placeholder={'School / Institution ' + (this.zipOrPostal())}
-              required='true'
+              // eslint-disable-next-line
+              required={true}
               validations={{
                 zipcode: this.zipcodeValidation
               }}
