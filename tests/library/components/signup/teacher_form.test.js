@@ -80,14 +80,14 @@ describe('When I try to render signup user type selector', () => {
           <dl>
             <dt>Username</dt>
             <dd>
-              <div class="text-input login">
+              <div class="text-input login valid">
                 <input type="text" placeholder="" value="">
                 <div class="input-error"></div>
               </div>
             </dd>
             <dt>Email</dt>
             <dd>
-              <div class="text-input email">
+              <div class="text-input email valid">
                 <input type="text" placeholder="" value="">
                 <div class="input-error"></div>
               </div>
@@ -95,8 +95,7 @@ describe('When I try to render signup user type selector', () => {
             <dd>
               <div class="checkbox-input email_subscribed">
                 <label class="checkbox-label">
-                  <input type="checkbox" checked="">
-                  Send me updates about educational technology resources.
+                  <input type="checkbox" checked="">Send me updates about educational technology resources.
                 </label>
               </div>
             </dd>

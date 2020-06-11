@@ -121,7 +121,7 @@ class TextInput extends React.Component {
           disabled={disabled}
         />
         <div className='input-error'>
-          {this.props.errorMessage}
+          {this.state.inputVal.length === 0 ? undefined : this.props.errorMessage}
         </div>
       </div>
     )
