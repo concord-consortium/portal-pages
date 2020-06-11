@@ -1,8 +1,7 @@
 import React from 'react'
 
 export default class UserTypeSelector extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       userType: null
@@ -10,14 +9,14 @@ export default class UserTypeSelector extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick(event) {
+  handleClick (event) {
     const value = event.currentTarget.value
     console.log('INFO changing type', value)
     ga('send', 'event', 'User Registration', 'Form', 'Step 1 Completed - ' + value.charAt(0).toUpperCase() + value.slice(1))
     this.props.onUserTypeSelect(value)
   }
 
-  render() {
+  render () {
     console.log('INFO UserTypeSelector rendering')
 
     return (

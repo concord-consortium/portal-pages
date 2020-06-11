@@ -1,21 +1,20 @@
 import React from 'react'
-import SelectAsync from "react-select/async"
-import { withFormsy } from 'formsy-react';
+import SelectAsync from 'react-select/async'
+import { withFormsy } from 'formsy-react'
 
 class SelectInput extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.changeValue = this.changeValue.bind(this)
   }
 
-  changeValue(option) {
+  changeValue (option) {
     this.setValue(option && option.value)
     this.props.onChange(option)
   }
 
-  render() {
-    const {placeholder, loadOptions, disabled} = this.props
+  render () {
+    const { placeholder, loadOptions, disabled } = this.props
     let className = 'select-input'
     if (this.value) {
       className += ' valid'

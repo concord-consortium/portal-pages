@@ -1,5 +1,5 @@
 import React from 'react'
-import createFactory from "../../helpers/create-factory"
+import createFactory from '../../helpers/create-factory'
 
 import MBFetchDataHOC from './fetch-data-hoc'
 import MBMaterialsCollection from './materials-collection'

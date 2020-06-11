@@ -1,8 +1,7 @@
 import React from 'react'
 
 export default class SideInfo extends React.Component {
-
-  render() {
+  render () {
     return (
       <div>
         <div className='side-info-header'>
@@ -20,4 +19,3 @@ export default class SideInfo extends React.Component {
     )
   }
 }
-

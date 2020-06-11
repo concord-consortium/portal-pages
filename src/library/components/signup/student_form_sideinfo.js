@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default class StudentFormSideInfo extends React.Component {
-  render() {
+  render () {
     return (
       <div>
         <p>

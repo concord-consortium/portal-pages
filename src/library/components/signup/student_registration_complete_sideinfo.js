@@ -1,8 +1,7 @@
 import React from 'react'
 
 export default class StudentRegistrationCompleteSideInfo extends React.Component {
-
-  componentDidMount() {
+  componentDidMount () {
     const authToken = jQuery('meta[name="csrf-token"]').attr('content')
     jQuery('form[method="post"]').each(() => {
       const $form = jQuery(this)
@@ -13,7 +12,7 @@ export default class StudentRegistrationCompleteSideInfo extends React.Component
     })
   }
 
-  render() {
+  render () {
     return (
       <div>
         <div className='side-info-header'>

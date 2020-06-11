@@ -1,21 +1,20 @@
 import React from 'react'
-import { withFormsy } from 'formsy-react';
+import { withFormsy } from 'formsy-react'
 
 class CheckboxInput extends React.Component {
-
-  componentDidMount() {
+  componentDidMount () {
     this.props.setValue(this.props.defaultChecked)
   }
 
-  changeValue(event) {
+  changeValue (event) {
     this.props.setValue(event.target.checked)
   }
 
-  render() {
+  render () {
     return (
       <div className={`checkbox-input ${this.props.name}`}>
-        <label className="checkbox-label">
-          <input type="checkbox" onChange={this.changeValue} defaultChecked={this.props.defaultChecked} />
+        <label className='checkbox-label'>
+          <input type='checkbox' onChange={this.changeValue} defaultChecked={this.props.defaultChecked} />
           {this.props.label}
         </label>
       </div>

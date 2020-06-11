@@ -1,14 +1,13 @@
 import React from 'react'
 import Select from 'react-select'
-import { withFormsy } from 'formsy-react';
+import { withFormsy } from 'formsy-react'
 
 var TIMEOUT = 500
 
 const getSchools = (country, zipcode) => jQuery.get(Portal.API_V1.SCHOOLS + '?country_id=' + country + '&zipcode=' + zipcode)
 
 class SchoolInput extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       isLoading: false,
@@ -17,28 +16,28 @@ class SchoolInput extends React.Component {
     this.changeValue = this.changeValue.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.updateOptions()
   }
 
-  componentDidUpdate(prevProps) {
-    const {country, zipcode} = this.props
+  componentDidUpdate (prevProps) {
+    const { country, zipcode } = this.props
     if (prevProps.country !== country || prevProps.zipcode !== zipcode) {
       this.setValue('')
       this.updateOptions()
     }
   }
 
-  newSchoolLink() {
+  newSchoolLink () {
     return <div className='new-school-link' onClick={this.props.onAddNewSchool}>Add a new school</div>
   }
 
-  changeValue(option) {
+  changeValue (option) {
     this.setValue(option && option.value)
   }
 
-  updateOptions() {
-    const {country, zipcode} = this.props
+  updateOptions () {
+    const { country, zipcode } = this.props
     if ((country == null) || (zipcode == null)) {
       return
     }
@@ -63,10 +62,10 @@ class SchoolInput extends React.Component {
     }, TIMEOUT)
   }
 
-  render() {
+  render () {
     let className = 'select-input'
-    const {placeholder, disabled} = this.props
-    const {options, isLoading} = this.state
+    const { placeholder, disabled } = this.props
+    const { options, isLoading } = this.state
 
     if (this.value) {
       className += ' valid'

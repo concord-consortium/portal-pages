@@ -1,9 +1,10 @@
 import React from 'react'
-import { withFormsy } from 'formsy-react';
+import { withFormsy } from 'formsy-react'
+
+const TIMEOUT = 350
 
 class TextInput extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -14,11 +15,11 @@ class TextInput extends React.Component {
     this.onChange = this.onChange.bind(this)
   }
 
-  isValidAsync() {
+  isValidAsync () {
     return this.isValid && this.state._asyncValidationPassed
   }
 
-  validateAsync(value) {
+  validateAsync (value) {
     if (!this.props.asyncValidation) {
       return
     }
@@ -44,7 +45,7 @@ class TextInput extends React.Component {
     }, this.props.asyncValidationTimeout)
   }
 
-  onChange(event) {
+  onChange (event) {
     let newVal = event.currentTarget.value
     const delay = this.isValidValue(newVal) ? 0 : TIMEOUT
 
@@ -57,17 +58,17 @@ class TextInput extends React.Component {
     }
     this.timeoutID = window.setTimeout(() => {
       if (this.props.processValue) {
-        newValue = this.props.processValue(newVal)
+        newVal = this.props.processValue(newVal)
       }
-      this.setValue(newValue)
+      this.setValue(newVal)
     }, delay)
     if (this.isValidValue(newVal)) {
       this.validateAsync(newVal)
     }
   }
 
-  render() {
-    const {type, placeholder, disabled} = this.props
+  render () {
+    const { type, placeholder, disabled } = this.props
 
     let className = 'text-input ' + this.props.name
     if (this.showRequired && !this.isPristine) {
@@ -92,7 +93,7 @@ class TextInput extends React.Component {
           placeholder={placeholder}
           disabled={disabled}
         />
-        <div className="input-error">
+        <div className='input-error'>
           {this.errorMessage}
         </div>
       </div>

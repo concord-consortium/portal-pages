@@ -1,16 +1,15 @@
 import React from 'react'
 import TextInput from './text_input'
 import PrivacyPolicy from './privacy_policy'
-import Formsy from "formsy-react"
+import Formsy from 'formsy-react'
 
 var INVALID_CLASS_WORD = 'You must enter a valid class word'
 
-const classWordValidator = (value) =>jQuery.get(Portal.API_V1.CLASSWORD + '?class_word=' + value)
+const classWordValidator = (value) => jQuery.get(Portal.API_V1.CLASSWORD + '?class_word=' + value)
 const registerStudent = (params) => jQuery.post(Portal.API_V1.STUDENTS, params)
 
 export default class StudentForm extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       canSubmit: false
@@ -20,20 +19,20 @@ export default class StudentForm extends React.Component {
     this.submit = this.submit.bind(this)
   }
 
-  onBasicFormValid() {
+  onBasicFormValid () {
     this.setState({
       canSubmit: this.refs.classWord.isValidAsync()
     })
   }
 
-  onBasicFormInvalid() {
+  onBasicFormInvalid () {
     this.setState({
       canSubmit: false
     })
   }
 
-  submit(data, resetForm, invalidateForm) {
-    const {basicData, onRegistration} = this.props
+  submit (data, resetForm, invalidateForm) {
+    const { basicData, onRegistration } = this.props
     const params = jQuery.extend({}, basicData, data)
 
     this.setState({
@@ -45,7 +44,7 @@ export default class StudentForm extends React.Component {
       .fail(err => invalidateForm(JSON.parse(err.responseText).message))
   }
 
-  render() {
+  render () {
     return (
       <Formsy
         ref='form'
@@ -60,7 +59,7 @@ export default class StudentForm extends React.Component {
               ref='classWord'
               name='class_word'
               placeholder='Class Word (not case sensitive)'
-              required={true}
+              required
               asyncValidation={classWordValidator}
               asyncValidationError={INVALID_CLASS_WORD}
             />

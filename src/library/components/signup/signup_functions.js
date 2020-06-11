@@ -31,7 +31,7 @@ export const renderSignupForm = (properties, selectorOrElement) => {
 const openModal = (type, properties = {}, closeFunc) => {
   const modalContainerId = modalClasses[type]
   const modalContainerSelector = '#' + modalContainerId
-  const modalContainer = jQuery(modalContainerSelector)
+  let modalContainer = jQuery(modalContainerSelector)
   if (modalContainer.length === 0) {
     modalContainer = jQuery("<div id='" + modalContainerId + "'>").appendTo('body')
   }

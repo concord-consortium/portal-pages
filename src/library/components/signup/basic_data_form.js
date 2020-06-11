@@ -1,5 +1,5 @@
 import React from 'react'
-import Formsy from "formsy-react"
+import Formsy from 'formsy-react'
 import TextInput from './text_input'
 
 let INVALID_FIRST_NAME
@@ -17,7 +17,7 @@ const enableAuthProviders = true
 const nameValidator = (value) => jQuery.get(Portal.API_V1.NAME_VALID + '?name=' + value)
 
 export default class BasicDataForm extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       canSubmit: false,
@@ -30,31 +30,31 @@ export default class BasicDataForm extends React.Component {
     this.submit = this.submit.bind(this)
   }
 
-  onChange(model) {
+  onChange (model) {
     this.setState({
       password: model.password
     })
   }
 
-  onBasicFormValid() {
+  onBasicFormValid () {
     const anonymous = this.props.anonymous
     this.setState({
       canSubmit: !anonymous || (this.refs.firstName.isValidAsync() && this.refs.lastName.isValidAsync())
     })
   }
 
-  onBasicFormInvalid() {
+  onBasicFormInvalid () {
     this.setState({
       canSubmit: false
     })
   }
 
-  submit(model) {
+  submit (model) {
     ga('send', 'event', 'User Registration', 'Form', 'Step 2 Completed')
     this.props.onSubmit(model)
   }
 
-  render() {
+  render () {
     const anonymous = this.props.anonymous
 
     const providerComponents = []

@@ -1,12 +1,11 @@
 import React from 'react'
 import TextInput from './text_input'
-import Formsy from "formsy-react"
+import Formsy from 'formsy-react'
 
 let enableAuthProviders = true
 
 export default class LoginModal extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.submit = this.submit.bind(this)
@@ -14,7 +13,7 @@ export default class LoginModal extends React.Component {
     this.handleRegister = this.handleRegister.bind(this)
   }
 
-  submit(data) {
+  submit (data) {
     if (this.props.afterSigninPath) {
       data.after_sign_in_path = this.props.afterSigninPath
     }
@@ -44,17 +43,17 @@ export default class LoginModal extends React.Component {
     })
   }
 
-  handleForgotPassword(e) {
+  handleForgotPassword (e) {
     e.preventDefault()
     PortalPages.renderForgotPasswordModal({ oauthProviders: this.props.oauthProviders })
   }
 
-  handleRegister(e) {
+  handleRegister (e) {
     e.preventDefault()
     PortalPages.renderSignupModal({ oauthProviders: this.props.oauthProviders })
   }
 
-  render() {
+  render () {
     const providerComponents = []
 
     if (enableAuthProviders && this.props.oauthProviders) {

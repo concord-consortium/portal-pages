@@ -1,17 +1,16 @@
 import React from 'react'
 import TextInput from './text_input'
-import Formsy from "formsy-react"
+import Formsy from 'formsy-react'
 
 export default class ForgotPasswordModal extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.submit = this.submit.bind(this)
     this.handleShowSignup = this.handleShowSignup.bind(this)
   }
 
-  submit(loginData) {
+  submit (loginData) {
     const login = loginData.user.login
     const data = { login_or_email: login }
     jQuery.post('/api/v1/passwords/reset_password', data).done(function (response) {
@@ -23,7 +22,7 @@ export default class ForgotPasswordModal extends React.Component {
     }).fail(function (err) {
       if (err && err.responseText) {
         const response = jQuery.parseJSON(err.responseText)
-        const message = response.message
+        let message = response.message
         if (response.error) {
           message = response.error
         }
@@ -37,16 +36,15 @@ export default class ForgotPasswordModal extends React.Component {
     })
   }
 
-  handleShowSignup(e) {
+  handleShowSignup (e) {
     e.preventDefault()
     PortalPages.renderSignupModal({ oauthProviders: this.props.oauthProviders })
   }
 
-  render() {
-
+  render () {
     return (
-      <div className="forgot-password-default-modal-content">
-        <Formsy className="forgot-password-form" onValidSubmit={this.submit}>
+      <div className='forgot-password-default-modal-content'>
+        <Formsy className='forgot-password-form' onValidSubmit={this.submit}>
 
           <h2><strong>Forgot</strong> your login information?</h2>
 
@@ -59,7 +57,7 @@ export default class ForgotPasswordModal extends React.Component {
           <dl>
             <dt>Username or Email Address</dt>
             <dd>
-              <TextInput name='user[login]' placeholder='' required={true} />
+              <TextInput name='user[login]' placeholder='' required />
             </dd>
           </dl>
           <div className='submit-button-container'>

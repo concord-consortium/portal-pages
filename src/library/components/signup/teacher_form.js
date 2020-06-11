@@ -24,8 +24,7 @@ const registerTeacher = (params) => jQuery.post(Portal.API_V1.TEACHERS, params)
 const isUS = (name) => name === 'United States' || name === 'US' || name === 'USA'
 
 export default class TeacherForm extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       canSubmit: false,
@@ -49,7 +48,7 @@ export default class TeacherForm extends React.Component {
     this.zipOrPostal = this.zipOrPostal.bind(this)
   }
 
-  onBasicFormValid() {
+  onBasicFormValid () {
     let valid = true
     if (this.refs.login && !this.refs.login.isValidAsync()) {
       valid = false
@@ -62,14 +61,14 @@ export default class TeacherForm extends React.Component {
     })
   }
 
-  onBasicFormInvalid() {
+  onBasicFormInvalid () {
     this.setState({
       canSubmit: false
     })
   }
 
-  submit(data, resetForm, invalidateForm) {
-    const {basicData, onRegistration} = this.props
+  submit (data, resetForm, invalidateForm) {
+    const { basicData, onRegistration } = this.props
     const params = jQuery.extend({}, basicData, data)
     this.setState({
       canSubmit: false
@@ -80,15 +79,15 @@ export default class TeacherForm extends React.Component {
         console.log('INFO Registered teacher.', data)
         return onRegistration(data)
       })
-      .fail(err =>{
+      .fail(err => {
         return invalidateForm(JSON.parse(err.responseText).message)
       })
   }
 
-  onChange(currentValues) {
+  onChange (currentValues) {
     const countryId = currentValues.country_id
     const zipcode = currentValues.zipcode
-    const {currentZipcode, registerNewSchool} = this.state
+    const { currentZipcode, registerNewSchool } = this.state
     const zipcodeValid = this.refs.zipcode && this.refs.zipcode.isValidValue(zipcode)
 
     this.setState({
@@ -98,7 +97,7 @@ export default class TeacherForm extends React.Component {
     })
   }
 
-  getCountries(input, callback) {
+  getCountries (input, callback) {
     getCountries().done(data => {
       callback(null, {
         options: data.map(function (country) {
@@ -112,38 +111,38 @@ export default class TeacherForm extends React.Component {
     })
   }
 
-  addNewSchool() {
+  addNewSchool () {
     this.setState({
       registerNewSchool: true
     })
   }
 
-  goBackToSchoolList() {
+  goBackToSchoolList () {
     this.setState({
       registerNewSchool: false
     })
   }
 
-  showZipcodeHelp() {
+  showZipcodeHelp () {
     this.setState({
       showZipcodeHelp: true
     })
   }
 
-  checkIfUS(option) {
+  checkIfUS (option) {
     this.setState({
       isUSSelected: isUS(option.label)
     })
   }
 
-  zipcodeValidation(values, value) {
+  zipcodeValidation (values, value) {
     if (!this.state.isUSSelected) {
       return true
     }
     return value && value.match(/\d{5}/)
   }
 
-  zipOrPostal() {
+  zipOrPostal () {
     if (this.state.isUSSelected) {
       return 'ZIP code'
     } else {
@@ -151,84 +150,87 @@ export default class TeacherForm extends React.Component {
     }
   }
 
-  renderAnonymous() {
-    div({},
-      dl({},
-        dt({}, 'Username'),
-        dd({},
-          TextInput({
-            ref: 'login',
-            name: 'login',
-            placeholder: '',
-            required: true,
-            validations: {
-              minLength: 3
-            },
-            validationErrors: {
-              minLength: LOGIN_TOO_SHORT
-            },
-            asyncValidation: loginValidValidator,
-            asyncValidationError: LOGIN_INVALID
-          })
-        ),
-        dt({}, 'Email'),
-        dd({},
-          TextInput({
-            ref: 'email',
-            name: 'email',
-            placeholder: '',
-            required: true,
-            validations: {
-              isEmail: true
-            },
-            validationErrors: {
-              isEmail: EMAIL_REGEXP
-            },
-            asyncValidation: emailAvailableValidator,
-            asyncValidationError: EMAIL_TAKEN
-          })
-        ),
-        showEnewsSubscription ? dd({},
-          CheckboxInput({
-            ref: 'email_subscribed',
-            name: 'email_subscribed',
-            required: false,
-            defaultChecked: true,
-            label: 'Send me updates about educational technology resources.'
-          })
-        ) : void 0
-      )
+  renderAnonymous (showEnewsSubscription) {
+    return (
+      <div>
+        <dl>
+          <dt>Username</dt>
+          <dd>
+            <TextInput
+              ref='login'
+              name='login'
+              placeholder=''
+              required='true'
+              validations={{
+                minLength: 3
+              }}
+              validationErrors={{
+                minLength: LOGIN_TOO_SHORT
+              }}
+              asyncValidation={loginValidValidator}
+              asyncValidationError={LOGIN_INVALID}
+            />
+          </dd>
+          <dt>Email</dt>
+          <dd>
+            <TextInput
+              ref='email'
+              name='email'
+              placeholder=''
+              required='true'
+              validations={{
+                isEmail: true
+              }}
+              validationErrors={{
+                isEmail: EMAIL_REGEXP
+              }}
+              asyncValidation={emailAvailableValidator}
+              asyncValidationError={EMAIL_TAKEN}
+            />
+          </dd>
+          {showEnewsSubscription
+            ? <dd>
+              <CheckboxInput
+                ref='email_subscribed'
+                name='email_subscribed'
+                required={false}
+                defaultChecked='true'
+                label='Send me updates about educational technology resources.'
+              />
+            </dd> : undefined}
+        </dl>
+      </div>
     )
   }
 
-  renderZipcode() {
-    dl({},
-      dt({}, 'ZIP Code'),
-      dd({},
-        div({},
-          TextInput({
-            ref: 'zipcode',
-            name: 'zipcode',
-            placeholder: 'School / Institution ' + (this.zipOrPostal()),
-            required: true,
-            validations: {
-              zipcode: this.zipcodeValidation
-            },
-            validationErrors: {
-              zipcode: invalidZipcode(this.zipOrPostal())
-            },
-            processValue: function (val) {
-              return val.replace(/\s/g, '')
-            }
-          })
-        )
-      )
+  renderZipcode () {
+    return (
+      <dl>
+        <dt>ZIP Code</dt>
+        <dd>
+          <div>
+            <TextInput
+              ref='zipcode'
+              name='zipcode'
+              placeholder={'School / Institution ' + (this.zipOrPostal())}
+              required='true'
+              validations={{
+                zipcode: this.zipcodeValidation
+              }}
+              validationErrors={{
+                zipcode: invalidZipcode(this.zipOrPostal())
+              }}
+              processValue={(val) => val.replace(/\s/g, '')}
+            />
+          </div>
+        </dd>
+      </dl>
     )
   }
 
-  render() {
-    const {anonymous} = this.props
-    const {canSubmit, currentCountry, currentZipcode, registerNewSchool} = this.state
+  render () {
+    const { anonymous } = this.props
+    const { canSubmit, currentCountry, currentZipcode, registerNewSchool } = this.state
     const showZipcode = currentCountry != null
     const showSchool = (currentCountry != null) && (currentZipcode != null)
     const showEnewsSubscription = !!Portal.enewsSubscriptionEnabled
@@ -241,7 +243,7 @@ export default class TeacherForm extends React.Component {
         onInvalid={this.onBasicFormInvalid}
         onChange={this.onChange}
       >
-        {anonymous ? this.renderAnonymous() : undefined}
+        {anonymous ? this.renderAnonymous(showEnewsSubscription) : undefined}
         <dl>
           <dt>Country</dt>
           <dd>
@@ -249,12 +251,12 @@ export default class TeacherForm extends React.Component {
               name='country_id'
               placeholder=''
               loadOptions={this.getCountries}
-              required={true}
+              required
               onChange={this.checkIfUS}
             />
           </dd>
         </dl>
-        {showZipcode ? renderZipcode() : undefined}
+        {showZipcode ? this.renderZipcode() : undefined}
         <dl>
           {showSchool && !registerNewSchool
             ? <dt>School</dt>
@@ -267,7 +269,7 @@ export default class TeacherForm extends React.Component {
                 country={currentCountry}
                 zipcode={currentZipcode}
                 onAddNewSchool={this.addNewSchool}
-                required={true}
+                required
               />
             </dd> : undefined}
           <dd>
@@ -276,15 +278,15 @@ export default class TeacherForm extends React.Component {
               : undefined}
             {showSchool && registerNewSchool
               ? <div>
-                  <TextInput
-                    name='school_name'
-                    placeholder='School / Institution Name'
-                    required={true}
-                  />
-                  <div className='help-text'>
-                    {newSchoolWarning(this.zipOrPostal())}
-                  </div>
+                <TextInput
+                  name='school_name'
+                  placeholder='School / Institution Name'
+                  required
+                />
+                <div className='help-text'>
+                  {newSchoolWarning(this.zipOrPostal())}
                 </div>
+              </div>
               : undefined}
             {showSchool && registerNewSchool
               ? <a onClick={this.goBackToSchoolList}>{GO_BACK_TO_LIST}</a>
@@ -293,14 +295,14 @@ export default class TeacherForm extends React.Component {
         </dl>
         {!anonymous && showEnewsSubscription
           ? <div className='signup-form-enews-optin-standalone'>
-              <CheckboxInput
-                ref='email_subscribed'
-                name='email_subscribed'
-                required={false}
-                defaultChecked={true}
-                label='Send me updates about educational technology resources.'
-              />
-            </div>
+            <CheckboxInput
+              ref='email_subscribed'
+              name='email_subscribed'
+              required={false}
+              defaultChecked
+              label='Send me updates about educational technology resources.'
+            />
+          </div>
           : undefined}
         <PrivacyPolicy />
         <div className='submit-button-container'>

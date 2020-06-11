@@ -1,9 +1,8 @@
 import React from 'react'
-import { withFormsy } from 'formsy-react';
+import { withFormsy } from 'formsy-react'
 
 class RadioInput extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.changeValue = this.changeValue.bind(this)
   }
@@ -16,7 +15,7 @@ class RadioInput extends React.Component {
     ))
   }
 
-  changeValue(e) {
+  changeValue (e) {
     console.log('INFO RadioInput changeValue', e)
     if (this.props.handleChange) {
       this.props.handleChange(e)
@@ -24,7 +23,7 @@ class RadioInput extends React.Component {
     this.setValue(e.currentTarget.value)
   }
 
-  render() {
+  render () {
     return (
       <div className='radio-input stacked'>
         <div className='title inline'>

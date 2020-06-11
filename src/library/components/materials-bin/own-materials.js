@@ -2,7 +2,7 @@ import React from 'react'
 
 import MBFetchDataHOC from './fetch-data-hoc'
 import MBMaterialsCollection from './materials-collection'
-import createFactory from "../../helpers/create-factory"
+import createFactory from '../../helpers/create-factory'
 
 class _MBOwnMaterials extends React.Component {
   getVisibilityClass () {

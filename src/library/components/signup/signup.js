@@ -10,8 +10,7 @@ import UserTypeSelector from './user_type_selector'
 import ParseQueryString from '../../helpers/parse-query-string'
 
 export default class SignUp extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       userType: null,
@@ -28,7 +27,7 @@ export default class SignUp extends React.Component {
     this.onTeacherRegistration = this.onTeacherRegistration.bind(this)
   }
 
-  onUserTypeSelect(data) {
+  onUserTypeSelect (data) {
     let newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname
     let queryString = '?'
 
@@ -50,27 +49,27 @@ export default class SignUp extends React.Component {
     })
   }
 
-  onBasicDataSubmit(data) {
+  onBasicDataSubmit (data) {
     data.sign_up_path = window.location.pathname
     this.setState({
       basicData: data
     })
   }
 
-  onStudentRegistration(data) {
+  onStudentRegistration (data) {
     this.setState({
       studentData: data
     })
   }
 
-  onTeacherRegistration(data) {
+  onTeacherRegistration (data) {
     this.setState({
       teacherData: data
     })
   }
 
-  getStepNumber() {
-    const {basicData, studentData, teacherData} = this.state
+  getStepNumber () {
+    const { basicData, studentData, teacherData } = this.state
 
     // console.log("INFO getStepNumber", this.props, basicData);
 
@@ -83,11 +82,11 @@ export default class SignUp extends React.Component {
     return 3
   }
 
-  render() {
+  render () {
     console.log('INFO rendering signup', this.props)
 
-    const {signupText, oauthProviders, anonymous, omniauthOrigin} = this.props
-    const {userType, basicData, studentData, teacherData} = this.state
+    const { signupText, oauthProviders, anonymous, omniauthOrigin } = this.props
+    const { userType, basicData, studentData, teacherData } = this.state
 
     let form
 
@@ -114,15 +113,15 @@ export default class SignUp extends React.Component {
     } else if (omniauthOrigin != null) {
       if (omniauthOrigin.search('teacher') > -1) {
         form = <TeacherForm
-                anonymous={this.props.anonymous}
-                basicData={basicData}
-                onRegistration={this.onTeacherRegistration}
-              />
+          anonymous={this.props.anonymous}
+          basicData={basicData}
+          onRegistration={this.onTeacherRegistration}
+        />
       } else if (omniauthOrigin.search('student') > -1) {
         form = <StudentForm
-                 basicData={basicData}
-                 onRegistration={this.onStudentRegistration}
-               />
+          basicData={basicData}
+          onRegistration={this.onStudentRegistration}
+        />
       }
     } else if (!userType) {
       // console.log("INFO signup form creating type selector step");
@@ -130,31 +129,31 @@ export default class SignUp extends React.Component {
       // studentReg: this.onStudentRegistration,
       // teacherReg: this.onTeacherRegistration,
       form = <UserTypeSelector
-               anonymous={anonymous}
-               onUserTypeSelect={this.onUserTypeSelect}
-             />
+        anonymous={anonymous}
+        onUserTypeSelect={this.onUserTypeSelect}
+      />
     } else if (basicData) {
       if (userType === 'teacher') {
         form = <TeacherForm
-                 anonymous={this.props.anonymous}
-                 basicData={basicData}
-                 onRegistration={this.onTeacherRegistration}
-               />
+          anonymous={this.props.anonymous}
+          basicData={basicData}
+          onRegistration={this.onTeacherRegistration}
+        />
       } else {
         form = <StudentForm
-                 basicData={basicData}
-                 onRegistration={this.onStudentRegistration}
-               />
+          basicData={basicData}
+          onRegistration={this.onStudentRegistration}
+        />
       }
     } else {
       // console.log("INFO signup form creating basic data selector step");
       form = <BasicDataForm
-               anonymous={anonymous}
-               userType={userType}
-               signupText={signupText}
-               oauthProviders={oauthProviders}
-               onSubmit={this.onBasicDataSubmit}
-             />
+        anonymous={anonymous}
+        userType={userType}
+        signupText={signupText}
+        oauthProviders={oauthProviders}
+        onSubmit={this.onBasicDataSubmit}
+      />
     }
 
     let formTitleIntro = 'Register'
