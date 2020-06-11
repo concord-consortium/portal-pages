@@ -14,6 +14,7 @@ class _MBCollections extends React.Component {
 
   render () {
     const className = `mb-cell ${this.getVisibilityClass()}`
+    const { collections } = this.props
     return (
       <div className={className}>
         {this.props.collectionsData != null
@@ -24,7 +25,7 @@ class _MBCollections extends React.Component {
               materials={collection.materials}
               archive={this.archive}
               // Merge extra properties that can be provided in collections array.
-              teacherGuideUrl={this.props.collections[idx].teacherGuideUrl}
+              teacherGuideUrl={collections && collections[idx] ? collections[idx].teacherGuideUrl : undefined}
               assignToSpecificClass={this.props.assignToSpecificClass}
             />)
           : <div>Loading...</div>}
