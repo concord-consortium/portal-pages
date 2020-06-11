@@ -1,18 +1,11 @@
 /* globals describe it expect */
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Formsy from 'formsy-react'
-
-window.React = {
-  DOM: ReactDOM
-}
-window.Formsy = Formsy
 
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import CheckboxInput from 'components/signup/checkbox_input'
 import { pack } from "../../helpers/pack"
-import createFactory from "../../../../src/library/helpers/create-factory"
 
 Enzyme.configure({adapter: new Adapter()})
 

@@ -1,41 +1,37 @@
 import React from 'react'
-import createFactory from "./../../helpers/create-factory"
+import SignupModal from './signup_modal'
+import Signup from './signup'
+import LoginModal from './login_modal'
+import ForgotPasswordModal from './forgot_password_modal'
 
-var SignupModal = require('./signup_modal')
-var Signup = require('./signup')
-var LoginModal = require('./login_modal')
-var ForgotPasswordModal = require('./forgot_password_modal')
-var Modal = require('../../helpers/modal')
+const Modal = require('../../helpers/modal')
 
 //
 // Map modal to CSS classes
 //
-var modalClasses = {}
+const modalClasses = {}
 modalClasses[LoginModal] = 'login-default-modal'
 modalClasses[SignupModal] = 'signup-default-modal'
 modalClasses[ForgotPasswordModal] = 'forgot-password-modal'
 
 //
-// Render signup form with the specfiied properties to the specified DOM id.
+// Render signup form with the specified properties to the specified DOM id.
 //
 // Params
 //  properties          - The properties
 //  selectorOrElement   - DOM element selector
 //
-var renderSignupForm = function (properties, selectorOrElement) {
+export const renderSignupForm = (properties, selectorOrElement) => {
   if (properties == null) {
     properties = {}
   }
-  var comp = createFactory(Signup())
-
-  ReactDOM.render(comp(properties), jQuery(selectorOrElement)[0])
+  ReactDOM.render(<Signup {...properties} />, jQuery(selectorOrElement)[0])
 }
 
-var openModal = function (type, properties = {}, closeFunc) {
-  var modalContainer, modalContainerId, modalContainerSelector
-  modalContainerId = modalClasses[type]
-  modalContainerSelector = '#' + modalContainerId
-  modalContainer = jQuery(modalContainerSelector)
+const openModal = (type, properties = {}, closeFunc) => {
+  const modalContainerId = modalClasses[type]
+  const modalContainerSelector = '#' + modalContainerId
+  const modalContainer = jQuery(modalContainerSelector)
   if (modalContainer.length === 0) {
     modalContainer = jQuery("<div id='" + modalContainerId + "'>").appendTo('body')
   }
@@ -45,7 +41,7 @@ var openModal = function (type, properties = {}, closeFunc) {
   }
 
   ReactDOM.unmountComponentAtNode(modalContainer[0])
-  var comp = createFactory(type())
+  var comp = React.createElement(type)
   console.log('INFO creating modal with props', properties)
   ReactDOM.render(comp(properties), modalContainer[0])
 
@@ -56,25 +52,25 @@ var openModal = function (type, properties = {}, closeFunc) {
     properties.closeable)
 }
 
-var openLoginModal = function (properties) {
+export const openLoginModal = (properties) => {
   openModal(LoginModal, properties)
 }
 
-var openForgotPasswordModal = function (properties) {
+export const openForgotPasswordModal = (properties) => {
   openModal(ForgotPasswordModal, properties)
 }
 
-var openSignupModal = function (properties) {
+export const openSignupModal = (properties) => {
   console.log('INFO modal props', properties)
-  var closeFunc = null
+  let closeFunc = null
   if (properties.omniauth) {
     closeFunc = function () {
       console.log('INFO closeFunc closing registration modal.')
-      var redireectPath = null
+      var redirectPath = null
       if (properties.omniauth && properties.omniauth_origin) {
-        redireectPath = properties.omniauth_origin
+        redirectPath = properties.omniauth_origin
       }
-      logout(Modal.hideModal, Modal.hideModal, redireectPath)
+      logout(Modal.hideModal, Modal.hideModal, redirectPath)
     }
   }
   openModal(SignupModal, properties, closeFunc)
@@ -83,7 +79,7 @@ var openSignupModal = function (properties) {
 //
 // Log out the current user
 //
-var logout = function (successFunc, failFunc, redirectAfter) {
+const logout = (successFunc, failFunc, redirectAfter) => {
   console.log('INFO logout() logging out...')
 
   jQuery.get('/api/v1/users/sign_out').done(function (data) {
@@ -112,8 +108,3 @@ var logout = function (successFunc, failFunc, redirectAfter) {
     }
   })
 }
-
-module.exports.openSignupModal = openSignupModal
-module.exports.openLoginModal = openLoginModal
-module.exports.openForgotPasswordModal = openForgotPasswordModal
-module.exports.renderSignupForm = renderSignupForm

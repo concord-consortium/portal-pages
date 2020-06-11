@@ -1,116 +1,85 @@
 import React from 'react'
-import createFactory from "./../../helpers/create-factory"
+import TextInput from './text_input'
+import Formsy from "formsy-react"
 
-var button = React.DOM.button
-var dd = React.DOM.dd
-var dl = React.DOM.dl
-var dt = React.DOM.dt
-var footer = React.DOM.footer
-var strong = React.DOM.strong
-var a = React.DOM.a
-var div = React.DOM.div
-var h2 = React.DOM.h2
-var p = React.DOM.p
+export default class ForgotPasswordModal extends React.Component {
 
-var TextInputClass = require('./text_input')
+  constructor(props) {
+    super(props)
 
-var ForgotPasswordModal = function () {
-  // console.log("INFO Creating LoginModal class");
+    this.submit = this.submit.bind(this)
+    this.handleShowSignup = this.handleShowSignup.bind(this)
+  }
 
-  var TextInput = createFactory(TextInputClass())
-  var FormsyForm = createFactory(Formsy.Form)
-
-  return React.createClass({
-
-    displayName: 'ForgotPasswordModal',
-
-    getDefaultProps: function () {
-      return {
-        siteName: (Portal && Portal.siteName) || 'Portal'
-      }
-    },
-
-    submit: function (loginData) {
-      var login = loginData.user.login
-      var data = { login_or_email: login }
-      jQuery.post('/api/v1/passwords/reset_password', data).done(function (response) {
-        console.log(response)
-        jQuery('.forgot-password-form p, .forgot-password-form dl, .forgot-password-form div').fadeOut(300)
-        jQuery('.forgot-password-form footer').fadeOut(300, function () {
-          jQuery('.forgot-password-form').append('<p>' + response.message + '</p>')
-        })
-      }).fail(function (err) {
-        if (err && err.responseText) {
-          var response = jQuery.parseJSON(err.responseText)
-          var message = response.message
-          if (response.error) {
-            message = response.error
-          }
-
-          //
-          // TODO use some kind of styled modal dialog here.....
-          //
-          jQuery('.input-error').text('Error: ' + message)
-          jQuery('.input-error').css('color', '#ea6d2f').fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200)
-        }
+  submit(loginData) {
+    const login = loginData.user.login
+    const data = { login_or_email: login }
+    jQuery.post('/api/v1/passwords/reset_password', data).done(function (response) {
+      console.log(response)
+      jQuery('.forgot-password-form p, .forgot-password-form dl, .forgot-password-form div').fadeOut(300)
+      jQuery('.forgot-password-form footer').fadeOut(300, function () {
+        jQuery('.forgot-password-form').append('<p>' + response.message + '</p>')
       })
-    },
+    }).fail(function (err) {
+      if (err && err.responseText) {
+        const response = jQuery.parseJSON(err.responseText)
+        const message = response.message
+        if (response.error) {
+          message = response.error
+        }
 
-    render: function () {
-      // console.log("INFO rendering LoginModal with props", this.props);
+        //
+        // TODO use some kind of styled modal dialog here.....
+        //
+        jQuery('.input-error').text('Error: ' + message)
+        jQuery('.input-error').css('color', '#ea6d2f').fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200)
+      }
+    })
+  }
 
-      var _this = this
+  handleShowSignup(e) {
+    e.preventDefault()
+    PortalPages.renderSignupModal({ oauthProviders: this.props.oauthProviders })
+  }
 
-      return div({ className: 'forgot-password-default-modal-content' },
-        FormsyForm({
-          className: 'forgot-password-form',
-          onValidSubmit: this.submit },
+  render() {
 
-        h2({},
-          strong({}, 'Forgot'),
-          ' your login information?'),
-        p({},
-          strong({}, 'Students: '),
-          'Ask your teacher for help.'
-        ),
-        p({},
-          strong({}, 'Teachers: '),
-          'Enter your username or email address below.'
-        ),
-        dl({},
-          dt({}, 'Username or Email Address'),
-          dd({},
-            TextInput({
-              name: 'user[login]',
-              placeholder: '',
-              required: true })
-          )
-        ),
-        div({ className: 'submit-button-container' },
-          button({
-            className: 'submit-btn',
-            type: 'submit'
-          }, 'Submit')
-        ),
+    return (
+      <div className="forgot-password-default-modal-content">
+        <Formsy.Form className="forgot-password-form" onValidSubmit={this.submit}>
 
-        footer({},
-          p({},
-            "Don't have an account? ",
-            a(
-              { href: '#',
-                onClick: function (e) {
-                  e.preventDefault()
-                  PortalPages.renderSignupModal({ oauthProviders: _this.props.oauthProviders })
-                }
-              },
-              'Sign up for free'),
-            ' to create classes, assign activities, save student work, track student progress, and more!'
-          )
-        )
-        )
-      )
-    }
-  })
+          <h2><strong>Forgot</strong> your login information?</h2>
+
+          <p>
+            <strong>Students:</strong> Ask your teacher for help.
+          </p>
+          <p>
+            <strong>Teachers:</strong> Enter your username or email address below.
+          </p>
+          <dl>
+            <dt>Username or Email Address</dt>
+            <dd>
+              <TextInput name='user[login]' placeholder='' required={true} />
+            </dd>
+          </dl>
+          <div className='submit-button-container'>
+            <button className='submit-btn' type='submit'>
+              Submit
+            </button>
+          </div>
+
+          <footer>({},
+            <p>
+              Don't have an account?
+              <a href='#' onClick={this.handleShowSignup}>Sign up for free</a> to create classes, assign activities, save student work, track student progress, and more!
+            </p>
+          </footer>
+        </Formsy.Form>
+      </div>
+    )
+  }
 }
 
-module.exports = ForgotPasswordModal
+ForgotPasswordModal.defaultProps = {
+  siteName: (Portal && Portal.siteName) || 'Portal'
+}
