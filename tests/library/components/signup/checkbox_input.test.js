@@ -1,7 +1,6 @@
 /* globals describe it expect */
 import React from 'react'
 import Formsy from 'formsy-react'
-
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import CheckboxInput from 'components/signup/checkbox_input'

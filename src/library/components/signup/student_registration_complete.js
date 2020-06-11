@@ -45,7 +45,7 @@ export default class StudentRegistrationComplete extends React.Component {
     return (
       <div className='registration-complete student'>
         {successMessage}
-        <Formsy.Form className='signup-form' onValidSubmit={this.submit}>
+        <Formsy className='signup-form' onValidSubmit={this.submit}>
           <dl>
             <dt>Username</dt>
             <dd>
@@ -59,7 +59,7 @@ export default class StudentRegistrationComplete extends React.Component {
           <div className='submit-button-container'>
             <button className='submit-btn' type='submit'>Log In!</button>
           </div>
-        </Formsy.Form>
+        </Formsy>
       </div>
     )
   }

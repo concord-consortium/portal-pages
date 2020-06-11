@@ -26,6 +26,7 @@ export default class BasicDataForm extends React.Component {
 
     this.onChange = this.onChange.bind(this)
     this.onBasicFormValid = this.onBasicFormValid.bind(this)
+    this.onBasicFormInvalid = this.onBasicFormInvalid.bind(this)
     this.submit = this.submit.bind(this)
   }
 
@@ -86,7 +87,7 @@ export default class BasicDataForm extends React.Component {
     }
 
     return (
-      <Formsy.Form onValidSubmit={this.submit} onValid={this.onBasicFormValid} onInvalid={this.onBasicFormInvalid} onChange={this.onChange}>
+      <Formsy onValidSubmit={this.submit} onValid={this.onBasicFormValid} onInvalid={this.onBasicFormInvalid} onChange={this.onChange}>
         <div className='third-party-login-options testy'>
           {providerComponents}
         </div>
@@ -108,7 +109,7 @@ export default class BasicDataForm extends React.Component {
         <div className='submit-button-container'>
           <button className='submit-btn' type='submit' disabled={!this.state.canSubmit}>{this.props.signupText}</button>
         </div>
-      </Formsy.Form>
+      </Formsy>
     )
   }
 }

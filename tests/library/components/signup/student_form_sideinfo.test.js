@@ -11,24 +11,14 @@ Enzyme.configure({adapter: new Adapter()})
 describe('When I try to render signup student form sideinfo', () => {
 
   it("should render", () => {
-    const complete = Enzyme.mount(<TeacherRegistrationComplete />);
-    expect(complete.html()).toBe(pack(`
-    `));
-  });
-
-  it("should render with anonymous prop", () => {
-    const complete = Enzyme.mount(<TeacherRegistrationComplete anonymous={true} />);
-    expect(complete.html()).toBe(pack(`
-      <div class="registration-complete">
-        <p class="reg-header">
-          Thanks for signing up!
-        </p>
+    const sideInfo = Enzyme.mount(<StudentFormSideInfo />);
+    expect(sideInfo.html()).toBe(pack(`
+      <div>
         <p>
-          We're sending you an email with your activation code. Click the "Confirm Account" link in the email to complete the process.
+          Enter the class word your teacher gave you. If you don't know what the class word is, ask your teacher.
         </p>
       </div>
     `));
   });
-
 
 })

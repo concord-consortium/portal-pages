@@ -1,4 +1,5 @@
 import React from 'react'
+import SelectAsync from "react-select/async"
 import { withFormsy } from 'formsy-react';
 
 class SelectInput extends React.Component {
@@ -16,24 +17,24 @@ class SelectInput extends React.Component {
   render() {
     const {placeholder, loadOptions, disabled} = this.props
     let className = 'select-input'
-    if (this.getValue()) {
+    if (this.value) {
       className += ' valid'
     }
 
     return (
       <div className={className}>
-        <Select.Async
+        <SelectAsync
           placeholder={placeholder}
           loadOptions={loadOptions}
           disabled={disabled}
-          value={this.getValue() || ''}
+          value={this.value || ''}
           onChange={this.changeValue}
           clearable={false}
         >
           <div className='input-error'>
-            {this.getErrorMessage()}
+            {this.errorMessage}
           </div>
-        </Select.Async>
+        </SelectAsync>
       </div>
     )
   }

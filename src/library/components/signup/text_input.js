@@ -15,7 +15,7 @@ class TextInput extends React.Component {
   }
 
   isValidAsync() {
-    return this.isValid() && this.state._asyncValidationPassed
+    return this.isValid && this.state._asyncValidationPassed
   }
 
   validateAsync(value) {
@@ -67,13 +67,13 @@ class TextInput extends React.Component {
   }
 
   render() {
-    const {type, placeholder} = this.props
+    const {type, placeholder, disabled} = this.props
 
     let className = 'text-input ' + this.props.name
-    if (this.showRequired() && !this.isPristine()) {
+    if (this.showRequired && !this.isPristine) {
       className += ' required'
     }
-    if (this.showError()) {
+    if (this.showError) {
       className += ' error'
     }
     if (this.isValidAsync()) {
@@ -93,7 +93,7 @@ class TextInput extends React.Component {
           disabled={disabled}
         />
         <div className="input-error">
-          {this.getErrorMessage()}
+          {this.errorMessage}
         </div>
       </div>
     )

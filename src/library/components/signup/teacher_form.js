@@ -234,7 +234,7 @@ export default class TeacherForm extends React.Component {
     const showEnewsSubscription = !!Portal.enewsSubscriptionEnabled
 
     return (
-      <Formsy.Form
+      <Formsy
         ref='form'
         onValidSubmit={this.submit}
         onValid={this.onBasicFormValid}
@@ -306,7 +306,7 @@ export default class TeacherForm extends React.Component {
         <div className='submit-button-container'>
           <button className='submit-btn' type='submit' disabled={!canSubmit}>Register!</button>
         </div>
-      </Formsy.Form>
+      </Formsy>
     )
   }
 }

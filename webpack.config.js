@@ -151,6 +151,7 @@ module.exports = {
     'react': 'React',
     'react-dom': 'ReactDOM',
     'jquery': 'jQuery',
-    'react-select': 'Select'
+    'react-select': 'Select',
+    'react-select/async': 'SelectAsync'
   }
 }

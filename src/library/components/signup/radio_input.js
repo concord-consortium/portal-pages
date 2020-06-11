@@ -9,9 +9,9 @@ class RadioInput extends React.Component {
   }
 
   renderOptions (options) {
-    return options.map(option => (
-      <label>
-        <input type='radio' onChange={this.changeValue} value={option.value} checked={this.getValue() === option.value} /> {option.label}
+    return options.map((option, index) => (
+      <label key={index}>
+        <input type='radio' onChange={this.changeValue} value={option.value} name={this.props.name} checked={this.value === option.value} /> {option.label}
       </label>
     ))
   }

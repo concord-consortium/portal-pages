@@ -47,7 +47,7 @@ export default class StudentForm extends React.Component {
 
   render() {
     return (
-      <Formsy.Form
+      <Formsy
         ref='form'
         onValidSubmit={this.submit}
         onValid={this.onBasicFormValid}
@@ -72,7 +72,7 @@ export default class StudentForm extends React.Component {
             Register!
           </button>
         </div>
-      </Formsy.Form>
+      </Formsy>
     )
   }
 }

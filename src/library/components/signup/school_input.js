@@ -68,7 +68,7 @@ class SchoolInput extends React.Component {
     const {placeholder, disabled} = this.props
     const {options, isLoading} = this.state
 
-    if (this.getValue()) {
+    if (this.value) {
       className += ' valid'
     }
 
@@ -81,13 +81,13 @@ class SchoolInput extends React.Component {
           options={options}
           isLoading={isLoading}
           disabled={disabled}
-          value={this.getValue() || ''}
+          value={this.value || ''}
           onChange={this.changeValue}
           clearable={false}
           noResultsText={noResultsText}
         >
           <div className='input-error'>
-            {this.getErrorMessage()}
+            {this.errorMessage}
           </div>
         </Select>
       </div>

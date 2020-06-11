@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 export default class UserTypeSelector extends React.Component {
 
   constructor(props) {

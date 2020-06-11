@@ -105,73 +105,56 @@ export default class SignUp extends React.Component {
       //
       // Display completion step
       //
-      form = StudentRegistrationComplete({
-        anonymous: anonymous,
-        data: studentData
-      })
+      form = <StudentRegistrationComplete anonymous={anonymous} data={studentData} />
     } else if (teacherData) {
       //
       // Display completion step
       //
-      form = TeacherRegistrationComplete({
-        anonymous: anonymous
-      })
+      form = <TeacherRegistrationComplete anonymous={anonymous} />
     } else if (omniauthOrigin != null) {
       if (omniauthOrigin.search('teacher') > -1) {
-        form = [
-          TeacherForm({
-            anonymous: this.props.anonymous,
-            basicData: basicData,
-            onRegistration: this.onTeacherRegistration
-          })
-        ]
+        form = <TeacherForm
+                anonymous={this.props.anonymous}
+                basicData={basicData}
+                onRegistration={this.onTeacherRegistration}
+              />
       } else if (omniauthOrigin.search('student') > -1) {
-        form = [
-          StudentForm({
-            basicData: basicData,
-            onRegistration: this.onStudentRegistration
-          })
-        ]
+        form = <StudentForm
+                 basicData={basicData}
+                 onRegistration={this.onStudentRegistration}
+               />
       }
     } else if (!userType) {
       // console.log("INFO signup form creating type selector step");
 
-      let select = UserTypeSelector({
-        // studentReg: this.onStudentRegistration,
-        // teacherReg: this.onTeacherRegistration,
-        anonymous: anonymous,
-        onUserTypeSelect: this.onUserTypeSelect
-      })
-
-      form = [ select ]
+      // studentReg: this.onStudentRegistration,
+      // teacherReg: this.onTeacherRegistration,
+      form = <UserTypeSelector
+               anonymous={anonymous}
+               onUserTypeSelect={this.onUserTypeSelect}
+             />
     } else if (basicData) {
       if (userType === 'teacher') {
-        form = [
-          TeacherForm({
-            anonymous: this.props.anonymous,
-            basicData: basicData,
-            onRegistration: this.onTeacherRegistration
-          })
-        ]
+        form = <TeacherForm
+                 anonymous={this.props.anonymous}
+                 basicData={basicData}
+                 onRegistration={this.onTeacherRegistration}
+               />
       } else {
-        form = [
-          StudentForm({
-            basicData: basicData,
-            onRegistration: this.onStudentRegistration
-          })
-        ]
+        form = <StudentForm
+                 basicData={basicData}
+                 onRegistration={this.onStudentRegistration}
+               />
       }
     } else {
       // console.log("INFO signup form creating basic data selector step");
-      form = [
-        BasicDataForm({
-          anonymous: anonymous,
-          userType: userType,
-          signupText: signupText,
-          oauthProviders: oauthProviders,
-          onSubmit: this.onBasicDataSubmit
-        })
-      ]
+      form = <BasicDataForm
+               anonymous={anonymous}
+               userType={userType}
+               signupText={signupText}
+               oauthProviders={oauthProviders}
+               onSubmit={this.onBasicDataSubmit}
+             />
     }
 
     let formTitleIntro = 'Register'
@@ -195,8 +178,8 @@ export default class SignUp extends React.Component {
   }
 }
 
-Signup.defaultProps = {
-  siteName: (Portal && Portal.siteName) || 'Portal',
+SignUp.defaultProps = {
+  siteName: (window.Portal && window.Portal.siteName) || 'Portal',
   signupText: 'Next',
-  anonymous: Portal.currentUser.isAnonymous
+  anonymous: window.Portal && window.Portal.currentUser.isAnonymous
 }

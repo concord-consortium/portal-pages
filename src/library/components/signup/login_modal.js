@@ -75,7 +75,7 @@ export default class LoginModal extends React.Component {
 
     return (
       <div className={'login-default-modal-content'}>
-        <Formsy.Form className={'signup-form'} onValidSubmit={this.submit}>
+        <Formsy className={'signup-form'} onValidSubmit={this.submit}>
           <h2>
             <strong>
               Log in
@@ -127,12 +127,12 @@ export default class LoginModal extends React.Component {
               to create classes, assign activities, save student work, track student progress, and more!
             </p>
           </footer>
-        </Formsy.Form>
+        </Formsy>
       </div>
     )
   }
 }
 
 LoginModal.defaultProps = {
-  siteName: (Portal && Portal.siteName) || 'Portal'
+  siteName: (window.Portal && window.Portal.siteName) || 'Portal'
 }

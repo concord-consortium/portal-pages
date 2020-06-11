@@ -46,7 +46,7 @@ export default class ForgotPasswordModal extends React.Component {
 
     return (
       <div className="forgot-password-default-modal-content">
-        <Formsy.Form className="forgot-password-form" onValidSubmit={this.submit}>
+        <Formsy className="forgot-password-form" onValidSubmit={this.submit}>
 
           <h2><strong>Forgot</strong> your login information?</h2>
 
@@ -68,18 +68,17 @@ export default class ForgotPasswordModal extends React.Component {
             </button>
           </div>
 
-          <footer>({},
+          <footer>
             <p>
-              Don't have an account?
-              <a href='#' onClick={this.handleShowSignup}>Sign up for free</a> to create classes, assign activities, save student work, track student progress, and more!
+              Don't have an account? <a href='#' onClick={this.handleShowSignup}>Sign up for free</a> to create classes, assign activities, save student work, track student progress, and more!
             </p>
           </footer>
-        </Formsy.Form>
+        </Formsy>
       </div>
     )
   }
 }
 
 ForgotPasswordModal.defaultProps = {
-  siteName: (Portal && Portal.siteName) || 'Portal'
+  siteName: (window.Portal && window.Portal.siteName) || 'Portal'
 }
