@@ -14,7 +14,7 @@ class _MBCollections extends React.Component {
 
   render () {
     const className = `mb-cell ${this.getVisibilityClass()}`
-    const {collections} = this.props
+    const { collections } = this.props
     return (
       <div className={className}>
         {this.props.collectionsData != null
