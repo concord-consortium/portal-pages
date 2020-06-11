@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import Component from '../helpers/component'
 import fadeIn from '../helpers/fade-in'
 import sortByName from '../helpers/sort-by-name'
@@ -6,11 +7,7 @@ import shuffleArray from '../helpers/shuffle-array'
 import waitForAutoShowingLightboxToClose from '../helpers/wait-for-auto-lightbox-to-close'
 import portalObjectHelpers from '../helpers/portal-object-helpers'
 
-var div = React.DOM.div
-var a = React.DOM.a
-var h3 = React.DOM.h3
-var img = React.DOM.img
-var p = React.DOM.p
+const {div, a, h3, img, p} = ReactDOM
 
 const CollectionCards = Component({
   getInitialState: function () {

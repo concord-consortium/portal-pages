@@ -41,9 +41,9 @@ const openModal = (type, properties = {}, closeFunc) => {
   }
 
   ReactDOM.unmountComponentAtNode(modalContainer[0])
-  var comp = React.createElement(type)
   console.log('INFO creating modal with props', properties)
-  ReactDOM.render(comp(properties), modalContainer[0])
+  var comp = React.createElement(type, properties)
+  ReactDOM.render(comp, modalContainer[0])
 
   return Modal.showModal(modalContainerSelector,
     undefined,

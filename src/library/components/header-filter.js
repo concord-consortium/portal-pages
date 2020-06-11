@@ -1,8 +1,10 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+
 var Component = require('../helpers/component')
 
-var div = React.DOM.div
-var span = React.DOM.span
+var div = ReactDOM.div
+var span = ReactDOM.span
 
 var HeaderFilter = Component({
   handleClear: function () {

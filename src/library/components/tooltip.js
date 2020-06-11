@@ -1,8 +1,10 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+
 var Component = require('../helpers/component')
 
-var div = React.DOM.div
-var p = React.DOM.p
+var div = ReactDOM.div
+var p = ReactDOM.p
 
 var Tooltip = Component({
   getInitialState: function () {

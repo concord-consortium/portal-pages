@@ -1,11 +1,13 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+
 var Component = require('../helpers/component')
 
-var a = React.DOM.a
-var br = React.DOM.br
-var div = React.DOM.div
-var p = React.DOM.p
-var span = React.DOM.span
+var a = ReactDOM.a
+var br = ReactDOM.br
+var div = ReactDOM.div
+var p = ReactDOM.p
+var span = ReactDOM.span
 
 var PageFooter = Component({
 
