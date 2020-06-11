@@ -7,7 +7,7 @@ import shuffleArray from '../helpers/shuffle-array'
 import waitForAutoShowingLightboxToClose from '../helpers/wait-for-auto-lightbox-to-close'
 import portalObjectHelpers from '../helpers/portal-object-helpers'
 
-const {div, a, h3, img, p} = ReactDOM
+const { div, a, h3, img, p } = ReactDOM
 
 const CollectionCards = Component({
   getInitialState: function () {

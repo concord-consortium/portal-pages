@@ -24,7 +24,8 @@ class TextInput extends React.Component {
   //
   // While this is a little convoluted this was the change needed internally to minimize the
   // changes needed in the callers
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.wrapper && !this.props.wrapper) {
       const wrapper = nextProps.wrapper
       const self = this
@@ -71,7 +72,7 @@ class TextInput extends React.Component {
 
   onChange (event) {
     let newVal = event.currentTarget.value
-    this.setState({_asyncValidationPassed: true}, () => {
+    this.setState({ _asyncValidationPassed: true }, () => {
       const delay = this.props.isValidValue(newVal) ? 0 : TIMEOUT
 
       this.setState({
@@ -103,7 +104,7 @@ class TextInput extends React.Component {
     if (this.props.showError) {
       className += ' error'
     }
-    if (this.wrapper && thiw.wrapper.isValidAsync()) {
+    if (this.props.wrapper && this.props.wrapper.isValidAsync()) {
       className += ' valid'
     }
     if (disabled) {
@@ -134,7 +135,7 @@ TextInput.defaultProps = {
 }
 
 export const asyncValidator = (options) => {
-  const {validator, error, ref} = options
+  const { validator, error, ref } = options
   return {
     asyncValidation: validator,
     asyncValidationError: error,
