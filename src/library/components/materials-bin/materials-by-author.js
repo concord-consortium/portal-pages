@@ -2,6 +2,7 @@ import React from 'react'
 
 import MBFetchDataHOC from './fetch-data-hoc'
 import MBUserMaterials from './user-materials'
+import createFactory from '../../helpers/create-factory'
 
 class _MBMaterialsByAuthor extends React.Component {
   getVisibilityClass () {
@@ -30,7 +31,7 @@ class _MBMaterialsByAuthor extends React.Component {
   }
 }
 
-const MBMaterialsByAuthor = React.createFactory(MBFetchDataHOC(_MBMaterialsByAuthor, () => ({
+const MBMaterialsByAuthor = createFactory(MBFetchDataHOC(_MBMaterialsByAuthor, () => ({
 
   dataStateKey: 'authors',
 

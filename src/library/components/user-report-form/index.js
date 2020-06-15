@@ -39,7 +39,8 @@ export default class UserReportForm extends React.Component {
     }
   }
 
-  componentWillMount () {
+  // eslint-disable-next-line
+  UNSAFE_componentWillMount () {
     this.getTotals()
   }
 

@@ -1,7 +1,7 @@
 /* globals jest describe it expect */
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import LearnerReportForm from 'components/learner-report-form'
 import ExternalReportButton from 'components/common/external-report-button'
 import Select from 'react-select'

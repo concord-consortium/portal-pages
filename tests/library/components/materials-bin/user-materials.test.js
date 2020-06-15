@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import MBUserMaterials from 'components/materials-bin/user-materials'
 import { pack } from "../../helpers/pack"
 import {mockJqueryAjaxSuccess} from "../../helpers/mock-jquery"
@@ -74,8 +74,7 @@ describe('When I try to render materials-bin user materials', () => {
     expect(userMaterials.html()).toBe(pack(`
       <div>
         <div class="mb-collection-name mb-clickable">
-          <span class="mb-toggle-symbol">-</span>
-          <!-- react-text: 4 --> <!-- /react-text --><!-- react-text: 5 -->Collection Name<!-- /react-text -->
+          <span class="mb-toggle-symbol">-</span> Collection Name
         </div>
         <div class="">
           <div class="mb-collection">

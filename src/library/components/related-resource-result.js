@@ -1,10 +1,11 @@
-import React from 'react'
+import ReactDOM from 'react-dom'
+
 var GradeLevels = require('./grade-levels')
 var Component = require('../helpers/component')
 var portalObjectHelpers = require('../helpers/portal-object-helpers')
 
-var div = React.DOM.div
-var img = React.DOM.img
+var div = ReactDOM.div
+var img = ReactDOM.img
 
 var RelatedResourceResult = Component({
   getInitialState: function () {
@@ -13,7 +14,7 @@ var RelatedResourceResult = Component({
     }
   },
 
-  componentWillMount: function () {
+  UNSAFE_componentWillMount: function () {
     // process the related resource
     var resource = this.props.resource
     portalObjectHelpers.processResource(resource)

@@ -1,3 +1,5 @@
+import ReactDOM from 'react-dom'
+
 /**
  *
  * Helpers for displaying standards statements.
@@ -83,11 +85,11 @@ var NgssHelper = function () {
   this.getDiv = function () {
     // console.log("[DEBUG] NGSS Helper getDiv()");
 
-    var div = React.DOM.div
-    var h3 = React.DOM.h3
-    var b = React.DOM.b
-    var br = React.DOM.br
-    var italic = React.DOM.i
+    var div = ReactDOM.div
+    var h3 = ReactDOM.h3
+    var b = ReactDOM.b
+    var br = ReactDOM.br
+    var italic = ReactDOM.i
 
     if (this.pe.length === 0 &&
             this.dci.length === 0 &&

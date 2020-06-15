@@ -1,4 +1,5 @@
 import React from 'react'
+import createFactory from '../../helpers/create-factory'
 
 import MBFetchDataHOC from './fetch-data-hoc'
 import MBMaterialsCollection from './materials-collection'
@@ -27,7 +28,7 @@ class _MBUserMaterialsContainer extends React.Component {
   }
 }
 
-const MBUserMaterialsContainer = React.createFactory(MBFetchDataHOC(_MBUserMaterialsContainer, () => ({
+const MBUserMaterialsContainer = createFactory(MBFetchDataHOC(_MBUserMaterialsContainer, () => ({
   dataStateKey: 'materials',
 
   dataUrl: Portal.API_V1.MATERIALS_BIN_UNOFFICIAL_MATERIALS,

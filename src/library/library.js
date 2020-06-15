@@ -12,7 +12,7 @@ import GradeLevels from './components/grade-levels'
 import Tooltip from './components/tooltip.js'
 import ParseQueryString from './helpers/parse-query-string'
 import { MakeTeacherEditionLinks } from './helpers/make-teacher-edition-links'
-import signupFunctions from './components/signup/signup_functions'
+import * as signupFunctions from './components/signup/signup_functions'
 import RecentActivity from './components/recent-activity'
 import Assignments from './components/assigments'
 import Navigation from './components/navigation'
@@ -191,9 +191,18 @@ window.PortalPages = {
     ReactDOM.render(React.createElement(FeaturedMaterials, { queryString: query }), jQuery(selectorOrElement)[0])
   },
 
+  // NOTE: the search results renders re-render into the same div so it is required to call unmountComponentAtNode
+  //       (as these methods do) before each re-render to avoid a warning message and a potential memory leak
   SearchResults: SearchResults,
   renderSearchResults: function (results, selectorOrElement) {
-    ReactDOM.render(React.createElement(SearchResults, { results }), jQuery(selectorOrElement)[0])
+    const element = jQuery(selectorOrElement)[0]
+    ReactDOM.unmountComponentAtNode(element)
+    ReactDOM.render(React.createElement(SearchResults, { results }), element)
+  },
+  renderSearchMessage: function (message, selectorOrElement) {
+    const element = jQuery(selectorOrElement)[0]
+    ReactDOM.unmountComponentAtNode(element)
+    ReactDOM.render(<span>{message}</span>, element)
   },
 
   SMaterialsList: SMaterialsList,

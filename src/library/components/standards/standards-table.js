@@ -4,6 +4,12 @@ import StandardsRow from './standards-row'
 export const PAGE_SIZE = 10
 
 export default class StandardsTable extends React.Component {
+  constructor (props) {
+    super(props)
+    this.paginateUp = this.paginateUp.bind(this)
+    this.paginateDown = this.paginateDown.bind(this)
+  }
+
   paginateUp () {
     const { start } = this.props
     if ((start + PAGE_SIZE) < this.props.count) {
@@ -34,11 +40,11 @@ export default class StandardsTable extends React.Component {
         <tr>
           <td colSpan={5} className='asn_results_pagination_row'>
             {showDown
-              ? <a className='asn_results_pagination_arrows' onClick={this.paginateDown.bind(this)}>{'<<'}</a>
+              ? <a className='asn_results_pagination_arrows' onClick={this.paginateDown}>{'<<'}</a>
               : '<<' }
             Showing {start + 1} - {end} of {count}
             {showUp
-              ? <a className='asn_results_pagination_arrows' onClick={this.paginateUp.bind(this)}>{'>>'}</a>
+              ? <a className='asn_results_pagination_arrows' onClick={this.paginateUp}>{'>>'}</a>
               : '>>' }
           </td>
         </tr>

@@ -1,42 +1,42 @@
 import React from 'react'
-var ref = React.DOM
-var div = ref.div
+import SelectAsync from 'react-select/async'
+import { withFormsy } from 'formsy-react'
 
-var SelectInput = function () {
-  // console.log("INFO creating select_input");
+class SelectInput extends React.Component {
+  constructor (props) {
+    super(props)
+    this.changeValue = this.changeValue.bind(this)
+  }
 
-  var SelectAsync
-  SelectAsync = React.createFactory(Select.Async)
-  return React.createClass({
-    displayName: 'SelectInput',
-    mixins: [Formsy.Mixin],
-    changeValue: function (option) {
-      this.setValue(option && option.value)
-      return this.props.onChange(option)
-    },
-    render: function () {
-      var ref1 = this.props
-      var placeholder = ref1.placeholder
-      var loadOptions = ref1.loadOptions
-      var disabled = ref1.disabled
-      var className = 'select-input'
-      if (this.getValue()) {
-        className += ' valid'
-      }
-      return div({
-        className: className
-      }, SelectAsync({
-        placeholder: placeholder,
-        loadOptions: loadOptions,
-        disabled: disabled,
-        value: this.getValue() || '',
-        onChange: this.changeValue,
-        clearable: false
-      }), div({
-        className: 'input-error'
-      }, this.getErrorMessage()))
+  changeValue (option) {
+    this.props.setValue(option && option.value)
+    this.props.onChange(option)
+  }
+
+  render () {
+    const { placeholder, loadOptions, disabled } = this.props
+    let className = 'select-input'
+    if (this.props.value) {
+      className += ' valid'
     }
-  })
+
+    return (
+      <div className={className}>
+        <SelectAsync
+          placeholder={placeholder}
+          loadOptions={loadOptions}
+          disabled={disabled}
+          value={this.props.value || ''}
+          onChange={this.changeValue}
+          clearable={false}
+        >
+          <div className='input-error'>
+            {this.props.errorMessage}
+          </div>
+        </SelectAsync>
+      </div>
+    )
+  }
 }
 
-module.exports = SelectInput
+export default withFormsy(SelectInput)

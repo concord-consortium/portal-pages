@@ -1,4 +1,5 @@
 import React from 'react'
+import createFactory from '../../helpers/create-factory'
 
 import MBFetchDataHOC from './fetch-data-hoc'
 import MBMaterialsCollection from './materials-collection'
@@ -34,7 +35,7 @@ class _MBCollections extends React.Component {
   }
 }
 
-const MBCollections = React.createFactory(MBFetchDataHOC(_MBCollections, () => ({
+const MBCollections = createFactory(MBFetchDataHOC(_MBCollections, () => ({
 
   dataStateKey: 'collectionsData',
 

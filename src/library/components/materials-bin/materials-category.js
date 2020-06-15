@@ -1,6 +1,11 @@
 import React from 'react'
 
 export default class MBMaterialsCategory extends React.Component {
+  constructor (props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
   hideForAnonymous () {
     return this.props.loginRequired && Portal.currentUser.isAnonymous
   }
@@ -28,7 +33,7 @@ export default class MBMaterialsCategory extends React.Component {
   render () {
     const className = `mb-cell mb-category mb-clickable ${this.props.customClass || ''} ${this.getVisibilityClass()} ${this.getSelectionClass()}`
     return (
-      <div className={className} onClick={this.handleClick.bind(this)}>
+      <div className={className} onClick={this.handleClick}>
         {this.props.children}
       </div>
     )

@@ -1,7 +1,7 @@
 /* globals describe it expect */
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import SMaterialIcon from 'components/search/material-icon'
 import { pack } from "../../helpers/pack"
 
@@ -19,7 +19,7 @@ describe('When I try to render search material icon', () => {
     const configuration = {};
     const materialIcon = Enzyme.shallow(<SMaterialIcon material={material} configuration={configuration} />);
     expect(materialIcon.html()).toBe(pack(`
-      <div class="material_icon" style="border:0px;">
+      <div class="material_icon" style="border:0px">
         <a class="thumb_link">
           <img src="http://example.com/icon" width="100%"/>
         </a>
@@ -50,12 +50,12 @@ describe('When I try to render search material icon', () => {
     };
     const materialIcon = Enzyme.shallow(<SMaterialIcon material={material} configuration={configuration} />);
     expect(materialIcon.html()).toBe(pack(`
-      <div class="material_icon" style="border:0px;width:100px;height:200px;">
+      <div class="material_icon" style="border:0px;width:100px;height:200px">
         <a class="thumb_link" href="http://example.com/browse">
           <img src="http://example.com/icon" width="100%"/>
         </a>
         <div class="legacy-favorite">★</div>
-        <div class="legacy-favorite legacy-favorite-outline" style="color:#CCCCCC;">☆</div>
+        <div class="legacy-favorite legacy-favorite-outline" style="color:#CCCCCC">☆</div>
       </div>
     `));
   });
@@ -84,7 +84,7 @@ describe('When I try to render search material icon', () => {
     };
     const materialIcon = Enzyme.shallow(<SMaterialIcon material={material} configuration={configuration} />);
     expect(materialIcon.html()).toBe(pack(`
-      <div class="material_icon" style="border:0px;width:100px;height:200px;">
+      <div class="material_icon" style="border:0px;width:100px;height:200px">
         <a class="thumb_link" href="http://example.com/browse">
           <img src="http://example.com/icon" width="100%"/>
         </a>

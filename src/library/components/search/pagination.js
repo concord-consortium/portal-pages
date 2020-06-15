@@ -20,31 +20,31 @@ export default class SPagination extends React.Component {
             if (!this.active) {
               return `<span class='disabled'>${this.value}</span>`
             } else if (this.value !== this.page) {
-              return `<em><a href='javascript:void(0)' class='page'>${this.value}</a></em>`
+              return `<em><a href='#' class='page'>${this.value}</a></em>`
             }
             return `<span class='current page'>${this.value}</span>`
 
           case 'next':
             if (this.active) {
-              return "<a href='javascript:void(0)' class='next'>Next →</a>"
+              return "<a href='#' class='next'>Next →</a>"
             }
             return '<span class="disabled">Next →</span>'
 
           case 'prev':
             if (this.active) {
-              return "<a href='javascript:void(0)' class='prev'>← Previous</a>"
+              return "<a href='#' class='prev'>← Previous</a>"
             }
             return '<span class="disabled">← Previous</span>'
 
           case 'first':
             if (this.active) {
-              return "<a href='javascript:void(0)' class='first'>|&lt;</a>"
+              return "<a href='#' class='first'>|&lt;</a>"
             }
             return '<span class="disabled">|&lt;</span>'
 
           case 'last':
             if (this.active) {
-              return "<a href='javascript:void(0)' class='last'>&gt;|</a>"
+              return "<a href='#' class='last'>&gt;|</a>"
             }
             return '<span class="disabled">&gt;|</span>'
 

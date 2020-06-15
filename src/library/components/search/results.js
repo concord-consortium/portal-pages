@@ -10,7 +10,7 @@ export default class SearchResults extends React.Component {
 
   renderMessage () {
     return this.props.results.map((group, idx) => {
-      const link = { url: 'javascript:void(0)', onclick: this.generateScrollTo(group.type), text: group.header, className: '' }
+      const link = { url: '#', onclick: this.generateScrollTo(group.type), text: group.header, className: '' }
       return (
         <span key={group.type}>
           {group.pagination.total_items}

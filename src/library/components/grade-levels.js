@@ -1,8 +1,9 @@
-import React from 'react'
+import ReactDOM from 'react-dom'
+
 var Component = require('../helpers/component')
 var filters = require('../helpers/filters')
 
-var div = React.DOM.div
+var div = ReactDOM.div
 
 var GradeLevels = Component({
 

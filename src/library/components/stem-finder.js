@@ -143,7 +143,7 @@ const StemFinder = Component({
     }
   },
 
-  componentWillMount: function () {
+  UNSAFE_componentWillMount: function () {
     waitForAutoShowingLightboxToClose(function () {
       this.search()
     }.bind(this))

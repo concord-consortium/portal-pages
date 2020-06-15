@@ -2,6 +2,11 @@ import React from 'react'
 import TextPreview from './text-preview'
 
 export default class StandardsRow extends React.Component {
+  constructor (props) {
+    super(props)
+    this.handleButton = this.handleButton.bind(this)
+  }
+
   handleButton (e) {
     const { statement, material } = this.props
     let apiUrl = null
@@ -83,7 +88,7 @@ export default class StandardsRow extends React.Component {
           <div dangerouslySetInnerHTML={{ __html: leaf }} />
         </td>
         <td className='asn_results_td_right'>
-          <button onClick={this.handleButton.bind(this)}>{buttonText}</button>
+          <button onClick={this.handleButton}>{buttonText}</button>
         </td>
       </tr>
     )

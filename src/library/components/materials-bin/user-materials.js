@@ -8,6 +8,7 @@ export default class MBUserMaterials extends React.Component {
     this.state = {
       materialsVisible: false
     }
+    this.toggleMaterials = this.toggleMaterials.bind(this)
   }
 
   toggleMaterials () {
@@ -25,7 +26,7 @@ export default class MBUserMaterials extends React.Component {
   render () {
     return (
       <div>
-        <div className='mb-collection-name mb-clickable' onClick={this.toggleMaterials.bind(this)}>
+        <div className='mb-collection-name mb-clickable' onClick={this.toggleMaterials}>
           <span className='mb-toggle-symbol'>{this.renderToggleIcon()}</span> {this.props.name}
         </div>
 

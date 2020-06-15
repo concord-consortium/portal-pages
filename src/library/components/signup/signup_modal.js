@@ -1,22 +1,12 @@
 import React from 'react'
-var ref = React.DOM
-var div = ref.div
+import Signup from './signup'
 
-var SignupClass = require('./signup')
-
-var SignupModal = function () {
-  // console.log("INFO creating signup_modal");
-
-  var Signup = React.createFactory(SignupClass())
-  return React.createClass({
-    displayName: 'SignupModal',
-    render: function () {
-      // console.log("INFO rendering signup modal", this.props);
-      return div({
-        className: 'signup-default-modal-content'
-      }, Signup(this.props))
-    }
-  })
+export default class SignupModal extends React.Component {
+  render () {
+    return (
+      <div className='signup-default-modal-content'>
+        <Signup {...this.props} />
+      </div>
+    )
+  }
 }
-
-module.exports = SignupModal

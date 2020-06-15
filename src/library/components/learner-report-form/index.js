@@ -41,7 +41,8 @@ export default class LearnerReportForm extends React.Component {
     }
   }
 
-  componentWillMount () {
+  // eslint-disable-next-line
+  UNSAFE_componentWillMount () {
     this.updateFilters()
   }
 

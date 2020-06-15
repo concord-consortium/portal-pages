@@ -29,7 +29,7 @@ var RunWithCollaborators = Component({
     }
   },
 
-  componentWillMount: function () {
+  UNSAFE_componentWillMount: function () {
     this.loadAvailableCollaborators()
   },
 

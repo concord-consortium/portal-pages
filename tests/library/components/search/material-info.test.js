@@ -1,7 +1,7 @@
 /* globals describe it expect */
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import SMaterialInfo from 'components/search/material-info'
 import { pack } from "../../helpers/pack"
 
@@ -17,7 +17,7 @@ describe('When I try to render search material info', () => {
     const materialInfo = Enzyme.shallow(<SMaterialInfo material={material} />);
     expect(materialInfo.html()).toBe(pack(`
       <div>
-        <div style="overflow:hidden;">
+        <div style="overflow:hidden">
           <table width="100%">
             <tbody>
               <tr>
@@ -113,34 +113,34 @@ describe('When I try to render search material info', () => {
     const materialInfo = Enzyme.shallow(<SMaterialInfo material={material} />);
     expect(materialInfo.html()).toBe(pack(`
       <div>
-        <div style="overflow:hidden;">
+        <div style="overflow:hidden">
           <table width="100%">
             <tbody>
               <tr>
                 <td>
                   <div>
-                    <div style="float:right;margin-right:5px;">
+                    <div style="float:right;margin-right:5px">
                       <a href="http://example.com/preview" class="button">preview text</a>
                     </div>
-                    <div style="float:right;margin-right:5px;">
+                    <div style="float:right;margin-right:5px">
                       <a href="http://example.com/print_url" class="button">print_url text</a>
                     </div>
-                    <div style="float:right;margin-right:5px;">
+                    <div style="float:right;margin-right:5px">
                       <a href="http://example.com/external_lara_edit" class="button">external_lara_edit text</a>
                     </div>
-                    <div style="float:right;margin-right:5px;">
+                    <div style="float:right;margin-right:5px">
                       <a href="http://example.com/external_copy" class="button">external_copy text</a>
                     </div>
-                    <div style="float:right;margin-right:5px;">
+                    <div style="float:right;margin-right:5px">
                       <a href="http://example.com/teacher_guide" class="button">teacher_guide text</a>
                     </div>
-                    <div style="float:right;margin-right:5px;">
+                    <div style="float:right;margin-right:5px">
                       <a href="http://example.com/assign_material" class="button">assign_material text</a>
                     </div>
-                    <div style="float:right;margin-right:5px;">
+                    <div style="float:right;margin-right:5px">
                       <a href="http://example.com/assign_collection" class="button">assign_collection text</a>
                     </div>
-                    <div style="float:right;margin-right:5px;">
+                    <div style="float:right;margin-right:5px">
                       <a href="http://example.com/unarchive" class="button">unarchive text</a>
                     </div>
                   </div>
@@ -162,7 +162,7 @@ describe('When I try to render search material info', () => {
                   </span>
                   <span>from parent type &quot;parent name&quot;</span>
                   <div>
-                    <span style="font-weight:bold;">By credits</span>
+                    <span style="font-weight:bold">By credits</span>
                   </div>
                 </td>
               </tr>
@@ -200,13 +200,13 @@ describe('When I try to render search material info', () => {
     const materialInfo = Enzyme.shallow(<SMaterialInfo material={material} />);
     expect(materialInfo.html()).toBe(pack(`
       <div>
-        <div style="overflow:hidden;">
+        <div style="overflow:hidden">
           <table width="100%">
             <tbody>
               <tr>
                 <td>
                   <div>
-                    <div style="float:right;margin-right:5px;">
+                    <div style="float:right;margin-right:5px">
                       <a href="http://example.com/external_edit" class="button">external_edit text</a>
                     </div>
                   </div>

@@ -1,7 +1,7 @@
 /* globals describe it expect */
 import React from 'react'
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15'
+import Adapter from 'enzyme-adapter-react-16'
 import SPagination from 'components/search/pagination'
 import { pack } from "../../helpers/pack"
 import {mockJquery} from "../../helpers/mock-jquery"
@@ -54,19 +54,19 @@ describe('When I try to render search pagination', () => {
 
     node.active = true;
     expect(pagingPluginFormat("block")).toBe(pack(`
-      <em><a href='javascript:void(0)' class='page'>1</a></em>
+      <em><a href='#' class='page'>1</a></em>
     `));
     expect(pagingPluginFormat("next")).toBe(pack(`
-      <a href='javascript:void(0)' class='next'>Next →</a>
+      <a href='#' class='next'>Next →</a>
     `));
     expect(pagingPluginFormat("prev")).toBe(pack(`
-      <a href='javascript:void(0)' class='prev'>← Previous</a>
+      <a href='#' class='prev'>← Previous</a>
     `));
     expect(pagingPluginFormat("first")).toBe(pack(`
-      <a href='javascript:void(0)' class='first'>|&lt;</a>
+      <a href='#' class='first'>|&lt;</a>
     `));
     expect(pagingPluginFormat("last")).toBe(pack(`
-      <a href='javascript:void(0)' class='last'>&gt;|</a>
+      <a href='#' class='last'>&gt;|</a>
     `));
     expect(pagingPluginFormat("leap")).toBe("   ");
     expect(pagingPluginFormat("fill")).toBe("...");

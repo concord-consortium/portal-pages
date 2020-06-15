@@ -2,6 +2,7 @@ import React from 'react'
 
 import MBFetchDataHOC from './fetch-data-hoc'
 import MBMaterialsCollection from './materials-collection'
+import createFactory from '../../helpers/create-factory'
 
 class _MBOwnMaterials extends React.Component {
   getVisibilityClass () {
@@ -29,7 +30,7 @@ class _MBOwnMaterials extends React.Component {
   }
 }
 
-const MBOwnMaterials = React.createFactory(MBFetchDataHOC(_MBOwnMaterials, () => ({
+const MBOwnMaterials = createFactory(MBFetchDataHOC(_MBOwnMaterials, () => ({
 
   dataStateKey: 'materials',
 
