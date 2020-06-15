@@ -129,16 +129,18 @@ const PageHeader = Component({
 
   renderNavLinks: function (e) {
     var headerItems = []
+    var key = 1;
+    var nextKey = (prefix) => `navLink_${prefix}_${key++}`
     if (!this.state.isStudent) {
       if (this.state.theme === 'ngss-assessment') {
         headerItems.push(
-          <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-collections' + (this.props.isCollections ? ' current-menu-item' : '')}>
+          <li key={nextKey('AssessmentTasks')} className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-collections' + (this.props.isCollections ? ' current-menu-item' : '')}>
             <a href='/ngsa-collections' className='portal-pages-main-nav-item__link' title='View Assessment Tasks'>Assessment Tasks</a>
           </li>
         )
         if (this.state.loggedIn) {
           headerItems.push(
-            <li className='portal-pages-main-nav-item portal-pages-main-nav-forum'>
+            <li key={nextKey('ForumLoggedIn')} className='portal-pages-main-nav-item portal-pages-main-nav-forum'>
               <a href='https://ngsa.concord.org/forum?autosignin=true' className='portal-pages-main-nav-item__link' title='Visit the NGSA Forum'>Forum</a>
             </li>
           )
@@ -147,19 +149,19 @@ const PageHeader = Component({
           let linkTitle = 'Registered teachers can participate in a forum with other teachers. Login or register as a teacher to access the forum.'
           let linkText = 'Forum'
           headerItems.push(
-            <li className='portal-pages-main-nav-item portal-pages-main-nav-forum'>
+            <li key={nextKey('ForumLoggedOut')} className='portal-pages-main-nav-item portal-pages-main-nav-forum'>
               {this.renderProtectedLink(linkID, linkTitle, linkText)}
             </li>
           )
         }
       } else {
         headerItems.push(
-          <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-collections' + (this.props.isCollections ? ' current-menu-item' : '')}>
+          <li key={nextKey('Collections')} className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-collections' + (this.props.isCollections ? ' current-menu-item' : '')}>
             <a href='/collections' className='portal-pages-main-nav-item__link' title='View Resource Collections'>Collections</a>
           </li>
         )
         headerItems.push(
-          <li className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-about' + (this.props.isAbout ? ' current-menu-item' : '')}>
+          <li key={nextKey('About')} className={'portal-pages-main-nav-item' + ' portal-pages-main-nav-about' + (this.props.isAbout ? ' current-menu-item' : '')}>
             <a href='/about' className='portal-pages-main-nav-item__link' title='Learn More about the STEM Resource Finder'>About</a>
           </li>
         )
@@ -167,12 +169,12 @@ const PageHeader = Component({
     }
 
     headerItems.push(
-      <li className='portal-pages-main-nav-item'>
+      <li key={nextKey('FirstButton')} className='portal-pages-main-nav-item'>
         {this.renderFirstButton()}
       </li>
     )
     headerItems.push(
-      <li className='portal-pages-main-nav-item'>
+      <li key={nextKey('SecondButton')} className='portal-pages-main-nav-item'>
         {this.renderSecondButton()}
       </li>
     )
