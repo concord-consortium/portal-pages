@@ -129,7 +129,7 @@ const PageHeader = Component({
 
   renderNavLinks: function (e) {
     var headerItems = []
-    var key = 1;
+    var key = 1
     var nextKey = (prefix) => `navLink_${prefix}_${key++}`
     if (!this.state.isStudent) {
       if (this.state.theme === 'ngss-assessment') {
