@@ -191,9 +191,18 @@ window.PortalPages = {
     ReactDOM.render(React.createElement(FeaturedMaterials, { queryString: query }), jQuery(selectorOrElement)[0])
   },
 
+  // NOTE: the search results renders re-render into the same div so it is required to call unmountComponentAtNode
+  //       (as these methods do) before each re-render to avoid a warning message and a potential memory leak
   SearchResults: SearchResults,
   renderSearchResults: function (results, selectorOrElement) {
-    ReactDOM.render(React.createElement(SearchResults, { results }), jQuery(selectorOrElement)[0])
+    const element = jQuery(selectorOrElement)[0]
+    ReactDOM.unmountComponentAtNode(element)
+    ReactDOM.render(React.createElement(SearchResults, { results }), element)
+  },
+  renderSearchMessage: function (message, selectorOrElement) {
+    const element = jQuery(selectorOrElement)[0]
+    ReactDOM.unmountComponentAtNode(element)
+    ReactDOM.render(<span>{message}</span>, element)
   },
 
   SMaterialsList: SMaterialsList,
