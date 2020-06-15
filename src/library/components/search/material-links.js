@@ -45,9 +45,12 @@ export class SGenericLink extends React.Component {
       link.onclick = this.wrapOnClick(link.onclick)
     }
 
+    // React 16 shows a warning when using javascript:void(0) so replace it with the equivalent
+    const url = link.url === "javascript:void(0)" ? "#" : link.url
+
     return (
       <a
-        href={link.url}
+        href={url}
         className={link.className}
         target={link.target}
         onClick={link.onclick}
