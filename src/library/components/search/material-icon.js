@@ -1,6 +1,11 @@
 import React from 'react'
 
 export default class SMaterialIcon extends React.Component {
+  constructor (props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
   handleClick () {
     const { material } = this.props
 
@@ -104,9 +109,9 @@ export default class SMaterialIcon extends React.Component {
         outlineClass = favClass + ' ' + favOutlineClass
       }
 
-      favDiv = <div className={favClass} onClick={this.handleClick.bind(this)} dangerouslySetInnerHTML={{ __html: favStar }} />
+      favDiv = <div className={favClass} onClick={this.handleClick} dangerouslySetInnerHTML={{ __html: favStar }} />
       if (!starred) {
-        outlineDiv = <div className={outlineClass} style={{ color: '#CCCCCC' }} onClick={this.handleClick.bind(this)} dangerouslySetInnerHTML={{ __html: outlineStar }} />
+        outlineDiv = <div className={outlineClass} style={{ color: '#CCCCCC' }} onClick={this.handleClick} dangerouslySetInnerHTML={{ __html: outlineStar }} />
       }
     }
 

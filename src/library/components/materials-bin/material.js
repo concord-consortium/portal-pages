@@ -7,6 +7,11 @@ export default class MBMaterial extends React.Component {
       descriptionVisible: false,
       assigned: props.material.assigned
     }
+    this.assignToSpecificClass = this.assignToSpecificClass.bind(this)
+    this.toggleDescription = this.toggleDescription.bind(this)
+    this.assignToClass = this.assignToClass.bind(this)
+    this.assignToCollection = this.assignToCollection.bind(this)
+    this.archive = this.archive.bind(this)
   }
 
   assignToSpecificClass (e) {
@@ -48,7 +53,7 @@ export default class MBMaterial extends React.Component {
       <div className='mb-material'>
         <span className='mb-material-links'>
           {this.props.assignToSpecificClass
-            ? <input type='checkbox' onChange={this.assignToSpecificClass.bind(this)} checked={this.state.assigned} /> : undefined}
+            ? <input type='checkbox' onChange={this.assignToSpecificClass} checked={this.state.assigned} /> : undefined}
           {data.edit_url != null
             ? <a className='mb-edit' href={data.edit_url} title='Edit this activity'>
               <span className='mb-edit-text'>Edit</span>
@@ -58,7 +63,7 @@ export default class MBMaterial extends React.Component {
               <span className='mb-copy-text'>Copy</span>
             </a> : undefined}
           {this.hasShortDescription()
-            ? <a className='mb-toggle-info' href='' onClick={this.toggleDescription.bind(this)} title='View activity description'>
+            ? <a className='mb-toggle-info' href='' onClick={this.toggleDescription} title='View activity description'>
               <span className='mb-toggle-info-text'>Info</span>
             </a> : undefined}
           {data.preview_url != null
@@ -66,17 +71,17 @@ export default class MBMaterial extends React.Component {
               <span className='mb-run-text'>Run</span>
             </a> : undefined}
           {!this.props.assignToSpecificClass && (data.assign_to_class_url != null)
-            ? <a className='mb-assign-to-class' href={data.assign_to_class_url} onClick={this.assignToClass.bind(this)} title='Assign this activity to a class'>
+            ? <a className='mb-assign-to-class' href={data.assign_to_class_url} onClick={this.assignToClass} title='Assign this activity to a class'>
               <span className='mb-assign-to-class-text'>Assign or Share</span>
             </a> : undefined}
           {data.assign_to_collection_url != null
-            ? <a className='mb-assign-to-collection' href={data.assign_to_collection_url} onClick={this.assignToCollection.bind(this)} title='Assign this activity to a collection'>
+            ? <a className='mb-assign-to-collection' href={data.assign_to_collection_url} onClick={this.assignToCollection} title='Assign this activity to a collection'>
               <span className='mb-assign-to-collection-text'>Assign to collection</span>
             </a> : undefined}
         </span>
         <span className='mb-material-name'>{data.name}</span>
         {data.archive_url != null
-          ? <a className='mb-archive-link' onClick={this.archive.bind(this)} title='archive this'>(archive this)</a>
+          ? <a className='mb-archive-link' onClick={this.archive} title='archive this'>(archive this)</a>
           : undefined}
         {this.hasShortDescription()
           ? <MBMaterialDescription

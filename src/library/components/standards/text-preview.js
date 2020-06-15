@@ -5,6 +5,11 @@ export const PREVIEW_LENGTH = 17
 const isArray = Array.isArray || (o => ({}).toString.call(o) === '[object Array]')
 
 export default class TextPreview extends React.Component {
+  constructor (props) {
+    super(props)
+    this.togglePreview = this.togglePreview.bind(this)
+  }
+
   togglePreview (e) {
     const { config } = this.props
     config.preview = !config.preview
@@ -26,7 +31,7 @@ export default class TextPreview extends React.Component {
     }
 
     return (
-      <div onClick={this.togglePreview.bind(this)} style={{ cursor: 'default' }}>
+      <div onClick={this.togglePreview} style={{ cursor: 'default' }}>
         {text}
       </div>
     )

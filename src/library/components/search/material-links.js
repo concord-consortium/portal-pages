@@ -14,6 +14,11 @@ export class SMaterialLinks extends React.Component {
 }
 
 export class SGenericLink extends React.Component {
+  constructor (props) {
+    super(props)
+    this.wrapOnClick = this.wrapOnClick.bind(this)
+  }
+
   optionallyWrapConfirm (link) {
     if (link.ccConfirm) {
       const followLink = () => {
@@ -73,6 +78,11 @@ export class SMaterialLink extends React.Component {
 }
 
 export class SMaterialDropdownLink extends React.Component {
+  constructor (props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
   handleClick (event) {
     window.hideSharelinks()
     if (!event.target.nextSibling.visible()) {

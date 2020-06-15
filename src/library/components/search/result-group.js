@@ -8,6 +8,7 @@ export default class SearchResultGroup extends React.Component {
   constructor (props) {
     super(props)
     this.state = Object.assign({ loading: false }, this.props)
+    this.onPaginationSelect = this.onPaginationSelect.bind(this)
   }
 
   onPaginationSelect (page) {
