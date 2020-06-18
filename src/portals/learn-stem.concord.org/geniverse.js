@@ -1,5 +1,5 @@
 // Last argument is number of visible materials.
-PortalPages.renderMaterialsCollection(2, '#collection-1')
+PortalComponents.renderMaterialsCollection(2, '#collection-1')
 
 jQuery(document).ready(function () {
   var pageIntro

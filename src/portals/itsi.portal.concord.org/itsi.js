@@ -416,5 +416,5 @@ var MATERIALS = [
   }
 ]
 
-Portal.renderMaterialsBin(MATERIALS, '#bin-view')
-PortalPages.renderNavigation(Portal.API_V1.getNavigation(), 'clazzes_nav')
+PortalComponents.renderMaterialsBin(MATERIALS, '#bin-view')
+PortalComponents.renderNavigation(Portal.API_V1.getNavigation(), 'clazzes_nav')

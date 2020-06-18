@@ -8,7 +8,6 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
 fi
 
 if [ "$TRAVIS_BRANCH" = "master" ]; then
-  mv dest _site
   # the main page and collection pages use this site-redesign from master so it needs
 	# to be at the root of the site.  There should be a better solution for this.
   mv dest-portals/site-redesign _site/
@@ -23,7 +22,7 @@ else
     mkdir -p _site/branch
     DEPLOY_DIR=branch/$TRAVIS_BRANCH
   fi
-  mv dest _site/$DEPLOY_DIR
+  mv dest-portals/site-redesign _site/$DEPLOY_DIR/
   export DEPLOY_DIR
 fi
 s3_website push --site _site

@@ -39,7 +39,7 @@ See the <a href="https://has-production.s3.amazonaws.com/resources/HASPortalGuid
 </div>
 <script>
   if(Portal.currentUser.isAnonymous) {
-    PortalPages.renderSignupForm(
+    PortalComponents.renderSignupForm(
         { oauthProviders: Portal.oauthProviders },
         "#embedded-signup-form"
     );
@@ -47,7 +47,7 @@ See the <a href="https://has-production.s3.amazonaws.com/resources/HASPortalGuid
 </script>
 
 <script>
-    PortalPages.renderPageHeader({
+    PortalComponents.renderPageHeader({
       oauthProviders: [
           { name:           "google",
             display_name:   "Google",

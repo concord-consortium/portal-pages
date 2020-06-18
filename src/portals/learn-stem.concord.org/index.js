@@ -1,13 +1,13 @@
-PortalPages.renderPageHeader({
+PortalComponents.renderPageHeader({
   fadeIn: 100,
   oauthProviders: Portal.oauthProviders
 }, 'page-header')
 
-PortalPages.renderStemFinder({
+PortalComponents.renderStemFinder({
   fadeIn: 100
 }, 'portal-pages-finder')
 
-PortalPages.renderCollectionCards({
+PortalComponents.renderCollectionCards({
   shuffle: true,
   count: 3,
   fadeIn: 100

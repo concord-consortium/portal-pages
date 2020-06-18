@@ -4,35 +4,35 @@ if (Portal.currentUser.isLoggedIn) {
   jQuery('.portal-pages-collection-resource-list').remove()
 }
 
-PortalPages.renderMaterialsCollection(33, '#collection-5', {
+PortalComponents.renderMaterialsCollection(33, '#collection-5', {
   limit: 10,
   onDataLoad: function (materials) {
     if (materials.length <= 0) { jQuery('#collection-5').parents('li').remove() } // remove collection if no resources available
   }
 })
 
-PortalPages.renderMaterialsCollection(34, '#collection-6', {
+PortalComponents.renderMaterialsCollection(34, '#collection-6', {
   limit: 10,
   onDataLoad: function (materials) {
     if (materials.length <= 0) { jQuery('#collection-6').parents('li').remove() } // remove collection if no resources available
   }
 })
 
-PortalPages.renderMaterialsCollection(30, '#collection-4', {
+PortalComponents.renderMaterialsCollection(30, '#collection-4', {
   limit: 10,
   onDataLoad: function (materials) {
     if (materials.length <= 0) { jQuery('#collection-4').parents('li').remove() } // remove collection if no resources available
   }
 })
 
-PortalPages.renderMaterialsCollection(28, '#collection-1', {
+PortalComponents.renderMaterialsCollection(28, '#collection-1', {
   limit: 10,
   onDataLoad: function (materials) {
     if (materials.length <= 0) { jQuery('#collection-1').parents('li').remove() } // remove collection if no resources available
   }
 })
 
-PortalPages.renderMaterialsCollection(15, '#collection-2', {
+PortalComponents.renderMaterialsCollection(15, '#collection-2', {
   limit: 10,
   onDataLoad: function (materials) {
     if (materials.length <= 0) { jQuery('#collection-2').parents('li').remove() } // remove collection if no resources available

@@ -1,5 +1,5 @@
 // Last argument is number of visible materials.
-PortalPages.renderMaterialsCollection(3, '#collection-1', 10)
+PortalComponents.renderMaterialsCollection(3, '#collection-1', 10)
 
 jQuery(document).ready(function () {
   if (Portal.currentUser.isLoggedIn) {
