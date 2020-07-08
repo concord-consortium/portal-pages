@@ -8,8 +8,12 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
 fi
 
 if [ "$TRAVIS_BRANCH" = "master" ]; then
+  # it is necessary to create the directory before moving the files otherwise
+  # `mv` just puts the files of site-redesign directly into _site instead of
+  # _site/site-redesign/
+  mkdir -p _site
   # the main page and collection pages use this site-redesign from master so it needs
-	# to be at the root of the site.  There should be a better solution for this.
+  # to be at the root of the site.  There should be a better solution for this.
   mv dest-portals/site-redesign _site/
 else
   # the 2> is to prevent error messages when no match is found
@@ -22,6 +26,7 @@ else
     mkdir -p _site/branch
     DEPLOY_DIR=branch/$TRAVIS_BRANCH
   fi
+  mkdir -p _site/$DEPLOY_DIR
   mv dest-portals/site-redesign _site/$DEPLOY_DIR/
   export DEPLOY_DIR
 fi
