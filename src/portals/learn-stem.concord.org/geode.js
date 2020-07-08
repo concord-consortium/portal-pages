@@ -8,13 +8,13 @@ jQuery(document).ready(function () {
 })
 
 // Last argument is number of visible materials.
-PortalPages.renderMaterialsCollection(40, '#collection-1', {
+PortalComponents.renderMaterialsCollection(40, '#collection-1', {
   limit: 20,
   onDataLoad: function (materials) { if (jQuery('#collection-1 .portal-pages-finder-materials-collection-item').length < 1) { jQuery('#collection-1, #collection-1-heading').remove() } },
   header: 'GEODE Activities'
 })
 
-PortalPages.renderMaterialsCollection(41, '#collection-2', {
+PortalComponents.renderMaterialsCollection(41, '#collection-2', {
   limit: 20,
   onDataLoad: function (materials) {},
   header: 'GEODE Activities'

@@ -1,5 +1,5 @@
 // Last argument is number of visible materials.
-// PortalPages.renderMaterialsCollection(1, '#collection-1');
+// PortalComponents.renderMaterialsCollection(1, '#collection-1');
 
 // Custom sorting plugin
 (function (jQuery) {
@@ -50,12 +50,12 @@ jQuery(function () {
   })
 })
 
-PortalPages.renderMaterialsCollection(16, '#collection-1', 20)
-PortalPages.renderMaterialsCollection(17, '#collection-2', 20)
-PortalPages.renderMaterialsCollection(18, '#collection-3', 20)
-PortalPages.renderMaterialsCollection(19, '#collection-4', 20)
-PortalPages.renderMaterialsCollection(25, '#collection-6', 20)
-PortalPages.renderMaterialsCollection(31, '#collection-5', 20)
+PortalComponents.renderMaterialsCollection(16, '#collection-1', 20)
+PortalComponents.renderMaterialsCollection(17, '#collection-2', 20)
+PortalComponents.renderMaterialsCollection(18, '#collection-3', 20)
+PortalComponents.renderMaterialsCollection(19, '#collection-4', 20)
+PortalComponents.renderMaterialsCollection(25, '#collection-6', 20)
+PortalComponents.renderMaterialsCollection(31, '#collection-5', 20)
 
 jQuery(document).ready(function () {
   jQuery('body').append('<div id="overlay"></div>')

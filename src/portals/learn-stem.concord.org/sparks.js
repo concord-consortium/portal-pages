@@ -1,6 +1,6 @@
 jQuery(document).ready(function () {
   // Last argument is number of visible materials.
-  PortalPages.renderMaterialsCollection(21, '#simulations-tab', 100)
+  PortalComponents.renderMaterialsCollection(21, '#simulations-tab', 100)
   if (Portal.currentUser.isLoggedIn) {
     jQuery('.sign-up-box').remove()
   }

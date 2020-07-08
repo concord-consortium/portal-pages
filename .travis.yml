@@ -8,8 +8,6 @@ install:
 - travis_retry gem install s3_website -v 3.4.0
 - travis_retry npm ci
 script:
-- npx jest
-- npm run lint
 - npm run build
 after_success: ./s3_deploy.sh
 cache:

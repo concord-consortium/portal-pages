@@ -1,8 +1,8 @@
-PortalPages.renderPageHeader({
+PortalComponents.renderPageHeader({
   isAbout: true,
   fadeIn: 1000
 }, 'page-header')
 
-PortalPages.renderPageFooter({
+PortalComponents.renderPageFooter({
   fadeIn: 1000
 }, 'page-footer')

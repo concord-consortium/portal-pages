@@ -1,4 +1,4 @@
-PortalPages.renderPageHeader({
+PortalComponents.renderPageHeader({
   fadeIn: 100,
   logo_class: 'ngsa',
   umbrella_link: false,
